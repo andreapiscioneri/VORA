@@ -78,7 +78,9 @@
     "website": "Sito Web",
     "social": "Marketing Social",
     "campaigns": "Marketing Email",
-    "settings": "Impostazioni"
+    "settings": "Impostazioni",
+    "templates": "Modelli",
+    "segments": "Segmenti"
   },
   "topbar": {
     "search": "Cerca...",
@@ -123,7 +125,19 @@
     "openOpportunities": "{count} opportunità aperte",
     "projects": "Progetti attivi",
     "noActiveProjects": "Nessun progetto attivo.",
-    "placeholder": "Modulo non ancora implementato."
+    "placeholder": "Modulo non ancora implementato.",
+    "customize": {
+      "enter": "Personalizza",
+      "exit": "Fatto",
+      "dragHandle": "Trascina per riordinare {widget}",
+      "hide": "Nascondi {widget}",
+      "show": "Mostra {widget}",
+      "resize": "Ridimensiona {widget}"
+    },
+    "allHidden": "Tutti i widget sono nascosti. Attiva Personalizza per mostrarli di nuovo.",
+    "errors": {
+      "load": "Impossibile caricare il layout della dashboard."
+    }
   },
   "contacts": {
     "title": "Contatti",
@@ -241,7 +255,8 @@
       "urlLabel": "https://...",
       "add": "Aggiungi",
       "error": "Impossibile aggiungere l'allegato."
-    }
+    },
+    "moveTo": "Sposta {title}"
   },
   "crm": {
     "title": "CRM",
@@ -282,7 +297,8 @@
       "newTitle": "Nuova opportunità",
       "delete": "Elimina"
     },
-    "deleteConfirm": "Eliminare questa opportunità? L'operazione non è reversibile."
+    "deleteConfirm": "Eliminare questa opportunità? L'operazione non è reversibile.",
+    "moveTo": "Sposta {title}"
   },
   "calendar": {
     "title": "Calendario",
@@ -390,7 +406,13 @@
       "discussion": "Discussione",
       "noDiscussion": "Nessun messaggio.",
       "addDiscussion": "Scrivi un messaggio...",
-      "send": "Invia"
+      "send": "Invia",
+      "milestones": "Milestone",
+      "noMilestones": "Nessuna milestone.",
+      "milestoneTitle": "Titolo milestone",
+      "milestoneDueDate": "Scadenza",
+      "addMilestone": "Aggiungi",
+      "milestoneError": "Impossibile aggiungere la milestone."
     }
   },
   "timesheets": {
@@ -964,7 +986,12 @@
       "saving": "Salvataggio...",
       "editTitle": "Modifica campagna",
       "newTitle": "Nuova campagna",
-      "delete": "Elimina"
+      "delete": "Elimina",
+      "useTemplate": "Usa un modello",
+      "noTemplate": "Nessun modello",
+      "useSegment": "Usa un segmento",
+      "noSegment": "Nessun segmento",
+      "resolvingSegment": "Calcolo destinatari..."
     },
     "send": "Invia",
     "sentOn": "Inviata il",
@@ -1085,6 +1112,62 @@
     "api": {
       "title": "API",
       "notice": "La gestione di chiavi API personali non è ancora stata costruita — funzionalità futura, non un mockup nascosto."
+    }
+  },
+  "templates": {
+    "title": "Modelli email",
+    "subtitle": "{count} modelli",
+    "new": "Nuovo modello",
+    "empty": {
+      "title": "Nessun modello",
+      "subtitle": "Crea il tuo primo modello email riutilizzabile.",
+      "cta": "Crea modello"
+    },
+    "errors": {
+      "load": "Impossibile caricare i modelli.",
+      "save": "Impossibile salvare il modello.",
+      "delete": "Impossibile eliminare il modello."
+    },
+    "deleteConfirm": "Eliminare questo modello? L'operazione non è reversibile.",
+    "form": {
+      "name": "Nome",
+      "subject": "Oggetto",
+      "body": "Messaggio",
+      "cancel": "Annulla",
+      "save": "Salva",
+      "saving": "Salvataggio...",
+      "editTitle": "Modifica modello",
+      "newTitle": "Nuovo modello",
+      "delete": "Elimina"
+    }
+  },
+  "segments": {
+    "title": "Segmenti",
+    "subtitle": "{count} segmenti",
+    "new": "Nuovo segmento",
+    "empty": {
+      "title": "Nessun segmento",
+      "subtitle": "Crea il tuo primo segmento di contatti riutilizzabile.",
+      "cta": "Crea segmento"
+    },
+    "errors": {
+      "load": "Impossibile caricare i segmenti.",
+      "save": "Impossibile salvare il segmento.",
+      "delete": "Impossibile eliminare il segmento."
+    },
+    "deleteConfirm": "Eliminare questo segmento? L'operazione non è reversibile.",
+    "form": {
+      "name": "Nome",
+      "status": "Stato contatto",
+      "anyStatus": "Qualsiasi stato",
+      "tags": "Tag",
+      "tagsPlaceholder": "Separati da virgola",
+      "cancel": "Annulla",
+      "save": "Salva",
+      "saving": "Salvataggio...",
+      "editTitle": "Modifica segmento",
+      "newTitle": "Nuovo segmento",
+      "delete": "Elimina"
     }
   }
 }

@@ -78,7 +78,9 @@
     "website": "Website",
     "social": "Social Marketing",
     "campaigns": "Email Marketing",
-    "settings": "Settings"
+    "settings": "Settings",
+    "templates": "Templates",
+    "segments": "Segments"
   },
   "topbar": {
     "search": "Search...",
@@ -123,7 +125,19 @@
     "openOpportunities": "{count} open opportunities",
     "projects": "Active Projects",
     "noActiveProjects": "No active projects.",
-    "placeholder": "Module not implemented yet."
+    "placeholder": "Module not implemented yet.",
+    "customize": {
+      "enter": "Customize",
+      "exit": "Done",
+      "dragHandle": "Drag to reorder {widget}",
+      "hide": "Hide {widget}",
+      "show": "Show {widget}",
+      "resize": "Resize {widget}"
+    },
+    "allHidden": "All widgets are hidden. Turn on Customize to bring them back.",
+    "errors": {
+      "load": "Couldn't load the dashboard layout."
+    }
   },
   "contacts": {
     "title": "Contacts",
@@ -241,7 +255,8 @@
       "urlLabel": "https://...",
       "add": "Add",
       "error": "Could not add the attachment."
-    }
+    },
+    "moveTo": "Move {title}"
   },
   "crm": {
     "title": "CRM",
@@ -282,7 +297,8 @@
       "newTitle": "New opportunity",
       "delete": "Delete"
     },
-    "deleteConfirm": "Delete this opportunity? This cannot be undone."
+    "deleteConfirm": "Delete this opportunity? This cannot be undone.",
+    "moveTo": "Move {title}"
   },
   "calendar": {
     "title": "Calendar",
@@ -390,7 +406,13 @@
       "discussion": "Discussion",
       "noDiscussion": "No messages yet.",
       "addDiscussion": "Write a message...",
-      "send": "Send"
+      "send": "Send",
+      "milestones": "Milestones",
+      "noMilestones": "No milestones yet.",
+      "milestoneTitle": "Milestone title",
+      "milestoneDueDate": "Due date",
+      "addMilestone": "Add",
+      "milestoneError": "Couldn't add the milestone."
     }
   },
   "timesheets": {
@@ -964,7 +986,12 @@
       "saving": "Saving...",
       "editTitle": "Edit campaign",
       "newTitle": "New campaign",
-      "delete": "Delete"
+      "delete": "Delete",
+      "useTemplate": "Use a template",
+      "noTemplate": "No template",
+      "useSegment": "Use a segment",
+      "noSegment": "No segment",
+      "resolvingSegment": "Resolving recipients..."
     },
     "send": "Send",
     "sentOn": "Sent on",
@@ -1085,6 +1112,62 @@
     "api": {
       "title": "API",
       "notice": "Personal API key management hasn't been built yet — a real future feature, not a hidden mockup."
+    }
+  },
+  "templates": {
+    "title": "Email Templates",
+    "subtitle": "{count} templates",
+    "new": "New template",
+    "empty": {
+      "title": "No templates",
+      "subtitle": "Create your first reusable email template.",
+      "cta": "Create template"
+    },
+    "errors": {
+      "load": "Couldn't load templates.",
+      "save": "Couldn't save the template.",
+      "delete": "Couldn't delete the template."
+    },
+    "deleteConfirm": "Delete this template? This can't be undone.",
+    "form": {
+      "name": "Name",
+      "subject": "Subject",
+      "body": "Message",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving...",
+      "editTitle": "Edit template",
+      "newTitle": "New template",
+      "delete": "Delete"
+    }
+  },
+  "segments": {
+    "title": "Segments",
+    "subtitle": "{count} segments",
+    "new": "New segment",
+    "empty": {
+      "title": "No segments",
+      "subtitle": "Create your first reusable contact segment.",
+      "cta": "Create segment"
+    },
+    "errors": {
+      "load": "Couldn't load segments.",
+      "save": "Couldn't save the segment.",
+      "delete": "Couldn't delete the segment."
+    },
+    "deleteConfirm": "Delete this segment? This can't be undone.",
+    "form": {
+      "name": "Name",
+      "status": "Contact status",
+      "anyStatus": "Any status",
+      "tags": "Tags",
+      "tagsPlaceholder": "Comma-separated",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving...",
+      "editTitle": "Edit segment",
+      "newTitle": "New segment",
+      "delete": "Delete"
     }
   }
 }
