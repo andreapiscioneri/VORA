@@ -49,6 +49,8 @@ export const navGroups: { title: string; items: NavItem[] }[] = [
       { key: 'website', label: 'nav.website', icon: 'globe', to: '/website' },
       { key: 'social', label: 'nav.social', icon: 'megaphone', to: '/social' },
       { key: 'campaigns', label: 'nav.campaigns', icon: 'mail', to: '/campaigns' },
+      { key: 'templates', label: 'nav.templates', icon: 'book-open', to: '/marketing/templates' },
+      { key: 'segments', label: 'nav.segments', icon: 'flag', to: '/marketing/segments' },
     ],
   },
 ]

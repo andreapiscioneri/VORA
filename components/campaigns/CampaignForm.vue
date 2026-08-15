@@ -6,6 +6,8 @@ const props = defineProps<{ campaign?: MarketingCampaign | null }>()
 const emit = defineEmits<{ close: []; saved: []; deleted: []; sent: [] }>()
 
 const { createCampaign, updateCampaign, sendCampaign, removeCampaign } = useCampaigns()
+const { templates, fetchTemplates } = useEmailTemplates()
+const { segments, fetchSegments, resolveSegment } = useSegments()
 const { t } = useI18n()
 
 const isEdit = computed(() => !!props.campaign)
@@ -19,6 +21,31 @@ const form = reactive<MarketingCampaignInput>({
   status: props.campaign?.status ?? 'draft',
   sentAt: props.campaign?.sentAt ?? null,
 })
+
+const selectedTemplateId = ref('')
+const selectedSegmentId = ref('')
+const resolvingSegment = ref(false)
+
+fetchTemplates()
+fetchSegments()
+
+function applyTemplate() {
+  const tpl = templates.value.find((t) => t.id === selectedTemplateId.value)
+  if (!tpl) return
+  form.subject = tpl.subject
+  form.body = tpl.body
+}
+
+async function applySegment() {
+  if (!selectedSegmentId.value) return
+  resolvingSegment.value = true
+  try {
+    const result = await resolveSegment(selectedSegmentId.value)
+    form.recipientCount = result.count
+  } finally {
+    resolvingSegment.value = false
+  }
+}
 
 const errors = reactive<Record<string, string>>({})
 const saving = ref(false)
@@ -101,6 +128,14 @@ onMounted(() => dialogRef.value?.focus())
             {{ $t('campaigns.sentOn') }} {{ new Date(campaign!.sentAt!).toLocaleString() }}
           </div>
 
+          <div v-if="!isEdit">
+            <label for="campaign-template" class="block text-label text-ink-400 mb-2">{{ $t('campaigns.form.useTemplate') }}</label>
+            <select id="campaign-template" v-model="selectedTemplateId" class="vora-input" @change="applyTemplate">
+              <option value="">{{ $t('campaigns.form.noTemplate') }}</option>
+              <option v-for="tpl in templates" :key="tpl.id" :value="tpl.id">{{ tpl.name }}</option>
+            </select>
+          </div>
+
           <div>
             <label for="campaign-name" class="block text-label text-ink-400 mb-2">{{ $t('campaigns.form.name') }}</label>
             <input id="campaign-name" v-model="form.name" type="text" :disabled="isSent" class="vora-input" :class="{ 'border-danger': errors.name }" autofocus />
@@ -116,6 +151,15 @@ onMounted(() => dialogRef.value?.focus())
           <div>
             <label for="campaign-body" class="block text-label text-ink-400 mb-2">{{ $t('campaigns.form.body') }}</label>
             <textarea id="campaign-body" v-model="form.body" rows="5" :disabled="isSent" class="vora-input resize-none" />
+          </div>
+
+          <div v-if="!isSent">
+            <label for="campaign-segment" class="block text-label text-ink-400 mb-2">{{ $t('campaigns.form.useSegment') }}</label>
+            <select id="campaign-segment" v-model="selectedSegmentId" class="vora-input" @change="applySegment">
+              <option value="">{{ $t('campaigns.form.noSegment') }}</option>
+              <option v-for="s in segments" :key="s.id" :value="s.id">{{ s.name }}</option>
+            </select>
+            <p v-if="resolvingSegment" class="text-caption text-ink-400 mt-1">{{ $t('campaigns.form.resolvingSegment') }}</p>
           </div>
 
           <div>
