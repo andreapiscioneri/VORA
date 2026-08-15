@@ -1,0 +1,16 @@
+{
+  "nav": {
+    "overview": "概要", "dashboard": "ダッシュボード", "relationships": "関係",
+    "contacts": "連絡先", "crm": "CRM", "time": "時間", "calendar": "カレンダー",
+    "tasks": "タスク", "appointments": "予定", "communications": "コミュニケーション",
+    "inbox": "受信トレイ", "work": "業務", "projects": "プロジェクト",
+    "timesheets": "タイムシート", "helpdesk": "ヘルプデスク", "knowledge": "ナレッジ", "settings": "設定"
+  },
+  "topbar": { "search": "検索...", "toggleTheme": "テーマ切替", "launcher": "アプリ" },
+  "launcher": { "placeholder": "アプリまたはコマンドを検索..." },
+  "dashboard": {
+    "title": "ダッシュボード", "subtitle": "今日の重要事項です。", "today": "今日",
+    "tasks": "優先事項", "inbox": "コミュニケーション", "calendar": "カレンダー",
+    "placeholder": "モジュールは未実装です。"
+  }
+}

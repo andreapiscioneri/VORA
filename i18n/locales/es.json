@@ -1,0 +1,16 @@
+{
+  "nav": {
+    "overview": "Resumen", "dashboard": "Panel", "relationships": "Relaciones",
+    "contacts": "Contactos", "crm": "CRM", "time": "Tiempo", "calendar": "Calendario",
+    "tasks": "Tareas", "appointments": "Citas", "communications": "Comunicaciones",
+    "inbox": "Bandeja de entrada", "work": "Trabajo", "projects": "Proyectos",
+    "timesheets": "Partes de horas", "helpdesk": "Soporte", "knowledge": "Conocimiento", "settings": "Ajustes"
+  },
+  "topbar": { "search": "Buscar...", "toggleTheme": "Cambiar tema", "launcher": "Apps" },
+  "launcher": { "placeholder": "Buscar una app o comando..." },
+  "dashboard": {
+    "title": "Panel", "subtitle": "Esto es lo importante hoy.", "today": "Hoy",
+    "tasks": "Prioridades", "inbox": "Comunicaciones", "calendar": "Calendario",
+    "placeholder": "Módulo aún no implementado."
+  }
+}

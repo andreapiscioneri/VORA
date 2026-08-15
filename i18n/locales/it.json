@@ -1,0 +1,1088 @@
+{
+  "common": {
+    "skipToContent": "Vai al contenuto principale"
+  },
+  "validation": {
+    "required": "Campo obbligatorio",
+    "email": "Email non valida",
+    "url": "URL non valido",
+    "endBeforeStart": "La fine deve essere dopo l'inizio",
+    "slug": "Usa solo lettere minuscole, numeri e trattini (es. mio-sito)",
+    "slugTaken": "Questo indirizzo è già in uso, scegline un altro",
+    "color": "Usa un colore esadecimale valido (es. #39FF14)",
+    "recurrenceUntilBeforeStart": "La data di fine ripetizione non può precedere la data di inizio."
+  },
+  "auth": {
+    "loginTitle": "Accedi a Vora",
+    "registerTitle": "Crea il tuo account",
+    "name": "Nome",
+    "email": "Email",
+    "password": "Password",
+    "organizationName": "Nome organizzazione",
+    "submitLogin": "Accedi",
+    "submitRegister": "Crea account",
+    "noAccount": "Non hai un account?",
+    "hasAccount": "Hai già un account?",
+    "switchToRegister": "Registrati",
+    "switchToLogin": "Accedi",
+    "invalidCredentials": "Email o password non corretti",
+    "emailTaken": "Questa email è già registrata",
+    "passwordTooShort": "La password deve avere almeno 8 caratteri",
+    "logout": "Esci",
+    "sending": "Invio...",
+    "backToLogin": "Torna al login",
+    "forgotLink": "Password dimenticata?",
+    "forgotTitle": "Recupera la password",
+    "forgotSubtitle": "Ti invieremo un link per reimpostarla.",
+    "forgotSubmit": "Invia link",
+    "forgotSent": "Se l'indirizzo email esiste, riceverai un link per reimpostare la password.",
+    "resetTitle": "Reimposta la password",
+    "resetInvalidLink": "Link non valido o scaduto.",
+    "resetSuccess": "Password aggiornata con successo.",
+    "resetSubmit": "Reimposta password",
+    "newPassword": "Nuova password",
+    "verifying": "Verifica in corso...",
+    "verifySuccess": "Email verificata con successo.",
+    "verifyError": "Link di verifica non valido o scaduto.",
+    "goToDashboard": "Vai alla dashboard",
+    "verifyBanner": "Conferma il tuo indirizzo email per proteggere il tuo account.",
+    "verifyBannerResend": "Invia di nuovo",
+    "verifyBannerSent": "Email inviata.",
+    "or": "oppure",
+    "continueWithGoogle": "Continua con Google",
+    "oauthFailed": "Accesso con Google non riuscito. Riprova o usa email e password."
+  },
+  "nav": {
+    "overview": "Panoramica",
+    "dashboard": "Dashboard",
+    "relationships": "Relazioni",
+    "contacts": "Contatti",
+    "crm": "CRM",
+    "time": "Tempo",
+    "calendar": "Calendario",
+    "tasks": "Da fare",
+    "appointments": "Appuntamenti",
+    "communications": "Comunicazioni",
+    "inbox": "Posta in arrivo",
+    "work": "Lavoro",
+    "projects": "Progetti",
+    "timesheets": "Fogli ore",
+    "helpdesk": "Helpdesk",
+    "knowledge": "Knowledge",
+    "expenses": "Spese",
+    "leave": "Ferie",
+    "employees": "Dipendenti",
+    "wellbeing": "Benessere",
+    "auditLog": "Registro attività",
+    "marketing": "Marketing",
+    "website": "Sito Web",
+    "social": "Marketing Social",
+    "campaigns": "Marketing Email",
+    "settings": "Impostazioni"
+  },
+  "topbar": {
+    "search": "Cerca...",
+    "toggleTheme": "Cambia tema",
+    "launcher": "App"
+  },
+  "launcher": {
+    "placeholder": "Cerca un'app o un comando...",
+    "searching": "Ricerca in corso...",
+    "noResults": "Nessun risultato.",
+    "type": {
+      "contact": "Contatto",
+      "task": "Task",
+      "appointment": "Appuntamento",
+      "ticket": "Ticket",
+      "project": "Progetto",
+      "communication": "Comunicazione",
+      "knowledge": "Knowledge"
+    },
+    "commands": {
+      "title": "Comandi",
+      "newContact": "Nuovo contatto",
+      "newTask": "Nuova attività",
+      "newAppointment": "Nuovo appuntamento",
+      "openCalendar": "Apri calendario",
+      "askAI": "Chiedi a VORA AI",
+      "changeTheme": "Cambia tema",
+      "changeLanguage": "Cambia lingua",
+      "openCrm": "Apri CRM"
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Ecco cosa serve oggi.",
+    "today": "Oggi",
+    "nothingToday": "Niente in programma per oggi.",
+    "tasks": "Priorità",
+    "noPriorityTasks": "Nessuna attività ad alta priorità.",
+    "crm": "Pipeline CRM",
+    "openOpportunities": "{count} opportunità aperte",
+    "projects": "Progetti attivi",
+    "noActiveProjects": "Nessun progetto attivo.",
+    "placeholder": "Modulo non ancora implementato."
+  },
+  "contacts": {
+    "title": "Contatti",
+    "subtitle": "{count} contatti",
+    "new": "Nuovo contatto",
+    "search": "Cerca per nome, azienda, email...",
+    "empty": {
+      "title": "Nessun contatto",
+      "subtitle": "Inizia aggiungendo il tuo primo contatto.",
+      "cta": "Aggiungi contatto"
+    },
+    "errors": {
+      "load": "Impossibile caricare i contatti.",
+      "save": "Impossibile salvare il contatto.",
+      "delete": "Impossibile eliminare il contatto."
+    },
+    "columns": {
+      "name": "Nome",
+      "company": "Azienda",
+      "email": "Email",
+      "phone": "Telefono",
+      "status": "Stato"
+    },
+    "status": {
+      "active": "Attivo",
+      "lead": "Lead",
+      "inactive": "Inattivo"
+    },
+    "form": {
+      "firstName": "Nome",
+      "lastName": "Cognome",
+      "company": "Azienda",
+      "role": "Ruolo",
+      "email": "Email",
+      "phone": "Telefono",
+      "whatsapp": "WhatsApp",
+      "website": "Sito web",
+      "address": "Indirizzo",
+      "notes": "Note",
+      "status": "Stato",
+      "cancel": "Annulla",
+      "save": "Salva",
+      "saving": "Salvataggio...",
+      "editTitle": "Modifica contatto",
+      "newTitle": "Nuovo contatto"
+    },
+    "detail": {
+      "back": "Torna ai contatti",
+      "edit": "Modifica",
+      "delete": "Elimina",
+      "deleteConfirm": "Eliminare questo contatto? L'operazione non è reversibile.",
+      "notFound": "Contatto non trovato."
+    },
+    "attachments": {
+      "title": "Allegati",
+      "empty": "Nessun allegato.",
+      "titleLabel": "Titolo allegato",
+      "urlLabel": "https://...",
+      "add": "Aggiungi",
+      "error": "Impossibile aggiungere l'allegato."
+    },
+    "validation": {
+      "required": "Campo obbligatorio",
+      "email": "Email non valida"
+    }
+  },
+  "tasks": {
+    "title": "Da fare",
+    "subtitle": "{count} attività",
+    "new": "Nuova attività",
+    "empty": {
+      "title": "Nessuna attività",
+      "subtitle": "Aggiungi la tua prima attività per iniziare a organizzare il lavoro.",
+      "cta": "Aggiungi attività"
+    },
+    "errors": {
+      "load": "Impossibile caricare le attività.",
+      "save": "Impossibile salvare l'attività.",
+      "delete": "Impossibile eliminare l'attività."
+    },
+    "status": {
+      "todo": "Da fare",
+      "in_progress": "In corso",
+      "review": "In revisione",
+      "completed": "Completata",
+      "archived": "Archiviata"
+    },
+    "priority": {
+      "low": "Bassa",
+      "medium": "Media",
+      "high": "Alta",
+      "urgent": "Urgente"
+    },
+    "form": {
+      "title": "Titolo",
+      "description": "Descrizione",
+      "priority": "Priorità",
+      "status": "Stato",
+      "deadline": "Scadenza",
+      "cancel": "Annulla",
+      "save": "Salva",
+      "saving": "Salvataggio...",
+      "editTitle": "Modifica attività",
+      "newTitle": "Nuova attività",
+      "delete": "Elimina",
+      "project": "Progetto",
+      "noProject": "Nessun progetto collegato"
+    },
+    "deleteConfirm": "Eliminare questa attività? L'operazione non è reversibile.",
+    "noDeadline": "Nessuna scadenza",
+    "attachments": {
+      "title": "Allegati",
+      "empty": "Nessun allegato.",
+      "titleLabel": "Titolo allegato",
+      "urlLabel": "https://...",
+      "add": "Aggiungi",
+      "error": "Impossibile aggiungere l'allegato."
+    }
+  },
+  "crm": {
+    "title": "CRM",
+    "subtitle": "{count} opportunità · {value}",
+    "new": "Nuova opportunità",
+    "empty": {
+      "title": "Nessuna opportunità",
+      "subtitle": "Aggiungi la tua prima opportunità per iniziare a tracciare la pipeline.",
+      "cta": "Aggiungi opportunità"
+    },
+    "errors": {
+      "load": "Impossibile caricare le opportunità.",
+      "save": "Impossibile salvare l'opportunità.",
+      "delete": "Impossibile eliminare l'opportunità."
+    },
+    "stage": {
+      "lead": "Lead",
+      "qualified": "Qualificato",
+      "proposal": "Proposta",
+      "negotiation": "Negoziazione",
+      "won": "Vinto",
+      "lost": "Perso"
+    },
+    "form": {
+      "title": "Titolo",
+      "contact": "Contatto",
+      "noContact": "Nessun contatto collegato",
+      "company": "Azienda",
+      "value": "Valore",
+      "probability": "Probabilità",
+      "stage": "Fase",
+      "expectedCloseDate": "Chiusura prevista",
+      "notes": "Note",
+      "cancel": "Annulla",
+      "save": "Salva",
+      "saving": "Salvataggio...",
+      "editTitle": "Modifica opportunità",
+      "newTitle": "Nuova opportunità",
+      "delete": "Elimina"
+    },
+    "deleteConfirm": "Eliminare questa opportunità? L'operazione non è reversibile."
+  },
+  "calendar": {
+    "title": "Calendario",
+    "subtitle": "{count} eventi",
+    "new": "Nuovo evento",
+    "today": "Oggi",
+    "month": "Mese",
+    "agenda": "Agenda",
+    "empty": {
+      "title": "Nessun evento",
+      "subtitle": "Aggiungi il tuo primo evento per iniziare a organizzare il calendario.",
+      "cta": "Aggiungi evento"
+    },
+    "errors": {
+      "load": "Impossibile caricare gli eventi.",
+      "save": "Impossibile salvare l'evento.",
+      "delete": "Impossibile eliminare l'evento."
+    },
+    "form": {
+      "title": "Titolo",
+      "description": "Descrizione",
+      "start": "Inizio",
+      "end": "Fine",
+      "allDay": "Tutto il giorno",
+      "location": "Luogo",
+      "contact": "Contatto",
+      "noContact": "Nessun contatto collegato",
+      "cancel": "Annulla",
+      "save": "Salva",
+      "saving": "Salvataggio...",
+      "editTitle": "Modifica evento",
+      "newTitle": "Nuovo evento",
+      "delete": "Elimina",
+      "date": "Data",
+      "timezone": "Fuso orario",
+      "repeat": "Ripeti",
+      "repeatEvery": "Ogni",
+      "repeatUntil": "Fino al"
+    },
+    "deleteConfirm": "Eliminare questo evento? L'operazione non è reversibile.",
+    "prevMonth": "Mese precedente",
+    "nextMonth": "Mese successivo",
+    "recurrence": {
+      "none": "Non si ripete",
+      "daily": "Ogni giorno",
+      "weekly": "Ogni settimana",
+      "monthly": "Ogni mese"
+    }
+  },
+  "projects": {
+    "title": "Progetti",
+    "subtitle": "{count} progetti",
+    "new": "Nuovo progetto",
+    "list": "Lista",
+    "kanban": "Kanban",
+    "empty": {
+      "title": "Nessun progetto",
+      "subtitle": "Aggiungi il tuo primo progetto per iniziare a organizzare il lavoro.",
+      "cta": "Aggiungi progetto"
+    },
+    "errors": {
+      "load": "Impossibile caricare i progetti.",
+      "save": "Impossibile salvare il progetto.",
+      "delete": "Impossibile eliminare il progetto."
+    },
+    "status": {
+      "active": "Attivo",
+      "on_hold": "In pausa",
+      "completed": "Completato",
+      "archived": "Archiviato"
+    },
+    "columns": {
+      "name": "Nome",
+      "client": "Cliente",
+      "status": "Stato",
+      "dueDate": "Scadenza",
+      "budget": "Budget",
+      "tasks": "Attività"
+    },
+    "form": {
+      "name": "Nome",
+      "description": "Descrizione",
+      "status": "Stato",
+      "client": "Cliente",
+      "noClient": "Nessun cliente collegato",
+      "startDate": "Data inizio",
+      "dueDate": "Scadenza",
+      "budget": "Budget (EUR)",
+      "cancel": "Annulla",
+      "save": "Salva",
+      "saving": "Salvataggio...",
+      "editTitle": "Modifica progetto",
+      "newTitle": "Nuovo progetto",
+      "delete": "Elimina"
+    },
+    "deleteConfirm": "Eliminare questo progetto? Le attività collegate non verranno eliminate.",
+    "detail": {
+      "back": "Torna ai progetti",
+      "documents": "Documenti",
+      "noDocuments": "Nessun documento.",
+      "documentTitle": "Titolo documento",
+      "documentUrl": "https://...",
+      "addDocument": "Aggiungi",
+      "documentError": "Impossibile aggiungere il documento.",
+      "discussion": "Discussione",
+      "noDiscussion": "Nessun messaggio.",
+      "addDiscussion": "Scrivi un messaggio...",
+      "send": "Invia"
+    }
+  },
+  "timesheets": {
+    "title": "Fogli ore",
+    "subtitle": "{count} voci · {hours} ore registrate",
+    "new": "Registra ore",
+    "timer": {
+      "start": "Avvia timer",
+      "stop": "Ferma e salva",
+      "running": "Timer in corso",
+      "descriptionPlaceholder": "Su cosa stai lavorando?"
+    },
+    "empty": {
+      "title": "Nessuna voce",
+      "subtitle": "Avvia il timer o registra ore manualmente per iniziare.",
+      "cta": "Registra ore"
+    },
+    "errors": {
+      "load": "Impossibile caricare i fogli ore.",
+      "save": "Impossibile salvare la voce.",
+      "delete": "Impossibile eliminare la voce."
+    },
+    "form": {
+      "project": "Progetto",
+      "noProject": "Nessun progetto collegato",
+      "task": "Attività",
+      "noTask": "Nessuna attività collegata",
+      "description": "Descrizione",
+      "date": "Data",
+      "duration": "Durata (minuti)",
+      "billable": "Fatturabile",
+      "cancel": "Annulla",
+      "save": "Salva",
+      "saving": "Salvataggio...",
+      "editTitle": "Modifica voce",
+      "newTitle": "Nuova voce",
+      "delete": "Elimina"
+    },
+    "deleteConfirm": "Eliminare questa voce? L'operazione non è reversibile.",
+    "noBillable": "Non fatturabile"
+  },
+  "appointments": {
+    "title": "Appuntamenti",
+    "subtitle": "{count} appuntamenti",
+    "new": "Nuovo appuntamento",
+    "upcoming": "In programma",
+    "past": "Passati",
+    "empty": {
+      "title": "Nessun appuntamento",
+      "subtitle": "Aggiungi il tuo primo appuntamento per iniziare.",
+      "cta": "Aggiungi appuntamento"
+    },
+    "errors": {
+      "load": "Impossibile caricare gli appuntamenti.",
+      "save": "Impossibile salvare l'appuntamento.",
+      "delete": "Impossibile eliminare l'appuntamento."
+    },
+    "status": {
+      "scheduled": "Programmato",
+      "confirmed": "Confermato",
+      "completed": "Completato",
+      "cancelled": "Annullato"
+    },
+    "form": {
+      "title": "Titolo",
+      "contact": "Contatto",
+      "noContact": "Nessun contatto collegato",
+      "opportunity": "Opportunità CRM",
+      "noOpportunity": "Nessuna opportunità collegata",
+      "start": "Data e ora",
+      "duration": "Durata (minuti)",
+      "location": "Luogo",
+      "videoCallUrl": "Link videochiamata",
+      "notes": "Note",
+      "status": "Stato",
+      "cancel": "Annulla",
+      "save": "Salva",
+      "saving": "Salvataggio...",
+      "editTitle": "Modifica appuntamento",
+      "newTitle": "Nuovo appuntamento",
+      "delete": "Elimina"
+    },
+    "joinCall": "Partecipa alla videochiamata",
+    "deleteConfirm": "Eliminare questo appuntamento? L'operazione non è reversibile."
+  },
+  "inbox": {
+    "title": "Posta in arrivo",
+    "subtitle": "{count} messaggi",
+    "new": "Nuovo messaggio",
+    "all": "Tutti",
+    "channel": {
+      "email": "Email",
+      "whatsapp": "WhatsApp",
+      "internal": "Interno"
+    },
+    "empty": {
+      "title": "Nessun messaggio",
+      "subtitle": "Le comunicazioni con i tuoi contatti appariranno qui.",
+      "cta": "Invia il primo messaggio"
+    },
+    "errors": {
+      "load": "Impossibile caricare i messaggi.",
+      "send": "Impossibile inviare il messaggio.",
+      "delete": "Impossibile eliminare il messaggio."
+    },
+    "mockNotice": "Nessun provider Email/WhatsApp reale configurato — questo messaggio è stato registrato ma non inviato davvero. Configura EMAIL_PROVIDER_API_KEY / WHATSAPP_API_KEY per collegare un provider reale.",
+    "form": {
+      "channel": "Canale",
+      "to": "Destinatario",
+      "contact": "Contatto",
+      "noContact": "Nessun contatto collegato",
+      "subject": "Oggetto",
+      "body": "Messaggio",
+      "cancel": "Annulla",
+      "send": "Invia",
+      "sending": "Invio...",
+      "newTitle": "Nuovo messaggio"
+    },
+    "markRead": "Segna come letto",
+    "archive": "Archivia",
+    "delete": "Elimina",
+    "deleteConfirm": "Eliminare questo messaggio? L'operazione non è reversibile.",
+    "extractTask": "Estrai attività",
+    "suggestAppointment": "Suggerisci appuntamento",
+    "threadCount": "{count} messaggi",
+    "reply": "Rispondi",
+    "you": "Tu",
+    "labels": {
+      "filterBy": "Filtra per etichetta:",
+      "add": "+ etichetta",
+      "remove": "Rimuovi etichetta {label}",
+      "placeholder": "Nuova etichetta"
+    }
+  },
+  "ai": {
+    "errors": {
+      "extract": "Impossibile analizzare il messaggio."
+    },
+    "taskSuggestion": {
+      "title": "Attività suggerita",
+      "none": "Non è stata trovata nessuna richiesta d'azione in questo messaggio.",
+      "confirm": "Crea attività",
+      "reject": "Ignora"
+    },
+    "provider": "Analisi basata su regole — nessun modello linguistico esterno collegato.",
+    "calendarSuggestion": {
+      "title": "Appuntamento suggerito",
+      "none": "Non è stata rilevata nessuna richiesta di appuntamento in questo messaggio.",
+      "pickSlot": "Scegli un orario",
+      "busy": "Occupato",
+      "confirm": "Crea appuntamento",
+      "reject": "Ignora"
+    },
+    "actions": {
+      "title": "Azioni AI",
+      "close": "Chiudi",
+      "summarize": "Riassumi",
+      "generateReply": "Genera risposta",
+      "run": "Esegui",
+      "working": "Elaborazione...",
+      "useAsReply": "Usa come risposta"
+    },
+    "relationship": {
+      "title": "Relazione (AI)",
+      "noHistory": "Nessuna comunicazione o appuntamento registrato con questo contatto.",
+      "summarize": "Riassumi relazione",
+      "followUp": "Prepara follow-up",
+      "useAsFollowUp": "Usa come email di follow-up"
+    },
+    "prioritize": {
+      "action": "Prioritizza con AI"
+    }
+  },
+  "assistant": {
+    "title": "Assistente VORA",
+    "close": "Chiudi",
+    "open": "Assistente",
+    "prompts": {
+      "organizeDay": "Organizza la mia giornata",
+      "priorities": "Quali sono le mie attività più importanti?",
+      "unanswered": "Quali messaggi non ho ancora letto?",
+      "upcoming": "Trova i miei prossimi impegni"
+    }
+  },
+  "helpdesk": {
+    "title": "Helpdesk",
+    "subtitle": "{count} ticket",
+    "new": "Nuovo ticket",
+    "empty": {
+      "title": "Nessun ticket",
+      "subtitle": "Aggiungi il tuo primo ticket di supporto.",
+      "cta": "Aggiungi ticket"
+    },
+    "errors": {
+      "load": "Impossibile caricare i ticket.",
+      "save": "Impossibile salvare il ticket.",
+      "delete": "Impossibile eliminare il ticket."
+    },
+    "status": {
+      "open": "Aperto",
+      "in_progress": "In lavorazione",
+      "waiting": "In attesa",
+      "resolved": "Risolto",
+      "closed": "Chiuso"
+    },
+    "category": {
+      "technical": "Tecnico",
+      "billing": "Fatturazione",
+      "general": "Generale",
+      "feature_request": "Richiesta funzionalità"
+    },
+    "columns": {
+      "title": "Titolo",
+      "customer": "Cliente",
+      "status": "Stato",
+      "priority": "Priorità",
+      "category": "Categoria",
+      "sla": "SLA"
+    },
+    "form": {
+      "title": "Titolo",
+      "description": "Descrizione",
+      "contact": "Cliente",
+      "noContact": "Nessun cliente collegato",
+      "priority": "Priorità",
+      "status": "Stato",
+      "category": "Categoria",
+      "cancel": "Annulla",
+      "save": "Salva",
+      "saving": "Salvataggio...",
+      "editTitle": "Modifica ticket",
+      "newTitle": "Nuovo ticket",
+      "delete": "Elimina",
+      "sla": "Scadenza SLA"
+    },
+    "detail": {
+      "back": "Torna ai ticket",
+      "comments": "Commenti",
+      "noComments": "Nessun commento.",
+      "addComment": "Aggiungi un commento...",
+      "send": "Invia"
+    },
+    "attachments": {
+      "title": "Allegati",
+      "empty": "Nessun allegato.",
+      "titleLabel": "Titolo allegato",
+      "urlLabel": "https://...",
+      "add": "Aggiungi",
+      "error": "Impossibile aggiungere l'allegato."
+    },
+    "deleteConfirm": "Eliminare questo ticket? L'operazione non è reversibile.",
+    "sla": {
+      "dueAt": "Scadenza {date}",
+      "overdue": "Scaduto"
+    }
+  },
+  "knowledge": {
+    "title": "Knowledge",
+    "subtitle": "{count} pagine",
+    "new": "Nuova pagina",
+    "search": "Cerca per titolo, contenuto o tag...",
+    "allFolders": "Tutte le cartelle",
+    "favoritesOnly": "Solo preferiti",
+    "noFolder": "Senza cartella",
+    "empty": {
+      "title": "Nessuna pagina",
+      "subtitle": "Crea la tua prima pagina per iniziare a costruire la knowledge base.",
+      "cta": "Crea pagina"
+    },
+    "errors": {
+      "load": "Impossibile caricare le pagine.",
+      "save": "Impossibile salvare la pagina.",
+      "delete": "Impossibile eliminare la pagina."
+    },
+    "form": {
+      "title": "Titolo",
+      "content": "Contenuto (Markdown)",
+      "folder": "Cartella",
+      "tags": "Tag (separati da virgola)",
+      "cancel": "Annulla",
+      "save": "Salva",
+      "saving": "Salvataggio...",
+      "editTitle": "Modifica pagina",
+      "newTitle": "Nuova pagina",
+      "delete": "Elimina",
+      "edit": "Modifica",
+      "preview": "Anteprima"
+    },
+    "detail": {
+      "back": "Torna a Knowledge",
+      "lastUpdated": "Ultimo aggiornamento"
+    },
+    "deleteConfirm": "Eliminare questa pagina? L'operazione non è reversibile.",
+    "semanticSearch": "Ricerca intelligente (premi Invio)",
+    "searching": "Ricerca in corso...",
+    "semanticResultsCount": "{count} risultati per rilevanza",
+    "relevance": "{pct}% rilevanza",
+    "favorite": "Aggiungi ai preferiti",
+    "unfavorite": "Rimuovi dai preferiti"
+  },
+  "expenses": {
+    "title": "Spese",
+    "subtitle": "{count} spese · {total}",
+    "new": "Nuova spesa",
+    "all": "Tutte",
+    "empty": {
+      "title": "Nessuna spesa",
+      "subtitle": "Registra la tua prima spesa per iniziare.",
+      "cta": "Aggiungi spesa"
+    },
+    "errors": {
+      "load": "Impossibile caricare le spese.",
+      "save": "Impossibile salvare la spesa.",
+      "delete": "Impossibile eliminare la spesa."
+    },
+    "status": {
+      "pending": "In attesa",
+      "approved": "Approvata",
+      "rejected": "Rifiutata"
+    },
+    "category": {
+      "travel": "Viaggio",
+      "meals": "Pasti",
+      "office": "Ufficio",
+      "software": "Software",
+      "other": "Altro"
+    },
+    "columns": {
+      "date": "Data",
+      "category": "Categoria",
+      "project": "Progetto",
+      "amount": "Importo",
+      "status": "Stato"
+    },
+    "form": {
+      "amount": "Importo (EUR)",
+      "date": "Data",
+      "category": "Categoria",
+      "project": "Progetto",
+      "noProject": "Nessun progetto collegato",
+      "notes": "Note",
+      "receiptUrl": "Link ricevuta (opzionale)",
+      "cancel": "Annulla",
+      "save": "Salva",
+      "saving": "Salvataggio...",
+      "editTitle": "Modifica spesa",
+      "newTitle": "Nuova spesa",
+      "delete": "Elimina"
+    },
+    "approve": "Approva",
+    "reject": "Rifiuta",
+    "deleteConfirm": "Eliminare questa spesa? L'operazione non è reversibile."
+  },
+  "leave": {
+    "title": "Ferie",
+    "subtitle": "{count} richieste",
+    "new": "Nuova richiesta",
+    "all": "Tutte",
+    "balance": {
+      "title": "Saldo ferie",
+      "allocated": "Assegnati",
+      "used": "Utilizzati",
+      "remaining": "Rimanenti",
+      "days": "giorni"
+    },
+    "empty": {
+      "title": "Nessuna richiesta",
+      "subtitle": "Invia la tua prima richiesta di ferie.",
+      "cta": "Aggiungi richiesta"
+    },
+    "errors": {
+      "load": "Impossibile caricare le richieste.",
+      "save": "Impossibile salvare la richiesta.",
+      "delete": "Impossibile eliminare la richiesta."
+    },
+    "status": {
+      "pending": "In attesa",
+      "approved": "Approvata",
+      "rejected": "Rifiutata"
+    },
+    "type": {
+      "vacation": "Ferie",
+      "sick": "Malattia",
+      "personal": "Permesso personale"
+    },
+    "columns": {
+      "requester": "Richiedente",
+      "type": "Tipo",
+      "dates": "Periodo",
+      "days": "Giorni",
+      "status": "Stato"
+    },
+    "form": {
+      "requesterName": "Nome",
+      "selectEmployee": "Seleziona un dipendente",
+      "type": "Tipo",
+      "startDate": "Data inizio",
+      "endDate": "Data fine",
+      "notes": "Note",
+      "cancel": "Annulla",
+      "save": "Salva",
+      "saving": "Salvataggio...",
+      "newTitle": "Nuova richiesta ferie"
+    },
+    "approve": "Approva",
+    "reject": "Rifiuta",
+    "deleteConfirm": "Eliminare questa richiesta? L'operazione non è reversibile."
+  },
+  "wellbeing": {
+    "title": "Benessere",
+    "subtitle": "Un momento per te: check-in giornaliero, respirazione, andamento settimanale.",
+    "disclaimer": "Benessere non sostituisce un professionista sanitario e non fornisce diagnosi. È uno spazio per riflettere sul tuo carico di lavoro e sul tuo stato generale.",
+    "mood": "Umore",
+    "energy": "Energia",
+    "stress": "Stress",
+    "note": "Note (facoltative)",
+    "notePlaceholder": "Come va oggi?",
+    "save": "Salva check-in",
+    "saving": "Salvataggio...",
+    "saved": "Check-in salvato.",
+    "history": "Check-in recenti",
+    "checkin": {
+      "title": "Check-in di oggi",
+      "updateTitle": "Aggiorna il check-in di oggi"
+    },
+    "weekly": {
+      "title": "Media ultimi {count} check-in"
+    },
+    "breathing": {
+      "title": "Esercizio di respirazione",
+      "start": "Inizia",
+      "stop": "Ferma",
+      "in": "Inspira",
+      "hold1": "Trattieni",
+      "out": "Espira",
+      "hold2": "Trattieni"
+    },
+    "errors": {
+      "load": "Impossibile caricare i check-in."
+    }
+  },
+  "auditLog": {
+    "title": "Registro attività",
+    "subtitle": "Azioni sensibili nella tua organizzazione — visibile solo a proprietari e amministratori.",
+    "empty": "Nessuna attività registrata.",
+    "actions": {
+      "login": "Accesso",
+      "logout": "Disconnessione",
+      "employee.create": "Dipendente creato",
+      "employee.update": "Dipendente aggiornato",
+      "employee.delete": "Dipendente eliminato",
+      "leave.approve": "Ferie approvate",
+      "leave.reject": "Ferie rifiutate",
+      "expense.approve": "Spesa approvata",
+      "expense.reject": "Spesa rifiutata"
+    },
+    "errors": {
+      "load": "Impossibile caricare il registro attività.",
+      "forbidden": "Solo proprietari e amministratori possono vedere il registro attività."
+    }
+  },
+  "employees": {
+    "title": "Dipendenti",
+    "subtitle": "{count} dipendenti",
+    "new": "Nuovo dipendente",
+    "empty": {
+      "title": "Nessun dipendente",
+      "subtitle": "Aggiungi il tuo primo dipendente per iniziare.",
+      "cta": "Aggiungi dipendente"
+    },
+    "errors": {
+      "load": "Impossibile caricare i dipendenti.",
+      "save": "Impossibile salvare il dipendente.",
+      "delete": "Impossibile eliminare il dipendente."
+    },
+    "status": {
+      "active": "Attivo",
+      "inactive": "Inattivo"
+    },
+    "columns": {
+      "name": "Nome",
+      "role": "Ruolo",
+      "team": "Team",
+      "email": "Email",
+      "status": "Stato"
+    },
+    "form": {
+      "firstName": "Nome",
+      "lastName": "Cognome",
+      "email": "Email",
+      "role": "Ruolo",
+      "team": "Team",
+      "status": "Stato",
+      "startDate": "Data di inizio",
+      "cancel": "Annulla",
+      "save": "Salva",
+      "saving": "Salvataggio...",
+      "editTitle": "Modifica dipendente",
+      "newTitle": "Nuovo dipendente",
+      "delete": "Elimina"
+    },
+    "deleteConfirm": "Eliminare questo dipendente? L'operazione non è reversibile."
+  },
+  "social": {
+    "title": "Marketing Social",
+    "subtitle": "{count} post",
+    "new": "Nuovo post",
+    "all": "Tutti",
+    "empty": {
+      "title": "Nessun post",
+      "subtitle": "Crea il tuo primo post per iniziare a pianificare i contenuti.",
+      "cta": "Crea post"
+    },
+    "errors": {
+      "load": "Impossibile caricare i post.",
+      "save": "Impossibile salvare il post.",
+      "delete": "Impossibile eliminare il post."
+    },
+    "status": {
+      "draft": "Bozza",
+      "scheduled": "Programmato",
+      "published": "Pubblicato"
+    },
+    "platform": {
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "linkedin": "LinkedIn",
+      "x": "X"
+    },
+    "form": {
+      "content": "Contenuto",
+      "platform": "Piattaforma",
+      "status": "Stato",
+      "scheduledAt": "Data programmata",
+      "cancel": "Annulla",
+      "save": "Salva",
+      "saving": "Salvataggio...",
+      "editTitle": "Modifica post",
+      "newTitle": "Nuovo post",
+      "delete": "Elimina"
+    },
+    "deleteConfirm": "Eliminare questo post? L'operazione non è reversibile."
+  },
+  "campaigns": {
+    "title": "Marketing Email",
+    "subtitle": "{count} campagne",
+    "new": "Nuova campagna",
+    "empty": {
+      "title": "Nessuna campagna",
+      "subtitle": "Crea la tua prima campagna email.",
+      "cta": "Crea campagna"
+    },
+    "errors": {
+      "load": "Impossibile caricare le campagne.",
+      "save": "Impossibile salvare la campagna.",
+      "send": "Impossibile inviare la campagna.",
+      "delete": "Impossibile eliminare la campagna."
+    },
+    "status": {
+      "draft": "Bozza",
+      "sent": "Inviata"
+    },
+    "mockNotice": "Nessun provider email reale configurato — l'invio verrà registrato ma nessuna email verrà davvero recapitata.",
+    "form": {
+      "name": "Nome campagna",
+      "subject": "Oggetto",
+      "body": "Contenuto",
+      "recipientCount": "Numero destinatari (stimato)",
+      "cancel": "Annulla",
+      "save": "Salva",
+      "saving": "Salvataggio...",
+      "editTitle": "Modifica campagna",
+      "newTitle": "Nuova campagna",
+      "delete": "Elimina"
+    },
+    "send": "Invia",
+    "sentOn": "Inviata il",
+    "deleteConfirm": "Eliminare questa campagna? L'operazione non è reversibile."
+  },
+  "website": {
+    "title": "Sito Web",
+    "subtitle": "Panoramica del sito pubblico collegato",
+    "visitSite": "Visita il sito",
+    "connected": "Collegato",
+    "notConnected": "Progetto portfolio-andrea non trovato",
+    "pages": "Pagine",
+    "projects": "Progetti pubblicati",
+    "featured": "In evidenza",
+    "errors": {
+      "load": "Impossibile caricare i dati del sito."
+    },
+    "note": "Il sito pubblico è un progetto Nuxt separato (portfolio-andrea). Questa pagina mostra i suoi contenuti reali in sola lettura — VORA non duplica un editor del sito.",
+    "myWebsites": "I tuoi siti generati",
+    "createSite": "Ogni organizzazione può generare il proprio sito, pubblicato realmente su un indirizzo VORA."
+  },
+  "sites": {
+    "title": "Siti generati",
+    "subtitle": "{count} siti",
+    "new": "Nuovo sito",
+    "empty": {
+      "title": "Nessun sito",
+      "subtitle": "Crea il tuo primo sito generato da VORA.",
+      "cta": "Crea sito"
+    },
+    "errors": {
+      "load": "Impossibile caricare i siti.",
+      "save": "Impossibile salvare il sito.",
+      "delete": "Impossibile eliminare il sito."
+    },
+    "published": "Pubblicato",
+    "draft": "Bozza",
+    "viewLive": "Vedi sito live",
+    "form": {
+      "slug": "Indirizzo (slug)",
+      "slugHint": "Il sito sarà raggiungibile su /site/{slug}",
+      "name": "Nome",
+      "tagline": "Slogan",
+      "about": "Chi siamo",
+      "contactEmail": "Email di contatto",
+      "accentColor": "Colore accento",
+      "published": "Pubblicato",
+      "cancel": "Annulla",
+      "save": "Salva",
+      "saving": "Salvataggio...",
+      "editTitle": "Modifica sito",
+      "newTitle": "Nuovo sito",
+      "delete": "Elimina"
+    },
+    "deleteConfirm": "Eliminare questo sito? L'operazione non è reversibile.",
+    "notFound": "Questo sito non esiste o non è ancora pubblicato.",
+    "generatedBy": "Generato con VORA"
+  },
+  "settings": {
+    "title": "Impostazioni",
+    "subtitle": "Account, sicurezza, notifiche e integrazioni.",
+    "saving": "Salvataggio...",
+    "save": "Salva",
+    "saved": "Salvato.",
+    "profile": {
+      "title": "Profilo",
+      "name": "Nome",
+      "email": "Email",
+      "organization": "Organizzazione",
+      "role": {
+        "owner": "Proprietario",
+        "admin": "Amministratore",
+        "member": "Membro"
+      }
+    },
+    "security": {
+      "title": "Sicurezza",
+      "currentPassword": "Password attuale",
+      "newPassword": "Nuova password",
+      "changePassword": "Cambia password",
+      "wrongPassword": "Password attuale non corretta.",
+      "error": "Impossibile cambiare la password."
+    },
+    "appearance": {
+      "title": "Aspetto",
+      "light": "Chiaro",
+      "dark": "Scuro",
+      "system": "Sistema"
+    },
+    "language": {
+      "title": "Lingua"
+    },
+    "notifications": {
+      "title": "Notifiche",
+      "messages": "Messaggi",
+      "urgentTasks": "Attività urgenti",
+      "appointments": "Appuntamenti",
+      "reminders": "Promemoria",
+      "aiActions": "Azioni AI",
+      "approvals": "Approvazioni",
+      "tickets": "Ticket",
+      "deadlines": "Scadenze"
+    },
+    "integrations": {
+      "title": "Integrazioni",
+      "ai": "Motore AI",
+      "email": "Provider email",
+      "whatsapp": "WhatsApp",
+      "oauthGoogle": "Accesso con Google",
+      "live": "Attivo",
+      "mock": "Simulato",
+      "note": "\"Simulato\" indica un'implementazione reale e funzionante ma senza credenziali di un provider esterno collegate — non invia/riceve nulla su una rete reale finché non configuri le credenziali (vedi .env.example)."
+    },
+    "applications": {
+      "title": "Applicazioni",
+      "subtitle": "Apri ⌘K per l'elenco completo dei moduli e delle azioni rapide."
+    },
+    "api": {
+      "title": "API",
+      "notice": "La gestione di chiavi API personali non è ancora stata costruita — funzionalità futura, non un mockup nascosto."
+    }
+  }
+}

@@ -1,0 +1,16 @@
+{
+  "nav": {
+    "overview": "Aperçu", "dashboard": "Tableau de bord", "relationships": "Relations",
+    "contacts": "Contacts", "crm": "CRM", "time": "Temps", "calendar": "Calendrier",
+    "tasks": "Tâches", "appointments": "Rendez-vous", "communications": "Communications",
+    "inbox": "Boîte de réception", "work": "Travail", "projects": "Projets",
+    "timesheets": "Feuilles de temps", "helpdesk": "Assistance", "knowledge": "Connaissances", "settings": "Paramètres"
+  },
+  "topbar": { "search": "Rechercher...", "toggleTheme": "Changer de thème", "launcher": "Apps" },
+  "launcher": { "placeholder": "Rechercher une app ou une commande..." },
+  "dashboard": {
+    "title": "Tableau de bord", "subtitle": "Voici ce qui compte aujourd'hui.", "today": "Aujourd'hui",
+    "tasks": "Priorités", "inbox": "Communications", "calendar": "Calendrier",
+    "placeholder": "Module pas encore implémenté."
+  }
+}

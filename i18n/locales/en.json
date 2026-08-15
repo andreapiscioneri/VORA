@@ -1,0 +1,1088 @@
+{
+  "common": {
+    "skipToContent": "Skip to main content"
+  },
+  "validation": {
+    "required": "Required field",
+    "email": "Invalid email",
+    "url": "Invalid URL",
+    "endBeforeStart": "End must be after start",
+    "slug": "Use only lowercase letters, numbers, and hyphens (e.g. my-site)",
+    "slugTaken": "That address is already taken, pick another one",
+    "color": "Use a valid hex color (e.g. #39FF14)",
+    "recurrenceUntilBeforeStart": "The recurrence end date cannot be before the start date."
+  },
+  "auth": {
+    "loginTitle": "Sign in to Vora",
+    "registerTitle": "Create your account",
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "organizationName": "Organization name",
+    "submitLogin": "Sign in",
+    "submitRegister": "Create account",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "switchToRegister": "Sign up",
+    "switchToLogin": "Sign in",
+    "invalidCredentials": "Incorrect email or password",
+    "emailTaken": "This email is already registered",
+    "passwordTooShort": "Password must be at least 8 characters",
+    "logout": "Sign out",
+    "sending": "Sending...",
+    "backToLogin": "Back to login",
+    "forgotLink": "Forgot password?",
+    "forgotTitle": "Reset your password",
+    "forgotSubtitle": "We'll send you a link to reset it.",
+    "forgotSubmit": "Send link",
+    "forgotSent": "If that email has an account, you'll receive a password reset link.",
+    "resetTitle": "Reset your password",
+    "resetInvalidLink": "This link is invalid or has expired.",
+    "resetSuccess": "Password updated successfully.",
+    "resetSubmit": "Reset password",
+    "newPassword": "New password",
+    "verifying": "Verifying...",
+    "verifySuccess": "Email verified successfully.",
+    "verifyError": "This verification link is invalid or has expired.",
+    "goToDashboard": "Go to dashboard",
+    "verifyBanner": "Confirm your email address to keep your account secure.",
+    "verifyBannerResend": "Resend",
+    "verifyBannerSent": "Email sent.",
+    "or": "or",
+    "continueWithGoogle": "Continue with Google",
+    "oauthFailed": "Google sign-in failed. Try again or use email and password."
+  },
+  "nav": {
+    "overview": "Overview",
+    "dashboard": "Dashboard",
+    "relationships": "Relationships",
+    "contacts": "Contacts",
+    "crm": "CRM",
+    "time": "Time",
+    "calendar": "Calendar",
+    "tasks": "Tasks",
+    "appointments": "Appointments",
+    "communications": "Communications",
+    "inbox": "Inbox",
+    "work": "Work",
+    "projects": "Projects",
+    "timesheets": "Timesheets",
+    "helpdesk": "Helpdesk",
+    "knowledge": "Knowledge",
+    "expenses": "Expenses",
+    "leave": "Leave",
+    "employees": "Employees",
+    "wellbeing": "Wellbeing",
+    "auditLog": "Audit Log",
+    "marketing": "Marketing",
+    "website": "Website",
+    "social": "Social Marketing",
+    "campaigns": "Email Marketing",
+    "settings": "Settings"
+  },
+  "topbar": {
+    "search": "Search...",
+    "toggleTheme": "Toggle theme",
+    "launcher": "Apps"
+  },
+  "launcher": {
+    "placeholder": "Search an app or command...",
+    "searching": "Searching...",
+    "noResults": "No results.",
+    "type": {
+      "contact": "Contact",
+      "task": "Task",
+      "appointment": "Appointment",
+      "ticket": "Ticket",
+      "project": "Project",
+      "communication": "Communication",
+      "knowledge": "Knowledge"
+    },
+    "commands": {
+      "title": "Commands",
+      "newContact": "New contact",
+      "newTask": "New task",
+      "newAppointment": "New appointment",
+      "openCalendar": "Open calendar",
+      "askAI": "Ask VORA AI",
+      "changeTheme": "Change theme",
+      "changeLanguage": "Change language",
+      "openCrm": "Open CRM"
+    }
+  },
+  "dashboard": {
+    "title": "Dashboard",
+    "subtitle": "Here's what matters today.",
+    "today": "Today",
+    "nothingToday": "Nothing scheduled for today.",
+    "tasks": "Priorities",
+    "noPriorityTasks": "No high-priority tasks.",
+    "crm": "CRM Pipeline",
+    "openOpportunities": "{count} open opportunities",
+    "projects": "Active Projects",
+    "noActiveProjects": "No active projects.",
+    "placeholder": "Module not implemented yet."
+  },
+  "contacts": {
+    "title": "Contacts",
+    "subtitle": "{count} contacts",
+    "new": "New contact",
+    "search": "Search by name, company, email...",
+    "empty": {
+      "title": "No contacts yet",
+      "subtitle": "Start by adding your first contact.",
+      "cta": "Add contact"
+    },
+    "errors": {
+      "load": "Couldn't load contacts.",
+      "save": "Couldn't save the contact.",
+      "delete": "Couldn't delete the contact."
+    },
+    "columns": {
+      "name": "Name",
+      "company": "Company",
+      "email": "Email",
+      "phone": "Phone",
+      "status": "Status"
+    },
+    "status": {
+      "active": "Active",
+      "lead": "Lead",
+      "inactive": "Inactive"
+    },
+    "form": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "company": "Company",
+      "role": "Role",
+      "email": "Email",
+      "phone": "Phone",
+      "whatsapp": "WhatsApp",
+      "website": "Website",
+      "address": "Address",
+      "notes": "Notes",
+      "status": "Status",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving...",
+      "editTitle": "Edit contact",
+      "newTitle": "New contact"
+    },
+    "detail": {
+      "back": "Back to contacts",
+      "edit": "Edit",
+      "delete": "Delete",
+      "deleteConfirm": "Delete this contact? This cannot be undone.",
+      "notFound": "Contact not found."
+    },
+    "attachments": {
+      "title": "Attachments",
+      "empty": "No attachments.",
+      "titleLabel": "Attachment title",
+      "urlLabel": "https://...",
+      "add": "Add",
+      "error": "Could not add the attachment."
+    },
+    "validation": {
+      "required": "Required field",
+      "email": "Invalid email"
+    }
+  },
+  "tasks": {
+    "title": "Tasks",
+    "subtitle": "{count} tasks",
+    "new": "New task",
+    "empty": {
+      "title": "No tasks yet",
+      "subtitle": "Add your first task to start organizing the work.",
+      "cta": "Add task"
+    },
+    "errors": {
+      "load": "Couldn't load tasks.",
+      "save": "Couldn't save the task.",
+      "delete": "Couldn't delete the task."
+    },
+    "status": {
+      "todo": "To Do",
+      "in_progress": "In Progress",
+      "review": "Review",
+      "completed": "Completed",
+      "archived": "Archived"
+    },
+    "priority": {
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High",
+      "urgent": "Urgent"
+    },
+    "form": {
+      "title": "Title",
+      "description": "Description",
+      "priority": "Priority",
+      "status": "Status",
+      "deadline": "Deadline",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving...",
+      "editTitle": "Edit task",
+      "newTitle": "New task",
+      "delete": "Delete",
+      "project": "Project",
+      "noProject": "No linked project"
+    },
+    "deleteConfirm": "Delete this task? This cannot be undone.",
+    "noDeadline": "No deadline",
+    "attachments": {
+      "title": "Attachments",
+      "empty": "No attachments.",
+      "titleLabel": "Attachment title",
+      "urlLabel": "https://...",
+      "add": "Add",
+      "error": "Could not add the attachment."
+    }
+  },
+  "crm": {
+    "title": "CRM",
+    "subtitle": "{count} opportunities · {value}",
+    "new": "New opportunity",
+    "empty": {
+      "title": "No opportunities yet",
+      "subtitle": "Add your first opportunity to start tracking the pipeline.",
+      "cta": "Add opportunity"
+    },
+    "errors": {
+      "load": "Couldn't load opportunities.",
+      "save": "Couldn't save the opportunity.",
+      "delete": "Couldn't delete the opportunity."
+    },
+    "stage": {
+      "lead": "Lead",
+      "qualified": "Qualified",
+      "proposal": "Proposal",
+      "negotiation": "Negotiation",
+      "won": "Won",
+      "lost": "Lost"
+    },
+    "form": {
+      "title": "Title",
+      "contact": "Contact",
+      "noContact": "No linked contact",
+      "company": "Company",
+      "value": "Value",
+      "probability": "Probability",
+      "stage": "Stage",
+      "expectedCloseDate": "Expected close",
+      "notes": "Notes",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving...",
+      "editTitle": "Edit opportunity",
+      "newTitle": "New opportunity",
+      "delete": "Delete"
+    },
+    "deleteConfirm": "Delete this opportunity? This cannot be undone."
+  },
+  "calendar": {
+    "title": "Calendar",
+    "subtitle": "{count} events",
+    "new": "New event",
+    "today": "Today",
+    "month": "Month",
+    "agenda": "Agenda",
+    "empty": {
+      "title": "No events yet",
+      "subtitle": "Add your first event to start organizing the calendar.",
+      "cta": "Add event"
+    },
+    "errors": {
+      "load": "Couldn't load events.",
+      "save": "Couldn't save the event.",
+      "delete": "Couldn't delete the event."
+    },
+    "form": {
+      "title": "Title",
+      "description": "Description",
+      "start": "Start",
+      "end": "End",
+      "allDay": "All day",
+      "location": "Location",
+      "contact": "Contact",
+      "noContact": "No linked contact",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving...",
+      "editTitle": "Edit event",
+      "newTitle": "New event",
+      "delete": "Delete",
+      "date": "Date",
+      "timezone": "Timezone",
+      "repeat": "Repeat",
+      "repeatEvery": "Every",
+      "repeatUntil": "Until"
+    },
+    "deleteConfirm": "Delete this event? This cannot be undone.",
+    "prevMonth": "Previous month",
+    "nextMonth": "Next month",
+    "recurrence": {
+      "none": "Doesn't repeat",
+      "daily": "Daily",
+      "weekly": "Weekly",
+      "monthly": "Monthly"
+    }
+  },
+  "projects": {
+    "title": "Projects",
+    "subtitle": "{count} projects",
+    "new": "New project",
+    "list": "List",
+    "kanban": "Kanban",
+    "empty": {
+      "title": "No projects yet",
+      "subtitle": "Add your first project to start organizing the work.",
+      "cta": "Add project"
+    },
+    "errors": {
+      "load": "Couldn't load projects.",
+      "save": "Couldn't save the project.",
+      "delete": "Couldn't delete the project."
+    },
+    "status": {
+      "active": "Active",
+      "on_hold": "On Hold",
+      "completed": "Completed",
+      "archived": "Archived"
+    },
+    "columns": {
+      "name": "Name",
+      "client": "Client",
+      "status": "Status",
+      "dueDate": "Due date",
+      "budget": "Budget",
+      "tasks": "Tasks"
+    },
+    "form": {
+      "name": "Name",
+      "description": "Description",
+      "status": "Status",
+      "client": "Client",
+      "noClient": "No linked client",
+      "startDate": "Start date",
+      "dueDate": "Due date",
+      "budget": "Budget (EUR)",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving...",
+      "editTitle": "Edit project",
+      "newTitle": "New project",
+      "delete": "Delete"
+    },
+    "deleteConfirm": "Delete this project? Linked tasks will not be deleted.",
+    "detail": {
+      "back": "Back to projects",
+      "documents": "Documents",
+      "noDocuments": "No documents yet.",
+      "documentTitle": "Document title",
+      "documentUrl": "https://...",
+      "addDocument": "Add",
+      "documentError": "Couldn't add the document.",
+      "discussion": "Discussion",
+      "noDiscussion": "No messages yet.",
+      "addDiscussion": "Write a message...",
+      "send": "Send"
+    }
+  },
+  "timesheets": {
+    "title": "Timesheets",
+    "subtitle": "{count} entries · {hours} hours logged",
+    "new": "Log time",
+    "timer": {
+      "start": "Start timer",
+      "stop": "Stop and save",
+      "running": "Timer running",
+      "descriptionPlaceholder": "What are you working on?"
+    },
+    "empty": {
+      "title": "No entries yet",
+      "subtitle": "Start the timer or log time manually to get started.",
+      "cta": "Log time"
+    },
+    "errors": {
+      "load": "Couldn't load timesheets.",
+      "save": "Couldn't save the entry.",
+      "delete": "Couldn't delete the entry."
+    },
+    "form": {
+      "project": "Project",
+      "noProject": "No linked project",
+      "task": "Task",
+      "noTask": "No linked task",
+      "description": "Description",
+      "date": "Date",
+      "duration": "Duration (minutes)",
+      "billable": "Billable",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving...",
+      "editTitle": "Edit entry",
+      "newTitle": "New entry",
+      "delete": "Delete"
+    },
+    "deleteConfirm": "Delete this entry? This cannot be undone.",
+    "noBillable": "Not billable"
+  },
+  "appointments": {
+    "title": "Appointments",
+    "subtitle": "{count} appointments",
+    "new": "New appointment",
+    "upcoming": "Upcoming",
+    "past": "Past",
+    "empty": {
+      "title": "No appointments yet",
+      "subtitle": "Add your first appointment to get started.",
+      "cta": "Add appointment"
+    },
+    "errors": {
+      "load": "Couldn't load appointments.",
+      "save": "Couldn't save the appointment.",
+      "delete": "Couldn't delete the appointment."
+    },
+    "status": {
+      "scheduled": "Scheduled",
+      "confirmed": "Confirmed",
+      "completed": "Completed",
+      "cancelled": "Cancelled"
+    },
+    "form": {
+      "title": "Title",
+      "contact": "Contact",
+      "noContact": "No linked contact",
+      "opportunity": "CRM opportunity",
+      "noOpportunity": "No linked opportunity",
+      "start": "Date and time",
+      "duration": "Duration (minutes)",
+      "location": "Location",
+      "videoCallUrl": "Video call link",
+      "notes": "Notes",
+      "status": "Status",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving...",
+      "editTitle": "Edit appointment",
+      "newTitle": "New appointment",
+      "delete": "Delete"
+    },
+    "joinCall": "Join video call",
+    "deleteConfirm": "Delete this appointment? This cannot be undone."
+  },
+  "inbox": {
+    "title": "Inbox",
+    "subtitle": "{count} messages",
+    "new": "New message",
+    "all": "All",
+    "channel": {
+      "email": "Email",
+      "whatsapp": "WhatsApp",
+      "internal": "Internal"
+    },
+    "empty": {
+      "title": "No messages yet",
+      "subtitle": "Communications with your contacts will show up here.",
+      "cta": "Send your first message"
+    },
+    "errors": {
+      "load": "Couldn't load messages.",
+      "send": "Couldn't send the message.",
+      "delete": "Couldn't delete the message."
+    },
+    "mockNotice": "No real Email/WhatsApp provider is configured — this message was recorded but not actually sent. Set EMAIL_PROVIDER_API_KEY / WHATSAPP_API_KEY to connect a real provider.",
+    "form": {
+      "channel": "Channel",
+      "to": "Recipient",
+      "contact": "Contact",
+      "noContact": "No linked contact",
+      "subject": "Subject",
+      "body": "Message",
+      "cancel": "Cancel",
+      "send": "Send",
+      "sending": "Sending...",
+      "newTitle": "New message"
+    },
+    "markRead": "Mark as read",
+    "archive": "Archive",
+    "delete": "Delete",
+    "deleteConfirm": "Delete this message? This cannot be undone.",
+    "extractTask": "Extract task",
+    "suggestAppointment": "Suggest appointment",
+    "threadCount": "{count} messages",
+    "reply": "Reply",
+    "you": "You",
+    "labels": {
+      "filterBy": "Filter by label:",
+      "add": "+ label",
+      "remove": "Remove label {label}",
+      "placeholder": "New label"
+    }
+  },
+  "ai": {
+    "errors": {
+      "extract": "Couldn't analyze the message."
+    },
+    "taskSuggestion": {
+      "title": "Suggested task",
+      "none": "No actionable request was found in this message.",
+      "confirm": "Create task",
+      "reject": "Dismiss"
+    },
+    "provider": "Rule-based analysis — no external language model connected.",
+    "calendarSuggestion": {
+      "title": "Suggested appointment",
+      "none": "No appointment request was detected in this message.",
+      "pickSlot": "Choose a time",
+      "busy": "Busy",
+      "confirm": "Create appointment",
+      "reject": "Dismiss"
+    },
+    "actions": {
+      "title": "AI actions",
+      "close": "Close",
+      "summarize": "Summarize",
+      "generateReply": "Generate reply",
+      "run": "Run",
+      "working": "Working...",
+      "useAsReply": "Use as reply"
+    },
+    "relationship": {
+      "title": "Relationship (AI)",
+      "noHistory": "No communications or appointments recorded with this contact.",
+      "summarize": "Summarize relationship",
+      "followUp": "Prepare follow-up",
+      "useAsFollowUp": "Use as follow-up email"
+    },
+    "prioritize": {
+      "action": "Prioritize with AI"
+    }
+  },
+  "assistant": {
+    "title": "VORA Assistant",
+    "close": "Close",
+    "open": "Assistant",
+    "prompts": {
+      "organizeDay": "Organize my day",
+      "priorities": "What are my most important tasks?",
+      "unanswered": "Which messages haven't I read yet?",
+      "upcoming": "Find my next appointments"
+    }
+  },
+  "helpdesk": {
+    "title": "Helpdesk",
+    "subtitle": "{count} tickets",
+    "new": "New ticket",
+    "empty": {
+      "title": "No tickets yet",
+      "subtitle": "Add your first support ticket.",
+      "cta": "Add ticket"
+    },
+    "errors": {
+      "load": "Couldn't load tickets.",
+      "save": "Couldn't save the ticket.",
+      "delete": "Couldn't delete the ticket."
+    },
+    "status": {
+      "open": "Open",
+      "in_progress": "In Progress",
+      "waiting": "Waiting",
+      "resolved": "Resolved",
+      "closed": "Closed"
+    },
+    "category": {
+      "technical": "Technical",
+      "billing": "Billing",
+      "general": "General",
+      "feature_request": "Feature Request"
+    },
+    "columns": {
+      "title": "Title",
+      "customer": "Customer",
+      "status": "Status",
+      "priority": "Priority",
+      "category": "Category",
+      "sla": "SLA"
+    },
+    "form": {
+      "title": "Title",
+      "description": "Description",
+      "contact": "Customer",
+      "noContact": "No linked customer",
+      "priority": "Priority",
+      "status": "Status",
+      "category": "Category",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving...",
+      "editTitle": "Edit ticket",
+      "newTitle": "New ticket",
+      "delete": "Delete",
+      "sla": "SLA due"
+    },
+    "detail": {
+      "back": "Back to tickets",
+      "comments": "Comments",
+      "noComments": "No comments yet.",
+      "addComment": "Add a comment...",
+      "send": "Send"
+    },
+    "attachments": {
+      "title": "Attachments",
+      "empty": "No attachments.",
+      "titleLabel": "Attachment title",
+      "urlLabel": "https://...",
+      "add": "Add",
+      "error": "Could not add the attachment."
+    },
+    "deleteConfirm": "Delete this ticket? This cannot be undone.",
+    "sla": {
+      "dueAt": "Due {date}",
+      "overdue": "Overdue"
+    }
+  },
+  "knowledge": {
+    "title": "Knowledge",
+    "subtitle": "{count} pages",
+    "new": "New page",
+    "search": "Search by title, content, or tag...",
+    "allFolders": "All folders",
+    "favoritesOnly": "Favorites only",
+    "noFolder": "No folder",
+    "empty": {
+      "title": "No pages yet",
+      "subtitle": "Create your first page to start building the knowledge base.",
+      "cta": "Create page"
+    },
+    "errors": {
+      "load": "Couldn't load pages.",
+      "save": "Couldn't save the page.",
+      "delete": "Couldn't delete the page."
+    },
+    "form": {
+      "title": "Title",
+      "content": "Content (Markdown)",
+      "folder": "Folder",
+      "tags": "Tags (comma-separated)",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving...",
+      "editTitle": "Edit page",
+      "newTitle": "New page",
+      "delete": "Delete",
+      "edit": "Edit",
+      "preview": "Preview"
+    },
+    "detail": {
+      "back": "Back to Knowledge",
+      "lastUpdated": "Last updated"
+    },
+    "deleteConfirm": "Delete this page? This cannot be undone.",
+    "semanticSearch": "Smart search (press Enter)",
+    "searching": "Searching...",
+    "semanticResultsCount": "{count} results by relevance",
+    "relevance": "{pct}% relevant",
+    "favorite": "Add to favorites",
+    "unfavorite": "Remove from favorites"
+  },
+  "expenses": {
+    "title": "Expenses",
+    "subtitle": "{count} expenses · {total}",
+    "new": "New expense",
+    "all": "All",
+    "empty": {
+      "title": "No expenses yet",
+      "subtitle": "Log your first expense to get started.",
+      "cta": "Add expense"
+    },
+    "errors": {
+      "load": "Couldn't load expenses.",
+      "save": "Couldn't save the expense.",
+      "delete": "Couldn't delete the expense."
+    },
+    "status": {
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    },
+    "category": {
+      "travel": "Travel",
+      "meals": "Meals",
+      "office": "Office",
+      "software": "Software",
+      "other": "Other"
+    },
+    "columns": {
+      "date": "Date",
+      "category": "Category",
+      "project": "Project",
+      "amount": "Amount",
+      "status": "Status"
+    },
+    "form": {
+      "amount": "Amount (EUR)",
+      "date": "Date",
+      "category": "Category",
+      "project": "Project",
+      "noProject": "No linked project",
+      "notes": "Notes",
+      "receiptUrl": "Receipt link (optional)",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving...",
+      "editTitle": "Edit expense",
+      "newTitle": "New expense",
+      "delete": "Delete"
+    },
+    "approve": "Approve",
+    "reject": "Reject",
+    "deleteConfirm": "Delete this expense? This cannot be undone."
+  },
+  "leave": {
+    "title": "Leave",
+    "subtitle": "{count} requests",
+    "new": "New request",
+    "all": "All",
+    "balance": {
+      "title": "Leave balance",
+      "allocated": "Allocated",
+      "used": "Used",
+      "remaining": "Remaining",
+      "days": "days"
+    },
+    "empty": {
+      "title": "No requests yet",
+      "subtitle": "Submit your first leave request.",
+      "cta": "Add request"
+    },
+    "errors": {
+      "load": "Couldn't load requests.",
+      "save": "Couldn't save the request.",
+      "delete": "Couldn't delete the request."
+    },
+    "status": {
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected"
+    },
+    "type": {
+      "vacation": "Vacation",
+      "sick": "Sick Leave",
+      "personal": "Personal Leave"
+    },
+    "columns": {
+      "requester": "Requester",
+      "type": "Type",
+      "dates": "Dates",
+      "days": "Days",
+      "status": "Status"
+    },
+    "form": {
+      "requesterName": "Name",
+      "selectEmployee": "Select an employee",
+      "type": "Type",
+      "startDate": "Start date",
+      "endDate": "End date",
+      "notes": "Notes",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving...",
+      "newTitle": "New leave request"
+    },
+    "approve": "Approve",
+    "reject": "Reject",
+    "deleteConfirm": "Delete this request? This cannot be undone."
+  },
+  "wellbeing": {
+    "title": "Wellbeing",
+    "subtitle": "A moment for you: daily check-in, breathing, weekly trend.",
+    "disclaimer": "Wellbeing doesn't replace a healthcare professional and provides no diagnosis. It's a space to reflect on your workload and general state.",
+    "mood": "Mood",
+    "energy": "Energy",
+    "stress": "Stress",
+    "note": "Notes (optional)",
+    "notePlaceholder": "How's today going?",
+    "save": "Save check-in",
+    "saving": "Saving...",
+    "saved": "Check-in saved.",
+    "history": "Recent check-ins",
+    "checkin": {
+      "title": "Today's check-in",
+      "updateTitle": "Update today's check-in"
+    },
+    "weekly": {
+      "title": "Average of last {count} check-ins"
+    },
+    "breathing": {
+      "title": "Breathing exercise",
+      "start": "Start",
+      "stop": "Stop",
+      "in": "Breathe in",
+      "hold1": "Hold",
+      "out": "Breathe out",
+      "hold2": "Hold"
+    },
+    "errors": {
+      "load": "Couldn't load check-ins."
+    }
+  },
+  "auditLog": {
+    "title": "Audit Log",
+    "subtitle": "Sensitive actions across your organization — visible to owners and admins only.",
+    "empty": "No activity recorded yet.",
+    "actions": {
+      "login": "Signed in",
+      "logout": "Signed out",
+      "employee.create": "Employee created",
+      "employee.update": "Employee updated",
+      "employee.delete": "Employee deleted",
+      "leave.approve": "Leave approved",
+      "leave.reject": "Leave rejected",
+      "expense.approve": "Expense approved",
+      "expense.reject": "Expense rejected"
+    },
+    "errors": {
+      "load": "Couldn't load the audit log.",
+      "forbidden": "Only owners and admins can view the audit log."
+    }
+  },
+  "employees": {
+    "title": "Employees",
+    "subtitle": "{count} employees",
+    "new": "New employee",
+    "empty": {
+      "title": "No employees yet",
+      "subtitle": "Add your first employee to get started.",
+      "cta": "Add employee"
+    },
+    "errors": {
+      "load": "Couldn't load employees.",
+      "save": "Couldn't save the employee.",
+      "delete": "Couldn't delete the employee."
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "columns": {
+      "name": "Name",
+      "role": "Role",
+      "team": "Team",
+      "email": "Email",
+      "status": "Status"
+    },
+    "form": {
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email",
+      "role": "Role",
+      "team": "Team",
+      "status": "Status",
+      "startDate": "Start date",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving...",
+      "editTitle": "Edit employee",
+      "newTitle": "New employee",
+      "delete": "Delete"
+    },
+    "deleteConfirm": "Delete this employee? This cannot be undone."
+  },
+  "social": {
+    "title": "Social Marketing",
+    "subtitle": "{count} posts",
+    "new": "New post",
+    "all": "All",
+    "empty": {
+      "title": "No posts yet",
+      "subtitle": "Create your first post to start planning content.",
+      "cta": "Create post"
+    },
+    "errors": {
+      "load": "Couldn't load posts.",
+      "save": "Couldn't save the post.",
+      "delete": "Couldn't delete the post."
+    },
+    "status": {
+      "draft": "Draft",
+      "scheduled": "Scheduled",
+      "published": "Published"
+    },
+    "platform": {
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "linkedin": "LinkedIn",
+      "x": "X"
+    },
+    "form": {
+      "content": "Content",
+      "platform": "Platform",
+      "status": "Status",
+      "scheduledAt": "Scheduled date",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving...",
+      "editTitle": "Edit post",
+      "newTitle": "New post",
+      "delete": "Delete"
+    },
+    "deleteConfirm": "Delete this post? This cannot be undone."
+  },
+  "campaigns": {
+    "title": "Email Marketing",
+    "subtitle": "{count} campaigns",
+    "new": "New campaign",
+    "empty": {
+      "title": "No campaigns yet",
+      "subtitle": "Create your first email campaign.",
+      "cta": "Create campaign"
+    },
+    "errors": {
+      "load": "Couldn't load campaigns.",
+      "save": "Couldn't save the campaign.",
+      "send": "Couldn't send the campaign.",
+      "delete": "Couldn't delete the campaign."
+    },
+    "status": {
+      "draft": "Draft",
+      "sent": "Sent"
+    },
+    "mockNotice": "No real email provider is configured — sending will be recorded but no email will actually be delivered.",
+    "form": {
+      "name": "Campaign name",
+      "subject": "Subject",
+      "body": "Content",
+      "recipientCount": "Recipient count (estimated)",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving...",
+      "editTitle": "Edit campaign",
+      "newTitle": "New campaign",
+      "delete": "Delete"
+    },
+    "send": "Send",
+    "sentOn": "Sent on",
+    "deleteConfirm": "Delete this campaign? This cannot be undone."
+  },
+  "website": {
+    "title": "Website",
+    "subtitle": "Overview of the connected public site",
+    "visitSite": "Visit site",
+    "connected": "Connected",
+    "notConnected": "portfolio-andrea project not found",
+    "pages": "Pages",
+    "projects": "Published projects",
+    "featured": "Featured",
+    "errors": {
+      "load": "Couldn't load the site data."
+    },
+    "note": "The public site is a separate Nuxt project (portfolio-andrea). This page reflects its real content read-only — VORA doesn't duplicate a website editor.",
+    "myWebsites": "Your generated sites",
+    "createSite": "Any organization can generate its own site, actually published at a VORA address."
+  },
+  "sites": {
+    "title": "Generated sites",
+    "subtitle": "{count} sites",
+    "new": "New site",
+    "empty": {
+      "title": "No sites yet",
+      "subtitle": "Create your first VORA-generated site.",
+      "cta": "Create site"
+    },
+    "errors": {
+      "load": "Couldn't load sites.",
+      "save": "Couldn't save the site.",
+      "delete": "Couldn't delete the site."
+    },
+    "published": "Published",
+    "draft": "Draft",
+    "viewLive": "View live site",
+    "form": {
+      "slug": "Address (slug)",
+      "slugHint": "The site will be reachable at /site/{slug}",
+      "name": "Name",
+      "tagline": "Tagline",
+      "about": "About",
+      "contactEmail": "Contact email",
+      "accentColor": "Accent color",
+      "published": "Published",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving...",
+      "editTitle": "Edit site",
+      "newTitle": "New site",
+      "delete": "Delete"
+    },
+    "deleteConfirm": "Delete this site? This cannot be undone.",
+    "notFound": "This site doesn't exist or isn't published yet.",
+    "generatedBy": "Generated with VORA"
+  },
+  "settings": {
+    "title": "Settings",
+    "subtitle": "Account, security, notifications, and integrations.",
+    "saving": "Saving...",
+    "save": "Save",
+    "saved": "Saved.",
+    "profile": {
+      "title": "Profile",
+      "name": "Name",
+      "email": "Email",
+      "organization": "Organization",
+      "role": {
+        "owner": "Owner",
+        "admin": "Admin",
+        "member": "Member"
+      }
+    },
+    "security": {
+      "title": "Security",
+      "currentPassword": "Current password",
+      "newPassword": "New password",
+      "changePassword": "Change password",
+      "wrongPassword": "Current password is incorrect.",
+      "error": "Could not change password."
+    },
+    "appearance": {
+      "title": "Appearance",
+      "light": "Light",
+      "dark": "Dark",
+      "system": "System"
+    },
+    "language": {
+      "title": "Language"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "messages": "Messages",
+      "urgentTasks": "Urgent tasks",
+      "appointments": "Appointments",
+      "reminders": "Reminders",
+      "aiActions": "AI actions",
+      "approvals": "Approvals",
+      "tickets": "Tickets",
+      "deadlines": "Deadlines"
+    },
+    "integrations": {
+      "title": "Integrations",
+      "ai": "AI engine",
+      "email": "Email provider",
+      "whatsapp": "WhatsApp",
+      "oauthGoogle": "Google sign-in",
+      "live": "Live",
+      "mock": "Mock",
+      "note": "\"Mock\" means a real, working implementation with no external provider credentials connected — it sends/receives nothing over a real network until you configure credentials (see .env.example)."
+    },
+    "applications": {
+      "title": "Applications",
+      "subtitle": "Open ⌘K for the full list of modules and quick actions."
+    },
+    "api": {
+      "title": "API",
+      "notice": "Personal API key management hasn't been built yet — a real future feature, not a hidden mockup."
+    }
+  }
+}

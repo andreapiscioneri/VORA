@@ -1,0 +1,12 @@
+<svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+  <!--
+    VORA symbol: three converging strokes — scattered inputs (email, chat,
+    tasks) resolving into one clear direction. Reads as an abstract V
+    independent of the wordmark, works at favicon scale.
+  -->
+  <g fill="none" stroke="#39FF14" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M17 22 L48 78" stroke-width="9" opacity="0.55" />
+    <path d="M83 22 L52 78" stroke-width="9" opacity="0.55" />
+    <path d="M50 14 L50 78" stroke-width="9" />
+  </g>
+</svg>

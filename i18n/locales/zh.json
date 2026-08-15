@@ -1,0 +1,16 @@
+{
+  "nav": {
+    "overview": "概览", "dashboard": "仪表盘", "relationships": "关系",
+    "contacts": "联系人", "crm": "CRM", "time": "时间", "calendar": "日历",
+    "tasks": "任务", "appointments": "预约", "communications": "沟通",
+    "inbox": "收件箱", "work": "工作", "projects": "项目",
+    "timesheets": "工时表", "helpdesk": "服务台", "knowledge": "知识库", "settings": "设置"
+  },
+  "topbar": { "search": "搜索...", "toggleTheme": "切换主题", "launcher": "应用" },
+  "launcher": { "placeholder": "搜索应用或命令..." },
+  "dashboard": {
+    "title": "仪表盘", "subtitle": "今天需要关注的内容。", "today": "今天",
+    "tasks": "优先事项", "inbox": "沟通", "calendar": "日历",
+    "placeholder": "模块尚未实现。"
+  }
+}

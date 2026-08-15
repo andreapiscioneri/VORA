@@ -1,0 +1,16 @@
+{
+  "nav": {
+    "overview": "Обзор", "dashboard": "Панель", "relationships": "Контакты",
+    "contacts": "Контакты", "crm": "CRM", "time": "Время", "calendar": "Календарь",
+    "tasks": "Задачи", "appointments": "Встречи", "communications": "Коммуникации",
+    "inbox": "Входящие", "work": "Работа", "projects": "Проекты",
+    "timesheets": "Табели", "helpdesk": "Поддержка", "knowledge": "База знаний", "settings": "Настройки"
+  },
+  "topbar": { "search": "Поиск...", "toggleTheme": "Сменить тему", "launcher": "Приложения" },
+  "launcher": { "placeholder": "Поиск приложения или команды..." },
+  "dashboard": {
+    "title": "Панель", "subtitle": "Вот что важно сегодня.", "today": "Сегодня",
+    "tasks": "Приоритеты", "inbox": "Коммуникации", "calendar": "Календарь",
+    "placeholder": "Модуль ещё не реализован."
+  }
+}

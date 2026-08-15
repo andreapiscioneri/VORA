@@ -1,0 +1,83 @@
+import type { Project, ProjectDocument, ProjectComment } from '~/shared/types/project'
+import type { ProjectInputSchema, AddProjectDocumentSchema, AddProjectCommentSchema } from '~/shared/validation/project'
+import { getDb } from './firebase'
+
+const COLLECTION = 'projects'
+
+function toProject(id: string, data: FirebaseFirestore.DocumentData): Project {
+  return {
+    id,
+    name: data.name ?? '',
+    description: data.description ?? '',
+    status: data.status ?? 'active',
+    contactId: data.contactId ?? null,
+    startDate: data.startDate ?? null,
+    dueDate: data.dueDate ?? null,
+    budget: data.budget ?? 0,
+    documents: data.documents ?? [],
+    discussion: data.discussion ?? [],
+    createdAt: data.createdAt ?? new Date().toISOString(),
+    updatedAt: data.updatedAt ?? new Date().toISOString(),
+  }
+}
+
+export async function listProjects(organizationId: string): Promise<Project[]> {
+  const snapshot = await getDb().collection(COLLECTION).where('organizationId', '==', organizationId).get()
+  return snapshot.docs.map((doc) => toProject(doc.id, doc.data())).sort((a, b) => (a.createdAt < b.createdAt ? 1 : a.createdAt > b.createdAt ? -1 : 0))
+}
+
+export async function getProject(id: string, organizationId: string): Promise<Project | null> {
+  const doc = await getDb().collection(COLLECTION).doc(id).get()
+  if (!doc.exists || doc.data()?.organizationId !== organizationId) return null
+  return toProject(doc.id, doc.data()!)
+}
+
+export async function createProject(input: ProjectInputSchema, organizationId: string): Promise<Project> {
+  const now = new Date().toISOString()
+  const ref = await getDb()
+    .collection(COLLECTION)
+    .add({ ...input, organizationId, createdAt: now, updatedAt: now })
+  return toProject(ref.id, { ...input, createdAt: now, updatedAt: now })
+}
+
+export async function updateProject(id: string, input: ProjectInputSchema, organizationId: string): Promise<Project | null> {
+  const ref = getDb().collection(COLLECTION).doc(id)
+  const existing = await ref.get()
+  if (!existing.exists || existing.data()?.organizationId !== organizationId) return null
+
+  const updatedAt = new Date().toISOString()
+  await ref.update({ ...input, updatedAt })
+  return toProject(id, { ...existing.data(), ...input, updatedAt })
+}
+
+export async function deleteProject(id: string, organizationId: string): Promise<boolean> {
+  const ref = getDb().collection(COLLECTION).doc(id)
+  const existing = await ref.get()
+  if (!existing.exists || existing.data()?.organizationId !== organizationId) return false
+  await ref.delete()
+  return true
+}
+
+export async function addProjectDocument(id: string, input: AddProjectDocumentSchema, organizationId: string): Promise<Project | null> {
+  const ref = getDb().collection(COLLECTION).doc(id)
+  const existing = await ref.get()
+  if (!existing.exists || existing.data()?.organizationId !== organizationId) return null
+
+  const document: ProjectDocument = { id: crypto.randomUUID(), title: input.title, url: input.url, addedAt: new Date().toISOString() }
+  const documents = [...(existing.data()?.documents ?? []), document]
+  const updatedAt = new Date().toISOString()
+  await ref.update({ documents, updatedAt })
+  return toProject(id, { ...existing.data(), documents, updatedAt })
+}
+
+export async function addProjectComment(id: string, input: AddProjectCommentSchema, authorName: string, organizationId: string): Promise<Project | null> {
+  const ref = getDb().collection(COLLECTION).doc(id)
+  const existing = await ref.get()
+  if (!existing.exists || existing.data()?.organizationId !== organizationId) return null
+
+  const comment: ProjectComment = { id: crypto.randomUUID(), authorName, body: input.body, createdAt: new Date().toISOString() }
+  const discussion = [...(existing.data()?.discussion ?? []), comment]
+  const updatedAt = new Date().toISOString()
+  await ref.update({ discussion, updatedAt })
+  return toProject(id, { ...existing.data(), discussion, updatedAt })
+}

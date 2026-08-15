@@ -1,0 +1,16 @@
+{
+  "nav": {
+    "overview": "Übersicht", "dashboard": "Dashboard", "relationships": "Beziehungen",
+    "contacts": "Kontakte", "crm": "CRM", "time": "Zeit", "calendar": "Kalender",
+    "tasks": "Aufgaben", "appointments": "Termine", "communications": "Kommunikation",
+    "inbox": "Posteingang", "work": "Arbeit", "projects": "Projekte",
+    "timesheets": "Stundenzettel", "helpdesk": "Helpdesk", "knowledge": "Wissen", "settings": "Einstellungen"
+  },
+  "topbar": { "search": "Suchen...", "toggleTheme": "Design wechseln", "launcher": "Apps" },
+  "launcher": { "placeholder": "App oder Befehl suchen..." },
+  "dashboard": {
+    "title": "Dashboard", "subtitle": "Das ist heute wichtig.", "today": "Heute",
+    "tasks": "Prioritäten", "inbox": "Kommunikation", "calendar": "Kalender",
+    "placeholder": "Modul noch nicht implementiert."
+  }
+}

@@ -1,0 +1,15 @@
+{
+  "cookies": [
+    {
+      "name": "nuxt-session",
+      "value": "Fe26.2**15ea7bdf9eb87235e732e7dbb29298f793c942038b1bba0931299b43acb1a3ef*Q-RwnYNu2BTAk8DYuFIA_Q*4VlsLTG7BUIMd3u5nmCWkYa2-dHzShv7U1jcQng0t1G0xBp5ZCsP-uTGzP76r0dIVAvFee_tndFQ2WLP5TAP8963X8gWNhCrw8XDnyKYenrejVIiVyH1wlvazM3U72vxGLlcUehL4WTgcUWv_HlvcQCfJa-N75pFJ96NuJKcfKSzDmvEUN9k6HzvvWBvPgpLWIyMR4DFaF0V9dVhjnGosjDlK1D_gx39Us_PFIO1ceTeIPQJKQEA5JxqW1pXjNi49noB-GCfSom-POhG7dhRjRcTN4FyW1VzFSU76XfTD2CRyQn5JIPJp9dBxSgjBaeOXg1VPyDAbbwFwQpl5SKWgueY4RJaeHVk8Vq-4-NbLTGgcUJq-vYPks1jdyFGY-i8Yac7jVOxk2jKIxtI0DKuSCWEsvnhK52Q6Ia5xY6x_YM**0d864b7b21f8f4598b4033d6fb36d81a4b9d9acfc86efcecac42dac3f80ad3ad*LH1LI_I1aguakhmlisyhWtuH-Rf9D_bz4_-_BnDCwdI",
+      "domain": "localhost",
+      "path": "/",
+      "expires": -1,
+      "httpOnly": true,
+      "secure": false,
+      "sameSite": "Lax"
+    }
+  ],
+  "origins": []
+}
