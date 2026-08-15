@@ -64,6 +64,14 @@ async function onDrop(stage: OpportunityStage) {
   }
   dragged.value = null
 }
+
+function otherStages(stage: OpportunityStage) {
+  return columns.map((col) => col.stage).filter((s) => s !== stage)
+}
+
+async function onMove(opp: Opportunity, stage: OpportunityStage) {
+  await setStage(opp, stage)
+}
 </script>
 
 <template>
@@ -120,8 +128,10 @@ async function onDrop(stage: OpportunityStage) {
             :key="opp.id"
             :opportunity="opp"
             :contact-name="contactName(opp.contactId)"
+            :other-stages="otherStages(opp.stage)"
             @click="openEdit(opp)"
             @dragstart="onDragStart(opp, $event)"
+            @move="onMove(opp, $event)"
           />
         </TransitionGroup>
         <button
@@ -148,7 +158,9 @@ async function onDrop(stage: OpportunityStage) {
             :key="opp.id"
             :opportunity="opp"
             :contact-name="contactName(opp.contactId)"
+            :other-stages="otherStages(opp.stage)"
             @click="openEdit(opp)"
+            @move="onMove(opp, $event)"
           />
         </div>
       </div>

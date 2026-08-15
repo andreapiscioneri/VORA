@@ -53,6 +53,14 @@ async function onDrop(status: TaskStatus) {
   }
   draggedTask.value = null
 }
+
+function otherStatuses(status: TaskStatus) {
+  return columns.map((col) => col.status).filter((s) => s !== status)
+}
+
+async function onMove(task: Task, status: TaskStatus) {
+  await setStatus(task, status)
+}
 </script>
 
 <template>
@@ -108,8 +116,10 @@ async function onDrop(status: TaskStatus) {
             v-for="task in tasksIn(col.status)"
             :key="task.id"
             :task="task"
+            :other-statuses="otherStatuses(task.status)"
             @click="openEdit(task)"
             @dragstart="onDragStart(task, $event)"
+            @move="onMove(task, $event)"
           />
         </TransitionGroup>
         <button
@@ -131,7 +141,14 @@ async function onDrop(status: TaskStatus) {
           <span class="text-caption text-ink-400">{{ tasksIn(col.status).length }}</span>
         </p>
         <div class="space-y-3">
-          <TasksTaskCard v-for="task in tasksIn(col.status)" :key="task.id" :task="task" @click="openEdit(task)" />
+          <TasksTaskCard
+            v-for="task in tasksIn(col.status)"
+            :key="task.id"
+            :task="task"
+            :other-statuses="otherStatuses(task.status)"
+            @click="openEdit(task)"
+            @move="onMove(task, $event)"
+          />
         </div>
       </div>
     </div>
