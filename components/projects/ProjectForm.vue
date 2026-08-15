@@ -23,6 +23,7 @@ const form = reactive<ProjectInput>({
   budget: props.project?.budget ?? 0,
   documents: props.project?.documents ?? [],
   discussion: props.project?.discussion ?? [],
+  milestones: props.project?.milestones ?? [],
 })
 
 const errors = reactive<Record<string, string>>({})
