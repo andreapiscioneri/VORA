@@ -6,10 +6,11 @@ const { events, fetchEvents } = useEvents()
 const { appointments, fetchAppointments } = useAppointments()
 const { opportunities, fetchOpportunities } = useOpportunities()
 const { projects, fetchProjects } = useProjects()
+const { layout, fetchLayout, updateLayout } = useDashboardLayout()
 
-await Promise.all([fetchTasks(), fetchEvents(), fetchAppointments(), fetchOpportunities(), fetchProjects()])
+await Promise.all([fetchTasks(), fetchEvents(), fetchAppointments(), fetchOpportunities(), fetchProjects(), fetchLayout()])
 
-const { locale } = useI18n()
+const { locale, t } = useI18n()
 
 function todayIso() {
   const d = new Date()
@@ -50,59 +51,141 @@ const priorityColors: Record<string, string> = {
   high: 'text-warning',
   urgent: 'text-danger',
 }
+
+// --- Customizable layout (§13: reorder, hide, add, resize, responsive) ---
+
+const customizing = ref(false)
+const draggedKey = ref<string | null>(null)
+
+const displayWidgets = computed(() => (customizing.value ? layout.value.widgets : layout.value.widgets.filter((w) => w.visible)))
+
+function widgetTitle(key: string) {
+  const titles: Record<string, string> = {
+    today: t('dashboard.today'),
+    priorities: t('dashboard.tasks'),
+    crm: t('dashboard.crm'),
+    projects: t('dashboard.projects'),
+  }
+  return titles[key] ?? key
+}
+
+async function toggleVisible(key: string) {
+  layout.value = { widgets: layout.value.widgets.map((w) => (w.key === key ? { ...w, visible: !w.visible } : w)) }
+  await updateLayout(layout.value)
+}
+
+async function toggleSize(key: string) {
+  layout.value = { widgets: layout.value.widgets.map((w) => (w.key === key ? { ...w, size: w.size === 'wide' ? 'normal' : 'wide' } : w)) }
+  await updateLayout(layout.value)
+}
+
+function onDragStart(key: string, e: DragEvent) {
+  draggedKey.value = key
+  e.dataTransfer?.setData('text/plain', key)
+}
+
+async function onDrop(targetKey: string) {
+  if (!draggedKey.value || draggedKey.value === targetKey) {
+    draggedKey.value = null
+    return
+  }
+  const widgets = [...layout.value.widgets]
+  const fromIdx = widgets.findIndex((w) => w.key === draggedKey.value)
+  const toIdx = widgets.findIndex((w) => w.key === targetKey)
+  if (fromIdx === -1 || toIdx === -1) {
+    draggedKey.value = null
+    return
+  }
+  const [moved] = widgets.splice(fromIdx, 1)
+  widgets.splice(toIdx, 0, moved)
+  layout.value = { widgets }
+  draggedKey.value = null
+  await updateLayout(layout.value)
+}
 </script>
 
 <template>
   <div class="space-y-6">
-    <div>
-      <h1 class="text-h1 font-semibold tracking-tight">{{ $t('dashboard.title') }}</h1>
-      <p class="text-body text-ink-400 mt-1">{{ $t('dashboard.subtitle') }}</p>
+    <div class="flex flex-col tablet:flex-row tablet:items-center gap-4">
+      <div>
+        <h1 class="text-h1 font-semibold tracking-tight">{{ $t('dashboard.title') }}</h1>
+        <p class="text-body text-ink-400 mt-1">{{ $t('dashboard.subtitle') }}</p>
+      </div>
+      <button
+        type="button"
+        class="tablet:ml-auto shrink-0 flex items-center justify-center gap-2 px-4 py-2 rounded-md text-body-sm font-medium transition-colors"
+        :class="customizing ? 'bg-primary text-ink-950 hover:bg-primary-hover' : 'border border-ink-200 dark:border-white/10 text-ink-950 dark:text-white hover:bg-ink-50 dark:hover:bg-white/5'"
+        :aria-label="customizing ? $t('dashboard.customize.exit') : $t('dashboard.customize.enter')"
+        @click="customizing = !customizing"
+      >
+        <UiIcon name="settings" :size="16" />
+        {{ customizing ? $t('dashboard.customize.exit') : $t('dashboard.customize.enter') }}
+      </button>
     </div>
 
+    <p v-if="!customizing && displayWidgets.length === 0" class="text-body-sm text-ink-400">{{ $t('dashboard.allHidden') }}</p>
+
     <div class="grid grid-cols-1 tablet:grid-cols-3 gap-4">
-      <!-- Today -->
-      <div class="tablet:col-span-2 rounded-lg border border-ink-100 dark:border-white/10 bg-surface dark:bg-white/5 p-5">
-        <h2 class="text-h4 font-medium mb-4">{{ $t('dashboard.today') }}</h2>
-        <p v-if="todayItems.length === 0" class="text-body-sm text-ink-400">{{ $t('dashboard.nothingToday') }}</p>
-        <ul v-else class="space-y-3">
-          <li v-for="item in todayItems" :key="item.id" class="flex items-center gap-3 text-body-sm">
-            <span v-if="item.time" class="text-caption text-ink-400 w-14 shrink-0">{{ formatTime(item.time) }}</span>
-            <span v-else class="w-14 shrink-0" />
-            <span class="truncate">{{ item.label }}</span>
-          </li>
-        </ul>
-      </div>
+      <template v-for="widget in displayWidgets" :key="widget.key">
+        <DashboardWidgetFrame
+          :wide="widget.size === 'wide'"
+          :customizing="customizing"
+          :visible="widget.visible"
+          :drag-handle-label="$t('dashboard.customize.dragHandle', { widget: widgetTitle(widget.key) })"
+          :hide-label="$t('dashboard.customize.hide', { widget: widgetTitle(widget.key) })"
+          :show-label="$t('dashboard.customize.show', { widget: widgetTitle(widget.key) })"
+          :resize-label="$t('dashboard.customize.resize', { widget: widgetTitle(widget.key) })"
+          @dragstart="onDragStart(widget.key, $event)"
+          @dragover.prevent
+          @drop="onDrop(widget.key)"
+          @toggle-visible="toggleVisible(widget.key)"
+          @toggle-size="toggleSize(widget.key)"
+        >
+          <!-- Today -->
+          <template v-if="widget.key === 'today'">
+            <h2 class="text-h4 font-medium mb-4">{{ $t('dashboard.today') }}</h2>
+            <p v-if="todayItems.length === 0" class="text-body-sm text-ink-400">{{ $t('dashboard.nothingToday') }}</p>
+            <ul v-else class="space-y-3">
+              <li v-for="item in todayItems" :key="item.id" class="flex items-center gap-3 text-body-sm">
+                <span v-if="item.time" class="text-caption text-ink-400 w-14 shrink-0">{{ formatTime(item.time) }}</span>
+                <span v-else class="w-14 shrink-0" />
+                <span class="truncate">{{ item.label }}</span>
+              </li>
+            </ul>
+          </template>
 
-      <!-- Priority tasks -->
-      <div class="rounded-lg border border-ink-100 dark:border-white/10 bg-surface dark:bg-white/5 p-5">
-        <NuxtLink to="/tasks" class="text-h4 font-medium mb-4 block hover:text-primary-600 dark:hover:text-primary">{{ $t('dashboard.tasks') }}</NuxtLink>
-        <p v-if="priorityTasks.length === 0" class="text-body-sm text-ink-400">{{ $t('dashboard.noPriorityTasks') }}</p>
-        <ul v-else class="space-y-3">
-          <li v-for="t in priorityTasks" :key="t.id" class="flex items-center gap-2 text-body-sm">
-            <UiIcon name="flag" :size="13" :class="priorityColors[t.priority]" />
-            <span class="truncate">{{ t.title }}</span>
-          </li>
-        </ul>
-      </div>
+          <!-- Priority tasks -->
+          <template v-else-if="widget.key === 'priorities'">
+            <NuxtLink to="/tasks" class="text-h4 font-medium mb-4 block hover:text-primary-600 dark:hover:text-primary">{{ $t('dashboard.tasks') }}</NuxtLink>
+            <p v-if="priorityTasks.length === 0" class="text-body-sm text-ink-400">{{ $t('dashboard.noPriorityTasks') }}</p>
+            <ul v-else class="space-y-3">
+              <li v-for="t in priorityTasks" :key="t.id" class="flex items-center gap-2 text-body-sm">
+                <UiIcon name="flag" :size="13" :class="priorityColors[t.priority]" />
+                <span class="truncate">{{ t.title }}</span>
+              </li>
+            </ul>
+          </template>
 
-      <!-- CRM pipeline -->
-      <div class="rounded-lg border border-ink-100 dark:border-white/10 bg-surface dark:bg-white/5 p-5">
-        <NuxtLink to="/crm" class="text-h4 font-medium mb-2 block hover:text-primary-600 dark:hover:text-primary">{{ $t('dashboard.crm') }}</NuxtLink>
-        <p class="text-display text-h2 font-semibold">{{ openPipeline.value }}</p>
-        <p class="text-body-sm text-ink-400 mt-1">{{ $t('dashboard.openOpportunities', { count: openPipeline.count }) }}</p>
-      </div>
+          <!-- CRM pipeline -->
+          <template v-else-if="widget.key === 'crm'">
+            <NuxtLink to="/crm" class="text-h4 font-medium mb-2 block hover:text-primary-600 dark:hover:text-primary">{{ $t('dashboard.crm') }}</NuxtLink>
+            <p class="text-display text-h2 font-semibold">{{ openPipeline.value }}</p>
+            <p class="text-body-sm text-ink-400 mt-1">{{ $t('dashboard.openOpportunities', { count: openPipeline.count }) }}</p>
+          </template>
 
-      <!-- Active projects -->
-      <div class="tablet:col-span-2 rounded-lg border border-ink-100 dark:border-white/10 bg-surface dark:bg-white/5 p-5">
-        <NuxtLink to="/projects" class="text-h4 font-medium mb-4 block hover:text-primary-600 dark:hover:text-primary">{{ $t('dashboard.projects') }}</NuxtLink>
-        <p v-if="activeProjects.length === 0" class="text-body-sm text-ink-400">{{ $t('dashboard.noActiveProjects') }}</p>
-        <ul v-else class="space-y-3">
-          <li v-for="p in activeProjects" :key="p.id" class="flex items-center justify-between text-body-sm">
-            <span class="truncate">{{ p.name }}</span>
-            <span v-if="p.dueDate" class="text-caption text-ink-400 shrink-0">{{ new Date(p.dueDate).toLocaleDateString(locale) }}</span>
-          </li>
-        </ul>
-      </div>
+          <!-- Active projects -->
+          <template v-else-if="widget.key === 'projects'">
+            <NuxtLink to="/projects" class="text-h4 font-medium mb-4 block hover:text-primary-600 dark:hover:text-primary">{{ $t('dashboard.projects') }}</NuxtLink>
+            <p v-if="activeProjects.length === 0" class="text-body-sm text-ink-400">{{ $t('dashboard.noActiveProjects') }}</p>
+            <ul v-else class="space-y-3">
+              <li v-for="p in activeProjects" :key="p.id" class="flex items-center justify-between text-body-sm">
+                <span class="truncate">{{ p.name }}</span>
+                <span v-if="p.dueDate" class="text-caption text-ink-400 shrink-0">{{ new Date(p.dueDate).toLocaleDateString(locale) }}</span>
+              </li>
+            </ul>
+          </template>
+        </DashboardWidgetFrame>
+      </template>
     </div>
   </div>
 </template>
