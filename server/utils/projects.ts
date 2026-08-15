@@ -1,5 +1,5 @@
-import type { Project, ProjectDocument, ProjectComment } from '~/shared/types/project'
-import type { ProjectInputSchema, AddProjectDocumentSchema, AddProjectCommentSchema } from '~/shared/validation/project'
+import type { Project, ProjectDocument, ProjectComment, ProjectMilestone } from '~/shared/types/project'
+import type { ProjectInputSchema, AddProjectDocumentSchema, AddProjectCommentSchema, AddProjectMilestoneSchema } from '~/shared/validation/project'
 import { getDb } from './firebase'
 
 const COLLECTION = 'projects'
@@ -16,6 +16,7 @@ function toProject(id: string, data: FirebaseFirestore.DocumentData): Project {
     budget: data.budget ?? 0,
     documents: data.documents ?? [],
     discussion: data.discussion ?? [],
+    milestones: data.milestones ?? [],
     createdAt: data.createdAt ?? new Date().toISOString(),
     updatedAt: data.updatedAt ?? new Date().toISOString(),
   }
@@ -80,4 +81,35 @@ export async function addProjectComment(id: string, input: AddProjectCommentSche
   const updatedAt = new Date().toISOString()
   await ref.update({ discussion, updatedAt })
   return toProject(id, { ...existing.data(), discussion, updatedAt })
+}
+
+export async function addProjectMilestone(id: string, input: AddProjectMilestoneSchema, organizationId: string): Promise<Project | null> {
+  const ref = getDb().collection(COLLECTION).doc(id)
+  const existing = await ref.get()
+  if (!existing.exists || existing.data()?.organizationId !== organizationId) return null
+
+  const milestone: ProjectMilestone = {
+    id: crypto.randomUUID(),
+    title: input.title,
+    dueDate: input.dueDate ?? null,
+    status: 'pending',
+    createdAt: new Date().toISOString(),
+  }
+  const milestones = [...(existing.data()?.milestones ?? []), milestone]
+  const updatedAt = new Date().toISOString()
+  await ref.update({ milestones, updatedAt })
+  return toProject(id, { ...existing.data(), milestones, updatedAt })
+}
+
+export async function toggleProjectMilestone(id: string, milestoneId: string, organizationId: string): Promise<Project | null> {
+  const ref = getDb().collection(COLLECTION).doc(id)
+  const existing = await ref.get()
+  if (!existing.exists || existing.data()?.organizationId !== organizationId) return null
+
+  const milestones: ProjectMilestone[] = (existing.data()?.milestones ?? []).map((m: ProjectMilestone) =>
+    m.id === milestoneId ? { ...m, status: m.status === 'completed' ? 'pending' : 'completed' } : m,
+  )
+  const updatedAt = new Date().toISOString()
+  await ref.update({ milestones, updatedAt })
+  return toProject(id, { ...existing.data(), milestones, updatedAt })
 }

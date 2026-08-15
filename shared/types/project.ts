@@ -15,6 +15,17 @@ export interface ProjectComment {
   createdAt: string
 }
 
+export const MILESTONE_STATUSES = ['pending', 'completed'] as const
+export type MilestoneStatus = (typeof MILESTONE_STATUSES)[number]
+
+export interface ProjectMilestone {
+  id: string
+  title: string
+  dueDate: string | null
+  status: MilestoneStatus
+  createdAt: string
+}
+
 export interface Project {
   id: string
   name: string
@@ -26,6 +37,7 @@ export interface Project {
   budget: number
   documents: ProjectDocument[]
   discussion: ProjectComment[]
+  milestones: ProjectMilestone[]
   createdAt: string
   updatedAt: string
 }

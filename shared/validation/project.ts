@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { PROJECT_STATUSES } from '~/shared/types/project'
+import { PROJECT_STATUSES, MILESTONE_STATUSES } from '~/shared/types/project'
 
 export const projectDocumentSchema = z.object({
   id: z.string().min(1),
@@ -15,6 +15,14 @@ export const projectCommentSchema = z.object({
   createdAt: z.string(),
 })
 
+export const projectMilestoneSchema = z.object({
+  id: z.string().min(1),
+  title: z.string().trim().min(1).max(160),
+  dueDate: z.string().nullable(),
+  status: z.enum(MILESTONE_STATUSES),
+  createdAt: z.string(),
+})
+
 export const projectInputSchema = z.object({
   name: z.string().trim().min(1, 'validation.required').max(160),
   description: z.string().trim().max(4000).default(''),
@@ -25,6 +33,7 @@ export const projectInputSchema = z.object({
   budget: z.coerce.number().min(0).default(0),
   documents: z.array(projectDocumentSchema).default([]),
   discussion: z.array(projectCommentSchema).default([]),
+  milestones: z.array(projectMilestoneSchema).default([]),
 })
 
 export type ProjectInputSchema = z.infer<typeof projectInputSchema>
@@ -41,3 +50,10 @@ export const addProjectCommentSchema = z.object({
 })
 
 export type AddProjectCommentSchema = z.infer<typeof addProjectCommentSchema>
+
+export const addProjectMilestoneSchema = z.object({
+  title: z.string().trim().min(1, 'validation.required').max(160),
+  dueDate: z.string().trim().nullable().default(null),
+})
+
+export type AddProjectMilestoneSchema = z.infer<typeof addProjectMilestoneSchema>

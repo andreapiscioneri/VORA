@@ -47,5 +47,26 @@ export function useProjects() {
     return await $fetch<Project>(`/api/projects/${projectId}/discussion`, { method: 'POST', body: { body } })
   }
 
-  return { projects, pending, error, fetchProjects, createProject, updateProject, setStatus, removeProject, addDocument, addComment }
+  async function addMilestone(projectId: string, title: string, dueDate: string | null) {
+    return await $fetch<Project>(`/api/projects/${projectId}/milestones`, { method: 'POST', body: { title, dueDate } })
+  }
+
+  async function toggleMilestone(projectId: string, milestoneId: string) {
+    return await $fetch<Project>(`/api/projects/${projectId}/milestones/${milestoneId}`, { method: 'PUT' })
+  }
+
+  return {
+    projects,
+    pending,
+    error,
+    fetchProjects,
+    createProject,
+    updateProject,
+    setStatus,
+    removeProject,
+    addDocument,
+    addComment,
+    addMilestone,
+    toggleMilestone,
+  }
 }

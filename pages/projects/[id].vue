@@ -7,7 +7,7 @@ const route = useRoute()
 const { locale, t } = useI18n()
 const { contacts, fetchContacts } = useContacts()
 const { tasks, fetchTasks } = useTasks()
-const { addDocument, addComment } = useProjects()
+const { addDocument, addComment, addMilestone, toggleMilestone } = useProjects()
 await Promise.all([fetchContacts(), fetchTasks()])
 
 const { data: project, pending, error, refresh } = await useFetch<Project>(`/api/projects/${route.params.id}`)
@@ -19,6 +19,11 @@ const addingDoc = ref(false)
 const docError = ref('')
 const newComment = ref('')
 const sendingComment = ref(false)
+const newMilestoneTitle = ref('')
+const newMilestoneDueDate = ref('')
+const addingMilestone = ref(false)
+const milestoneError = ref('')
+const togglingMilestoneId = ref('')
 
 function clientName(contactId: string | null) {
   if (!contactId) return ''
@@ -43,6 +48,14 @@ const statusStyles: Record<string, string> = {
   on_hold: 'bg-warning/10 text-warning',
   completed: 'bg-info/10 text-info',
   archived: 'bg-ink-100 text-ink-400 dark:bg-white/10 dark:text-paper-300',
+}
+
+function milestoneDueStyle(dueDate: string | null) {
+  if (!dueDate) return ''
+  const diff = new Date(dueDate).getTime() - Date.now()
+  if (diff < 0) return 'text-danger'
+  if (diff < 1000 * 60 * 60 * 4) return 'text-warning'
+  return 'text-ink-400'
 }
 
 async function onAddDocument() {
@@ -70,6 +83,33 @@ async function onAddComment() {
     await refresh()
   } finally {
     sendingComment.value = false
+  }
+}
+
+async function onAddMilestone() {
+  milestoneError.value = ''
+  if (!newMilestoneTitle.value.trim() || !project.value) return
+  addingMilestone.value = true
+  try {
+    await addMilestone(project.value.id, newMilestoneTitle.value.trim(), newMilestoneDueDate.value.trim() || null)
+    newMilestoneTitle.value = ''
+    newMilestoneDueDate.value = ''
+    await refresh()
+  } catch {
+    milestoneError.value = t('projects.detail.milestoneError')
+  } finally {
+    addingMilestone.value = false
+  }
+}
+
+async function onToggleMilestone(milestoneId: string) {
+  if (!project.value) return
+  togglingMilestoneId.value = milestoneId
+  try {
+    await toggleMilestone(project.value.id, milestoneId)
+    await refresh()
+  } finally {
+    togglingMilestoneId.value = ''
   }
 }
 </script>
@@ -146,6 +186,52 @@ async function onAddComment() {
           </button>
         </form>
         <p v-if="docError" class="text-caption text-danger">{{ docError }}</p>
+      </div>
+
+      <div class="space-y-4">
+        <h2 class="text-h4 font-medium">{{ $t('projects.detail.milestones') }}</h2>
+        <p v-if="project.milestones.length === 0" class="text-body-sm text-ink-400">{{ $t('projects.detail.noMilestones') }}</p>
+        <ul v-else class="space-y-2">
+          <li v-for="m in project.milestones" :key="m.id" class="flex items-center justify-between gap-3 rounded-lg border border-ink-100 dark:border-white/10 p-3">
+            <button
+              type="button"
+              class="flex items-center gap-2 min-w-0 text-left"
+              :disabled="togglingMilestoneId === m.id"
+              @click="onToggleMilestone(m.id)"
+            >
+              <UiIcon :name="m.status === 'completed' ? 'check-square' : 'dot'" :size="18" class="shrink-0" :class="m.status === 'completed' ? 'text-success' : 'text-ink-400'" />
+              <span class="text-body-sm truncate" :class="m.status === 'completed' ? 'line-through text-ink-400' : ''">{{ m.title }}</span>
+            </button>
+            <span v-if="m.dueDate" class="text-caption shrink-0" :class="milestoneDueStyle(m.dueDate)">{{ new Date(m.dueDate).toLocaleDateString(locale) }}</span>
+          </li>
+        </ul>
+
+        <form class="flex flex-col tablet:flex-row items-start gap-2" @submit.prevent="onAddMilestone">
+          <label for="project-milestone-title" class="sr-only">{{ $t('projects.detail.milestoneTitle') }}</label>
+          <input
+            id="project-milestone-title"
+            v-model="newMilestoneTitle"
+            type="text"
+            :placeholder="$t('projects.detail.milestoneTitle')"
+            class="flex-1 w-full px-3 py-2 rounded-md border border-ink-100 dark:border-white/10 bg-white dark:bg-white/5 text-body-sm outline-none focus:border-primary transition-colors"
+          />
+          <label for="project-milestone-due-date" class="sr-only">{{ $t('projects.detail.milestoneDueDate') }}</label>
+          <input
+            id="project-milestone-due-date"
+            v-model="newMilestoneDueDate"
+            type="date"
+            :placeholder="$t('projects.detail.milestoneDueDate')"
+            class="w-full tablet:w-auto px-3 py-2 rounded-md border border-ink-100 dark:border-white/10 bg-white dark:bg-white/5 text-body-sm outline-none focus:border-primary transition-colors"
+          />
+          <button
+            type="submit"
+            :disabled="addingMilestone || !newMilestoneTitle.trim()"
+            class="shrink-0 px-4 py-2 rounded-md text-body-sm font-medium bg-primary text-ink-950 hover:bg-primary-hover disabled:opacity-50 transition-colors"
+          >
+            {{ $t('projects.detail.addMilestone') }}
+          </button>
+        </form>
+        <p v-if="milestoneError" class="text-caption text-danger">{{ milestoneError }}</p>
       </div>
 
       <div class="space-y-4">
