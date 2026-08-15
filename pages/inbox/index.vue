@@ -51,6 +51,10 @@ function onOpenCompose() {
   showCompose.value = true
 }
 
+// Supports the ⌘K command palette's "Send email" action (?action=compose).
+const route = useRoute()
+if (route.query.action === 'compose') onOpenCompose()
+
 const filtered = computed(() => {
   let list = channelFilter.value === 'all' ? communications.value : communications.value.filter((c) => c.channel === channelFilter.value)
   if (labelFilter.value) list = list.filter((c) => c.labels.includes(labelFilter.value!))

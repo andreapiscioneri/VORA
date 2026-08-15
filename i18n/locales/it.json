@@ -107,7 +107,9 @@
       "askAI": "Chiedi a VORA AI",
       "changeTheme": "Cambia tema",
       "changeLanguage": "Cambia lingua",
-      "openCrm": "Apri CRM"
+      "openCrm": "Apri CRM",
+      "searchContact": "Cerca contatto",
+      "sendEmail": "Invia email"
     }
   },
   "dashboard": {

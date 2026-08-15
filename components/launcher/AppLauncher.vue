@@ -58,6 +58,8 @@ const commands = computed<Command[]>(() => [
   { id: 'new-appointment', label: t('launcher.commands.newAppointment'), icon: 'clock', run: () => go('/appointments?action=new') },
   { id: 'open-calendar', label: t('launcher.commands.openCalendar'), icon: 'calendar', run: () => go('/calendar') },
   { id: 'open-crm', label: t('launcher.commands.openCrm'), icon: 'trending-up', run: () => go('/crm') },
+  { id: 'search-contact', label: t('launcher.commands.searchContact'), icon: 'users', run: () => go('/contacts?action=search') },
+  { id: 'send-email', label: t('launcher.commands.sendEmail'), icon: 'mail', run: () => go('/inbox?action=compose') },
   { id: 'ask-ai', label: t('launcher.commands.askAI'), icon: 'sparkles', run: openAssistant },
   { id: 'change-theme', label: t('launcher.commands.changeTheme'), icon: 'sun', run: toggleTheme },
   { id: 'change-language', label: t('launcher.commands.changeLanguage'), icon: 'globe', run: cycleLanguage },

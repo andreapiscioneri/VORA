@@ -15,6 +15,13 @@ const editingContact = ref<Contact | null>(null)
 const route = useRoute()
 if (route.query.action === 'new') showForm.value = true
 
+// Supports the ⌘K command palette's "Search contact" action (?action=search)
+// — focuses this page's own search field rather than duplicating search UI.
+const searchInputRef = ref<HTMLInputElement | null>(null)
+onMounted(() => {
+  if (route.query.action === 'search') searchInputRef.value?.focus()
+})
+
 const filtered = computed(() => {
   const q = query.value.trim().toLowerCase()
   if (!q) return contacts.value
@@ -63,6 +70,7 @@ const statusStyles: Record<string, string> = {
       </div>
       <div class="tablet:ml-auto flex items-center gap-3">
         <input
+          ref="searchInputRef"
           v-model="query"
           type="text"
           :placeholder="$t('contacts.search')"
