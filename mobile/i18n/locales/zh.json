@@ -1,0 +1,229 @@
+{
+  "common": {
+    "appName": "Vora",
+    "reachability": "无法连接到 Vora 服务器。下拉重试。",
+    "offlineCached": "离线 — 正在显示上次保存的数据。"
+  },
+  "auth": {
+    "loginTitle": "登录 Vora",
+    "registerTitle": "创建你的 Vora 工作区",
+    "name": "姓名",
+    "email": "电子邮箱",
+    "password": "密码",
+    "organizationName": "组织名称",
+    "submitLogin": "登录",
+    "submitRegister": "创建账户",
+    "noAccount": "还没有账户？",
+    "hasAccount": "已有账户？",
+    "switchToRegister": "注册",
+    "switchToLogin": "登录",
+    "invalidCredentials": "邮箱或密码无效。",
+    "emailTaken": "该邮箱已被注册。",
+    "passwordTooShort": "密码长度至少为 8 个字符。",
+    "logout": "退出登录"
+  },
+  "tabs": {
+    "home": "主页",
+    "tasks": "待办",
+    "inbox": "收件箱",
+    "calendar": "日历",
+    "more": "更多"
+  },
+  "home": {
+    "subtitle": "一目了然的一天",
+    "openTasks": "未完成任务",
+    "unread": "未读消息",
+    "upcomingEvents": "即将到来的日程",
+    "upcomingTasks": "近期任务",
+    "noOpenTasks": "没有未完成的任务。",
+    "highPriority": "，高优先级"
+  },
+  "tasks": {
+    "title": "待办",
+    "count": "{{count}} 项任务",
+    "error": "无法加载任务，请检查 Vora 服务器是否在运行。（{{error}}）",
+    "empty": "没有任务。",
+    "advanceHint": "点击切换为{{status}}",
+    "status": {
+      "todo": "待处理",
+      "in_progress": "进行中",
+      "review": "审核中",
+      "completed": "已完成",
+      "archived": "已归档"
+    }
+  },
+  "inbox": {
+    "title": "收件箱",
+    "count": "{{count}} 条未读",
+    "error": "无法加载消息，请检查 Vora 服务器是否在运行。（{{error}}）",
+    "empty": "没有消息。",
+    "unreadPrefix": "未读。",
+    "markReadHint": "点击标记为已读",
+    "noSubject": "无主题",
+    "channels": {
+      "email": "邮件",
+      "whatsapp": "WhatsApp",
+      "internal": "内部"
+    }
+  },
+  "calendar": {
+    "title": "日历",
+    "count": "{{count}} 个日程",
+    "error": "无法加载日程，请检查 Vora 服务器是否在运行。（{{error}}）",
+    "empty": "日历中没有日程。"
+  },
+  "more": {
+    "title": "更多",
+    "subtitle": "Vora 的其余功能",
+    "connectedTo": "已连接到 {{url}}",
+    "language": "语言",
+    "theme": "外观",
+    "themeOptions": {
+      "system": "跟随系统",
+      "light": "浅色",
+      "dark": "深色"
+    },
+    "items": {
+      "contacts": {
+        "label": "联系人",
+        "desc": "客户与潜在客户名录"
+      },
+      "crm": {
+        "label": "CRM",
+        "desc": "商机管道"
+      },
+      "projects": {
+        "label": "项目",
+        "desc": "工作进度"
+      },
+      "timesheets": {
+        "label": "工时表",
+        "desc": "计时与记录条目"
+      },
+      "helpdesk": {
+        "label": "服务台",
+        "desc": "支持工单"
+      },
+      "leave": {
+        "label": "休假",
+        "desc": "申请与余额"
+      },
+      "wellbeing": {
+        "label": "健康关怀",
+        "desc": "打卡与呼吸练习"
+      },
+      "notifications": {
+        "label": "通知",
+        "desc": "推送偏好设置"
+      }
+    }
+  },
+  "modules": {
+    "contacts": {
+      "title": "联系人",
+      "count": "{{count}} 位联系人",
+      "error": "无法加载联系人，请检查 Vora 服务器是否在运行。（{{error}}）",
+      "empty": "没有联系人。",
+      "status": {
+        "active": "活跃",
+        "lead": "潜在客户",
+        "inactive": "非活跃"
+      }
+    },
+    "crm": {
+      "title": "CRM",
+      "count": "{{count}} 个商机",
+      "error": "无法加载商机，请检查 Vora 服务器是否在运行。（{{error}}）",
+      "empty": "没有商机。",
+      "stage": {
+        "lead": "潜在客户",
+        "qualified": "已确认",
+        "proposal": "报价",
+        "negotiation": "谈判中",
+        "won": "已成交",
+        "lost": "已流失"
+      }
+    },
+    "projects": {
+      "title": "项目",
+      "count": "{{count}} 个项目",
+      "error": "无法加载项目，请检查 Vora 服务器是否在运行。（{{error}}）",
+      "empty": "没有项目。",
+      "status": {
+        "active": "进行中",
+        "on_hold": "已暂停",
+        "completed": "已完成",
+        "archived": "已归档"
+      }
+    },
+    "timesheets": {
+      "title": "工时表",
+      "count": "{{count}} 条记录",
+      "error": "无法加载工时表，请检查 Vora 服务器是否在运行。（{{error}}）",
+      "empty": "没有记录。",
+      "billable": "可计费",
+      "nonBillable": "不可计费"
+    },
+    "helpdesk": {
+      "title": "服务台",
+      "count": "{{count}} 个工单",
+      "error": "无法加载工单，请检查 Vora 服务器是否在运行。（{{error}}）",
+      "empty": "没有工单。",
+      "status": {
+        "open": "待处理",
+        "in_progress": "处理中",
+        "waiting": "等待中",
+        "resolved": "已解决",
+        "closed": "已关闭"
+      }
+    },
+    "leave": {
+      "title": "休假",
+      "count": "{{count}} 条申请",
+      "error": "无法加载休假申请，请检查 Vora 服务器是否在运行。（{{error}}）",
+      "empty": "没有申请。",
+      "status": {
+        "pending": "待审批",
+        "approved": "已批准",
+        "rejected": "已拒绝"
+      },
+      "type": {
+        "vacation": "年假",
+        "sick": "病假",
+        "personal": "事假"
+      }
+    },
+    "wellbeing": {
+      "title": "健康关怀",
+      "subtitle": "属于你的片刻",
+      "disclaimer": "健康关怀不能替代专业医疗人员，也不提供诊断。",
+      "mood": "心情",
+      "energy": "精力",
+      "stress": "压力",
+      "note": "备注（可选）",
+      "notePlaceholder": "今天过得怎么样？",
+      "save": "保存打卡",
+      "saving": "保存中...",
+      "saved": "打卡已保存。",
+      "history": "最近打卡",
+      "empty": "暂无打卡记录。",
+      "error": "无法加载打卡记录。请检查 Vora 服务器是否在运行。({{error}})"
+    },
+    "notifications": {
+      "title": "通知",
+      "subtitle": "选择你想接收的内容",
+      "loading": "加载中...",
+      "error": "无法加载偏好设置。请检查 Vora 服务器是否在运行。({{error}})",
+      "categories": {
+        "messages": "消息",
+        "urgentTasks": "紧急任务",
+        "appointments": "预约",
+        "reminders": "提醒",
+        "aiActions": "AI 操作",
+        "approvals": "审批",
+        "tickets": "工单",
+        "deadlines": "截止日期"
+      }
+    }
+  }
+}

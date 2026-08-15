@@ -1,0 +1,229 @@
+{
+  "common": {
+    "appName": "Vora",
+    "reachability": "No se puede contactar con el servidor Vora. Desliza hacia abajo para reintentar.",
+    "offlineCached": "Sin conexión: mostrando los últimos datos guardados."
+  },
+  "auth": {
+    "loginTitle": "Inicia sesión en Vora",
+    "registerTitle": "Crea tu espacio de trabajo Vora",
+    "name": "Nombre",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "organizationName": "Nombre de la organización",
+    "submitLogin": "Iniciar sesión",
+    "submitRegister": "Crear cuenta",
+    "noAccount": "¿No tienes una cuenta?",
+    "hasAccount": "¿Ya tienes una cuenta?",
+    "switchToRegister": "Regístrate",
+    "switchToLogin": "Inicia sesión",
+    "invalidCredentials": "Correo electrónico o contraseña no válidos.",
+    "emailTaken": "Este correo electrónico ya está registrado.",
+    "passwordTooShort": "La contraseña debe tener al menos 8 caracteres.",
+    "logout": "Cerrar sesión"
+  },
+  "tabs": {
+    "home": "Inicio",
+    "tasks": "Tareas",
+    "inbox": "Bandeja",
+    "calendar": "Calendario",
+    "more": "Más"
+  },
+  "home": {
+    "subtitle": "Tu día, de un vistazo",
+    "openTasks": "Tareas abiertas",
+    "unread": "Mensajes sin leer",
+    "upcomingEvents": "Próximos eventos",
+    "upcomingTasks": "Próximas tareas",
+    "noOpenTasks": "No hay tareas abiertas.",
+    "highPriority": ", prioridad alta"
+  },
+  "tasks": {
+    "title": "Tareas",
+    "count": "{{count}} tareas",
+    "error": "No se pudieron cargar las tareas. Comprueba que el servidor Vora esté activo. ({{error}})",
+    "empty": "No hay tareas.",
+    "advanceHint": "Toca para pasar a {{status}}",
+    "status": {
+      "todo": "Por hacer",
+      "in_progress": "En curso",
+      "review": "En revisión",
+      "completed": "Completada",
+      "archived": "Archivada"
+    }
+  },
+  "inbox": {
+    "title": "Bandeja de entrada",
+    "count": "{{count}} sin leer",
+    "error": "No se pudieron cargar los mensajes. Comprueba que el servidor Vora esté activo. ({{error}})",
+    "empty": "No hay mensajes.",
+    "unreadPrefix": "Sin leer. ",
+    "markReadHint": "Toca para marcar como leído",
+    "noSubject": "sin asunto",
+    "channels": {
+      "email": "Email",
+      "whatsapp": "WhatsApp",
+      "internal": "Interno"
+    }
+  },
+  "calendar": {
+    "title": "Calendario",
+    "count": "{{count}} eventos",
+    "error": "No se pudieron cargar los eventos. Comprueba que el servidor Vora esté activo. ({{error}})",
+    "empty": "No hay eventos en el calendario."
+  },
+  "more": {
+    "title": "Más",
+    "subtitle": "El resto de Vora",
+    "connectedTo": "Conectado a {{url}}",
+    "language": "Idioma",
+    "theme": "Apariencia",
+    "themeOptions": {
+      "system": "Sistema",
+      "light": "Claro",
+      "dark": "Oscuro"
+    },
+    "items": {
+      "contacts": {
+        "label": "Contactos",
+        "desc": "Directorio de clientes y leads"
+      },
+      "crm": {
+        "label": "CRM",
+        "desc": "Pipeline de oportunidades"
+      },
+      "projects": {
+        "label": "Proyectos",
+        "desc": "Avance del trabajo"
+      },
+      "timesheets": {
+        "label": "Partes de horas",
+        "desc": "Temporizador y registros"
+      },
+      "helpdesk": {
+        "label": "Soporte",
+        "desc": "Tickets de soporte"
+      },
+      "leave": {
+        "label": "Ausencias",
+        "desc": "Solicitudes y saldo"
+      },
+      "wellbeing": {
+        "label": "Bienestar",
+        "desc": "Check-in y respiración"
+      },
+      "notifications": {
+        "label": "Notificaciones",
+        "desc": "Preferencias push"
+      }
+    }
+  },
+  "modules": {
+    "contacts": {
+      "title": "Contactos",
+      "count": "{{count}} contactos",
+      "error": "No se pudieron cargar los contactos. Comprueba que el servidor Vora esté activo. ({{error}})",
+      "empty": "No hay contactos.",
+      "status": {
+        "active": "Activo",
+        "lead": "Lead",
+        "inactive": "Inactivo"
+      }
+    },
+    "crm": {
+      "title": "CRM",
+      "count": "{{count}} oportunidades",
+      "error": "No se pudieron cargar las oportunidades. Comprueba que el servidor Vora esté activo. ({{error}})",
+      "empty": "No hay oportunidades.",
+      "stage": {
+        "lead": "Lead",
+        "qualified": "Calificada",
+        "proposal": "Propuesta",
+        "negotiation": "Negociación",
+        "won": "Ganada",
+        "lost": "Perdida"
+      }
+    },
+    "projects": {
+      "title": "Proyectos",
+      "count": "{{count}} proyectos",
+      "error": "No se pudieron cargar los proyectos. Comprueba que el servidor Vora esté activo. ({{error}})",
+      "empty": "No hay proyectos.",
+      "status": {
+        "active": "Activo",
+        "on_hold": "En pausa",
+        "completed": "Completado",
+        "archived": "Archivado"
+      }
+    },
+    "timesheets": {
+      "title": "Partes de horas",
+      "count": "{{count}} registros",
+      "error": "No se pudieron cargar los partes de horas. Comprueba que el servidor Vora esté activo. ({{error}})",
+      "empty": "No hay registros.",
+      "billable": "Facturable",
+      "nonBillable": "No facturable"
+    },
+    "helpdesk": {
+      "title": "Soporte",
+      "count": "{{count}} tickets",
+      "error": "No se pudieron cargar los tickets. Comprueba que el servidor Vora esté activo. ({{error}})",
+      "empty": "No hay tickets.",
+      "status": {
+        "open": "Abierto",
+        "in_progress": "En curso",
+        "waiting": "En espera",
+        "resolved": "Resuelto",
+        "closed": "Cerrado"
+      }
+    },
+    "leave": {
+      "title": "Ausencias",
+      "count": "{{count}} solicitudes",
+      "error": "No se pudieron cargar las solicitudes. Comprueba que el servidor Vora esté activo. ({{error}})",
+      "empty": "No hay solicitudes.",
+      "status": {
+        "pending": "Pendiente",
+        "approved": "Aprobada",
+        "rejected": "Rechazada"
+      },
+      "type": {
+        "vacation": "Vacaciones",
+        "sick": "Enfermedad",
+        "personal": "Personal"
+      }
+    },
+    "wellbeing": {
+      "title": "Bienestar",
+      "subtitle": "Un momento para ti",
+      "disclaimer": "Bienestar no sustituye a un profesional sanitario y no ofrece diagnósticos.",
+      "mood": "Ánimo",
+      "energy": "Energía",
+      "stress": "Estrés",
+      "note": "Notas (opcional)",
+      "notePlaceholder": "¿Cómo va el día?",
+      "save": "Guardar check-in",
+      "saving": "Guardando...",
+      "saved": "Check-in guardado.",
+      "history": "Check-ins recientes",
+      "empty": "Aún no hay check-ins.",
+      "error": "No se pudieron cargar los check-ins. Verifica que el servidor Vora esté activo. ({{error}})"
+    },
+    "notifications": {
+      "title": "Notificaciones",
+      "subtitle": "Elige lo que quieres recibir",
+      "loading": "Cargando...",
+      "error": "No se pudieron cargar las preferencias. Verifica que el servidor Vora esté activo. ({{error}})",
+      "categories": {
+        "messages": "Mensajes",
+        "urgentTasks": "Tareas urgentes",
+        "appointments": "Citas",
+        "reminders": "Recordatorios",
+        "aiActions": "Acciones de IA",
+        "approvals": "Aprobaciones",
+        "tickets": "Tickets",
+        "deadlines": "Plazos"
+      }
+    }
+  }
+}

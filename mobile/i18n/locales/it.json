@@ -1,0 +1,229 @@
+{
+  "common": {
+    "appName": "Vora",
+    "reachability": "Impossibile contattare il server Vora. Trascina verso il basso per riprovare.",
+    "offlineCached": "Offline: dati salvati più recenti in visualizzazione."
+  },
+  "auth": {
+    "loginTitle": "Accedi a Vora",
+    "registerTitle": "Crea il tuo spazio Vora",
+    "name": "Nome",
+    "email": "Email",
+    "password": "Password",
+    "organizationName": "Nome dell'organizzazione",
+    "submitLogin": "Accedi",
+    "submitRegister": "Crea account",
+    "noAccount": "Non hai un account?",
+    "hasAccount": "Hai già un account?",
+    "switchToRegister": "Registrati",
+    "switchToLogin": "Accedi",
+    "invalidCredentials": "Email o password non validi.",
+    "emailTaken": "Questa email è già registrata.",
+    "passwordTooShort": "La password deve contenere almeno 8 caratteri.",
+    "logout": "Esci"
+  },
+  "tabs": {
+    "home": "Home",
+    "tasks": "Da fare",
+    "inbox": "Posta",
+    "calendar": "Calendario",
+    "more": "Altro"
+  },
+  "home": {
+    "subtitle": "La tua giornata, in un colpo d'occhio",
+    "openTasks": "Task aperti",
+    "unread": "Messaggi non letti",
+    "upcomingEvents": "Prossimi eventi",
+    "upcomingTasks": "Prossimi task",
+    "noOpenTasks": "Nessun task aperto.",
+    "highPriority": ", priorità alta"
+  },
+  "tasks": {
+    "title": "Da fare",
+    "count": "{{count}} task",
+    "error": "Impossibile caricare i task. Verifica che il server Vora sia attivo. ({{error}})",
+    "empty": "Nessun task.",
+    "advanceHint": "Tocca per passare a {{status}}",
+    "status": {
+      "todo": "Da fare",
+      "in_progress": "In corso",
+      "review": "In revisione",
+      "completed": "Completato",
+      "archived": "Archiviato"
+    }
+  },
+  "inbox": {
+    "title": "Posta in arrivo",
+    "count": "{{count}} non letti",
+    "error": "Impossibile caricare i messaggi. Verifica che il server Vora sia attivo. ({{error}})",
+    "empty": "Nessun messaggio.",
+    "unreadPrefix": "Non letto. ",
+    "markReadHint": "Tocca per segnare come letto",
+    "noSubject": "nessun oggetto",
+    "channels": {
+      "email": "Email",
+      "whatsapp": "WhatsApp",
+      "internal": "Interno"
+    }
+  },
+  "calendar": {
+    "title": "Calendario",
+    "count": "{{count}} eventi",
+    "error": "Impossibile caricare gli eventi. Verifica che il server Vora sia attivo. ({{error}})",
+    "empty": "Nessun evento in calendario."
+  },
+  "more": {
+    "title": "Altro",
+    "subtitle": "Il resto del gestionale Vora",
+    "connectedTo": "Connesso a {{url}}",
+    "language": "Lingua",
+    "theme": "Aspetto",
+    "themeOptions": {
+      "system": "Sistema",
+      "light": "Chiaro",
+      "dark": "Scuro"
+    },
+    "items": {
+      "contacts": {
+        "label": "Contatti",
+        "desc": "Rubrica clienti e lead"
+      },
+      "crm": {
+        "label": "CRM",
+        "desc": "Pipeline opportunità"
+      },
+      "projects": {
+        "label": "Progetti",
+        "desc": "Avanzamento lavori"
+      },
+      "timesheets": {
+        "label": "Fogli ore",
+        "desc": "Timer e voci registrate"
+      },
+      "helpdesk": {
+        "label": "Helpdesk",
+        "desc": "Ticket di supporto"
+      },
+      "leave": {
+        "label": "Ferie",
+        "desc": "Richieste e saldo"
+      },
+      "wellbeing": {
+        "label": "Benessere",
+        "desc": "Check-in e respirazione"
+      },
+      "notifications": {
+        "label": "Notifiche",
+        "desc": "Preferenze push"
+      }
+    }
+  },
+  "modules": {
+    "contacts": {
+      "title": "Contatti",
+      "count": "{{count}} contatti",
+      "error": "Impossibile caricare i contatti. Verifica che il server Vora sia attivo. ({{error}})",
+      "empty": "Nessun contatto.",
+      "status": {
+        "active": "Attivo",
+        "lead": "Lead",
+        "inactive": "Inattivo"
+      }
+    },
+    "crm": {
+      "title": "CRM",
+      "count": "{{count}} opportunità",
+      "error": "Impossibile caricare le opportunità. Verifica che il server Vora sia attivo. ({{error}})",
+      "empty": "Nessuna opportunità.",
+      "stage": {
+        "lead": "Lead",
+        "qualified": "Qualificata",
+        "proposal": "Proposta",
+        "negotiation": "Negoziazione",
+        "won": "Vinta",
+        "lost": "Persa"
+      }
+    },
+    "projects": {
+      "title": "Progetti",
+      "count": "{{count}} progetti",
+      "error": "Impossibile caricare i progetti. Verifica che il server Vora sia attivo. ({{error}})",
+      "empty": "Nessun progetto.",
+      "status": {
+        "active": "Attivo",
+        "on_hold": "In pausa",
+        "completed": "Completato",
+        "archived": "Archiviato"
+      }
+    },
+    "timesheets": {
+      "title": "Fogli ore",
+      "count": "{{count}} voci",
+      "error": "Impossibile caricare i fogli ore. Verifica che il server Vora sia attivo. ({{error}})",
+      "empty": "Nessuna voce registrata.",
+      "billable": "Fatturabile",
+      "nonBillable": "Non fatturabile"
+    },
+    "helpdesk": {
+      "title": "Helpdesk",
+      "count": "{{count}} ticket",
+      "error": "Impossibile caricare i ticket. Verifica che il server Vora sia attivo. ({{error}})",
+      "empty": "Nessun ticket.",
+      "status": {
+        "open": "Aperto",
+        "in_progress": "In corso",
+        "waiting": "In attesa",
+        "resolved": "Risolto",
+        "closed": "Chiuso"
+      }
+    },
+    "leave": {
+      "title": "Ferie",
+      "count": "{{count}} richieste",
+      "error": "Impossibile caricare le richieste. Verifica che il server Vora sia attivo. ({{error}})",
+      "empty": "Nessuna richiesta.",
+      "status": {
+        "pending": "In attesa",
+        "approved": "Approvata",
+        "rejected": "Rifiutata"
+      },
+      "type": {
+        "vacation": "Ferie",
+        "sick": "Malattia",
+        "personal": "Personale"
+      }
+    },
+    "wellbeing": {
+      "title": "Benessere",
+      "subtitle": "Un momento per te",
+      "disclaimer": "Benessere non sostituisce un professionista sanitario e non fornisce diagnosi.",
+      "mood": "Umore",
+      "energy": "Energia",
+      "stress": "Stress",
+      "note": "Note (facoltative)",
+      "notePlaceholder": "Come va oggi?",
+      "save": "Salva check-in",
+      "saving": "Salvataggio...",
+      "saved": "Check-in salvato.",
+      "history": "Check-in recenti",
+      "empty": "Nessun check-in ancora.",
+      "error": "Impossibile caricare i check-in. Verifica che il server Vora sia attivo. ({{error}})"
+    },
+    "notifications": {
+      "title": "Notifiche",
+      "subtitle": "Scegli cosa vuoi ricevere",
+      "loading": "Caricamento...",
+      "error": "Impossibile caricare le preferenze. Verifica che il server Vora sia attivo. ({{error}})",
+      "categories": {
+        "messages": "Messaggi",
+        "urgentTasks": "Task urgenti",
+        "appointments": "Appuntamenti",
+        "reminders": "Promemoria",
+        "aiActions": "Azioni AI",
+        "approvals": "Approvazioni",
+        "tickets": "Ticket",
+        "deadlines": "Scadenze"
+      }
+    }
+  }
+}

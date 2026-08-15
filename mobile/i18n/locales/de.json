@@ -1,0 +1,229 @@
+{
+  "common": {
+    "appName": "Vora",
+    "reachability": "Vora-Server nicht erreichbar. Zum Wiederholen nach unten ziehen.",
+    "offlineCached": "Offline – zuletzt gespeicherte Daten werden angezeigt."
+  },
+  "auth": {
+    "loginTitle": "Bei Vora anmelden",
+    "registerTitle": "Erstelle deinen Vora-Arbeitsbereich",
+    "name": "Name",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "organizationName": "Name der Organisation",
+    "submitLogin": "Anmelden",
+    "submitRegister": "Konto erstellen",
+    "noAccount": "Noch kein Konto?",
+    "hasAccount": "Bereits ein Konto?",
+    "switchToRegister": "Registrieren",
+    "switchToLogin": "Anmelden",
+    "invalidCredentials": "E-Mail oder Passwort ungültig.",
+    "emailTaken": "Diese E-Mail ist bereits registriert.",
+    "passwordTooShort": "Das Passwort muss mindestens 8 Zeichen lang sein.",
+    "logout": "Abmelden"
+  },
+  "tabs": {
+    "home": "Start",
+    "tasks": "Aufgaben",
+    "inbox": "Posteingang",
+    "calendar": "Kalender",
+    "more": "Mehr"
+  },
+  "home": {
+    "subtitle": "Dein Tag auf einen Blick",
+    "openTasks": "Offene Aufgaben",
+    "unread": "Ungelesene Nachrichten",
+    "upcomingEvents": "Anstehende Termine",
+    "upcomingTasks": "Anstehende Aufgaben",
+    "noOpenTasks": "Keine offenen Aufgaben.",
+    "highPriority": ", hohe Priorität"
+  },
+  "tasks": {
+    "title": "Aufgaben",
+    "count": "{{count}} Aufgaben",
+    "error": "Aufgaben konnten nicht geladen werden. Prüfe, ob der Vora-Server läuft. ({{error}})",
+    "empty": "Keine Aufgaben.",
+    "advanceHint": "Tippen, um zu {{status}} zu wechseln",
+    "status": {
+      "todo": "Zu erledigen",
+      "in_progress": "In Bearbeitung",
+      "review": "In Prüfung",
+      "completed": "Erledigt",
+      "archived": "Archiviert"
+    }
+  },
+  "inbox": {
+    "title": "Posteingang",
+    "count": "{{count}} ungelesen",
+    "error": "Nachrichten konnten nicht geladen werden. Prüfe, ob der Vora-Server läuft. ({{error}})",
+    "empty": "Keine Nachrichten.",
+    "unreadPrefix": "Ungelesen. ",
+    "markReadHint": "Tippen, um als gelesen zu markieren",
+    "noSubject": "kein Betreff",
+    "channels": {
+      "email": "E-Mail",
+      "whatsapp": "WhatsApp",
+      "internal": "Intern"
+    }
+  },
+  "calendar": {
+    "title": "Kalender",
+    "count": "{{count}} Termine",
+    "error": "Termine konnten nicht geladen werden. Prüfe, ob der Vora-Server läuft. ({{error}})",
+    "empty": "Keine Termine im Kalender."
+  },
+  "more": {
+    "title": "Mehr",
+    "subtitle": "Der Rest von Vora",
+    "connectedTo": "Verbunden mit {{url}}",
+    "language": "Sprache",
+    "theme": "Erscheinungsbild",
+    "themeOptions": {
+      "system": "System",
+      "light": "Hell",
+      "dark": "Dunkel"
+    },
+    "items": {
+      "contacts": {
+        "label": "Kontakte",
+        "desc": "Kunden- und Lead-Verzeichnis"
+      },
+      "crm": {
+        "label": "CRM",
+        "desc": "Verkaufschancen-Pipeline"
+      },
+      "projects": {
+        "label": "Projekte",
+        "desc": "Arbeitsfortschritt"
+      },
+      "timesheets": {
+        "label": "Zeiterfassung",
+        "desc": "Timer und erfasste Einträge"
+      },
+      "helpdesk": {
+        "label": "Helpdesk",
+        "desc": "Support-Tickets"
+      },
+      "leave": {
+        "label": "Urlaub",
+        "desc": "Anträge und Saldo"
+      },
+      "wellbeing": {
+        "label": "Wohlbefinden",
+        "desc": "Check-in und Atmung"
+      },
+      "notifications": {
+        "label": "Benachrichtigungen",
+        "desc": "Push-Einstellungen"
+      }
+    }
+  },
+  "modules": {
+    "contacts": {
+      "title": "Kontakte",
+      "count": "{{count}} Kontakte",
+      "error": "Kontakte konnten nicht geladen werden. Prüfe, ob der Vora-Server läuft. ({{error}})",
+      "empty": "Keine Kontakte.",
+      "status": {
+        "active": "Aktiv",
+        "lead": "Lead",
+        "inactive": "Inaktiv"
+      }
+    },
+    "crm": {
+      "title": "CRM",
+      "count": "{{count}} Chancen",
+      "error": "Verkaufschancen konnten nicht geladen werden. Prüfe, ob der Vora-Server läuft. ({{error}})",
+      "empty": "Keine Verkaufschancen.",
+      "stage": {
+        "lead": "Lead",
+        "qualified": "Qualifiziert",
+        "proposal": "Angebot",
+        "negotiation": "Verhandlung",
+        "won": "Gewonnen",
+        "lost": "Verloren"
+      }
+    },
+    "projects": {
+      "title": "Projekte",
+      "count": "{{count}} Projekte",
+      "error": "Projekte konnten nicht geladen werden. Prüfe, ob der Vora-Server läuft. ({{error}})",
+      "empty": "Keine Projekte.",
+      "status": {
+        "active": "Aktiv",
+        "on_hold": "Pausiert",
+        "completed": "Abgeschlossen",
+        "archived": "Archiviert"
+      }
+    },
+    "timesheets": {
+      "title": "Zeiterfassung",
+      "count": "{{count}} Einträge",
+      "error": "Zeiterfassung konnte nicht geladen werden. Prüfe, ob der Vora-Server läuft. ({{error}})",
+      "empty": "Keine Einträge erfasst.",
+      "billable": "Abrechenbar",
+      "nonBillable": "Nicht abrechenbar"
+    },
+    "helpdesk": {
+      "title": "Helpdesk",
+      "count": "{{count}} Tickets",
+      "error": "Tickets konnten nicht geladen werden. Prüfe, ob der Vora-Server läuft. ({{error}})",
+      "empty": "Keine Tickets.",
+      "status": {
+        "open": "Offen",
+        "in_progress": "In Bearbeitung",
+        "waiting": "Wartend",
+        "resolved": "Gelöst",
+        "closed": "Geschlossen"
+      }
+    },
+    "leave": {
+      "title": "Urlaub",
+      "count": "{{count}} Anträge",
+      "error": "Urlaubsanträge konnten nicht geladen werden. Prüfe, ob der Vora-Server läuft. ({{error}})",
+      "empty": "Keine Anträge.",
+      "status": {
+        "pending": "Ausstehend",
+        "approved": "Genehmigt",
+        "rejected": "Abgelehnt"
+      },
+      "type": {
+        "vacation": "Urlaub",
+        "sick": "Krankheit",
+        "personal": "Persönlich"
+      }
+    },
+    "wellbeing": {
+      "title": "Wohlbefinden",
+      "subtitle": "Ein Moment für dich",
+      "disclaimer": "Wohlbefinden ersetzt keine medizinische Fachkraft und stellt keine Diagnose.",
+      "mood": "Stimmung",
+      "energy": "Energie",
+      "stress": "Stress",
+      "note": "Notizen (optional)",
+      "notePlaceholder": "Wie läuft dein Tag?",
+      "save": "Check-in speichern",
+      "saving": "Speichern...",
+      "saved": "Check-in gespeichert.",
+      "history": "Letzte Check-ins",
+      "empty": "Noch keine Check-ins.",
+      "error": "Check-ins konnten nicht geladen werden. Prüfe, ob der Vora-Server läuft. ({{error}})"
+    },
+    "notifications": {
+      "title": "Benachrichtigungen",
+      "subtitle": "Wähle, was du erhalten möchtest",
+      "loading": "Wird geladen...",
+      "error": "Einstellungen konnten nicht geladen werden. Prüfe, ob der Vora-Server läuft. ({{error}})",
+      "categories": {
+        "messages": "Nachrichten",
+        "urgentTasks": "Dringende Aufgaben",
+        "appointments": "Termine",
+        "reminders": "Erinnerungen",
+        "aiActions": "KI-Aktionen",
+        "approvals": "Genehmigungen",
+        "tickets": "Tickets",
+        "deadlines": "Fristen"
+      }
+    }
+  }
+}

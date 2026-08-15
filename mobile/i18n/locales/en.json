@@ -1,0 +1,229 @@
+{
+  "common": {
+    "appName": "Vora",
+    "reachability": "Can't reach the Vora server. Pull down to try again.",
+    "offlineCached": "Offline — showing your last saved data."
+  },
+  "auth": {
+    "loginTitle": "Log in to Vora",
+    "registerTitle": "Create your Vora workspace",
+    "name": "Name",
+    "email": "Email",
+    "password": "Password",
+    "organizationName": "Organization name",
+    "submitLogin": "Log in",
+    "submitRegister": "Create account",
+    "noAccount": "Don't have an account?",
+    "hasAccount": "Already have an account?",
+    "switchToRegister": "Sign up",
+    "switchToLogin": "Log in",
+    "invalidCredentials": "Invalid email or password.",
+    "emailTaken": "This email is already registered.",
+    "passwordTooShort": "Password must be at least 8 characters.",
+    "logout": "Log out"
+  },
+  "tabs": {
+    "home": "Home",
+    "tasks": "Tasks",
+    "inbox": "Inbox",
+    "calendar": "Calendar",
+    "more": "More"
+  },
+  "home": {
+    "subtitle": "Your day, at a glance",
+    "openTasks": "Open tasks",
+    "unread": "Unread messages",
+    "upcomingEvents": "Upcoming events",
+    "upcomingTasks": "Upcoming tasks",
+    "noOpenTasks": "No open tasks.",
+    "highPriority": ", high priority"
+  },
+  "tasks": {
+    "title": "Tasks",
+    "count": "{{count}} tasks",
+    "error": "Couldn't load tasks. Check that the Vora server is running. ({{error}})",
+    "empty": "No tasks.",
+    "advanceHint": "Tap to move to {{status}}",
+    "status": {
+      "todo": "To do",
+      "in_progress": "In progress",
+      "review": "In review",
+      "completed": "Completed",
+      "archived": "Archived"
+    }
+  },
+  "inbox": {
+    "title": "Inbox",
+    "count": "{{count}} unread",
+    "error": "Couldn't load messages. Check that the Vora server is running. ({{error}})",
+    "empty": "No messages.",
+    "unreadPrefix": "Unread. ",
+    "markReadHint": "Tap to mark as read",
+    "noSubject": "no subject",
+    "channels": {
+      "email": "Email",
+      "whatsapp": "WhatsApp",
+      "internal": "Internal"
+    }
+  },
+  "calendar": {
+    "title": "Calendar",
+    "count": "{{count}} events",
+    "error": "Couldn't load events. Check that the Vora server is running. ({{error}})",
+    "empty": "No events on the calendar."
+  },
+  "more": {
+    "title": "More",
+    "subtitle": "The rest of the Vora platform",
+    "connectedTo": "Connected to {{url}}",
+    "language": "Language",
+    "theme": "Appearance",
+    "themeOptions": {
+      "system": "System",
+      "light": "Light",
+      "dark": "Dark"
+    },
+    "items": {
+      "contacts": {
+        "label": "Contacts",
+        "desc": "Customer and lead directory"
+      },
+      "crm": {
+        "label": "CRM",
+        "desc": "Opportunity pipeline"
+      },
+      "projects": {
+        "label": "Projects",
+        "desc": "Work in progress"
+      },
+      "timesheets": {
+        "label": "Timesheets",
+        "desc": "Timer and logged entries"
+      },
+      "helpdesk": {
+        "label": "Helpdesk",
+        "desc": "Support tickets"
+      },
+      "leave": {
+        "label": "Leave",
+        "desc": "Requests and balance"
+      },
+      "wellbeing": {
+        "label": "Wellbeing",
+        "desc": "Check-in and breathing"
+      },
+      "notifications": {
+        "label": "Notifications",
+        "desc": "Push preferences"
+      }
+    }
+  },
+  "modules": {
+    "contacts": {
+      "title": "Contacts",
+      "count": "{{count}} contacts",
+      "error": "Couldn't load contacts. Check that the Vora server is running. ({{error}})",
+      "empty": "No contacts.",
+      "status": {
+        "active": "Active",
+        "lead": "Lead",
+        "inactive": "Inactive"
+      }
+    },
+    "crm": {
+      "title": "CRM",
+      "count": "{{count}} opportunities",
+      "error": "Couldn't load opportunities. Check that the Vora server is running. ({{error}})",
+      "empty": "No opportunities.",
+      "stage": {
+        "lead": "Lead",
+        "qualified": "Qualified",
+        "proposal": "Proposal",
+        "negotiation": "Negotiation",
+        "won": "Won",
+        "lost": "Lost"
+      }
+    },
+    "projects": {
+      "title": "Projects",
+      "count": "{{count}} projects",
+      "error": "Couldn't load projects. Check that the Vora server is running. ({{error}})",
+      "empty": "No projects.",
+      "status": {
+        "active": "Active",
+        "on_hold": "On hold",
+        "completed": "Completed",
+        "archived": "Archived"
+      }
+    },
+    "timesheets": {
+      "title": "Timesheets",
+      "count": "{{count}} entries",
+      "error": "Couldn't load timesheets. Check that the Vora server is running. ({{error}})",
+      "empty": "No entries logged.",
+      "billable": "Billable",
+      "nonBillable": "Non-billable"
+    },
+    "helpdesk": {
+      "title": "Helpdesk",
+      "count": "{{count}} tickets",
+      "error": "Couldn't load tickets. Check that the Vora server is running. ({{error}})",
+      "empty": "No tickets.",
+      "status": {
+        "open": "Open",
+        "in_progress": "In progress",
+        "waiting": "Waiting",
+        "resolved": "Resolved",
+        "closed": "Closed"
+      }
+    },
+    "leave": {
+      "title": "Leave",
+      "count": "{{count}} requests",
+      "error": "Couldn't load leave requests. Check that the Vora server is running. ({{error}})",
+      "empty": "No requests.",
+      "status": {
+        "pending": "Pending",
+        "approved": "Approved",
+        "rejected": "Rejected"
+      },
+      "type": {
+        "vacation": "Vacation",
+        "sick": "Sick",
+        "personal": "Personal"
+      }
+    },
+    "wellbeing": {
+      "title": "Wellbeing",
+      "subtitle": "A moment for you",
+      "disclaimer": "Wellbeing doesn't replace a healthcare professional and provides no diagnosis.",
+      "mood": "Mood",
+      "energy": "Energy",
+      "stress": "Stress",
+      "note": "Notes (optional)",
+      "notePlaceholder": "How's today going?",
+      "save": "Save check-in",
+      "saving": "Saving...",
+      "saved": "Check-in saved.",
+      "history": "Recent check-ins",
+      "empty": "No check-ins yet.",
+      "error": "Couldn't load check-ins. Check that the Vora server is running. ({{error}})"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "subtitle": "Choose what you want to receive",
+      "loading": "Loading...",
+      "error": "Couldn't load preferences. Check that the Vora server is running. ({{error}})",
+      "categories": {
+        "messages": "Messages",
+        "urgentTasks": "Urgent tasks",
+        "appointments": "Appointments",
+        "reminders": "Reminders",
+        "aiActions": "AI actions",
+        "approvals": "Approvals",
+        "tickets": "Tickets",
+        "deadlines": "Deadlines"
+      }
+    }
+  }
+}

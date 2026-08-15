@@ -1,0 +1,62 @@
+{
+  "expo": {
+    "name": "VORA",
+    "slug": "vora",
+    "scheme": "vora",
+    "version": "1.0.0",
+    "description": "VORA is an AI-powered work-management platform — CRM, calendar, tasks, communications, and an AI assistant, in one calm interface.",
+    "orientation": "portrait",
+    "icon": "./assets/brand/icon.png",
+    "userInterfaceStyle": "automatic",
+    "primaryColor": "#39FF14",
+    "backgroundColor": "#0A0A0A",
+    "ios": {
+      "supportsTablet": true,
+      "bundleIdentifier": "com.vora.app",
+      "buildNumber": "1",
+      "infoPlist": {
+        "ITSAppUsesNonExemptEncryption": false
+      }
+    },
+    "android": {
+      "package": "com.vora.app",
+      "versionCode": 1,
+      "adaptiveIcon": {
+        "backgroundColor": "#0A0A0A",
+        "foregroundImage": "./assets/brand/adaptive-icon-foreground.png",
+        "backgroundImage": "./assets/brand/adaptive-icon-background.png",
+        "monochromeImage": "./assets/brand/adaptive-icon-monochrome.png"
+      },
+      "predictiveBackGestureEnabled": false
+    },
+    "web": {
+      "favicon": "./assets/brand/favicon.png"
+    },
+    "plugins": [
+      "expo-router",
+      [
+        "expo-splash-screen",
+        {
+          "image": "./assets/brand/splash-icon.png",
+          "imageWidth": 200,
+          "resizeMode": "contain",
+          "backgroundColor": "#0A0A0A"
+        }
+      ],
+      "expo-font",
+      [
+        "expo-notifications",
+        {
+          "icon": "./assets/brand/adaptive-icon-foreground.png",
+          "color": "#39FF14"
+        }
+      ]
+    ],
+    "experiments": {
+      "typedRoutes": true
+    },
+    "runtimeVersion": {
+      "policy": "appVersion"
+    }
+  }
+}

@@ -1,0 +1,229 @@
+{
+  "common": {
+    "appName": "Vora",
+    "reachability": "Vora サーバーに接続できません。下に引っ張って再試行してください。",
+    "offlineCached": "オフライン — 保存済みの最新データを表示中です。"
+  },
+  "auth": {
+    "loginTitle": "Vora にログイン",
+    "registerTitle": "Vora ワークスペースを作成",
+    "name": "名前",
+    "email": "メールアドレス",
+    "password": "パスワード",
+    "organizationName": "組織名",
+    "submitLogin": "ログイン",
+    "submitRegister": "アカウントを作成",
+    "noAccount": "アカウントをお持ちでないですか？",
+    "hasAccount": "すでにアカウントをお持ちですか？",
+    "switchToRegister": "登録する",
+    "switchToLogin": "ログイン",
+    "invalidCredentials": "メールアドレスまたはパスワードが正しくありません。",
+    "emailTaken": "このメールアドレスは既に登録されています。",
+    "passwordTooShort": "パスワードは8文字以上で入力してください。",
+    "logout": "ログアウト"
+  },
+  "tabs": {
+    "home": "ホーム",
+    "tasks": "タスク",
+    "inbox": "受信箱",
+    "calendar": "カレンダー",
+    "more": "その他"
+  },
+  "home": {
+    "subtitle": "今日のまとめ",
+    "openTasks": "未完了のタスク",
+    "unread": "未読メッセージ",
+    "upcomingEvents": "今後の予定",
+    "upcomingTasks": "直近のタスク",
+    "noOpenTasks": "未完了のタスクはありません。",
+    "highPriority": "、優先度高"
+  },
+  "tasks": {
+    "title": "タスク",
+    "count": "{{count}} 件のタスク",
+    "error": "タスクを読み込めませんでした。Vora サーバーが起動しているか確認してください。（{{error}}）",
+    "empty": "タスクはありません。",
+    "advanceHint": "タップすると「{{status}}」に進みます",
+    "status": {
+      "todo": "未着手",
+      "in_progress": "進行中",
+      "review": "レビュー中",
+      "completed": "完了",
+      "archived": "アーカイブ済み"
+    }
+  },
+  "inbox": {
+    "title": "受信箱",
+    "count": "未読 {{count}} 件",
+    "error": "メッセージを読み込めませんでした。Vora サーバーが起動しているか確認してください。（{{error}}）",
+    "empty": "メッセージはありません。",
+    "unreadPrefix": "未読。",
+    "markReadHint": "タップして既読にする",
+    "noSubject": "件名なし",
+    "channels": {
+      "email": "メール",
+      "whatsapp": "WhatsApp",
+      "internal": "社内"
+    }
+  },
+  "calendar": {
+    "title": "カレンダー",
+    "count": "{{count}} 件の予定",
+    "error": "予定を読み込めませんでした。Vora サーバーが起動しているか確認してください。（{{error}}）",
+    "empty": "カレンダーに予定はありません。"
+  },
+  "more": {
+    "title": "その他",
+    "subtitle": "Vora のその他の機能",
+    "connectedTo": "{{url}} に接続中",
+    "language": "言語",
+    "theme": "外観",
+    "themeOptions": {
+      "system": "システム",
+      "light": "ライト",
+      "dark": "ダーク"
+    },
+    "items": {
+      "contacts": {
+        "label": "連絡先",
+        "desc": "顧客・見込み客の一覧"
+      },
+      "crm": {
+        "label": "CRM",
+        "desc": "案件パイプライン"
+      },
+      "projects": {
+        "label": "プロジェクト",
+        "desc": "作業の進捗"
+      },
+      "timesheets": {
+        "label": "タイムシート",
+        "desc": "タイマーと記録"
+      },
+      "helpdesk": {
+        "label": "ヘルプデスク",
+        "desc": "サポートチケット"
+      },
+      "leave": {
+        "label": "休暇",
+        "desc": "申請と残日数"
+      },
+      "wellbeing": {
+        "label": "ウェルビーイング",
+        "desc": "チェックインと呼吸法"
+      },
+      "notifications": {
+        "label": "通知",
+        "desc": "プッシュ設定"
+      }
+    }
+  },
+  "modules": {
+    "contacts": {
+      "title": "連絡先",
+      "count": "{{count}} 件の連絡先",
+      "error": "連絡先を読み込めませんでした。Vora サーバーが起動しているか確認してください。（{{error}}）",
+      "empty": "連絡先はありません。",
+      "status": {
+        "active": "アクティブ",
+        "lead": "見込み客",
+        "inactive": "非アクティブ"
+      }
+    },
+    "crm": {
+      "title": "CRM",
+      "count": "{{count}} 件の案件",
+      "error": "案件を読み込めませんでした。Vora サーバーが起動しているか確認してください。（{{error}}）",
+      "empty": "案件はありません。",
+      "stage": {
+        "lead": "見込み客",
+        "qualified": "有望",
+        "proposal": "提案中",
+        "negotiation": "交渉中",
+        "won": "成約",
+        "lost": "失注"
+      }
+    },
+    "projects": {
+      "title": "プロジェクト",
+      "count": "{{count}} 件のプロジェクト",
+      "error": "プロジェクトを読み込めませんでした。Vora サーバーが起動しているか確認してください。（{{error}}）",
+      "empty": "プロジェクトはありません。",
+      "status": {
+        "active": "進行中",
+        "on_hold": "保留中",
+        "completed": "完了",
+        "archived": "アーカイブ済み"
+      }
+    },
+    "timesheets": {
+      "title": "タイムシート",
+      "count": "{{count}} 件の記録",
+      "error": "タイムシートを読み込めませんでした。Vora サーバーが起動しているか確認してください。（{{error}}）",
+      "empty": "記録はありません。",
+      "billable": "請求対象",
+      "nonBillable": "請求対象外"
+    },
+    "helpdesk": {
+      "title": "ヘルプデスク",
+      "count": "{{count}} 件のチケット",
+      "error": "チケットを読み込めませんでした。Vora サーバーが起動しているか確認してください。（{{error}}）",
+      "empty": "チケットはありません。",
+      "status": {
+        "open": "未対応",
+        "in_progress": "対応中",
+        "waiting": "保留中",
+        "resolved": "解決済み",
+        "closed": "クローズ"
+      }
+    },
+    "leave": {
+      "title": "休暇",
+      "count": "{{count}} 件の申請",
+      "error": "休暇申請を読み込めませんでした。Vora サーバーが起動しているか確認してください。（{{error}}）",
+      "empty": "申請はありません。",
+      "status": {
+        "pending": "承認待ち",
+        "approved": "承認済み",
+        "rejected": "却下"
+      },
+      "type": {
+        "vacation": "有給休暇",
+        "sick": "病気休暇",
+        "personal": "私用"
+      }
+    },
+    "wellbeing": {
+      "title": "ウェルビーイング",
+      "subtitle": "自分のための時間",
+      "disclaimer": "ウェルビーイングは医療専門家の代わりにはならず、診断も行いません。",
+      "mood": "気分",
+      "energy": "エネルギー",
+      "stress": "ストレス",
+      "note": "メモ（任意）",
+      "notePlaceholder": "今日はどうですか？",
+      "save": "チェックインを保存",
+      "saving": "保存中...",
+      "saved": "チェックインを保存しました。",
+      "history": "最近のチェックイン",
+      "empty": "まだチェックインがありません。",
+      "error": "チェックインを読み込めませんでした。Voraサーバーが起動しているか確認してください。({{error}})"
+    },
+    "notifications": {
+      "title": "通知",
+      "subtitle": "受け取りたい内容を選択",
+      "loading": "読み込み中...",
+      "error": "設定を読み込めませんでした。Voraサーバーが起動しているか確認してください。({{error}})",
+      "categories": {
+        "messages": "メッセージ",
+        "urgentTasks": "緊急タスク",
+        "appointments": "予定",
+        "reminders": "リマインダー",
+        "aiActions": "AIアクション",
+        "approvals": "承認",
+        "tickets": "チケット",
+        "deadlines": "締め切り"
+      }
+    }
+  }
+}
