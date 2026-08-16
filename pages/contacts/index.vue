@@ -3,7 +3,7 @@ import type { Contact } from '~/shared/types/contact'
 
 definePageMeta({ layout: 'default' })
 
-const { contacts, pending, error, fetchContacts, removeContact } = useContacts()
+const { contacts, pending, error, hasMore, loadingMore, fetchContacts, loadMore, removeContact } = useContacts()
 await fetchContacts()
 
 const query = ref('')
@@ -162,6 +162,18 @@ const statusStyles: Record<string, string> = {
           <UiIcon name="pencil" :size="16" />
         </button>
       </div>
+    </div>
+
+    <!-- Load-more only applies to the unfiltered, server-paginated list — a
+         local search narrows only what's already loaded, same as elsewhere. -->
+    <div v-if="!pending && !error && !query.trim() && hasMore" class="flex justify-center">
+      <button
+        class="px-4 py-2 rounded-md text-body-sm font-medium border border-ink-100 dark:border-white/10 hover:bg-ink-50 dark:hover:bg-white/5 disabled:opacity-50"
+        :disabled="loadingMore"
+        @click="loadMore"
+      >
+        {{ loadingMore ? $t('contacts.loadingMore') : $t('contacts.loadMore') }}
+      </button>
     </div>
 
     <ContactsContactForm v-if="showForm" :contact="editingContact" @close="closeForm" @saved="onSaved" />

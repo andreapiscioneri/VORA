@@ -1,6 +1,7 @@
 import type { Contact, ContactAttachment } from '~/shared/types/contact'
 import type { ContactInputSchema, AddContactAttachmentSchema } from '~/shared/validation/contact'
 import { getDb } from './firebase'
+import { paginateQuery, type PageResult } from './pagination'
 
 const COLLECTION = 'contacts'
 
@@ -28,7 +29,14 @@ function toContact(id: string, data: FirebaseFirestore.DocumentData): Contact {
   }
 }
 
-export async function listContacts(organizationId: string): Promise<Contact[]> {
+export async function listContacts(organizationId: string, params?: { cursor?: string | null; pageSize?: number }): Promise<PageResult<Contact>> {
+  const query = getDb().collection(COLLECTION).where('organizationId', '==', organizationId).orderBy('createdAt', 'desc')
+  return paginateQuery(query, COLLECTION, params, toContact)
+}
+
+/** Fetch-all variant for internal callers that rely on the full org list
+ * rather than a single page (e.g. cross-module search, segment resolution). */
+export async function listAllContacts(organizationId: string): Promise<Contact[]> {
   const snapshot = await getDb().collection(COLLECTION).where('organizationId', '==', organizationId).get()
   return snapshot.docs
     .map((doc) => toContact(doc.id, doc.data()))

@@ -202,7 +202,9 @@
     "validation": {
       "required": "Required field",
       "email": "Invalid email"
-    }
+    },
+    "loadMore": "Load more",
+    "loadingMore": "Loading..."
   },
   "tasks": {
     "title": "Tasks",

@@ -202,7 +202,9 @@
     "validation": {
       "required": "Campo obbligatorio",
       "email": "Email non valida"
-    }
+    },
+    "loadMore": "Carica altri",
+    "loadingMore": "Caricamento..."
   },
   "tasks": {
     "title": "Da fare",

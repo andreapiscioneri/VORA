@@ -1,5 +1,5 @@
 import type { SearchResult } from '~/shared/types/search'
-import { listContacts } from '~/server/utils/contacts'
+import { listAllContacts } from '~/server/utils/contacts'
 import { listTasks } from '~/server/utils/tasks'
 import { listAppointments } from '~/server/utils/appointments'
 import { listTickets } from '~/server/utils/tickets'
@@ -26,7 +26,7 @@ export default defineEventHandler(async (event) => {
   if (query.length < 2) return []
 
   const [contacts, tasks, appointments, tickets, projects, communications, documents] = await Promise.all([
-    listContacts(organizationId),
+    listAllContacts(organizationId),
     listTasks(organizationId),
     listAppointments(organizationId),
     listTickets(organizationId),

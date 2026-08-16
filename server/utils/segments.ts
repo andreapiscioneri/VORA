@@ -2,7 +2,7 @@ import type { Contact } from '~/shared/types/contact'
 import type { Segment } from '~/shared/types/segment'
 import type { SegmentInputSchema } from '~/shared/validation/segment'
 import { getDb } from './firebase'
-import { listContacts } from './contacts'
+import { listAllContacts } from './contacts'
 
 const COLLECTION = 'segments'
 
@@ -60,7 +60,7 @@ export async function deleteSegment(id: string, organizationId: string): Promise
  * Used to derive a genuine recipient list/count for campaigns instead of a
  * manually-typed estimate. */
 export async function resolveSegment(segment: Pick<Segment, 'filter'>, organizationId: string): Promise<Contact[]> {
-  const contacts = await listContacts(organizationId)
+  const contacts = await listAllContacts(organizationId)
   return contacts.filter((contact) => {
     if (segment.filter.status && contact.status !== segment.filter.status) return false
     if (segment.filter.tags && segment.filter.tags.length > 0) {

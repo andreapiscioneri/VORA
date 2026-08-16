@@ -1,19 +1,39 @@
 import type { Contact, ContactInput } from '~/shared/types/contact'
+import type { PageResult } from '~/server/utils/pagination'
 
 export function useContacts() {
   const contacts = useState<Contact[]>('contacts', () => [])
   const pending = useState('contacts-pending', () => false)
+  const loadingMore = useState('contacts-loading-more', () => false)
   const error = useState<string | null>('contacts-error', () => null)
+  const nextCursor = useState<string | null>('contacts-cursor', () => null)
+  const hasMore = useState('contacts-has-more', () => false)
 
   async function fetchContacts() {
     pending.value = true
     error.value = null
     try {
-      contacts.value = await $fetch<Contact[]>('/api/contacts')
+      const page = await $fetch<PageResult<Contact>>('/api/contacts')
+      contacts.value = page.items
+      nextCursor.value = page.nextCursor
+      hasMore.value = page.hasMore
     } catch (e) {
       error.value = 'contacts.errors.load'
     } finally {
       pending.value = false
+    }
+  }
+
+  async function loadMore() {
+    if (!hasMore.value || loadingMore.value) return
+    loadingMore.value = true
+    try {
+      const page = await $fetch<PageResult<Contact>>('/api/contacts', { query: { cursor: nextCursor.value } })
+      contacts.value = [...contacts.value, ...page.items]
+      nextCursor.value = page.nextCursor
+      hasMore.value = page.hasMore
+    } finally {
+      loadingMore.value = false
     }
   }
 
@@ -38,5 +58,5 @@ export function useContacts() {
     return await $fetch<Contact>(`/api/contacts/${contactId}/attachments`, { method: 'POST', body: { title, url } })
   }
 
-  return { contacts, pending, error, fetchContacts, createContact, updateContact, removeContact, addAttachment }
+  return { contacts, pending, error, hasMore, loadingMore, fetchContacts, loadMore, createContact, updateContact, removeContact, addAttachment }
 }
