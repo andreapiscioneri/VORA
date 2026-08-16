@@ -54,7 +54,15 @@ export async function createContact(input: ContactInputSchema, organizationId: s
   const ref = await getDb()
     .collection(COLLECTION)
     .add({ ...input, organizationId, createdAt: now, updatedAt: now })
-  return toContact(ref.id, { ...input, createdAt: now, updatedAt: now })
+  const contact = toContact(ref.id, { ...input, createdAt: now, updatedAt: now })
+
+  // Dynamic import avoids a static circular dependency (automationEngine
+  // itself calls back into updateContact/createTask for its own actions).
+  import('./automationEngine')
+    .then(({ runAutomationsForTrigger }) => runAutomationsForTrigger('contact_created', contact, organizationId))
+    .catch(() => {})
+
+  return contact
 }
 
 export async function updateContact(id: string, input: ContactInputSchema, organizationId: string): Promise<Contact | null> {
@@ -63,8 +71,17 @@ export async function updateContact(id: string, input: ContactInputSchema, organ
   if (!existing.exists || existing.data()?.organizationId !== organizationId) return null
 
   const updatedAt = new Date().toISOString()
+  const statusChanged = existing.data()?.status !== input.status
   await ref.update({ ...input, updatedAt })
-  return toContact(id, { ...existing.data(), ...input, updatedAt })
+  const contact = toContact(id, { ...existing.data(), ...input, updatedAt })
+
+  if (statusChanged) {
+    import('./automationEngine')
+      .then(({ runAutomationsForTrigger }) => runAutomationsForTrigger('contact_status_changed', contact, organizationId))
+      .catch(() => {})
+  }
+
+  return contact
 }
 
 export async function deleteContact(id: string, organizationId: string): Promise<boolean> {

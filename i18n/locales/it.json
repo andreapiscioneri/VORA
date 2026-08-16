@@ -80,7 +80,8 @@
     "campaigns": "Marketing Email",
     "settings": "Impostazioni",
     "templates": "Modelli",
-    "segments": "Segmenti"
+    "segments": "Segmenti",
+    "automations": "Automazioni"
   },
   "topbar": {
     "search": "Cerca...",
@@ -1181,6 +1182,81 @@
       "saving": "Salvataggio...",
       "editTitle": "Modifica segmento",
       "newTitle": "Nuovo segmento",
+      "delete": "Elimina"
+    }
+  },
+  "automations": {
+    "title": "Automazioni",
+    "subtitle": "{count} automazioni",
+    "new": "Nuova automazione",
+    "empty": {
+      "title": "Nessuna automazione",
+      "subtitle": "Crea la tua prima automazione di marketing: trigger, condizioni e azioni reali.",
+      "cta": "Crea automazione"
+    },
+    "errors": {
+      "load": "Impossibile caricare le automazioni.",
+      "save": "Impossibile salvare l'automazione.",
+      "delete": "Impossibile eliminare l'automazione."
+    },
+    "deleteConfirm": "Eliminare questa automazione? L'operazione non è reversibile.",
+    "status": {
+      "active": "Attiva",
+      "inactive": "Inattiva"
+    },
+    "runCount": "{count} esecuzioni",
+    "lastRun": "ultima: {date}",
+    "trigger": {
+      "contact_created": "Contatto creato",
+      "contact_status_changed": "Stato contatto cambiato",
+      "manual": "Esecuzione manuale"
+    },
+    "form": {
+      "editTitle": "Modifica automazione",
+      "newTitle": "Nuova automazione",
+      "name": "Nome",
+      "active": "Attiva",
+      "trigger": "Trigger",
+      "steps": "Passaggi",
+      "addCondition": "Condizione",
+      "addAction": "Azione",
+      "addDelay": "Attesa",
+      "noSteps": "Nessun passaggio: l'automazione eseguirà solo il trigger.",
+      "stepKind": {
+        "condition": "Condizione",
+        "action": "Azione",
+        "delay": "Attesa"
+      },
+      "field": {
+        "status": "Stato",
+        "tag": "Tag",
+        "source": "Origine"
+      },
+      "operator": {
+        "equals": "uguale a",
+        "not_equals": "diverso da",
+        "contains": "contiene"
+      },
+      "value": "Valore",
+      "actionType": {
+        "send_email": "Invia email",
+        "add_tag": "Aggiungi tag",
+        "change_status": "Cambia stato",
+        "create_task": "Crea attività"
+      },
+      "emailSubject": "Oggetto email",
+      "emailBody": "Corpo email",
+      "tag": "Tag da aggiungere",
+      "status": "Nuovo stato",
+      "taskTitle": "Titolo attività",
+      "waitHours": "Attendi (ore)",
+      "delayLimitation": "Limite: in questa versione l'attesa non è eseguita in background, viene solo valutata al momento del trigger.",
+      "moveUp": "Sposta su",
+      "moveDown": "Sposta giù",
+      "removeStep": "Rimuovi passaggio",
+      "cancel": "Annulla",
+      "save": "Salva",
+      "saving": "Salvataggio...",
       "delete": "Elimina"
     }
   }

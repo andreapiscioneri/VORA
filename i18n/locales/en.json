@@ -80,7 +80,8 @@
     "campaigns": "Email Marketing",
     "settings": "Settings",
     "templates": "Templates",
-    "segments": "Segments"
+    "segments": "Segments",
+    "automations": "Automations"
   },
   "topbar": {
     "search": "Search...",
@@ -1181,6 +1182,81 @@
       "saving": "Saving...",
       "editTitle": "Edit segment",
       "newTitle": "New segment",
+      "delete": "Delete"
+    }
+  },
+  "automations": {
+    "title": "Automations",
+    "subtitle": "{count} automations",
+    "new": "New automation",
+    "empty": {
+      "title": "No automations",
+      "subtitle": "Create your first marketing automation: real triggers, conditions and actions.",
+      "cta": "Create automation"
+    },
+    "errors": {
+      "load": "Couldn't load automations.",
+      "save": "Couldn't save the automation.",
+      "delete": "Couldn't delete the automation."
+    },
+    "deleteConfirm": "Delete this automation? This can't be undone.",
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "runCount": "{count} runs",
+    "lastRun": "last: {date}",
+    "trigger": {
+      "contact_created": "Contact created",
+      "contact_status_changed": "Contact status changed",
+      "manual": "Manual run"
+    },
+    "form": {
+      "editTitle": "Edit automation",
+      "newTitle": "New automation",
+      "name": "Name",
+      "active": "Active",
+      "trigger": "Trigger",
+      "steps": "Steps",
+      "addCondition": "Condition",
+      "addAction": "Action",
+      "addDelay": "Delay",
+      "noSteps": "No steps yet — the automation will only run its trigger.",
+      "stepKind": {
+        "condition": "Condition",
+        "action": "Action",
+        "delay": "Delay"
+      },
+      "field": {
+        "status": "Status",
+        "tag": "Tag",
+        "source": "Source"
+      },
+      "operator": {
+        "equals": "equals",
+        "not_equals": "not equals",
+        "contains": "contains"
+      },
+      "value": "Value",
+      "actionType": {
+        "send_email": "Send email",
+        "add_tag": "Add tag",
+        "change_status": "Change status",
+        "create_task": "Create task"
+      },
+      "emailSubject": "Email subject",
+      "emailBody": "Email body",
+      "tag": "Tag to add",
+      "status": "New status",
+      "taskTitle": "Task title",
+      "waitHours": "Wait (hours)",
+      "delayLimitation": "Limitation: in this version the wait is not actually run in the background — it's only evaluated at trigger time.",
+      "moveUp": "Move up",
+      "moveDown": "Move down",
+      "removeStep": "Remove step",
+      "cancel": "Cancel",
+      "save": "Save",
+      "saving": "Saving...",
       "delete": "Delete"
     }
   }
