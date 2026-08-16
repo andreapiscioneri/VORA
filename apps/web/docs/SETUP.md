@@ -14,7 +14,7 @@ This is the expanded version of the README's Quick Start — full detail for a n
 
 ```bash
 yarn install          # web app, from the VORA/ root
-cd mobile && npm install && cd ..   # mobile app (separate package.json, separate lockfile)
+cd apps/mobile && npm install && cd ..   # mobile app (separate package.json, separate lockfile)
 ```
 
 ## 2. Configure environment
@@ -48,7 +48,7 @@ Open http://localhost:3100. Register a new account (organization + user are crea
 The mobile app has no data of its own — it talks to the same Nuxt server from step 4, so that must already be running.
 
 ```bash
-cd mobile
+cd apps/mobile
 npx expo start --ios
 ```
 
@@ -59,7 +59,7 @@ This opens the app in **Expo Go** on the iOS Simulator (installs Expo Go automat
 ```bash
 yarn typecheck     # web
 yarn lint          # web
-cd mobile && npx tsc --noEmit && npm test && cd ..   # mobile
+cd apps/mobile && npx tsc --noEmit && npm test && cd ..   # mobile
 ```
 
 All four should pass clean on a fresh checkout. If they don't, something in this setup was skipped — check [COMMANDS.md § Troubleshooting](../COMMANDS.md#troubleshooting) first.

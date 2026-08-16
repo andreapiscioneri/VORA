@@ -11,17 +11,17 @@ yarn install
 ## Environment
 
 ```bash
-cp .env.example .env
+cp apps/web/.env.example apps/web/.env
 ```
 
 ## Development
 
 ```bash
-firebase emulators:start --only firestore   # terminal 1 — see Database section for JDK 21 note
-yarn dev                                    # terminal 2 — http://localhost:3100
+cd apps/web && firebase emulators:start --only firestore   # terminal 1 — firebase.json lives in apps/web/; see Database section for JDK 21 note
+yarn dev                                                    # terminal 2, from repo root — http://localhost:3100
 ```
 
-`yarn dev:web` is an identical alias for `yarn dev` (same command, kept for symmetry with `dev:mobile` below — use whichever reads better in context). `yarn dev:mobile` starts the Expo dev server (`cd mobile && npm start`, i.e. `expo start`) — see Mobile below for the full mobile workflow, it needs the web backend running too.
+`yarn dev:web` is an identical alias for `yarn dev` (same command, kept for symmetry with `dev:mobile` below — use whichever reads better in context). `yarn dev:mobile` starts the Expo dev server (`cd apps/mobile && npm start`, i.e. `expo start`) — see Mobile below for the full mobile workflow, it needs the web backend running too.
 
 ## Typecheck
 
@@ -59,10 +59,10 @@ yarn preview
 
 Real Expo Router / TypeScript app in `apps/mobile/`, talking to the same Nuxt server API as the web app. Needs the web backend running (`firebase emulators:start` + `yarn dev`/`yarn dev:web`, see Development above) — the mobile app has no data of its own. Runs in plain **Expo Go** — no custom dev-client build required (the project deliberately targets whatever SDK Expo Go currently supports; see the SDK note in README.md).
 
-`yarn dev:mobile` (from the repo root) is a shortcut for `cd mobile && npm start` (`expo start`, interactive — press `i`/`a`/`w` to target a platform). The rest of this section uses the more explicit `npx expo start --ios` form directly from `apps/mobile/`, which is equivalent.
+`yarn dev:mobile` (from the repo root) is a shortcut for `cd apps/mobile && npm start` (`expo start`, interactive — press `i`/`a`/`w` to target a platform). The rest of this section uses the more explicit `npx expo start --ios` form directly from `apps/mobile/`, which is equivalent.
 
 ```bash
-cd mobile
+cd apps/mobile
 npm install
 npx expo start --ios      # opens in Expo Go on the iOS Simulator (auto-installs Expo Go there if missing)
 ```
@@ -79,7 +79,7 @@ Notes:
 
 ```bash
 yarn dev --host=0.0.0.0   # or just `yarn dev`, already configured with --host
-cd mobile
+cd apps/mobile
 npx expo start --lan      # or --tunnel if the phone isn't on the same Wi-Fi (needs @expo/ngrok)
 ```
 
@@ -88,7 +88,7 @@ Install **Expo Go** from the App/Play Store (free), then either scan the QR code
 ### Tests
 
 ```bash
-cd mobile
+cd apps/mobile
 npm test   # jest-expo — lib/taskStatus.test.ts, lib/api.test.ts, i18n/locales.test.ts
 ```
 
@@ -130,20 +130,20 @@ server-rendered one. Covers:
 
 Not covered, and why: "Mobile Login → Dashboard → Notification" (§59) is a native Expo app —
 Playwright drives browsers, not iOS/Android — see `apps/mobile/` Jest tests and the iOS Simulator
-verification notes in `docs/MOBILE.md` for that surface instead.
+verification notes in `apps/web/docs/MOBILE.md` for that surface instead.
 
 ## Database
 
-Firestore, via the Firebase local emulator in development (no real project needed):
+Firestore, via the Firebase local emulator in development (no real project needed). `firebase.json` lives in `apps/web/`, so run this from there:
 
 ```bash
-firebase emulators:start --only firestore   # requires JDK 21+
+cd apps/web && firebase emulators:start --only firestore   # requires JDK 21+
 ```
 
 If only JDK 17 is on PATH, run with a JDK 21 install without changing the global link:
 
 ```bash
-JAVA_HOME=$(brew --prefix openjdk@21) PATH="$(brew --prefix openjdk@21)/bin:$PATH" firebase emulators:start --only firestore
+cd apps/web && JAVA_HOME=$(brew --prefix openjdk@21) PATH="$(brew --prefix openjdk@21)/bin:$PATH" firebase emulators:start --only firestore
 ```
 
 Emulator UI: http://127.0.0.1:4000 · Firestore port: 8080 (see `firebase.json`, `.env`).
@@ -169,7 +169,7 @@ Registers a fresh demo organization and populates it with realistic fake data ac
 ## EAS (mobile builds)
 
 ```bash
-cd mobile
+cd apps/mobile
 npx eas login        # your own Expo account — not something this project can do for you
 npx eas init          # links the project, writes extra.eas.projectId into app.json
 eas build --platform ios --profile preview       # or production
@@ -177,7 +177,7 @@ eas build --platform android --profile preview
 eas submit
 ```
 
-`apps/apps/mobile/eas.json` (development/preview/production profiles) is already committed. See [MOBILE.md § EAS build configuration](./docs/MOBILE.md#eas-build-configuration) for what's configured vs. what needs your own Expo/Apple/Google accounts.
+`apps/mobile/eas.json` (development/preview/production profiles) is already committed. See [MOBILE.md § EAS build configuration](./docs/MOBILE.md#eas-build-configuration) for what's configured vs. what needs your own Expo/Apple/Google accounts.
 
 ## Troubleshooting
 
