@@ -1,19 +1,26 @@
 # Architecture
 
-## Why this shape, not a monorepo
+## Monorepo layout
 
-The master spec suggests a monorepo (`apps/web`, `apps/mobile`, `packages/*`). VORA doesn't use one, deliberately: it was built as a sibling extension of the existing `portfolio-andrea` Nuxt codebase, whose stack (Nuxt 3, Vue 3, Tailwind, Firestore-less-yet) it inherits rather than replacing. Introducing a Turborepo/pnpm-workspace monorepo would mean rewriting the build tooling `portfolio-andrea` already has working, for no functional gain at this project's size — that's exactly the overengineering the spec's own §70 warns against ("prefer existing compatible technology... if the existing stack can be extended cleanly, prefer that over unnecessary rewrites").
-
-Instead, sharing between web and mobile is done directly:
+VORA is a yarn-workspaces monorepo:
 
 ```
 VORA/
-├── shared/types/*.ts        # isomorphic TypeScript interfaces (Task, Contact, ...)
-├── shared/validation/*.ts   # zod schemas, imported by both server/api and mobile forms
-├── mobile/                  # Expo Router app, imports shared/ via a tsconfig path alias
+├── apps/
+│   ├── web/                 # this Nuxt 3 app — pages/, server/, components/, composables/, ...
+│   └── mobile/               # Expo Router app — its own npm-managed node_modules (see below)
+├── packages/
+│   └── shared/
+│       ├── types/*.ts        # isomorphic TypeScript interfaces (Task, Contact, ...)
+│       └── validation/*.ts   # zod schemas, imported by both apps/web's server/api and mobile forms
+├── package.json               # workspace root: "workspaces": ["apps/web", "packages/shared"]
 ```
 
-`mobile/tsconfig.json` maps `@vora/shared/*` to `../shared/*`, and Metro's `watchFolders` includes the parent directory so the bundler can resolve it. There is no publish/build step for `shared/` — it's plain `.ts` consumed directly by both the Nuxt server (Node) and Expo (Hermes/Metro), which both support importing loose TypeScript from outside their own root without a package boundary.
+`apps/web` and `packages/shared` are real yarn workspaces (hoisted into the root `node_modules`). `apps/mobile` deliberately stays **outside** the yarn workspace and keeps its own `package-lock.json`-managed `node_modules` — Metro/Expo's bundler assumes it owns its dependency tree, and hoisting React Native's native-module deps into a shared workspace `node_modules` is a well-known source of Metro resolution bugs. `apps/mobile` reaches `packages/shared` the same way it always did: `apps/mobile/tsconfig.json` maps `@vora/shared/*` to `../../packages/shared/*`, and Metro's `watchFolders` includes that directory so the bundler resolves it.
+
+`apps/web` reaches `packages/shared` via a plain filesystem symlink, `apps/web/shared -> ../../packages/shared` — every `~/shared/...` import already used throughout this app's source (180+ call sites) keeps working completely unchanged, because Nuxt's built-in `~` alias already resolves to `apps/web`'s own directory contents, symlink included. A custom Nuxt `alias` entry pointing outside the app root was tried first and rejected: it satisfies TypeScript and the client Vite bundle, but Nitro's dev-time on-demand module runner does not reliably pick up cross-directory `alias` entries in this Nuxt/Vite version, so pages importing `~/shared/*` 500'd at runtime despite passing typecheck. The symlink sidesteps that gap entirely since every tool (Vite, Nitro, TypeScript, Vitest, Playwright) resolves a symlinked directory identically to a real one.
+
+There is no publish/build step for `packages/shared` — it's plain `.ts` consumed directly by both the Nuxt server (Node) and Expo (Hermes/Metro), which both support importing loose TypeScript from outside their own root without a package boundary. No `services/` package exists separately from `apps/web/server/`: VORA's backend is Nuxt's own Nitro server layer, not a standalone deployable service, so splitting it out would mean rebuilding routing/auth/session handling outside Nuxt for no functional gain — the same "don't rewrite working tooling for no gain" reasoning that originally kept this project out of a monorepo now shapes how much of one it became.
 
 ## System diagram
 

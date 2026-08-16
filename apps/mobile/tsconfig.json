@@ -5,14 +5,14 @@
     "types": ["jest"],
     "paths": {
       "@vora/shared/*": [
-        "../shared/*"
+        "../../packages/shared/*"
       ]
     }
   },
   "include": [
     "**/*.ts",
     "**/*.tsx",
-    "../shared/types/**/*.ts",
+    "../../packages/shared/types/**/*.ts",
     ".expo/types/**/*.ts",
     "expo-env.d.ts"
   ]

@@ -1,0 +1,7 @@
+{
+  "name": "@vora/shared",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Types and Zod validation schemas shared by apps/web and apps/mobile. No build step — consumed directly as TypeScript source via each app's own alias/path config (Nuxt alias for web, tsconfig path + Metro watchFolders for mobile).",
+  "type": "module"
+}

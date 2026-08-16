@@ -1,4 +1,0 @@
-{
-  "extends": "./.nuxt/tsconfig.json",
-  "exclude": ["dist", ".data", ".output", "node_modules", "mobile"]
-}

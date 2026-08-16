@@ -57,9 +57,9 @@ yarn preview
 
 ## Mobile
 
-Real Expo Router / TypeScript app in `mobile/`, talking to the same Nuxt server API as the web app. Needs the web backend running (`firebase emulators:start` + `yarn dev`/`yarn dev:web`, see Development above) — the mobile app has no data of its own. Runs in plain **Expo Go** — no custom dev-client build required (the project deliberately targets whatever SDK Expo Go currently supports; see the SDK note in README.md).
+Real Expo Router / TypeScript app in `apps/mobile/`, talking to the same Nuxt server API as the web app. Needs the web backend running (`firebase emulators:start` + `yarn dev`/`yarn dev:web`, see Development above) — the mobile app has no data of its own. Runs in plain **Expo Go** — no custom dev-client build required (the project deliberately targets whatever SDK Expo Go currently supports; see the SDK note in README.md).
 
-`yarn dev:mobile` (from the repo root) is a shortcut for `cd mobile && npm start` (`expo start`, interactive — press `i`/`a`/`w` to target a platform). The rest of this section uses the more explicit `npx expo start --ios` form directly from `mobile/`, which is equivalent.
+`yarn dev:mobile` (from the repo root) is a shortcut for `cd mobile && npm start` (`expo start`, interactive — press `i`/`a`/`w` to target a platform). The rest of this section uses the more explicit `npx expo start --ios` form directly from `apps/mobile/`, which is equivalent.
 
 ```bash
 cd mobile
@@ -70,8 +70,8 @@ npx expo start --ios      # opens in Expo Go on the iOS Simulator (auto-installs
 Notes:
 - `npx expo install <pkg>` may hit an `ERESOLVE` peer-dependency conflict from expo-router's web tooling; re-run the underlying `npm install` with `--legacy-peer-deps` if so.
 - Android emulator: the app talks to `10.0.2.2:3100` instead of `localhost:3100` automatically (see `lib/api.ts`).
-- `nuxt.config.ts` excludes `mobile/**` from Nuxt's file watcher — without that, running both dev servers together can exhaust file descriptors (`EMFILE`) since `mobile/node_modules` is huge.
-- **"This project is incompatible with this version of Expo Go"** means the installed Expo Go build (App Store) doesn't match `mobile/package.json`'s `expo` version. Fix by aligning the project to whatever SDK Expo Go currently ships — not by trying to force-install an old Expo Go. See the SDK note in README.md's Mobile app section for the full downgrade procedure (`npm install expo@^<n>.0.0 --legacy-peer-deps`, fix devDependencies typescript/jest-expo/react-test-renderer/@types/react to matching versions, remove `expo-status-bar` from `app.json`'s `plugins` if present — it isn't a config plugin).
+- `nuxt.config.ts` excludes `apps/mobile/**` from Nuxt's file watcher — without that, running both dev servers together can exhaust file descriptors (`EMFILE`) since `apps/mobile/node_modules` is huge.
+- **"This project is incompatible with this version of Expo Go"** means the installed Expo Go build (App Store) doesn't match `apps/mobile/package.json`'s `expo` version. Fix by aligning the project to whatever SDK Expo Go currently ships — not by trying to force-install an old Expo Go. See the SDK note in README.md's Mobile app section for the full downgrade procedure (`npm install expo@^<n>.0.0 --legacy-peer-deps`, fix devDependencies typescript/jest-expo/react-test-renderer/@types/react to matching versions, remove `expo-status-bar` from `app.json`'s `plugins` if present — it isn't a config plugin).
 - If multiple simulators are booted, Expo may target the wrong one and it may have a stale/mismatched Expo Go version installed. Shut down the ones you're not using (`xcrun simctl shutdown <udid>`) and boot only the target device.
 - Metro cache issues after a dependency change (SDK version, native module) surface as vague bundling errors (e.g. `Got unexpected undefined` in `nullthrows.js`) — clear with `npx expo start --clear`.
 
@@ -129,7 +129,7 @@ server-rendered one. Covers:
   a test process can't read another process's environment — skips with a clear reason otherwise
 
 Not covered, and why: "Mobile Login → Dashboard → Notification" (§59) is a native Expo app —
-Playwright drives browsers, not iOS/Android — see `mobile/` Jest tests and the iOS Simulator
+Playwright drives browsers, not iOS/Android — see `apps/mobile/` Jest tests and the iOS Simulator
 verification notes in `docs/MOBILE.md` for that surface instead.
 
 ## Database
@@ -177,7 +177,7 @@ eas build --platform android --profile preview
 eas submit
 ```
 
-`mobile/eas.json` (development/preview/production profiles) is already committed. See [MOBILE.md § EAS build configuration](./docs/MOBILE.md#eas-build-configuration) for what's configured vs. what needs your own Expo/Apple/Google accounts.
+`apps/apps/mobile/eas.json` (development/preview/production profiles) is already committed. See [MOBILE.md § EAS build configuration](./docs/MOBILE.md#eas-build-configuration) for what's configured vs. what needs your own Expo/Apple/Google accounts.
 
 ## Troubleshooting
 

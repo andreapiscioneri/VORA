@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { expandRecurringEvent, expandRecurringEvents } from '../../../shared/utils/recurrence'
-import type { CalendarEvent } from '../../../shared/types/event'
+import { expandRecurringEvent, expandRecurringEvents } from '~/shared/utils/recurrence'
+import type { CalendarEvent } from '~/shared/types/event'
 
 function makeEvent(overrides: Partial<CalendarEvent> = {}): CalendarEvent {
   return {

@@ -1,22 +1,15 @@
+// Monorepo layout: this app lives at apps/web, with shared types/validation
+// at ../../packages/shared (also consumed by apps/mobile via its own
+// tsconfig path + Metro watchFolders — see apps/mobile/metro.config.js).
+// apps/web/shared is a symlink to that directory (not a real folder) — every
+// `~/shared/...` import used throughout this app's source keeps working
+// unchanged because Nuxt's `~` already resolves to this directory, and a
+// symlink resolves identically for Vite, Nitro's dev module runner, and
+// TypeScript alike, unlike a custom `alias` entry (Nitro's on-demand SSR
+// runner in this Nuxt/Vite version does not reliably pick those up).
 export default defineNuxtConfig({
   compatibilityDate: '2026-01-01',
   devtools: { enabled: true },
-
-  ignore: ['mobile/**'],
-
-  vite: {
-    server: {
-      watch: {
-        ignored: ['**/mobile/**'],
-      },
-    },
-  },
-
-  nitro: {
-    watchOptions: {
-      ignored: ['**/mobile/**'],
-    },
-  },
 
   runtimeConfig: {
     session: {
