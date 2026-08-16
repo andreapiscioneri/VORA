@@ -553,7 +553,9 @@
       "add": "+ label",
       "remove": "Remove label {label}",
       "placeholder": "New label"
-    }
+    },
+    "loadMore": "Load more",
+    "loadingMore": "Loading..."
   },
   "ai": {
     "errors": {
@@ -721,7 +723,9 @@
     "semanticResultsCount": "{count} results by relevance",
     "relevance": "{pct}% relevant",
     "favorite": "Add to favorites",
-    "unfavorite": "Remove from favorites"
+    "unfavorite": "Remove from favorites",
+    "loadMore": "Load more",
+    "loadingMore": "Loading..."
   },
   "expenses": {
     "title": "Expenses",

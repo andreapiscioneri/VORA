@@ -3,7 +3,7 @@ import type { KnowledgeDocument, KnowledgeSearchResult } from '~/shared/types/kn
 
 definePageMeta({ layout: 'default' })
 
-const { documents, pending, error, fetchDocuments, toggleFavorite, searchDocuments } = useKnowledge()
+const { documents, pending, error, hasMore, loadingMore, fetchDocuments, loadMore, toggleFavorite, searchDocuments } = useKnowledge()
 await fetchDocuments()
 
 const router = useRouter()
@@ -151,6 +151,18 @@ function onSaved(doc: KnowledgeDocument) {
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- Load-more only applies to the unfiltered, server-paginated list —
+         local/semantic search operate over what's already loaded. -->
+    <div v-if="!pending && !error && !query.trim() && hasMore" class="flex justify-center">
+      <button
+        class="px-4 py-2 rounded-md text-body-sm font-medium border border-ink-100 dark:border-white/10 hover:bg-ink-50 dark:hover:bg-white/5 disabled:opacity-50"
+        :disabled="loadingMore"
+        @click="loadMore"
+      >
+        {{ loadingMore ? $t('knowledge.loadingMore') : $t('knowledge.loadMore') }}
+      </button>
     </div>
 
     <KnowledgePageForm v-if="showForm" @close="showForm = false" @saved="onSaved" />

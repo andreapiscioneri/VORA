@@ -4,8 +4,8 @@ import { listAllTasks } from '~/server/utils/tasks'
 import { listAppointments } from '~/server/utils/appointments'
 import { listAllTickets } from '~/server/utils/tickets'
 import { listAllProjects } from '~/server/utils/projects'
-import { listCommunications } from '~/server/utils/communications'
-import { listDocuments } from '~/server/utils/knowledge'
+import { listAllCommunications } from '~/server/utils/communications'
+import { listAllDocuments } from '~/server/utils/knowledge'
 
 const MAX_PER_TYPE = 5
 
@@ -31,8 +31,8 @@ export default defineEventHandler(async (event) => {
     listAppointments(organizationId),
     listAllTickets(organizationId),
     listAllProjects(organizationId),
-    listCommunications(organizationId),
-    listDocuments(organizationId),
+    listAllCommunications(organizationId),
+    listAllDocuments(organizationId),
   ])
 
   const results: SearchResult[] = []

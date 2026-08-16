@@ -1,19 +1,39 @@
 import type { KnowledgeDocument, KnowledgeDocumentInput, KnowledgeSearchResult } from '~/shared/types/knowledge'
+import type { PageResult } from '~/server/utils/pagination'
 
 export function useKnowledge() {
   const documents = useState<KnowledgeDocument[]>('knowledge', () => [])
   const pending = useState('knowledge-pending', () => false)
+  const loadingMore = useState('knowledge-loading-more', () => false)
   const error = useState<string | null>('knowledge-error', () => null)
+  const nextCursor = useState<string | null>('knowledge-cursor', () => null)
+  const hasMore = useState('knowledge-has-more', () => false)
 
   async function fetchDocuments() {
     pending.value = true
     error.value = null
     try {
-      documents.value = await $fetch<KnowledgeDocument[]>('/api/knowledge')
+      const page = await $fetch<PageResult<KnowledgeDocument>>('/api/knowledge')
+      documents.value = page.items
+      nextCursor.value = page.nextCursor
+      hasMore.value = page.hasMore
     } catch {
       error.value = 'knowledge.errors.load'
     } finally {
       pending.value = false
+    }
+  }
+
+  async function loadMore() {
+    if (!hasMore.value || loadingMore.value) return
+    loadingMore.value = true
+    try {
+      const page = await $fetch<PageResult<KnowledgeDocument>>('/api/knowledge', { query: { cursor: nextCursor.value } })
+      documents.value = [...documents.value, ...page.items]
+      nextCursor.value = page.nextCursor
+      hasMore.value = page.hasMore
+    } finally {
+      loadingMore.value = false
     }
   }
 
@@ -49,5 +69,5 @@ export function useKnowledge() {
     return await $fetch<KnowledgeSearchResult[]>('/api/knowledge/search', { query: { q: query } })
   }
 
-  return { documents, pending, error, fetchDocuments, createDocument, updateDocument, toggleFavorite, removeDocument, searchDocuments }
+  return { documents, pending, error, hasMore, loadingMore, fetchDocuments, loadMore, createDocument, updateDocument, toggleFavorite, removeDocument, searchDocuments }
 }

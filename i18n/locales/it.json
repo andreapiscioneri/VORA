@@ -553,7 +553,9 @@
       "add": "+ etichetta",
       "remove": "Rimuovi etichetta {label}",
       "placeholder": "Nuova etichetta"
-    }
+    },
+    "loadMore": "Carica altri",
+    "loadingMore": "Caricamento..."
   },
   "ai": {
     "errors": {
@@ -721,7 +723,9 @@
     "semanticResultsCount": "{count} risultati per rilevanza",
     "relevance": "{pct}% rilevanza",
     "favorite": "Aggiungi ai preferiti",
-    "unfavorite": "Rimuovi dai preferiti"
+    "unfavorite": "Rimuovi dai preferiti",
+    "loadMore": "Carica altri",
+    "loadingMore": "Caricamento..."
   },
   "expenses": {
     "title": "Spese",

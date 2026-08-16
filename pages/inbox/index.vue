@@ -3,7 +3,7 @@ import type { Communication, CommunicationChannel } from '~/shared/types/communi
 
 definePageMeta({ layout: 'default' })
 
-const { communications, pending, error, fetchCommunications, setStatus, setLabels, removeCommunication } = useCommunications()
+const { communications, pending, error, hasMore, loadingMore, fetchCommunications, loadMore, setStatus, setLabels, removeCommunication } = useCommunications()
 const { contacts, fetchContacts } = useContacts()
 await Promise.all([fetchCommunications(), fetchContacts()])
 
@@ -304,6 +304,18 @@ async function onDelete(id: string) {
           </div>
         </div>
       </div>
+    </div>
+
+    <!-- Load-more fetches older messages by sentAt; threads already expanded
+         only grow to include newly-loaded messages on the next render. -->
+    <div v-if="!pending && !error && hasMore" class="flex justify-center">
+      <button
+        class="px-4 py-2 rounded-md text-body-sm font-medium border border-ink-100 dark:border-white/10 hover:bg-ink-50 dark:hover:bg-white/5 disabled:opacity-50"
+        :disabled="loadingMore"
+        @click="loadMore"
+      >
+        {{ loadingMore ? $t('inbox.loadingMore') : $t('inbox.loadMore') }}
+      </button>
     </div>
 
     <InboxComposeForm

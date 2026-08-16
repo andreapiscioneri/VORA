@@ -2,6 +2,7 @@ import type { KnowledgeDocument } from '~/shared/types/knowledge'
 import type { KnowledgeDocumentInputSchema } from '~/shared/validation/knowledge'
 import { getDb } from './firebase'
 import { getEmbeddingService, cosineSimilarity } from '~/server/services/embeddings'
+import { paginateQuery, type PageResult } from './pagination'
 
 const COLLECTION = 'knowledge'
 
@@ -22,7 +23,14 @@ function toDocument(id: string, data: FirebaseFirestore.DocumentData): Knowledge
   }
 }
 
-export async function listDocuments(organizationId: string): Promise<KnowledgeDocument[]> {
+export async function listDocuments(organizationId: string, params?: { cursor?: string | null; pageSize?: number }): Promise<PageResult<KnowledgeDocument>> {
+  const query = getDb().collection(COLLECTION).where('organizationId', '==', organizationId).orderBy('createdAt', 'desc')
+  return paginateQuery(query, COLLECTION, params, toDocument)
+}
+
+/** Fetch-all variant for internal callers that rely on the full org list
+ * rather than a single page (e.g. cross-module search). */
+export async function listAllDocuments(organizationId: string): Promise<KnowledgeDocument[]> {
   const snapshot = await getDb().collection(COLLECTION).where('organizationId', '==', organizationId).get()
   return snapshot.docs.map((doc) => toDocument(doc.id, doc.data())).sort((a, b) => (a.createdAt < b.createdAt ? 1 : a.createdAt > b.createdAt ? -1 : 0))
 }

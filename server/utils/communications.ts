@@ -1,6 +1,7 @@
 import type { Communication } from '~/shared/types/communication'
 import type { CommunicationInputSchema } from '~/shared/validation/communication'
 import { getDb } from './firebase'
+import { paginateQuery, type PageResult } from './pagination'
 
 const COLLECTION = 'communications'
 
@@ -21,7 +22,14 @@ function toCommunication(id: string, data: FirebaseFirestore.DocumentData): Comm
   }
 }
 
-export async function listCommunications(organizationId: string): Promise<Communication[]> {
+export async function listCommunications(organizationId: string, params?: { cursor?: string | null; pageSize?: number }): Promise<PageResult<Communication>> {
+  const query = getDb().collection(COLLECTION).where('organizationId', '==', organizationId).orderBy('sentAt', 'desc')
+  return paginateQuery(query, COLLECTION, params, toCommunication)
+}
+
+/** Fetch-all variant for internal callers that rely on the full org list
+ * rather than a single page (e.g. cross-module search, AI chat context). */
+export async function listAllCommunications(organizationId: string): Promise<Communication[]> {
   const snapshot = await getDb().collection(COLLECTION).where('organizationId', '==', organizationId).get()
   return snapshot.docs.map((doc) => toCommunication(doc.id, doc.data())).sort((a, b) => (a.sentAt < b.sentAt ? 1 : a.sentAt > b.sentAt ? -1 : 0))
 }

@@ -4,7 +4,7 @@ import { requireOrgId } from '~/server/utils/auth'
 import { listAllTasks } from '~/server/utils/tasks'
 import { listEvents } from '~/server/utils/events'
 import { listAppointments } from '~/server/utils/appointments'
-import { listCommunications } from '~/server/utils/communications'
+import { listAllCommunications } from '~/server/utils/communications'
 import type { AIChatContext } from '~/shared/types/ai'
 
 const schema = z.object({ prompt: z.string().trim().min(1, 'validation.required').max(2000) })
@@ -30,7 +30,7 @@ export default defineEventHandler(async (event) => {
     listAllTasks(organizationId),
     listEvents(organizationId),
     listAppointments(organizationId),
-    listCommunications(organizationId),
+    listAllCommunications(organizationId),
   ])
 
   const today = todayIso()
