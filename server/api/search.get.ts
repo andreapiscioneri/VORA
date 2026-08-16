@@ -1,9 +1,9 @@
 import type { SearchResult } from '~/shared/types/search'
 import { listAllContacts } from '~/server/utils/contacts'
-import { listTasks } from '~/server/utils/tasks'
+import { listAllTasks } from '~/server/utils/tasks'
 import { listAppointments } from '~/server/utils/appointments'
-import { listTickets } from '~/server/utils/tickets'
-import { listProjects } from '~/server/utils/projects'
+import { listAllTickets } from '~/server/utils/tickets'
+import { listAllProjects } from '~/server/utils/projects'
 import { listCommunications } from '~/server/utils/communications'
 import { listDocuments } from '~/server/utils/knowledge'
 
@@ -27,10 +27,10 @@ export default defineEventHandler(async (event) => {
 
   const [contacts, tasks, appointments, tickets, projects, communications, documents] = await Promise.all([
     listAllContacts(organizationId),
-    listTasks(organizationId),
+    listAllTasks(organizationId),
     listAppointments(organizationId),
-    listTickets(organizationId),
-    listProjects(organizationId),
+    listAllTickets(organizationId),
+    listAllProjects(organizationId),
     listCommunications(organizationId),
     listDocuments(organizationId),
   ])

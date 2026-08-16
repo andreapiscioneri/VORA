@@ -1,19 +1,39 @@
 import type { Project, ProjectInput, ProjectStatus } from '~/shared/types/project'
+import type { PageResult } from '~/server/utils/pagination'
 
 export function useProjects() {
   const projects = useState<Project[]>('projects', () => [])
   const pending = useState('projects-pending', () => false)
+  const loadingMore = useState('projects-loading-more', () => false)
   const error = useState<string | null>('projects-error', () => null)
+  const nextCursor = useState<string | null>('projects-cursor', () => null)
+  const hasMore = useState('projects-has-more', () => false)
 
   async function fetchProjects() {
     pending.value = true
     error.value = null
     try {
-      projects.value = await $fetch<Project[]>('/api/projects')
+      const page = await $fetch<PageResult<Project>>('/api/projects')
+      projects.value = page.items
+      nextCursor.value = page.nextCursor
+      hasMore.value = page.hasMore
     } catch {
       error.value = 'projects.errors.load'
     } finally {
       pending.value = false
+    }
+  }
+
+  async function loadMore() {
+    if (!hasMore.value || loadingMore.value) return
+    loadingMore.value = true
+    try {
+      const page = await $fetch<PageResult<Project>>('/api/projects', { query: { cursor: nextCursor.value } })
+      projects.value = [...projects.value, ...page.items]
+      nextCursor.value = page.nextCursor
+      hasMore.value = page.hasMore
+    } finally {
+      loadingMore.value = false
     }
   }
 
@@ -59,7 +79,10 @@ export function useProjects() {
     projects,
     pending,
     error,
+    hasMore,
+    loadingMore,
     fetchProjects,
+    loadMore,
     createProject,
     updateProject,
     setStatus,

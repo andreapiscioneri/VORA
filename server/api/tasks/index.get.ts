@@ -1,6 +1,9 @@
 import { listTasks } from '~/server/utils/tasks'
 import { requireOrgId } from '~/server/utils/auth'
+import { parsePaginationParams } from '~/server/utils/pagination'
 
 export default defineEventHandler(async (event) => {
-  return await listTasks(await requireOrgId(event))
+  const organizationId = await requireOrgId(event)
+  const { cursor, pageSize } = parsePaginationParams(event)
+  return await listTasks(organizationId, { cursor, pageSize })
 })

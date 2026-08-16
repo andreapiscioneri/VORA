@@ -258,7 +258,9 @@
       "add": "Add",
       "error": "Could not add the attachment."
     },
-    "moveTo": "Move {title}"
+    "moveTo": "Move {title}",
+    "loadMore": "Load more",
+    "loadingMore": "Loading..."
   },
   "crm": {
     "title": "CRM",
@@ -300,7 +302,9 @@
       "delete": "Delete"
     },
     "deleteConfirm": "Delete this opportunity? This cannot be undone.",
-    "moveTo": "Move {title}"
+    "moveTo": "Move {title}",
+    "loadMore": "Load more",
+    "loadingMore": "Loading..."
   },
   "calendar": {
     "title": "Calendar",
@@ -415,7 +419,9 @@
       "milestoneDueDate": "Due date",
       "addMilestone": "Add",
       "milestoneError": "Couldn't add the milestone."
-    }
+    },
+    "loadMore": "Load more",
+    "loadingMore": "Loading..."
   },
   "timesheets": {
     "title": "Timesheets",
@@ -669,7 +675,9 @@
     "sla": {
       "dueAt": "Due {date}",
       "overdue": "Overdue"
-    }
+    },
+    "loadMore": "Load more",
+    "loadingMore": "Loading..."
   },
   "knowledge": {
     "title": "Knowledge",

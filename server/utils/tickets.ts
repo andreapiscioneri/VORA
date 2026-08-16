@@ -1,6 +1,7 @@
 import type { Ticket, TicketAttachment } from '~/shared/types/ticket'
 import type { TicketInputSchema, AddTicketAttachmentSchema } from '~/shared/validation/ticket'
 import { getDb } from './firebase'
+import { paginateQuery, type PageResult } from './pagination'
 
 const COLLECTION = 'tickets'
 
@@ -21,7 +22,14 @@ function toTicket(id: string, data: FirebaseFirestore.DocumentData): Ticket {
   }
 }
 
-export async function listTickets(organizationId: string): Promise<Ticket[]> {
+export async function listTickets(organizationId: string, params?: { cursor?: string | null; pageSize?: number }): Promise<PageResult<Ticket>> {
+  const query = getDb().collection(COLLECTION).where('organizationId', '==', organizationId).orderBy('createdAt', 'desc')
+  return paginateQuery(query, COLLECTION, params, toTicket)
+}
+
+/** Fetch-all variant for internal callers that rely on the full org list
+ * rather than a single page (e.g. cross-module search). */
+export async function listAllTickets(organizationId: string): Promise<Ticket[]> {
   const snapshot = await getDb().collection(COLLECTION).where('organizationId', '==', organizationId).get()
   return snapshot.docs.map((doc) => toTicket(doc.id, doc.data())).sort((a, b) => (a.createdAt < b.createdAt ? 1 : a.createdAt > b.createdAt ? -1 : 0))
 }

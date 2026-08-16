@@ -1,19 +1,39 @@
 import type { Task, TaskInput, TaskStatus } from '~/shared/types/task'
+import type { PageResult } from '~/server/utils/pagination'
 
 export function useTasks() {
   const tasks = useState<Task[]>('tasks', () => [])
   const pending = useState('tasks-pending', () => false)
+  const loadingMore = useState('tasks-loading-more', () => false)
   const error = useState<string | null>('tasks-error', () => null)
+  const nextCursor = useState<string | null>('tasks-cursor', () => null)
+  const hasMore = useState('tasks-has-more', () => false)
 
   async function fetchTasks() {
     pending.value = true
     error.value = null
     try {
-      tasks.value = await $fetch<Task[]>('/api/tasks')
+      const page = await $fetch<PageResult<Task>>('/api/tasks')
+      tasks.value = page.items
+      nextCursor.value = page.nextCursor
+      hasMore.value = page.hasMore
     } catch {
       error.value = 'tasks.errors.load'
     } finally {
       pending.value = false
+    }
+  }
+
+  async function loadMore() {
+    if (!hasMore.value || loadingMore.value) return
+    loadingMore.value = true
+    try {
+      const page = await $fetch<PageResult<Task>>('/api/tasks', { query: { cursor: nextCursor.value } })
+      tasks.value = [...tasks.value, ...page.items]
+      nextCursor.value = page.nextCursor
+      hasMore.value = page.hasMore
+    } finally {
+      loadingMore.value = false
     }
   }
 
@@ -43,5 +63,5 @@ export function useTasks() {
     return await $fetch<Task>(`/api/tasks/${taskId}/attachments`, { method: 'POST', body: { title, url } })
   }
 
-  return { tasks, pending, error, fetchTasks, createTask, updateTask, setStatus, removeTask, addAttachment }
+  return { tasks, pending, error, hasMore, loadingMore, fetchTasks, loadMore, createTask, updateTask, setStatus, removeTask, addAttachment }
 }

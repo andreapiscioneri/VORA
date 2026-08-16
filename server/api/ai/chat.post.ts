@@ -1,7 +1,7 @@
 import { z } from 'zod'
 import { getAIService } from '~/server/services/ai'
 import { requireOrgId } from '~/server/utils/auth'
-import { listTasks } from '~/server/utils/tasks'
+import { listAllTasks } from '~/server/utils/tasks'
 import { listEvents } from '~/server/utils/events'
 import { listAppointments } from '~/server/utils/appointments'
 import { listCommunications } from '~/server/utils/communications'
@@ -27,7 +27,7 @@ export default defineEventHandler(async (event) => {
 
   const organizationId = await requireOrgId(event)
   const [tasks, events, appointments, communications] = await Promise.all([
-    listTasks(organizationId),
+    listAllTasks(organizationId),
     listEvents(organizationId),
     listAppointments(organizationId),
     listCommunications(organizationId),

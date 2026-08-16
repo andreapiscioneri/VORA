@@ -1,19 +1,39 @@
 import type { Ticket, TicketInput } from '~/shared/types/ticket'
+import type { PageResult } from '~/server/utils/pagination'
 
 export function useTickets() {
   const tickets = useState<Ticket[]>('tickets', () => [])
   const pending = useState('tickets-pending', () => false)
+  const loadingMore = useState('tickets-loading-more', () => false)
   const error = useState<string | null>('tickets-error', () => null)
+  const nextCursor = useState<string | null>('tickets-cursor', () => null)
+  const hasMore = useState('tickets-has-more', () => false)
 
   async function fetchTickets() {
     pending.value = true
     error.value = null
     try {
-      tickets.value = await $fetch<Ticket[]>('/api/tickets')
+      const page = await $fetch<PageResult<Ticket>>('/api/tickets')
+      tickets.value = page.items
+      nextCursor.value = page.nextCursor
+      hasMore.value = page.hasMore
     } catch {
       error.value = 'helpdesk.errors.load'
     } finally {
       pending.value = false
+    }
+  }
+
+  async function loadMore() {
+    if (!hasMore.value || loadingMore.value) return
+    loadingMore.value = true
+    try {
+      const page = await $fetch<PageResult<Ticket>>('/api/tickets', { query: { cursor: nextCursor.value } })
+      tickets.value = [...tickets.value, ...page.items]
+      nextCursor.value = page.nextCursor
+      hasMore.value = page.hasMore
+    } finally {
+      loadingMore.value = false
     }
   }
 
@@ -44,5 +64,5 @@ export function useTickets() {
     return await $fetch<Ticket>(`/api/tickets/${ticketId}/attachments`, { method: 'POST', body: { title, url } })
   }
 
-  return { tickets, pending, error, fetchTickets, createTicket, updateTicket, addComment, removeTicket, addAttachment }
+  return { tickets, pending, error, hasMore, loadingMore, fetchTickets, loadMore, createTicket, updateTicket, addComment, removeTicket, addAttachment }
 }

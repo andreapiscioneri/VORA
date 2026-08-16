@@ -1,6 +1,7 @@
 import type { Opportunity } from '~/shared/types/opportunity'
 import type { OpportunityInputSchema } from '~/shared/validation/opportunity'
 import { getDb } from './firebase'
+import { paginateQuery, type PageResult } from './pagination'
 
 const COLLECTION = 'opportunities'
 
@@ -22,9 +23,9 @@ function toOpportunity(id: string, data: FirebaseFirestore.DocumentData): Opport
   }
 }
 
-export async function listOpportunities(organizationId: string): Promise<Opportunity[]> {
-  const snapshot = await getDb().collection(COLLECTION).where('organizationId', '==', organizationId).get()
-  return snapshot.docs.map((doc) => toOpportunity(doc.id, doc.data())).sort((a, b) => (a.createdAt < b.createdAt ? 1 : a.createdAt > b.createdAt ? -1 : 0))
+export async function listOpportunities(organizationId: string, params?: { cursor?: string | null; pageSize?: number }): Promise<PageResult<Opportunity>> {
+  const query = getDb().collection(COLLECTION).where('organizationId', '==', organizationId).orderBy('createdAt', 'desc')
+  return paginateQuery(query, COLLECTION, params, toOpportunity)
 }
 
 export async function getOpportunity(id: string, organizationId: string): Promise<Opportunity | null> {

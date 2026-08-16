@@ -1,6 +1,7 @@
 import type { Project, ProjectDocument, ProjectComment, ProjectMilestone } from '~/shared/types/project'
 import type { ProjectInputSchema, AddProjectDocumentSchema, AddProjectCommentSchema, AddProjectMilestoneSchema } from '~/shared/validation/project'
 import { getDb } from './firebase'
+import { paginateQuery, type PageResult } from './pagination'
 
 const COLLECTION = 'projects'
 
@@ -22,7 +23,14 @@ function toProject(id: string, data: FirebaseFirestore.DocumentData): Project {
   }
 }
 
-export async function listProjects(organizationId: string): Promise<Project[]> {
+export async function listProjects(organizationId: string, params?: { cursor?: string | null; pageSize?: number }): Promise<PageResult<Project>> {
+  const query = getDb().collection(COLLECTION).where('organizationId', '==', organizationId).orderBy('createdAt', 'desc')
+  return paginateQuery(query, COLLECTION, params, toProject)
+}
+
+/** Fetch-all variant for internal callers that rely on the full org list
+ * rather than a single page (e.g. cross-module search). */
+export async function listAllProjects(organizationId: string): Promise<Project[]> {
   const snapshot = await getDb().collection(COLLECTION).where('organizationId', '==', organizationId).get()
   return snapshot.docs.map((doc) => toProject(doc.id, doc.data())).sort((a, b) => (a.createdAt < b.createdAt ? 1 : a.createdAt > b.createdAt ? -1 : 0))
 }

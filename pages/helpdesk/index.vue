@@ -3,7 +3,7 @@ import type { Ticket } from '~/shared/types/ticket'
 
 definePageMeta({ layout: 'default' })
 
-const { tickets, pending, error, fetchTickets } = useTickets()
+const { tickets, pending, error, hasMore, loadingMore, fetchTickets, loadMore } = useTickets()
 const { contacts, fetchContacts } = useContacts()
 const { locale } = useI18n()
 await Promise.all([fetchTickets(), fetchContacts()])
@@ -123,6 +123,16 @@ function formatSla(slaDueAt: string) {
           </span>
         </div>
       </NuxtLink>
+    </div>
+
+    <div v-if="!pending && !error && hasMore" class="flex justify-center">
+      <button
+        class="px-4 py-2 rounded-md text-body-sm font-medium border border-ink-100 dark:border-white/10 hover:bg-ink-50 dark:hover:bg-white/5 disabled:opacity-50"
+        :disabled="loadingMore"
+        @click="loadMore"
+      >
+        {{ loadingMore ? $t('helpdesk.loadingMore') : $t('helpdesk.loadMore') }}
+      </button>
     </div>
 
     <HelpdeskTicketForm v-if="showForm" @close="showForm = false" @saved="showForm = false" />

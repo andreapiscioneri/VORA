@@ -3,7 +3,7 @@ import type { Task, TaskStatus } from '~/shared/types/task'
 
 definePageMeta({ layout: 'default' })
 
-const { tasks, pending, error, fetchTasks, setStatus } = useTasks()
+const { tasks, pending, error, hasMore, loadingMore, fetchTasks, loadMore, setStatus } = useTasks()
 await fetchTasks()
 
 const showForm = ref(false)
@@ -151,6 +151,18 @@ async function onMove(task: Task, status: TaskStatus) {
           />
         </div>
       </div>
+    </div>
+
+    <!-- Load-more is a flat fetch across all statuses; the Kanban simply
+         re-groups whatever page of tasks is currently loaded. -->
+    <div v-if="!pending && !error && hasMore" class="flex justify-center">
+      <button
+        class="px-4 py-2 rounded-md text-body-sm font-medium border border-ink-100 dark:border-white/10 hover:bg-ink-50 dark:hover:bg-white/5 disabled:opacity-50"
+        :disabled="loadingMore"
+        @click="loadMore"
+      >
+        {{ loadingMore ? $t('tasks.loadingMore') : $t('tasks.loadMore') }}
+      </button>
     </div>
 
     <TasksTaskForm v-if="showForm" :task="editingTask" :default-status="defaultStatus" @close="closeForm" @saved="closeForm" @deleted="closeForm" />

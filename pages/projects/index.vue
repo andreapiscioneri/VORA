@@ -3,7 +3,7 @@ import type { Project, ProjectStatus } from '~/shared/types/project'
 
 definePageMeta({ layout: 'default' })
 
-const { projects, pending, error, fetchProjects, setStatus } = useProjects()
+const { projects, pending, error, hasMore, loadingMore, fetchProjects, loadMore, setStatus } = useProjects()
 const { contacts, fetchContacts } = useContacts()
 const { tasks, fetchTasks } = useTasks()
 await Promise.all([fetchProjects(), fetchContacts(), fetchTasks()])
@@ -209,6 +209,16 @@ function formatBudget(value: number) {
           <p class="text-caption text-ink-400">{{ clientName(p.contactId) || '—' }} · {{ taskCount(p.id) }}</p>
         </button>
       </div>
+    </div>
+
+    <div v-if="!pending && !error && hasMore" class="flex justify-center">
+      <button
+        class="px-4 py-2 rounded-md text-body-sm font-medium border border-ink-100 dark:border-white/10 hover:bg-ink-50 dark:hover:bg-white/5 disabled:opacity-50"
+        :disabled="loadingMore"
+        @click="loadMore"
+      >
+        {{ loadingMore ? $t('projects.loadingMore') : $t('projects.loadMore') }}
+      </button>
     </div>
 
     <ProjectsProjectForm v-if="showForm" :project="editingProject" :default-status="defaultStatus" @close="closeForm" @saved="closeForm" @deleted="closeForm" />

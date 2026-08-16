@@ -258,7 +258,9 @@
       "add": "Aggiungi",
       "error": "Impossibile aggiungere l'allegato."
     },
-    "moveTo": "Sposta {title}"
+    "moveTo": "Sposta {title}",
+    "loadMore": "Carica altri",
+    "loadingMore": "Caricamento..."
   },
   "crm": {
     "title": "CRM",
@@ -300,7 +302,9 @@
       "delete": "Elimina"
     },
     "deleteConfirm": "Eliminare questa opportunità? L'operazione non è reversibile.",
-    "moveTo": "Sposta {title}"
+    "moveTo": "Sposta {title}",
+    "loadMore": "Carica altri",
+    "loadingMore": "Caricamento..."
   },
   "calendar": {
     "title": "Calendario",
@@ -415,7 +419,9 @@
       "milestoneDueDate": "Scadenza",
       "addMilestone": "Aggiungi",
       "milestoneError": "Impossibile aggiungere la milestone."
-    }
+    },
+    "loadMore": "Carica altri",
+    "loadingMore": "Caricamento..."
   },
   "timesheets": {
     "title": "Fogli ore",
@@ -669,7 +675,9 @@
     "sla": {
       "dueAt": "Scadenza {date}",
       "overdue": "Scaduto"
-    }
+    },
+    "loadMore": "Carica altri",
+    "loadingMore": "Caricamento..."
   },
   "knowledge": {
     "title": "Knowledge",

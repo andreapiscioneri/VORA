@@ -1,6 +1,7 @@
 import type { Task, TaskAttachment } from '~/shared/types/task'
 import type { TaskInputSchema, AddTaskAttachmentSchema } from '~/shared/validation/task'
 import { getDb } from './firebase'
+import { paginateQuery, type PageResult } from './pagination'
 
 const COLLECTION = 'tasks'
 
@@ -22,7 +23,14 @@ function toTask(id: string, data: FirebaseFirestore.DocumentData): Task {
   }
 }
 
-export async function listTasks(organizationId: string): Promise<Task[]> {
+export async function listTasks(organizationId: string, params?: { cursor?: string | null; pageSize?: number }): Promise<PageResult<Task>> {
+  const query = getDb().collection(COLLECTION).where('organizationId', '==', organizationId).orderBy('createdAt', 'desc')
+  return paginateQuery(query, COLLECTION, params, toTask)
+}
+
+/** Fetch-all variant for internal callers that rely on the full org list
+ * rather than a single page (e.g. cross-module search, AI chat context). */
+export async function listAllTasks(organizationId: string): Promise<Task[]> {
   const snapshot = await getDb().collection(COLLECTION).where('organizationId', '==', organizationId).get()
   return snapshot.docs.map((doc) => toTask(doc.id, doc.data())).sort((a, b) => (a.createdAt < b.createdAt ? 1 : a.createdAt > b.createdAt ? -1 : 0))
 }
