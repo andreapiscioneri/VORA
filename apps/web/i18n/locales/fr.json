@@ -1,16 +1,1263 @@
 {
-  "nav": {
-    "overview": "Aperçu", "dashboard": "Tableau de bord", "relationships": "Relations",
-    "contacts": "Contacts", "crm": "CRM", "time": "Temps", "calendar": "Calendrier",
-    "tasks": "Tâches", "appointments": "Rendez-vous", "communications": "Communications",
-    "inbox": "Boîte de réception", "work": "Travail", "projects": "Projets",
-    "timesheets": "Feuilles de temps", "helpdesk": "Assistance", "knowledge": "Connaissances", "settings": "Paramètres"
+  "common": {
+    "skipToContent": "Aller au contenu principal"
   },
-  "topbar": { "search": "Rechercher...", "toggleTheme": "Changer de thème", "launcher": "Apps" },
-  "launcher": { "placeholder": "Rechercher une app ou une commande..." },
+  "validation": {
+    "required": "Champ obligatoire",
+    "email": "E-mail invalide",
+    "url": "URL invalide",
+    "endBeforeStart": "La fin doit être après le début",
+    "slug": "Utilisez uniquement des lettres minuscules, des chiffres et des tirets (ex. mon-site)",
+    "slugTaken": "Cette adresse est déjà utilisée, choisissez-en une autre",
+    "color": "Utilisez une couleur hexadécimale valide (ex. #39FF14)",
+    "recurrenceUntilBeforeStart": "La date de fin de récurrence ne peut pas être antérieure à la date de début."
+  },
+  "auth": {
+    "loginTitle": "Connectez-vous à Vora",
+    "registerTitle": "Créez votre compte",
+    "name": "Nom",
+    "email": "E-mail",
+    "password": "Mot de passe",
+    "organizationName": "Nom de l'organisation",
+    "submitLogin": "Se connecter",
+    "submitRegister": "Créer le compte",
+    "noAccount": "Vous n'avez pas de compte ?",
+    "hasAccount": "Vous avez déjà un compte ?",
+    "switchToRegister": "S'inscrire",
+    "switchToLogin": "Se connecter",
+    "invalidCredentials": "E-mail ou mot de passe incorrect",
+    "emailTaken": "Cet e-mail est déjà enregistré",
+    "passwordTooShort": "Le mot de passe doit contenir au moins 8 caractères",
+    "logout": "Se déconnecter",
+    "sending": "Envoi...",
+    "backToLogin": "Retour à la connexion",
+    "forgotLink": "Mot de passe oublié ?",
+    "forgotTitle": "Réinitialisez votre mot de passe",
+    "forgotSubtitle": "Nous vous enverrons un lien pour le réinitialiser.",
+    "forgotSubmit": "Envoyer le lien",
+    "forgotSent": "Si cet e-mail correspond à un compte, vous recevrez un lien de réinitialisation du mot de passe.",
+    "resetTitle": "Réinitialisez votre mot de passe",
+    "resetInvalidLink": "Ce lien est invalide ou a expiré.",
+    "resetSuccess": "Mot de passe mis à jour avec succès.",
+    "resetSubmit": "Réinitialiser le mot de passe",
+    "newPassword": "Nouveau mot de passe",
+    "verifying": "Vérification...",
+    "verifySuccess": "E-mail vérifié avec succès.",
+    "verifyError": "Ce lien de vérification est invalide ou a expiré.",
+    "goToDashboard": "Aller au tableau de bord",
+    "verifyBanner": "Confirmez votre adresse e-mail pour sécuriser votre compte.",
+    "verifyBannerResend": "Renvoyer",
+    "verifyBannerSent": "E-mail envoyé.",
+    "or": "ou",
+    "continueWithGoogle": "Continuer avec Google",
+    "oauthFailed": "La connexion Google a échoué. Réessayez ou utilisez votre e-mail et votre mot de passe."
+  },
+  "nav": {
+    "overview": "Aperçu",
+    "dashboard": "Tableau de bord",
+    "relationships": "Relations",
+    "contacts": "Contacts",
+    "crm": "CRM",
+    "time": "Temps",
+    "calendar": "Calendrier",
+    "tasks": "Tâches",
+    "appointments": "Rendez-vous",
+    "communications": "Communications",
+    "inbox": "Boîte de réception",
+    "work": "Travail",
+    "projects": "Projets",
+    "timesheets": "Feuilles de temps",
+    "helpdesk": "Assistance",
+    "knowledge": "Connaissances",
+    "expenses": "Notes de frais",
+    "leave": "Congés",
+    "employees": "Employés",
+    "wellbeing": "Bien-être",
+    "auditLog": "Journal d'audit",
+    "marketing": "Marketing",
+    "website": "Site web",
+    "social": "Marketing social",
+    "campaigns": "E-mail marketing",
+    "settings": "Paramètres",
+    "templates": "Modèles",
+    "segments": "Segments",
+    "automations": "Automatisations"
+  },
+  "topbar": {
+    "search": "Rechercher...",
+    "toggleTheme": "Changer de thème",
+    "launcher": "Apps"
+  },
+  "launcher": {
+    "placeholder": "Rechercher une app ou une commande...",
+    "searching": "Recherche...",
+    "noResults": "Aucun résultat.",
+    "type": {
+      "contact": "Contact",
+      "task": "Tâche",
+      "appointment": "Rendez-vous",
+      "ticket": "Ticket",
+      "project": "Projet",
+      "communication": "Communication",
+      "knowledge": "Connaissance"
+    },
+    "commands": {
+      "title": "Commandes",
+      "newContact": "Nouveau contact",
+      "newTask": "Nouvelle tâche",
+      "newAppointment": "Nouveau rendez-vous",
+      "openCalendar": "Ouvrir le calendrier",
+      "askAI": "Demander à VORA AI",
+      "changeTheme": "Changer de thème",
+      "changeLanguage": "Changer de langue",
+      "openCrm": "Ouvrir le CRM",
+      "searchContact": "Rechercher un contact",
+      "sendEmail": "Envoyer un e-mail"
+    }
+  },
   "dashboard": {
-    "title": "Tableau de bord", "subtitle": "Voici ce qui compte aujourd'hui.", "today": "Aujourd'hui",
-    "tasks": "Priorités", "inbox": "Communications", "calendar": "Calendrier",
-    "placeholder": "Module pas encore implémenté."
+    "title": "Tableau de bord",
+    "subtitle": "Voici ce qui compte aujourd'hui.",
+    "today": "Aujourd'hui",
+    "nothingToday": "Rien de prévu aujourd'hui.",
+    "tasks": "Priorités",
+    "noPriorityTasks": "Aucune tâche prioritaire.",
+    "crm": "Pipeline CRM",
+    "openOpportunities": "{count} opportunités ouvertes",
+    "projects": "Projets actifs",
+    "noActiveProjects": "Aucun projet actif.",
+    "placeholder": "Module pas encore implémenté.",
+    "customize": {
+      "enter": "Personnaliser",
+      "exit": "Terminé",
+      "dragHandle": "Faites glisser pour réorganiser {widget}",
+      "hide": "Masquer {widget}",
+      "show": "Afficher {widget}",
+      "resize": "Redimensionner {widget}"
+    },
+    "allHidden": "Tous les widgets sont masqués. Activez Personnaliser pour les réafficher.",
+    "errors": {
+      "load": "Impossible de charger la disposition du tableau de bord."
+    }
+  },
+  "contacts": {
+    "title": "Contacts",
+    "subtitle": "{count} contacts",
+    "new": "Nouveau contact",
+    "search": "Rechercher par nom, entreprise, e-mail...",
+    "empty": {
+      "title": "Aucun contact pour l'instant",
+      "subtitle": "Commencez par ajouter votre premier contact.",
+      "cta": "Ajouter un contact"
+    },
+    "errors": {
+      "load": "Impossible de charger les contacts.",
+      "save": "Impossible d'enregistrer le contact.",
+      "delete": "Impossible de supprimer le contact."
+    },
+    "columns": {
+      "name": "Nom",
+      "company": "Entreprise",
+      "email": "E-mail",
+      "phone": "Téléphone",
+      "status": "Statut"
+    },
+    "status": {
+      "active": "Actif",
+      "lead": "Prospect",
+      "inactive": "Inactif"
+    },
+    "form": {
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "company": "Entreprise",
+      "role": "Fonction",
+      "email": "E-mail",
+      "phone": "Téléphone",
+      "whatsapp": "WhatsApp",
+      "website": "Site web",
+      "address": "Adresse",
+      "notes": "Notes",
+      "status": "Statut",
+      "cancel": "Annuler",
+      "save": "Enregistrer",
+      "saving": "Enregistrement...",
+      "editTitle": "Modifier le contact",
+      "newTitle": "Nouveau contact"
+    },
+    "detail": {
+      "back": "Retour aux contacts",
+      "edit": "Modifier",
+      "delete": "Supprimer",
+      "deleteConfirm": "Supprimer ce contact ? Cette action est irréversible.",
+      "notFound": "Contact introuvable."
+    },
+    "attachments": {
+      "title": "Pièces jointes",
+      "empty": "Aucune pièce jointe.",
+      "titleLabel": "Titre de la pièce jointe",
+      "urlLabel": "https://...",
+      "add": "Ajouter",
+      "error": "Impossible d'ajouter la pièce jointe."
+    },
+    "validation": {
+      "required": "Champ obligatoire",
+      "email": "E-mail invalide"
+    },
+    "loadMore": "Charger plus",
+    "loadingMore": "Chargement..."
+  },
+  "tasks": {
+    "title": "Tâches",
+    "subtitle": "{count} tâches",
+    "new": "Nouvelle tâche",
+    "empty": {
+      "title": "Aucune tâche pour l'instant",
+      "subtitle": "Ajoutez votre première tâche pour commencer à organiser le travail.",
+      "cta": "Ajouter une tâche"
+    },
+    "errors": {
+      "load": "Impossible de charger les tâches.",
+      "save": "Impossible d'enregistrer la tâche.",
+      "delete": "Impossible de supprimer la tâche."
+    },
+    "status": {
+      "todo": "À faire",
+      "in_progress": "En cours",
+      "review": "En révision",
+      "completed": "Terminée",
+      "archived": "Archivée"
+    },
+    "priority": {
+      "low": "Basse",
+      "medium": "Moyenne",
+      "high": "Haute",
+      "urgent": "Urgente"
+    },
+    "form": {
+      "title": "Titre",
+      "description": "Description",
+      "priority": "Priorité",
+      "status": "Statut",
+      "deadline": "Échéance",
+      "cancel": "Annuler",
+      "save": "Enregistrer",
+      "saving": "Enregistrement...",
+      "editTitle": "Modifier la tâche",
+      "newTitle": "Nouvelle tâche",
+      "delete": "Supprimer",
+      "project": "Projet",
+      "noProject": "Aucun projet lié"
+    },
+    "deleteConfirm": "Supprimer cette tâche ? Cette action est irréversible.",
+    "noDeadline": "Aucune échéance",
+    "attachments": {
+      "title": "Pièces jointes",
+      "empty": "Aucune pièce jointe.",
+      "titleLabel": "Titre de la pièce jointe",
+      "urlLabel": "https://...",
+      "add": "Ajouter",
+      "error": "Impossible d'ajouter la pièce jointe."
+    },
+    "moveTo": "Déplacer {title}",
+    "loadMore": "Charger plus",
+    "loadingMore": "Chargement..."
+  },
+  "crm": {
+    "title": "CRM",
+    "subtitle": "{count} opportunités · {value}",
+    "new": "Nouvelle opportunité",
+    "empty": {
+      "title": "Aucune opportunité pour l'instant",
+      "subtitle": "Ajoutez votre première opportunité pour commencer à suivre le pipeline.",
+      "cta": "Ajouter une opportunité"
+    },
+    "errors": {
+      "load": "Impossible de charger les opportunités.",
+      "save": "Impossible d'enregistrer l'opportunité.",
+      "delete": "Impossible de supprimer l'opportunité."
+    },
+    "stage": {
+      "lead": "Prospect",
+      "qualified": "Qualifiée",
+      "proposal": "Proposition",
+      "negotiation": "Négociation",
+      "won": "Gagnée",
+      "lost": "Perdue"
+    },
+    "form": {
+      "title": "Titre",
+      "contact": "Contact",
+      "noContact": "Aucun contact lié",
+      "company": "Entreprise",
+      "value": "Valeur",
+      "probability": "Probabilité",
+      "stage": "Étape",
+      "expectedCloseDate": "Clôture prévue",
+      "notes": "Notes",
+      "cancel": "Annuler",
+      "save": "Enregistrer",
+      "saving": "Enregistrement...",
+      "editTitle": "Modifier l'opportunité",
+      "newTitle": "Nouvelle opportunité",
+      "delete": "Supprimer"
+    },
+    "deleteConfirm": "Supprimer cette opportunité ? Cette action est irréversible.",
+    "moveTo": "Déplacer {title}",
+    "loadMore": "Charger plus",
+    "loadingMore": "Chargement..."
+  },
+  "calendar": {
+    "title": "Calendrier",
+    "subtitle": "{count} événements",
+    "new": "Nouvel événement",
+    "today": "Aujourd'hui",
+    "month": "Mois",
+    "agenda": "Agenda",
+    "empty": {
+      "title": "Aucun événement pour l'instant",
+      "subtitle": "Ajoutez votre premier événement pour commencer à organiser le calendrier.",
+      "cta": "Ajouter un événement"
+    },
+    "errors": {
+      "load": "Impossible de charger les événements.",
+      "save": "Impossible d'enregistrer l'événement.",
+      "delete": "Impossible de supprimer l'événement."
+    },
+    "form": {
+      "title": "Titre",
+      "description": "Description",
+      "start": "Début",
+      "end": "Fin",
+      "allDay": "Toute la journée",
+      "location": "Lieu",
+      "contact": "Contact",
+      "noContact": "Aucun contact lié",
+      "cancel": "Annuler",
+      "save": "Enregistrer",
+      "saving": "Enregistrement...",
+      "editTitle": "Modifier l'événement",
+      "newTitle": "Nouvel événement",
+      "delete": "Supprimer",
+      "date": "Date",
+      "timezone": "Fuseau horaire",
+      "repeat": "Répéter",
+      "repeatEvery": "Tous les",
+      "repeatUntil": "Jusqu'au"
+    },
+    "deleteConfirm": "Supprimer cet événement ? Cette action est irréversible.",
+    "prevMonth": "Mois précédent",
+    "nextMonth": "Mois suivant",
+    "recurrence": {
+      "none": "Ne se répète pas",
+      "daily": "Quotidien",
+      "weekly": "Hebdomadaire",
+      "monthly": "Mensuel"
+    }
+  },
+  "projects": {
+    "title": "Projets",
+    "subtitle": "{count} projets",
+    "new": "Nouveau projet",
+    "list": "Liste",
+    "kanban": "Kanban",
+    "empty": {
+      "title": "Aucun projet pour l'instant",
+      "subtitle": "Ajoutez votre premier projet pour commencer à organiser le travail.",
+      "cta": "Ajouter un projet"
+    },
+    "errors": {
+      "load": "Impossible de charger les projets.",
+      "save": "Impossible d'enregistrer le projet.",
+      "delete": "Impossible de supprimer le projet."
+    },
+    "status": {
+      "active": "Actif",
+      "on_hold": "En attente",
+      "completed": "Terminé",
+      "archived": "Archivé"
+    },
+    "columns": {
+      "name": "Nom",
+      "client": "Client",
+      "status": "Statut",
+      "dueDate": "Date d'échéance",
+      "budget": "Budget",
+      "tasks": "Tâches"
+    },
+    "form": {
+      "name": "Nom",
+      "description": "Description",
+      "status": "Statut",
+      "client": "Client",
+      "noClient": "Aucun client lié",
+      "startDate": "Date de début",
+      "dueDate": "Date d'échéance",
+      "budget": "Budget (EUR)",
+      "cancel": "Annuler",
+      "save": "Enregistrer",
+      "saving": "Enregistrement...",
+      "editTitle": "Modifier le projet",
+      "newTitle": "Nouveau projet",
+      "delete": "Supprimer"
+    },
+    "deleteConfirm": "Supprimer ce projet ? Les tâches liées ne seront pas supprimées.",
+    "detail": {
+      "back": "Retour aux projets",
+      "documents": "Documents",
+      "noDocuments": "Aucun document pour l'instant.",
+      "documentTitle": "Titre du document",
+      "documentUrl": "https://...",
+      "addDocument": "Ajouter",
+      "documentError": "Impossible d'ajouter le document.",
+      "discussion": "Discussion",
+      "noDiscussion": "Aucun message pour l'instant.",
+      "addDiscussion": "Écrire un message...",
+      "send": "Envoyer",
+      "milestones": "Jalons",
+      "noMilestones": "Aucun jalon pour l'instant.",
+      "milestoneTitle": "Titre du jalon",
+      "milestoneDueDate": "Date d'échéance",
+      "addMilestone": "Ajouter",
+      "milestoneError": "Impossible d'ajouter le jalon."
+    },
+    "loadMore": "Charger plus",
+    "loadingMore": "Chargement..."
+  },
+  "timesheets": {
+    "title": "Feuilles de temps",
+    "subtitle": "{count} entrées · {hours} heures enregistrées",
+    "new": "Enregistrer du temps",
+    "timer": {
+      "start": "Démarrer le chronomètre",
+      "stop": "Arrêter et enregistrer",
+      "running": "Chronomètre en cours",
+      "descriptionPlaceholder": "Sur quoi travaillez-vous ?"
+    },
+    "empty": {
+      "title": "Aucune entrée pour l'instant",
+      "subtitle": "Démarrez le chronomètre ou enregistrez du temps manuellement pour commencer.",
+      "cta": "Enregistrer du temps"
+    },
+    "errors": {
+      "load": "Impossible de charger les feuilles de temps.",
+      "save": "Impossible d'enregistrer l'entrée.",
+      "delete": "Impossible de supprimer l'entrée."
+    },
+    "form": {
+      "project": "Projet",
+      "noProject": "Aucun projet lié",
+      "task": "Tâche",
+      "noTask": "Aucune tâche liée",
+      "description": "Description",
+      "date": "Date",
+      "duration": "Durée (minutes)",
+      "billable": "Facturable",
+      "cancel": "Annuler",
+      "save": "Enregistrer",
+      "saving": "Enregistrement...",
+      "editTitle": "Modifier l'entrée",
+      "newTitle": "Nouvelle entrée",
+      "delete": "Supprimer"
+    },
+    "deleteConfirm": "Supprimer cette entrée ? Cette action est irréversible.",
+    "noBillable": "Non facturable"
+  },
+  "appointments": {
+    "title": "Rendez-vous",
+    "subtitle": "{count} rendez-vous",
+    "new": "Nouveau rendez-vous",
+    "upcoming": "À venir",
+    "past": "Passés",
+    "empty": {
+      "title": "Aucun rendez-vous pour l'instant",
+      "subtitle": "Ajoutez votre premier rendez-vous pour commencer.",
+      "cta": "Ajouter un rendez-vous"
+    },
+    "errors": {
+      "load": "Impossible de charger les rendez-vous.",
+      "save": "Impossible d'enregistrer le rendez-vous.",
+      "delete": "Impossible de supprimer le rendez-vous."
+    },
+    "status": {
+      "scheduled": "Planifié",
+      "confirmed": "Confirmé",
+      "completed": "Terminé",
+      "cancelled": "Annulé"
+    },
+    "form": {
+      "title": "Titre",
+      "contact": "Contact",
+      "noContact": "Aucun contact lié",
+      "opportunity": "Opportunité CRM",
+      "noOpportunity": "Aucune opportunité liée",
+      "start": "Date et heure",
+      "duration": "Durée (minutes)",
+      "location": "Lieu",
+      "videoCallUrl": "Lien de visioconférence",
+      "notes": "Notes",
+      "status": "Statut",
+      "cancel": "Annuler",
+      "save": "Enregistrer",
+      "saving": "Enregistrement...",
+      "editTitle": "Modifier le rendez-vous",
+      "newTitle": "Nouveau rendez-vous",
+      "delete": "Supprimer"
+    },
+    "joinCall": "Rejoindre la visioconférence",
+    "deleteConfirm": "Supprimer ce rendez-vous ? Cette action est irréversible."
+  },
+  "inbox": {
+    "title": "Boîte de réception",
+    "subtitle": "{count} messages",
+    "new": "Nouveau message",
+    "all": "Tous",
+    "channel": {
+      "email": "E-mail",
+      "whatsapp": "WhatsApp",
+      "internal": "Interne"
+    },
+    "empty": {
+      "title": "Aucun message pour l'instant",
+      "subtitle": "Les communications avec vos contacts apparaîtront ici.",
+      "cta": "Envoyer votre premier message"
+    },
+    "errors": {
+      "load": "Impossible de charger les messages.",
+      "send": "Impossible d'envoyer le message.",
+      "delete": "Impossible de supprimer le message."
+    },
+    "mockNotice": "Aucun fournisseur E-mail/WhatsApp réel n'est configuré — ce message a été enregistré mais n'a pas réellement été envoyé. Définissez EMAIL_PROVIDER_API_KEY / WHATSAPP_API_KEY pour connecter un fournisseur réel.",
+    "form": {
+      "channel": "Canal",
+      "to": "Destinataire",
+      "contact": "Contact",
+      "noContact": "Aucun contact lié",
+      "subject": "Objet",
+      "body": "Message",
+      "cancel": "Annuler",
+      "send": "Envoyer",
+      "sending": "Envoi...",
+      "newTitle": "Nouveau message"
+    },
+    "markRead": "Marquer comme lu",
+    "archive": "Archiver",
+    "delete": "Supprimer",
+    "deleteConfirm": "Supprimer ce message ? Cette action est irréversible.",
+    "extractTask": "Extraire une tâche",
+    "suggestAppointment": "Suggérer un rendez-vous",
+    "threadCount": "{count} messages",
+    "reply": "Répondre",
+    "you": "Vous",
+    "labels": {
+      "filterBy": "Filtrer par étiquette :",
+      "add": "+ étiquette",
+      "remove": "Supprimer l'étiquette {label}",
+      "placeholder": "Nouvelle étiquette"
+    },
+    "loadMore": "Charger plus",
+    "loadingMore": "Chargement..."
+  },
+  "ai": {
+    "errors": {
+      "extract": "Impossible d'analyser le message."
+    },
+    "taskSuggestion": {
+      "title": "Tâche suggérée",
+      "none": "Aucune demande exploitable n'a été trouvée dans ce message.",
+      "confirm": "Créer la tâche",
+      "reject": "Ignorer"
+    },
+    "provider": "Analyse basée sur des règles — aucun modèle de langage externe connecté.",
+    "calendarSuggestion": {
+      "title": "Rendez-vous suggéré",
+      "none": "Aucune demande de rendez-vous n'a été détectée dans ce message.",
+      "pickSlot": "Choisir un créneau",
+      "busy": "Occupé",
+      "confirm": "Créer le rendez-vous",
+      "reject": "Ignorer"
+    },
+    "actions": {
+      "title": "Actions IA",
+      "close": "Fermer",
+      "summarize": "Résumer",
+      "generateReply": "Générer une réponse",
+      "run": "Exécuter",
+      "working": "Traitement en cours...",
+      "useAsReply": "Utiliser comme réponse"
+    },
+    "relationship": {
+      "title": "Relation (IA)",
+      "noHistory": "Aucune communication ou rendez-vous enregistré avec ce contact.",
+      "summarize": "Résumer la relation",
+      "followUp": "Préparer une relance",
+      "useAsFollowUp": "Utiliser comme e-mail de relance"
+    },
+    "prioritize": {
+      "action": "Prioriser avec l'IA"
+    }
+  },
+  "assistant": {
+    "title": "Assistant VORA",
+    "close": "Fermer",
+    "open": "Assistant",
+    "prompts": {
+      "organizeDay": "Organiser ma journée",
+      "priorities": "Quelles sont mes tâches les plus importantes ?",
+      "unanswered": "Quels messages n'ai-je pas encore lus ?",
+      "upcoming": "Trouver mes prochains rendez-vous"
+    }
+  },
+  "helpdesk": {
+    "title": "Assistance",
+    "subtitle": "{count} tickets",
+    "new": "Nouveau ticket",
+    "empty": {
+      "title": "Aucun ticket pour l'instant",
+      "subtitle": "Ajoutez votre premier ticket d'assistance.",
+      "cta": "Ajouter un ticket"
+    },
+    "errors": {
+      "load": "Impossible de charger les tickets.",
+      "save": "Impossible d'enregistrer le ticket.",
+      "delete": "Impossible de supprimer le ticket."
+    },
+    "status": {
+      "open": "Ouvert",
+      "in_progress": "En cours",
+      "waiting": "En attente",
+      "resolved": "Résolu",
+      "closed": "Fermé"
+    },
+    "category": {
+      "technical": "Technique",
+      "billing": "Facturation",
+      "general": "Général",
+      "feature_request": "Demande de fonctionnalité"
+    },
+    "columns": {
+      "title": "Titre",
+      "customer": "Client",
+      "status": "Statut",
+      "priority": "Priorité",
+      "category": "Catégorie",
+      "sla": "SLA"
+    },
+    "form": {
+      "title": "Titre",
+      "description": "Description",
+      "contact": "Client",
+      "noContact": "Aucun client lié",
+      "priority": "Priorité",
+      "status": "Statut",
+      "category": "Catégorie",
+      "cancel": "Annuler",
+      "save": "Enregistrer",
+      "saving": "Enregistrement...",
+      "editTitle": "Modifier le ticket",
+      "newTitle": "Nouveau ticket",
+      "delete": "Supprimer",
+      "sla": "Échéance SLA"
+    },
+    "detail": {
+      "back": "Retour aux tickets",
+      "comments": "Commentaires",
+      "noComments": "Aucun commentaire pour l'instant.",
+      "addComment": "Ajouter un commentaire...",
+      "send": "Envoyer"
+    },
+    "attachments": {
+      "title": "Pièces jointes",
+      "empty": "Aucune pièce jointe.",
+      "titleLabel": "Titre de la pièce jointe",
+      "urlLabel": "https://...",
+      "add": "Ajouter",
+      "error": "Impossible d'ajouter la pièce jointe."
+    },
+    "deleteConfirm": "Supprimer ce ticket ? Cette action est irréversible.",
+    "sla": {
+      "dueAt": "Échéance {date}",
+      "overdue": "En retard"
+    },
+    "loadMore": "Charger plus",
+    "loadingMore": "Chargement..."
+  },
+  "knowledge": {
+    "title": "Connaissances",
+    "subtitle": "{count} pages",
+    "new": "Nouvelle page",
+    "search": "Rechercher par titre, contenu ou étiquette...",
+    "allFolders": "Tous les dossiers",
+    "favoritesOnly": "Favoris uniquement",
+    "noFolder": "Aucun dossier",
+    "empty": {
+      "title": "Aucune page pour l'instant",
+      "subtitle": "Créez votre première page pour commencer à construire la base de connaissances.",
+      "cta": "Créer une page"
+    },
+    "errors": {
+      "load": "Impossible de charger les pages.",
+      "save": "Impossible d'enregistrer la page.",
+      "delete": "Impossible de supprimer la page."
+    },
+    "form": {
+      "title": "Titre",
+      "content": "Contenu (Markdown)",
+      "folder": "Dossier",
+      "tags": "Étiquettes (séparées par des virgules)",
+      "cancel": "Annuler",
+      "save": "Enregistrer",
+      "saving": "Enregistrement...",
+      "editTitle": "Modifier la page",
+      "newTitle": "Nouvelle page",
+      "delete": "Supprimer",
+      "edit": "Modifier",
+      "preview": "Aperçu"
+    },
+    "detail": {
+      "back": "Retour aux connaissances",
+      "lastUpdated": "Dernière mise à jour"
+    },
+    "deleteConfirm": "Supprimer cette page ? Cette action est irréversible.",
+    "semanticSearch": "Recherche intelligente (appuyez sur Entrée)",
+    "searching": "Recherche...",
+    "semanticResultsCount": "{count} résultats par pertinence",
+    "relevance": "{pct} % pertinent",
+    "favorite": "Ajouter aux favoris",
+    "unfavorite": "Retirer des favoris",
+    "loadMore": "Charger plus",
+    "loadingMore": "Chargement..."
+  },
+  "expenses": {
+    "title": "Notes de frais",
+    "subtitle": "{count} notes de frais · {total}",
+    "new": "Nouvelle note de frais",
+    "all": "Toutes",
+    "empty": {
+      "title": "Aucune note de frais pour l'instant",
+      "subtitle": "Enregistrez votre première note de frais pour commencer.",
+      "cta": "Ajouter une note de frais"
+    },
+    "errors": {
+      "load": "Impossible de charger les notes de frais.",
+      "save": "Impossible d'enregistrer la note de frais.",
+      "delete": "Impossible de supprimer la note de frais."
+    },
+    "status": {
+      "pending": "En attente",
+      "approved": "Approuvée",
+      "rejected": "Rejetée"
+    },
+    "category": {
+      "travel": "Déplacement",
+      "meals": "Repas",
+      "office": "Bureau",
+      "software": "Logiciel",
+      "other": "Autre"
+    },
+    "columns": {
+      "date": "Date",
+      "category": "Catégorie",
+      "project": "Projet",
+      "amount": "Montant",
+      "status": "Statut"
+    },
+    "form": {
+      "amount": "Montant (EUR)",
+      "date": "Date",
+      "category": "Catégorie",
+      "project": "Projet",
+      "noProject": "Aucun projet lié",
+      "notes": "Notes",
+      "receiptUrl": "Lien du reçu (facultatif)",
+      "cancel": "Annuler",
+      "save": "Enregistrer",
+      "saving": "Enregistrement...",
+      "editTitle": "Modifier la note de frais",
+      "newTitle": "Nouvelle note de frais",
+      "delete": "Supprimer"
+    },
+    "approve": "Approuver",
+    "reject": "Rejeter",
+    "deleteConfirm": "Supprimer cette note de frais ? Cette action est irréversible."
+  },
+  "leave": {
+    "title": "Congés",
+    "subtitle": "{count} demandes",
+    "new": "Nouvelle demande",
+    "all": "Toutes",
+    "balance": {
+      "title": "Solde de congés",
+      "allocated": "Alloués",
+      "used": "Utilisés",
+      "remaining": "Restants",
+      "days": "jours"
+    },
+    "empty": {
+      "title": "Aucune demande pour l'instant",
+      "subtitle": "Soumettez votre première demande de congé.",
+      "cta": "Ajouter une demande"
+    },
+    "errors": {
+      "load": "Impossible de charger les demandes.",
+      "save": "Impossible d'enregistrer la demande.",
+      "delete": "Impossible de supprimer la demande."
+    },
+    "status": {
+      "pending": "En attente",
+      "approved": "Approuvée",
+      "rejected": "Rejetée"
+    },
+    "type": {
+      "vacation": "Congés payés",
+      "sick": "Congé maladie",
+      "personal": "Congé personnel"
+    },
+    "columns": {
+      "requester": "Demandeur",
+      "type": "Type",
+      "dates": "Dates",
+      "days": "Jours",
+      "status": "Statut"
+    },
+    "form": {
+      "requesterName": "Nom",
+      "selectEmployee": "Sélectionner un employé",
+      "type": "Type",
+      "startDate": "Date de début",
+      "endDate": "Date de fin",
+      "notes": "Notes",
+      "cancel": "Annuler",
+      "save": "Enregistrer",
+      "saving": "Enregistrement...",
+      "newTitle": "Nouvelle demande de congé"
+    },
+    "approve": "Approuver",
+    "reject": "Rejeter",
+    "deleteConfirm": "Supprimer cette demande ? Cette action est irréversible."
+  },
+  "wellbeing": {
+    "title": "Bien-être",
+    "subtitle": "Un moment pour vous : bilan quotidien, respiration, tendance hebdomadaire.",
+    "disclaimer": "Bien-être ne remplace pas un professionnel de santé et ne fournit aucun diagnostic. C'est un espace pour réfléchir à votre charge de travail et à votre état général.",
+    "mood": "Humeur",
+    "energy": "Énergie",
+    "stress": "Stress",
+    "note": "Notes (facultatif)",
+    "notePlaceholder": "Comment se passe votre journée ?",
+    "save": "Enregistrer le bilan",
+    "saving": "Enregistrement...",
+    "saved": "Bilan enregistré.",
+    "history": "Bilans récents",
+    "checkin": {
+      "title": "Bilan du jour",
+      "updateTitle": "Mettre à jour le bilan du jour"
+    },
+    "weekly": {
+      "title": "Moyenne des {count} derniers bilans"
+    },
+    "breathing": {
+      "title": "Exercice de respiration",
+      "start": "Démarrer",
+      "stop": "Arrêter",
+      "in": "Inspirez",
+      "hold1": "Retenez",
+      "out": "Expirez",
+      "hold2": "Retenez"
+    },
+    "errors": {
+      "load": "Impossible de charger les bilans."
+    }
+  },
+  "auditLog": {
+    "title": "Journal d'audit",
+    "subtitle": "Actions sensibles au sein de votre organisation — visibles uniquement par les propriétaires et administrateurs.",
+    "empty": "Aucune activité enregistrée pour l'instant.",
+    "actions": {
+      "login": "Connexion",
+      "logout": "Déconnexion",
+      "employee.create": "Employé créé",
+      "employee.update": "Employé mis à jour",
+      "employee.delete": "Employé supprimé",
+      "leave.approve": "Congé approuvé",
+      "leave.reject": "Congé rejeté",
+      "expense.approve": "Note de frais approuvée",
+      "expense.reject": "Note de frais rejetée"
+    },
+    "errors": {
+      "load": "Impossible de charger le journal d'audit.",
+      "forbidden": "Seuls les propriétaires et administrateurs peuvent consulter le journal d'audit."
+    }
+  },
+  "employees": {
+    "title": "Employés",
+    "subtitle": "{count} employés",
+    "new": "Nouvel employé",
+    "empty": {
+      "title": "Aucun employé pour l'instant",
+      "subtitle": "Ajoutez votre premier employé pour commencer.",
+      "cta": "Ajouter un employé"
+    },
+    "errors": {
+      "load": "Impossible de charger les employés.",
+      "save": "Impossible d'enregistrer l'employé.",
+      "delete": "Impossible de supprimer l'employé."
+    },
+    "status": {
+      "active": "Actif",
+      "inactive": "Inactif"
+    },
+    "columns": {
+      "name": "Nom",
+      "role": "Fonction",
+      "team": "Équipe",
+      "email": "E-mail",
+      "status": "Statut"
+    },
+    "form": {
+      "firstName": "Prénom",
+      "lastName": "Nom",
+      "email": "E-mail",
+      "role": "Fonction",
+      "team": "Équipe",
+      "status": "Statut",
+      "startDate": "Date d'entrée",
+      "cancel": "Annuler",
+      "save": "Enregistrer",
+      "saving": "Enregistrement...",
+      "editTitle": "Modifier l'employé",
+      "newTitle": "Nouvel employé",
+      "delete": "Supprimer"
+    },
+    "deleteConfirm": "Supprimer cet employé ? Cette action est irréversible."
+  },
+  "social": {
+    "title": "Marketing social",
+    "subtitle": "{count} publications",
+    "new": "Nouvelle publication",
+    "all": "Toutes",
+    "empty": {
+      "title": "Aucune publication pour l'instant",
+      "subtitle": "Créez votre première publication pour commencer à planifier du contenu.",
+      "cta": "Créer une publication"
+    },
+    "errors": {
+      "load": "Impossible de charger les publications.",
+      "save": "Impossible d'enregistrer la publication.",
+      "delete": "Impossible de supprimer la publication."
+    },
+    "status": {
+      "draft": "Brouillon",
+      "scheduled": "Planifiée",
+      "published": "Publiée"
+    },
+    "platform": {
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "linkedin": "LinkedIn",
+      "x": "X"
+    },
+    "form": {
+      "content": "Contenu",
+      "platform": "Plateforme",
+      "status": "Statut",
+      "scheduledAt": "Date planifiée",
+      "cancel": "Annuler",
+      "save": "Enregistrer",
+      "saving": "Enregistrement...",
+      "editTitle": "Modifier la publication",
+      "newTitle": "Nouvelle publication",
+      "delete": "Supprimer"
+    },
+    "deleteConfirm": "Supprimer cette publication ? Cette action est irréversible."
+  },
+  "campaigns": {
+    "title": "E-mail marketing",
+    "subtitle": "{count} campagnes",
+    "new": "Nouvelle campagne",
+    "empty": {
+      "title": "Aucune campagne pour l'instant",
+      "subtitle": "Créez votre première campagne e-mail.",
+      "cta": "Créer une campagne"
+    },
+    "errors": {
+      "load": "Impossible de charger les campagnes.",
+      "save": "Impossible d'enregistrer la campagne.",
+      "send": "Impossible d'envoyer la campagne.",
+      "delete": "Impossible de supprimer la campagne."
+    },
+    "status": {
+      "draft": "Brouillon",
+      "sent": "Envoyée"
+    },
+    "mockNotice": "Aucun fournisseur d'e-mail réel n'est configuré — l'envoi sera enregistré mais aucun e-mail ne sera réellement livré.",
+    "form": {
+      "name": "Nom de la campagne",
+      "subject": "Objet",
+      "body": "Contenu",
+      "recipientCount": "Nombre de destinataires (estimé)",
+      "cancel": "Annuler",
+      "save": "Enregistrer",
+      "saving": "Enregistrement...",
+      "editTitle": "Modifier la campagne",
+      "newTitle": "Nouvelle campagne",
+      "delete": "Supprimer",
+      "useTemplate": "Utiliser un modèle",
+      "noTemplate": "Aucun modèle",
+      "useSegment": "Utiliser un segment",
+      "noSegment": "Aucun segment",
+      "resolvingSegment": "Résolution des destinataires..."
+    },
+    "send": "Envoyer",
+    "sentOn": "Envoyée le",
+    "deleteConfirm": "Supprimer cette campagne ? Cette action est irréversible."
+  },
+  "website": {
+    "title": "Site web",
+    "subtitle": "Aperçu du site public connecté",
+    "visitSite": "Visiter le site",
+    "connected": "Connecté",
+    "notConnected": "Projet portfolio-andrea introuvable",
+    "pages": "Pages",
+    "projects": "Projets publiés",
+    "featured": "En vedette",
+    "errors": {
+      "load": "Impossible de charger les données du site."
+    },
+    "note": "Le site public est un projet Nuxt distinct (portfolio-andrea). Cette page reflète son contenu réel en lecture seule — VORA ne duplique pas d'éditeur de site web.",
+    "myWebsites": "Vos sites générés",
+    "createSite": "Toute organisation peut générer son propre site, réellement publié à une adresse VORA."
+  },
+  "sites": {
+    "title": "Sites générés",
+    "subtitle": "{count} sites",
+    "new": "Nouveau site",
+    "empty": {
+      "title": "Aucun site pour l'instant",
+      "subtitle": "Créez votre premier site généré par VORA.",
+      "cta": "Créer un site"
+    },
+    "errors": {
+      "load": "Impossible de charger les sites.",
+      "save": "Impossible d'enregistrer le site.",
+      "delete": "Impossible de supprimer le site."
+    },
+    "published": "Publié",
+    "draft": "Brouillon",
+    "viewLive": "Voir le site en ligne",
+    "form": {
+      "slug": "Adresse (slug)",
+      "slugHint": "Le site sera accessible à /site/{slug}",
+      "name": "Nom",
+      "tagline": "Slogan",
+      "about": "À propos",
+      "contactEmail": "E-mail de contact",
+      "accentColor": "Couleur d'accent",
+      "published": "Publié",
+      "cancel": "Annuler",
+      "save": "Enregistrer",
+      "saving": "Enregistrement...",
+      "editTitle": "Modifier le site",
+      "newTitle": "Nouveau site",
+      "delete": "Supprimer"
+    },
+    "deleteConfirm": "Supprimer ce site ? Cette action est irréversible.",
+    "notFound": "Ce site n'existe pas ou n'est pas encore publié.",
+    "generatedBy": "Généré avec VORA"
+  },
+  "settings": {
+    "title": "Paramètres",
+    "subtitle": "Compte, sécurité, notifications et intégrations.",
+    "saving": "Enregistrement...",
+    "save": "Enregistrer",
+    "saved": "Enregistré.",
+    "profile": {
+      "title": "Profil",
+      "name": "Nom",
+      "email": "E-mail",
+      "organization": "Organisation",
+      "role": {
+        "owner": "Propriétaire",
+        "admin": "Administrateur",
+        "member": "Membre"
+      }
+    },
+    "security": {
+      "title": "Sécurité",
+      "currentPassword": "Mot de passe actuel",
+      "newPassword": "Nouveau mot de passe",
+      "changePassword": "Changer le mot de passe",
+      "wrongPassword": "Le mot de passe actuel est incorrect.",
+      "error": "Impossible de changer le mot de passe."
+    },
+    "appearance": {
+      "title": "Apparence",
+      "light": "Clair",
+      "dark": "Sombre",
+      "system": "Système"
+    },
+    "language": {
+      "title": "Langue"
+    },
+    "notifications": {
+      "title": "Notifications",
+      "messages": "Messages",
+      "urgentTasks": "Tâches urgentes",
+      "appointments": "Rendez-vous",
+      "reminders": "Rappels",
+      "aiActions": "Actions IA",
+      "approvals": "Approbations",
+      "tickets": "Tickets",
+      "deadlines": "Échéances"
+    },
+    "integrations": {
+      "title": "Intégrations",
+      "ai": "Moteur IA",
+      "email": "Fournisseur e-mail",
+      "whatsapp": "WhatsApp",
+      "oauthGoogle": "Connexion Google",
+      "live": "Actif",
+      "mock": "Simulé",
+      "note": "« Simulé » signifie une implémentation réelle et fonctionnelle sans identifiants de fournisseur externe connectés — elle n'envoie/ne reçoit rien sur un réseau réel tant que vous n'avez pas configuré d'identifiants (voir .env.example)."
+    },
+    "applications": {
+      "title": "Applications",
+      "subtitle": "Ouvrez ⌘K pour la liste complète des modules et des actions rapides."
+    },
+    "api": {
+      "title": "API",
+      "notice": "La gestion des clés API personnelles n'a pas encore été développée — une véritable fonctionnalité future, pas une maquette cachée."
+    }
+  },
+  "templates": {
+    "title": "Modèles d'e-mail",
+    "subtitle": "{count} modèles",
+    "new": "Nouveau modèle",
+    "empty": {
+      "title": "Aucun modèle",
+      "subtitle": "Créez votre premier modèle d'e-mail réutilisable.",
+      "cta": "Créer un modèle"
+    },
+    "errors": {
+      "load": "Impossible de charger les modèles.",
+      "save": "Impossible d'enregistrer le modèle.",
+      "delete": "Impossible de supprimer le modèle."
+    },
+    "deleteConfirm": "Supprimer ce modèle ? Cette action est irréversible.",
+    "form": {
+      "name": "Nom",
+      "subject": "Objet",
+      "body": "Message",
+      "cancel": "Annuler",
+      "save": "Enregistrer",
+      "saving": "Enregistrement...",
+      "editTitle": "Modifier le modèle",
+      "newTitle": "Nouveau modèle",
+      "delete": "Supprimer"
+    }
+  },
+  "segments": {
+    "title": "Segments",
+    "subtitle": "{count} segments",
+    "new": "Nouveau segment",
+    "empty": {
+      "title": "Aucun segment",
+      "subtitle": "Créez votre premier segment de contacts réutilisable.",
+      "cta": "Créer un segment"
+    },
+    "errors": {
+      "load": "Impossible de charger les segments.",
+      "save": "Impossible d'enregistrer le segment.",
+      "delete": "Impossible de supprimer le segment."
+    },
+    "deleteConfirm": "Supprimer ce segment ? Cette action est irréversible.",
+    "form": {
+      "name": "Nom",
+      "status": "Statut du contact",
+      "anyStatus": "Tous les statuts",
+      "tags": "Étiquettes",
+      "tagsPlaceholder": "Séparées par des virgules",
+      "cancel": "Annuler",
+      "save": "Enregistrer",
+      "saving": "Enregistrement...",
+      "editTitle": "Modifier le segment",
+      "newTitle": "Nouveau segment",
+      "delete": "Supprimer"
+    }
+  },
+  "automations": {
+    "title": "Automatisations",
+    "subtitle": "{count} automatisations",
+    "new": "Nouvelle automatisation",
+    "empty": {
+      "title": "Aucune automatisation",
+      "subtitle": "Créez votre première automatisation marketing : déclencheurs, conditions et actions réels.",
+      "cta": "Créer une automatisation"
+    },
+    "errors": {
+      "load": "Impossible de charger les automatisations.",
+      "save": "Impossible d'enregistrer l'automatisation.",
+      "delete": "Impossible de supprimer l'automatisation."
+    },
+    "deleteConfirm": "Supprimer cette automatisation ? Cette action est irréversible.",
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "runCount": "{count} exécutions",
+    "lastRun": "dernière : {date}",
+    "trigger": {
+      "contact_created": "Contact créé",
+      "contact_status_changed": "Statut du contact modifié",
+      "manual": "Exécution manuelle"
+    },
+    "form": {
+      "editTitle": "Modifier l'automatisation",
+      "newTitle": "Nouvelle automatisation",
+      "name": "Nom",
+      "active": "Active",
+      "trigger": "Déclencheur",
+      "steps": "Étapes",
+      "addCondition": "Condition",
+      "addAction": "Action",
+      "addDelay": "Délai",
+      "noSteps": "Aucune étape pour l'instant — l'automatisation ne fera qu'exécuter son déclencheur.",
+      "stepKind": {
+        "condition": "Condition",
+        "action": "Action",
+        "delay": "Délai"
+      },
+      "field": {
+        "status": "Statut",
+        "tag": "Étiquette",
+        "source": "Source"
+      },
+      "operator": {
+        "equals": "égal à",
+        "not_equals": "différent de",
+        "contains": "contient"
+      },
+      "value": "Valeur",
+      "actionType": {
+        "send_email": "Envoyer un e-mail",
+        "add_tag": "Ajouter une étiquette",
+        "change_status": "Changer le statut",
+        "create_task": "Créer une tâche"
+      },
+      "emailSubject": "Objet de l'e-mail",
+      "emailBody": "Corps de l'e-mail",
+      "tag": "Étiquette à ajouter",
+      "status": "Nouveau statut",
+      "taskTitle": "Titre de la tâche",
+      "waitHours": "Attente (heures)",
+      "delayLimitation": "Limitation : dans cette version, l'attente n'est pas réellement exécutée en arrière-plan — elle n'est évaluée qu'au moment du déclenchement.",
+      "moveUp": "Monter",
+      "moveDown": "Descendre",
+      "removeStep": "Supprimer l'étape",
+      "cancel": "Annuler",
+      "save": "Enregistrer",
+      "saving": "Enregistrement...",
+      "delete": "Supprimer"
+    }
   }
 }

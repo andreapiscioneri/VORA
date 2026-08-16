@@ -1,16 +1,1263 @@
 {
-  "nav": {
-    "overview": "概览", "dashboard": "仪表盘", "relationships": "关系",
-    "contacts": "联系人", "crm": "CRM", "time": "时间", "calendar": "日历",
-    "tasks": "任务", "appointments": "预约", "communications": "沟通",
-    "inbox": "收件箱", "work": "工作", "projects": "项目",
-    "timesheets": "工时表", "helpdesk": "服务台", "knowledge": "知识库", "settings": "设置"
+  "common": {
+    "skipToContent": "跳转到主要内容"
   },
-  "topbar": { "search": "搜索...", "toggleTheme": "切换主题", "launcher": "应用" },
-  "launcher": { "placeholder": "搜索应用或命令..." },
+  "validation": {
+    "required": "必填项",
+    "email": "邮箱地址无效",
+    "url": "网址无效",
+    "endBeforeStart": "结束时间必须晚于开始时间",
+    "slug": "只能使用小写字母、数字和连字符（例如 my-site）",
+    "slugTaken": "该地址已被占用，请换一个",
+    "color": "请使用有效的十六进制颜色值（例如 #39FF14）",
+    "recurrenceUntilBeforeStart": "重复结束日期不能早于开始日期。"
+  },
+  "auth": {
+    "loginTitle": "登录 Vora",
+    "registerTitle": "创建你的账户",
+    "name": "姓名",
+    "email": "邮箱",
+    "password": "密码",
+    "organizationName": "组织名称",
+    "submitLogin": "登录",
+    "submitRegister": "创建账户",
+    "noAccount": "还没有账户？",
+    "hasAccount": "已有账户？",
+    "switchToRegister": "注册",
+    "switchToLogin": "登录",
+    "invalidCredentials": "邮箱或密码错误",
+    "emailTaken": "该邮箱已被注册",
+    "passwordTooShort": "密码长度至少为 8 位",
+    "logout": "退出登录",
+    "sending": "发送中...",
+    "backToLogin": "返回登录",
+    "forgotLink": "忘记密码？",
+    "forgotTitle": "重置密码",
+    "forgotSubtitle": "我们将向你发送一个重置密码的链接。",
+    "forgotSubmit": "发送链接",
+    "forgotSent": "如果该邮箱已注册，你将收到一封重置密码的邮件。",
+    "resetTitle": "重置密码",
+    "resetInvalidLink": "该链接无效或已过期。",
+    "resetSuccess": "密码已成功更新。",
+    "resetSubmit": "重置密码",
+    "newPassword": "新密码",
+    "verifying": "验证中...",
+    "verifySuccess": "邮箱验证成功。",
+    "verifyError": "该验证链接无效或已过期。",
+    "goToDashboard": "前往仪表盘",
+    "verifyBanner": "请验证你的邮箱地址以保障账户安全。",
+    "verifyBannerResend": "重新发送",
+    "verifyBannerSent": "邮件已发送。",
+    "or": "或",
+    "continueWithGoogle": "使用 Google 继续",
+    "oauthFailed": "Google 登录失败，请重试或使用邮箱和密码登录。"
+  },
+  "nav": {
+    "overview": "概览",
+    "dashboard": "仪表盘",
+    "relationships": "关系管理",
+    "contacts": "联系人",
+    "crm": "CRM",
+    "time": "时间管理",
+    "calendar": "日历",
+    "tasks": "任务",
+    "appointments": "预约",
+    "communications": "沟通",
+    "inbox": "收件箱",
+    "work": "工作",
+    "projects": "项目",
+    "timesheets": "工时表",
+    "helpdesk": "服务台",
+    "knowledge": "知识库",
+    "expenses": "费用报销",
+    "leave": "请假",
+    "employees": "员工",
+    "wellbeing": "健康关怀",
+    "auditLog": "审计日志",
+    "marketing": "营销",
+    "website": "网站",
+    "social": "社交营销",
+    "campaigns": "邮件营销",
+    "settings": "设置",
+    "templates": "模板",
+    "segments": "客户分群",
+    "automations": "自动化"
+  },
+  "topbar": {
+    "search": "搜索...",
+    "toggleTheme": "切换主题",
+    "launcher": "应用"
+  },
+  "launcher": {
+    "placeholder": "搜索应用或命令...",
+    "searching": "搜索中...",
+    "noResults": "没有找到结果。",
+    "type": {
+      "contact": "联系人",
+      "task": "任务",
+      "appointment": "预约",
+      "ticket": "工单",
+      "project": "项目",
+      "communication": "沟通",
+      "knowledge": "知识库"
+    },
+    "commands": {
+      "title": "命令",
+      "newContact": "新建联系人",
+      "newTask": "新建任务",
+      "newAppointment": "新建预约",
+      "openCalendar": "打开日历",
+      "askAI": "询问 VORA AI",
+      "changeTheme": "更改主题",
+      "changeLanguage": "更改语言",
+      "openCrm": "打开 CRM",
+      "searchContact": "搜索联系人",
+      "sendEmail": "发送邮件"
+    }
+  },
   "dashboard": {
-    "title": "仪表盘", "subtitle": "今天需要关注的内容。", "today": "今天",
-    "tasks": "优先事项", "inbox": "沟通", "calendar": "日历",
-    "placeholder": "模块尚未实现。"
+    "title": "仪表盘",
+    "subtitle": "今天需要关注的内容。",
+    "today": "今天",
+    "nothingToday": "今天没有安排。",
+    "tasks": "优先事项",
+    "noPriorityTasks": "没有高优先级任务。",
+    "crm": "CRM 销售管道",
+    "openOpportunities": "{count} 个进行中的商机",
+    "projects": "进行中的项目",
+    "noActiveProjects": "没有进行中的项目。",
+    "placeholder": "模块尚未实现。",
+    "customize": {
+      "enter": "自定义",
+      "exit": "完成",
+      "dragHandle": "拖动以重新排序 {widget}",
+      "hide": "隐藏 {widget}",
+      "show": "显示 {widget}",
+      "resize": "调整 {widget} 大小"
+    },
+    "allHidden": "所有小组件均已隐藏。开启自定义模式即可重新显示它们。",
+    "errors": {
+      "load": "无法加载仪表盘布局。"
+    }
+  },
+  "contacts": {
+    "title": "联系人",
+    "subtitle": "{count} 位联系人",
+    "new": "新建联系人",
+    "search": "按姓名、公司、邮箱搜索...",
+    "empty": {
+      "title": "暂无联系人",
+      "subtitle": "添加你的第一个联系人开始使用。",
+      "cta": "添加联系人"
+    },
+    "errors": {
+      "load": "无法加载联系人。",
+      "save": "无法保存联系人。",
+      "delete": "无法删除联系人。"
+    },
+    "columns": {
+      "name": "姓名",
+      "company": "公司",
+      "email": "邮箱",
+      "phone": "电话",
+      "status": "状态"
+    },
+    "status": {
+      "active": "活跃",
+      "lead": "潜在客户",
+      "inactive": "非活跃"
+    },
+    "form": {
+      "firstName": "名",
+      "lastName": "姓",
+      "company": "公司",
+      "role": "职位",
+      "email": "邮箱",
+      "phone": "电话",
+      "whatsapp": "WhatsApp",
+      "website": "网站",
+      "address": "地址",
+      "notes": "备注",
+      "status": "状态",
+      "cancel": "取消",
+      "save": "保存",
+      "saving": "保存中...",
+      "editTitle": "编辑联系人",
+      "newTitle": "新建联系人"
+    },
+    "detail": {
+      "back": "返回联系人列表",
+      "edit": "编辑",
+      "delete": "删除",
+      "deleteConfirm": "删除此联系人？此操作无法撤销。",
+      "notFound": "未找到该联系人。"
+    },
+    "attachments": {
+      "title": "附件",
+      "empty": "暂无附件。",
+      "titleLabel": "附件标题",
+      "urlLabel": "https://...",
+      "add": "添加",
+      "error": "无法添加附件。"
+    },
+    "validation": {
+      "required": "必填项",
+      "email": "邮箱地址无效"
+    },
+    "loadMore": "加载更多",
+    "loadingMore": "加载中..."
+  },
+  "tasks": {
+    "title": "任务",
+    "subtitle": "{count} 个任务",
+    "new": "新建任务",
+    "empty": {
+      "title": "暂无任务",
+      "subtitle": "添加你的第一个任务，开始整理工作。",
+      "cta": "添加任务"
+    },
+    "errors": {
+      "load": "无法加载任务。",
+      "save": "无法保存任务。",
+      "delete": "无法删除任务。"
+    },
+    "status": {
+      "todo": "待办",
+      "in_progress": "进行中",
+      "review": "待审核",
+      "completed": "已完成",
+      "archived": "已归档"
+    },
+    "priority": {
+      "low": "低",
+      "medium": "中",
+      "high": "高",
+      "urgent": "紧急"
+    },
+    "form": {
+      "title": "标题",
+      "description": "描述",
+      "priority": "优先级",
+      "status": "状态",
+      "deadline": "截止日期",
+      "cancel": "取消",
+      "save": "保存",
+      "saving": "保存中...",
+      "editTitle": "编辑任务",
+      "newTitle": "新建任务",
+      "delete": "删除",
+      "project": "项目",
+      "noProject": "未关联项目"
+    },
+    "deleteConfirm": "删除此任务？此操作无法撤销。",
+    "noDeadline": "无截止日期",
+    "attachments": {
+      "title": "附件",
+      "empty": "暂无附件。",
+      "titleLabel": "附件标题",
+      "urlLabel": "https://...",
+      "add": "添加",
+      "error": "无法添加附件。"
+    },
+    "moveTo": "移动 {title}",
+    "loadMore": "加载更多",
+    "loadingMore": "加载中..."
+  },
+  "crm": {
+    "title": "CRM",
+    "subtitle": "{count} 个商机 · {value}",
+    "new": "新建商机",
+    "empty": {
+      "title": "暂无商机",
+      "subtitle": "添加你的第一个商机，开始跟踪销售管道。",
+      "cta": "添加商机"
+    },
+    "errors": {
+      "load": "无法加载商机。",
+      "save": "无法保存商机。",
+      "delete": "无法删除商机。"
+    },
+    "stage": {
+      "lead": "潜在客户",
+      "qualified": "已确认",
+      "proposal": "方案报价",
+      "negotiation": "谈判中",
+      "won": "已成交",
+      "lost": "已流失"
+    },
+    "form": {
+      "title": "标题",
+      "contact": "联系人",
+      "noContact": "未关联联系人",
+      "company": "公司",
+      "value": "金额",
+      "probability": "成交概率",
+      "stage": "阶段",
+      "expectedCloseDate": "预计成交日期",
+      "notes": "备注",
+      "cancel": "取消",
+      "save": "保存",
+      "saving": "保存中...",
+      "editTitle": "编辑商机",
+      "newTitle": "新建商机",
+      "delete": "删除"
+    },
+    "deleteConfirm": "删除此商机？此操作无法撤销。",
+    "moveTo": "移动 {title}",
+    "loadMore": "加载更多",
+    "loadingMore": "加载中..."
+  },
+  "calendar": {
+    "title": "日历",
+    "subtitle": "{count} 个事件",
+    "new": "新建事件",
+    "today": "今天",
+    "month": "月",
+    "agenda": "日程",
+    "empty": {
+      "title": "暂无事件",
+      "subtitle": "添加你的第一个事件，开始安排日历。",
+      "cta": "添加事件"
+    },
+    "errors": {
+      "load": "无法加载事件。",
+      "save": "无法保存事件。",
+      "delete": "无法删除事件。"
+    },
+    "form": {
+      "title": "标题",
+      "description": "描述",
+      "start": "开始时间",
+      "end": "结束时间",
+      "allDay": "全天",
+      "location": "地点",
+      "contact": "联系人",
+      "noContact": "未关联联系人",
+      "cancel": "取消",
+      "save": "保存",
+      "saving": "保存中...",
+      "editTitle": "编辑事件",
+      "newTitle": "新建事件",
+      "delete": "删除",
+      "date": "日期",
+      "timezone": "时区",
+      "repeat": "重复",
+      "repeatEvery": "每",
+      "repeatUntil": "直到"
+    },
+    "deleteConfirm": "删除此事件？此操作无法撤销。",
+    "prevMonth": "上个月",
+    "nextMonth": "下个月",
+    "recurrence": {
+      "none": "不重复",
+      "daily": "每天",
+      "weekly": "每周",
+      "monthly": "每月"
+    }
+  },
+  "projects": {
+    "title": "项目",
+    "subtitle": "{count} 个项目",
+    "new": "新建项目",
+    "list": "列表",
+    "kanban": "看板",
+    "empty": {
+      "title": "暂无项目",
+      "subtitle": "添加你的第一个项目，开始整理工作。",
+      "cta": "添加项目"
+    },
+    "errors": {
+      "load": "无法加载项目。",
+      "save": "无法保存项目。",
+      "delete": "无法删除项目。"
+    },
+    "status": {
+      "active": "进行中",
+      "on_hold": "已暂停",
+      "completed": "已完成",
+      "archived": "已归档"
+    },
+    "columns": {
+      "name": "名称",
+      "client": "客户",
+      "status": "状态",
+      "dueDate": "截止日期",
+      "budget": "预算",
+      "tasks": "任务"
+    },
+    "form": {
+      "name": "名称",
+      "description": "描述",
+      "status": "状态",
+      "client": "客户",
+      "noClient": "未关联客户",
+      "startDate": "开始日期",
+      "dueDate": "截止日期",
+      "budget": "预算（欧元）",
+      "cancel": "取消",
+      "save": "保存",
+      "saving": "保存中...",
+      "editTitle": "编辑项目",
+      "newTitle": "新建项目",
+      "delete": "删除"
+    },
+    "deleteConfirm": "删除此项目？关联任务不会被删除。",
+    "detail": {
+      "back": "返回项目列表",
+      "documents": "文档",
+      "noDocuments": "暂无文档。",
+      "documentTitle": "文档标题",
+      "documentUrl": "https://...",
+      "addDocument": "添加",
+      "documentError": "无法添加文档。",
+      "discussion": "讨论",
+      "noDiscussion": "暂无消息。",
+      "addDiscussion": "输入消息...",
+      "send": "发送",
+      "milestones": "里程碑",
+      "noMilestones": "暂无里程碑。",
+      "milestoneTitle": "里程碑标题",
+      "milestoneDueDate": "截止日期",
+      "addMilestone": "添加",
+      "milestoneError": "无法添加里程碑。"
+    },
+    "loadMore": "加载更多",
+    "loadingMore": "加载中..."
+  },
+  "timesheets": {
+    "title": "工时表",
+    "subtitle": "{count} 条记录 · 已记录 {hours} 小时",
+    "new": "记录工时",
+    "timer": {
+      "start": "开始计时",
+      "stop": "停止并保存",
+      "running": "计时中",
+      "descriptionPlaceholder": "你在做什么？"
+    },
+    "empty": {
+      "title": "暂无记录",
+      "subtitle": "开始计时或手动记录工时以开始使用。",
+      "cta": "记录工时"
+    },
+    "errors": {
+      "load": "无法加载工时表。",
+      "save": "无法保存记录。",
+      "delete": "无法删除记录。"
+    },
+    "form": {
+      "project": "项目",
+      "noProject": "未关联项目",
+      "task": "任务",
+      "noTask": "未关联任务",
+      "description": "描述",
+      "date": "日期",
+      "duration": "时长（分钟）",
+      "billable": "可计费",
+      "cancel": "取消",
+      "save": "保存",
+      "saving": "保存中...",
+      "editTitle": "编辑记录",
+      "newTitle": "新建记录",
+      "delete": "删除"
+    },
+    "deleteConfirm": "删除此记录？此操作无法撤销。",
+    "noBillable": "不可计费"
+  },
+  "appointments": {
+    "title": "预约",
+    "subtitle": "{count} 个预约",
+    "new": "新建预约",
+    "upcoming": "即将到来",
+    "past": "已过去",
+    "empty": {
+      "title": "暂无预约",
+      "subtitle": "添加你的第一个预约以开始使用。",
+      "cta": "添加预约"
+    },
+    "errors": {
+      "load": "无法加载预约。",
+      "save": "无法保存预约。",
+      "delete": "无法删除预约。"
+    },
+    "status": {
+      "scheduled": "已安排",
+      "confirmed": "已确认",
+      "completed": "已完成",
+      "cancelled": "已取消"
+    },
+    "form": {
+      "title": "标题",
+      "contact": "联系人",
+      "noContact": "未关联联系人",
+      "opportunity": "CRM 商机",
+      "noOpportunity": "未关联商机",
+      "start": "日期和时间",
+      "duration": "时长（分钟）",
+      "location": "地点",
+      "videoCallUrl": "视频通话链接",
+      "notes": "备注",
+      "status": "状态",
+      "cancel": "取消",
+      "save": "保存",
+      "saving": "保存中...",
+      "editTitle": "编辑预约",
+      "newTitle": "新建预约",
+      "delete": "删除"
+    },
+    "joinCall": "加入视频通话",
+    "deleteConfirm": "删除此预约？此操作无法撤销。"
+  },
+  "inbox": {
+    "title": "收件箱",
+    "subtitle": "{count} 条消息",
+    "new": "新建消息",
+    "all": "全部",
+    "channel": {
+      "email": "邮件",
+      "whatsapp": "WhatsApp",
+      "internal": "内部"
+    },
+    "empty": {
+      "title": "暂无消息",
+      "subtitle": "与联系人的沟通记录将显示在这里。",
+      "cta": "发送你的第一条消息"
+    },
+    "errors": {
+      "load": "无法加载消息。",
+      "send": "无法发送消息。",
+      "delete": "无法删除消息。"
+    },
+    "mockNotice": "未配置真实的邮件/WhatsApp 服务商——此消息已被记录，但实际上并未发送。请设置 EMAIL_PROVIDER_API_KEY / WHATSAPP_API_KEY 以连接真实的服务商。",
+    "form": {
+      "channel": "渠道",
+      "to": "收件人",
+      "contact": "联系人",
+      "noContact": "未关联联系人",
+      "subject": "主题",
+      "body": "消息内容",
+      "cancel": "取消",
+      "send": "发送",
+      "sending": "发送中...",
+      "newTitle": "新建消息"
+    },
+    "markRead": "标记为已读",
+    "archive": "归档",
+    "delete": "删除",
+    "deleteConfirm": "删除此消息？此操作无法撤销。",
+    "extractTask": "提取任务",
+    "suggestAppointment": "建议预约",
+    "threadCount": "{count} 条消息",
+    "reply": "回复",
+    "you": "你",
+    "labels": {
+      "filterBy": "按标签筛选：",
+      "add": "+ 标签",
+      "remove": "移除标签 {label}",
+      "placeholder": "新标签"
+    },
+    "loadMore": "加载更多",
+    "loadingMore": "加载中..."
+  },
+  "ai": {
+    "errors": {
+      "extract": "无法分析该消息。"
+    },
+    "taskSuggestion": {
+      "title": "建议的任务",
+      "none": "未在此消息中发现可执行的请求。",
+      "confirm": "创建任务",
+      "reject": "忽略"
+    },
+    "provider": "基于规则的分析——未连接外部语言模型。",
+    "calendarSuggestion": {
+      "title": "建议的预约",
+      "none": "未在此消息中检测到预约请求。",
+      "pickSlot": "选择时间",
+      "busy": "忙碌",
+      "confirm": "创建预约",
+      "reject": "忽略"
+    },
+    "actions": {
+      "title": "AI 操作",
+      "close": "关闭",
+      "summarize": "总结",
+      "generateReply": "生成回复",
+      "run": "运行",
+      "working": "处理中...",
+      "useAsReply": "用作回复"
+    },
+    "relationship": {
+      "title": "关系分析（AI）",
+      "noHistory": "尚未记录与该联系人的任何沟通或预约。",
+      "summarize": "总结关系",
+      "followUp": "准备跟进",
+      "useAsFollowUp": "用作跟进邮件"
+    },
+    "prioritize": {
+      "action": "使用 AI 排定优先级"
+    }
+  },
+  "assistant": {
+    "title": "VORA 助手",
+    "close": "关闭",
+    "open": "助手",
+    "prompts": {
+      "organizeDay": "安排我的一天",
+      "priorities": "我最重要的任务有哪些？",
+      "unanswered": "我还有哪些消息未读？",
+      "upcoming": "查找我接下来的预约"
+    }
+  },
+  "helpdesk": {
+    "title": "服务台",
+    "subtitle": "{count} 个工单",
+    "new": "新建工单",
+    "empty": {
+      "title": "暂无工单",
+      "subtitle": "添加你的第一个支持工单。",
+      "cta": "添加工单"
+    },
+    "errors": {
+      "load": "无法加载工单。",
+      "save": "无法保存工单。",
+      "delete": "无法删除工单。"
+    },
+    "status": {
+      "open": "待处理",
+      "in_progress": "处理中",
+      "waiting": "等待中",
+      "resolved": "已解决",
+      "closed": "已关闭"
+    },
+    "category": {
+      "technical": "技术问题",
+      "billing": "账单问题",
+      "general": "一般咨询",
+      "feature_request": "功能请求"
+    },
+    "columns": {
+      "title": "标题",
+      "customer": "客户",
+      "status": "状态",
+      "priority": "优先级",
+      "category": "类别",
+      "sla": "SLA"
+    },
+    "form": {
+      "title": "标题",
+      "description": "描述",
+      "contact": "客户",
+      "noContact": "未关联客户",
+      "priority": "优先级",
+      "status": "状态",
+      "category": "类别",
+      "cancel": "取消",
+      "save": "保存",
+      "saving": "保存中...",
+      "editTitle": "编辑工单",
+      "newTitle": "新建工单",
+      "delete": "删除",
+      "sla": "SLA 截止时间"
+    },
+    "detail": {
+      "back": "返回工单列表",
+      "comments": "评论",
+      "noComments": "暂无评论。",
+      "addComment": "添加评论...",
+      "send": "发送"
+    },
+    "attachments": {
+      "title": "附件",
+      "empty": "暂无附件。",
+      "titleLabel": "附件标题",
+      "urlLabel": "https://...",
+      "add": "添加",
+      "error": "无法添加附件。"
+    },
+    "deleteConfirm": "删除此工单？此操作无法撤销。",
+    "sla": {
+      "dueAt": "截止时间 {date}",
+      "overdue": "已逾期"
+    },
+    "loadMore": "加载更多",
+    "loadingMore": "加载中..."
+  },
+  "knowledge": {
+    "title": "知识库",
+    "subtitle": "{count} 个页面",
+    "new": "新建页面",
+    "search": "按标题、内容或标签搜索...",
+    "allFolders": "所有文件夹",
+    "favoritesOnly": "仅显示收藏",
+    "noFolder": "无文件夹",
+    "empty": {
+      "title": "暂无页面",
+      "subtitle": "创建你的第一个页面，开始构建知识库。",
+      "cta": "创建页面"
+    },
+    "errors": {
+      "load": "无法加载页面。",
+      "save": "无法保存页面。",
+      "delete": "无法删除页面。"
+    },
+    "form": {
+      "title": "标题",
+      "content": "内容（Markdown）",
+      "folder": "文件夹",
+      "tags": "标签（英文逗号分隔）",
+      "cancel": "取消",
+      "save": "保存",
+      "saving": "保存中...",
+      "editTitle": "编辑页面",
+      "newTitle": "新建页面",
+      "delete": "删除",
+      "edit": "编辑",
+      "preview": "预览"
+    },
+    "detail": {
+      "back": "返回知识库",
+      "lastUpdated": "最后更新"
+    },
+    "deleteConfirm": "删除此页面？此操作无法撤销。",
+    "semanticSearch": "智能搜索（按 Enter）",
+    "searching": "搜索中...",
+    "semanticResultsCount": "找到 {count} 个相关结果",
+    "relevance": "相关度 {pct}%",
+    "favorite": "添加到收藏",
+    "unfavorite": "取消收藏",
+    "loadMore": "加载更多",
+    "loadingMore": "加载中..."
+  },
+  "expenses": {
+    "title": "费用报销",
+    "subtitle": "{count} 笔费用 · {total}",
+    "new": "新建费用",
+    "all": "全部",
+    "empty": {
+      "title": "暂无费用记录",
+      "subtitle": "记录你的第一笔费用以开始使用。",
+      "cta": "添加费用"
+    },
+    "errors": {
+      "load": "无法加载费用记录。",
+      "save": "无法保存费用记录。",
+      "delete": "无法删除费用记录。"
+    },
+    "status": {
+      "pending": "待审批",
+      "approved": "已批准",
+      "rejected": "已拒绝"
+    },
+    "category": {
+      "travel": "差旅",
+      "meals": "餐饮",
+      "office": "办公用品",
+      "software": "软件",
+      "other": "其他"
+    },
+    "columns": {
+      "date": "日期",
+      "category": "类别",
+      "project": "项目",
+      "amount": "金额",
+      "status": "状态"
+    },
+    "form": {
+      "amount": "金额（欧元）",
+      "date": "日期",
+      "category": "类别",
+      "project": "项目",
+      "noProject": "未关联项目",
+      "notes": "备注",
+      "receiptUrl": "收据链接（可选）",
+      "cancel": "取消",
+      "save": "保存",
+      "saving": "保存中...",
+      "editTitle": "编辑费用",
+      "newTitle": "新建费用",
+      "delete": "删除"
+    },
+    "approve": "批准",
+    "reject": "拒绝",
+    "deleteConfirm": "删除此费用记录？此操作无法撤销。"
+  },
+  "leave": {
+    "title": "请假",
+    "subtitle": "{count} 个申请",
+    "new": "新建申请",
+    "all": "全部",
+    "balance": {
+      "title": "假期余额",
+      "allocated": "已分配",
+      "used": "已使用",
+      "remaining": "剩余",
+      "days": "天"
+    },
+    "empty": {
+      "title": "暂无申请",
+      "subtitle": "提交你的第一个请假申请。",
+      "cta": "添加申请"
+    },
+    "errors": {
+      "load": "无法加载申请。",
+      "save": "无法保存申请。",
+      "delete": "无法删除申请。"
+    },
+    "status": {
+      "pending": "待审批",
+      "approved": "已批准",
+      "rejected": "已拒绝"
+    },
+    "type": {
+      "vacation": "年假",
+      "sick": "病假",
+      "personal": "事假"
+    },
+    "columns": {
+      "requester": "申请人",
+      "type": "类型",
+      "dates": "日期",
+      "days": "天数",
+      "status": "状态"
+    },
+    "form": {
+      "requesterName": "姓名",
+      "selectEmployee": "选择员工",
+      "type": "类型",
+      "startDate": "开始日期",
+      "endDate": "结束日期",
+      "notes": "备注",
+      "cancel": "取消",
+      "save": "保存",
+      "saving": "保存中...",
+      "newTitle": "新建请假申请"
+    },
+    "approve": "批准",
+    "reject": "拒绝",
+    "deleteConfirm": "删除此申请？此操作无法撤销。"
+  },
+  "wellbeing": {
+    "title": "健康关怀",
+    "subtitle": "属于你的时刻：每日签到、呼吸练习、每周趋势。",
+    "disclaimer": "健康关怀不能替代专业医疗人员，也不提供诊断。这是一个反思你的工作负荷和整体状态的空间。",
+    "mood": "情绪",
+    "energy": "精力",
+    "stress": "压力",
+    "note": "备注（可选）",
+    "notePlaceholder": "今天过得怎么样？",
+    "save": "保存签到",
+    "saving": "保存中...",
+    "saved": "签到已保存。",
+    "history": "最近的签到记录",
+    "checkin": {
+      "title": "今日签到",
+      "updateTitle": "更新今日签到"
+    },
+    "weekly": {
+      "title": "最近 {count} 次签到平均值"
+    },
+    "breathing": {
+      "title": "呼吸练习",
+      "start": "开始",
+      "stop": "停止",
+      "in": "吸气",
+      "hold1": "屏息",
+      "out": "呼气",
+      "hold2": "屏息"
+    },
+    "errors": {
+      "load": "无法加载签到记录。"
+    }
+  },
+  "auditLog": {
+    "title": "审计日志",
+    "subtitle": "组织内的敏感操作——仅拥有者和管理员可见。",
+    "empty": "暂无活动记录。",
+    "actions": {
+      "login": "登录",
+      "logout": "退出登录",
+      "employee.create": "创建员工",
+      "employee.update": "更新员工信息",
+      "employee.delete": "删除员工",
+      "leave.approve": "请假已批准",
+      "leave.reject": "请假已拒绝",
+      "expense.approve": "费用已批准",
+      "expense.reject": "费用已拒绝"
+    },
+    "errors": {
+      "load": "无法加载审计日志。",
+      "forbidden": "只有拥有者和管理员可以查看审计日志。"
+    }
+  },
+  "employees": {
+    "title": "员工",
+    "subtitle": "{count} 位员工",
+    "new": "新建员工",
+    "empty": {
+      "title": "暂无员工",
+      "subtitle": "添加你的第一位员工以开始使用。",
+      "cta": "添加员工"
+    },
+    "errors": {
+      "load": "无法加载员工。",
+      "save": "无法保存员工信息。",
+      "delete": "无法删除员工。"
+    },
+    "status": {
+      "active": "在职",
+      "inactive": "离职"
+    },
+    "columns": {
+      "name": "姓名",
+      "role": "职位",
+      "team": "团队",
+      "email": "邮箱",
+      "status": "状态"
+    },
+    "form": {
+      "firstName": "名",
+      "lastName": "姓",
+      "email": "邮箱",
+      "role": "职位",
+      "team": "团队",
+      "status": "状态",
+      "startDate": "入职日期",
+      "cancel": "取消",
+      "save": "保存",
+      "saving": "保存中...",
+      "editTitle": "编辑员工",
+      "newTitle": "新建员工",
+      "delete": "删除"
+    },
+    "deleteConfirm": "删除此员工？此操作无法撤销。"
+  },
+  "social": {
+    "title": "社交营销",
+    "subtitle": "{count} 篇帖子",
+    "new": "新建帖子",
+    "all": "全部",
+    "empty": {
+      "title": "暂无帖子",
+      "subtitle": "创建你的第一篇帖子，开始规划内容。",
+      "cta": "创建帖子"
+    },
+    "errors": {
+      "load": "无法加载帖子。",
+      "save": "无法保存帖子。",
+      "delete": "无法删除帖子。"
+    },
+    "status": {
+      "draft": "草稿",
+      "scheduled": "已排期",
+      "published": "已发布"
+    },
+    "platform": {
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "linkedin": "LinkedIn",
+      "x": "X"
+    },
+    "form": {
+      "content": "内容",
+      "platform": "平台",
+      "status": "状态",
+      "scheduledAt": "计划发布时间",
+      "cancel": "取消",
+      "save": "保存",
+      "saving": "保存中...",
+      "editTitle": "编辑帖子",
+      "newTitle": "新建帖子",
+      "delete": "删除"
+    },
+    "deleteConfirm": "删除此帖子？此操作无法撤销。"
+  },
+  "campaigns": {
+    "title": "邮件营销",
+    "subtitle": "{count} 个营销活动",
+    "new": "新建营销活动",
+    "empty": {
+      "title": "暂无营销活动",
+      "subtitle": "创建你的第一个邮件营销活动。",
+      "cta": "创建营销活动"
+    },
+    "errors": {
+      "load": "无法加载营销活动。",
+      "save": "无法保存营销活动。",
+      "send": "无法发送营销活动。",
+      "delete": "无法删除营销活动。"
+    },
+    "status": {
+      "draft": "草稿",
+      "sent": "已发送"
+    },
+    "mockNotice": "未配置真实的邮件服务商——发送操作将被记录，但实际上不会发出任何邮件。",
+    "form": {
+      "name": "活动名称",
+      "subject": "主题",
+      "body": "内容",
+      "recipientCount": "预估收件人数量",
+      "cancel": "取消",
+      "save": "保存",
+      "saving": "保存中...",
+      "editTitle": "编辑营销活动",
+      "newTitle": "新建营销活动",
+      "delete": "删除",
+      "useTemplate": "使用模板",
+      "noTemplate": "不使用模板",
+      "useSegment": "使用客户分群",
+      "noSegment": "不使用分群",
+      "resolvingSegment": "正在解析收件人..."
+    },
+    "send": "发送",
+    "sentOn": "发送于",
+    "deleteConfirm": "删除此营销活动？此操作无法撤销。"
+  },
+  "website": {
+    "title": "网站",
+    "subtitle": "已连接的公开站点概览",
+    "visitSite": "访问网站",
+    "connected": "已连接",
+    "notConnected": "未找到 portfolio-andrea 项目",
+    "pages": "页面",
+    "projects": "已发布的项目",
+    "featured": "精选",
+    "errors": {
+      "load": "无法加载网站数据。"
+    },
+    "note": "公开站点是一个独立的 Nuxt 项目（portfolio-andrea）。此页面以只读方式反映其真实内容——VORA 并未内置重复的网站编辑器。",
+    "myWebsites": "你生成的站点",
+    "createSite": "任何组织都可以生成自己的站点，并实际发布在 VORA 提供的地址上。"
+  },
+  "sites": {
+    "title": "已生成的站点",
+    "subtitle": "{count} 个站点",
+    "new": "新建站点",
+    "empty": {
+      "title": "暂无站点",
+      "subtitle": "创建你的第一个 VORA 生成站点。",
+      "cta": "创建站点"
+    },
+    "errors": {
+      "load": "无法加载站点。",
+      "save": "无法保存站点。",
+      "delete": "无法删除站点。"
+    },
+    "published": "已发布",
+    "draft": "草稿",
+    "viewLive": "查看在线站点",
+    "form": {
+      "slug": "地址（slug）",
+      "slugHint": "该站点将可通过 /site/{slug} 访问",
+      "name": "名称",
+      "tagline": "标语",
+      "about": "简介",
+      "contactEmail": "联系邮箱",
+      "accentColor": "强调色",
+      "published": "已发布",
+      "cancel": "取消",
+      "save": "保存",
+      "saving": "保存中...",
+      "editTitle": "编辑站点",
+      "newTitle": "新建站点",
+      "delete": "删除"
+    },
+    "deleteConfirm": "删除此站点？此操作无法撤销。",
+    "notFound": "该站点不存在或尚未发布。",
+    "generatedBy": "由 VORA 生成"
+  },
+  "settings": {
+    "title": "设置",
+    "subtitle": "账户、安全、通知和集成。",
+    "saving": "保存中...",
+    "save": "保存",
+    "saved": "已保存。",
+    "profile": {
+      "title": "个人资料",
+      "name": "姓名",
+      "email": "邮箱",
+      "organization": "组织",
+      "role": {
+        "owner": "拥有者",
+        "admin": "管理员",
+        "member": "成员"
+      }
+    },
+    "security": {
+      "title": "安全",
+      "currentPassword": "当前密码",
+      "newPassword": "新密码",
+      "changePassword": "修改密码",
+      "wrongPassword": "当前密码不正确。",
+      "error": "无法修改密码。"
+    },
+    "appearance": {
+      "title": "外观",
+      "light": "浅色",
+      "dark": "深色",
+      "system": "跟随系统"
+    },
+    "language": {
+      "title": "语言"
+    },
+    "notifications": {
+      "title": "通知",
+      "messages": "消息",
+      "urgentTasks": "紧急任务",
+      "appointments": "预约",
+      "reminders": "提醒",
+      "aiActions": "AI 操作",
+      "approvals": "审批",
+      "tickets": "工单",
+      "deadlines": "截止日期"
+    },
+    "integrations": {
+      "title": "集成",
+      "ai": "AI 引擎",
+      "email": "邮件服务商",
+      "whatsapp": "WhatsApp",
+      "oauthGoogle": "Google 登录",
+      "live": "已启用",
+      "mock": "模拟",
+      "note": "「模拟」表示这是一个真实可用的实现，但未连接外部服务商凭证——在你配置凭证之前（参见 .env.example），它不会通过真实网络发送或接收任何内容。"
+    },
+    "applications": {
+      "title": "应用",
+      "subtitle": "按 ⌘K 查看完整的模块和快捷操作列表。"
+    },
+    "api": {
+      "title": "API",
+      "notice": "个人 API 密钥管理功能尚未构建——这是一项真实的未来功能，而非隐藏的模拟界面。"
+    }
+  },
+  "templates": {
+    "title": "邮件模板",
+    "subtitle": "{count} 个模板",
+    "new": "新建模板",
+    "empty": {
+      "title": "暂无模板",
+      "subtitle": "创建你的第一个可复用邮件模板。",
+      "cta": "创建模板"
+    },
+    "errors": {
+      "load": "无法加载模板。",
+      "save": "无法保存模板。",
+      "delete": "无法删除模板。"
+    },
+    "deleteConfirm": "删除此模板？此操作无法撤销。",
+    "form": {
+      "name": "名称",
+      "subject": "主题",
+      "body": "内容",
+      "cancel": "取消",
+      "save": "保存",
+      "saving": "保存中...",
+      "editTitle": "编辑模板",
+      "newTitle": "新建模板",
+      "delete": "删除"
+    }
+  },
+  "segments": {
+    "title": "客户分群",
+    "subtitle": "{count} 个分群",
+    "new": "新建分群",
+    "empty": {
+      "title": "暂无分群",
+      "subtitle": "创建你的第一个可复用联系人分群。",
+      "cta": "创建分群"
+    },
+    "errors": {
+      "load": "无法加载分群。",
+      "save": "无法保存分群。",
+      "delete": "无法删除分群。"
+    },
+    "deleteConfirm": "删除此分群？此操作无法撤销。",
+    "form": {
+      "name": "名称",
+      "status": "联系人状态",
+      "anyStatus": "任意状态",
+      "tags": "标签",
+      "tagsPlaceholder": "英文逗号分隔",
+      "cancel": "取消",
+      "save": "保存",
+      "saving": "保存中...",
+      "editTitle": "编辑分群",
+      "newTitle": "新建分群",
+      "delete": "删除"
+    }
+  },
+  "automations": {
+    "title": "自动化",
+    "subtitle": "{count} 个自动化流程",
+    "new": "新建自动化",
+    "empty": {
+      "title": "暂无自动化流程",
+      "subtitle": "创建你的第一个营销自动化流程：真实的触发器、条件和操作。",
+      "cta": "创建自动化"
+    },
+    "errors": {
+      "load": "无法加载自动化流程。",
+      "save": "无法保存自动化流程。",
+      "delete": "无法删除自动化流程。"
+    },
+    "deleteConfirm": "删除此自动化流程？此操作无法撤销。",
+    "status": {
+      "active": "已启用",
+      "inactive": "已停用"
+    },
+    "runCount": "运行 {count} 次",
+    "lastRun": "上次运行：{date}",
+    "trigger": {
+      "contact_created": "联系人创建时",
+      "contact_status_changed": "联系人状态变更时",
+      "manual": "手动运行"
+    },
+    "form": {
+      "editTitle": "编辑自动化",
+      "newTitle": "新建自动化",
+      "name": "名称",
+      "active": "启用",
+      "trigger": "触发器",
+      "steps": "步骤",
+      "addCondition": "条件",
+      "addAction": "操作",
+      "addDelay": "延迟",
+      "noSteps": "暂无步骤——该自动化流程将仅运行其触发器。",
+      "stepKind": {
+        "condition": "条件",
+        "action": "操作",
+        "delay": "延迟"
+      },
+      "field": {
+        "status": "状态",
+        "tag": "标签",
+        "source": "来源"
+      },
+      "operator": {
+        "equals": "等于",
+        "not_equals": "不等于",
+        "contains": "包含"
+      },
+      "value": "值",
+      "actionType": {
+        "send_email": "发送邮件",
+        "add_tag": "添加标签",
+        "change_status": "更改状态",
+        "create_task": "创建任务"
+      },
+      "emailSubject": "邮件主题",
+      "emailBody": "邮件内容",
+      "tag": "要添加的标签",
+      "status": "新状态",
+      "taskTitle": "任务标题",
+      "waitHours": "等待（小时）",
+      "delayLimitation": "限制：在当前版本中，等待操作并不会真正在后台运行——它仅在触发时被评估。",
+      "moveUp": "上移",
+      "moveDown": "下移",
+      "removeStep": "移除步骤",
+      "cancel": "取消",
+      "save": "保存",
+      "saving": "保存中...",
+      "delete": "删除"
+    }
   }
 }

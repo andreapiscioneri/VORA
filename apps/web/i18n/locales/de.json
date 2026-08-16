@@ -1,16 +1,1263 @@
 {
-  "nav": {
-    "overview": "Übersicht", "dashboard": "Dashboard", "relationships": "Beziehungen",
-    "contacts": "Kontakte", "crm": "CRM", "time": "Zeit", "calendar": "Kalender",
-    "tasks": "Aufgaben", "appointments": "Termine", "communications": "Kommunikation",
-    "inbox": "Posteingang", "work": "Arbeit", "projects": "Projekte",
-    "timesheets": "Stundenzettel", "helpdesk": "Helpdesk", "knowledge": "Wissen", "settings": "Einstellungen"
+  "common": {
+    "skipToContent": "Zum Hauptinhalt springen"
   },
-  "topbar": { "search": "Suchen...", "toggleTheme": "Design wechseln", "launcher": "Apps" },
-  "launcher": { "placeholder": "App oder Befehl suchen..." },
+  "validation": {
+    "required": "Pflichtfeld",
+    "email": "Ungültige E-Mail-Adresse",
+    "url": "Ungültige URL",
+    "endBeforeStart": "Das Ende muss nach dem Beginn liegen",
+    "slug": "Nur Kleinbuchstaben, Zahlen und Bindestriche verwenden (z. B. meine-seite)",
+    "slugTaken": "Diese Adresse ist bereits vergeben, bitte eine andere wählen",
+    "color": "Bitte einen gültigen Hex-Farbwert verwenden (z. B. #39FF14)",
+    "recurrenceUntilBeforeStart": "Das Enddatum der Wiederholung darf nicht vor dem Startdatum liegen."
+  },
+  "auth": {
+    "loginTitle": "Bei Vora anmelden",
+    "registerTitle": "Konto erstellen",
+    "name": "Name",
+    "email": "E-Mail",
+    "password": "Passwort",
+    "organizationName": "Name der Organisation",
+    "submitLogin": "Anmelden",
+    "submitRegister": "Konto erstellen",
+    "noAccount": "Noch kein Konto?",
+    "hasAccount": "Bereits ein Konto?",
+    "switchToRegister": "Registrieren",
+    "switchToLogin": "Anmelden",
+    "invalidCredentials": "E-Mail oder Passwort falsch",
+    "emailTaken": "Diese E-Mail-Adresse ist bereits registriert",
+    "passwordTooShort": "Das Passwort muss mindestens 8 Zeichen lang sein",
+    "logout": "Abmelden",
+    "sending": "Wird gesendet...",
+    "backToLogin": "Zurück zur Anmeldung",
+    "forgotLink": "Passwort vergessen?",
+    "forgotTitle": "Passwort zurücksetzen",
+    "forgotSubtitle": "Wir senden Ihnen einen Link zum Zurücksetzen.",
+    "forgotSubmit": "Link senden",
+    "forgotSent": "Falls zu dieser E-Mail-Adresse ein Konto existiert, erhalten Sie einen Link zum Zurücksetzen des Passworts.",
+    "resetTitle": "Passwort zurücksetzen",
+    "resetInvalidLink": "Dieser Link ist ungültig oder abgelaufen.",
+    "resetSuccess": "Passwort erfolgreich aktualisiert.",
+    "resetSubmit": "Passwort zurücksetzen",
+    "newPassword": "Neues Passwort",
+    "verifying": "Wird überprüft...",
+    "verifySuccess": "E-Mail-Adresse erfolgreich bestätigt.",
+    "verifyError": "Dieser Bestätigungslink ist ungültig oder abgelaufen.",
+    "goToDashboard": "Zum Dashboard",
+    "verifyBanner": "Bestätigen Sie Ihre E-Mail-Adresse, um Ihr Konto zu schützen.",
+    "verifyBannerResend": "Erneut senden",
+    "verifyBannerSent": "E-Mail gesendet.",
+    "or": "oder",
+    "continueWithGoogle": "Mit Google fortfahren",
+    "oauthFailed": "Die Anmeldung mit Google ist fehlgeschlagen. Bitte erneut versuchen oder E-Mail und Passwort verwenden."
+  },
+  "nav": {
+    "overview": "Übersicht",
+    "dashboard": "Dashboard",
+    "relationships": "Beziehungen",
+    "contacts": "Kontakte",
+    "crm": "CRM",
+    "time": "Zeit",
+    "calendar": "Kalender",
+    "tasks": "Aufgaben",
+    "appointments": "Termine",
+    "communications": "Kommunikation",
+    "inbox": "Posteingang",
+    "work": "Arbeit",
+    "projects": "Projekte",
+    "timesheets": "Stundenzettel",
+    "helpdesk": "Helpdesk",
+    "knowledge": "Wissen",
+    "expenses": "Spesen",
+    "leave": "Urlaub",
+    "employees": "Mitarbeitende",
+    "wellbeing": "Wohlbefinden",
+    "auditLog": "Prüfprotokoll",
+    "marketing": "Marketing",
+    "website": "Website",
+    "social": "Social Marketing",
+    "campaigns": "E-Mail-Marketing",
+    "settings": "Einstellungen",
+    "templates": "Vorlagen",
+    "segments": "Segmente",
+    "automations": "Automatisierungen"
+  },
+  "topbar": {
+    "search": "Suchen...",
+    "toggleTheme": "Design wechseln",
+    "launcher": "Apps"
+  },
+  "launcher": {
+    "placeholder": "App oder Befehl suchen...",
+    "searching": "Suche läuft...",
+    "noResults": "Keine Ergebnisse.",
+    "type": {
+      "contact": "Kontakt",
+      "task": "Aufgabe",
+      "appointment": "Termin",
+      "ticket": "Ticket",
+      "project": "Projekt",
+      "communication": "Kommunikation",
+      "knowledge": "Wissen"
+    },
+    "commands": {
+      "title": "Befehle",
+      "newContact": "Neuer Kontakt",
+      "newTask": "Neue Aufgabe",
+      "newAppointment": "Neuer Termin",
+      "openCalendar": "Kalender öffnen",
+      "askAI": "VORA AI fragen",
+      "changeTheme": "Design ändern",
+      "changeLanguage": "Sprache ändern",
+      "openCrm": "CRM öffnen",
+      "searchContact": "Kontakt suchen",
+      "sendEmail": "E-Mail senden"
+    }
+  },
   "dashboard": {
-    "title": "Dashboard", "subtitle": "Das ist heute wichtig.", "today": "Heute",
-    "tasks": "Prioritäten", "inbox": "Kommunikation", "calendar": "Kalender",
-    "placeholder": "Modul noch nicht implementiert."
+    "title": "Dashboard",
+    "subtitle": "Das ist heute wichtig.",
+    "today": "Heute",
+    "nothingToday": "Für heute ist nichts geplant.",
+    "tasks": "Prioritäten",
+    "noPriorityTasks": "Keine hochpriorisierten Aufgaben.",
+    "crm": "CRM-Pipeline",
+    "openOpportunities": "{count} offene Opportunities",
+    "projects": "Aktive Projekte",
+    "noActiveProjects": "Keine aktiven Projekte.",
+    "placeholder": "Modul noch nicht implementiert.",
+    "customize": {
+      "enter": "Anpassen",
+      "exit": "Fertig",
+      "dragHandle": "{widget} zum Neuanordnen ziehen",
+      "hide": "{widget} ausblenden",
+      "show": "{widget} einblenden",
+      "resize": "{widget} in der Größe ändern"
+    },
+    "allHidden": "Alle Widgets sind ausgeblendet. Aktivieren Sie „Anpassen“, um sie wieder einzublenden.",
+    "errors": {
+      "load": "Das Dashboard-Layout konnte nicht geladen werden."
+    }
+  },
+  "contacts": {
+    "title": "Kontakte",
+    "subtitle": "{count} Kontakte",
+    "new": "Neuer Kontakt",
+    "search": "Suche nach Name, Firma, E-Mail...",
+    "empty": {
+      "title": "Noch keine Kontakte",
+      "subtitle": "Fügen Sie Ihren ersten Kontakt hinzu, um zu beginnen.",
+      "cta": "Kontakt hinzufügen"
+    },
+    "errors": {
+      "load": "Die Kontakte konnten nicht geladen werden.",
+      "save": "Der Kontakt konnte nicht gespeichert werden.",
+      "delete": "Der Kontakt konnte nicht gelöscht werden."
+    },
+    "columns": {
+      "name": "Name",
+      "company": "Firma",
+      "email": "E-Mail",
+      "phone": "Telefon",
+      "status": "Status"
+    },
+    "status": {
+      "active": "Aktiv",
+      "lead": "Lead",
+      "inactive": "Inaktiv"
+    },
+    "form": {
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "company": "Firma",
+      "role": "Rolle",
+      "email": "E-Mail",
+      "phone": "Telefon",
+      "whatsapp": "WhatsApp",
+      "website": "Website",
+      "address": "Adresse",
+      "notes": "Notizen",
+      "status": "Status",
+      "cancel": "Abbrechen",
+      "save": "Speichern",
+      "saving": "Wird gespeichert...",
+      "editTitle": "Kontakt bearbeiten",
+      "newTitle": "Neuer Kontakt"
+    },
+    "detail": {
+      "back": "Zurück zu den Kontakten",
+      "edit": "Bearbeiten",
+      "delete": "Löschen",
+      "deleteConfirm": "Diesen Kontakt löschen? Dies kann nicht rückgängig gemacht werden.",
+      "notFound": "Kontakt nicht gefunden."
+    },
+    "attachments": {
+      "title": "Anhänge",
+      "empty": "Keine Anhänge.",
+      "titleLabel": "Titel des Anhangs",
+      "urlLabel": "https://...",
+      "add": "Hinzufügen",
+      "error": "Der Anhang konnte nicht hinzugefügt werden."
+    },
+    "validation": {
+      "required": "Pflichtfeld",
+      "email": "Ungültige E-Mail-Adresse"
+    },
+    "loadMore": "Mehr laden",
+    "loadingMore": "Wird geladen..."
+  },
+  "tasks": {
+    "title": "Aufgaben",
+    "subtitle": "{count} Aufgaben",
+    "new": "Neue Aufgabe",
+    "empty": {
+      "title": "Noch keine Aufgaben",
+      "subtitle": "Fügen Sie Ihre erste Aufgabe hinzu, um mit der Organisation zu beginnen.",
+      "cta": "Aufgabe hinzufügen"
+    },
+    "errors": {
+      "load": "Die Aufgaben konnten nicht geladen werden.",
+      "save": "Die Aufgabe konnte nicht gespeichert werden.",
+      "delete": "Die Aufgabe konnte nicht gelöscht werden."
+    },
+    "status": {
+      "todo": "Offen",
+      "in_progress": "In Bearbeitung",
+      "review": "Überprüfung",
+      "completed": "Abgeschlossen",
+      "archived": "Archiviert"
+    },
+    "priority": {
+      "low": "Niedrig",
+      "medium": "Mittel",
+      "high": "Hoch",
+      "urgent": "Dringend"
+    },
+    "form": {
+      "title": "Titel",
+      "description": "Beschreibung",
+      "priority": "Priorität",
+      "status": "Status",
+      "deadline": "Frist",
+      "cancel": "Abbrechen",
+      "save": "Speichern",
+      "saving": "Wird gespeichert...",
+      "editTitle": "Aufgabe bearbeiten",
+      "newTitle": "Neue Aufgabe",
+      "delete": "Löschen",
+      "project": "Projekt",
+      "noProject": "Kein verknüpftes Projekt"
+    },
+    "deleteConfirm": "Diese Aufgabe löschen? Dies kann nicht rückgängig gemacht werden.",
+    "noDeadline": "Keine Frist",
+    "attachments": {
+      "title": "Anhänge",
+      "empty": "Keine Anhänge.",
+      "titleLabel": "Titel des Anhangs",
+      "urlLabel": "https://...",
+      "add": "Hinzufügen",
+      "error": "Der Anhang konnte nicht hinzugefügt werden."
+    },
+    "moveTo": "{title} verschieben",
+    "loadMore": "Mehr laden",
+    "loadingMore": "Wird geladen..."
+  },
+  "crm": {
+    "title": "CRM",
+    "subtitle": "{count} Opportunities · {value}",
+    "new": "Neue Opportunity",
+    "empty": {
+      "title": "Noch keine Opportunities",
+      "subtitle": "Fügen Sie Ihre erste Opportunity hinzu, um die Pipeline zu verfolgen.",
+      "cta": "Opportunity hinzufügen"
+    },
+    "errors": {
+      "load": "Die Opportunities konnten nicht geladen werden.",
+      "save": "Die Opportunity konnte nicht gespeichert werden.",
+      "delete": "Die Opportunity konnte nicht gelöscht werden."
+    },
+    "stage": {
+      "lead": "Lead",
+      "qualified": "Qualifiziert",
+      "proposal": "Angebot",
+      "negotiation": "Verhandlung",
+      "won": "Gewonnen",
+      "lost": "Verloren"
+    },
+    "form": {
+      "title": "Titel",
+      "contact": "Kontakt",
+      "noContact": "Kein verknüpfter Kontakt",
+      "company": "Firma",
+      "value": "Wert",
+      "probability": "Wahrscheinlichkeit",
+      "stage": "Phase",
+      "expectedCloseDate": "Voraussichtlicher Abschluss",
+      "notes": "Notizen",
+      "cancel": "Abbrechen",
+      "save": "Speichern",
+      "saving": "Wird gespeichert...",
+      "editTitle": "Opportunity bearbeiten",
+      "newTitle": "Neue Opportunity",
+      "delete": "Löschen"
+    },
+    "deleteConfirm": "Diese Opportunity löschen? Dies kann nicht rückgängig gemacht werden.",
+    "moveTo": "{title} verschieben",
+    "loadMore": "Mehr laden",
+    "loadingMore": "Wird geladen..."
+  },
+  "calendar": {
+    "title": "Kalender",
+    "subtitle": "{count} Termine",
+    "new": "Neuer Termin",
+    "today": "Heute",
+    "month": "Monat",
+    "agenda": "Agenda",
+    "empty": {
+      "title": "Noch keine Termine",
+      "subtitle": "Fügen Sie Ihren ersten Termin hinzu, um den Kalender zu organisieren.",
+      "cta": "Termin hinzufügen"
+    },
+    "errors": {
+      "load": "Die Termine konnten nicht geladen werden.",
+      "save": "Der Termin konnte nicht gespeichert werden.",
+      "delete": "Der Termin konnte nicht gelöscht werden."
+    },
+    "form": {
+      "title": "Titel",
+      "description": "Beschreibung",
+      "start": "Beginn",
+      "end": "Ende",
+      "allDay": "Ganztägig",
+      "location": "Ort",
+      "contact": "Kontakt",
+      "noContact": "Kein verknüpfter Kontakt",
+      "cancel": "Abbrechen",
+      "save": "Speichern",
+      "saving": "Wird gespeichert...",
+      "editTitle": "Termin bearbeiten",
+      "newTitle": "Neuer Termin",
+      "delete": "Löschen",
+      "date": "Datum",
+      "timezone": "Zeitzone",
+      "repeat": "Wiederholen",
+      "repeatEvery": "Alle",
+      "repeatUntil": "Bis"
+    },
+    "deleteConfirm": "Diesen Termin löschen? Dies kann nicht rückgängig gemacht werden.",
+    "prevMonth": "Vorheriger Monat",
+    "nextMonth": "Nächster Monat",
+    "recurrence": {
+      "none": "Wiederholt sich nicht",
+      "daily": "Täglich",
+      "weekly": "Wöchentlich",
+      "monthly": "Monatlich"
+    }
+  },
+  "projects": {
+    "title": "Projekte",
+    "subtitle": "{count} Projekte",
+    "new": "Neues Projekt",
+    "list": "Liste",
+    "kanban": "Kanban",
+    "empty": {
+      "title": "Noch keine Projekte",
+      "subtitle": "Fügen Sie Ihr erstes Projekt hinzu, um die Arbeit zu organisieren.",
+      "cta": "Projekt hinzufügen"
+    },
+    "errors": {
+      "load": "Die Projekte konnten nicht geladen werden.",
+      "save": "Das Projekt konnte nicht gespeichert werden.",
+      "delete": "Das Projekt konnte nicht gelöscht werden."
+    },
+    "status": {
+      "active": "Aktiv",
+      "on_hold": "Pausiert",
+      "completed": "Abgeschlossen",
+      "archived": "Archiviert"
+    },
+    "columns": {
+      "name": "Name",
+      "client": "Kunde",
+      "status": "Status",
+      "dueDate": "Fälligkeitsdatum",
+      "budget": "Budget",
+      "tasks": "Aufgaben"
+    },
+    "form": {
+      "name": "Name",
+      "description": "Beschreibung",
+      "status": "Status",
+      "client": "Kunde",
+      "noClient": "Kein verknüpfter Kunde",
+      "startDate": "Startdatum",
+      "dueDate": "Fälligkeitsdatum",
+      "budget": "Budget (EUR)",
+      "cancel": "Abbrechen",
+      "save": "Speichern",
+      "saving": "Wird gespeichert...",
+      "editTitle": "Projekt bearbeiten",
+      "newTitle": "Neues Projekt",
+      "delete": "Löschen"
+    },
+    "deleteConfirm": "Dieses Projekt löschen? Verknüpfte Aufgaben werden nicht gelöscht.",
+    "detail": {
+      "back": "Zurück zu den Projekten",
+      "documents": "Dokumente",
+      "noDocuments": "Noch keine Dokumente.",
+      "documentTitle": "Titel des Dokuments",
+      "documentUrl": "https://...",
+      "addDocument": "Hinzufügen",
+      "documentError": "Das Dokument konnte nicht hinzugefügt werden.",
+      "discussion": "Diskussion",
+      "noDiscussion": "Noch keine Nachrichten.",
+      "addDiscussion": "Eine Nachricht schreiben...",
+      "send": "Senden",
+      "milestones": "Meilensteine",
+      "noMilestones": "Noch keine Meilensteine.",
+      "milestoneTitle": "Titel des Meilensteins",
+      "milestoneDueDate": "Fälligkeitsdatum",
+      "addMilestone": "Hinzufügen",
+      "milestoneError": "Der Meilenstein konnte nicht hinzugefügt werden."
+    },
+    "loadMore": "Mehr laden",
+    "loadingMore": "Wird geladen..."
+  },
+  "timesheets": {
+    "title": "Stundenzettel",
+    "subtitle": "{count} Einträge · {hours} Stunden erfasst",
+    "new": "Zeit erfassen",
+    "timer": {
+      "start": "Timer starten",
+      "stop": "Stoppen und speichern",
+      "running": "Timer läuft",
+      "descriptionPlaceholder": "Woran arbeiten Sie gerade?"
+    },
+    "empty": {
+      "title": "Noch keine Einträge",
+      "subtitle": "Starten Sie den Timer oder erfassen Sie Zeit manuell, um loszulegen.",
+      "cta": "Zeit erfassen"
+    },
+    "errors": {
+      "load": "Die Stundenzettel konnten nicht geladen werden.",
+      "save": "Der Eintrag konnte nicht gespeichert werden.",
+      "delete": "Der Eintrag konnte nicht gelöscht werden."
+    },
+    "form": {
+      "project": "Projekt",
+      "noProject": "Kein verknüpftes Projekt",
+      "task": "Aufgabe",
+      "noTask": "Keine verknüpfte Aufgabe",
+      "description": "Beschreibung",
+      "date": "Datum",
+      "duration": "Dauer (Minuten)",
+      "billable": "Abrechenbar",
+      "cancel": "Abbrechen",
+      "save": "Speichern",
+      "saving": "Wird gespeichert...",
+      "editTitle": "Eintrag bearbeiten",
+      "newTitle": "Neuer Eintrag",
+      "delete": "Löschen"
+    },
+    "deleteConfirm": "Diesen Eintrag löschen? Dies kann nicht rückgängig gemacht werden.",
+    "noBillable": "Nicht abrechenbar"
+  },
+  "appointments": {
+    "title": "Termine",
+    "subtitle": "{count} Termine",
+    "new": "Neuer Termin",
+    "upcoming": "Bevorstehend",
+    "past": "Vergangen",
+    "empty": {
+      "title": "Noch keine Termine",
+      "subtitle": "Fügen Sie Ihren ersten Termin hinzu, um loszulegen.",
+      "cta": "Termin hinzufügen"
+    },
+    "errors": {
+      "load": "Die Termine konnten nicht geladen werden.",
+      "save": "Der Termin konnte nicht gespeichert werden.",
+      "delete": "Der Termin konnte nicht gelöscht werden."
+    },
+    "status": {
+      "scheduled": "Geplant",
+      "confirmed": "Bestätigt",
+      "completed": "Abgeschlossen",
+      "cancelled": "Storniert"
+    },
+    "form": {
+      "title": "Titel",
+      "contact": "Kontakt",
+      "noContact": "Kein verknüpfter Kontakt",
+      "opportunity": "CRM-Opportunity",
+      "noOpportunity": "Keine verknüpfte Opportunity",
+      "start": "Datum und Uhrzeit",
+      "duration": "Dauer (Minuten)",
+      "location": "Ort",
+      "videoCallUrl": "Link zum Videoanruf",
+      "notes": "Notizen",
+      "status": "Status",
+      "cancel": "Abbrechen",
+      "save": "Speichern",
+      "saving": "Wird gespeichert...",
+      "editTitle": "Termin bearbeiten",
+      "newTitle": "Neuer Termin",
+      "delete": "Löschen"
+    },
+    "joinCall": "Am Videoanruf teilnehmen",
+    "deleteConfirm": "Diesen Termin löschen? Dies kann nicht rückgängig gemacht werden."
+  },
+  "inbox": {
+    "title": "Posteingang",
+    "subtitle": "{count} Nachrichten",
+    "new": "Neue Nachricht",
+    "all": "Alle",
+    "channel": {
+      "email": "E-Mail",
+      "whatsapp": "WhatsApp",
+      "internal": "Intern"
+    },
+    "empty": {
+      "title": "Noch keine Nachrichten",
+      "subtitle": "Die Kommunikation mit Ihren Kontakten wird hier angezeigt.",
+      "cta": "Ihre erste Nachricht senden"
+    },
+    "errors": {
+      "load": "Die Nachrichten konnten nicht geladen werden.",
+      "send": "Die Nachricht konnte nicht gesendet werden.",
+      "delete": "Die Nachricht konnte nicht gelöscht werden."
+    },
+    "mockNotice": "Es ist kein echter E-Mail-/WhatsApp-Anbieter konfiguriert – diese Nachricht wurde protokolliert, aber nicht tatsächlich gesendet. Legen Sie EMAIL_PROVIDER_API_KEY / WHATSAPP_API_KEY fest, um einen echten Anbieter anzubinden.",
+    "form": {
+      "channel": "Kanal",
+      "to": "Empfänger",
+      "contact": "Kontakt",
+      "noContact": "Kein verknüpfter Kontakt",
+      "subject": "Betreff",
+      "body": "Nachricht",
+      "cancel": "Abbrechen",
+      "send": "Senden",
+      "sending": "Wird gesendet...",
+      "newTitle": "Neue Nachricht"
+    },
+    "markRead": "Als gelesen markieren",
+    "archive": "Archivieren",
+    "delete": "Löschen",
+    "deleteConfirm": "Diese Nachricht löschen? Dies kann nicht rückgängig gemacht werden.",
+    "extractTask": "Aufgabe extrahieren",
+    "suggestAppointment": "Termin vorschlagen",
+    "threadCount": "{count} Nachrichten",
+    "reply": "Antworten",
+    "you": "Sie",
+    "labels": {
+      "filterBy": "Nach Label filtern:",
+      "add": "+ Label",
+      "remove": "Label {label} entfernen",
+      "placeholder": "Neues Label"
+    },
+    "loadMore": "Mehr laden",
+    "loadingMore": "Wird geladen..."
+  },
+  "ai": {
+    "errors": {
+      "extract": "Die Nachricht konnte nicht analysiert werden."
+    },
+    "taskSuggestion": {
+      "title": "Vorgeschlagene Aufgabe",
+      "none": "In dieser Nachricht wurde keine umsetzbare Anfrage gefunden.",
+      "confirm": "Aufgabe erstellen",
+      "reject": "Verwerfen"
+    },
+    "provider": "Regelbasierte Analyse – kein externes Sprachmodell verbunden.",
+    "calendarSuggestion": {
+      "title": "Vorgeschlagener Termin",
+      "none": "In dieser Nachricht wurde keine Terminanfrage erkannt.",
+      "pickSlot": "Zeitpunkt wählen",
+      "busy": "Belegt",
+      "confirm": "Termin erstellen",
+      "reject": "Verwerfen"
+    },
+    "actions": {
+      "title": "KI-Aktionen",
+      "close": "Schließen",
+      "summarize": "Zusammenfassen",
+      "generateReply": "Antwort generieren",
+      "run": "Ausführen",
+      "working": "Wird verarbeitet...",
+      "useAsReply": "Als Antwort verwenden"
+    },
+    "relationship": {
+      "title": "Beziehung (KI)",
+      "noHistory": "Für diesen Kontakt sind keine Kommunikationen oder Termine erfasst.",
+      "summarize": "Beziehung zusammenfassen",
+      "followUp": "Follow-up vorbereiten",
+      "useAsFollowUp": "Als Follow-up-E-Mail verwenden"
+    },
+    "prioritize": {
+      "action": "Mit KI priorisieren"
+    }
+  },
+  "assistant": {
+    "title": "VORA Assistant",
+    "close": "Schließen",
+    "open": "Assistant",
+    "prompts": {
+      "organizeDay": "Meinen Tag organisieren",
+      "priorities": "Was sind meine wichtigsten Aufgaben?",
+      "unanswered": "Welche Nachrichten habe ich noch nicht gelesen?",
+      "upcoming": "Meine nächsten Termine finden"
+    }
+  },
+  "helpdesk": {
+    "title": "Helpdesk",
+    "subtitle": "{count} Tickets",
+    "new": "Neues Ticket",
+    "empty": {
+      "title": "Noch keine Tickets",
+      "subtitle": "Fügen Sie Ihr erstes Support-Ticket hinzu.",
+      "cta": "Ticket hinzufügen"
+    },
+    "errors": {
+      "load": "Die Tickets konnten nicht geladen werden.",
+      "save": "Das Ticket konnte nicht gespeichert werden.",
+      "delete": "Das Ticket konnte nicht gelöscht werden."
+    },
+    "status": {
+      "open": "Offen",
+      "in_progress": "In Bearbeitung",
+      "waiting": "Wartend",
+      "resolved": "Gelöst",
+      "closed": "Geschlossen"
+    },
+    "category": {
+      "technical": "Technisch",
+      "billing": "Abrechnung",
+      "general": "Allgemein",
+      "feature_request": "Funktionswunsch"
+    },
+    "columns": {
+      "title": "Titel",
+      "customer": "Kunde",
+      "status": "Status",
+      "priority": "Priorität",
+      "category": "Kategorie",
+      "sla": "SLA"
+    },
+    "form": {
+      "title": "Titel",
+      "description": "Beschreibung",
+      "contact": "Kunde",
+      "noContact": "Kein verknüpfter Kunde",
+      "priority": "Priorität",
+      "status": "Status",
+      "category": "Kategorie",
+      "cancel": "Abbrechen",
+      "save": "Speichern",
+      "saving": "Wird gespeichert...",
+      "editTitle": "Ticket bearbeiten",
+      "newTitle": "Neues Ticket",
+      "delete": "Löschen",
+      "sla": "SLA-Frist"
+    },
+    "detail": {
+      "back": "Zurück zu den Tickets",
+      "comments": "Kommentare",
+      "noComments": "Noch keine Kommentare.",
+      "addComment": "Einen Kommentar hinzufügen...",
+      "send": "Senden"
+    },
+    "attachments": {
+      "title": "Anhänge",
+      "empty": "Keine Anhänge.",
+      "titleLabel": "Titel des Anhangs",
+      "urlLabel": "https://...",
+      "add": "Hinzufügen",
+      "error": "Der Anhang konnte nicht hinzugefügt werden."
+    },
+    "deleteConfirm": "Dieses Ticket löschen? Dies kann nicht rückgängig gemacht werden.",
+    "sla": {
+      "dueAt": "Fällig am {date}",
+      "overdue": "Überfällig"
+    },
+    "loadMore": "Mehr laden",
+    "loadingMore": "Wird geladen..."
+  },
+  "knowledge": {
+    "title": "Wissen",
+    "subtitle": "{count} Seiten",
+    "new": "Neue Seite",
+    "search": "Suche nach Titel, Inhalt oder Tag...",
+    "allFolders": "Alle Ordner",
+    "favoritesOnly": "Nur Favoriten",
+    "noFolder": "Kein Ordner",
+    "empty": {
+      "title": "Noch keine Seiten",
+      "subtitle": "Erstellen Sie Ihre erste Seite, um die Wissensdatenbank aufzubauen.",
+      "cta": "Seite erstellen"
+    },
+    "errors": {
+      "load": "Die Seiten konnten nicht geladen werden.",
+      "save": "Die Seite konnte nicht gespeichert werden.",
+      "delete": "Die Seite konnte nicht gelöscht werden."
+    },
+    "form": {
+      "title": "Titel",
+      "content": "Inhalt (Markdown)",
+      "folder": "Ordner",
+      "tags": "Tags (kommagetrennt)",
+      "cancel": "Abbrechen",
+      "save": "Speichern",
+      "saving": "Wird gespeichert...",
+      "editTitle": "Seite bearbeiten",
+      "newTitle": "Neue Seite",
+      "delete": "Löschen",
+      "edit": "Bearbeiten",
+      "preview": "Vorschau"
+    },
+    "detail": {
+      "back": "Zurück zu Wissen",
+      "lastUpdated": "Zuletzt aktualisiert"
+    },
+    "deleteConfirm": "Diese Seite löschen? Dies kann nicht rückgängig gemacht werden.",
+    "semanticSearch": "Intelligente Suche (Enter drücken)",
+    "searching": "Suche läuft...",
+    "semanticResultsCount": "{count} Ergebnisse nach Relevanz",
+    "relevance": "{pct}% relevant",
+    "favorite": "Zu Favoriten hinzufügen",
+    "unfavorite": "Aus Favoriten entfernen",
+    "loadMore": "Mehr laden",
+    "loadingMore": "Wird geladen..."
+  },
+  "expenses": {
+    "title": "Spesen",
+    "subtitle": "{count} Spesen · {total}",
+    "new": "Neue Spesenabrechnung",
+    "all": "Alle",
+    "empty": {
+      "title": "Noch keine Spesen",
+      "subtitle": "Erfassen Sie Ihre erste Spesenabrechnung, um loszulegen.",
+      "cta": "Spesenabrechnung hinzufügen"
+    },
+    "errors": {
+      "load": "Die Spesen konnten nicht geladen werden.",
+      "save": "Die Spesenabrechnung konnte nicht gespeichert werden.",
+      "delete": "Die Spesenabrechnung konnte nicht gelöscht werden."
+    },
+    "status": {
+      "pending": "Ausstehend",
+      "approved": "Genehmigt",
+      "rejected": "Abgelehnt"
+    },
+    "category": {
+      "travel": "Reisen",
+      "meals": "Verpflegung",
+      "office": "Büro",
+      "software": "Software",
+      "other": "Sonstiges"
+    },
+    "columns": {
+      "date": "Datum",
+      "category": "Kategorie",
+      "project": "Projekt",
+      "amount": "Betrag",
+      "status": "Status"
+    },
+    "form": {
+      "amount": "Betrag (EUR)",
+      "date": "Datum",
+      "category": "Kategorie",
+      "project": "Projekt",
+      "noProject": "Kein verknüpftes Projekt",
+      "notes": "Notizen",
+      "receiptUrl": "Beleglink (optional)",
+      "cancel": "Abbrechen",
+      "save": "Speichern",
+      "saving": "Wird gespeichert...",
+      "editTitle": "Spesenabrechnung bearbeiten",
+      "newTitle": "Neue Spesenabrechnung",
+      "delete": "Löschen"
+    },
+    "approve": "Genehmigen",
+    "reject": "Ablehnen",
+    "deleteConfirm": "Diese Spesenabrechnung löschen? Dies kann nicht rückgängig gemacht werden."
+  },
+  "leave": {
+    "title": "Urlaub",
+    "subtitle": "{count} Anträge",
+    "new": "Neuer Antrag",
+    "all": "Alle",
+    "balance": {
+      "title": "Urlaubskonto",
+      "allocated": "Zugewiesen",
+      "used": "Genutzt",
+      "remaining": "Verbleibend",
+      "days": "Tage"
+    },
+    "empty": {
+      "title": "Noch keine Anträge",
+      "subtitle": "Reichen Sie Ihren ersten Urlaubsantrag ein.",
+      "cta": "Antrag hinzufügen"
+    },
+    "errors": {
+      "load": "Die Anträge konnten nicht geladen werden.",
+      "save": "Der Antrag konnte nicht gespeichert werden.",
+      "delete": "Der Antrag konnte nicht gelöscht werden."
+    },
+    "status": {
+      "pending": "Ausstehend",
+      "approved": "Genehmigt",
+      "rejected": "Abgelehnt"
+    },
+    "type": {
+      "vacation": "Urlaub",
+      "sick": "Krankheit",
+      "personal": "Sonderurlaub"
+    },
+    "columns": {
+      "requester": "Antragsteller",
+      "type": "Art",
+      "dates": "Zeitraum",
+      "days": "Tage",
+      "status": "Status"
+    },
+    "form": {
+      "requesterName": "Name",
+      "selectEmployee": "Mitarbeitende auswählen",
+      "type": "Art",
+      "startDate": "Startdatum",
+      "endDate": "Enddatum",
+      "notes": "Notizen",
+      "cancel": "Abbrechen",
+      "save": "Speichern",
+      "saving": "Wird gespeichert...",
+      "newTitle": "Neuer Urlaubsantrag"
+    },
+    "approve": "Genehmigen",
+    "reject": "Ablehnen",
+    "deleteConfirm": "Diesen Antrag löschen? Dies kann nicht rückgängig gemacht werden."
+  },
+  "wellbeing": {
+    "title": "Wohlbefinden",
+    "subtitle": "Ein Moment für Sie: täglicher Check-in, Atemübung, Wochentrend.",
+    "disclaimer": "Wohlbefinden ersetzt keine medizinische Fachperson und stellt keine Diagnose. Es ist ein Raum, um über Ihre Arbeitsbelastung und Ihren allgemeinen Zustand nachzudenken.",
+    "mood": "Stimmung",
+    "energy": "Energie",
+    "stress": "Stress",
+    "note": "Notizen (optional)",
+    "notePlaceholder": "Wie läuft der heutige Tag?",
+    "save": "Check-in speichern",
+    "saving": "Wird gespeichert...",
+    "saved": "Check-in gespeichert.",
+    "history": "Letzte Check-ins",
+    "checkin": {
+      "title": "Heutiger Check-in",
+      "updateTitle": "Heutigen Check-in aktualisieren"
+    },
+    "weekly": {
+      "title": "Durchschnitt der letzten {count} Check-ins"
+    },
+    "breathing": {
+      "title": "Atemübung",
+      "start": "Starten",
+      "stop": "Stoppen",
+      "in": "Einatmen",
+      "hold1": "Halten",
+      "out": "Ausatmen",
+      "hold2": "Halten"
+    },
+    "errors": {
+      "load": "Die Check-ins konnten nicht geladen werden."
+    }
+  },
+  "auditLog": {
+    "title": "Prüfprotokoll",
+    "subtitle": "Sensible Aktionen in Ihrer Organisation – nur für Inhaber und Administratoren sichtbar.",
+    "empty": "Noch keine Aktivität erfasst.",
+    "actions": {
+      "login": "Angemeldet",
+      "logout": "Abgemeldet",
+      "employee.create": "Mitarbeitende erstellt",
+      "employee.update": "Mitarbeitende aktualisiert",
+      "employee.delete": "Mitarbeitende gelöscht",
+      "leave.approve": "Urlaub genehmigt",
+      "leave.reject": "Urlaub abgelehnt",
+      "expense.approve": "Spesenabrechnung genehmigt",
+      "expense.reject": "Spesenabrechnung abgelehnt"
+    },
+    "errors": {
+      "load": "Das Prüfprotokoll konnte nicht geladen werden.",
+      "forbidden": "Nur Inhaber und Administratoren können das Prüfprotokoll einsehen."
+    }
+  },
+  "employees": {
+    "title": "Mitarbeitende",
+    "subtitle": "{count} Mitarbeitende",
+    "new": "Neue Mitarbeitende",
+    "empty": {
+      "title": "Noch keine Mitarbeitenden",
+      "subtitle": "Fügen Sie Ihre erste Mitarbeiterin bzw. Ihren ersten Mitarbeiter hinzu, um loszulegen.",
+      "cta": "Mitarbeitende hinzufügen"
+    },
+    "errors": {
+      "load": "Die Mitarbeitenden konnten nicht geladen werden.",
+      "save": "Die Mitarbeitenden konnten nicht gespeichert werden.",
+      "delete": "Die Mitarbeitenden konnten nicht gelöscht werden."
+    },
+    "status": {
+      "active": "Aktiv",
+      "inactive": "Inaktiv"
+    },
+    "columns": {
+      "name": "Name",
+      "role": "Rolle",
+      "team": "Team",
+      "email": "E-Mail",
+      "status": "Status"
+    },
+    "form": {
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "email": "E-Mail",
+      "role": "Rolle",
+      "team": "Team",
+      "status": "Status",
+      "startDate": "Startdatum",
+      "cancel": "Abbrechen",
+      "save": "Speichern",
+      "saving": "Wird gespeichert...",
+      "editTitle": "Mitarbeitende bearbeiten",
+      "newTitle": "Neue Mitarbeitende",
+      "delete": "Löschen"
+    },
+    "deleteConfirm": "Diese Mitarbeitenden löschen? Dies kann nicht rückgängig gemacht werden."
+  },
+  "social": {
+    "title": "Social Marketing",
+    "subtitle": "{count} Beiträge",
+    "new": "Neuer Beitrag",
+    "all": "Alle",
+    "empty": {
+      "title": "Noch keine Beiträge",
+      "subtitle": "Erstellen Sie Ihren ersten Beitrag, um mit der Content-Planung zu beginnen.",
+      "cta": "Beitrag erstellen"
+    },
+    "errors": {
+      "load": "Die Beiträge konnten nicht geladen werden.",
+      "save": "Der Beitrag konnte nicht gespeichert werden.",
+      "delete": "Der Beitrag konnte nicht gelöscht werden."
+    },
+    "status": {
+      "draft": "Entwurf",
+      "scheduled": "Geplant",
+      "published": "Veröffentlicht"
+    },
+    "platform": {
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "linkedin": "LinkedIn",
+      "x": "X"
+    },
+    "form": {
+      "content": "Inhalt",
+      "platform": "Plattform",
+      "status": "Status",
+      "scheduledAt": "Geplantes Datum",
+      "cancel": "Abbrechen",
+      "save": "Speichern",
+      "saving": "Wird gespeichert...",
+      "editTitle": "Beitrag bearbeiten",
+      "newTitle": "Neuer Beitrag",
+      "delete": "Löschen"
+    },
+    "deleteConfirm": "Diesen Beitrag löschen? Dies kann nicht rückgängig gemacht werden."
+  },
+  "campaigns": {
+    "title": "E-Mail-Marketing",
+    "subtitle": "{count} Kampagnen",
+    "new": "Neue Kampagne",
+    "empty": {
+      "title": "Noch keine Kampagnen",
+      "subtitle": "Erstellen Sie Ihre erste E-Mail-Kampagne.",
+      "cta": "Kampagne erstellen"
+    },
+    "errors": {
+      "load": "Die Kampagnen konnten nicht geladen werden.",
+      "save": "Die Kampagne konnte nicht gespeichert werden.",
+      "send": "Die Kampagne konnte nicht gesendet werden.",
+      "delete": "Die Kampagne konnte nicht gelöscht werden."
+    },
+    "status": {
+      "draft": "Entwurf",
+      "sent": "Gesendet"
+    },
+    "mockNotice": "Es ist kein echter E-Mail-Anbieter konfiguriert – der Versand wird protokolliert, aber es wird keine E-Mail tatsächlich zugestellt.",
+    "form": {
+      "name": "Name der Kampagne",
+      "subject": "Betreff",
+      "body": "Inhalt",
+      "recipientCount": "Anzahl Empfänger (geschätzt)",
+      "cancel": "Abbrechen",
+      "save": "Speichern",
+      "saving": "Wird gespeichert...",
+      "editTitle": "Kampagne bearbeiten",
+      "newTitle": "Neue Kampagne",
+      "delete": "Löschen",
+      "useTemplate": "Eine Vorlage verwenden",
+      "noTemplate": "Keine Vorlage",
+      "useSegment": "Ein Segment verwenden",
+      "noSegment": "Kein Segment",
+      "resolvingSegment": "Empfänger werden ermittelt..."
+    },
+    "send": "Senden",
+    "sentOn": "Gesendet am",
+    "deleteConfirm": "Diese Kampagne löschen? Dies kann nicht rückgängig gemacht werden."
+  },
+  "website": {
+    "title": "Website",
+    "subtitle": "Übersicht über die verbundene öffentliche Website",
+    "visitSite": "Website besuchen",
+    "connected": "Verbunden",
+    "notConnected": "Projekt „portfolio-andrea“ nicht gefunden",
+    "pages": "Seiten",
+    "projects": "Veröffentlichte Projekte",
+    "featured": "Hervorgehoben",
+    "errors": {
+      "load": "Die Website-Daten konnten nicht geladen werden."
+    },
+    "note": "Die öffentliche Website ist ein separates Nuxt-Projekt (portfolio-andrea). Diese Seite zeigt deren tatsächlichen Inhalt schreibgeschützt an – VORA dupliziert keinen Website-Editor.",
+    "myWebsites": "Ihre generierten Websites",
+    "createSite": "Jede Organisation kann ihre eigene Website generieren, die tatsächlich unter einer VORA-Adresse veröffentlicht wird."
+  },
+  "sites": {
+    "title": "Generierte Websites",
+    "subtitle": "{count} Websites",
+    "new": "Neue Website",
+    "empty": {
+      "title": "Noch keine Websites",
+      "subtitle": "Erstellen Sie Ihre erste von VORA generierte Website.",
+      "cta": "Website erstellen"
+    },
+    "errors": {
+      "load": "Die Websites konnten nicht geladen werden.",
+      "save": "Die Website konnte nicht gespeichert werden.",
+      "delete": "Die Website konnte nicht gelöscht werden."
+    },
+    "published": "Veröffentlicht",
+    "draft": "Entwurf",
+    "viewLive": "Live-Website ansehen",
+    "form": {
+      "slug": "Adresse (Slug)",
+      "slugHint": "Die Website ist erreichbar unter /site/{slug}",
+      "name": "Name",
+      "tagline": "Slogan",
+      "about": "Über uns",
+      "contactEmail": "Kontakt-E-Mail",
+      "accentColor": "Akzentfarbe",
+      "published": "Veröffentlicht",
+      "cancel": "Abbrechen",
+      "save": "Speichern",
+      "saving": "Wird gespeichert...",
+      "editTitle": "Website bearbeiten",
+      "newTitle": "Neue Website",
+      "delete": "Löschen"
+    },
+    "deleteConfirm": "Diese Website löschen? Dies kann nicht rückgängig gemacht werden.",
+    "notFound": "Diese Website existiert nicht oder ist noch nicht veröffentlicht.",
+    "generatedBy": "Erstellt mit VORA"
+  },
+  "settings": {
+    "title": "Einstellungen",
+    "subtitle": "Konto, Sicherheit, Benachrichtigungen und Integrationen.",
+    "saving": "Wird gespeichert...",
+    "save": "Speichern",
+    "saved": "Gespeichert.",
+    "profile": {
+      "title": "Profil",
+      "name": "Name",
+      "email": "E-Mail",
+      "organization": "Organisation",
+      "role": {
+        "owner": "Inhaber",
+        "admin": "Administrator",
+        "member": "Mitglied"
+      }
+    },
+    "security": {
+      "title": "Sicherheit",
+      "currentPassword": "Aktuelles Passwort",
+      "newPassword": "Neues Passwort",
+      "changePassword": "Passwort ändern",
+      "wrongPassword": "Das aktuelle Passwort ist falsch.",
+      "error": "Das Passwort konnte nicht geändert werden."
+    },
+    "appearance": {
+      "title": "Erscheinungsbild",
+      "light": "Hell",
+      "dark": "Dunkel",
+      "system": "System"
+    },
+    "language": {
+      "title": "Sprache"
+    },
+    "notifications": {
+      "title": "Benachrichtigungen",
+      "messages": "Nachrichten",
+      "urgentTasks": "Dringende Aufgaben",
+      "appointments": "Termine",
+      "reminders": "Erinnerungen",
+      "aiActions": "KI-Aktionen",
+      "approvals": "Genehmigungen",
+      "tickets": "Tickets",
+      "deadlines": "Fristen"
+    },
+    "integrations": {
+      "title": "Integrationen",
+      "ai": "KI-Engine",
+      "email": "E-Mail-Anbieter",
+      "whatsapp": "WhatsApp",
+      "oauthGoogle": "Google-Anmeldung",
+      "live": "Live",
+      "mock": "Simuliert",
+      "note": "„Simuliert“ bedeutet eine echte, funktionierende Implementierung ohne verbundene Zugangsdaten eines externen Anbieters – es wird nichts über ein reales Netzwerk gesendet oder empfangen, bis Sie Zugangsdaten konfigurieren (siehe .env.example)."
+    },
+    "applications": {
+      "title": "Anwendungen",
+      "subtitle": "Öffnen Sie ⌘K für die vollständige Liste der Module und Schnellaktionen."
+    },
+    "api": {
+      "title": "API",
+      "notice": "Die Verwaltung persönlicher API-Schlüssel wurde noch nicht implementiert – eine echte zukünftige Funktion, kein verstecktes Mockup."
+    }
+  },
+  "templates": {
+    "title": "E-Mail-Vorlagen",
+    "subtitle": "{count} Vorlagen",
+    "new": "Neue Vorlage",
+    "empty": {
+      "title": "Keine Vorlagen",
+      "subtitle": "Erstellen Sie Ihre erste wiederverwendbare E-Mail-Vorlage.",
+      "cta": "Vorlage erstellen"
+    },
+    "errors": {
+      "load": "Die Vorlagen konnten nicht geladen werden.",
+      "save": "Die Vorlage konnte nicht gespeichert werden.",
+      "delete": "Die Vorlage konnte nicht gelöscht werden."
+    },
+    "deleteConfirm": "Diese Vorlage löschen? Dies kann nicht rückgängig gemacht werden.",
+    "form": {
+      "name": "Name",
+      "subject": "Betreff",
+      "body": "Nachricht",
+      "cancel": "Abbrechen",
+      "save": "Speichern",
+      "saving": "Wird gespeichert...",
+      "editTitle": "Vorlage bearbeiten",
+      "newTitle": "Neue Vorlage",
+      "delete": "Löschen"
+    }
+  },
+  "segments": {
+    "title": "Segmente",
+    "subtitle": "{count} Segmente",
+    "new": "Neues Segment",
+    "empty": {
+      "title": "Keine Segmente",
+      "subtitle": "Erstellen Sie Ihr erstes wiederverwendbares Kontaktsegment.",
+      "cta": "Segment erstellen"
+    },
+    "errors": {
+      "load": "Die Segmente konnten nicht geladen werden.",
+      "save": "Das Segment konnte nicht gespeichert werden.",
+      "delete": "Das Segment konnte nicht gelöscht werden."
+    },
+    "deleteConfirm": "Dieses Segment löschen? Dies kann nicht rückgängig gemacht werden.",
+    "form": {
+      "name": "Name",
+      "status": "Kontaktstatus",
+      "anyStatus": "Beliebiger Status",
+      "tags": "Tags",
+      "tagsPlaceholder": "Kommagetrennt",
+      "cancel": "Abbrechen",
+      "save": "Speichern",
+      "saving": "Wird gespeichert...",
+      "editTitle": "Segment bearbeiten",
+      "newTitle": "Neues Segment",
+      "delete": "Löschen"
+    }
+  },
+  "automations": {
+    "title": "Automatisierungen",
+    "subtitle": "{count} Automatisierungen",
+    "new": "Neue Automatisierung",
+    "empty": {
+      "title": "Keine Automatisierungen",
+      "subtitle": "Erstellen Sie Ihre erste Marketing-Automatisierung: echte Auslöser, Bedingungen und Aktionen.",
+      "cta": "Automatisierung erstellen"
+    },
+    "errors": {
+      "load": "Die Automatisierungen konnten nicht geladen werden.",
+      "save": "Die Automatisierung konnte nicht gespeichert werden.",
+      "delete": "Die Automatisierung konnte nicht gelöscht werden."
+    },
+    "deleteConfirm": "Diese Automatisierung löschen? Dies kann nicht rückgängig gemacht werden.",
+    "status": {
+      "active": "Aktiv",
+      "inactive": "Inaktiv"
+    },
+    "runCount": "{count} Ausführungen",
+    "lastRun": "zuletzt: {date}",
+    "trigger": {
+      "contact_created": "Kontakt erstellt",
+      "contact_status_changed": "Kontaktstatus geändert",
+      "manual": "Manuelle Ausführung"
+    },
+    "form": {
+      "editTitle": "Automatisierung bearbeiten",
+      "newTitle": "Neue Automatisierung",
+      "name": "Name",
+      "active": "Aktiv",
+      "trigger": "Auslöser",
+      "steps": "Schritte",
+      "addCondition": "Bedingung",
+      "addAction": "Aktion",
+      "addDelay": "Verzögerung",
+      "noSteps": "Noch keine Schritte – die Automatisierung führt nur ihren Auslöser aus.",
+      "stepKind": {
+        "condition": "Bedingung",
+        "action": "Aktion",
+        "delay": "Verzögerung"
+      },
+      "field": {
+        "status": "Status",
+        "tag": "Tag",
+        "source": "Quelle"
+      },
+      "operator": {
+        "equals": "ist gleich",
+        "not_equals": "ist ungleich",
+        "contains": "enthält"
+      },
+      "value": "Wert",
+      "actionType": {
+        "send_email": "E-Mail senden",
+        "add_tag": "Tag hinzufügen",
+        "change_status": "Status ändern",
+        "create_task": "Aufgabe erstellen"
+      },
+      "emailSubject": "Betreff der E-Mail",
+      "emailBody": "Inhalt der E-Mail",
+      "tag": "Hinzuzufügendes Tag",
+      "status": "Neuer Status",
+      "taskTitle": "Titel der Aufgabe",
+      "waitHours": "Wartezeit (Stunden)",
+      "delayLimitation": "Einschränkung: In dieser Version wird die Wartezeit nicht tatsächlich im Hintergrund ausgeführt – sie wird nur zum Auslösezeitpunkt ausgewertet.",
+      "moveUp": "Nach oben verschieben",
+      "moveDown": "Nach unten verschieben",
+      "removeStep": "Schritt entfernen",
+      "cancel": "Abbrechen",
+      "save": "Speichern",
+      "saving": "Wird gespeichert...",
+      "delete": "Löschen"
+    }
   }
 }

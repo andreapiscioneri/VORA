@@ -1,16 +1,1263 @@
 {
-  "nav": {
-    "overview": "概要", "dashboard": "ダッシュボード", "relationships": "関係",
-    "contacts": "連絡先", "crm": "CRM", "time": "時間", "calendar": "カレンダー",
-    "tasks": "タスク", "appointments": "予定", "communications": "コミュニケーション",
-    "inbox": "受信トレイ", "work": "業務", "projects": "プロジェクト",
-    "timesheets": "タイムシート", "helpdesk": "ヘルプデスク", "knowledge": "ナレッジ", "settings": "設定"
+  "common": {
+    "skipToContent": "メインコンテンツへスキップ"
   },
-  "topbar": { "search": "検索...", "toggleTheme": "テーマ切替", "launcher": "アプリ" },
-  "launcher": { "placeholder": "アプリまたはコマンドを検索..." },
+  "validation": {
+    "required": "必須項目です",
+    "email": "メールアドレスが無効です",
+    "url": "URLが無効です",
+    "endBeforeStart": "終了日時は開始日時より後にしてください",
+    "slug": "半角小文字、数字、ハイフンのみ使用できます（例: my-site）",
+    "slugTaken": "このアドレスは既に使用されています。別のものを選んでください",
+    "color": "有効な16進数カラーコードを入力してください（例: #39FF14）",
+    "recurrenceUntilBeforeStart": "繰り返しの終了日は開始日より前にはできません。"
+  },
+  "auth": {
+    "loginTitle": "Voraにサインイン",
+    "registerTitle": "アカウントを作成",
+    "name": "名前",
+    "email": "メールアドレス",
+    "password": "パスワード",
+    "organizationName": "組織名",
+    "submitLogin": "サインイン",
+    "submitRegister": "アカウントを作成",
+    "noAccount": "アカウントをお持ちでない方",
+    "hasAccount": "既にアカウントをお持ちの方",
+    "switchToRegister": "新規登録",
+    "switchToLogin": "サインイン",
+    "invalidCredentials": "メールアドレスまたはパスワードが正しくありません",
+    "emailTaken": "このメールアドレスは既に登録されています",
+    "passwordTooShort": "パスワードは8文字以上で入力してください",
+    "logout": "サインアウト",
+    "sending": "送信中...",
+    "backToLogin": "ログインに戻る",
+    "forgotLink": "パスワードをお忘れですか？",
+    "forgotTitle": "パスワードを再設定",
+    "forgotSubtitle": "再設定用のリンクをお送りします。",
+    "forgotSubmit": "リンクを送信",
+    "forgotSent": "該当するアカウントが存在する場合、パスワード再設定用のリンクをお送りします。",
+    "resetTitle": "パスワードを再設定",
+    "resetInvalidLink": "このリンクは無効か、有効期限が切れています。",
+    "resetSuccess": "パスワードを更新しました。",
+    "resetSubmit": "パスワードを再設定",
+    "newPassword": "新しいパスワード",
+    "verifying": "確認中...",
+    "verifySuccess": "メールアドレスの確認が完了しました。",
+    "verifyError": "この確認リンクは無効か、有効期限が切れています。",
+    "goToDashboard": "ダッシュボードへ移動",
+    "verifyBanner": "アカウントを保護するため、メールアドレスの確認をお願いします。",
+    "verifyBannerResend": "再送信",
+    "verifyBannerSent": "メールを送信しました。",
+    "or": "または",
+    "continueWithGoogle": "Googleで続行",
+    "oauthFailed": "Googleサインインに失敗しました。もう一度お試しいただくか、メールアドレスとパスワードでログインしてください。"
+  },
+  "nav": {
+    "overview": "概要",
+    "dashboard": "ダッシュボード",
+    "relationships": "関係",
+    "contacts": "連絡先",
+    "crm": "CRM",
+    "time": "時間",
+    "calendar": "カレンダー",
+    "tasks": "タスク",
+    "appointments": "予定",
+    "communications": "コミュニケーション",
+    "inbox": "受信トレイ",
+    "work": "業務",
+    "projects": "プロジェクト",
+    "timesheets": "タイムシート",
+    "helpdesk": "ヘルプデスク",
+    "knowledge": "ナレッジ",
+    "expenses": "経費",
+    "leave": "休暇",
+    "employees": "従業員",
+    "wellbeing": "ウェルビーイング",
+    "auditLog": "監査ログ",
+    "marketing": "マーケティング",
+    "website": "ウェブサイト",
+    "social": "ソーシャルマーケティング",
+    "campaigns": "メールマーケティング",
+    "settings": "設定",
+    "templates": "テンプレート",
+    "segments": "セグメント",
+    "automations": "オートメーション"
+  },
+  "topbar": {
+    "search": "検索...",
+    "toggleTheme": "テーマ切替",
+    "launcher": "アプリ"
+  },
+  "launcher": {
+    "placeholder": "アプリまたはコマンドを検索...",
+    "searching": "検索中...",
+    "noResults": "該当する結果はありません。",
+    "type": {
+      "contact": "連絡先",
+      "task": "タスク",
+      "appointment": "予定",
+      "ticket": "チケット",
+      "project": "プロジェクト",
+      "communication": "コミュニケーション",
+      "knowledge": "ナレッジ"
+    },
+    "commands": {
+      "title": "コマンド",
+      "newContact": "新規連絡先",
+      "newTask": "新規タスク",
+      "newAppointment": "新規予定",
+      "openCalendar": "カレンダーを開く",
+      "askAI": "VORA AIに質問",
+      "changeTheme": "テーマを変更",
+      "changeLanguage": "言語を変更",
+      "openCrm": "CRMを開く",
+      "searchContact": "連絡先を検索",
+      "sendEmail": "メールを送信"
+    }
+  },
   "dashboard": {
-    "title": "ダッシュボード", "subtitle": "今日の重要事項です。", "today": "今日",
-    "tasks": "優先事項", "inbox": "コミュニケーション", "calendar": "カレンダー",
-    "placeholder": "モジュールは未実装です。"
+    "title": "ダッシュボード",
+    "subtitle": "今日の重要事項です。",
+    "today": "今日",
+    "nothingToday": "本日の予定はありません。",
+    "tasks": "優先事項",
+    "noPriorityTasks": "優先度の高いタスクはありません。",
+    "crm": "CRMパイプライン",
+    "openOpportunities": "{count}件の進行中の商談",
+    "projects": "進行中のプロジェクト",
+    "noActiveProjects": "進行中のプロジェクトはありません。",
+    "placeholder": "このモジュールは未実装です。",
+    "customize": {
+      "enter": "カスタマイズ",
+      "exit": "完了",
+      "dragHandle": "ドラッグして{widget}の順序を変更",
+      "hide": "{widget}を非表示",
+      "show": "{widget}を表示",
+      "resize": "{widget}のサイズを変更"
+    },
+    "allHidden": "すべてのウィジェットが非表示になっています。カスタマイズをオンにして表示に戻してください。",
+    "errors": {
+      "load": "ダッシュボードのレイアウトを読み込めませんでした。"
+    }
+  },
+  "contacts": {
+    "title": "連絡先",
+    "subtitle": "{count}件の連絡先",
+    "new": "新規連絡先",
+    "search": "名前、会社名、メールアドレスで検索...",
+    "empty": {
+      "title": "連絡先がまだありません",
+      "subtitle": "最初の連絡先を追加しましょう。",
+      "cta": "連絡先を追加"
+    },
+    "errors": {
+      "load": "連絡先を読み込めませんでした。",
+      "save": "連絡先を保存できませんでした。",
+      "delete": "連絡先を削除できませんでした。"
+    },
+    "columns": {
+      "name": "名前",
+      "company": "会社名",
+      "email": "メールアドレス",
+      "phone": "電話番号",
+      "status": "ステータス"
+    },
+    "status": {
+      "active": "アクティブ",
+      "lead": "見込み客",
+      "inactive": "非アクティブ"
+    },
+    "form": {
+      "firstName": "名",
+      "lastName": "姓",
+      "company": "会社名",
+      "role": "役職",
+      "email": "メールアドレス",
+      "phone": "電話番号",
+      "whatsapp": "WhatsApp",
+      "website": "ウェブサイト",
+      "address": "住所",
+      "notes": "メモ",
+      "status": "ステータス",
+      "cancel": "キャンセル",
+      "save": "保存",
+      "saving": "保存中...",
+      "editTitle": "連絡先を編集",
+      "newTitle": "新規連絡先"
+    },
+    "detail": {
+      "back": "連絡先一覧に戻る",
+      "edit": "編集",
+      "delete": "削除",
+      "deleteConfirm": "この連絡先を削除しますか？この操作は取り消せません。",
+      "notFound": "連絡先が見つかりません。"
+    },
+    "attachments": {
+      "title": "添付ファイル",
+      "empty": "添付ファイルはありません。",
+      "titleLabel": "添付ファイルのタイトル",
+      "urlLabel": "https://...",
+      "add": "追加",
+      "error": "添付ファイルを追加できませんでした。"
+    },
+    "validation": {
+      "required": "必須項目です",
+      "email": "メールアドレスが無効です"
+    },
+    "loadMore": "もっと読み込む",
+    "loadingMore": "読み込み中..."
+  },
+  "tasks": {
+    "title": "タスク",
+    "subtitle": "{count}件のタスク",
+    "new": "新規タスク",
+    "empty": {
+      "title": "タスクがまだありません",
+      "subtitle": "最初のタスクを追加して、業務を整理しましょう。",
+      "cta": "タスクを追加"
+    },
+    "errors": {
+      "load": "タスクを読み込めませんでした。",
+      "save": "タスクを保存できませんでした。",
+      "delete": "タスクを削除できませんでした。"
+    },
+    "status": {
+      "todo": "未着手",
+      "in_progress": "進行中",
+      "review": "レビュー",
+      "completed": "完了",
+      "archived": "アーカイブ済み"
+    },
+    "priority": {
+      "low": "低",
+      "medium": "中",
+      "high": "高",
+      "urgent": "緊急"
+    },
+    "form": {
+      "title": "タイトル",
+      "description": "説明",
+      "priority": "優先度",
+      "status": "ステータス",
+      "deadline": "期限",
+      "cancel": "キャンセル",
+      "save": "保存",
+      "saving": "保存中...",
+      "editTitle": "タスクを編集",
+      "newTitle": "新規タスク",
+      "delete": "削除",
+      "project": "プロジェクト",
+      "noProject": "紐づくプロジェクトなし"
+    },
+    "deleteConfirm": "このタスクを削除しますか？この操作は取り消せません。",
+    "noDeadline": "期限なし",
+    "attachments": {
+      "title": "添付ファイル",
+      "empty": "添付ファイルはありません。",
+      "titleLabel": "添付ファイルのタイトル",
+      "urlLabel": "https://...",
+      "add": "追加",
+      "error": "添付ファイルを追加できませんでした。"
+    },
+    "moveTo": "{title}を移動",
+    "loadMore": "もっと読み込む",
+    "loadingMore": "読み込み中..."
+  },
+  "crm": {
+    "title": "CRM",
+    "subtitle": "{count}件の商談 · {value}",
+    "new": "新規商談",
+    "empty": {
+      "title": "商談がまだありません",
+      "subtitle": "最初の商談を追加して、パイプラインの管理を始めましょう。",
+      "cta": "商談を追加"
+    },
+    "errors": {
+      "load": "商談を読み込めませんでした。",
+      "save": "商談を保存できませんでした。",
+      "delete": "商談を削除できませんでした。"
+    },
+    "stage": {
+      "lead": "見込み客",
+      "qualified": "選定済み",
+      "proposal": "提案中",
+      "negotiation": "交渉中",
+      "won": "受注",
+      "lost": "失注"
+    },
+    "form": {
+      "title": "タイトル",
+      "contact": "連絡先",
+      "noContact": "紐づく連絡先なし",
+      "company": "会社名",
+      "value": "金額",
+      "probability": "確度",
+      "stage": "フェーズ",
+      "expectedCloseDate": "成約予定日",
+      "notes": "メモ",
+      "cancel": "キャンセル",
+      "save": "保存",
+      "saving": "保存中...",
+      "editTitle": "商談を編集",
+      "newTitle": "新規商談",
+      "delete": "削除"
+    },
+    "deleteConfirm": "この商談を削除しますか？この操作は取り消せません。",
+    "moveTo": "{title}を移動",
+    "loadMore": "もっと読み込む",
+    "loadingMore": "読み込み中..."
+  },
+  "calendar": {
+    "title": "カレンダー",
+    "subtitle": "{count}件のイベント",
+    "new": "新規イベント",
+    "today": "今日",
+    "month": "月",
+    "agenda": "予定一覧",
+    "empty": {
+      "title": "イベントがまだありません",
+      "subtitle": "最初のイベントを追加して、カレンダーの管理を始めましょう。",
+      "cta": "イベントを追加"
+    },
+    "errors": {
+      "load": "イベントを読み込めませんでした。",
+      "save": "イベントを保存できませんでした。",
+      "delete": "イベントを削除できませんでした。"
+    },
+    "form": {
+      "title": "タイトル",
+      "description": "説明",
+      "start": "開始",
+      "end": "終了",
+      "allDay": "終日",
+      "location": "場所",
+      "contact": "連絡先",
+      "noContact": "紐づく連絡先なし",
+      "cancel": "キャンセル",
+      "save": "保存",
+      "saving": "保存中...",
+      "editTitle": "イベントを編集",
+      "newTitle": "新規イベント",
+      "delete": "削除",
+      "date": "日付",
+      "timezone": "タイムゾーン",
+      "repeat": "繰り返し",
+      "repeatEvery": "間隔",
+      "repeatUntil": "終了日"
+    },
+    "deleteConfirm": "このイベントを削除しますか？この操作は取り消せません。",
+    "prevMonth": "前の月",
+    "nextMonth": "次の月",
+    "recurrence": {
+      "none": "繰り返さない",
+      "daily": "毎日",
+      "weekly": "毎週",
+      "monthly": "毎月"
+    }
+  },
+  "projects": {
+    "title": "プロジェクト",
+    "subtitle": "{count}件のプロジェクト",
+    "new": "新規プロジェクト",
+    "list": "リスト",
+    "kanban": "かんばん",
+    "empty": {
+      "title": "プロジェクトがまだありません",
+      "subtitle": "最初のプロジェクトを追加して、業務を整理しましょう。",
+      "cta": "プロジェクトを追加"
+    },
+    "errors": {
+      "load": "プロジェクトを読み込めませんでした。",
+      "save": "プロジェクトを保存できませんでした。",
+      "delete": "プロジェクトを削除できませんでした。"
+    },
+    "status": {
+      "active": "進行中",
+      "on_hold": "保留中",
+      "completed": "完了",
+      "archived": "アーカイブ済み"
+    },
+    "columns": {
+      "name": "名前",
+      "client": "クライアント",
+      "status": "ステータス",
+      "dueDate": "期限日",
+      "budget": "予算",
+      "tasks": "タスク"
+    },
+    "form": {
+      "name": "名前",
+      "description": "説明",
+      "status": "ステータス",
+      "client": "クライアント",
+      "noClient": "紐づくクライアントなし",
+      "startDate": "開始日",
+      "dueDate": "期限日",
+      "budget": "予算（EUR）",
+      "cancel": "キャンセル",
+      "save": "保存",
+      "saving": "保存中...",
+      "editTitle": "プロジェクトを編集",
+      "newTitle": "新規プロジェクト",
+      "delete": "削除"
+    },
+    "deleteConfirm": "このプロジェクトを削除しますか？紐づくタスクは削除されません。",
+    "detail": {
+      "back": "プロジェクト一覧に戻る",
+      "documents": "ドキュメント",
+      "noDocuments": "ドキュメントはまだありません。",
+      "documentTitle": "ドキュメントのタイトル",
+      "documentUrl": "https://...",
+      "addDocument": "追加",
+      "documentError": "ドキュメントを追加できませんでした。",
+      "discussion": "ディスカッション",
+      "noDiscussion": "メッセージはまだありません。",
+      "addDiscussion": "メッセージを入力...",
+      "send": "送信",
+      "milestones": "マイルストーン",
+      "noMilestones": "マイルストーンはまだありません。",
+      "milestoneTitle": "マイルストーンのタイトル",
+      "milestoneDueDate": "期限日",
+      "addMilestone": "追加",
+      "milestoneError": "マイルストーンを追加できませんでした。"
+    },
+    "loadMore": "もっと読み込む",
+    "loadingMore": "読み込み中..."
+  },
+  "timesheets": {
+    "title": "タイムシート",
+    "subtitle": "{count}件のエントリー · 合計{hours}時間",
+    "new": "時間を記録",
+    "timer": {
+      "start": "タイマー開始",
+      "stop": "停止して保存",
+      "running": "タイマー計測中",
+      "descriptionPlaceholder": "何に取り組んでいますか？"
+    },
+    "empty": {
+      "title": "エントリーがまだありません",
+      "subtitle": "タイマーを使うか、手動で時間を記録して始めましょう。",
+      "cta": "時間を記録"
+    },
+    "errors": {
+      "load": "タイムシートを読み込めませんでした。",
+      "save": "エントリーを保存できませんでした。",
+      "delete": "エントリーを削除できませんでした。"
+    },
+    "form": {
+      "project": "プロジェクト",
+      "noProject": "紐づくプロジェクトなし",
+      "task": "タスク",
+      "noTask": "紐づくタスクなし",
+      "description": "説明",
+      "date": "日付",
+      "duration": "所要時間（分）",
+      "billable": "請求対象",
+      "cancel": "キャンセル",
+      "save": "保存",
+      "saving": "保存中...",
+      "editTitle": "エントリーを編集",
+      "newTitle": "新規エントリー",
+      "delete": "削除"
+    },
+    "deleteConfirm": "このエントリーを削除しますか？この操作は取り消せません。",
+    "noBillable": "請求対象外"
+  },
+  "appointments": {
+    "title": "予定",
+    "subtitle": "{count}件の予定",
+    "new": "新規予定",
+    "upcoming": "今後の予定",
+    "past": "過去の予定",
+    "empty": {
+      "title": "予定がまだありません",
+      "subtitle": "最初の予定を追加して始めましょう。",
+      "cta": "予定を追加"
+    },
+    "errors": {
+      "load": "予定を読み込めませんでした。",
+      "save": "予定を保存できませんでした。",
+      "delete": "予定を削除できませんでした。"
+    },
+    "status": {
+      "scheduled": "予定済み",
+      "confirmed": "確定",
+      "completed": "完了",
+      "cancelled": "キャンセル済み"
+    },
+    "form": {
+      "title": "タイトル",
+      "contact": "連絡先",
+      "noContact": "紐づく連絡先なし",
+      "opportunity": "CRM商談",
+      "noOpportunity": "紐づく商談なし",
+      "start": "日時",
+      "duration": "所要時間（分）",
+      "location": "場所",
+      "videoCallUrl": "ビデオ通話リンク",
+      "notes": "メモ",
+      "status": "ステータス",
+      "cancel": "キャンセル",
+      "save": "保存",
+      "saving": "保存中...",
+      "editTitle": "予定を編集",
+      "newTitle": "新規予定",
+      "delete": "削除"
+    },
+    "joinCall": "ビデオ通話に参加",
+    "deleteConfirm": "この予定を削除しますか？この操作は取り消せません。"
+  },
+  "inbox": {
+    "title": "受信トレイ",
+    "subtitle": "{count}件のメッセージ",
+    "new": "新規メッセージ",
+    "all": "すべて",
+    "channel": {
+      "email": "メール",
+      "whatsapp": "WhatsApp",
+      "internal": "社内"
+    },
+    "empty": {
+      "title": "メッセージがまだありません",
+      "subtitle": "連絡先とのやり取りがここに表示されます。",
+      "cta": "最初のメッセージを送信"
+    },
+    "errors": {
+      "load": "メッセージを読み込めませんでした。",
+      "send": "メッセージを送信できませんでした。",
+      "delete": "メッセージを削除できませんでした。"
+    },
+    "mockNotice": "実際のメール／WhatsAppプロバイダーが設定されていません。このメッセージは記録されましたが、実際には送信されていません。実際のプロバイダーと連携するには、EMAIL_PROVIDER_API_KEY / WHATSAPP_API_KEYを設定してください。",
+    "form": {
+      "channel": "チャネル",
+      "to": "宛先",
+      "contact": "連絡先",
+      "noContact": "紐づく連絡先なし",
+      "subject": "件名",
+      "body": "メッセージ",
+      "cancel": "キャンセル",
+      "send": "送信",
+      "sending": "送信中...",
+      "newTitle": "新規メッセージ"
+    },
+    "markRead": "既読にする",
+    "archive": "アーカイブ",
+    "delete": "削除",
+    "deleteConfirm": "このメッセージを削除しますか？この操作は取り消せません。",
+    "extractTask": "タスクを抽出",
+    "suggestAppointment": "予定を提案",
+    "threadCount": "{count}件のメッセージ",
+    "reply": "返信",
+    "you": "自分",
+    "labels": {
+      "filterBy": "ラベルで絞り込み:",
+      "add": "+ ラベル",
+      "remove": "ラベル{label}を削除",
+      "placeholder": "新しいラベル"
+    },
+    "loadMore": "もっと読み込む",
+    "loadingMore": "読み込み中..."
+  },
+  "ai": {
+    "errors": {
+      "extract": "メッセージを解析できませんでした。"
+    },
+    "taskSuggestion": {
+      "title": "提案されたタスク",
+      "none": "このメッセージから実行可能な依頼は見つかりませんでした。",
+      "confirm": "タスクを作成",
+      "reject": "却下"
+    },
+    "provider": "ルールベースの解析です — 外部の言語モデルには接続されていません。",
+    "calendarSuggestion": {
+      "title": "提案された予定",
+      "none": "このメッセージから予定のリクエストは検出されませんでした。",
+      "pickSlot": "時間を選択",
+      "busy": "予定あり",
+      "confirm": "予定を作成",
+      "reject": "却下"
+    },
+    "actions": {
+      "title": "AIアクション",
+      "close": "閉じる",
+      "summarize": "要約",
+      "generateReply": "返信を生成",
+      "run": "実行",
+      "working": "処理中...",
+      "useAsReply": "この内容を返信として使用"
+    },
+    "relationship": {
+      "title": "関係性（AI）",
+      "noHistory": "この連絡先とのコミュニケーションや予定の記録はありません。",
+      "summarize": "関係性を要約",
+      "followUp": "フォローアップを準備",
+      "useAsFollowUp": "フォローアップメールとして使用"
+    },
+    "prioritize": {
+      "action": "AIで優先順位を付ける"
+    }
+  },
+  "assistant": {
+    "title": "VORAアシスタント",
+    "close": "閉じる",
+    "open": "アシスタント",
+    "prompts": {
+      "organizeDay": "今日の予定を整理する",
+      "priorities": "最も重要なタスクは何ですか？",
+      "unanswered": "まだ読んでいないメッセージは？",
+      "upcoming": "次の予定を探す"
+    }
+  },
+  "helpdesk": {
+    "title": "ヘルプデスク",
+    "subtitle": "{count}件のチケット",
+    "new": "新規チケット",
+    "empty": {
+      "title": "チケットがまだありません",
+      "subtitle": "最初のサポートチケットを追加しましょう。",
+      "cta": "チケットを追加"
+    },
+    "errors": {
+      "load": "チケットを読み込めませんでした。",
+      "save": "チケットを保存できませんでした。",
+      "delete": "チケットを削除できませんでした。"
+    },
+    "status": {
+      "open": "対応待ち",
+      "in_progress": "対応中",
+      "waiting": "保留中",
+      "resolved": "解決済み",
+      "closed": "クローズ"
+    },
+    "category": {
+      "technical": "技術的な問題",
+      "billing": "請求",
+      "general": "一般",
+      "feature_request": "機能リクエスト"
+    },
+    "columns": {
+      "title": "タイトル",
+      "customer": "顧客",
+      "status": "ステータス",
+      "priority": "優先度",
+      "category": "カテゴリー",
+      "sla": "SLA"
+    },
+    "form": {
+      "title": "タイトル",
+      "description": "説明",
+      "contact": "顧客",
+      "noContact": "紐づく顧客なし",
+      "priority": "優先度",
+      "status": "ステータス",
+      "category": "カテゴリー",
+      "cancel": "キャンセル",
+      "save": "保存",
+      "saving": "保存中...",
+      "editTitle": "チケットを編集",
+      "newTitle": "新規チケット",
+      "delete": "削除",
+      "sla": "SLA期限"
+    },
+    "detail": {
+      "back": "チケット一覧に戻る",
+      "comments": "コメント",
+      "noComments": "コメントはまだありません。",
+      "addComment": "コメントを追加...",
+      "send": "送信"
+    },
+    "attachments": {
+      "title": "添付ファイル",
+      "empty": "添付ファイルはありません。",
+      "titleLabel": "添付ファイルのタイトル",
+      "urlLabel": "https://...",
+      "add": "追加",
+      "error": "添付ファイルを追加できませんでした。"
+    },
+    "deleteConfirm": "このチケットを削除しますか？この操作は取り消せません。",
+    "sla": {
+      "dueAt": "期限: {date}",
+      "overdue": "期限超過"
+    },
+    "loadMore": "もっと読み込む",
+    "loadingMore": "読み込み中..."
+  },
+  "knowledge": {
+    "title": "ナレッジ",
+    "subtitle": "{count}件のページ",
+    "new": "新規ページ",
+    "search": "タイトル、内容、タグで検索...",
+    "allFolders": "すべてのフォルダ",
+    "favoritesOnly": "お気に入りのみ",
+    "noFolder": "フォルダなし",
+    "empty": {
+      "title": "ページがまだありません",
+      "subtitle": "最初のページを作成して、ナレッジベースを構築しましょう。",
+      "cta": "ページを作成"
+    },
+    "errors": {
+      "load": "ページを読み込めませんでした。",
+      "save": "ページを保存できませんでした。",
+      "delete": "ページを削除できませんでした。"
+    },
+    "form": {
+      "title": "タイトル",
+      "content": "コンテンツ（Markdown）",
+      "folder": "フォルダ",
+      "tags": "タグ（カンマ区切り）",
+      "cancel": "キャンセル",
+      "save": "保存",
+      "saving": "保存中...",
+      "editTitle": "ページを編集",
+      "newTitle": "新規ページ",
+      "delete": "削除",
+      "edit": "編集",
+      "preview": "プレビュー"
+    },
+    "detail": {
+      "back": "ナレッジに戻る",
+      "lastUpdated": "最終更新日"
+    },
+    "deleteConfirm": "このページを削除しますか？この操作は取り消せません。",
+    "semanticSearch": "スマート検索（Enterキーを押す）",
+    "searching": "検索中...",
+    "semanticResultsCount": "関連度順に{count}件の結果",
+    "relevance": "関連度{pct}%",
+    "favorite": "お気に入りに追加",
+    "unfavorite": "お気に入りから削除",
+    "loadMore": "もっと読み込む",
+    "loadingMore": "読み込み中..."
+  },
+  "expenses": {
+    "title": "経費",
+    "subtitle": "{count}件の経費 · {total}",
+    "new": "新規経費",
+    "all": "すべて",
+    "empty": {
+      "title": "経費がまだありません",
+      "subtitle": "最初の経費を記録して始めましょう。",
+      "cta": "経費を追加"
+    },
+    "errors": {
+      "load": "経費を読み込めませんでした。",
+      "save": "経費を保存できませんでした。",
+      "delete": "経費を削除できませんでした。"
+    },
+    "status": {
+      "pending": "承認待ち",
+      "approved": "承認済み",
+      "rejected": "却下"
+    },
+    "category": {
+      "travel": "出張",
+      "meals": "飲食",
+      "office": "オフィス用品",
+      "software": "ソフトウェア",
+      "other": "その他"
+    },
+    "columns": {
+      "date": "日付",
+      "category": "カテゴリー",
+      "project": "プロジェクト",
+      "amount": "金額",
+      "status": "ステータス"
+    },
+    "form": {
+      "amount": "金額（EUR）",
+      "date": "日付",
+      "category": "カテゴリー",
+      "project": "プロジェクト",
+      "noProject": "紐づくプロジェクトなし",
+      "notes": "メモ",
+      "receiptUrl": "領収書リンク（任意）",
+      "cancel": "キャンセル",
+      "save": "保存",
+      "saving": "保存中...",
+      "editTitle": "経費を編集",
+      "newTitle": "新規経費",
+      "delete": "削除"
+    },
+    "approve": "承認",
+    "reject": "却下",
+    "deleteConfirm": "この経費を削除しますか？この操作は取り消せません。"
+  },
+  "leave": {
+    "title": "休暇",
+    "subtitle": "{count}件の申請",
+    "new": "新規申請",
+    "all": "すべて",
+    "balance": {
+      "title": "休暇残日数",
+      "allocated": "付与日数",
+      "used": "使用日数",
+      "remaining": "残日数",
+      "days": "日"
+    },
+    "empty": {
+      "title": "申請がまだありません",
+      "subtitle": "最初の休暇申請を提出しましょう。",
+      "cta": "申請を追加"
+    },
+    "errors": {
+      "load": "申請を読み込めませんでした。",
+      "save": "申請を保存できませんでした。",
+      "delete": "申請を削除できませんでした。"
+    },
+    "status": {
+      "pending": "承認待ち",
+      "approved": "承認済み",
+      "rejected": "却下"
+    },
+    "type": {
+      "vacation": "有給休暇",
+      "sick": "病気休暇",
+      "personal": "私用休暇"
+    },
+    "columns": {
+      "requester": "申請者",
+      "type": "種別",
+      "dates": "期間",
+      "days": "日数",
+      "status": "ステータス"
+    },
+    "form": {
+      "requesterName": "名前",
+      "selectEmployee": "従業員を選択",
+      "type": "種別",
+      "startDate": "開始日",
+      "endDate": "終了日",
+      "notes": "メモ",
+      "cancel": "キャンセル",
+      "save": "保存",
+      "saving": "保存中...",
+      "newTitle": "新規休暇申請"
+    },
+    "approve": "承認",
+    "reject": "却下",
+    "deleteConfirm": "この申請を削除しますか？この操作は取り消せません。"
+  },
+  "wellbeing": {
+    "title": "ウェルビーイング",
+    "subtitle": "あなたのための時間: 毎日のチェックイン、呼吸法、週間トレンド。",
+    "disclaimer": "ウェルビーイング機能は医療専門家の代わりとなるものではなく、診断は行いません。仕事量や心身の状態を振り返るための場です。",
+    "mood": "気分",
+    "energy": "エネルギー",
+    "stress": "ストレス",
+    "note": "メモ（任意）",
+    "notePlaceholder": "今日の調子はいかがですか？",
+    "save": "チェックインを保存",
+    "saving": "保存中...",
+    "saved": "チェックインを保存しました。",
+    "history": "最近のチェックイン",
+    "checkin": {
+      "title": "今日のチェックイン",
+      "updateTitle": "今日のチェックインを更新"
+    },
+    "weekly": {
+      "title": "直近{count}回のチェックインの平均"
+    },
+    "breathing": {
+      "title": "呼吸エクササイズ",
+      "start": "開始",
+      "stop": "停止",
+      "in": "息を吸う",
+      "hold1": "止める",
+      "out": "息を吐く",
+      "hold2": "止める"
+    },
+    "errors": {
+      "load": "チェックインを読み込めませんでした。"
+    }
+  },
+  "auditLog": {
+    "title": "監査ログ",
+    "subtitle": "組織全体の重要な操作 — オーナーと管理者のみ閲覧可能です。",
+    "empty": "まだ記録された操作はありません。",
+    "actions": {
+      "login": "サインインしました",
+      "logout": "サインアウトしました",
+      "employee.create": "従業員を作成しました",
+      "employee.update": "従業員を更新しました",
+      "employee.delete": "従業員を削除しました",
+      "leave.approve": "休暇を承認しました",
+      "leave.reject": "休暇を却下しました",
+      "expense.approve": "経費を承認しました",
+      "expense.reject": "経費を却下しました"
+    },
+    "errors": {
+      "load": "監査ログを読み込めませんでした。",
+      "forbidden": "監査ログを閲覧できるのはオーナーと管理者のみです。"
+    }
+  },
+  "employees": {
+    "title": "従業員",
+    "subtitle": "{count}名の従業員",
+    "new": "新規従業員",
+    "empty": {
+      "title": "従業員がまだ登録されていません",
+      "subtitle": "最初の従業員を追加して始めましょう。",
+      "cta": "従業員を追加"
+    },
+    "errors": {
+      "load": "従業員を読み込めませんでした。",
+      "save": "従業員を保存できませんでした。",
+      "delete": "従業員を削除できませんでした。"
+    },
+    "status": {
+      "active": "在籍中",
+      "inactive": "非在籍"
+    },
+    "columns": {
+      "name": "名前",
+      "role": "役職",
+      "team": "チーム",
+      "email": "メールアドレス",
+      "status": "ステータス"
+    },
+    "form": {
+      "firstName": "名",
+      "lastName": "姓",
+      "email": "メールアドレス",
+      "role": "役職",
+      "team": "チーム",
+      "status": "ステータス",
+      "startDate": "入社日",
+      "cancel": "キャンセル",
+      "save": "保存",
+      "saving": "保存中...",
+      "editTitle": "従業員情報を編集",
+      "newTitle": "新規従業員",
+      "delete": "削除"
+    },
+    "deleteConfirm": "この従業員を削除しますか？この操作は取り消せません。"
+  },
+  "social": {
+    "title": "ソーシャルマーケティング",
+    "subtitle": "{count}件の投稿",
+    "new": "新規投稿",
+    "all": "すべて",
+    "empty": {
+      "title": "投稿がまだありません",
+      "subtitle": "最初の投稿を作成して、コンテンツ計画を始めましょう。",
+      "cta": "投稿を作成"
+    },
+    "errors": {
+      "load": "投稿を読み込めませんでした。",
+      "save": "投稿を保存できませんでした。",
+      "delete": "投稿を削除できませんでした。"
+    },
+    "status": {
+      "draft": "下書き",
+      "scheduled": "予約済み",
+      "published": "公開済み"
+    },
+    "platform": {
+      "instagram": "Instagram",
+      "facebook": "Facebook",
+      "linkedin": "LinkedIn",
+      "x": "X"
+    },
+    "form": {
+      "content": "コンテンツ",
+      "platform": "プラットフォーム",
+      "status": "ステータス",
+      "scheduledAt": "予約日時",
+      "cancel": "キャンセル",
+      "save": "保存",
+      "saving": "保存中...",
+      "editTitle": "投稿を編集",
+      "newTitle": "新規投稿",
+      "delete": "削除"
+    },
+    "deleteConfirm": "この投稿を削除しますか？この操作は取り消せません。"
+  },
+  "campaigns": {
+    "title": "メールマーケティング",
+    "subtitle": "{count}件のキャンペーン",
+    "new": "新規キャンペーン",
+    "empty": {
+      "title": "キャンペーンがまだありません",
+      "subtitle": "最初のメールキャンペーンを作成しましょう。",
+      "cta": "キャンペーンを作成"
+    },
+    "errors": {
+      "load": "キャンペーンを読み込めませんでした。",
+      "save": "キャンペーンを保存できませんでした。",
+      "send": "キャンペーンを送信できませんでした。",
+      "delete": "キャンペーンを削除できませんでした。"
+    },
+    "status": {
+      "draft": "下書き",
+      "sent": "送信済み"
+    },
+    "mockNotice": "実際のメールプロバイダーが設定されていません。送信は記録されますが、実際にはメールは配信されません。",
+    "form": {
+      "name": "キャンペーン名",
+      "subject": "件名",
+      "body": "コンテンツ",
+      "recipientCount": "受信者数（推定）",
+      "cancel": "キャンセル",
+      "save": "保存",
+      "saving": "保存中...",
+      "editTitle": "キャンペーンを編集",
+      "newTitle": "新規キャンペーン",
+      "delete": "削除",
+      "useTemplate": "テンプレートを使用",
+      "noTemplate": "テンプレートなし",
+      "useSegment": "セグメントを使用",
+      "noSegment": "セグメントなし",
+      "resolvingSegment": "受信者を解決中..."
+    },
+    "send": "送信",
+    "sentOn": "送信日",
+    "deleteConfirm": "このキャンペーンを削除しますか？この操作は取り消せません。"
+  },
+  "website": {
+    "title": "ウェブサイト",
+    "subtitle": "連携している公開サイトの概要",
+    "visitSite": "サイトを見る",
+    "connected": "連携済み",
+    "notConnected": "portfolio-andreaプロジェクトが見つかりません",
+    "pages": "ページ",
+    "projects": "公開済みプロジェクト",
+    "featured": "注目",
+    "errors": {
+      "load": "サイトデータを読み込めませんでした。"
+    },
+    "note": "公開サイトは別のNuxtプロジェクト（portfolio-andrea）です。このページはその実際のコンテンツを読み取り専用で表示しています — VORAはウェブサイトエディタを重複して提供していません。",
+    "myWebsites": "生成したサイト",
+    "createSite": "どの組織も、VORAのアドレスで実際に公開される独自のサイトを生成できます。"
+  },
+  "sites": {
+    "title": "生成されたサイト",
+    "subtitle": "{count}件のサイト",
+    "new": "新規サイト",
+    "empty": {
+      "title": "サイトがまだありません",
+      "subtitle": "最初のVORA生成サイトを作成しましょう。",
+      "cta": "サイトを作成"
+    },
+    "errors": {
+      "load": "サイトを読み込めませんでした。",
+      "save": "サイトを保存できませんでした。",
+      "delete": "サイトを削除できませんでした。"
+    },
+    "published": "公開済み",
+    "draft": "下書き",
+    "viewLive": "公開サイトを見る",
+    "form": {
+      "slug": "アドレス（スラッグ）",
+      "slugHint": "サイトは /site/{slug} でアクセスできます",
+      "name": "名前",
+      "tagline": "タグライン",
+      "about": "紹介文",
+      "contactEmail": "連絡先メールアドレス",
+      "accentColor": "アクセントカラー",
+      "published": "公開",
+      "cancel": "キャンセル",
+      "save": "保存",
+      "saving": "保存中...",
+      "editTitle": "サイトを編集",
+      "newTitle": "新規サイト",
+      "delete": "削除"
+    },
+    "deleteConfirm": "このサイトを削除しますか？この操作は取り消せません。",
+    "notFound": "このサイトは存在しないか、まだ公開されていません。",
+    "generatedBy": "VORAで生成"
+  },
+  "settings": {
+    "title": "設定",
+    "subtitle": "アカウント、セキュリティ、通知、連携。",
+    "saving": "保存中...",
+    "save": "保存",
+    "saved": "保存しました。",
+    "profile": {
+      "title": "プロフィール",
+      "name": "名前",
+      "email": "メールアドレス",
+      "organization": "組織",
+      "role": {
+        "owner": "オーナー",
+        "admin": "管理者",
+        "member": "メンバー"
+      }
+    },
+    "security": {
+      "title": "セキュリティ",
+      "currentPassword": "現在のパスワード",
+      "newPassword": "新しいパスワード",
+      "changePassword": "パスワードを変更",
+      "wrongPassword": "現在のパスワードが正しくありません。",
+      "error": "パスワードを変更できませんでした。"
+    },
+    "appearance": {
+      "title": "外観",
+      "light": "ライト",
+      "dark": "ダーク",
+      "system": "システム"
+    },
+    "language": {
+      "title": "言語"
+    },
+    "notifications": {
+      "title": "通知",
+      "messages": "メッセージ",
+      "urgentTasks": "緊急タスク",
+      "appointments": "予定",
+      "reminders": "リマインダー",
+      "aiActions": "AIアクション",
+      "approvals": "承認",
+      "tickets": "チケット",
+      "deadlines": "期限"
+    },
+    "integrations": {
+      "title": "連携",
+      "ai": "AIエンジン",
+      "email": "メールプロバイダー",
+      "whatsapp": "WhatsApp",
+      "oauthGoogle": "Googleサインイン",
+      "live": "本番稼働中",
+      "mock": "モック",
+      "note": "「モック」とは、外部プロバイダーの認証情報が接続されていない実装のことです。認証情報を設定するまで（.env.exampleを参照）、実際のネットワーク経由での送受信は行われません。"
+    },
+    "applications": {
+      "title": "アプリケーション",
+      "subtitle": "⌘Kを開くと、モジュールとクイックアクションの一覧を確認できます。"
+    },
+    "api": {
+      "title": "API",
+      "notice": "個人用APIキーの管理機能はまだ実装されていません — 隠されたモックではなく、実際に今後実装予定の機能です。"
+    }
+  },
+  "templates": {
+    "title": "メールテンプレート",
+    "subtitle": "{count}件のテンプレート",
+    "new": "新規テンプレート",
+    "empty": {
+      "title": "テンプレートがありません",
+      "subtitle": "最初の再利用可能なメールテンプレートを作成しましょう。",
+      "cta": "テンプレートを作成"
+    },
+    "errors": {
+      "load": "テンプレートを読み込めませんでした。",
+      "save": "テンプレートを保存できませんでした。",
+      "delete": "テンプレートを削除できませんでした。"
+    },
+    "deleteConfirm": "このテンプレートを削除しますか？この操作は取り消せません。",
+    "form": {
+      "name": "名前",
+      "subject": "件名",
+      "body": "メッセージ",
+      "cancel": "キャンセル",
+      "save": "保存",
+      "saving": "保存中...",
+      "editTitle": "テンプレートを編集",
+      "newTitle": "新規テンプレート",
+      "delete": "削除"
+    }
+  },
+  "segments": {
+    "title": "セグメント",
+    "subtitle": "{count}件のセグメント",
+    "new": "新規セグメント",
+    "empty": {
+      "title": "セグメントがありません",
+      "subtitle": "最初の再利用可能な連絡先セグメントを作成しましょう。",
+      "cta": "セグメントを作成"
+    },
+    "errors": {
+      "load": "セグメントを読み込めませんでした。",
+      "save": "セグメントを保存できませんでした。",
+      "delete": "セグメントを削除できませんでした。"
+    },
+    "deleteConfirm": "このセグメントを削除しますか？この操作は取り消せません。",
+    "form": {
+      "name": "名前",
+      "status": "連絡先ステータス",
+      "anyStatus": "すべてのステータス",
+      "tags": "タグ",
+      "tagsPlaceholder": "カンマ区切り",
+      "cancel": "キャンセル",
+      "save": "保存",
+      "saving": "保存中...",
+      "editTitle": "セグメントを編集",
+      "newTitle": "新規セグメント",
+      "delete": "削除"
+    }
+  },
+  "automations": {
+    "title": "オートメーション",
+    "subtitle": "{count}件のオートメーション",
+    "new": "新規オートメーション",
+    "empty": {
+      "title": "オートメーションがありません",
+      "subtitle": "最初のマーケティングオートメーションを作成しましょう: 実際に動作するトリガー、条件、アクションです。",
+      "cta": "オートメーションを作成"
+    },
+    "errors": {
+      "load": "オートメーションを読み込めませんでした。",
+      "save": "オートメーションを保存できませんでした。",
+      "delete": "オートメーションを削除できませんでした。"
+    },
+    "deleteConfirm": "このオートメーションを削除しますか？この操作は取り消せません。",
+    "status": {
+      "active": "有効",
+      "inactive": "無効"
+    },
+    "runCount": "{count}回実行",
+    "lastRun": "前回: {date}",
+    "trigger": {
+      "contact_created": "連絡先が作成されたとき",
+      "contact_status_changed": "連絡先のステータスが変更されたとき",
+      "manual": "手動実行"
+    },
+    "form": {
+      "editTitle": "オートメーションを編集",
+      "newTitle": "新規オートメーション",
+      "name": "名前",
+      "active": "有効",
+      "trigger": "トリガー",
+      "steps": "ステップ",
+      "addCondition": "条件",
+      "addAction": "アクション",
+      "addDelay": "待機",
+      "noSteps": "ステップがまだありません — このオートメーションはトリガーのみ実行されます。",
+      "stepKind": {
+        "condition": "条件",
+        "action": "アクション",
+        "delay": "待機"
+      },
+      "field": {
+        "status": "ステータス",
+        "tag": "タグ",
+        "source": "ソース"
+      },
+      "operator": {
+        "equals": "次と等しい",
+        "not_equals": "次と等しくない",
+        "contains": "次を含む"
+      },
+      "value": "値",
+      "actionType": {
+        "send_email": "メールを送信",
+        "add_tag": "タグを追加",
+        "change_status": "ステータスを変更",
+        "create_task": "タスクを作成"
+      },
+      "emailSubject": "メール件名",
+      "emailBody": "メール本文",
+      "tag": "追加するタグ",
+      "status": "新しいステータス",
+      "taskTitle": "タスクのタイトル",
+      "waitHours": "待機時間（時間）",
+      "delayLimitation": "制限事項: 現バージョンでは、待機処理はバックグラウンドで実行されず、トリガー発生時にのみ評価されます。",
+      "moveUp": "上に移動",
+      "moveDown": "下に移動",
+      "removeStep": "ステップを削除",
+      "cancel": "キャンセル",
+      "save": "保存",
+      "saving": "保存中...",
+      "delete": "削除"
+    }
   }
 }
