@@ -277,7 +277,7 @@ onBeforeUnmount(() => {
       <div class="absolute inset-0 z-40 pointer-events-none bg-gradient-to-t from-ink-950 via-ink-950/10 via-40% to-transparent to-75%" />
 
       <!-- z-50: decorative stats arc (desktop only) -->
-      <div class="hidden sm:block absolute inset-y-0 right-0 z-50 pointer-events-none">
+      <div class="block absolute inset-y-0 right-0 z-50 pointer-events-none">
         <svg viewBox="0 0 380 700" preserveAspectRatio="xMaxYMid meet" class="h-full w-auto">
           <defs>
             <linearGradient
@@ -330,7 +330,7 @@ onBeforeUnmount(() => {
       </div>
 
       <!-- z-50: hero copy -->
-      <div class="absolute bottom-12 sm:bottom-16 md:bottom-24 left-5 sm:left-8 md:left-12 z-50 max-w-[300px] sm:max-w-md">
+      <div class="absolute bottom-[20vh] sm:bottom-16 md:bottom-24 left-5 sm:left-8 md:left-12 z-50 max-w-[300px] sm:max-w-md">
         <p class="hero-rise text-[11px] sm:text-xs font-semibold tracking-[0.12em] text-white/90" style="animation-delay: 0.15s">
           {{ t('landing.eyebrowPrefix') }}<span class="italic">{{ t('landing.eyebrowEmphasis') }}</span>
         </p>

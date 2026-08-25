@@ -16,3 +16,9 @@
     @apply bg-surface-glass dark:bg-white/5 backdrop-blur-md border border-white/20 dark:border-white/10;
   }
 }
+
+#netlify-badge,
+#netlify-badge-container,
+.netlify-badge {
+  display: none !important;
+}
