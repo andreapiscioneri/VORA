@@ -11,12 +11,15 @@ export function useEvents() {
   const [error, setError] = useState<string | null>(null)
   const [offline, setOffline] = useState(false)
 
+  // Unpaginated on purpose (see server/api/events/all.get.ts): the calendar
+  // screen needs the complete event set, and events are naturally bounded
+  // per org unlike contacts/tasks, so cursor pagination doesn't apply here.
   const load = useCallback(async () => {
     setLoading(true)
     setError(null)
     try {
-      const data = await api.get<CalendarEvent[]>('/events')
-      const sorted = [...data].sort((a, b) => (a.startAt < b.startAt ? -1 : 1))
+      const items = await api.get<CalendarEvent[]>('/events/all')
+      const sorted = [...items].sort((a, b) => (a.startAt < b.startAt ? -1 : 1))
       setEvents(sorted)
       setOffline(false)
       writeCache(CACHE_KEY, sorted)

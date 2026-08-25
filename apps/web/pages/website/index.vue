@@ -4,7 +4,7 @@ import type { MicroSite } from '~/shared/types/microsite'
 definePageMeta({ layout: 'default' })
 
 const { overview, pending, error, fetchOverview } = useWebsite()
-const { sites, pending: sitesPending, fetchSites } = useMicrosites()
+const { sites, pending: sitesPending, hasMore: sitesHasMore, loadingMore: sitesLoadingMore, fetchSites, loadMore: loadMoreSites } = useMicrosites()
 await Promise.all([fetchOverview(), fetchSites()])
 
 const featuredProjects = computed(() => overview.value?.projects.filter((p) => p.featured) ?? [])
@@ -160,6 +160,16 @@ function closeSiteForm() {
             <UiIcon name="external-link" :size="16" />
           </NuxtLink>
         </div>
+      </div>
+
+      <div v-if="!sitesPending && sitesHasMore" class="flex justify-center">
+        <button
+          class="px-4 py-2 rounded-md text-body-sm font-medium border border-ink-100 dark:border-white/10 hover:bg-ink-50 dark:hover:bg-white/5 disabled:opacity-50"
+          :disabled="sitesLoadingMore"
+          @click="loadMoreSites"
+        >
+          {{ sitesLoadingMore ? $t('sites.loadingMore') : $t('sites.loadMore') }}
+        </button>
       </div>
     </div>
 

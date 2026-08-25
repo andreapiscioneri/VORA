@@ -25,7 +25,7 @@ const saving = ref(false)
 const saveError = ref('')
 
 async function onSubmit() {
-  Object.keys(errors).forEach((k) => delete errors[k])
+  Object.keys(errors).forEach((k) => { errors[k] = '' })
   saveError.value = ''
 
   const result = employeeInputSchema.safeParse(form)
@@ -82,26 +82,26 @@ onMounted(() => dialogRef.value?.focus())
           <div class="grid grid-cols-1 tablet:grid-cols-2 gap-4">
             <div>
               <label for="employee-firstName" class="block text-label text-ink-400 mb-2">{{ $t('employees.form.firstName') }}</label>
-              <input id="employee-firstName" v-model="form.firstName" type="text" class="vora-input" :class="{ 'border-danger': errors.firstName }" autofocus />
+              <input id="employee-firstName" v-model="form.firstName" type="text" class="vora-input" :class="{ 'border-danger': errors.firstName }" autofocus >
               <p v-if="errors.firstName" class="text-caption text-danger mt-1">{{ errors.firstName }}</p>
             </div>
             <div>
               <label for="employee-lastName" class="block text-label text-ink-400 mb-2">{{ $t('employees.form.lastName') }}</label>
-              <input id="employee-lastName" v-model="form.lastName" type="text" class="vora-input" :class="{ 'border-danger': errors.lastName }" />
+              <input id="employee-lastName" v-model="form.lastName" type="text" class="vora-input" :class="{ 'border-danger': errors.lastName }" >
               <p v-if="errors.lastName" class="text-caption text-danger mt-1">{{ errors.lastName }}</p>
             </div>
             <div>
               <label for="employee-email" class="block text-label text-ink-400 mb-2">{{ $t('employees.form.email') }}</label>
-              <input id="employee-email" v-model="form.email" type="email" class="vora-input" :class="{ 'border-danger': errors.email }" />
+              <input id="employee-email" v-model="form.email" type="email" class="vora-input" :class="{ 'border-danger': errors.email }" >
               <p v-if="errors.email" class="text-caption text-danger mt-1">{{ errors.email }}</p>
             </div>
             <div>
               <label for="employee-role" class="block text-label text-ink-400 mb-2">{{ $t('employees.form.role') }}</label>
-              <input id="employee-role" v-model="form.role" type="text" class="vora-input" />
+              <input id="employee-role" v-model="form.role" type="text" class="vora-input" >
             </div>
             <div>
               <label for="employee-team" class="block text-label text-ink-400 mb-2">{{ $t('employees.form.team') }}</label>
-              <input id="employee-team" v-model="form.team" type="text" class="vora-input" />
+              <input id="employee-team" v-model="form.team" type="text" class="vora-input" >
             </div>
             <div>
               <label for="employee-status" class="block text-label text-ink-400 mb-2">{{ $t('employees.form.status') }}</label>
@@ -112,7 +112,7 @@ onMounted(() => dialogRef.value?.focus())
             </div>
             <div>
               <label for="employee-startDate" class="block text-label text-ink-400 mb-2">{{ $t('employees.form.startDate') }}</label>
-              <input id="employee-startDate" v-model="form.startDate" type="date" class="vora-input" />
+              <input id="employee-startDate" v-model="form.startDate" type="date" class="vora-input" >
             </div>
           </div>
 

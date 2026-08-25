@@ -35,7 +35,7 @@ const saving = ref(false)
 const saveError = ref('')
 
 async function onSubmit() {
-  Object.keys(errors).forEach((k) => delete errors[k])
+  Object.keys(errors).forEach((k) => { errors[k] = '' })
   saveError.value = ''
 
   const result = timesheetEntryInputSchema.safeParse(form)
@@ -106,11 +106,11 @@ onMounted(() => dialogRef.value?.focus())
             </div>
             <div>
               <label for="entry-date" class="block text-label text-ink-400 mb-2">{{ $t('timesheets.form.date') }}</label>
-              <input id="entry-date" v-model="form.date" type="date" class="vora-input" />
+              <input id="entry-date" v-model="form.date" type="date" class="vora-input" >
             </div>
             <div>
               <label for="entry-durationMinutes" class="block text-label text-ink-400 mb-2">{{ $t('timesheets.form.duration') }}</label>
-              <input id="entry-durationMinutes" v-model.number="form.durationMinutes" type="number" min="1" max="1440" class="vora-input" :class="{ 'border-danger': errors.durationMinutes }" />
+              <input id="entry-durationMinutes" v-model.number="form.durationMinutes" type="number" min="1" max="1440" class="vora-input" :class="{ 'border-danger': errors.durationMinutes }" >
               <p v-if="errors.durationMinutes" class="text-caption text-danger mt-1">{{ errors.durationMinutes }}</p>
             </div>
           </div>
@@ -121,7 +121,7 @@ onMounted(() => dialogRef.value?.focus())
           </div>
 
           <label class="flex items-center gap-2 text-body-sm">
-            <input v-model="form.billable" type="checkbox" class="size-4 rounded accent-primary" />
+            <input v-model="form.billable" type="checkbox" class="size-4 rounded accent-primary" >
             {{ $t('timesheets.form.billable') }}
           </label>
 

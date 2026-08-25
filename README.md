@@ -25,7 +25,7 @@ Per the brand-consistency requirement, VORA does **not** duplicate a website bui
 
 ## Communications provider abstraction
 
-`EmailProvider` / `WhatsAppProvider` interfaces live in `server/services/{email,whatsapp}/types.ts`. Without `EMAIL_PROVIDER_API_KEY` / `WHATSAPP_API_KEY` set, `getEmailProvider()` / `getWhatsAppProvider()` return the mock implementation — sends are recorded in Firestore but nothing goes over the network, and the compose UI shows an explicit notice about this. Implement a real provider by adding a class satisfying the interface and wiring it into the factory in `index.ts`.
+`EmailProvider` / `WhatsAppProvider` interfaces live in `server/services/{email,whatsapp}/types.ts`. Without `GMAIL_*` / `WHATSAPP_API_KEY` set, `getEmailProvider()` / `getWhatsAppProvider()` return the mock implementation — sends are recorded in Firestore but nothing goes over the network, and the compose UI shows an explicit notice about this. Email has a real implementation too: `GmailEmailProvider` (`server/services/email/gmail.ts`) sends via the Gmail API once `GMAIL_CLIENT_ID`/`GMAIL_CLIENT_SECRET`/`GMAIL_REFRESH_TOKEN`/`GMAIL_SENDER_EMAIL` are set — see [docs/EMAIL.md](./apps/web/docs/EMAIL.md) for how to obtain the refresh token. Implement a real WhatsApp provider the same way: a class satisfying the interface, wired into the factory in `index.ts`.
 
 ## AI abstraction
 

@@ -141,14 +141,14 @@ async function onDelete() {
             type="text"
             :placeholder="$t('contacts.attachments.titleLabel')"
             class="flex-1 w-full px-3 py-2 rounded-md border border-ink-100 dark:border-white/10 bg-white dark:bg-white/5 text-body-sm outline-none focus:border-primary transition-colors"
-          />
+          >
           <input
             id="contact-attachment-url"
             v-model="newAttachmentUrl"
             type="url"
             :placeholder="$t('contacts.attachments.urlLabel')"
             class="flex-1 w-full px-3 py-2 rounded-md border border-ink-100 dark:border-white/10 bg-white dark:bg-white/5 text-body-sm outline-none focus:border-primary transition-colors"
-          />
+          >
           <button
             type="submit"
             :disabled="addingAttachment || !newAttachmentTitle.trim() || !newAttachmentUrl.trim()"

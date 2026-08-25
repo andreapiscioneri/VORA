@@ -1,5 +1,6 @@
 import type { EmailProvider } from './types'
 import { MockEmailProvider } from './mock'
+import { GmailEmailProvider } from './gmail'
 
 let provider: EmailProvider | null = null
 
@@ -12,7 +13,17 @@ let provider: EmailProvider | null = null
 export function getEmailProvider(): EmailProvider {
   if (provider) return provider
 
-  // No EMAIL_PROVIDER_API_KEY / OAuth credentials configured yet — see .env.example.
+  const clientId = process.env.GMAIL_CLIENT_ID
+  const clientSecret = process.env.GMAIL_CLIENT_SECRET
+  const refreshToken = process.env.GMAIL_REFRESH_TOKEN
+  const senderEmail = process.env.GMAIL_SENDER_EMAIL
+
+  if (clientId && clientSecret && refreshToken && senderEmail) {
+    provider = new GmailEmailProvider({ clientId, clientSecret, refreshToken, senderEmail })
+    return provider
+  }
+
+  // No GMAIL_* credentials configured — see .env.example / docs/EMAIL.md.
   provider = new MockEmailProvider()
   return provider
 }

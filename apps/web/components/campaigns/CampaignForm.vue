@@ -53,7 +53,7 @@ const sending = ref(false)
 const saveError = ref('')
 
 async function onSubmit() {
-  Object.keys(errors).forEach((k) => delete errors[k])
+  Object.keys(errors).forEach((k) => { errors[k] = '' })
   saveError.value = ''
 
   const result = campaignInputSchema.safeParse(form)
@@ -138,13 +138,13 @@ onMounted(() => dialogRef.value?.focus())
 
           <div>
             <label for="campaign-name" class="block text-label text-ink-400 mb-2">{{ $t('campaigns.form.name') }}</label>
-            <input id="campaign-name" v-model="form.name" type="text" :disabled="isSent" class="vora-input" :class="{ 'border-danger': errors.name }" autofocus />
+            <input id="campaign-name" v-model="form.name" type="text" :disabled="isSent" class="vora-input" :class="{ 'border-danger': errors.name }" autofocus >
             <p v-if="errors.name" class="text-caption text-danger mt-1">{{ errors.name }}</p>
           </div>
 
           <div>
             <label for="campaign-subject" class="block text-label text-ink-400 mb-2">{{ $t('campaigns.form.subject') }}</label>
-            <input id="campaign-subject" v-model="form.subject" type="text" :disabled="isSent" class="vora-input" :class="{ 'border-danger': errors.subject }" />
+            <input id="campaign-subject" v-model="form.subject" type="text" :disabled="isSent" class="vora-input" :class="{ 'border-danger': errors.subject }" >
             <p v-if="errors.subject" class="text-caption text-danger mt-1">{{ errors.subject }}</p>
           </div>
 
@@ -164,7 +164,7 @@ onMounted(() => dialogRef.value?.focus())
 
           <div>
             <label for="campaign-recipientCount" class="block text-label text-ink-400 mb-2">{{ $t('campaigns.form.recipientCount') }}</label>
-            <input id="campaign-recipientCount" v-model.number="form.recipientCount" type="number" min="0" :disabled="isSent" class="vora-input" />
+            <input id="campaign-recipientCount" v-model.number="form.recipientCount" type="number" min="0" :disabled="isSent" class="vora-input" >
           </div>
 
           <p v-if="saveError" class="text-body-sm text-danger">{{ saveError }}</p>

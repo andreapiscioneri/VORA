@@ -3,7 +3,7 @@ import type { SocialPost, SocialPostStatus } from '~/shared/types/social-post'
 
 definePageMeta({ layout: 'default' })
 
-const { posts, pending, error, fetchPosts } = useSocialPosts()
+const { posts, pending, error, hasMore, loadingMore, fetchPosts, loadMore } = useSocialPosts()
 await fetchPosts()
 
 const { locale } = useI18n()
@@ -100,6 +100,16 @@ const platformIcons: Record<string, string> = { instagram: 'megaphone', facebook
         </div>
         <p class="text-body-sm line-clamp-3">{{ p.content }}</p>
         <p v-if="p.scheduledAt" class="text-caption text-ink-400">{{ new Date(p.scheduledAt).toLocaleString(locale, { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }) }}</p>
+      </button>
+    </div>
+
+    <div v-if="!pending && !error && statusFilter === 'all' && hasMore" class="flex justify-center">
+      <button
+        class="px-4 py-2 rounded-md text-body-sm font-medium border border-ink-100 dark:border-white/10 hover:bg-ink-50 dark:hover:bg-white/5 disabled:opacity-50"
+        :disabled="loadingMore"
+        @click="loadMore"
+      >
+        {{ loadingMore ? $t('social.loadingMore') : $t('social.loadMore') }}
       </button>
     </div>
 

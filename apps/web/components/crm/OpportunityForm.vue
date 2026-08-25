@@ -31,7 +31,7 @@ const saving = ref(false)
 const saveError = ref('')
 
 async function onSubmit() {
-  Object.keys(errors).forEach((k) => delete errors[k])
+  Object.keys(errors).forEach((k) => { errors[k] = '' })
   saveError.value = ''
 
   const result = opportunityInputSchema.safeParse(form)
@@ -87,7 +87,7 @@ onMounted(() => dialogRef.value?.focus())
 
           <div>
             <label for="opportunity-title" class="block text-label text-ink-400 mb-2">{{ $t('crm.form.title') }}</label>
-            <input id="opportunity-title" v-model="form.title" type="text" class="vora-input" :class="{ 'border-danger': errors.title }" autofocus />
+            <input id="opportunity-title" v-model="form.title" type="text" class="vora-input" :class="{ 'border-danger': errors.title }" autofocus >
             <p v-if="errors.title" class="text-caption text-danger mt-1">{{ errors.title }}</p>
           </div>
 
@@ -101,15 +101,15 @@ onMounted(() => dialogRef.value?.focus())
             </div>
             <div>
               <label for="opportunity-company" class="block text-label text-ink-400 mb-2">{{ $t('crm.form.company') }}</label>
-              <input id="opportunity-company" v-model="form.company" type="text" class="vora-input" />
+              <input id="opportunity-company" v-model="form.company" type="text" class="vora-input" >
             </div>
             <div>
               <label for="opportunity-value" class="block text-label text-ink-400 mb-2">{{ $t('crm.form.value') }} (EUR)</label>
-              <input id="opportunity-value" v-model.number="form.value" type="number" min="0" step="100" class="vora-input" />
+              <input id="opportunity-value" v-model.number="form.value" type="number" min="0" step="100" class="vora-input" >
             </div>
             <div>
               <label for="opportunity-probability" class="block text-label text-ink-400 mb-2">{{ $t('crm.form.probability') }} (%)</label>
-              <input id="opportunity-probability" v-model.number="form.probability" type="number" min="0" max="100" step="5" class="vora-input" />
+              <input id="opportunity-probability" v-model.number="form.probability" type="number" min="0" max="100" step="5" class="vora-input" >
             </div>
             <div>
               <label for="opportunity-stage" class="block text-label text-ink-400 mb-2">{{ $t('crm.form.stage') }}</label>
@@ -121,7 +121,7 @@ onMounted(() => dialogRef.value?.focus())
             </div>
             <div>
               <label for="opportunity-expectedCloseDate" class="block text-label text-ink-400 mb-2">{{ $t('crm.form.expectedCloseDate') }}</label>
-              <input id="opportunity-expectedCloseDate" v-model="form.expectedCloseDate" type="date" class="vora-input" />
+              <input id="opportunity-expectedCloseDate" v-model="form.expectedCloseDate" type="date" class="vora-input" >
             </div>
           </div>
 

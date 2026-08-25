@@ -247,7 +247,7 @@ async function onDelete(id: string) {
                 @keyup.enter="onAddLabel(thread.latest)"
                 @keyup.esc="addingLabelTo = null"
                 @blur="onAddLabel(thread.latest)"
-              />
+              >
             </div>
           </div>
           <div class="flex flex-col items-end gap-2 shrink-0">

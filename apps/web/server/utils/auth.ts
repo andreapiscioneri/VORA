@@ -1,13 +1,50 @@
-import type { H3Event } from 'h3'
+import { getRequestHeader, type H3Event } from 'h3'
 import { randomBytes } from 'node:crypto'
 import { getDb } from './firebase'
-import type { User, Organization, OrganizationMember, OrgRole } from '~/shared/types/user'
+import { verifyAccessToken } from './mobileTokens'
+import type { User, Organization, OrganizationMember, OrgRole, SessionUser } from '~/shared/types/user'
+
+// The web app authenticates with nuxt-auth-utils' sealed session cookie.
+// The mobile app authenticates with a bearer access token instead (see
+// server/utils/mobileTokens.ts and docs/AUTH.md) — RN's cookie jar isn't
+// guaranteed to survive app restarts/backgrounding the way a browser's is,
+// so mobile gets its own real session mechanism rather than depending on
+// that. This is the single chokepoint both the auth middleware and every
+// route (via requireOrgId/requireRole below) resolve "who is calling"
+// through, so neither had to be taught about two auth schemes individually.
+export async function resolveSession(event: H3Event): Promise<{ user: SessionUser } | null> {
+  const authHeader = getRequestHeader(event, 'authorization')
+  if (authHeader?.startsWith('Bearer ')) {
+    const userId = verifyAccessToken(authHeader.slice(7))
+    if (!userId) return null
+
+    const user = await findUserById(userId)
+    const membership = user ? await getPrimaryMembership(user.id) : null
+    if (!user || !membership) return null
+
+    return {
+      user: {
+        id: user.id,
+        email: user.email,
+        name: user.name,
+        emailVerified: user.emailVerified,
+        organizationId: membership.organizationId,
+        organizationName: membership.organizationName,
+        role: membership.role,
+      },
+    }
+  }
+
+  const session = await getUserSession(event)
+  return session.user ? { user: session.user } : null
+}
 
 /** Every protected API route calls this to get the caller's organization,
  * scoping all Firestore reads/writes so tenants never see each other's data. */
 export async function requireOrgId(event: H3Event): Promise<string> {
-  const { user } = await requireUserSession(event)
-  return user.organizationId
+  const session = await resolveSession(event)
+  if (!session) throw createError({ statusCode: 401, statusMessage: 'Authentication required' })
+  return session.user.organizationId
 }
 
 /** For routes restricted to specific roles within the caller's own
@@ -17,11 +54,12 @@ export async function requireOrgId(event: H3Event): Promise<string> {
  * the organizationId (same shape as requireOrgId) so call sites don't
  * need both. */
 export async function requireRole(event: H3Event, allowed: OrgRole[]): Promise<string> {
-  const { user } = await requireUserSession(event)
-  if (!allowed.includes(user.role)) {
+  const session = await resolveSession(event)
+  if (!session) throw createError({ statusCode: 401, statusMessage: 'Authentication required' })
+  if (!allowed.includes(session.user.role)) {
     throw createError({ statusCode: 403, statusMessage: 'Insufficient permissions for this action' })
   }
-  return user.organizationId
+  return session.user.organizationId
 }
 
 const USERS = 'users'

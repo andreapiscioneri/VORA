@@ -3,7 +3,7 @@ import type { Expense, ExpenseStatus } from '~/shared/types/expense'
 
 definePageMeta({ layout: 'default' })
 
-const { expenses, pending, error, fetchExpenses, setStatus } = useExpenses()
+const { expenses, pending, error, hasMore, loadingMore, fetchExpenses, loadMore, setStatus } = useExpenses()
 const { projects, fetchProjects } = useProjects()
 await Promise.all([fetchExpenses(), fetchProjects()])
 
@@ -144,6 +144,18 @@ const statusStyles: Record<string, string> = {
           <button class="text-caption text-danger hover:underline" @click="setStatus(e, 'rejected')">{{ $t('expenses.reject') }}</button>
         </div>
       </div>
+    </div>
+
+    <!-- Load-more only applies to the unfiltered, server-paginated list — a
+         status filter narrows only what's already loaded, same as elsewhere. -->
+    <div v-if="!pending && !error && statusFilter === 'all' && hasMore" class="flex justify-center">
+      <button
+        class="px-4 py-2 rounded-md text-body-sm font-medium border border-ink-100 dark:border-white/10 hover:bg-ink-50 dark:hover:bg-white/5 disabled:opacity-50"
+        :disabled="loadingMore"
+        @click="loadMore"
+      >
+        {{ loadingMore ? $t('expenses.loadingMore') : $t('expenses.loadMore') }}
+      </button>
     </div>
 
     <ExpensesExpenseForm v-if="showForm" :expense="editingExpense" @close="closeForm" @saved="closeForm" @deleted="closeForm" />

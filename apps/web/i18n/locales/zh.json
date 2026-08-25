@@ -10,7 +10,8 @@
     "slug": "只能使用小写字母、数字和连字符（例如 my-site）",
     "slugTaken": "该地址已被占用，请换一个",
     "color": "请使用有效的十六进制颜色值（例如 #39FF14）",
-    "recurrenceUntilBeforeStart": "重复结束日期不能早于开始日期。"
+    "recurrenceUntilBeforeStart": "重复结束日期不能早于开始日期。",
+    "phone": "无效的电话号码"
   },
   "auth": {
     "loginTitle": "登录 Vora",
@@ -50,7 +51,15 @@
     "verifyBannerSent": "邮件已发送。",
     "or": "或",
     "continueWithGoogle": "使用 Google 继续",
-    "oauthFailed": "Google 登录失败，请重试或使用邮箱和密码登录。"
+    "oauthFailed": "Google 登录失败，请重试或使用邮箱和密码登录。",
+    "passwordTooWeak": "密码强度不足：请至少使用小写字母、大写字母、数字和符号中的3种",
+    "strength": {
+      "veryWeak": "非常弱",
+      "weak": "弱",
+      "fair": "一般",
+      "good": "良好",
+      "strong": "强"
+    }
   },
   "nav": {
     "overview": "概览",
@@ -353,7 +362,9 @@
       "daily": "每天",
       "weekly": "每周",
       "monthly": "每月"
-    }
+    },
+    "loadMore": "加载更多",
+    "loadingMore": "加载中..."
   },
   "projects": {
     "title": "项目",
@@ -461,7 +472,9 @@
       "delete": "删除"
     },
     "deleteConfirm": "删除此记录？此操作无法撤销。",
-    "noBillable": "不可计费"
+    "noBillable": "不可计费",
+    "loadMore": "加载更多",
+    "loadingMore": "加载中..."
   },
   "appointments": {
     "title": "预约",
@@ -505,7 +518,9 @@
       "delete": "删除"
     },
     "joinCall": "加入视频通话",
-    "deleteConfirm": "删除此预约？此操作无法撤销。"
+    "deleteConfirm": "删除此预约？此操作无法撤销。",
+    "loadMore": "加载更多",
+    "loadingMore": "加载中..."
   },
   "inbox": {
     "title": "收件箱",
@@ -538,7 +553,9 @@
       "cancel": "取消",
       "send": "发送",
       "sending": "发送中...",
-      "newTitle": "新建消息"
+      "newTitle": "新建消息",
+      "attachments": "附件",
+      "removeAttachment": "移除"
     },
     "markRead": "标记为已读",
     "archive": "归档",
@@ -664,7 +681,9 @@
       "comments": "评论",
       "noComments": "暂无评论。",
       "addComment": "添加评论...",
-      "send": "发送"
+      "send": "发送",
+      "delete": "删除",
+      "deleteConfirm": "删除此工单？此操作无法撤销。"
     },
     "attachments": {
       "title": "附件",
@@ -779,7 +798,9 @@
     },
     "approve": "批准",
     "reject": "拒绝",
-    "deleteConfirm": "删除此费用记录？此操作无法撤销。"
+    "deleteConfirm": "删除此费用记录？此操作无法撤销。",
+    "loadMore": "加载更多",
+    "loadingMore": "加载中..."
   },
   "leave": {
     "title": "请假",
@@ -834,7 +855,9 @@
     },
     "approve": "批准",
     "reject": "拒绝",
-    "deleteConfirm": "删除此申请？此操作无法撤销。"
+    "deleteConfirm": "删除此申请？此操作无法撤销。",
+    "loadMore": "加载更多",
+    "loadingMore": "加载中..."
   },
   "wellbeing": {
     "title": "健康关怀",
@@ -867,6 +890,19 @@
     },
     "errors": {
       "load": "无法加载签到记录。"
+    },
+    "chat": {
+      "title": "心理咨询",
+      "subtitle": "一个可以自由倾诉感受的空间。",
+      "backToCheckin": "返回打卡",
+      "empty": "写一条消息开始对话。",
+      "placeholder": "在此输入...",
+      "send": "发送",
+      "sending": "发送中...",
+      "errors": {
+        "load": "无法加载对话。",
+        "send": "暂时无法回复，请稍后重试。"
+      }
     }
   },
   "auditLog": {
@@ -887,7 +923,9 @@
     "errors": {
       "load": "无法加载审计日志。",
       "forbidden": "只有拥有者和管理员可以查看审计日志。"
-    }
+    },
+    "loadMore": "加载更多",
+    "loadingMore": "加载中..."
   },
   "employees": {
     "title": "员工",
@@ -929,7 +967,9 @@
       "newTitle": "新建员工",
       "delete": "删除"
     },
-    "deleteConfirm": "删除此员工？此操作无法撤销。"
+    "deleteConfirm": "删除此员工？此操作无法撤销。",
+    "loadMore": "加载更多",
+    "loadingMore": "加载中..."
   },
   "social": {
     "title": "社交营销",
@@ -969,7 +1009,9 @@
       "newTitle": "新建帖子",
       "delete": "删除"
     },
-    "deleteConfirm": "删除此帖子？此操作无法撤销。"
+    "deleteConfirm": "删除此帖子？此操作无法撤销。",
+    "loadMore": "加载更多",
+    "loadingMore": "加载中..."
   },
   "campaigns": {
     "title": "邮件营销",
@@ -1010,7 +1052,9 @@
     },
     "send": "发送",
     "sentOn": "发送于",
-    "deleteConfirm": "删除此营销活动？此操作无法撤销。"
+    "deleteConfirm": "删除此营销活动？此操作无法撤销。",
+    "loadMore": "加载更多",
+    "loadingMore": "加载中..."
   },
   "website": {
     "title": "网站",
@@ -1063,7 +1107,9 @@
     },
     "deleteConfirm": "删除此站点？此操作无法撤销。",
     "notFound": "该站点不存在或尚未发布。",
-    "generatedBy": "由 VORA 生成"
+    "generatedBy": "由 VORA 生成",
+    "loadMore": "加载更多",
+    "loadingMore": "加载中..."
   },
   "settings": {
     "title": "设置",
@@ -1154,7 +1200,9 @@
       "editTitle": "编辑模板",
       "newTitle": "新建模板",
       "delete": "删除"
-    }
+    },
+    "loadMore": "加载更多",
+    "loadingMore": "加载中..."
   },
   "segments": {
     "title": "客户分群",
@@ -1183,7 +1231,9 @@
       "editTitle": "编辑分群",
       "newTitle": "新建分群",
       "delete": "删除"
-    }
+    },
+    "loadMore": "加载更多",
+    "loadingMore": "加载中..."
   },
   "automations": {
     "title": "自动化",
@@ -1258,6 +1308,15 @@
       "save": "保存",
       "saving": "保存中...",
       "delete": "删除"
-    }
+    },
+    "loadMore": "加载更多",
+    "loadingMore": "加载中..."
+  },
+  "errorPage": {
+    "title": "出现了一些问题",
+    "message": "发生了意外错误，请稍后重试。",
+    "notFoundTitle": "页面未找到",
+    "notFoundMessage": "您要查找的页面不存在或已被移动。",
+    "action": "返回仪表盘"
   }
 }

@@ -1,19 +1,39 @@
 import type { TimesheetEntry, TimesheetEntryInput } from '~/shared/types/timesheet'
+import type { PageResult } from '~/server/utils/pagination'
 
 export function useTimesheets() {
   const entries = useState<TimesheetEntry[]>('timesheets', () => [])
   const pending = useState('timesheets-pending', () => false)
+  const loadingMore = useState('timesheets-loading-more', () => false)
   const error = useState<string | null>('timesheets-error', () => null)
+  const nextCursor = useState<string | null>('timesheets-cursor', () => null)
+  const hasMore = useState('timesheets-has-more', () => false)
 
   async function fetchEntries() {
     pending.value = true
     error.value = null
     try {
-      entries.value = await $fetch<TimesheetEntry[]>('/api/timesheets')
+      const page = await $fetch<PageResult<TimesheetEntry>>('/api/timesheets')
+      entries.value = page.items
+      nextCursor.value = page.nextCursor
+      hasMore.value = page.hasMore
     } catch {
       error.value = 'timesheets.errors.load'
     } finally {
       pending.value = false
+    }
+  }
+
+  async function loadMore() {
+    if (!hasMore.value || loadingMore.value) return
+    loadingMore.value = true
+    try {
+      const page = await $fetch<PageResult<TimesheetEntry>>('/api/timesheets', { query: { cursor: nextCursor.value } })
+      entries.value = [...entries.value, ...page.items]
+      nextCursor.value = page.nextCursor
+      hasMore.value = page.hasMore
+    } finally {
+      loadingMore.value = false
     }
   }
 
@@ -34,5 +54,5 @@ export function useTimesheets() {
     entries.value = entries.value.filter((e) => e.id !== id)
   }
 
-  return { entries, pending, error, fetchEntries, createEntry, updateEntry, removeEntry }
+  return { entries, pending, error, hasMore, loadingMore, fetchEntries, loadMore, createEntry, updateEntry, removeEntry }
 }

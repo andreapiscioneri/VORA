@@ -102,4 +102,15 @@ describe('authTokens', () => {
     const result = await consumeAuthToken(raw, 'verify-email')
     expect(result).toBeNull()
   })
+
+  // Used by the mobile Google OAuth exchange (server/api/auth/google-mobile.get.ts
+  // + server/api/auth/mobile/google-exchange.post.ts) — same generic
+  // create/consume mechanism as the email-flow types above, just a third
+  // AuthTokenType value.
+  it('supports the mobile-oauth-exchange token type', async () => {
+    const { createAuthToken, consumeAuthToken } = await import('../../../server/utils/authTokens')
+    const raw = await createAuthToken('user-1', 'mobile-oauth-exchange', 5 * 60_000)
+    expect(await consumeAuthToken(raw, 'mobile-oauth-exchange')).toBe('user-1')
+    expect(await consumeAuthToken(raw, 'mobile-oauth-exchange')).toBeNull() // one-time use
+  })
 })

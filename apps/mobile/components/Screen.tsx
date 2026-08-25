@@ -1,4 +1,4 @@
-import { PropsWithChildren } from 'react'
+import { PropsWithChildren, ReactNode } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useRouter } from 'expo-router'
@@ -29,21 +29,29 @@ export function Screen({
   )
 }
 
-export function DetailScreen({ title, subtitle, children }: PropsWithChildren<{ title: string; subtitle?: string }>) {
+export function DetailScreen({
+  title,
+  subtitle,
+  headerRight,
+  children,
+}: PropsWithChildren<{ title: string; subtitle?: string; headerRight?: ReactNode }>) {
   const { colors } = useTheme()
   const router = useRouter()
   return (
     <SafeAreaView style={[styles.safe, { backgroundColor: colors.background }]} edges={['top', 'left', 'right']}>
       <View style={styles.header}>
-        <Pressable
-          onPress={() => router.back()}
-          style={styles.backButton}
-          accessibilityRole="button"
-          accessibilityLabel="Back"
-          hitSlop={12}
-        >
-          <Icon name="arrow-left" size={22} color={colors.textPrimary} />
-        </Pressable>
+        <View style={styles.headerTopRow}>
+          <Pressable
+            onPress={() => router.back()}
+            style={styles.backButton}
+            accessibilityRole="button"
+            accessibilityLabel="Back"
+            hitSlop={12}
+          >
+            <Icon name="arrow-left" size={22} color={colors.textPrimary} />
+          </Pressable>
+          {headerRight}
+        </View>
         <Text style={[styles.title, { color: colors.textPrimary }]}>{title}</Text>
         {subtitle ? <Text style={[styles.subtitle, { color: colors.textSecondary }]}>{subtitle}</Text> : null}
       </View>
@@ -76,6 +84,7 @@ const styles = StyleSheet.create({
   safe: { flex: 1 },
   header: { paddingHorizontal: spacing(5), paddingTop: spacing(3), paddingBottom: spacing(4) },
   backButton: { marginBottom: spacing(3), alignSelf: 'flex-start' },
+  headerTopRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   titleRow: { flexDirection: 'row', alignItems: 'center', gap: spacing(2) },
   title: { fontSize: 28, fontWeight: '700' },
   subtitle: { fontSize: 14, marginTop: spacing(1) },

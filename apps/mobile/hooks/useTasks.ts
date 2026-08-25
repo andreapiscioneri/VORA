@@ -3,22 +3,33 @@ import { api } from '../lib/api'
 import { readCache, writeCache } from '../lib/offlineCache'
 import type { Task, TaskStatus } from '@vora/shared/types/task'
 
+interface PageResult<T> {
+  items: T[]
+  nextCursor: string | null
+  hasMore: boolean
+}
+
 const CACHE_KEY = 'tasks'
 
 export function useTasks() {
   const [tasks, setTasks] = useState<Task[]>([])
   const [loading, setLoading] = useState(true)
+  const [loadingMore, setLoadingMore] = useState(false)
   const [error, setError] = useState<string | null>(null)
   const [offline, setOffline] = useState(false)
+  const [nextCursor, setNextCursor] = useState<string | null>(null)
+  const [hasMore, setHasMore] = useState(false)
 
   const load = useCallback(async () => {
     setLoading(true)
     setError(null)
     try {
-      const data = await api.get<Task[]>('/tasks')
-      setTasks(data)
+      const page = await api.get<PageResult<Task>>('/tasks')
+      setTasks(page.items)
+      setNextCursor(page.nextCursor)
+      setHasMore(page.hasMore)
       setOffline(false)
-      writeCache(CACHE_KEY, data)
+      writeCache(CACHE_KEY, page.items)
     } catch (e) {
       // A network failure doesn't have to mean an empty screen — fall back
       // to whatever was last successfully fetched, and say so honestly
@@ -39,6 +50,23 @@ export function useTasks() {
     load()
   }, [load])
 
+  const loadMore = useCallback(async () => {
+    if (!hasMore || loadingMore || !nextCursor) return
+    setLoadingMore(true)
+    try {
+      const page = await api.get<PageResult<Task>>(`/tasks?cursor=${encodeURIComponent(nextCursor)}`)
+      setTasks((prev) => {
+        const next = [...prev, ...page.items]
+        writeCache(CACHE_KEY, next)
+        return next
+      })
+      setNextCursor(page.nextCursor)
+      setHasMore(page.hasMore)
+    } finally {
+      setLoadingMore(false)
+    }
+  }, [hasMore, loadingMore, nextCursor])
+
   const setStatus = useCallback(
     async (id: string, status: TaskStatus) => {
       const current = tasks.find((t) => t.id === id)
@@ -54,5 +82,5 @@ export function useTasks() {
     [tasks]
   )
 
-  return { tasks, loading, error, offline, reload: load, setStatus }
+  return { tasks, loading, loadingMore, error, offline, hasMore, reload: load, loadMore, setStatus }
 }

@@ -159,9 +159,9 @@ async function onDrop(targetKey: string) {
             <NuxtLink to="/tasks" class="text-h4 font-medium mb-4 block hover:text-primary-600 dark:hover:text-primary">{{ $t('dashboard.tasks') }}</NuxtLink>
             <p v-if="priorityTasks.length === 0" class="text-body-sm text-ink-400">{{ $t('dashboard.noPriorityTasks') }}</p>
             <ul v-else class="space-y-3">
-              <li v-for="t in priorityTasks" :key="t.id" class="flex items-center gap-2 text-body-sm">
-                <UiIcon name="flag" :size="13" :class="priorityColors[t.priority]" />
-                <span class="truncate">{{ t.title }}</span>
+              <li v-for="task in priorityTasks" :key="task.id" class="flex items-center gap-2 text-body-sm">
+                <UiIcon name="flag" :size="13" :class="priorityColors[task.priority]" />
+                <span class="truncate">{{ task.title }}</span>
               </li>
             </ul>
           </template>

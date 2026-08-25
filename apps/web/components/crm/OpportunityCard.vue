@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Opportunity, OpportunityStage } from '~/shared/types/opportunity'
 
-const props = defineProps<{ opportunity: Opportunity; contactName: string; otherStages: OpportunityStage[] }>()
+defineProps<{ opportunity: Opportunity; contactName: string; otherStages: OpportunityStage[] }>()
 const emit = defineEmits<{ click: []; dragstart: [DragEvent]; move: [OpportunityStage] }>()
 const { locale } = useI18n()
 

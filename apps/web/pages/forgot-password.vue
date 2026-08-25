@@ -1,7 +1,6 @@
 <script setup lang="ts">
 definePageMeta({ layout: 'public' })
 
-const { t } = useI18n()
 const email = ref('')
 const loading = ref(false)
 const sent = ref(false)
@@ -42,7 +41,7 @@ async function submit() {
             required
             autocomplete="email"
             class="w-full px-3 py-2 rounded-md border border-ink-100 dark:border-white/10 bg-paper-0 dark:bg-ink-900"
-          />
+          >
         </div>
 
         <button type="submit" :disabled="loading" class="w-full py-2.5 rounded-md bg-primary text-ink-950 font-medium disabled:opacity-50">

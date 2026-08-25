@@ -75,7 +75,7 @@ const statusStyles: Record<string, string> = {
           type="text"
           :placeholder="$t('contacts.search')"
           class="w-full tablet:w-64 px-3 py-2 rounded-md border border-ink-100 dark:border-white/10 bg-white dark:bg-white/5 text-body-sm outline-none focus:border-primary"
-        />
+        >
         <button
           class="shrink-0 px-4 py-2 rounded-md text-body-sm font-medium bg-primary text-ink-950 hover:bg-primary-hover"
           @click="openNew"

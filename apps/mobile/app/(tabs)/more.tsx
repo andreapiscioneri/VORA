@@ -9,6 +9,7 @@ import { API_BASE } from '../../lib/api'
 import { useTheme, ThemeMode } from '../../contexts/ThemeContext'
 import { useAuth } from '../../contexts/AuthContext'
 import { useI18n, LOCALE_CODES, LOCALE_NAMES, Locale } from '../../i18n'
+import { haptics } from '../../lib/haptics'
 import type { ThemeColors } from '../../constants/theme'
 
 const ITEMS = [
@@ -17,9 +18,17 @@ const ITEMS = [
   { key: 'projects', route: '/projects' },
   { key: 'timesheets', route: '/timesheets' },
   { key: 'helpdesk', route: '/helpdesk' },
+  { key: 'knowledge', route: '/knowledge' },
   { key: 'leave', route: '/leave' },
+  { key: 'expenses', route: '/expenses' },
+  { key: 'employees', route: '/employees' },
+  { key: 'social', route: '/social' },
+  { key: 'marketing', route: '/marketing' },
+  { key: 'website', route: '/website' },
   { key: 'wellbeing', route: '/wellbeing' },
+  { key: 'auditLog', route: '/audit-log' },
   { key: 'notifications', route: '/notifications' },
+  { key: 'settings', route: '/settings' },
 ] as const
 const THEME_MODES: { mode: ThemeMode; icon: 'monitor' | 'sun' | 'moon' }[] = [
   { mode: 'system', icon: 'monitor' },
@@ -44,7 +53,10 @@ export default function MoreScreen() {
             <Pressable
               key={m}
               style={[styles.segment, mode === m ? styles.segmentActive : null]}
-              onPress={() => setMode(m)}
+              onPress={() => {
+                haptics.selection()
+                setMode(m)
+              }}
               accessibilityRole="button"
               accessibilityState={{ selected: mode === m }}
               accessibilityLabel={t(`more.themeOptions.${m}`)}
@@ -58,7 +70,10 @@ export default function MoreScreen() {
         <Text style={styles.sectionLabel}>{t('more.language')}</Text>
         <Pressable
           style={[styles.row, styles.rowInline]}
-          onPress={() => setLangPickerOpen(true)}
+          onPress={() => {
+            haptics.tap()
+            setLangPickerOpen(true)
+          }}
           accessibilityRole="button"
           accessibilityLabel={`${t('more.language')}: ${LOCALE_NAMES[locale]}`}
         >
@@ -72,7 +87,10 @@ export default function MoreScreen() {
           <Pressable
             key={key}
             style={[styles.row, styles.rowInline]}
-            onPress={() => router.push(route)}
+            onPress={() => {
+              haptics.tap()
+              router.push(route)
+            }}
             accessibilityRole="button"
             accessibilityLabel={`${t(`more.items.${key}.label`)}, ${t(`more.items.${key}.desc`)}`}
           >
@@ -85,7 +103,10 @@ export default function MoreScreen() {
         ))}
         <Pressable
           style={[styles.row, styles.rowInline, { marginTop: spacing(6) }]}
-          onPress={() => logout()}
+          onPress={() => {
+            haptics.warning()
+            logout()
+          }}
           accessibilityRole="button"
           accessibilityLabel={t('auth.logout')}
         >
@@ -105,6 +126,7 @@ export default function MoreScreen() {
                 key={code}
                 style={[styles.row, styles.rowInline]}
                 onPress={() => {
+                  haptics.selection()
                   setLocale(code)
                   setLangPickerOpen(false)
                 }}

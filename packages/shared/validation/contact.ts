@@ -1,5 +1,10 @@
 import { z } from 'zod'
 import { CONTACT_SOURCES, CONTACT_STATUSES } from '~/shared/types/contact'
+import { isValidPhone } from './phone'
+
+// Empty stays valid — both fields are optional — but a non-empty value
+// must look like a real phone number (loose E.164 check, see phone.ts).
+const phoneField = z.string().trim().max(40).default('').refine((v) => v === '' || isValidPhone(v), 'validation.phone')
 
 export const contactAttachmentSchema = z.object({
   id: z.string().min(1),
@@ -14,8 +19,8 @@ export const contactInputSchema = z.object({
   company: z.string().trim().max(120).default(''),
   role: z.string().trim().max(120).default(''),
   email: z.union([z.string().trim().email('validation.email'), z.literal('')]).default(''),
-  phone: z.string().trim().max(40).default(''),
-  whatsapp: z.string().trim().max(40).default(''),
+  phone: phoneField,
+  whatsapp: phoneField,
   website: z.string().trim().max(200).default(''),
   address: z.string().trim().max(240).default(''),
   notes: z.string().trim().max(4000).default(''),

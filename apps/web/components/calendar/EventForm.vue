@@ -57,7 +57,7 @@ const saving = ref(false)
 const saveError = ref('')
 
 async function onSubmit() {
-  Object.keys(errors).forEach((k) => delete errors[k])
+  Object.keys(errors).forEach((k) => { errors[k] = '' })
   saveError.value = ''
 
   const payload = {
@@ -120,23 +120,23 @@ onMounted(() => dialogRef.value?.focus())
 
           <div>
             <label for="event-title" class="block text-label text-ink-400 mb-2">{{ $t('calendar.form.title') }}</label>
-            <input id="event-title" v-model="form.title" type="text" class="vora-input" :class="{ 'border-danger': errors.title }" autofocus />
+            <input id="event-title" v-model="form.title" type="text" class="vora-input" :class="{ 'border-danger': errors.title }" autofocus >
             <p v-if="errors.title" class="text-caption text-danger mt-1">{{ errors.title }}</p>
           </div>
 
           <label class="flex items-center gap-2 text-body-sm">
-            <input v-model="form.allDay" type="checkbox" class="size-4 rounded accent-primary" />
+            <input v-model="form.allDay" type="checkbox" class="size-4 rounded accent-primary" >
             {{ $t('calendar.form.allDay') }}
           </label>
 
           <div class="grid grid-cols-1 tablet:grid-cols-2 gap-4">
             <div>
               <label for="event-startAt" class="block text-label text-ink-400 mb-2">{{ $t('calendar.form.start') }}</label>
-              <input id="event-startAt" v-model="form.startAt" :type="form.allDay ? 'date' : 'datetime-local'" class="vora-input" :class="{ 'border-danger': errors.startAt }" />
+              <input id="event-startAt" v-model="form.startAt" :type="form.allDay ? 'date' : 'datetime-local'" class="vora-input" :class="{ 'border-danger': errors.startAt }" >
             </div>
             <div>
               <label for="event-endAt" class="block text-label text-ink-400 mb-2">{{ $t('calendar.form.end') }}</label>
-              <input id="event-endAt" v-model="form.endAt" :type="form.allDay ? 'date' : 'datetime-local'" class="vora-input" :class="{ 'border-danger': errors.endAt }" />
+              <input id="event-endAt" v-model="form.endAt" :type="form.allDay ? 'date' : 'datetime-local'" class="vora-input" :class="{ 'border-danger': errors.endAt }" >
               <p v-if="errors.endAt" class="text-caption text-danger mt-1">{{ errors.endAt }}</p>
             </div>
           </div>
@@ -144,7 +144,7 @@ onMounted(() => dialogRef.value?.focus())
           <div class="grid grid-cols-1 tablet:grid-cols-2 gap-4">
             <div>
               <label for="event-location" class="block text-label text-ink-400 mb-2">{{ $t('calendar.form.location') }}</label>
-              <input id="event-location" v-model="form.location" type="text" class="vora-input" />
+              <input id="event-location" v-model="form.location" type="text" class="vora-input" >
             </div>
             <div>
               <label for="event-contactId" class="block text-label text-ink-400 mb-2">{{ $t('calendar.form.contact') }}</label>
@@ -175,12 +175,12 @@ onMounted(() => dialogRef.value?.focus())
               </div>
               <div v-if="form.recurrence.frequency !== 'none'">
                 <label for="event-recurrence-interval" class="block text-label text-ink-400 mb-2">{{ $t('calendar.form.repeatEvery') }}</label>
-                <input id="event-recurrence-interval" v-model.number="form.recurrence.interval" type="number" min="1" max="365" class="vora-input" />
+                <input id="event-recurrence-interval" v-model.number="form.recurrence.interval" type="number" min="1" max="365" class="vora-input" >
               </div>
             </div>
             <div v-if="form.recurrence.frequency !== 'none'">
               <label for="event-recurrence-until" class="block text-label text-ink-400 mb-2">{{ $t('calendar.form.repeatUntil') }}</label>
-              <input id="event-recurrence-until" v-model="form.recurrence.until" type="date" class="vora-input" :class="{ 'border-danger': errors.until }" />
+              <input id="event-recurrence-until" v-model="form.recurrence.until" type="date" class="vora-input" :class="{ 'border-danger': errors.until }" >
               <p v-if="errors.until" class="text-caption text-danger mt-1">{{ errors.until }}</p>
             </div>
           </div>

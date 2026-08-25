@@ -1,13 +1,16 @@
 import { createAuthToken } from '~/server/utils/authTokens'
 import { getEmailProvider } from '~/server/services/email'
 import { checkRateLimit } from '~/server/utils/rateLimit'
+import { resolveSession } from '~/server/utils/auth'
 
 const VERIFY_TOKEN_TTL_MS = 24 * 60 * 60 * 1000
 
 export default defineEventHandler(async (event) => {
   checkRateLimit(event, 'auth:resend-verification', { max: 3, windowMs: 10 * 60 * 1000 })
 
-  const { user } = await requireUserSession(event)
+  const session = await resolveSession(event)
+  if (!session) throw createError({ statusCode: 401, statusMessage: 'Authentication required' })
+  const { user } = session
   const appUrl = useRuntimeConfig().public.appUrl
   const token = await createAuthToken(user.id, 'verify-email', VERIFY_TOKEN_TTL_MS)
 

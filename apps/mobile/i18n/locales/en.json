@@ -2,7 +2,9 @@
   "common": {
     "appName": "Vora",
     "reachability": "Can't reach the Vora server. Pull down to try again.",
-    "offlineCached": "Offline — showing your last saved data."
+    "offlineCached": "Offline — showing your last saved data.",
+    "loadMore": "Load more",
+    "loadingMore": "Loading..."
   },
   "auth": {
     "loginTitle": "Log in to Vora",
@@ -20,7 +22,10 @@
     "invalidCredentials": "Invalid email or password.",
     "emailTaken": "This email is already registered.",
     "passwordTooShort": "Password must be at least 8 characters.",
-    "logout": "Log out"
+    "logout": "Log out",
+    "or": "or",
+    "continueWithGoogle": "Continue with Google",
+    "oauthFailed": "Google sign-in failed. Try again or use email and password."
   },
   "tabs": {
     "home": "Home",
@@ -115,6 +120,38 @@
       "notifications": {
         "label": "Notifications",
         "desc": "Push preferences"
+      },
+      "employees": {
+        "label": "Employees",
+        "desc": "Team directory"
+      },
+      "expenses": {
+        "label": "Expenses",
+        "desc": "Expense reports and approvals"
+      },
+      "knowledge": {
+        "label": "Knowledge",
+        "desc": "Internal docs and guides"
+      },
+      "social": {
+        "label": "Social",
+        "desc": "Editorial calendar"
+      },
+      "marketing": {
+        "label": "Marketing",
+        "desc": "Campaigns, templates, segments, automations"
+      },
+      "website": {
+        "label": "Website",
+        "desc": "Site overview and microsites"
+      },
+      "auditLog": {
+        "label": "Audit log",
+        "desc": "History of sensitive actions"
+      },
+      "settings": {
+        "label": "Settings",
+        "desc": "Profile and password"
       }
     }
   },
@@ -224,6 +261,220 @@
         "tickets": "Tickets",
         "deadlines": "Deadlines"
       }
+    },
+    "employees": {
+      "title": "Employees",
+      "count": "{{count}} employees",
+      "error": "Couldn’t load employees. ({{error}})",
+      "empty": "No employees.",
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "form": {
+        "firstName": "First name",
+        "lastName": "Last name",
+        "email": "Email",
+        "role": "Role",
+        "team": "Team",
+        "status": "Status",
+        "startDate": "Start date",
+        "cancel": "Cancel",
+        "save": "Save",
+        "saving": "Saving...",
+        "editTitle": "Edit employee",
+        "newTitle": "New employee",
+        "delete": "Delete"
+      },
+      "deleteConfirm": "Delete this employee? This cannot be undone.",
+      "errors": {
+        "save": "Couldn't save the employee.",
+        "delete": "Couldn't delete the employee."
+      }
+    },
+    "expenses": {
+      "title": "Expenses",
+      "count": "{{count}} expenses",
+      "error": "Couldn’t load expenses. ({{error}})",
+      "empty": "No expenses.",
+      "category": {
+        "travel": "Travel",
+        "meals": "Meals",
+        "office": "Office",
+        "software": "Software",
+        "other": "Other"
+      },
+      "status": {
+        "pending": "Pending",
+        "approved": "Approved",
+        "rejected": "Rejected"
+      },
+      "form": {
+        "amount": "Amount (EUR)",
+        "date": "Date",
+        "category": "Category",
+        "notes": "Notes",
+        "receiptUrl": "Receipt link (optional)",
+        "cancel": "Cancel",
+        "save": "Save",
+        "saving": "Saving...",
+        "editTitle": "Edit expense",
+        "newTitle": "New expense",
+        "delete": "Delete",
+        "status": "Status"
+      },
+      "deleteConfirm": "Delete this expense? This cannot be undone.",
+      "errors": {
+        "save": "Couldn't save the expense.",
+        "delete": "Couldn't delete the expense."
+      }
+    },
+    "knowledge": {
+      "title": "Knowledge",
+      "count": "{{count}} documents",
+      "error": "Couldn’t load documents. ({{error}})",
+      "empty": "No documents.",
+      "noFolder": "No folder",
+      "form": {
+        "title": "Title",
+        "content": "Content (Markdown)",
+        "folder": "Folder",
+        "tags": "Tags (comma-separated)",
+        "cancel": "Cancel",
+        "save": "Save",
+        "saving": "Saving...",
+        "editTitle": "Edit page",
+        "newTitle": "New page",
+        "delete": "Delete",
+        "favorite": "Favorite"
+      },
+      "deleteConfirm": "Delete this page? This cannot be undone.",
+      "errors": {
+        "save": "Couldn't save the page.",
+        "delete": "Couldn't delete the page."
+      }
+    },
+    "auditLog": {
+      "title": "Audit log",
+      "count": "{{count}} entries",
+      "error": "Couldn’t load the audit log. ({{error}})",
+      "empty": "No entries.",
+      "forbidden": "Only owners and admins can view the audit log.",
+      "action": {
+        "login": "Logged in",
+        "logout": "Logged out",
+        "password": {
+          "change": "Password changed"
+        },
+        "employee": {
+          "create": "Employee created",
+          "update": "Employee updated",
+          "delete": "Employee deleted"
+        },
+        "leave": {
+          "approve": "Leave approved",
+          "reject": "Leave rejected"
+        },
+        "expense": {
+          "approve": "Expense approved",
+          "reject": "Expense rejected"
+        }
+      }
+    },
+    "social": {
+      "title": "Social",
+      "count": "{{count}} posts",
+      "error": "Couldn’t load posts. ({{error}})",
+      "empty": "No posts.",
+      "platform": {
+        "instagram": "Instagram",
+        "facebook": "Facebook",
+        "linkedin": "LinkedIn",
+        "x": "X"
+      },
+      "status": {
+        "draft": "Draft",
+        "scheduled": "Scheduled",
+        "published": "Published"
+      },
+      "form": {
+        "content": "Content",
+        "platform": "Platform",
+        "status": "Status",
+        "scheduledAt": "Scheduled date",
+        "cancel": "Cancel",
+        "save": "Save",
+        "saving": "Saving...",
+        "editTitle": "Edit post",
+        "newTitle": "New post",
+        "delete": "Delete"
+      },
+      "deleteConfirm": "Delete this post? This cannot be undone.",
+      "errors": {
+        "save": "Couldn't save the post.",
+        "delete": "Couldn't delete the post."
+      }
+    },
+    "marketing": {
+      "title": "Marketing",
+      "error": "Couldn’t load data. ({{error}})",
+      "empty": "No items.",
+      "tab": {
+        "campaigns": "Campaigns",
+        "templates": "Templates",
+        "segments": "Segments",
+        "automations": "Automations"
+      },
+      "campaignStatus": {
+        "draft": "Draft",
+        "sent": "Sent"
+      },
+      "anyContact": "Any contact",
+      "active": "Active",
+      "inactive": "Inactive",
+      "trigger": {
+        "contact_created": "Contact created",
+        "contact_status_changed": "Contact status changed",
+        "manual": "Manual"
+      }
+    },
+    "website": {
+      "title": "Website",
+      "count": "{{count}} sites",
+      "error": "Couldn’t load sites. ({{error}})",
+      "empty": "No sites.",
+      "published": "Published",
+      "draft": "Draft"
+    },
+    "settings": {
+      "title": "Settings",
+      "profile": "Profile",
+      "name": "Name",
+      "email": "Email",
+      "organization": "Organization",
+      "role": "Role",
+      "changePassword": "Change password",
+      "currentPassword": "Current password",
+      "newPassword": "New password",
+      "save": "Save",
+      "saving": "Saving...",
+      "currentPasswordIncorrect": "Current password is incorrect.",
+      "passwordTooShort": "New password must be at least 8 characters.",
+      "tooManyAttempts": "Too many attempts. Try again in a few minutes.",
+      "saveError": "Couldn’t change the password.",
+      "passwordChanged": "Password updated.",
+      "passwordTooWeak": "New password is too weak: use at least 3 of lowercase, uppercase, digits, and symbols.",
+      "strength": {
+        "veryWeak": "Very weak",
+        "weak": "Weak",
+        "fair": "Fair",
+        "good": "Good",
+        "strong": "Strong"
+      }
     }
+  },
+  "validation": {
+    "required": "Required field",
+    "email": "Invalid email"
   }
 }

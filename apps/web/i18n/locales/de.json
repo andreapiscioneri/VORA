@@ -10,7 +10,8 @@
     "slug": "Nur Kleinbuchstaben, Zahlen und Bindestriche verwenden (z. B. meine-seite)",
     "slugTaken": "Diese Adresse ist bereits vergeben, bitte eine andere wählen",
     "color": "Bitte einen gültigen Hex-Farbwert verwenden (z. B. #39FF14)",
-    "recurrenceUntilBeforeStart": "Das Enddatum der Wiederholung darf nicht vor dem Startdatum liegen."
+    "recurrenceUntilBeforeStart": "Das Enddatum der Wiederholung darf nicht vor dem Startdatum liegen.",
+    "phone": "Ungültige Telefonnummer"
   },
   "auth": {
     "loginTitle": "Bei Vora anmelden",
@@ -50,7 +51,15 @@
     "verifyBannerSent": "E-Mail gesendet.",
     "or": "oder",
     "continueWithGoogle": "Mit Google fortfahren",
-    "oauthFailed": "Die Anmeldung mit Google ist fehlgeschlagen. Bitte erneut versuchen oder E-Mail und Passwort verwenden."
+    "oauthFailed": "Die Anmeldung mit Google ist fehlgeschlagen. Bitte erneut versuchen oder E-Mail und Passwort verwenden.",
+    "passwordTooWeak": "Das Passwort ist zu schwach: verwenden Sie mindestens 3 von Kleinbuchstaben, Großbuchstaben, Ziffern und Symbolen",
+    "strength": {
+      "veryWeak": "Sehr schwach",
+      "weak": "Schwach",
+      "fair": "Ausreichend",
+      "good": "Gut",
+      "strong": "Stark"
+    }
   },
   "nav": {
     "overview": "Übersicht",
@@ -353,7 +362,9 @@
       "daily": "Täglich",
       "weekly": "Wöchentlich",
       "monthly": "Monatlich"
-    }
+    },
+    "loadMore": "Mehr laden",
+    "loadingMore": "Wird geladen..."
   },
   "projects": {
     "title": "Projekte",
@@ -461,7 +472,9 @@
       "delete": "Löschen"
     },
     "deleteConfirm": "Diesen Eintrag löschen? Dies kann nicht rückgängig gemacht werden.",
-    "noBillable": "Nicht abrechenbar"
+    "noBillable": "Nicht abrechenbar",
+    "loadMore": "Mehr laden",
+    "loadingMore": "Wird geladen..."
   },
   "appointments": {
     "title": "Termine",
@@ -505,7 +518,9 @@
       "delete": "Löschen"
     },
     "joinCall": "Am Videoanruf teilnehmen",
-    "deleteConfirm": "Diesen Termin löschen? Dies kann nicht rückgängig gemacht werden."
+    "deleteConfirm": "Diesen Termin löschen? Dies kann nicht rückgängig gemacht werden.",
+    "loadMore": "Mehr laden",
+    "loadingMore": "Wird geladen..."
   },
   "inbox": {
     "title": "Posteingang",
@@ -538,7 +553,9 @@
       "cancel": "Abbrechen",
       "send": "Senden",
       "sending": "Wird gesendet...",
-      "newTitle": "Neue Nachricht"
+      "newTitle": "Neue Nachricht",
+      "attachments": "Anhänge",
+      "removeAttachment": "Entfernen"
     },
     "markRead": "Als gelesen markieren",
     "archive": "Archivieren",
@@ -664,7 +681,9 @@
       "comments": "Kommentare",
       "noComments": "Noch keine Kommentare.",
       "addComment": "Einen Kommentar hinzufügen...",
-      "send": "Senden"
+      "send": "Senden",
+      "delete": "Löschen",
+      "deleteConfirm": "Dieses Ticket löschen? Dies kann nicht rückgängig gemacht werden."
     },
     "attachments": {
       "title": "Anhänge",
@@ -779,7 +798,9 @@
     },
     "approve": "Genehmigen",
     "reject": "Ablehnen",
-    "deleteConfirm": "Diese Spesenabrechnung löschen? Dies kann nicht rückgängig gemacht werden."
+    "deleteConfirm": "Diese Spesenabrechnung löschen? Dies kann nicht rückgängig gemacht werden.",
+    "loadMore": "Mehr laden",
+    "loadingMore": "Wird geladen..."
   },
   "leave": {
     "title": "Urlaub",
@@ -834,7 +855,9 @@
     },
     "approve": "Genehmigen",
     "reject": "Ablehnen",
-    "deleteConfirm": "Diesen Antrag löschen? Dies kann nicht rückgängig gemacht werden."
+    "deleteConfirm": "Diesen Antrag löschen? Dies kann nicht rückgängig gemacht werden.",
+    "loadMore": "Mehr laden",
+    "loadingMore": "Wird geladen..."
   },
   "wellbeing": {
     "title": "Wohlbefinden",
@@ -867,6 +890,19 @@
     },
     "errors": {
       "load": "Die Check-ins konnten nicht geladen werden."
+    },
+    "chat": {
+      "title": "Psychologe",
+      "subtitle": "Ein Raum, um frei über deine Gefühle zu sprechen.",
+      "backToCheckin": "Zurück zum Check-in",
+      "empty": "Schreibe eine Nachricht, um das Gespräch zu beginnen.",
+      "placeholder": "Hier schreiben...",
+      "send": "Senden",
+      "sending": "Wird gesendet...",
+      "errors": {
+        "load": "Das Gespräch konnte nicht geladen werden.",
+        "send": "Ich konnte nicht antworten. Versuche es gleich noch einmal."
+      }
     }
   },
   "auditLog": {
@@ -887,7 +923,9 @@
     "errors": {
       "load": "Das Prüfprotokoll konnte nicht geladen werden.",
       "forbidden": "Nur Inhaber und Administratoren können das Prüfprotokoll einsehen."
-    }
+    },
+    "loadMore": "Mehr laden",
+    "loadingMore": "Wird geladen..."
   },
   "employees": {
     "title": "Mitarbeitende",
@@ -929,7 +967,9 @@
       "newTitle": "Neue Mitarbeitende",
       "delete": "Löschen"
     },
-    "deleteConfirm": "Diese Mitarbeitenden löschen? Dies kann nicht rückgängig gemacht werden."
+    "deleteConfirm": "Diese Mitarbeitenden löschen? Dies kann nicht rückgängig gemacht werden.",
+    "loadMore": "Mehr laden",
+    "loadingMore": "Wird geladen..."
   },
   "social": {
     "title": "Social Marketing",
@@ -969,7 +1009,9 @@
       "newTitle": "Neuer Beitrag",
       "delete": "Löschen"
     },
-    "deleteConfirm": "Diesen Beitrag löschen? Dies kann nicht rückgängig gemacht werden."
+    "deleteConfirm": "Diesen Beitrag löschen? Dies kann nicht rückgängig gemacht werden.",
+    "loadMore": "Mehr laden",
+    "loadingMore": "Wird geladen..."
   },
   "campaigns": {
     "title": "E-Mail-Marketing",
@@ -1010,7 +1052,9 @@
     },
     "send": "Senden",
     "sentOn": "Gesendet am",
-    "deleteConfirm": "Diese Kampagne löschen? Dies kann nicht rückgängig gemacht werden."
+    "deleteConfirm": "Diese Kampagne löschen? Dies kann nicht rückgängig gemacht werden.",
+    "loadMore": "Mehr laden",
+    "loadingMore": "Wird geladen..."
   },
   "website": {
     "title": "Website",
@@ -1063,7 +1107,9 @@
     },
     "deleteConfirm": "Diese Website löschen? Dies kann nicht rückgängig gemacht werden.",
     "notFound": "Diese Website existiert nicht oder ist noch nicht veröffentlicht.",
-    "generatedBy": "Erstellt mit VORA"
+    "generatedBy": "Erstellt mit VORA",
+    "loadMore": "Mehr laden",
+    "loadingMore": "Wird geladen..."
   },
   "settings": {
     "title": "Einstellungen",
@@ -1154,7 +1200,9 @@
       "editTitle": "Vorlage bearbeiten",
       "newTitle": "Neue Vorlage",
       "delete": "Löschen"
-    }
+    },
+    "loadMore": "Mehr laden",
+    "loadingMore": "Wird geladen..."
   },
   "segments": {
     "title": "Segmente",
@@ -1183,7 +1231,9 @@
       "editTitle": "Segment bearbeiten",
       "newTitle": "Neues Segment",
       "delete": "Löschen"
-    }
+    },
+    "loadMore": "Mehr laden",
+    "loadingMore": "Wird geladen..."
   },
   "automations": {
     "title": "Automatisierungen",
@@ -1258,6 +1308,15 @@
       "save": "Speichern",
       "saving": "Wird gespeichert...",
       "delete": "Löschen"
-    }
+    },
+    "loadMore": "Mehr laden",
+    "loadingMore": "Wird geladen..."
+  },
+  "errorPage": {
+    "title": "Etwas ist schiefgelaufen",
+    "message": "Ein unerwarteter Fehler ist aufgetreten. Bitte versuche es gleich noch einmal.",
+    "notFoundTitle": "Seite nicht gefunden",
+    "notFoundMessage": "Die gesuchte Seite existiert nicht oder wurde verschoben.",
+    "action": "Zurück zum Dashboard"
   }
 }

@@ -106,7 +106,7 @@ function onKeydown(e: KeyboardEvent) {
             :placeholder="$t('launcher.placeholder')"
             class="w-full bg-transparent outline-none text-body-lg"
             @keydown="onKeydown"
-          />
+          >
           <kbd class="text-caption text-ink-400 bg-ink-50 dark:bg-white/10 px-1.5 py-0.5 rounded shrink-0">Esc</kbd>
         </div>
 

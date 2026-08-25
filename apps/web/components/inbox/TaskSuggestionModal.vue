@@ -91,7 +91,7 @@ onMounted(() => dialogRef.value?.focus())
             <div class="space-y-3">
               <div>
                 <label for="task-suggestion-title" class="block text-label text-ink-400 mb-2">{{ $t('tasks.form.title') }}</label>
-                <input id="task-suggestion-title" v-model="form.title" type="text" class="vora-input" />
+                <input id="task-suggestion-title" v-model="form.title" type="text" class="vora-input" >
               </div>
               <div class="grid grid-cols-2 gap-3">
                 <div>
@@ -102,7 +102,7 @@ onMounted(() => dialogRef.value?.focus())
                 </div>
                 <div>
                   <label for="task-suggestion-deadline" class="block text-label text-ink-400 mb-2">{{ $t('tasks.form.deadline') }}</label>
-                  <input id="task-suggestion-deadline" v-model="form.deadline" type="date" class="vora-input" />
+                  <input id="task-suggestion-deadline" v-model="form.deadline" type="date" class="vora-input" >
                 </div>
               </div>
             </div>

@@ -23,7 +23,7 @@ const saving = ref(false)
 const saveError = ref('')
 
 async function onSubmit() {
-  Object.keys(errors).forEach((k) => delete errors[k])
+  Object.keys(errors).forEach((k) => { errors[k] = '' })
   saveError.value = ''
 
   const input: KnowledgeDocumentInput = {
@@ -77,18 +77,18 @@ onMounted(() => dialogRef.value?.focus())
 
           <div>
             <label for="page-title" class="block text-label text-ink-400 mb-2">{{ $t('knowledge.form.title') }}</label>
-            <input id="page-title" v-model="form.title" type="text" class="vora-input" :class="{ 'border-danger': errors.title }" autofocus />
+            <input id="page-title" v-model="form.title" type="text" class="vora-input" :class="{ 'border-danger': errors.title }" autofocus >
             <p v-if="errors.title" class="text-caption text-danger mt-1">{{ errors.title }}</p>
           </div>
 
           <div class="grid grid-cols-1 tablet:grid-cols-2 gap-4">
             <div>
               <label for="page-folder" class="block text-label text-ink-400 mb-2">{{ $t('knowledge.form.folder') }}</label>
-              <input id="page-folder" v-model="form.folder" type="text" class="vora-input" />
+              <input id="page-folder" v-model="form.folder" type="text" class="vora-input" >
             </div>
             <div>
               <label for="page-tagsText" class="block text-label text-ink-400 mb-2">{{ $t('knowledge.form.tags') }}</label>
-              <input id="page-tagsText" v-model="form.tagsText" type="text" class="vora-input" />
+              <input id="page-tagsText" v-model="form.tagsText" type="text" class="vora-input" >
             </div>
           </div>
 

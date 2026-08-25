@@ -11,7 +11,7 @@ Email/password only, via [`nuxt-auth-utils`](https://github.com/atinux/nuxt-auth
 
 - **Email verification** — `User.emailVerified` (default `false`), a one-time hashed token (`server/utils/authTokens.ts`, sha256, 24h TTL, deleted on use) sent via the existing `EmailProvider` abstraction on registration. Verification is non-blocking — an unverified user can still use the app, with a dismissible-once-verified banner (`components/layout/VerifyEmailBanner.vue`) and a resend action (`POST /api/auth/resend-verification`, rate-limited). If the click happens in the same browser that registered, the session updates immediately (`setUserSession` inside `POST /api/auth/verify-email`); otherwise it takes effect on next login, same reasoning as the role-change note above.
 - **Password reset** — `POST /api/auth/forgot-password` always returns `{ success: true }` regardless of whether the email exists (prevents account-enumeration), issuing a 1-hour token only when it does. `POST /api/auth/reset-password` consumes the token and calls the same `hashPassword` used at registration. Pages: [`/forgot-password`](../pages/forgot-password.vue), [`/reset-password`](../pages/reset-password.vue), [`/verify-email`](../pages/verify-email.vue).
-- **Local dev without a real email provider**: `MockEmailProvider` (`server/services/email/mock.ts`) prints the full email — including the verification/reset link — to the server console. That's how you read these links in local dev; the same code path sends for real once `EMAIL_PROVIDER_API_KEY` is configured, no other changes needed.
+- **Local dev without a real email provider**: `MockEmailProvider` (`server/services/email/mock.ts`) prints the full email — including the verification/reset link — to the server console. That's how you read these links in local dev; the same code path sends for real once `GMAIL_*` is configured (see [EMAIL.md](./EMAIL.md)), no other changes needed.
 
 Verified via `curl`, full round-trip: register → grab the real link from the mock provider's console output → verify (confirmed `emailVerified: true` on `/api/auth/me`, confirmed the same token rejected on reuse) → forgot-password (confirmed identical `200` response for an existing vs. nonexistent email) → reset-password → confirmed the old password now rejected and the new one accepted.
 
@@ -22,6 +22,14 @@ Verified via `curl`, full round-trip: register → grab the real link from the m
 **No credentials are invented.** Without `NUXT_OAUTH_GOOGLE_CLIENT_ID`/`NUXT_OAUTH_GOOGLE_CLIENT_SECRET` set (see `.env.example`), `nuxt-auth-utils` itself detects the missing config and cleanly redirects to `/login?error=oauth_failed` — verified live: `curl -i /api/auth/google` returns a `302` to that URL with no server error, and the login page renders the translated error message. Get real values from the Google Cloud Console (APIs & Services → Credentials → OAuth client ID → Web application) to make it live — same pattern as every other optional provider (AI, email, WhatsApp): the integration is complete, it just has no third-party account behind it yet.
 
 Only Google is wired up (§47 also mentions Microsoft) — `nuxt-auth-utils` ships the same handler shape for other providers, so adding Microsoft later is a second file following this one's pattern, not new architecture.
+
+### Mobile Google OAuth
+
+The web flow above sets a session cookie directly on its final redirect — that doesn't work for mobile, because the OAuth round-trip runs inside a system browser context (`expo-web-browser`'s `WebBrowser.openAuthSessionAsync`, backed by `ASWebAuthenticationSession`/Chrome Custom Tabs), a **separate cookie jar** from the RN app's own `fetch`. A `Set-Cookie` on that browser-context redirect would never reach the app.
+
+So mobile uses a second, parallel handler — `GET /api/auth/google-mobile` (`server/api/auth/google-mobile.get.ts`) — that on success mints a short-lived (5 min), single-use exchange code (reusing the same hashed-token mechanism as email verification/password reset, `server/utils/authTokens.ts`, new `'mobile-oauth-exchange'` type) and redirects to the app's `vora://oauth-callback?code=...` deep link instead of setting a cookie. The app then trades that code for a real session via `POST /api/auth/mobile/google-exchange` (`server/api/auth/mobile/google-exchange.post.ts`) — called through the app's own `fetch` (`credentials: 'include'`, same as every other mobile API call), so the resulting `Set-Cookie` lands in the app's native cookie jar exactly like `/api/auth/login` already does.
+
+This needs its own entry in the Google Cloud Console OAuth client's **Authorized redirect URIs** — `http://<dev-host>:3100/api/auth/google-mobile` for local dev (production adds the deployed URL's equivalent) — alongside the existing `/api/auth/google` entry used by web. Uses the same `NUXT_OAUTH_GOOGLE_CLIENT_ID`/`NUXT_OAUTH_GOOGLE_CLIENT_SECRET` — no separate mobile OAuth client needed.
 
 ## WhatsApp inbound webhook
 
@@ -67,14 +75,22 @@ Verified via `curl`: a membership was flipped from `owner` to `member` directly 
 
 **Not covered by role checks** (deliberately, to avoid restricting normal work): creating/editing/deleting your own contacts, tasks, projects, tickets, etc. — every organization member has full CRUD there, same as before. There's also no "invite a member" flow yet (every registration creates a new organization with the registering user as `owner`) — adding a second member to an existing organization currently has no UI or API, which is a real gap worth noting alongside this.
 
-## Mobile session cookies
+## Mobile session (bearer tokens)
 
-Two real bugs were found and fixed while verifying mobile authentication end-to-end in the iOS Simulator — both worth documenting because they're the kind of thing that looks like it works (the login screen navigates past the auth gate) while silently not actually authenticating subsequent requests:
+Mobile no longer authenticates via the web session cookie — React Native's `fetch` has no cookie jar guaranteed to survive app restarts/backgrounding the way a browser's does, and an earlier cookie-based approach silently broke twice in ways that "looked like it worked" (login navigated past the auth gate) while every subsequent request came back 401 (missing `credentials: 'include'`, then a `Secure`-cookie flag iOS's `NSHTTPCookieStorage` silently drops for native apps over plain HTTP).
 
-1. **`mobile/lib/api.ts` was missing `credentials: 'include'`** on its `fetch()` calls. React Native's `fetch` does not automatically send or persist cookies without it — the login response body updated the UI's local state optimistically (so the redirect past the login gate *looked* successful), but no cookie was ever actually stored, so the very next authenticated request (`GET /api/tasks`) came back `401`.
-2. **The session cookie was marked `Secure` by default** (h3's `useSession()` hardcodes `secure: true` unless overridden). Browsers and `curl` treat `http://localhost` as a "potentially trustworthy origin" and send `Secure` cookies to it anyway — but iOS's `NSHTTPCookieStorage` does not grant that same exemption to arbitrary native apps, and silently drops the cookie. This made the bug above doubly invisible: even after fixing (1), the cookie set during `login` still never reached the next request in local dev over plain HTTP. Fixed in `nuxt.config.ts` via `runtimeConfig.session.cookie.secure = process.env.NODE_ENV === 'production'`.
+Instead, mobile gets its own real session mechanism (`server/utils/mobileTokens.ts`):
 
-Both fixes are already live in the codebase (`mobile/lib/api.ts`, `nuxt.config.ts`) — noted here as a security-relevant lesson (a session that silently fails to authenticate is worse than one that visibly fails to log in) rather than as an outstanding task.
+- **Access token** — a stateless, HMAC-signed token (`signAccessToken`/`verifyAccessToken`), 15-minute TTL, signed with the same secret nuxt-auth-utils uses to seal the web cookie (`NUXT_SESSION_PASSWORD`). Verifying it costs no Firestore read, since the signature alone proves it wasn't forged.
+- **Refresh token** — an opaque, DB-backed (`mobileRefreshTokens` collection), 30-day token, rotated (deleted + reissued) on every use via `POST /api/auth/mobile/refresh`. Revocable — `POST /api/auth/mobile/logout` revokes the specific token; a password change or reset revokes every refresh token for that user (`revokeAllRefreshTokensForUser`).
+
+Both are minted by mobile-only endpoints (`server/api/auth/mobile/{login,register,google-exchange}.post.ts`) and stored client-side in `expo-secure-store` (iOS Keychain / Android Keystore) via `apps/mobile/lib/api.ts`, which attaches `Authorization: Bearer <accessToken>` to every request and transparently refreshes-and-retries once on a 401. Every route resolves either auth scheme identically through `resolveSession(event)` (`server/utils/auth.ts`) — a route never has to know which client type called it.
+
+## CSRF protection
+
+The web session cookie is `SameSite=Lax` (nuxt-auth-utils' default; `secure` only in production, see above) — `Lax` blocks cross-site `fetch`/`XHR` but **not** a cross-site top-level `<form method="POST">` submission, which still carries the cookie. `server/middleware/auth.ts` closes that gap with an Origin-header check (`server/utils/csrf.ts`, `hasValidOrigin`): for cookie-authenticated (non-Bearer) mutating requests (`POST`/`PUT`/`PATCH`/`DELETE`), the `Origin` (falling back to `Referer`) must match the request's own host, or the request is rejected with `403`. Requests with neither header (mobile's own `fetch`, non-browser tooling) are let through — they're not the attack this guards against, and the mobile Bearer-token path is categorically immune to CSRF regardless, since no attacker page can attach an `Authorization` header cross-origin.
+
+`SameSite=Strict` was considered and rejected: the Google OAuth callback (`server/api/auth/google.get.ts`) sets the session cookie on a cross-site top-level redirect arriving from `accounts.google.com`, and tightening to `Strict` risks that cookie not being sent on the very navigation that needs it.
 
 ## Secrets
 

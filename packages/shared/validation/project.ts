@@ -23,18 +23,23 @@ export const projectMilestoneSchema = z.object({
   createdAt: z.string(),
 })
 
-export const projectInputSchema = z.object({
-  name: z.string().trim().min(1, 'validation.required').max(160),
-  description: z.string().trim().max(4000).default(''),
-  status: z.enum(PROJECT_STATUSES).default('active'),
-  contactId: z.string().nullable().default(null),
-  startDate: z.string().nullable().default(null),
-  dueDate: z.string().nullable().default(null),
-  budget: z.coerce.number().min(0).default(0),
-  documents: z.array(projectDocumentSchema).default([]),
-  discussion: z.array(projectCommentSchema).default([]),
-  milestones: z.array(projectMilestoneSchema).default([]),
-})
+export const projectInputSchema = z
+  .object({
+    name: z.string().trim().min(1, 'validation.required').max(160),
+    description: z.string().trim().max(4000).default(''),
+    status: z.enum(PROJECT_STATUSES).default('active'),
+    contactId: z.string().nullable().default(null),
+    startDate: z.string().nullable().default(null),
+    dueDate: z.string().nullable().default(null),
+    budget: z.coerce.number().min(0).default(0),
+    documents: z.array(projectDocumentSchema).default([]),
+    discussion: z.array(projectCommentSchema).default([]),
+    milestones: z.array(projectMilestoneSchema).default([]),
+  })
+  .refine((data) => !data.startDate || !data.dueDate || new Date(data.dueDate).getTime() >= new Date(data.startDate).getTime(), {
+    message: 'validation.endBeforeStart',
+    path: ['dueDate'],
+  })
 
 export type ProjectInputSchema = z.infer<typeof projectInputSchema>
 

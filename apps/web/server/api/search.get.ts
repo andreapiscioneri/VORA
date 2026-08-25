@@ -1,11 +1,12 @@
 import type { SearchResult } from '~/shared/types/search'
 import { listAllContacts } from '~/server/utils/contacts'
 import { listAllTasks } from '~/server/utils/tasks'
-import { listAppointments } from '~/server/utils/appointments'
+import { listAllAppointments } from '~/server/utils/appointments'
 import { listAllTickets } from '~/server/utils/tickets'
 import { listAllProjects } from '~/server/utils/projects'
 import { listAllCommunications } from '~/server/utils/communications'
 import { listAllDocuments } from '~/server/utils/knowledge'
+import { resolveSession } from '~/server/utils/auth'
 
 const MAX_PER_TYPE = 5
 
@@ -18,7 +19,9 @@ function matches(query: string, ...fields: (string | null | undefined)[]): boole
 // scale; a real semantic/vector search would replace this function body
 // without touching the API contract or the command palette that calls it.
 export default defineEventHandler(async (event) => {
-  const { user } = await requireUserSession(event)
+  const session = await resolveSession(event)
+  if (!session) throw createError({ statusCode: 401, statusMessage: 'Authentication required' })
+  const { user } = session
   const organizationId = user.organizationId
   const q = getQuery(event).q
   const query = typeof q === 'string' ? q.trim().toLowerCase() : ''
@@ -28,7 +31,7 @@ export default defineEventHandler(async (event) => {
   const [contacts, tasks, appointments, tickets, projects, communications, documents] = await Promise.all([
     listAllContacts(organizationId),
     listAllTasks(organizationId),
-    listAppointments(organizationId),
+    listAllAppointments(organizationId),
     listAllTickets(organizationId),
     listAllProjects(organizationId),
     listAllCommunications(organizationId),

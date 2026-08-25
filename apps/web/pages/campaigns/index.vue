@@ -3,7 +3,7 @@ import type { MarketingCampaign } from '~/shared/types/campaign'
 
 definePageMeta({ layout: 'default' })
 
-const { campaigns, pending, error, fetchCampaigns } = useCampaigns()
+const { campaigns, pending, error, hasMore, loadingMore, fetchCampaigns, loadMore } = useCampaigns()
 await fetchCampaigns()
 
 const showForm = ref(false)
@@ -74,6 +74,16 @@ const statusStyles: Record<string, string> = {
           <p class="text-caption text-ink-400 truncate">{{ c.subject }} · {{ c.recipientCount }} destinatari</p>
         </div>
         <span class="px-2 py-1 rounded-full text-caption font-medium shrink-0" :class="statusStyles[c.status]">{{ $t(`campaigns.status.${c.status}`) }}</span>
+      </button>
+    </div>
+
+    <div v-if="!pending && !error && hasMore" class="flex justify-center">
+      <button
+        class="px-4 py-2 rounded-md text-body-sm font-medium border border-ink-100 dark:border-white/10 hover:bg-ink-50 dark:hover:bg-white/5 disabled:opacity-50"
+        :disabled="loadingMore"
+        @click="loadMore"
+      >
+        {{ loadingMore ? $t('campaigns.loadingMore') : $t('campaigns.loadMore') }}
       </button>
     </div>
 

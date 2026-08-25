@@ -1,5 +1,6 @@
 import { z } from 'zod'
 import { setLayout } from '~/server/utils/dashboardLayout'
+import { resolveSession } from '~/server/utils/auth'
 
 // Kept inline (rather than in shared/validation/, as notificationPreferences
 // does) because this endpoint's file is the only server-side file this task
@@ -15,7 +16,9 @@ const dashboardLayoutSchema = z.object({
 })
 
 export default defineEventHandler(async (event) => {
-  const { user } = await requireUserSession(event)
+  const session = await resolveSession(event)
+  if (!session) throw createError({ statusCode: 401, statusMessage: 'Authentication required' })
+  const { user } = session
   const body = await readBody(event)
   const result = dashboardLayoutSchema.safeParse(body)
 

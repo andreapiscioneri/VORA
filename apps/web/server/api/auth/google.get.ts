@@ -1,5 +1,6 @@
 import { findOrCreateOAuthUser } from '~/server/utils/auth'
 import { logAction } from '~/server/utils/auditLog'
+import { logger } from '~/server/utils/logger'
 
 // Real, working OAuth code — not a stub. It genuinely does nothing until
 // NUXT_OAUTH_GOOGLE_CLIENT_ID/SECRET are set (see .env.example): the
@@ -38,7 +39,7 @@ export default defineOAuthGoogleEventHandler({
     return sendRedirect(event, '/dashboard')
   },
   onError(event, error) {
-    console.error('[oauth google] error:', error)
+    logger.error('web google oauth failed', {}, error)
     return sendRedirect(event, '/login?error=oauth_failed')
   },
 })

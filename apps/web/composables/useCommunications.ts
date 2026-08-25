@@ -37,7 +37,15 @@ export function useCommunications() {
     }
   }
 
-  async function sendMessage(payload: { channel: 'email' | 'whatsapp'; to: string; contactId: string | null; subject: string; body: string; threadId?: string | null }) {
+  async function sendMessage(payload: {
+    channel: 'email' | 'whatsapp'
+    to: string
+    contactId: string | null
+    subject: string
+    body: string
+    threadId?: string | null
+    attachments?: { title: string; url: string }[]
+  }) {
     const result = await $fetch<{ communication: Communication }>('/api/communications/send', { method: 'POST', body: payload })
     communications.value = [result.communication, ...communications.value]
     return result.communication

@@ -2,7 +2,9 @@
   "common": {
     "appName": "Vora",
     "reachability": "Impossibile contattare il server Vora. Trascina verso il basso per riprovare.",
-    "offlineCached": "Offline: dati salvati più recenti in visualizzazione."
+    "offlineCached": "Offline: dati salvati più recenti in visualizzazione.",
+    "loadMore": "Carica altri",
+    "loadingMore": "Caricamento..."
   },
   "auth": {
     "loginTitle": "Accedi a Vora",
@@ -20,7 +22,10 @@
     "invalidCredentials": "Email o password non validi.",
     "emailTaken": "Questa email è già registrata.",
     "passwordTooShort": "La password deve contenere almeno 8 caratteri.",
-    "logout": "Esci"
+    "logout": "Esci",
+    "or": "oppure",
+    "continueWithGoogle": "Continua con Google",
+    "oauthFailed": "Accesso con Google non riuscito. Riprova o usa email e password."
   },
   "tabs": {
     "home": "Home",
@@ -115,6 +120,38 @@
       "notifications": {
         "label": "Notifiche",
         "desc": "Preferenze push"
+      },
+      "employees": {
+        "label": "Dipendenti",
+        "desc": "Rubrica del team"
+      },
+      "expenses": {
+        "label": "Spese",
+        "desc": "Note spese e approvazioni"
+      },
+      "knowledge": {
+        "label": "Knowledge",
+        "desc": "Documenti e guide interne"
+      },
+      "social": {
+        "label": "Social",
+        "desc": "Calendario editoriale"
+      },
+      "marketing": {
+        "label": "Marketing",
+        "desc": "Campagne, modelli, segmenti, automazioni"
+      },
+      "website": {
+        "label": "Sito web",
+        "desc": "Panoramica sito e micrositi"
+      },
+      "auditLog": {
+        "label": "Registro attività",
+        "desc": "Cronologia azioni sensibili"
+      },
+      "settings": {
+        "label": "Impostazioni",
+        "desc": "Profilo e password"
       }
     }
   },
@@ -224,6 +261,220 @@
         "tickets": "Ticket",
         "deadlines": "Scadenze"
       }
+    },
+    "employees": {
+      "title": "Dipendenti",
+      "count": "{{count}} dipendenti",
+      "error": "Impossibile caricare i dipendenti. ({{error}})",
+      "empty": "Nessun dipendente.",
+      "status": {
+        "active": "Attivo",
+        "inactive": "Inattivo"
+      },
+      "form": {
+        "firstName": "Nome",
+        "lastName": "Cognome",
+        "email": "Email",
+        "role": "Ruolo",
+        "team": "Team",
+        "status": "Stato",
+        "startDate": "Data di inizio",
+        "cancel": "Annulla",
+        "save": "Salva",
+        "saving": "Salvataggio...",
+        "editTitle": "Modifica dipendente",
+        "newTitle": "Nuovo dipendente",
+        "delete": "Elimina"
+      },
+      "deleteConfirm": "Eliminare questo dipendente? L'operazione non è reversibile.",
+      "errors": {
+        "save": "Impossibile salvare il dipendente.",
+        "delete": "Impossibile eliminare il dipendente."
+      }
+    },
+    "expenses": {
+      "title": "Spese",
+      "count": "{{count}} spese",
+      "error": "Impossibile caricare le spese. ({{error}})",
+      "empty": "Nessuna spesa.",
+      "category": {
+        "travel": "Viaggio",
+        "meals": "Pasti",
+        "office": "Ufficio",
+        "software": "Software",
+        "other": "Altro"
+      },
+      "status": {
+        "pending": "In attesa",
+        "approved": "Approvata",
+        "rejected": "Rifiutata"
+      },
+      "form": {
+        "amount": "Importo (EUR)",
+        "date": "Data",
+        "category": "Categoria",
+        "notes": "Note",
+        "receiptUrl": "Link ricevuta (opzionale)",
+        "cancel": "Annulla",
+        "save": "Salva",
+        "saving": "Salvataggio...",
+        "editTitle": "Modifica spesa",
+        "newTitle": "Nuova spesa",
+        "delete": "Elimina",
+        "status": "Stato"
+      },
+      "deleteConfirm": "Eliminare questa spesa? L'operazione non è reversibile.",
+      "errors": {
+        "save": "Impossibile salvare la spesa.",
+        "delete": "Impossibile eliminare la spesa."
+      }
+    },
+    "knowledge": {
+      "title": "Knowledge",
+      "count": "{{count}} documenti",
+      "error": "Impossibile caricare i documenti. ({{error}})",
+      "empty": "Nessun documento.",
+      "noFolder": "Nessuna cartella",
+      "form": {
+        "title": "Titolo",
+        "content": "Contenuto (Markdown)",
+        "folder": "Cartella",
+        "tags": "Tag (separati da virgola)",
+        "cancel": "Annulla",
+        "save": "Salva",
+        "saving": "Salvataggio...",
+        "editTitle": "Modifica pagina",
+        "newTitle": "Nuova pagina",
+        "delete": "Elimina",
+        "favorite": "Preferito"
+      },
+      "deleteConfirm": "Eliminare questa pagina? L'operazione non è reversibile.",
+      "errors": {
+        "save": "Impossibile salvare la pagina.",
+        "delete": "Impossibile eliminare la pagina."
+      }
+    },
+    "auditLog": {
+      "title": "Registro attività",
+      "count": "{{count}} voci",
+      "error": "Impossibile caricare il registro. ({{error}})",
+      "empty": "Nessuna voce.",
+      "forbidden": "Solo owner e admin possono vedere il registro attività.",
+      "action": {
+        "login": "Accesso",
+        "logout": "Disconnessione",
+        "password": {
+          "change": "Cambio password"
+        },
+        "employee": {
+          "create": "Dipendente creato",
+          "update": "Dipendente modificato",
+          "delete": "Dipendente eliminato"
+        },
+        "leave": {
+          "approve": "Ferie approvate",
+          "reject": "Ferie rifiutate"
+        },
+        "expense": {
+          "approve": "Spesa approvata",
+          "reject": "Spesa rifiutata"
+        }
+      }
+    },
+    "social": {
+      "title": "Social",
+      "count": "{{count}} post",
+      "error": "Impossibile caricare i post. ({{error}})",
+      "empty": "Nessun post.",
+      "platform": {
+        "instagram": "Instagram",
+        "facebook": "Facebook",
+        "linkedin": "LinkedIn",
+        "x": "X"
+      },
+      "status": {
+        "draft": "Bozza",
+        "scheduled": "Programmato",
+        "published": "Pubblicato"
+      },
+      "form": {
+        "content": "Contenuto",
+        "platform": "Piattaforma",
+        "status": "Stato",
+        "scheduledAt": "Data programmata",
+        "cancel": "Annulla",
+        "save": "Salva",
+        "saving": "Salvataggio...",
+        "editTitle": "Modifica post",
+        "newTitle": "Nuovo post",
+        "delete": "Elimina"
+      },
+      "deleteConfirm": "Eliminare questo post? L'operazione non è reversibile.",
+      "errors": {
+        "save": "Impossibile salvare il post.",
+        "delete": "Impossibile eliminare il post."
+      }
+    },
+    "marketing": {
+      "title": "Marketing",
+      "error": "Impossibile caricare i dati. ({{error}})",
+      "empty": "Nessun elemento.",
+      "tab": {
+        "campaigns": "Campagne",
+        "templates": "Modelli",
+        "segments": "Segmenti",
+        "automations": "Automazioni"
+      },
+      "campaignStatus": {
+        "draft": "Bozza",
+        "sent": "Inviata"
+      },
+      "anyContact": "Qualsiasi contatto",
+      "active": "Attiva",
+      "inactive": "Inattiva",
+      "trigger": {
+        "contact_created": "Contatto creato",
+        "contact_status_changed": "Stato contatto cambiato",
+        "manual": "Manuale"
+      }
+    },
+    "website": {
+      "title": "Sito web",
+      "count": "{{count}} siti",
+      "error": "Impossibile caricare i siti. ({{error}})",
+      "empty": "Nessun sito.",
+      "published": "Pubblicato",
+      "draft": "Bozza"
+    },
+    "settings": {
+      "title": "Impostazioni",
+      "profile": "Profilo",
+      "name": "Nome",
+      "email": "Email",
+      "organization": "Organizzazione",
+      "role": "Ruolo",
+      "changePassword": "Cambia password",
+      "currentPassword": "Password attuale",
+      "newPassword": "Nuova password",
+      "save": "Salva",
+      "saving": "Salvataggio...",
+      "currentPasswordIncorrect": "Password attuale non corretta.",
+      "passwordTooShort": "La nuova password deve avere almeno 8 caratteri.",
+      "tooManyAttempts": "Troppi tentativi. Riprova tra qualche minuto.",
+      "saveError": "Impossibile cambiare la password.",
+      "passwordChanged": "Password aggiornata.",
+      "passwordTooWeak": "La nuova password è troppo debole: usa almeno 3 tra minuscole, maiuscole, numeri e simboli.",
+      "strength": {
+        "veryWeak": "Molto debole",
+        "weak": "Debole",
+        "fair": "Sufficiente",
+        "good": "Buona",
+        "strong": "Forte"
+      }
     }
+  },
+  "validation": {
+    "required": "Campo obbligatorio",
+    "email": "Email non valida"
   }
 }

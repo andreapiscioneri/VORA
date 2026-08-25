@@ -23,11 +23,12 @@ async function submit() {
     await refreshSession()
     router.push('/dashboard')
   } catch (e) {
-    const err = e as { statusCode?: number; data?: { fieldErrors?: Record<string, string[]> } }
+    const err = e as { statusCode?: number; data?: { data?: { fieldErrors?: Record<string, string[]> } } }
     if (err.statusCode === 409) {
       error.value = t('auth.emailTaken')
     } else if (err.statusCode === 422) {
-      error.value = t('auth.passwordTooShort')
+      const passwordError = err.data?.data?.fieldErrors?.password?.[0]
+      error.value = passwordError ? t(passwordError) : t('auth.passwordTooShort')
     } else {
       error.value = t('auth.passwordTooShort')
     }
@@ -57,7 +58,7 @@ async function submit() {
             required
             autocomplete="name"
             class="w-full px-3 py-2 rounded-md border border-ink-100 dark:border-white/10 bg-paper-0 dark:bg-ink-900"
-          />
+          >
         </div>
         <div>
           <label for="register-org" class="text-body-sm text-ink-600 dark:text-paper-300 mb-1 block">{{ $t('auth.organizationName') }}</label>
@@ -67,7 +68,7 @@ async function submit() {
             type="text"
             required
             class="w-full px-3 py-2 rounded-md border border-ink-100 dark:border-white/10 bg-paper-0 dark:bg-ink-900"
-          />
+          >
         </div>
         <div>
           <label for="register-email" class="text-body-sm text-ink-600 dark:text-paper-300 mb-1 block">{{ $t('auth.email') }}</label>
@@ -78,7 +79,7 @@ async function submit() {
             required
             autocomplete="email"
             class="w-full px-3 py-2 rounded-md border border-ink-100 dark:border-white/10 bg-paper-0 dark:bg-ink-900"
-          />
+          >
         </div>
         <div>
           <label for="register-password" class="text-body-sm text-ink-600 dark:text-paper-300 mb-1 block">{{ $t('auth.password') }}</label>
@@ -90,7 +91,8 @@ async function submit() {
             minlength="8"
             autocomplete="new-password"
             class="w-full px-3 py-2 rounded-md border border-ink-100 dark:border-white/10 bg-paper-0 dark:bg-ink-900"
-          />
+          >
+          <UiPasswordStrengthMeter :password="password" />
         </div>
 
         <p v-if="error" class="text-body-sm text-danger">{{ error }}</p>

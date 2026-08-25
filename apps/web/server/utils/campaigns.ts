@@ -1,6 +1,7 @@
 import type { MarketingCampaign } from '~/shared/types/campaign'
 import type { MarketingCampaignInputSchema } from '~/shared/validation/campaign'
 import { getDb } from './firebase'
+import { paginateQuery, type PageResult } from './pagination'
 
 const COLLECTION = 'campaigns'
 
@@ -18,9 +19,9 @@ function toCampaign(id: string, data: FirebaseFirestore.DocumentData): Marketing
   }
 }
 
-export async function listCampaigns(organizationId: string): Promise<MarketingCampaign[]> {
-  const snapshot = await getDb().collection(COLLECTION).where('organizationId', '==', organizationId).get()
-  return snapshot.docs.map((doc) => toCampaign(doc.id, doc.data())).sort((a, b) => (a.createdAt < b.createdAt ? 1 : a.createdAt > b.createdAt ? -1 : 0))
+export async function listCampaigns(organizationId: string, params?: { cursor?: string | null; pageSize?: number }): Promise<PageResult<MarketingCampaign>> {
+  const query = getDb().collection(COLLECTION).where('organizationId', '==', organizationId).orderBy('createdAt', 'desc')
+  return paginateQuery(query, COLLECTION, params, toCampaign)
 }
 
 export async function getCampaign(id: string, organizationId: string): Promise<MarketingCampaign | null> {

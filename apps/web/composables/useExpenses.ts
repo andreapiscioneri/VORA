@@ -1,19 +1,39 @@
 import type { Expense, ExpenseInput, ExpenseStatus } from '~/shared/types/expense'
+import type { PageResult } from '~/server/utils/pagination'
 
 export function useExpenses() {
   const expenses = useState<Expense[]>('expenses', () => [])
   const pending = useState('expenses-pending', () => false)
+  const loadingMore = useState('expenses-loading-more', () => false)
   const error = useState<string | null>('expenses-error', () => null)
+  const nextCursor = useState<string | null>('expenses-cursor', () => null)
+  const hasMore = useState('expenses-has-more', () => false)
 
   async function fetchExpenses() {
     pending.value = true
     error.value = null
     try {
-      expenses.value = await $fetch<Expense[]>('/api/expenses')
+      const page = await $fetch<PageResult<Expense>>('/api/expenses')
+      expenses.value = page.items
+      nextCursor.value = page.nextCursor
+      hasMore.value = page.hasMore
     } catch {
       error.value = 'expenses.errors.load'
     } finally {
       pending.value = false
+    }
+  }
+
+  async function loadMore() {
+    if (!hasMore.value || loadingMore.value) return
+    loadingMore.value = true
+    try {
+      const page = await $fetch<PageResult<Expense>>('/api/expenses', { query: { cursor: nextCursor.value } })
+      expenses.value = [...expenses.value, ...page.items]
+      nextCursor.value = page.nextCursor
+      hasMore.value = page.hasMore
+    } finally {
+      loadingMore.value = false
     }
   }
 
@@ -39,5 +59,5 @@ export function useExpenses() {
     expenses.value = expenses.value.filter((e) => e.id !== id)
   }
 
-  return { expenses, pending, error, fetchExpenses, createExpense, updateExpense, setStatus, removeExpense }
+  return { expenses, pending, error, hasMore, loadingMore, fetchExpenses, loadMore, createExpense, updateExpense, setStatus, removeExpense }
 }

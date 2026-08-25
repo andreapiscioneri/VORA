@@ -1,19 +1,39 @@
 import type { Employee, EmployeeInput } from '~/shared/types/employee'
+import type { PageResult } from '~/server/utils/pagination'
 
 export function useEmployees() {
   const employees = useState<Employee[]>('employees', () => [])
   const pending = useState('employees-pending', () => false)
+  const loadingMore = useState('employees-loading-more', () => false)
   const error = useState<string | null>('employees-error', () => null)
+  const nextCursor = useState<string | null>('employees-cursor', () => null)
+  const hasMore = useState('employees-has-more', () => false)
 
   async function fetchEmployees() {
     pending.value = true
     error.value = null
     try {
-      employees.value = await $fetch<Employee[]>('/api/employees')
+      const page = await $fetch<PageResult<Employee>>('/api/employees')
+      employees.value = page.items
+      nextCursor.value = page.nextCursor
+      hasMore.value = page.hasMore
     } catch {
       error.value = 'employees.errors.load'
     } finally {
       pending.value = false
+    }
+  }
+
+  async function loadMore() {
+    if (!hasMore.value || loadingMore.value) return
+    loadingMore.value = true
+    try {
+      const page = await $fetch<PageResult<Employee>>('/api/employees', { query: { cursor: nextCursor.value } })
+      employees.value = [...employees.value, ...page.items]
+      nextCursor.value = page.nextCursor
+      hasMore.value = page.hasMore
+    } finally {
+      loadingMore.value = false
     }
   }
 
@@ -34,5 +54,5 @@ export function useEmployees() {
     employees.value = employees.value.filter((e) => e.id !== id)
   }
 
-  return { employees, pending, error, fetchEmployees, createEmployee, updateEmployee, removeEmployee }
+  return { employees, pending, error, hasMore, loadingMore, fetchEmployees, loadMore, createEmployee, updateEmployee, removeEmployee }
 }

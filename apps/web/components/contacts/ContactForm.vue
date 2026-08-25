@@ -34,7 +34,7 @@ const saving = ref(false)
 const saveError = ref('')
 
 async function onSubmit() {
-  Object.keys(errors).forEach((k) => delete errors[k])
+  Object.keys(errors).forEach((k) => { errors[k] = '' })
   saveError.value = ''
 
   const result = contactInputSchema.safeParse(form)
@@ -86,34 +86,36 @@ onMounted(() => dialogRef.value?.focus())
           <div class="grid grid-cols-1 tablet:grid-cols-2 gap-4">
             <div>
               <label for="contact-firstName" class="block text-label text-ink-400 mb-2">{{ $t('contacts.form.firstName') }}</label>
-              <input id="contact-firstName" v-model="form.firstName" type="text" class="vora-input" :class="{ 'border-danger': errors.firstName }" />
+              <input id="contact-firstName" v-model="form.firstName" type="text" class="vora-input" :class="{ 'border-danger': errors.firstName }" >
               <p v-if="errors.firstName" class="text-caption text-danger mt-1">{{ errors.firstName }}</p>
             </div>
             <div>
               <label for="contact-lastName" class="block text-label text-ink-400 mb-2">{{ $t('contacts.form.lastName') }}</label>
-              <input id="contact-lastName" v-model="form.lastName" type="text" class="vora-input" :class="{ 'border-danger': errors.lastName }" />
+              <input id="contact-lastName" v-model="form.lastName" type="text" class="vora-input" :class="{ 'border-danger': errors.lastName }" >
               <p v-if="errors.lastName" class="text-caption text-danger mt-1">{{ errors.lastName }}</p>
             </div>
             <div>
               <label for="contact-company" class="block text-label text-ink-400 mb-2">{{ $t('contacts.form.company') }}</label>
-              <input id="contact-company" v-model="form.company" type="text" class="vora-input" />
+              <input id="contact-company" v-model="form.company" type="text" class="vora-input" >
             </div>
             <div>
               <label for="contact-role" class="block text-label text-ink-400 mb-2">{{ $t('contacts.form.role') }}</label>
-              <input id="contact-role" v-model="form.role" type="text" class="vora-input" />
+              <input id="contact-role" v-model="form.role" type="text" class="vora-input" >
             </div>
             <div>
               <label for="contact-email" class="block text-label text-ink-400 mb-2">{{ $t('contacts.form.email') }}</label>
-              <input id="contact-email" v-model="form.email" type="email" class="vora-input" :class="{ 'border-danger': errors.email }" />
+              <input id="contact-email" v-model="form.email" type="email" class="vora-input" :class="{ 'border-danger': errors.email }" >
               <p v-if="errors.email" class="text-caption text-danger mt-1">{{ errors.email }}</p>
             </div>
             <div>
               <label for="contact-phone" class="block text-label text-ink-400 mb-2">{{ $t('contacts.form.phone') }}</label>
-              <input id="contact-phone" v-model="form.phone" type="text" class="vora-input" />
+              <input id="contact-phone" v-model="form.phone" type="tel" class="vora-input" :class="{ 'border-danger': errors.phone }" >
+              <p v-if="errors.phone" class="text-caption text-danger mt-1">{{ errors.phone }}</p>
             </div>
             <div>
               <label for="contact-whatsapp" class="block text-label text-ink-400 mb-2">{{ $t('contacts.form.whatsapp') }}</label>
-              <input id="contact-whatsapp" v-model="form.whatsapp" type="text" class="vora-input" />
+              <input id="contact-whatsapp" v-model="form.whatsapp" type="tel" class="vora-input" :class="{ 'border-danger': errors.whatsapp }" >
+              <p v-if="errors.whatsapp" class="text-caption text-danger mt-1">{{ errors.whatsapp }}</p>
             </div>
             <div>
               <label for="contact-status" class="block text-label text-ink-400 mb-2">{{ $t('contacts.form.status') }}</label>

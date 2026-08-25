@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { EMPLOYEE_STATUSES } from '~/shared/types/employee'
+import { EMPLOYEE_STATUSES } from '../types/employee'
 
 export const employeeInputSchema = z.object({
   firstName: z.string().trim().min(1, 'validation.required').max(80),

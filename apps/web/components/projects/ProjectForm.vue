@@ -31,7 +31,7 @@ const saving = ref(false)
 const saveError = ref('')
 
 async function onSubmit() {
-  Object.keys(errors).forEach((k) => delete errors[k])
+  Object.keys(errors).forEach((k) => { errors[k] = '' })
   saveError.value = ''
 
   const result = projectInputSchema.safeParse(form)
@@ -87,7 +87,7 @@ onMounted(() => dialogRef.value?.focus())
 
           <div>
             <label for="project-name" class="block text-label text-ink-400 mb-2">{{ $t('projects.form.name') }}</label>
-            <input id="project-name" v-model="form.name" type="text" class="vora-input" :class="{ 'border-danger': errors.name }" autofocus />
+            <input id="project-name" v-model="form.name" type="text" class="vora-input" :class="{ 'border-danger': errors.name }" autofocus >
             <p v-if="errors.name" class="text-caption text-danger mt-1">{{ errors.name }}</p>
           </div>
 
@@ -114,15 +114,16 @@ onMounted(() => dialogRef.value?.focus())
             </div>
             <div>
               <label for="project-startDate" class="block text-label text-ink-400 mb-2">{{ $t('projects.form.startDate') }}</label>
-              <input id="project-startDate" v-model="form.startDate" type="date" class="vora-input" />
+              <input id="project-startDate" v-model="form.startDate" type="date" class="vora-input" >
             </div>
             <div>
               <label for="project-dueDate" class="block text-label text-ink-400 mb-2">{{ $t('projects.form.dueDate') }}</label>
-              <input id="project-dueDate" v-model="form.dueDate" type="date" class="vora-input" />
+              <input id="project-dueDate" v-model="form.dueDate" type="date" class="vora-input" :class="{ 'border-danger': errors.dueDate }" >
+              <p v-if="errors.dueDate" class="text-caption text-danger mt-1">{{ errors.dueDate }}</p>
             </div>
             <div>
               <label for="project-budget" class="block text-label text-ink-400 mb-2">{{ $t('projects.form.budget') }}</label>
-              <input id="project-budget" v-model.number="form.budget" type="number" min="0" step="100" class="vora-input" />
+              <input id="project-budget" v-model.number="form.budget" type="number" min="0" step="100" class="vora-input" >
             </div>
           </div>
 

@@ -35,7 +35,7 @@ const saving = ref(false)
 const saveError = ref('')
 
 async function onSubmit() {
-  Object.keys(errors).forEach((k) => delete errors[k])
+  Object.keys(errors).forEach((k) => { errors[k] = '' })
   saveError.value = ''
 
   const result = expenseInputSchema.safeParse(form)
@@ -92,12 +92,12 @@ onMounted(() => dialogRef.value?.focus())
           <div class="grid grid-cols-1 tablet:grid-cols-2 gap-4">
             <div>
               <label for="expense-amount" class="block text-label text-ink-400 mb-2">{{ $t('expenses.form.amount') }}</label>
-              <input id="expense-amount" v-model.number="form.amount" type="number" min="0.01" step="0.01" class="vora-input" :class="{ 'border-danger': errors.amount }" autofocus />
+              <input id="expense-amount" v-model.number="form.amount" type="number" min="0.01" step="0.01" class="vora-input" :class="{ 'border-danger': errors.amount }" autofocus >
               <p v-if="errors.amount" class="text-caption text-danger mt-1">{{ errors.amount }}</p>
             </div>
             <div>
               <label for="expense-date" class="block text-label text-ink-400 mb-2">{{ $t('expenses.form.date') }}</label>
-              <input id="expense-date" v-model="form.date" type="date" class="vora-input" />
+              <input id="expense-date" v-model="form.date" type="date" class="vora-input" >
             </div>
             <div>
               <label for="expense-category" class="block text-label text-ink-400 mb-2">{{ $t('expenses.form.category') }}</label>
@@ -116,7 +116,7 @@ onMounted(() => dialogRef.value?.focus())
 
           <div>
             <label for="expense-receiptUrl" class="block text-label text-ink-400 mb-2">{{ $t('expenses.form.receiptUrl') }}</label>
-            <input id="expense-receiptUrl" v-model="form.receiptUrl" type="text" placeholder="https://..." class="vora-input" />
+            <input id="expense-receiptUrl" v-model="form.receiptUrl" type="text" placeholder="https://..." class="vora-input" >
           </div>
 
           <div>

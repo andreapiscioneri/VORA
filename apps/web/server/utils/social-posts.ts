@@ -1,6 +1,7 @@
 import type { SocialPost } from '~/shared/types/social-post'
 import type { SocialPostInputSchema } from '~/shared/validation/social-post'
 import { getDb } from './firebase'
+import { paginateQuery, type PageResult } from './pagination'
 
 const COLLECTION = 'socialPosts'
 
@@ -16,9 +17,9 @@ function toPost(id: string, data: FirebaseFirestore.DocumentData): SocialPost {
   }
 }
 
-export async function listPosts(organizationId: string): Promise<SocialPost[]> {
-  const snapshot = await getDb().collection(COLLECTION).where('organizationId', '==', organizationId).get()
-  return snapshot.docs.map((doc) => toPost(doc.id, doc.data())).sort((a, b) => (a.createdAt < b.createdAt ? 1 : a.createdAt > b.createdAt ? -1 : 0))
+export async function listPosts(organizationId: string, params?: { cursor?: string | null; pageSize?: number }): Promise<PageResult<SocialPost>> {
+  const query = getDb().collection(COLLECTION).where('organizationId', '==', organizationId).orderBy('createdAt', 'desc')
+  return paginateQuery(query, COLLECTION, params, toPost)
 }
 
 export async function createPost(input: SocialPostInputSchema, organizationId: string): Promise<SocialPost> {

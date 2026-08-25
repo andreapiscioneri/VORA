@@ -11,6 +11,10 @@ const sendSchema = z.object({
   subject: z.string().trim().max(200).default(''),
   body: z.string().trim().min(1, 'validation.required').max(8000),
   threadId: z.string().nullable().default(null),
+  attachments: z
+    .array(z.object({ title: z.string().trim().min(1), url: z.string().trim().url() }))
+    .max(10)
+    .default([]),
 })
 
 export default defineEventHandler(async (event) => {
@@ -21,11 +25,11 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 422, statusMessage: 'Validation failed', data: result.error.flatten() })
   }
 
-  const { channel, to, contactId, subject, body: message, threadId } = result.data
+  const { channel, to, contactId, subject, body: message, threadId, attachments } = result.data
 
   const sendResult =
     channel === 'email'
-      ? await getEmailProvider().send({ to, subject, body: message })
+      ? await getEmailProvider().send({ to, subject, body: message, attachments })
       : await getWhatsAppProvider().send({ to, body: message })
 
   const communication = await createCommunication(

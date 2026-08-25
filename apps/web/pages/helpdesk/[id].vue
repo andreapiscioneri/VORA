@@ -4,6 +4,7 @@ import type { Ticket } from '~/shared/types/ticket'
 definePageMeta({ layout: 'default' })
 
 const route = useRoute()
+const router = useRouter()
 const { locale, t } = useI18n()
 const { addComment, removeTicket, addAttachment } = useTickets()
 const { contacts, fetchContacts } = useContacts()
@@ -44,6 +45,13 @@ function contactName(contactId: string | null) {
 
 function formatDate(iso: string) {
   return new Date(iso).toLocaleString(locale.value, { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })
+}
+
+async function onDelete() {
+  if (!ticket.value) return
+  if (!confirm(t('helpdesk.detail.deleteConfirm'))) return
+  await removeTicket(ticket.value.id)
+  router.push('/helpdesk')
 }
 
 async function onAddComment() {
@@ -108,9 +116,15 @@ function slaStyle(slaDueAt: string | null) {
         {{ ticket.description }}
       </p>
 
-      <button class="text-body-sm text-ink-400 hover:text-ink-900 dark:hover:text-white" @click="showEdit = true">
-        {{ $t('helpdesk.form.editTitle') }}
-      </button>
+      <div class="flex items-center gap-4">
+        <button class="text-body-sm text-ink-400 hover:text-ink-900 dark:hover:text-white" @click="showEdit = true">
+          {{ $t('helpdesk.form.editTitle') }}
+        </button>
+        <button class="flex items-center gap-2 px-3 py-1.5 rounded-md text-body-sm text-danger border border-danger/30 hover:bg-danger/5" @click="onDelete">
+          <UiIcon name="trash" :size="14" />
+          {{ $t('helpdesk.detail.delete') }}
+        </button>
+      </div>
 
       <div class="space-y-4">
         <h2 class="text-h4 font-medium">{{ $t('helpdesk.detail.comments') }}</h2>
@@ -158,14 +172,14 @@ function slaStyle(slaDueAt: string | null) {
             type="text"
             :placeholder="$t('helpdesk.attachments.titleLabel')"
             class="flex-1 w-full px-3 py-2 rounded-md border border-ink-100 dark:border-white/10 bg-white dark:bg-white/5 text-body-sm outline-none focus:border-primary transition-colors"
-          />
+          >
           <input
             id="ticket-attachment-url"
             v-model="newAttachmentUrl"
             type="url"
             :placeholder="$t('helpdesk.attachments.urlLabel')"
             class="flex-1 w-full px-3 py-2 rounded-md border border-ink-100 dark:border-white/10 bg-white dark:bg-white/5 text-body-sm outline-none focus:border-primary transition-colors"
-          />
+          >
           <button
             type="submit"
             :disabled="addingAttachment || !newAttachmentTitle.trim() || !newAttachmentUrl.trim()"

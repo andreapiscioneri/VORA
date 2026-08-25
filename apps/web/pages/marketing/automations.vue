@@ -3,7 +3,7 @@ import type { Automation } from '~/shared/types/automation'
 
 definePageMeta({ layout: 'default' })
 
-const { automations, pending, error, fetchAutomations } = useAutomations()
+const { automations, pending, error, hasMore, loadingMore, fetchAutomations, loadMore } = useAutomations()
 await fetchAutomations()
 
 const { locale } = useI18n()
@@ -85,6 +85,16 @@ function formatLastRun(iso: string | null) {
             <span v-if="a.lastRunAt"> · {{ $t('automations.lastRun', { date: formatLastRun(a.lastRunAt) }) }}</span>
           </p>
         </div>
+      </button>
+    </div>
+
+    <div v-if="!pending && !error && hasMore" class="flex justify-center">
+      <button
+        class="px-4 py-2 rounded-md text-body-sm font-medium border border-ink-100 dark:border-white/10 hover:bg-ink-50 dark:hover:bg-white/5 disabled:opacity-50"
+        :disabled="loadingMore"
+        @click="loadMore"
+      >
+        {{ loadingMore ? $t('automations.loadingMore') : $t('automations.loadMore') }}
       </button>
     </div>
 

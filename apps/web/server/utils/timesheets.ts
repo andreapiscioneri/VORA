@@ -1,6 +1,7 @@
 import type { TimesheetEntry } from '~/shared/types/timesheet'
 import type { TimesheetEntryInputSchema } from '~/shared/validation/timesheet'
 import { getDb } from './firebase'
+import { paginateQuery, type PageResult } from './pagination'
 
 const COLLECTION = 'timesheets'
 
@@ -18,9 +19,9 @@ function toEntry(id: string, data: FirebaseFirestore.DocumentData): TimesheetEnt
   }
 }
 
-export async function listEntries(organizationId: string): Promise<TimesheetEntry[]> {
-  const snapshot = await getDb().collection(COLLECTION).where('organizationId', '==', organizationId).get()
-  return snapshot.docs.map((doc) => toEntry(doc.id, doc.data())).sort((a, b) => (a.date < b.date ? 1 : a.date > b.date ? -1 : 0))
+export async function listEntries(organizationId: string, params?: { cursor?: string | null; pageSize?: number }): Promise<PageResult<TimesheetEntry>> {
+  const query = getDb().collection(COLLECTION).where('organizationId', '==', organizationId).orderBy('date', 'desc')
+  return paginateQuery(query, COLLECTION, params, toEntry)
 }
 
 export async function getEntry(id: string, organizationId: string): Promise<TimesheetEntry | null> {

@@ -2,4 +2,6 @@
 await navigateTo('/dashboard')
 </script>
 
-<template />
+<template>
+  <div />
+</template>

@@ -3,7 +3,7 @@ import type { Employee } from '~/shared/types/employee'
 
 definePageMeta({ layout: 'default' })
 
-const { employees, pending, error, fetchEmployees } = useEmployees()
+const { employees, pending, error, hasMore, loadingMore, fetchEmployees, loadMore } = useEmployees()
 await fetchEmployees()
 
 const showForm = ref(false)
@@ -97,6 +97,16 @@ const statusStyles: Record<string, string> = {
         <p class="font-medium">{{ e.firstName }} {{ e.lastName }}</p>
         <p class="text-body-sm text-ink-400 mt-1">{{ e.role || '—' }} · {{ e.team || '—' }}</p>
         <span class="inline-block mt-2 px-2 py-1 rounded-full text-caption font-medium" :class="statusStyles[e.status]">{{ $t(`employees.status.${e.status}`) }}</span>
+      </button>
+    </div>
+
+    <div v-if="!pending && !error && hasMore" class="flex justify-center">
+      <button
+        class="px-4 py-2 rounded-md text-body-sm font-medium border border-ink-100 dark:border-white/10 hover:bg-ink-50 dark:hover:bg-white/5 disabled:opacity-50"
+        :disabled="loadingMore"
+        @click="loadMore"
+      >
+        {{ loadingMore ? $t('employees.loadingMore') : $t('employees.loadMore') }}
       </button>
     </div>
 

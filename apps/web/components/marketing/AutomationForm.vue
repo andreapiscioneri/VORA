@@ -50,7 +50,7 @@ function buildInput(): AutomationInput {
 }
 
 async function onSubmit() {
-  Object.keys(errors).forEach((k) => delete errors[k])
+  Object.keys(errors).forEach((k) => { errors[k] = '' })
   saveError.value = ''
 
   const result = automationInputSchema.safeParse(buildInput())
@@ -106,12 +106,12 @@ onMounted(() => dialogRef.value?.focus())
 
           <div>
             <label for="automation-name" class="block text-label text-ink-400 mb-2">{{ $t('automations.form.name') }}</label>
-            <input id="automation-name" v-model="name" type="text" class="vora-input" :class="{ 'border-danger': errors.name }" autofocus />
+            <input id="automation-name" v-model="name" type="text" class="vora-input" :class="{ 'border-danger': errors.name }" autofocus >
             <p v-if="errors.name" class="text-caption text-danger mt-1">{{ errors.name }}</p>
           </div>
 
           <label class="flex items-center gap-2 text-body-sm">
-            <input v-model="active" type="checkbox" class="size-4 rounded accent-primary" />
+            <input v-model="active" type="checkbox" class="size-4 rounded accent-primary" >
             {{ $t('automations.form.active') }}
           </label>
 
@@ -164,7 +164,7 @@ onMounted(() => dialogRef.value?.focus())
                 <select v-model="step.operator as AutomationConditionOperator" class="vora-input text-body-sm">
                   <option v-for="op in AUTOMATION_CONDITION_OPERATORS" :key="op" :value="op">{{ $t(`automations.form.operator.${op}`) }}</option>
                 </select>
-                <input v-model="step.value" type="text" class="vora-input text-body-sm" :placeholder="$t('automations.form.value')" />
+                <input v-model="step.value" type="text" class="vora-input text-body-sm" :placeholder="$t('automations.form.value')" >
               </div>
 
               <!-- Action step -->
@@ -173,19 +173,19 @@ onMounted(() => dialogRef.value?.focus())
                   <option v-for="at in AUTOMATION_ACTION_TYPES" :key="at" :value="at">{{ $t(`automations.form.actionType.${at}`) }}</option>
                 </select>
                 <template v-if="step.type === 'send_email'">
-                  <input v-model="step.config.subject" type="text" class="vora-input text-body-sm" :placeholder="$t('automations.form.emailSubject')" />
+                  <input v-model="step.config.subject" type="text" class="vora-input text-body-sm" :placeholder="$t('automations.form.emailSubject')" >
                   <textarea v-model="step.config.body" rows="2" class="vora-input text-body-sm" :placeholder="$t('automations.form.emailBody')" />
                 </template>
-                <input v-else-if="step.type === 'add_tag'" v-model="step.config.tag" type="text" class="vora-input text-body-sm" :placeholder="$t('automations.form.tag')" />
-                <input v-else-if="step.type === 'change_status'" v-model="step.config.status" type="text" class="vora-input text-body-sm" :placeholder="$t('automations.form.status')" />
-                <input v-else-if="step.type === 'create_task'" v-model="step.config.title" type="text" class="vora-input text-body-sm" :placeholder="$t('automations.form.taskTitle')" />
+                <input v-else-if="step.type === 'add_tag'" v-model="step.config.tag" type="text" class="vora-input text-body-sm" :placeholder="$t('automations.form.tag')" >
+                <input v-else-if="step.type === 'change_status'" v-model="step.config.status" type="text" class="vora-input text-body-sm" :placeholder="$t('automations.form.status')" >
+                <input v-else-if="step.type === 'create_task'" v-model="step.config.title" type="text" class="vora-input text-body-sm" :placeholder="$t('automations.form.taskTitle')" >
               </div>
 
               <!-- Delay step -->
               <div v-else class="space-y-1">
                 <label class="flex items-center gap-2 text-body-sm">
                   {{ $t('automations.form.waitHours') }}
-                  <input v-model.number="step.hours" type="number" min="0" class="vora-input text-body-sm w-24" />
+                  <input v-model.number="step.hours" type="number" min="0" class="vora-input text-body-sm w-24" >
                 </label>
                 <p class="text-caption text-warning">{{ $t('automations.form.delayLimitation') }}</p>
               </div>

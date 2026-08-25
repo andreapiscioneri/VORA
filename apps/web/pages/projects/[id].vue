@@ -169,14 +169,14 @@ async function onToggleMilestone(milestoneId: string) {
             type="text"
             :placeholder="$t('projects.detail.documentTitle')"
             class="flex-1 w-full px-3 py-2 rounded-md border border-ink-100 dark:border-white/10 bg-white dark:bg-white/5 text-body-sm outline-none focus:border-primary transition-colors"
-          />
+          >
           <input
             id="project-doc-url"
             v-model="newDocUrl"
             type="url"
             :placeholder="$t('projects.detail.documentUrl')"
             class="flex-1 w-full px-3 py-2 rounded-md border border-ink-100 dark:border-white/10 bg-white dark:bg-white/5 text-body-sm outline-none focus:border-primary transition-colors"
-          />
+          >
           <button
             type="submit"
             :disabled="addingDoc || !newDocTitle.trim() || !newDocUrl.trim()"
@@ -214,7 +214,7 @@ async function onToggleMilestone(milestoneId: string) {
             type="text"
             :placeholder="$t('projects.detail.milestoneTitle')"
             class="flex-1 w-full px-3 py-2 rounded-md border border-ink-100 dark:border-white/10 bg-white dark:bg-white/5 text-body-sm outline-none focus:border-primary transition-colors"
-          />
+          >
           <label for="project-milestone-due-date" class="sr-only">{{ $t('projects.detail.milestoneDueDate') }}</label>
           <input
             id="project-milestone-due-date"
@@ -222,7 +222,7 @@ async function onToggleMilestone(milestoneId: string) {
             type="date"
             :placeholder="$t('projects.detail.milestoneDueDate')"
             class="w-full tablet:w-auto px-3 py-2 rounded-md border border-ink-100 dark:border-white/10 bg-white dark:bg-white/5 text-body-sm outline-none focus:border-primary transition-colors"
-          />
+          >
           <button
             type="submit"
             :disabled="addingMilestone || !newMilestoneTitle.trim()"

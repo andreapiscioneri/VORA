@@ -1,19 +1,39 @@
 import type { Automation, AutomationInput, AutomationRunResult } from '~/shared/types/automation'
+import type { PageResult } from '~/server/utils/pagination'
 
 export function useAutomations() {
   const automations = useState<Automation[]>('automations', () => [])
   const pending = useState('automations-pending', () => false)
+  const loadingMore = useState('automations-loading-more', () => false)
   const error = useState<string | null>('automations-error', () => null)
+  const nextCursor = useState<string | null>('automations-cursor', () => null)
+  const hasMore = useState('automations-has-more', () => false)
 
   async function fetchAutomations() {
     pending.value = true
     error.value = null
     try {
-      automations.value = await $fetch<Automation[]>('/api/automations')
+      const page = await $fetch<PageResult<Automation>>('/api/automations')
+      automations.value = page.items
+      nextCursor.value = page.nextCursor
+      hasMore.value = page.hasMore
     } catch {
       error.value = 'automations.errors.load'
     } finally {
       pending.value = false
+    }
+  }
+
+  async function loadMore() {
+    if (!hasMore.value || loadingMore.value) return
+    loadingMore.value = true
+    try {
+      const page = await $fetch<PageResult<Automation>>('/api/automations', { query: { cursor: nextCursor.value } })
+      automations.value = [...automations.value, ...page.items]
+      nextCursor.value = page.nextCursor
+      hasMore.value = page.hasMore
+    } finally {
+      loadingMore.value = false
     }
   }
 
@@ -38,5 +58,5 @@ export function useAutomations() {
     return await $fetch<AutomationRunResult>(`/api/automations/${id}/run`, { method: 'POST', body: { contactId } })
   }
 
-  return { automations, pending, error, fetchAutomations, createAutomation, updateAutomation, removeAutomation, runAutomation }
+  return { automations, pending, error, hasMore, loadingMore, fetchAutomations, loadMore, createAutomation, updateAutomation, removeAutomation, runAutomation }
 }

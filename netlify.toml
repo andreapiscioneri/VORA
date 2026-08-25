@@ -1,0 +1,14 @@
+# Nuxt's Nitro "netlify" preset (set in apps/web/nuxt.config.ts) writes its
+# build output relative to the Nuxt project root — static assets to
+# apps/web/dist, the SSR function to apps/web/.netlify/functions-internal.
+# Netlify's build system looks for that .netlify folder under `base`, so
+# `base` has to be apps/web; the install step then has to hop back to the
+# repo root first since this is a yarn workspace (the lockfile and hoisted
+# node_modules live there, not inside apps/web).
+[build]
+  base = "apps/web"
+  command = "cd ../.. && yarn install --frozen-lockfile && yarn workspace @vora/web build"
+  publish = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"

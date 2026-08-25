@@ -1,0 +1,70 @@
+import { ActivityIndicator, FlatList, RefreshControl, StyleSheet, Text, View } from 'react-native'
+import { useAuditLog } from '../hooks/useAuditLog'
+import { DetailScreen, StateMessage } from '../components/Screen'
+import { radius, spacing } from '../constants/theme'
+import { useTheme } from '../contexts/ThemeContext'
+import { useI18n } from '../i18n'
+import type { ThemeColors } from '../constants/theme'
+import type { AuditLogEntry } from '@vora/shared/types/auditLog'
+
+export default function AuditLogScreen() {
+  const { colors } = useTheme()
+  const { t } = useI18n()
+  const styles = makeStyles(colors)
+  const { entries, loading, loadingMore, error, forbidden, hasMore, reload, loadMore } = useAuditLog()
+
+  return (
+    <DetailScreen title={t('modules.auditLog.title')} subtitle={t('modules.auditLog.count', { count: entries.length })}>
+      {forbidden ? (
+        <StateMessage text={t('modules.auditLog.forbidden')} />
+      ) : error ? (
+        <StateMessage text={t('modules.auditLog.error', { error })} />
+      ) : (
+        <FlatList
+          data={entries}
+          keyExtractor={(e) => e.id}
+          contentContainerStyle={styles.list}
+          refreshControl={<RefreshControl refreshing={loading} onRefresh={reload} tintColor={colors.primary} />}
+          ListEmptyComponent={!loading ? <StateMessage text={t('modules.auditLog.empty')} /> : null}
+          onEndReached={hasMore ? loadMore : undefined}
+          onEndReachedThreshold={0.5}
+          ListFooterComponent={loadingMore ? <ActivityIndicator style={styles.footer} color={colors.primary} /> : null}
+          renderItem={({ item }: { item: AuditLogEntry }) => (
+            <View
+              style={styles.row}
+              accessible
+              accessibilityLabel={`${item.userName}, ${t(`modules.auditLog.action.${item.action}`)}, ${new Date(item.createdAt).toLocaleString()}`}
+            >
+              <View style={styles.rowMain}>
+                <Text style={styles.title} numberOfLines={1}>
+                  {item.userName} · {t(`modules.auditLog.action.${item.action}`)}
+                </Text>
+                <Text style={styles.subtext} numberOfLines={1}>
+                  {new Date(item.createdAt).toLocaleString()}
+                </Text>
+              </View>
+            </View>
+          )}
+        />
+      )}
+    </DetailScreen>
+  )
+}
+
+function makeStyles(colors: ThemeColors) {
+  return StyleSheet.create({
+    list: { paddingHorizontal: spacing(5), paddingBottom: spacing(10) },
+    row: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      backgroundColor: colors.surface,
+      borderRadius: radius.md,
+      padding: spacing(4),
+      marginBottom: spacing(2),
+    },
+    rowMain: { flex: 1 },
+    title: { color: colors.textPrimary, fontSize: 15, fontWeight: '500' },
+    subtext: { color: colors.textSecondary, fontSize: 12, marginTop: spacing(1) },
+    footer: { paddingVertical: spacing(4) },
+  })
+}

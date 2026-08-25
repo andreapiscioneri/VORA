@@ -3,7 +3,7 @@ import { getDb } from './firebase'
 
 const COLLECTION = 'authTokens'
 
-export type AuthTokenType = 'verify-email' | 'reset-password'
+export type AuthTokenType = 'verify-email' | 'reset-password' | 'mobile-oauth-exchange'
 
 function hashToken(raw: string): string {
   return createHash('sha256').update(raw).digest('hex')

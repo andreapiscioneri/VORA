@@ -1,6 +1,7 @@
 import type { LeaveRequest } from '~/shared/types/leave'
 import type { LeaveRequestInputSchema } from '~/shared/validation/leave'
 import { getDb } from './firebase'
+import { paginateQuery, type PageResult } from './pagination'
 
 const COLLECTION = 'leaveRequests'
 
@@ -18,9 +19,17 @@ function toLeaveRequest(id: string, data: FirebaseFirestore.DocumentData): Leave
   }
 }
 
-export async function listLeaveRequests(organizationId: string): Promise<LeaveRequest[]> {
+export async function listLeaveRequests(organizationId: string, params?: { cursor?: string | null; pageSize?: number }): Promise<PageResult<LeaveRequest>> {
+  const query = getDb().collection(COLLECTION).where('organizationId', '==', organizationId).orderBy('createdAt', 'desc')
+  return paginateQuery(query, COLLECTION, params, toLeaveRequest)
+}
+
+// Used only for the annual balance widget (server/api/leave-requests/all.get.ts)
+// — that computation needs every request for the current year, which cursor
+// pagination can't give a client without walking every page itself.
+export async function listAllLeaveRequests(organizationId: string): Promise<LeaveRequest[]> {
   const snapshot = await getDb().collection(COLLECTION).where('organizationId', '==', organizationId).get()
-  return snapshot.docs.map((doc) => toLeaveRequest(doc.id, doc.data())).sort((a, b) => (a.createdAt < b.createdAt ? 1 : a.createdAt > b.createdAt ? -1 : 0))
+  return snapshot.docs.map((doc) => toLeaveRequest(doc.id, doc.data())).sort((a, b) => b.createdAt.localeCompare(a.createdAt))
 }
 
 export async function getLeaveRequest(id: string, organizationId: string): Promise<LeaveRequest | null> {

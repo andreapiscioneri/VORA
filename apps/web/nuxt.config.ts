@@ -11,6 +11,14 @@ export default defineNuxtConfig({
   compatibilityDate: '2026-01-01',
   devtools: { enabled: true },
 
+  // Netlify auto-sets the NETLIFY env var during its own builds and Nitro
+  // would pick the preset up automatically there; pinning it explicitly
+  // here means `yarn build` produces Netlify-ready output from any
+  // machine (useful for `netlify deploy` from a local checkout too).
+  nitro: {
+    preset: 'netlify',
+  },
+
   runtimeConfig: {
     session: {
       // The iOS/Android native networking layer discards `Secure` cookies over
@@ -34,6 +42,7 @@ export default defineNuxtConfig({
     '@pinia/nuxt',
     '@vueuse/nuxt',
     'nuxt-auth-utils',
+    '@nuxt/eslint',
   ],
 
   colorMode: {

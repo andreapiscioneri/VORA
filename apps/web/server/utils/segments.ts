@@ -3,6 +3,7 @@ import type { Segment } from '~/shared/types/segment'
 import type { SegmentInputSchema } from '~/shared/validation/segment'
 import { getDb } from './firebase'
 import { listAllContacts } from './contacts'
+import { paginateQuery, type PageResult } from './pagination'
 
 const COLLECTION = 'segments'
 
@@ -19,9 +20,9 @@ function toSegment(id: string, data: FirebaseFirestore.DocumentData): Segment {
   }
 }
 
-export async function listSegments(organizationId: string): Promise<Segment[]> {
-  const snapshot = await getDb().collection(COLLECTION).where('organizationId', '==', organizationId).get()
-  return snapshot.docs.map((doc) => toSegment(doc.id, doc.data())).sort((a, b) => (a.createdAt < b.createdAt ? 1 : a.createdAt > b.createdAt ? -1 : 0))
+export async function listSegments(organizationId: string, params?: { cursor?: string | null; pageSize?: number }): Promise<PageResult<Segment>> {
+  const query = getDb().collection(COLLECTION).where('organizationId', '==', organizationId).orderBy('createdAt', 'desc')
+  return paginateQuery(query, COLLECTION, params, toSegment)
 }
 
 export async function getSegment(id: string, organizationId: string): Promise<Segment | null> {

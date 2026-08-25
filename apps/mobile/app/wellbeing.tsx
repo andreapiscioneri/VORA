@@ -5,6 +5,7 @@ import { DetailScreen, StateMessage } from '../components/Screen'
 import { radius, spacing } from '../constants/theme'
 import { useTheme } from '../contexts/ThemeContext'
 import { useI18n } from '../i18n'
+import { haptics } from '../lib/haptics'
 import type { ThemeColors } from '../constants/theme'
 import type { WellbeingScaleValue } from '@vora/shared/types/wellbeing'
 
@@ -29,6 +30,7 @@ export default function WellbeingScreen() {
     try {
       await saveCheckIn({ date: today, mood, energy, stress, note })
       setSaved(true)
+      haptics.success()
     } finally {
       setSaving(false)
     }
@@ -43,7 +45,10 @@ export default function WellbeingScreen() {
             <Pressable
               key={v}
               style={[styles.scaleButton, value === v ? styles.scaleButtonActive : null]}
-              onPress={() => onChange(v)}
+              onPress={() => {
+                haptics.selection()
+                onChange(v)
+              }}
               accessibilityRole="button"
               accessibilityState={{ selected: value === v }}
               accessibilityLabel={`${label} ${v}`}

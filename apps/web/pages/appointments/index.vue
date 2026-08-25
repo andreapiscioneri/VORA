@@ -3,7 +3,7 @@ import type { Appointment } from '~/shared/types/appointment'
 
 definePageMeta({ layout: 'default' })
 
-const { appointments, pending, error, fetchAppointments } = useAppointments()
+const { appointments, pending, error, hasMore, loadingMore, fetchAppointments, loadMore } = useAppointments()
 const { contacts, fetchContacts } = useContacts()
 await Promise.all([fetchAppointments(), fetchContacts()])
 
@@ -134,6 +134,16 @@ const statusStyles: Record<string, string> = {
         </button>
       </div>
     </template>
+
+    <div v-if="!pending && !error && hasMore" class="flex justify-center">
+      <button
+        class="px-4 py-2 rounded-md text-body-sm font-medium border border-ink-100 dark:border-white/10 hover:bg-ink-50 dark:hover:bg-white/5 disabled:opacity-50"
+        :disabled="loadingMore"
+        @click="loadMore"
+      >
+        {{ loadingMore ? $t('appointments.loadingMore') : $t('appointments.loadMore') }}
+      </button>
+    </div>
 
     <AppointmentsAppointmentForm v-if="showForm" :appointment="editingAppt" @close="closeForm" @saved="closeForm" @deleted="closeForm" />
   </div>

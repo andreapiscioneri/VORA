@@ -30,7 +30,7 @@ const saving = ref(false)
 const saveError = ref('')
 
 async function onSubmit() {
-  Object.keys(errors).forEach((k) => delete errors[k])
+  Object.keys(errors).forEach((k) => { errors[k] = '' })
   saveError.value = ''
 
   const result = ticketInputSchema.safeParse(form)
@@ -79,7 +79,7 @@ onMounted(() => dialogRef.value?.focus())
 
           <div>
             <label for="ticket-title" class="block text-label text-ink-400 mb-2">{{ $t('helpdesk.form.title') }}</label>
-            <input id="ticket-title" v-model="form.title" type="text" class="vora-input" :class="{ 'border-danger': errors.title }" autofocus />
+            <input id="ticket-title" v-model="form.title" type="text" class="vora-input" :class="{ 'border-danger': errors.title }" autofocus >
             <p v-if="errors.title" class="text-caption text-danger mt-1">{{ errors.title }}</p>
           </div>
 
@@ -116,7 +116,7 @@ onMounted(() => dialogRef.value?.focus())
             </div>
             <div>
               <label for="ticket-slaDueAt" class="block text-label text-ink-400 mb-2">{{ $t('helpdesk.form.sla') }}</label>
-              <input id="ticket-slaDueAt" v-model="form.slaDueAt" type="datetime-local" class="vora-input" />
+              <input id="ticket-slaDueAt" v-model="form.slaDueAt" type="datetime-local" class="vora-input" >
             </div>
           </div>
 

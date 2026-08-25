@@ -1,9 +1,10 @@
-import { FlatList, Pressable, RefreshControl, StyleSheet, Text, View } from 'react-native'
+import { ActivityIndicator, FlatList, Pressable, RefreshControl, StyleSheet, Text, View } from 'react-native'
 import { useInbox } from '../../hooks/useInbox'
 import { Screen, StateMessage } from '../../components/Screen'
 import { radius, spacing } from '../../constants/theme'
 import { useTheme } from '../../contexts/ThemeContext'
 import { useI18n } from '../../i18n'
+import { haptics } from '../../lib/haptics'
 import type { ThemeColors } from '../../constants/theme'
 import type { Communication } from '@vora/shared/types/communication'
 
@@ -11,7 +12,7 @@ export default function InboxScreen() {
   const { colors } = useTheme()
   const { t } = useI18n()
   const styles = makeStyles(colors)
-  const { items, loading, error, reload, markRead } = useInbox()
+  const { items, loading, loadingMore, error, hasMore, reload, loadMore, markRead } = useInbox()
   const channelLabel = (channel: string) => t(`inbox.channels.${channel}`) || channel
 
   return (
@@ -25,13 +26,21 @@ export default function InboxScreen() {
           contentContainerStyle={styles.list}
           refreshControl={<RefreshControl refreshing={loading} onRefresh={reload} tintColor={colors.primary} />}
           ListEmptyComponent={!loading ? <StateMessage text={t('inbox.empty')} /> : null}
+          onEndReached={hasMore ? loadMore : undefined}
+          onEndReachedThreshold={0.5}
+          ListFooterComponent={loadingMore ? <ActivityIndicator style={styles.footer} color={colors.primary} /> : null}
           renderItem={({ item }: { item: Communication }) => {
             const isUnread = item.status === 'unread'
             const channel = channelLabel(item.channel)
             return (
               <Pressable
                 style={[styles.row, isUnread ? styles.rowUnread : null]}
-                onPress={() => isUnread && markRead(item)}
+                onPress={() => {
+                  if (isUnread) {
+                    haptics.tap()
+                    markRead(item)
+                  }
+                }}
                 accessibilityRole="button"
                 accessibilityLabel={`${isUnread ? t('inbox.unreadPrefix') : ''}${channel}, ${item.subject || t('inbox.noSubject')}`}
                 accessibilityHint={isUnread ? t('inbox.markReadHint') : undefined}
@@ -70,5 +79,6 @@ function makeStyles(colors: ThemeColors) {
     dot: { width: 8, height: 8, borderRadius: 4, backgroundColor: colors.primary },
     subject: { color: colors.textPrimary, fontSize: 15, fontWeight: '600', marginBottom: spacing(1) },
     body: { color: colors.textSecondary, fontSize: 13 },
+    footer: { paddingVertical: spacing(4) },
   })
 }

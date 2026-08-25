@@ -2,6 +2,7 @@ import { Tabs } from 'expo-router'
 import { Icon } from '../../components/Icon'
 import { useTheme } from '../../contexts/ThemeContext'
 import { useI18n } from '../../i18n'
+import { haptics } from '../../lib/haptics'
 
 export default function TabsLayout() {
   const { colors } = useTheme()
@@ -15,6 +16,7 @@ export default function TabsLayout() {
         tabBarActiveTintColor: colors.primary,
         tabBarInactiveTintColor: colors.tabBarInactive,
       }}
+      screenListeners={{ tabPress: () => haptics.tap() }}
     >
       <Tabs.Screen
         name="index"

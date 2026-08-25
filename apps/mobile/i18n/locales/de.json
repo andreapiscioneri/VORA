@@ -2,7 +2,9 @@
   "common": {
     "appName": "Vora",
     "reachability": "Vora-Server nicht erreichbar. Zum Wiederholen nach unten ziehen.",
-    "offlineCached": "Offline – zuletzt gespeicherte Daten werden angezeigt."
+    "offlineCached": "Offline – zuletzt gespeicherte Daten werden angezeigt.",
+    "loadMore": "Mehr laden",
+    "loadingMore": "Wird geladen..."
   },
   "auth": {
     "loginTitle": "Bei Vora anmelden",
@@ -20,7 +22,10 @@
     "invalidCredentials": "E-Mail oder Passwort ungültig.",
     "emailTaken": "Diese E-Mail ist bereits registriert.",
     "passwordTooShort": "Das Passwort muss mindestens 8 Zeichen lang sein.",
-    "logout": "Abmelden"
+    "logout": "Abmelden",
+    "or": "oder",
+    "continueWithGoogle": "Mit Google fortfahren",
+    "oauthFailed": "Die Anmeldung mit Google ist fehlgeschlagen. Bitte erneut versuchen oder E-Mail und Passwort verwenden."
   },
   "tabs": {
     "home": "Start",
@@ -115,6 +120,38 @@
       "notifications": {
         "label": "Benachrichtigungen",
         "desc": "Push-Einstellungen"
+      },
+      "employees": {
+        "label": "Mitarbeiter",
+        "desc": "Team-Verzeichnis"
+      },
+      "expenses": {
+        "label": "Spesen",
+        "desc": "Spesenabrechnungen und Genehmigungen"
+      },
+      "knowledge": {
+        "label": "Wissen",
+        "desc": "Interne Dokumente und Anleitungen"
+      },
+      "social": {
+        "label": "Social",
+        "desc": "Redaktionskalender"
+      },
+      "marketing": {
+        "label": "Marketing",
+        "desc": "Kampagnen, Vorlagen, Segmente, Automatisierungen"
+      },
+      "website": {
+        "label": "Website",
+        "desc": "Website-Übersicht und Microsites"
+      },
+      "auditLog": {
+        "label": "Aktivitätsprotokoll",
+        "desc": "Verlauf sensibler Aktionen"
+      },
+      "settings": {
+        "label": "Einstellungen",
+        "desc": "Profil und Passwort"
       }
     }
   },
@@ -224,6 +261,220 @@
         "tickets": "Tickets",
         "deadlines": "Fristen"
       }
+    },
+    "employees": {
+      "title": "Mitarbeiter",
+      "count": "{{count}} Mitarbeiter",
+      "error": "Mitarbeiter konnten nicht geladen werden. ({{error}})",
+      "empty": "Keine Mitarbeiter.",
+      "status": {
+        "active": "Aktiv",
+        "inactive": "Inaktiv"
+      },
+      "form": {
+        "firstName": "Vorname",
+        "lastName": "Nachname",
+        "email": "E-Mail",
+        "role": "Rolle",
+        "team": "Team",
+        "status": "Status",
+        "startDate": "Startdatum",
+        "cancel": "Abbrechen",
+        "save": "Speichern",
+        "saving": "Wird gespeichert...",
+        "editTitle": "Mitarbeitende bearbeiten",
+        "newTitle": "Neue Mitarbeitende",
+        "delete": "Löschen"
+      },
+      "deleteConfirm": "Diese Mitarbeitenden löschen? Dies kann nicht rückgängig gemacht werden.",
+      "errors": {
+        "save": "Die Mitarbeitenden konnten nicht gespeichert werden.",
+        "delete": "Die Mitarbeitenden konnten nicht gelöscht werden."
+      }
+    },
+    "expenses": {
+      "title": "Spesen",
+      "count": "{{count}} Spesen",
+      "error": "Spesen konnten nicht geladen werden. ({{error}})",
+      "empty": "Keine Spesen.",
+      "category": {
+        "travel": "Reise",
+        "meals": "Verpflegung",
+        "office": "Büro",
+        "software": "Software",
+        "other": "Sonstiges"
+      },
+      "status": {
+        "pending": "Ausstehend",
+        "approved": "Genehmigt",
+        "rejected": "Abgelehnt"
+      },
+      "form": {
+        "amount": "Betrag (EUR)",
+        "date": "Datum",
+        "category": "Kategorie",
+        "notes": "Notizen",
+        "receiptUrl": "Beleglink (optional)",
+        "cancel": "Abbrechen",
+        "save": "Speichern",
+        "saving": "Wird gespeichert...",
+        "editTitle": "Spesenabrechnung bearbeiten",
+        "newTitle": "Neue Spesenabrechnung",
+        "delete": "Löschen",
+        "status": "Status"
+      },
+      "deleteConfirm": "Diese Spesenabrechnung löschen? Dies kann nicht rückgängig gemacht werden.",
+      "errors": {
+        "save": "Die Spesenabrechnung konnte nicht gespeichert werden.",
+        "delete": "Die Spesenabrechnung konnte nicht gelöscht werden."
+      }
+    },
+    "knowledge": {
+      "title": "Wissen",
+      "count": "{{count}} Dokumente",
+      "error": "Dokumente konnten nicht geladen werden. ({{error}})",
+      "empty": "Keine Dokumente.",
+      "noFolder": "Kein Ordner",
+      "form": {
+        "title": "Titel",
+        "content": "Inhalt (Markdown)",
+        "folder": "Ordner",
+        "tags": "Tags (kommagetrennt)",
+        "cancel": "Abbrechen",
+        "save": "Speichern",
+        "saving": "Wird gespeichert...",
+        "editTitle": "Seite bearbeiten",
+        "newTitle": "Neue Seite",
+        "delete": "Löschen",
+        "favorite": "Favorit"
+      },
+      "deleteConfirm": "Diese Seite löschen? Dies kann nicht rückgängig gemacht werden.",
+      "errors": {
+        "save": "Die Seite konnte nicht gespeichert werden.",
+        "delete": "Die Seite konnte nicht gelöscht werden."
+      }
+    },
+    "auditLog": {
+      "title": "Aktivitätsprotokoll",
+      "count": "{{count}} Einträge",
+      "error": "Protokoll konnte nicht geladen werden. ({{error}})",
+      "empty": "Keine Einträge.",
+      "forbidden": "Nur Inhaber und Admins können das Aktivitätsprotokoll einsehen.",
+      "action": {
+        "login": "Angemeldet",
+        "logout": "Abgemeldet",
+        "password": {
+          "change": "Passwort geändert"
+        },
+        "employee": {
+          "create": "Mitarbeiter erstellt",
+          "update": "Mitarbeiter aktualisiert",
+          "delete": "Mitarbeiter gelöscht"
+        },
+        "leave": {
+          "approve": "Urlaub genehmigt",
+          "reject": "Urlaub abgelehnt"
+        },
+        "expense": {
+          "approve": "Spesen genehmigt",
+          "reject": "Spesen abgelehnt"
+        }
+      }
+    },
+    "social": {
+      "title": "Social",
+      "count": "{{count}} Beiträge",
+      "error": "Beiträge konnten nicht geladen werden. ({{error}})",
+      "empty": "Keine Beiträge.",
+      "platform": {
+        "instagram": "Instagram",
+        "facebook": "Facebook",
+        "linkedin": "LinkedIn",
+        "x": "X"
+      },
+      "status": {
+        "draft": "Entwurf",
+        "scheduled": "Geplant",
+        "published": "Veröffentlicht"
+      },
+      "form": {
+        "content": "Inhalt",
+        "platform": "Plattform",
+        "status": "Status",
+        "scheduledAt": "Geplantes Datum",
+        "cancel": "Abbrechen",
+        "save": "Speichern",
+        "saving": "Wird gespeichert...",
+        "editTitle": "Beitrag bearbeiten",
+        "newTitle": "Neuer Beitrag",
+        "delete": "Löschen"
+      },
+      "deleteConfirm": "Diesen Beitrag löschen? Dies kann nicht rückgängig gemacht werden.",
+      "errors": {
+        "save": "Der Beitrag konnte nicht gespeichert werden.",
+        "delete": "Der Beitrag konnte nicht gelöscht werden."
+      }
+    },
+    "marketing": {
+      "title": "Marketing",
+      "error": "Daten konnten nicht geladen werden. ({{error}})",
+      "empty": "Keine Einträge.",
+      "tab": {
+        "campaigns": "Kampagnen",
+        "templates": "Vorlagen",
+        "segments": "Segmente",
+        "automations": "Automatisierungen"
+      },
+      "campaignStatus": {
+        "draft": "Entwurf",
+        "sent": "Gesendet"
+      },
+      "anyContact": "Beliebiger Kontakt",
+      "active": "Aktiv",
+      "inactive": "Inaktiv",
+      "trigger": {
+        "contact_created": "Kontakt erstellt",
+        "contact_status_changed": "Kontaktstatus geändert",
+        "manual": "Manuell"
+      }
+    },
+    "website": {
+      "title": "Website",
+      "count": "{{count}} Websites",
+      "error": "Websites konnten nicht geladen werden. ({{error}})",
+      "empty": "Keine Websites.",
+      "published": "Veröffentlicht",
+      "draft": "Entwurf"
+    },
+    "settings": {
+      "title": "Einstellungen",
+      "profile": "Profil",
+      "name": "Name",
+      "email": "E-Mail",
+      "organization": "Organisation",
+      "role": "Rolle",
+      "changePassword": "Passwort ändern",
+      "currentPassword": "Aktuelles Passwort",
+      "newPassword": "Neues Passwort",
+      "save": "Speichern",
+      "saving": "Wird gespeichert...",
+      "currentPasswordIncorrect": "Aktuelles Passwort ist falsch.",
+      "passwordTooShort": "Das neue Passwort muss mindestens 8 Zeichen haben.",
+      "tooManyAttempts": "Zu viele Versuche. Bitte in einigen Minuten erneut versuchen.",
+      "saveError": "Passwort konnte nicht geändert werden.",
+      "passwordChanged": "Passwort aktualisiert.",
+      "passwordTooWeak": "Das neue Passwort ist zu schwach: verwenden Sie mindestens 3 von Kleinbuchstaben, Großbuchstaben, Ziffern und Symbolen.",
+      "strength": {
+        "veryWeak": "Sehr schwach",
+        "weak": "Schwach",
+        "fair": "Ausreichend",
+        "good": "Gut",
+        "strong": "Stark"
+      }
     }
+  },
+  "validation": {
+    "required": "Pflichtfeld",
+    "email": "Ungültige E-Mail-Adresse"
   }
 }

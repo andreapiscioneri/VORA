@@ -1,6 +1,7 @@
 import type { Employee } from '~/shared/types/employee'
 import type { EmployeeInputSchema } from '~/shared/validation/employee'
 import { getDb } from './firebase'
+import { paginateQuery, type PageResult } from './pagination'
 
 const COLLECTION = 'employees'
 
@@ -19,9 +20,9 @@ function toEmployee(id: string, data: FirebaseFirestore.DocumentData): Employee 
   }
 }
 
-export async function listEmployees(organizationId: string): Promise<Employee[]> {
-  const snapshot = await getDb().collection(COLLECTION).where('organizationId', '==', organizationId).get()
-  return snapshot.docs.map((doc) => toEmployee(doc.id, doc.data())).sort((a, b) => (a.createdAt < b.createdAt ? 1 : a.createdAt > b.createdAt ? -1 : 0))
+export async function listEmployees(organizationId: string, params?: { cursor?: string | null; pageSize?: number }): Promise<PageResult<Employee>> {
+  const query = getDb().collection(COLLECTION).where('organizationId', '==', organizationId).orderBy('createdAt', 'desc')
+  return paginateQuery(query, COLLECTION, params, toEmployee)
 }
 
 export async function getEmployee(id: string, organizationId: string): Promise<Employee | null> {

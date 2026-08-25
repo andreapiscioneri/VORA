@@ -1,19 +1,39 @@
 import type { Appointment, AppointmentInput } from '~/shared/types/appointment'
+import type { PageResult } from '~/server/utils/pagination'
 
 export function useAppointments() {
   const appointments = useState<Appointment[]>('appointments', () => [])
   const pending = useState('appointments-pending', () => false)
+  const loadingMore = useState('appointments-loading-more', () => false)
   const error = useState<string | null>('appointments-error', () => null)
+  const nextCursor = useState<string | null>('appointments-cursor', () => null)
+  const hasMore = useState('appointments-has-more', () => false)
 
   async function fetchAppointments() {
     pending.value = true
     error.value = null
     try {
-      appointments.value = await $fetch<Appointment[]>('/api/appointments')
+      const page = await $fetch<PageResult<Appointment>>('/api/appointments')
+      appointments.value = page.items
+      nextCursor.value = page.nextCursor
+      hasMore.value = page.hasMore
     } catch {
       error.value = 'appointments.errors.load'
     } finally {
       pending.value = false
+    }
+  }
+
+  async function loadMore() {
+    if (!hasMore.value || loadingMore.value) return
+    loadingMore.value = true
+    try {
+      const page = await $fetch<PageResult<Appointment>>('/api/appointments', { query: { cursor: nextCursor.value } })
+      appointments.value = [...appointments.value, ...page.items]
+      nextCursor.value = page.nextCursor
+      hasMore.value = page.hasMore
+    } finally {
+      loadingMore.value = false
     }
   }
 
@@ -36,5 +56,5 @@ export function useAppointments() {
     appointments.value = appointments.value.filter((a) => a.id !== id)
   }
 
-  return { appointments, pending, error, fetchAppointments, createAppointment, updateAppointment, removeAppointment }
+  return { appointments, pending, error, hasMore, loadingMore, fetchAppointments, loadMore, createAppointment, updateAppointment, removeAppointment }
 }

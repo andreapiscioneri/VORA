@@ -1,5 +1,5 @@
 import { deleteEmployee } from '~/server/utils/employees'
-import { requireRole } from '~/server/utils/auth'
+import { requireRole, resolveSession } from '~/server/utils/auth'
 import { logAction } from '~/server/utils/auditLog'
 
 export default defineEventHandler(async (event) => {
@@ -11,7 +11,9 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 404, statusMessage: 'Employee not found' })
   }
 
-  const { user } = await requireUserSession(event)
+  const session = await resolveSession(event)
+  if (!session) throw createError({ statusCode: 401, statusMessage: 'Authentication required' })
+  const { user } = session
   await logAction(organizationId, user.id, user.name, 'employee.delete', 'employee', id)
 
   return { success: true }

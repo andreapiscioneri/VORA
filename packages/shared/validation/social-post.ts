@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { SOCIAL_PLATFORMS, SOCIAL_POST_STATUSES } from '~/shared/types/social-post'
+import { SOCIAL_PLATFORMS, SOCIAL_POST_STATUSES } from '../types/social-post'
 
 export const socialPostInputSchema = z.object({
   content: z.string().trim().min(1, 'validation.required').max(2000),

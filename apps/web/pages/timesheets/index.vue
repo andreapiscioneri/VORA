@@ -3,7 +3,7 @@ import type { TimesheetEntry } from '~/shared/types/timesheet'
 
 definePageMeta({ layout: 'default' })
 
-const { entries, pending, error, fetchEntries, createEntry } = useTimesheets()
+const { entries, pending, error, hasMore, loadingMore, fetchEntries, loadMore, createEntry } = useTimesheets()
 const { projects, fetchProjects } = useProjects()
 await Promise.all([fetchEntries(), fetchProjects()])
 
@@ -112,7 +112,7 @@ function formatDayHeading(iso: string) {
         :disabled="timer.isRunning.value"
         :placeholder="$t('timesheets.timer.descriptionPlaceholder')"
         class="flex-1 px-3 py-2 rounded-md border border-ink-100 dark:border-white/10 bg-white dark:bg-white/5 text-body-sm outline-none focus:border-primary disabled:opacity-60"
-      />
+      >
       <select
         v-model="timerProjectId"
         :disabled="timer.isRunning.value"
@@ -172,6 +172,16 @@ function formatDayHeading(iso: string) {
           </button>
         </div>
       </div>
+    </div>
+
+    <div v-if="!pending && !error && hasMore" class="flex justify-center">
+      <button
+        class="px-4 py-2 rounded-md text-body-sm font-medium border border-ink-100 dark:border-white/10 hover:bg-ink-50 dark:hover:bg-white/5 disabled:opacity-50"
+        :disabled="loadingMore"
+        @click="loadMore"
+      >
+        {{ loadingMore ? $t('timesheets.loadingMore') : $t('timesheets.loadMore') }}
+      </button>
     </div>
 
     <TimesheetsEntryForm v-if="showForm" :entry="editingEntry" @close="closeForm" @saved="closeForm" @deleted="closeForm" />

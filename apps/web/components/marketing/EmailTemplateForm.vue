@@ -21,7 +21,7 @@ const saving = ref(false)
 const saveError = ref('')
 
 async function onSubmit() {
-  Object.keys(errors).forEach((k) => delete errors[k])
+  Object.keys(errors).forEach((k) => { errors[k] = '' })
   saveError.value = ''
 
   const result = emailTemplateInputSchema.safeParse(form)
@@ -77,13 +77,13 @@ onMounted(() => dialogRef.value?.focus())
 
           <div>
             <label for="template-name" class="block text-label text-ink-400 mb-2">{{ $t('templates.form.name') }}</label>
-            <input id="template-name" v-model="form.name" type="text" class="vora-input" :class="{ 'border-danger': errors.name }" autofocus />
+            <input id="template-name" v-model="form.name" type="text" class="vora-input" :class="{ 'border-danger': errors.name }" autofocus >
             <p v-if="errors.name" class="text-caption text-danger mt-1">{{ errors.name }}</p>
           </div>
 
           <div>
             <label for="template-subject" class="block text-label text-ink-400 mb-2">{{ $t('templates.form.subject') }}</label>
-            <input id="template-subject" v-model="form.subject" type="text" class="vora-input" :class="{ 'border-danger': errors.subject }" />
+            <input id="template-subject" v-model="form.subject" type="text" class="vora-input" :class="{ 'border-danger': errors.subject }" >
             <p v-if="errors.subject" class="text-caption text-danger mt-1">{{ errors.subject }}</p>
           </div>
 

@@ -10,7 +10,7 @@ export function useDashboardLayout() {
     error.value = null
     try {
       layout.value = await $fetch<DashboardLayout>('/api/dashboard/layout')
-    } catch (e) {
+    } catch {
       error.value = 'dashboard.errors.load'
     } finally {
       pending.value = false

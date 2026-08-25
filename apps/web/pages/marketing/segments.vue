@@ -3,7 +3,7 @@ import type { Segment } from '~/shared/types/segment'
 
 definePageMeta({ layout: 'default' })
 
-const { segments, pending, error, fetchSegments } = useSegments()
+const { segments, pending, error, hasMore, loadingMore, fetchSegments, loadMore } = useSegments()
 await fetchSegments()
 
 const showForm = ref(false)
@@ -72,6 +72,16 @@ function closeForm() {
             <span v-if="s.filter.tags?.length">{{ s.filter.tags.join(', ') }}</span>
           </p>
         </div>
+      </button>
+    </div>
+
+    <div v-if="!pending && !error && hasMore" class="flex justify-center">
+      <button
+        class="px-4 py-2 rounded-md text-body-sm font-medium border border-ink-100 dark:border-white/10 hover:bg-ink-50 dark:hover:bg-white/5 disabled:opacity-50"
+        :disabled="loadingMore"
+        @click="loadMore"
+      >
+        {{ loadingMore ? $t('segments.loadingMore') : $t('segments.loadMore') }}
       </button>
     </div>
 

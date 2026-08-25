@@ -146,7 +146,7 @@ async function onMove(opp: Opportunity, stage: OpportunityStage) {
 
     <!-- Mobile: grouped list -->
     <div v-if="!pending && !error && opportunities.length" class="tablet:hidden space-y-6">
-      <div v-for="col in columns" :key="col.stage" v-show="oppsIn(col.stage).length">
+      <div v-for="col in columns" v-show="oppsIn(col.stage).length" :key="col.stage">
         <p class="flex items-center gap-2 text-body-sm font-medium mb-3">
           <span class="size-2 rounded-full" :class="col.accent" />
           {{ $t(`crm.stage.${col.stage}`) }}

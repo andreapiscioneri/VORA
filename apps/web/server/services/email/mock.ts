@@ -1,4 +1,5 @@
 import type { EmailProvider, SendEmailInput, SendEmailResult } from './types'
+import { logger } from '~/server/utils/logger'
 
 /**
  * No real Gmail/Microsoft/IMAP credentials are configured (see .env.example).
@@ -14,7 +15,7 @@ export class MockEmailProvider implements EmailProvider {
     // closest honest equivalent to a dev mail-catcher (Mailhog etc.)
     // without running one. This is how you read a verification/reset link
     // in local dev with no real email provider configured.
-    console.log(`[mock email] to=${input.to} subject="${input.subject}"\n${input.body}`)
+    logger.info('mock email send', { to: input.to, subject: input.subject, body: input.body, attachments: input.attachments?.map((a) => a.title) })
     return {
       success: true,
       providerId: this.name,

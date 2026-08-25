@@ -1,5 +1,10 @@
 import type { AIChatContext, CalendarEventSuggestion, ClassificationResult, ReplyDraft, SummaryResult, TaskSuggestion } from '~/shared/types/ai'
-import type { AIService } from './types'
+import type { AIService, WellbeingChatTurn } from './types'
+
+const STRESS_WORDS = ['stress', 'stanc', 'ansi', 'sopraffatt', 'overwhelm', 'pressione', 'burnout', 'esaurit']
+const SAD_WORDS = ['triste', 'giù', 'demotivat', 'sad', 'down', 'scoraggiat']
+const CRISIS_WORDS = ['farmi del male', 'suicid', 'non voglio più vivere', 'self harm', 'self-harm', 'kill myself']
+const GREETING_WORDS = ['ciao', 'salve', 'buongiorno', 'buonasera', 'hey', 'hi ']
 
 const URGENT_WORDS = ['urgente', 'urgent', 'asap', 'subito', 'immediat', 'emergenza', 'emergency', 'critico']
 const HIGH_WORDS = ['importante', 'important', 'priorità', 'priority', 'entro oggi', 'scadenza']
@@ -230,5 +235,33 @@ export class HeuristicAIService implements AIService {
     }
 
     return 'Posso aiutarti a organizzare la giornata, trovare le attività più importanti, riepilogare i messaggi non letti o mostrarti i prossimi impegni. Prova a chiedermelo con queste parole.'
+  }
+
+  // No LLM configured: a small set of scripted, empathetic acknowledgments
+  // rather than a real conversation — honest about its limits (see
+  // wellbeing.disclaimer in every locale file), and always yields exactly
+  // once since there's no real token-by-token generation to stream.
+  async *wellbeingChat(_history: WellbeingChatTurn[], message: string): AsyncIterable<string> {
+    if (includesAny(message, CRISIS_WORDS)) {
+      yield 'Quello che mi hai scritto mi preoccupa. Non sono in grado di offrirti l\'aiuto di cui potresti avere bisogno in questo momento — ti prego di contattare subito un professionista o un servizio di ascolto (in Italia: Telefono Amico 02 2327 2327, attivo ogni giorno). Non sei solo/a.'
+      return
+    }
+
+    if (includesAny(message, STRESS_WORDS)) {
+      yield 'Mi dispiace che tu ti senta così sotto pressione. Non sono un professionista e non posso sostituirlo, ma posso ascoltarti: cosa pesa di più in questo momento? Se vuoi, prova anche l\'esercizio di respirazione qui sopra — a volte aiuta a schiarire un po\' la mente.'
+      return
+    }
+
+    if (includesAny(message, SAD_WORDS)) {
+      yield 'Grazie per aver condiviso come ti senti. È normale avere giornate così. Vuoi raccontarmi cosa è successo? Ricorda che se questo stato persiste, parlarne con un professionista può fare davvero la differenza.'
+      return
+    }
+
+    if (includesAny(message, GREETING_WORDS)) {
+      yield 'Ciao! Sono qui per ascoltarti — questo non è un servizio di terapia, ma uno spazio per fermarti un attimo e riflettere. Come stai oggi?'
+      return
+    }
+
+    yield 'Ti ascolto. Puoi raccontarmi di più? (Nota: non sono un professionista della salute mentale — per un supporto reale, parlarne con qualcuno di qualificato è sempre la scelta migliore.)'
   }
 }

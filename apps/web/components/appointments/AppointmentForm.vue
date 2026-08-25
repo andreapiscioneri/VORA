@@ -44,7 +44,7 @@ const saving = ref(false)
 const saveError = ref('')
 
 async function onSubmit() {
-  Object.keys(errors).forEach((k) => delete errors[k])
+  Object.keys(errors).forEach((k) => { errors[k] = '' })
   saveError.value = ''
 
   const payload = { ...form, startAt: new Date(form.startAt).toISOString() }
@@ -101,18 +101,18 @@ onMounted(() => dialogRef.value?.focus())
 
           <div>
             <label for="appointment-title" class="block text-label text-ink-400 mb-2">{{ $t('appointments.form.title') }}</label>
-            <input id="appointment-title" v-model="form.title" type="text" class="vora-input" :class="{ 'border-danger': errors.title }" autofocus />
+            <input id="appointment-title" v-model="form.title" type="text" class="vora-input" :class="{ 'border-danger': errors.title }" autofocus >
             <p v-if="errors.title" class="text-caption text-danger mt-1">{{ errors.title }}</p>
           </div>
 
           <div class="grid grid-cols-1 tablet:grid-cols-2 gap-4">
             <div>
               <label for="appointment-startAt" class="block text-label text-ink-400 mb-2">{{ $t('appointments.form.start') }}</label>
-              <input id="appointment-startAt" v-model="form.startAt" type="datetime-local" class="vora-input" />
+              <input id="appointment-startAt" v-model="form.startAt" type="datetime-local" class="vora-input" >
             </div>
             <div>
               <label for="appointment-durationMinutes" class="block text-label text-ink-400 mb-2">{{ $t('appointments.form.duration') }}</label>
-              <input id="appointment-durationMinutes" v-model.number="form.durationMinutes" type="number" min="5" step="5" class="vora-input" />
+              <input id="appointment-durationMinutes" v-model.number="form.durationMinutes" type="number" min="5" step="5" class="vora-input" >
             </div>
             <div>
               <label for="appointment-contactId" class="block text-label text-ink-400 mb-2">{{ $t('appointments.form.contact') }}</label>
@@ -130,7 +130,7 @@ onMounted(() => dialogRef.value?.focus())
             </div>
             <div>
               <label for="appointment-location" class="block text-label text-ink-400 mb-2">{{ $t('appointments.form.location') }}</label>
-              <input id="appointment-location" v-model="form.location" type="text" class="vora-input" />
+              <input id="appointment-location" v-model="form.location" type="text" class="vora-input" >
             </div>
             <div>
               <label for="appointment-status" class="block text-label text-ink-400 mb-2">{{ $t('appointments.form.status') }}</label>
@@ -144,7 +144,7 @@ onMounted(() => dialogRef.value?.focus())
 
           <div>
             <label for="appointment-videoCallUrl" class="block text-label text-ink-400 mb-2">{{ $t('appointments.form.videoCallUrl') }}</label>
-            <input id="appointment-videoCallUrl" v-model="form.videoCallUrl" type="url" placeholder="https://..." class="vora-input" :class="{ 'border-danger': errors.videoCallUrl }" />
+            <input id="appointment-videoCallUrl" v-model="form.videoCallUrl" type="url" placeholder="https://..." class="vora-input" :class="{ 'border-danger': errors.videoCallUrl }" >
             <p v-if="errors.videoCallUrl" class="text-caption text-danger mt-1">{{ errors.videoCallUrl }}</p>
           </div>
 

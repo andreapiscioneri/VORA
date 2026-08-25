@@ -134,7 +134,7 @@ async function onMove(task: Task, status: TaskStatus) {
 
     <!-- Mobile: grouped list -->
     <div v-if="!pending && !error && tasks.length" class="tablet:hidden space-y-6">
-      <div v-for="col in columns" :key="col.status" v-show="tasksIn(col.status).length">
+      <div v-for="col in columns" v-show="tasksIn(col.status).length" :key="col.status">
         <p class="flex items-center gap-2 text-body-sm font-medium mb-3">
           <span class="size-2 rounded-full" :class="col.accent" />
           {{ $t(`tasks.status.${col.status}`) }}

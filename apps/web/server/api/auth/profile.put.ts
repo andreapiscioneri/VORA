@@ -1,5 +1,6 @@
 import { z } from 'zod'
 import { getDb } from '~/server/utils/firebase'
+import { resolveSession } from '~/server/utils/auth'
 
 const schema = z.object({ name: z.string().trim().min(1, 'validation.required').max(160) })
 
@@ -7,7 +8,9 @@ const schema = z.object({ name: z.string().trim().min(1, 'validation.required').
 // this is the only place the `users` collection's `name` field is updated
 // outside of registration, and it's simple enough not to need a shared helper.
 export default defineEventHandler(async (event) => {
-  const { user } = await requireUserSession(event)
+  const session = await resolveSession(event)
+  if (!session) throw createError({ statusCode: 401, statusMessage: 'Authentication required' })
+  const { user } = session
   const body = await readBody(event)
   const result = schema.safeParse(body)
   if (!result.success) {

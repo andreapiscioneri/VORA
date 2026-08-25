@@ -1,7 +1,6 @@
 <script setup lang="ts">
 definePageMeta({ layout: 'public' })
 
-const { t } = useI18n()
 const route = useRoute()
 const { fetch: refreshSession } = useUserSession()
 const token = computed(() => (typeof route.query.token === 'string' ? route.query.token : ''))

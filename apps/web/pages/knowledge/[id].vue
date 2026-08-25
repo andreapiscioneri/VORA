@@ -65,10 +65,16 @@ async function onDelete() {
         <span v-for="tag in doc.tags" :key="tag" class="text-caption px-2 py-0.5 rounded-full bg-primary/10 text-primary-600 dark:text-primary">{{ tag }}</span>
       </div>
 
+      <!-- renderedHtml comes from useMarkdown().render(), which HTML-escapes
+           the raw source before parsing (composables/useMarkdown.ts) — any
+           literal <script>/onerror etc. in a document renders as inert text,
+           not markup, so this v-html is not an XSS vector. -->
+      <!-- eslint-disable vue/no-v-html -->
       <div
         class="knowledge-content rounded-lg border border-ink-100 dark:border-white/10 p-6 prose-sm max-w-none"
         v-html="renderedHtml"
       />
+      <!-- eslint-enable vue/no-v-html -->
 
       <KnowledgePageForm v-if="showEdit" :document="doc" @close="showEdit = false" @saved="onSaved" />
     </template>

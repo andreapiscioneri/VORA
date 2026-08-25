@@ -10,7 +10,8 @@
     "slug": "Usa solo lettere minuscole, numeri e trattini (es. mio-sito)",
     "slugTaken": "Questo indirizzo è già in uso, scegline un altro",
     "color": "Usa un colore esadecimale valido (es. #39FF14)",
-    "recurrenceUntilBeforeStart": "La data di fine ripetizione non può precedere la data di inizio."
+    "recurrenceUntilBeforeStart": "La data di fine ripetizione non può precedere la data di inizio.",
+    "phone": "Numero di telefono non valido"
   },
   "auth": {
     "loginTitle": "Accedi a Vora",
@@ -50,7 +51,15 @@
     "verifyBannerSent": "Email inviata.",
     "or": "oppure",
     "continueWithGoogle": "Continua con Google",
-    "oauthFailed": "Accesso con Google non riuscito. Riprova o usa email e password."
+    "oauthFailed": "Accesso con Google non riuscito. Riprova o usa email e password.",
+    "passwordTooWeak": "La password è troppo debole: usa almeno 3 tra minuscole, maiuscole, numeri e simboli",
+    "strength": {
+      "veryWeak": "Molto debole",
+      "weak": "Debole",
+      "fair": "Sufficiente",
+      "good": "Buona",
+      "strong": "Forte"
+    }
   },
   "nav": {
     "overview": "Panoramica",
@@ -353,7 +362,9 @@
       "daily": "Ogni giorno",
       "weekly": "Ogni settimana",
       "monthly": "Ogni mese"
-    }
+    },
+    "loadMore": "Carica altri",
+    "loadingMore": "Caricamento..."
   },
   "projects": {
     "title": "Progetti",
@@ -461,7 +472,9 @@
       "delete": "Elimina"
     },
     "deleteConfirm": "Eliminare questa voce? L'operazione non è reversibile.",
-    "noBillable": "Non fatturabile"
+    "noBillable": "Non fatturabile",
+    "loadMore": "Carica altri",
+    "loadingMore": "Caricamento..."
   },
   "appointments": {
     "title": "Appuntamenti",
@@ -505,7 +518,9 @@
       "delete": "Elimina"
     },
     "joinCall": "Partecipa alla videochiamata",
-    "deleteConfirm": "Eliminare questo appuntamento? L'operazione non è reversibile."
+    "deleteConfirm": "Eliminare questo appuntamento? L'operazione non è reversibile.",
+    "loadMore": "Carica altri",
+    "loadingMore": "Caricamento..."
   },
   "inbox": {
     "title": "Posta in arrivo",
@@ -538,7 +553,9 @@
       "cancel": "Annulla",
       "send": "Invia",
       "sending": "Invio...",
-      "newTitle": "Nuovo messaggio"
+      "newTitle": "Nuovo messaggio",
+      "attachments": "Allegati",
+      "removeAttachment": "Rimuovi"
     },
     "markRead": "Segna come letto",
     "archive": "Archivia",
@@ -664,7 +681,9 @@
       "comments": "Commenti",
       "noComments": "Nessun commento.",
       "addComment": "Aggiungi un commento...",
-      "send": "Invia"
+      "send": "Invia",
+      "delete": "Elimina",
+      "deleteConfirm": "Eliminare questo ticket? L'operazione non è reversibile."
     },
     "attachments": {
       "title": "Allegati",
@@ -779,7 +798,9 @@
     },
     "approve": "Approva",
     "reject": "Rifiuta",
-    "deleteConfirm": "Eliminare questa spesa? L'operazione non è reversibile."
+    "deleteConfirm": "Eliminare questa spesa? L'operazione non è reversibile.",
+    "loadMore": "Carica altri",
+    "loadingMore": "Caricamento..."
   },
   "leave": {
     "title": "Ferie",
@@ -834,7 +855,9 @@
     },
     "approve": "Approva",
     "reject": "Rifiuta",
-    "deleteConfirm": "Eliminare questa richiesta? L'operazione non è reversibile."
+    "deleteConfirm": "Eliminare questa richiesta? L'operazione non è reversibile.",
+    "loadMore": "Carica altri",
+    "loadingMore": "Caricamento..."
   },
   "wellbeing": {
     "title": "Benessere",
@@ -867,6 +890,19 @@
     },
     "errors": {
       "load": "Impossibile caricare i check-in."
+    },
+    "chat": {
+      "title": "Psicologo",
+      "subtitle": "Uno spazio per parlare liberamente di come ti senti.",
+      "backToCheckin": "Torna al check-in",
+      "empty": "Scrivi un messaggio per iniziare la conversazione.",
+      "placeholder": "Scrivi qui...",
+      "send": "Invia",
+      "sending": "Invio...",
+      "errors": {
+        "load": "Impossibile caricare la conversazione.",
+        "send": "Non sono riuscito a rispondere. Riprova tra poco."
+      }
     }
   },
   "auditLog": {
@@ -887,7 +923,9 @@
     "errors": {
       "load": "Impossibile caricare il registro attività.",
       "forbidden": "Solo proprietari e amministratori possono vedere il registro attività."
-    }
+    },
+    "loadMore": "Carica altri",
+    "loadingMore": "Caricamento..."
   },
   "employees": {
     "title": "Dipendenti",
@@ -929,7 +967,9 @@
       "newTitle": "Nuovo dipendente",
       "delete": "Elimina"
     },
-    "deleteConfirm": "Eliminare questo dipendente? L'operazione non è reversibile."
+    "deleteConfirm": "Eliminare questo dipendente? L'operazione non è reversibile.",
+    "loadMore": "Carica altri",
+    "loadingMore": "Caricamento..."
   },
   "social": {
     "title": "Marketing Social",
@@ -969,7 +1009,9 @@
       "newTitle": "Nuovo post",
       "delete": "Elimina"
     },
-    "deleteConfirm": "Eliminare questo post? L'operazione non è reversibile."
+    "deleteConfirm": "Eliminare questo post? L'operazione non è reversibile.",
+    "loadMore": "Carica altri",
+    "loadingMore": "Caricamento..."
   },
   "campaigns": {
     "title": "Marketing Email",
@@ -1010,7 +1052,9 @@
     },
     "send": "Invia",
     "sentOn": "Inviata il",
-    "deleteConfirm": "Eliminare questa campagna? L'operazione non è reversibile."
+    "deleteConfirm": "Eliminare questa campagna? L'operazione non è reversibile.",
+    "loadMore": "Carica altri",
+    "loadingMore": "Caricamento..."
   },
   "website": {
     "title": "Sito Web",
@@ -1063,7 +1107,9 @@
     },
     "deleteConfirm": "Eliminare questo sito? L'operazione non è reversibile.",
     "notFound": "Questo sito non esiste o non è ancora pubblicato.",
-    "generatedBy": "Generato con VORA"
+    "generatedBy": "Generato con VORA",
+    "loadMore": "Carica altri",
+    "loadingMore": "Caricamento..."
   },
   "settings": {
     "title": "Impostazioni",
@@ -1154,7 +1200,9 @@
       "editTitle": "Modifica modello",
       "newTitle": "Nuovo modello",
       "delete": "Elimina"
-    }
+    },
+    "loadMore": "Carica altri",
+    "loadingMore": "Caricamento..."
   },
   "segments": {
     "title": "Segmenti",
@@ -1183,7 +1231,9 @@
       "editTitle": "Modifica segmento",
       "newTitle": "Nuovo segmento",
       "delete": "Elimina"
-    }
+    },
+    "loadMore": "Carica altri",
+    "loadingMore": "Caricamento..."
   },
   "automations": {
     "title": "Automazioni",
@@ -1258,6 +1308,15 @@
       "save": "Salva",
       "saving": "Salvataggio...",
       "delete": "Elimina"
-    }
+    },
+    "loadMore": "Carica altri",
+    "loadingMore": "Caricamento..."
+  },
+  "errorPage": {
+    "title": "Qualcosa è andato storto",
+    "message": "Si è verificato un errore imprevisto. Riprova tra poco.",
+    "notFoundTitle": "Pagina non trovata",
+    "notFoundMessage": "La pagina che cerchi non esiste o è stata spostata.",
+    "action": "Torna alla dashboard"
   }
 }

@@ -3,8 +3,8 @@ import type { LeaveStatus } from '~/shared/types/leave'
 
 definePageMeta({ layout: 'default' })
 
-const { requests, pending, error, fetchRequests, setStatus } = useLeaveRequests()
-await fetchRequests()
+const { requests, allRequests, pending, error, hasMore, loadingMore, fetchRequests, fetchAllRequests, loadMore, setStatus } = useLeaveRequests()
+await Promise.all([fetchRequests(), fetchAllRequests()])
 
 const { locale } = useI18n()
 const showForm = ref(false)
@@ -24,7 +24,7 @@ const filtered = computed(() =>
 const currentYear = new Date().getFullYear()
 
 const usedDays = computed(() =>
-  requests.value
+  allRequests.value
     .filter((r) => r.type === 'vacation' && r.status === 'approved' && new Date(r.startDate).getFullYear() === currentYear)
     .reduce((acc, r) => acc + daysBetween(r.startDate, r.endDate), 0),
 )
@@ -120,6 +120,16 @@ const statusStyles: Record<string, string> = {
           <button class="text-caption text-danger hover:underline" @click="setStatus(r, 'rejected')">{{ $t('leave.reject') }}</button>
         </div>
       </div>
+    </div>
+
+    <div v-if="!pending && !error && statusFilter === 'all' && hasMore" class="flex justify-center">
+      <button
+        class="px-4 py-2 rounded-md text-body-sm font-medium border border-ink-100 dark:border-white/10 hover:bg-ink-50 dark:hover:bg-white/5 disabled:opacity-50"
+        :disabled="loadingMore"
+        @click="loadMore"
+      >
+        {{ loadingMore ? $t('leave.loadingMore') : $t('leave.loadMore') }}
+      </button>
     </div>
 
     <LeaveForm v-if="showForm" @close="showForm = false" @saved="showForm = false" />

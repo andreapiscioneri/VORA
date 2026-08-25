@@ -32,7 +32,7 @@ defineEmits<{ 'toggle-visible': []; 'toggle-size': [] }>()
           class="size-4 rounded accent-primary cursor-pointer"
           :aria-label="visible ? hideLabel : showLabel"
           @change="$emit('toggle-visible')"
-        />
+        >
       </label>
       <button
         type="button"

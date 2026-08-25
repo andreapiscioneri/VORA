@@ -2,8 +2,8 @@ import { z } from 'zod'
 import { getAIService } from '~/server/services/ai'
 import { requireOrgId } from '~/server/utils/auth'
 import { listAllTasks } from '~/server/utils/tasks'
-import { listEvents } from '~/server/utils/events'
-import { listAppointments } from '~/server/utils/appointments'
+import { listAllEvents } from '~/server/utils/events'
+import { listAllAppointments } from '~/server/utils/appointments'
 import { listAllCommunications } from '~/server/utils/communications'
 import type { AIChatContext } from '~/shared/types/ai'
 
@@ -28,8 +28,8 @@ export default defineEventHandler(async (event) => {
   const organizationId = await requireOrgId(event)
   const [tasks, events, appointments, communications] = await Promise.all([
     listAllTasks(organizationId),
-    listEvents(organizationId),
-    listAppointments(organizationId),
+    listAllEvents(organizationId),
+    listAllAppointments(organizationId),
     listAllCommunications(organizationId),
   ])
 

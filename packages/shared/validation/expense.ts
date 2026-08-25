@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { EXPENSE_CATEGORIES, EXPENSE_STATUSES } from '~/shared/types/expense'
+import { EXPENSE_CATEGORIES, EXPENSE_STATUSES } from '../types/expense'
 
 export const expenseInputSchema = z.object({
   amount: z.coerce.number().min(0.01, 'validation.required'),

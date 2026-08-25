@@ -2,7 +2,9 @@
   "common": {
     "appName": "Vora",
     "reachability": "No se puede contactar con el servidor Vora. Desliza hacia abajo para reintentar.",
-    "offlineCached": "Sin conexión: mostrando los últimos datos guardados."
+    "offlineCached": "Sin conexión: mostrando los últimos datos guardados.",
+    "loadMore": "Cargar más",
+    "loadingMore": "Cargando..."
   },
   "auth": {
     "loginTitle": "Inicia sesión en Vora",
@@ -20,7 +22,10 @@
     "invalidCredentials": "Correo electrónico o contraseña no válidos.",
     "emailTaken": "Este correo electrónico ya está registrado.",
     "passwordTooShort": "La contraseña debe tener al menos 8 caracteres.",
-    "logout": "Cerrar sesión"
+    "logout": "Cerrar sesión",
+    "or": "o",
+    "continueWithGoogle": "Continuar con Google",
+    "oauthFailed": "Error al iniciar sesión con Google. Inténtalo de nuevo o usa correo electrónico y contraseña."
   },
   "tabs": {
     "home": "Inicio",
@@ -115,6 +120,38 @@
       "notifications": {
         "label": "Notificaciones",
         "desc": "Preferencias push"
+      },
+      "employees": {
+        "label": "Empleados",
+        "desc": "Directorio del equipo"
+      },
+      "expenses": {
+        "label": "Gastos",
+        "desc": "Notas de gastos y aprobaciones"
+      },
+      "knowledge": {
+        "label": "Knowledge",
+        "desc": "Documentos y guías internas"
+      },
+      "social": {
+        "label": "Social",
+        "desc": "Calendario editorial"
+      },
+      "marketing": {
+        "label": "Marketing",
+        "desc": "Campañas, plantillas, segmentos, automatizaciones"
+      },
+      "website": {
+        "label": "Sitio web",
+        "desc": "Resumen del sitio y micrositios"
+      },
+      "auditLog": {
+        "label": "Registro de auditoría",
+        "desc": "Historial de acciones sensibles"
+      },
+      "settings": {
+        "label": "Ajustes",
+        "desc": "Perfil y contraseña"
       }
     }
   },
@@ -224,6 +261,220 @@
         "tickets": "Tickets",
         "deadlines": "Plazos"
       }
+    },
+    "employees": {
+      "title": "Empleados",
+      "count": "{{count}} empleados",
+      "error": "No se pudieron cargar los empleados. ({{error}})",
+      "empty": "Sin empleados.",
+      "status": {
+        "active": "Activo",
+        "inactive": "Inactivo"
+      },
+      "form": {
+        "firstName": "Nombre",
+        "lastName": "Apellidos",
+        "email": "Correo electrónico",
+        "role": "Cargo",
+        "team": "Equipo",
+        "status": "Estado",
+        "startDate": "Fecha de inicio",
+        "cancel": "Cancelar",
+        "save": "Guardar",
+        "saving": "Guardando...",
+        "editTitle": "Editar empleado",
+        "newTitle": "Nuevo empleado",
+        "delete": "Eliminar"
+      },
+      "deleteConfirm": "¿Eliminar este empleado? Esta acción no se puede deshacer.",
+      "errors": {
+        "save": "No se pudo guardar el empleado.",
+        "delete": "No se pudo eliminar el empleado."
+      }
+    },
+    "expenses": {
+      "title": "Gastos",
+      "count": "{{count}} gastos",
+      "error": "No se pudieron cargar los gastos. ({{error}})",
+      "empty": "Sin gastos.",
+      "category": {
+        "travel": "Viaje",
+        "meals": "Comidas",
+        "office": "Oficina",
+        "software": "Software",
+        "other": "Otro"
+      },
+      "status": {
+        "pending": "Pendiente",
+        "approved": "Aprobado",
+        "rejected": "Rechazado"
+      },
+      "form": {
+        "amount": "Importe (EUR)",
+        "date": "Fecha",
+        "category": "Categoría",
+        "notes": "Notas",
+        "receiptUrl": "Enlace del recibo (opcional)",
+        "cancel": "Cancelar",
+        "save": "Guardar",
+        "saving": "Guardando...",
+        "editTitle": "Editar gasto",
+        "newTitle": "Nuevo gasto",
+        "delete": "Eliminar",
+        "status": "Estado"
+      },
+      "deleteConfirm": "¿Eliminar este gasto? Esta acción no se puede deshacer.",
+      "errors": {
+        "save": "No se pudo guardar el gasto.",
+        "delete": "No se pudo eliminar el gasto."
+      }
+    },
+    "knowledge": {
+      "title": "Knowledge",
+      "count": "{{count}} documentos",
+      "error": "No se pudieron cargar los documentos. ({{error}})",
+      "empty": "Sin documentos.",
+      "noFolder": "Sin carpeta",
+      "form": {
+        "title": "Título",
+        "content": "Contenido (Markdown)",
+        "folder": "Carpeta",
+        "tags": "Etiquetas (separadas por comas)",
+        "cancel": "Cancelar",
+        "save": "Guardar",
+        "saving": "Guardando...",
+        "editTitle": "Editar página",
+        "newTitle": "Nueva página",
+        "delete": "Eliminar",
+        "favorite": "Favorito"
+      },
+      "deleteConfirm": "¿Eliminar esta página? Esta acción no se puede deshacer.",
+      "errors": {
+        "save": "No se pudo guardar la página.",
+        "delete": "No se pudo eliminar la página."
+      }
+    },
+    "auditLog": {
+      "title": "Registro de auditoría",
+      "count": "{{count}} entradas",
+      "error": "No se pudo cargar el registro. ({{error}})",
+      "empty": "Sin entradas.",
+      "forbidden": "Solo los propietarios y administradores pueden ver el registro de auditoría.",
+      "action": {
+        "login": "Inicio de sesión",
+        "logout": "Cierre de sesión",
+        "password": {
+          "change": "Contraseña cambiada"
+        },
+        "employee": {
+          "create": "Empleado creado",
+          "update": "Empleado actualizado",
+          "delete": "Empleado eliminado"
+        },
+        "leave": {
+          "approve": "Ausencia aprobada",
+          "reject": "Ausencia rechazada"
+        },
+        "expense": {
+          "approve": "Gasto aprobado",
+          "reject": "Gasto rechazado"
+        }
+      }
+    },
+    "social": {
+      "title": "Social",
+      "count": "{{count}} publicaciones",
+      "error": "No se pudieron cargar las publicaciones. ({{error}})",
+      "empty": "Sin publicaciones.",
+      "platform": {
+        "instagram": "Instagram",
+        "facebook": "Facebook",
+        "linkedin": "LinkedIn",
+        "x": "X"
+      },
+      "status": {
+        "draft": "Borrador",
+        "scheduled": "Programada",
+        "published": "Publicada"
+      },
+      "form": {
+        "content": "Contenido",
+        "platform": "Plataforma",
+        "status": "Estado",
+        "scheduledAt": "Fecha programada",
+        "cancel": "Cancelar",
+        "save": "Guardar",
+        "saving": "Guardando...",
+        "editTitle": "Editar publicación",
+        "newTitle": "Nueva publicación",
+        "delete": "Eliminar"
+      },
+      "deleteConfirm": "¿Eliminar esta publicación? Esta acción no se puede deshacer.",
+      "errors": {
+        "save": "No se pudo guardar la publicación.",
+        "delete": "No se pudo eliminar la publicación."
+      }
+    },
+    "marketing": {
+      "title": "Marketing",
+      "error": "No se pudieron cargar los datos. ({{error}})",
+      "empty": "Sin elementos.",
+      "tab": {
+        "campaigns": "Campañas",
+        "templates": "Plantillas",
+        "segments": "Segmentos",
+        "automations": "Automatizaciones"
+      },
+      "campaignStatus": {
+        "draft": "Borrador",
+        "sent": "Enviada"
+      },
+      "anyContact": "Cualquier contacto",
+      "active": "Activa",
+      "inactive": "Inactiva",
+      "trigger": {
+        "contact_created": "Contacto creado",
+        "contact_status_changed": "Estado del contacto cambiado",
+        "manual": "Manual"
+      }
+    },
+    "website": {
+      "title": "Sitio web",
+      "count": "{{count}} sitios",
+      "error": "No se pudieron cargar los sitios. ({{error}})",
+      "empty": "Sin sitios.",
+      "published": "Publicado",
+      "draft": "Borrador"
+    },
+    "settings": {
+      "title": "Ajustes",
+      "profile": "Perfil",
+      "name": "Nombre",
+      "email": "Correo",
+      "organization": "Organización",
+      "role": "Rol",
+      "changePassword": "Cambiar contraseña",
+      "currentPassword": "Contraseña actual",
+      "newPassword": "Nueva contraseña",
+      "save": "Guardar",
+      "saving": "Guardando...",
+      "currentPasswordIncorrect": "La contraseña actual no es correcta.",
+      "passwordTooShort": "La nueva contraseña debe tener al menos 8 caracteres.",
+      "tooManyAttempts": "Demasiados intentos. Vuelve a intentarlo en unos minutos.",
+      "saveError": "No se pudo cambiar la contraseña.",
+      "passwordChanged": "Contraseña actualizada.",
+      "passwordTooWeak": "La nueva contraseña es demasiado débil: usa al menos 3 de minúsculas, mayúsculas, números y símbolos.",
+      "strength": {
+        "veryWeak": "Muy débil",
+        "weak": "Débil",
+        "fair": "Aceptable",
+        "good": "Buena",
+        "strong": "Fuerte"
+      }
     }
+  },
+  "validation": {
+    "required": "Campo obligatorio",
+    "email": "Correo electrónico no válido"
   }
 }

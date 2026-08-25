@@ -3,7 +3,6 @@ definePageMeta({ layout: 'public' })
 
 const { t } = useI18n()
 const route = useRoute()
-const router = useRouter()
 const token = computed(() => (typeof route.query.token === 'string' ? route.query.token : ''))
 
 const password = ref('')
@@ -18,8 +17,13 @@ async function submit() {
     await $fetch('/api/auth/reset-password', { method: 'POST', body: { token: token.value, password: password.value } })
     done.value = true
   } catch (e) {
-    const err = e as { statusCode?: number }
-    error.value = err.statusCode === 400 ? t('auth.resetInvalidLink') : t('auth.passwordTooShort')
+    const err = e as { statusCode?: number; data?: { data?: { fieldErrors?: Record<string, string[]> } } }
+    if (err.statusCode === 400) {
+      error.value = t('auth.resetInvalidLink')
+    } else {
+      const passwordError = err.data?.data?.fieldErrors?.password?.[0]
+      error.value = passwordError ? t(passwordError) : t('auth.passwordTooShort')
+    }
   } finally {
     loading.value = false
   }
@@ -59,7 +63,8 @@ async function submit() {
             required
             autocomplete="new-password"
             class="w-full px-3 py-2 rounded-md border border-ink-100 dark:border-white/10 bg-paper-0 dark:bg-ink-900"
-          />
+          >
+          <UiPasswordStrengthMeter :password="password" />
         </div>
 
         <p v-if="error" class="text-body-sm text-danger">{{ error }}</p>

@@ -1,6 +1,7 @@
 import { resetPasswordSchema } from '~/shared/validation/auth'
 import { updatePasswordHash } from '~/server/utils/auth'
 import { consumeAuthToken } from '~/server/utils/authTokens'
+import { revokeAllRefreshTokensForUser } from '~/server/utils/mobileTokens'
 
 export default defineEventHandler(async (event) => {
   const body = await readBody(event)
@@ -16,6 +17,10 @@ export default defineEventHandler(async (event) => {
 
   const passwordHash = await hashPassword(result.data.password)
   await updatePasswordHash(userId, passwordHash)
+  // A password reset must end every existing mobile session too — otherwise
+  // a device that had a refresh token before the reset (e.g. a stolen one,
+  // which is the scenario a reset is often responding to) would keep working.
+  await revokeAllRefreshTokensForUser(userId)
 
   return { success: true }
 })

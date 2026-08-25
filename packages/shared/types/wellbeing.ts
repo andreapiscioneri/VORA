@@ -16,3 +16,17 @@ export interface WellbeingCheckIn {
 }
 
 export type WellbeingCheckInInput = Omit<WellbeingCheckIn, 'id' | 'userId' | 'createdAt' | 'updatedAt'>
+
+// A single running supportive conversation per user (no separate "threads" —
+// mirrors the one-check-in-per-day simplicity above). Not a substitute for
+// a healthcare professional — see wellbeing.disclaimer in every locale file
+// and the system prompt in server/services/ai/anthropic.ts.
+export interface WellbeingChatMessage {
+  id: string
+  userId: string
+  role: 'user' | 'assistant'
+  content: string
+  createdAt: string
+}
+
+export type WellbeingChatMessageInput = Pick<WellbeingChatMessage, 'content'>

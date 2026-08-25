@@ -1,6 +1,6 @@
 import { leaveRequestInputSchema } from '~/shared/validation/leave'
 import { getLeaveRequest, updateLeaveRequest } from '~/server/utils/leave'
-import { requireOrgId, requireRole } from '~/server/utils/auth'
+import { requireOrgId, requireRole, resolveSession } from '~/server/utils/auth'
 import { logAction } from '~/server/utils/auditLog'
 
 // Editing a still-pending request's own content is open to any member;
@@ -33,7 +33,9 @@ export default defineEventHandler(async (event) => {
   }
 
   if (statusChanged && (updated.status === 'approved' || updated.status === 'rejected')) {
-    const { user } = await requireUserSession(event)
+    const session = await resolveSession(event)
+  if (!session) throw createError({ statusCode: 401, statusMessage: 'Authentication required' })
+  const { user } = session
     await logAction(organizationId, user.id, user.name, updated.status === 'approved' ? 'leave.approve' : 'leave.reject', 'leaveRequest', id)
   }
 

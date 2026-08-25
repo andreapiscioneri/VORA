@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import type { Ticket } from '~/shared/types/ticket'
-
 definePageMeta({ layout: 'default' })
 
 const { tickets, pending, error, hasMore, loadingMore, fetchTickets, loadMore } = useTickets()

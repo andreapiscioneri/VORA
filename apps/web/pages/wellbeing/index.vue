@@ -66,9 +66,18 @@ function fmt(n: number) {
 
 <template>
   <div class="space-y-6">
-    <div>
-      <h1 class="text-h1 font-semibold tracking-tight">{{ $t('wellbeing.title') }}</h1>
-      <p class="text-body text-ink-400 mt-1">{{ $t('wellbeing.subtitle') }}</p>
+    <div class="flex items-center justify-between">
+      <div>
+        <h1 class="text-h1 font-semibold tracking-tight">{{ $t('wellbeing.title') }}</h1>
+        <p class="text-body text-ink-400 mt-1">{{ $t('wellbeing.subtitle') }}</p>
+      </div>
+      <NuxtLink
+        to="/wellbeing/chat"
+        class="px-4 py-2 rounded-md text-body-sm font-medium border border-ink-100 dark:border-white/10 hover:bg-ink-50 dark:hover:bg-white/5 transition-colors flex items-center gap-2 shrink-0"
+      >
+        <UiIcon name="message-circle" :size="16" class="text-primary" />
+        {{ $t('wellbeing.chat.title') }}
+      </NuxtLink>
     </div>
 
     <div class="rounded-lg border border-primary/20 bg-primary/5 p-4 text-body-sm text-ink-500 dark:text-ink-300">

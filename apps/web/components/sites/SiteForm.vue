@@ -25,7 +25,7 @@ const saving = ref(false)
 const saveError = ref('')
 
 async function onSubmit() {
-  Object.keys(errors).forEach((k) => delete errors[k])
+  Object.keys(errors).forEach((k) => { errors[k] = '' })
   saveError.value = ''
 
   const result = microSiteInputSchema.safeParse(form)
@@ -44,8 +44,9 @@ async function onSubmit() {
       await createSite(result.data)
     }
     emit('saved')
-  } catch (e: any) {
-    const fieldErrors = e?.data?.data?.fieldErrors
+  } catch (e) {
+    const err = e as { data?: { data?: { fieldErrors?: Record<string, string[]> } } }
+    const fieldErrors = err.data?.data?.fieldErrors
     if (fieldErrors?.slug) {
       errors.slug = t(fieldErrors.slug[0])
     } else {
@@ -86,20 +87,20 @@ onMounted(() => dialogRef.value?.focus())
 
           <div>
             <label for="site-slug" class="block text-label text-ink-400 mb-2">{{ $t('sites.form.slug') }}</label>
-            <input id="site-slug" v-model="form.slug" type="text" class="vora-input font-mono" :class="{ 'border-danger': errors.slug }" autofocus />
+            <input id="site-slug" v-model="form.slug" type="text" class="vora-input font-mono" :class="{ 'border-danger': errors.slug }" autofocus >
             <p class="text-caption text-ink-400 mt-1">{{ $t('sites.form.slugHint', { slug: form.slug || '…' }) }}</p>
             <p v-if="errors.slug" class="text-caption text-danger mt-1">{{ errors.slug }}</p>
           </div>
 
           <div>
             <label for="site-name" class="block text-label text-ink-400 mb-2">{{ $t('sites.form.name') }}</label>
-            <input id="site-name" v-model="form.name" type="text" class="vora-input" :class="{ 'border-danger': errors.name }" />
+            <input id="site-name" v-model="form.name" type="text" class="vora-input" :class="{ 'border-danger': errors.name }" >
             <p v-if="errors.name" class="text-caption text-danger mt-1">{{ errors.name }}</p>
           </div>
 
           <div>
             <label for="site-tagline" class="block text-label text-ink-400 mb-2">{{ $t('sites.form.tagline') }}</label>
-            <input id="site-tagline" v-model="form.tagline" type="text" class="vora-input" />
+            <input id="site-tagline" v-model="form.tagline" type="text" class="vora-input" >
           </div>
 
           <div>
@@ -110,21 +111,21 @@ onMounted(() => dialogRef.value?.focus())
           <div class="grid grid-cols-1 tablet:grid-cols-2 gap-4">
             <div>
               <label for="site-contactEmail" class="block text-label text-ink-400 mb-2">{{ $t('sites.form.contactEmail') }}</label>
-              <input id="site-contactEmail" v-model="form.contactEmail" type="email" class="vora-input" :class="{ 'border-danger': errors.contactEmail }" />
+              <input id="site-contactEmail" v-model="form.contactEmail" type="email" class="vora-input" :class="{ 'border-danger': errors.contactEmail }" >
               <p v-if="errors.contactEmail" class="text-caption text-danger mt-1">{{ errors.contactEmail }}</p>
             </div>
             <div>
               <label for="site-accentColor" class="block text-label text-ink-400 mb-2">{{ $t('sites.form.accentColor') }}</label>
               <div class="flex items-center gap-2">
-                <input v-model="form.accentColor" type="color" class="h-10 w-12 rounded-md border border-ink-100 dark:border-white/10 shrink-0" :aria-label="$t('sites.form.accentColor')" />
-                <input id="site-accentColor" v-model="form.accentColor" type="text" class="vora-input font-mono" :class="{ 'border-danger': errors.accentColor }" />
+                <input v-model="form.accentColor" type="color" class="h-10 w-12 rounded-md border border-ink-100 dark:border-white/10 shrink-0" :aria-label="$t('sites.form.accentColor')" >
+                <input id="site-accentColor" v-model="form.accentColor" type="text" class="vora-input font-mono" :class="{ 'border-danger': errors.accentColor }" >
               </div>
               <p v-if="errors.accentColor" class="text-caption text-danger mt-1">{{ errors.accentColor }}</p>
             </div>
           </div>
 
           <label class="flex items-center gap-2 text-body-sm">
-            <input v-model="form.published" type="checkbox" class="size-4 rounded accent-primary" />
+            <input v-model="form.published" type="checkbox" class="size-4 rounded accent-primary" >
             {{ $t('sites.form.published') }}
           </label>
 

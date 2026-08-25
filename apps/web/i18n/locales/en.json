@@ -10,7 +10,8 @@
     "slug": "Use only lowercase letters, numbers, and hyphens (e.g. my-site)",
     "slugTaken": "That address is already taken, pick another one",
     "color": "Use a valid hex color (e.g. #39FF14)",
-    "recurrenceUntilBeforeStart": "The recurrence end date cannot be before the start date."
+    "recurrenceUntilBeforeStart": "The recurrence end date cannot be before the start date.",
+    "phone": "Invalid phone number"
   },
   "auth": {
     "loginTitle": "Sign in to Vora",
@@ -50,7 +51,15 @@
     "verifyBannerSent": "Email sent.",
     "or": "or",
     "continueWithGoogle": "Continue with Google",
-    "oauthFailed": "Google sign-in failed. Try again or use email and password."
+    "oauthFailed": "Google sign-in failed. Try again or use email and password.",
+    "passwordTooWeak": "Password is too weak: use at least 3 of lowercase, uppercase, digits, and symbols",
+    "strength": {
+      "veryWeak": "Very weak",
+      "weak": "Weak",
+      "fair": "Fair",
+      "good": "Good",
+      "strong": "Strong"
+    }
   },
   "nav": {
     "overview": "Overview",
@@ -353,7 +362,9 @@
       "daily": "Daily",
       "weekly": "Weekly",
       "monthly": "Monthly"
-    }
+    },
+    "loadMore": "Load more",
+    "loadingMore": "Loading..."
   },
   "projects": {
     "title": "Projects",
@@ -461,7 +472,9 @@
       "delete": "Delete"
     },
     "deleteConfirm": "Delete this entry? This cannot be undone.",
-    "noBillable": "Not billable"
+    "noBillable": "Not billable",
+    "loadMore": "Load more",
+    "loadingMore": "Loading..."
   },
   "appointments": {
     "title": "Appointments",
@@ -505,7 +518,9 @@
       "delete": "Delete"
     },
     "joinCall": "Join video call",
-    "deleteConfirm": "Delete this appointment? This cannot be undone."
+    "deleteConfirm": "Delete this appointment? This cannot be undone.",
+    "loadMore": "Load more",
+    "loadingMore": "Loading..."
   },
   "inbox": {
     "title": "Inbox",
@@ -538,7 +553,9 @@
       "cancel": "Cancel",
       "send": "Send",
       "sending": "Sending...",
-      "newTitle": "New message"
+      "newTitle": "New message",
+      "attachments": "Attachments",
+      "removeAttachment": "Remove"
     },
     "markRead": "Mark as read",
     "archive": "Archive",
@@ -664,7 +681,9 @@
       "comments": "Comments",
       "noComments": "No comments yet.",
       "addComment": "Add a comment...",
-      "send": "Send"
+      "send": "Send",
+      "delete": "Delete",
+      "deleteConfirm": "Delete this ticket? This cannot be undone."
     },
     "attachments": {
       "title": "Attachments",
@@ -779,7 +798,9 @@
     },
     "approve": "Approve",
     "reject": "Reject",
-    "deleteConfirm": "Delete this expense? This cannot be undone."
+    "deleteConfirm": "Delete this expense? This cannot be undone.",
+    "loadMore": "Load more",
+    "loadingMore": "Loading..."
   },
   "leave": {
     "title": "Leave",
@@ -834,7 +855,9 @@
     },
     "approve": "Approve",
     "reject": "Reject",
-    "deleteConfirm": "Delete this request? This cannot be undone."
+    "deleteConfirm": "Delete this request? This cannot be undone.",
+    "loadMore": "Load more",
+    "loadingMore": "Loading..."
   },
   "wellbeing": {
     "title": "Wellbeing",
@@ -867,6 +890,19 @@
     },
     "errors": {
       "load": "Couldn't load check-ins."
+    },
+    "chat": {
+      "title": "Psychologist",
+      "subtitle": "A space to talk freely about how you're feeling.",
+      "backToCheckin": "Back to check-in",
+      "empty": "Write a message to start the conversation.",
+      "placeholder": "Type here...",
+      "send": "Send",
+      "sending": "Sending...",
+      "errors": {
+        "load": "Couldn't load the conversation.",
+        "send": "I couldn't reply. Try again shortly."
+      }
     }
   },
   "auditLog": {
@@ -887,7 +923,9 @@
     "errors": {
       "load": "Couldn't load the audit log.",
       "forbidden": "Only owners and admins can view the audit log."
-    }
+    },
+    "loadMore": "Load more",
+    "loadingMore": "Loading..."
   },
   "employees": {
     "title": "Employees",
@@ -929,7 +967,9 @@
       "newTitle": "New employee",
       "delete": "Delete"
     },
-    "deleteConfirm": "Delete this employee? This cannot be undone."
+    "deleteConfirm": "Delete this employee? This cannot be undone.",
+    "loadMore": "Load more",
+    "loadingMore": "Loading..."
   },
   "social": {
     "title": "Social Marketing",
@@ -969,7 +1009,9 @@
       "newTitle": "New post",
       "delete": "Delete"
     },
-    "deleteConfirm": "Delete this post? This cannot be undone."
+    "deleteConfirm": "Delete this post? This cannot be undone.",
+    "loadMore": "Load more",
+    "loadingMore": "Loading..."
   },
   "campaigns": {
     "title": "Email Marketing",
@@ -1010,7 +1052,9 @@
     },
     "send": "Send",
     "sentOn": "Sent on",
-    "deleteConfirm": "Delete this campaign? This cannot be undone."
+    "deleteConfirm": "Delete this campaign? This cannot be undone.",
+    "loadMore": "Load more",
+    "loadingMore": "Loading..."
   },
   "website": {
     "title": "Website",
@@ -1063,7 +1107,9 @@
     },
     "deleteConfirm": "Delete this site? This cannot be undone.",
     "notFound": "This site doesn't exist or isn't published yet.",
-    "generatedBy": "Generated with VORA"
+    "generatedBy": "Generated with VORA",
+    "loadMore": "Load more",
+    "loadingMore": "Loading..."
   },
   "settings": {
     "title": "Settings",
@@ -1154,7 +1200,9 @@
       "editTitle": "Edit template",
       "newTitle": "New template",
       "delete": "Delete"
-    }
+    },
+    "loadMore": "Load more",
+    "loadingMore": "Loading..."
   },
   "segments": {
     "title": "Segments",
@@ -1183,7 +1231,9 @@
       "editTitle": "Edit segment",
       "newTitle": "New segment",
       "delete": "Delete"
-    }
+    },
+    "loadMore": "Load more",
+    "loadingMore": "Loading..."
   },
   "automations": {
     "title": "Automations",
@@ -1258,6 +1308,15 @@
       "save": "Save",
       "saving": "Saving...",
       "delete": "Delete"
-    }
+    },
+    "loadMore": "Load more",
+    "loadingMore": "Loading..."
+  },
+  "errorPage": {
+    "title": "Something went wrong",
+    "message": "An unexpected error occurred. Please try again shortly.",
+    "notFoundTitle": "Page not found",
+    "notFoundMessage": "The page you're looking for doesn't exist or has been moved.",
+    "action": "Back to dashboard"
   }
 }

@@ -1,6 +1,7 @@
 import type { MicroSite } from '~/shared/types/microsite'
 import type { MicroSiteInputSchema } from '~/shared/validation/microsite'
 import { getDb } from './firebase'
+import { paginateQuery, type PageResult } from './pagination'
 
 const COLLECTION = 'microsites'
 
@@ -19,9 +20,9 @@ function toSite(id: string, data: FirebaseFirestore.DocumentData): MicroSite {
   }
 }
 
-export async function listSites(organizationId: string): Promise<MicroSite[]> {
-  const snapshot = await getDb().collection(COLLECTION).where('organizationId', '==', organizationId).get()
-  return snapshot.docs.map((doc) => toSite(doc.id, doc.data())).sort((a, b) => (a.createdAt < b.createdAt ? 1 : a.createdAt > b.createdAt ? -1 : 0))
+export async function listSites(organizationId: string, params?: { cursor?: string | null; pageSize?: number }): Promise<PageResult<MicroSite>> {
+  const query = getDb().collection(COLLECTION).where('organizationId', '==', organizationId).orderBy('createdAt', 'desc')
+  return paginateQuery(query, COLLECTION, params, toSite)
 }
 
 export async function getSite(id: string, organizationId: string): Promise<MicroSite | null> {

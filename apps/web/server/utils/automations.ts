@@ -1,6 +1,7 @@
 import type { Automation } from '~/shared/types/automation'
 import type { AutomationInputSchema } from '~/shared/validation/automation'
 import { getDb } from './firebase'
+import { paginateQuery, type PageResult } from './pagination'
 
 const COLLECTION = 'automations'
 
@@ -18,7 +19,14 @@ function toAutomation(id: string, data: FirebaseFirestore.DocumentData): Automat
   }
 }
 
-export async function listAutomations(organizationId: string): Promise<Automation[]> {
+export async function listAutomations(organizationId: string, params?: { cursor?: string | null; pageSize?: number }): Promise<PageResult<Automation>> {
+  const query = getDb().collection(COLLECTION).where('organizationId', '==', organizationId).orderBy('createdAt', 'desc')
+  return paginateQuery(query, COLLECTION, params, toAutomation)
+}
+
+/** Fetch-all variant for internal callers that rely on the full org list
+ * rather than a single page (e.g. matching automations against a trigger). */
+export async function listAllAutomations(organizationId: string): Promise<Automation[]> {
   const snapshot = await getDb().collection(COLLECTION).where('organizationId', '==', organizationId).get()
   return snapshot.docs.map((doc) => toAutomation(doc.id, doc.data())).sort((a, b) => (a.createdAt < b.createdAt ? 1 : a.createdAt > b.createdAt ? -1 : 0))
 }
@@ -26,7 +34,7 @@ export async function listAutomations(organizationId: string): Promise<Automatio
 /** Active automations for an org matching a trigger type — used to find
  * candidates to run when a contact is created/updated. */
 export async function listActiveAutomationsForTrigger(organizationId: string, triggerType: string): Promise<Automation[]> {
-  const all = await listAutomations(organizationId)
+  const all = await listAllAutomations(organizationId)
   return all.filter((a) => a.active && a.trigger.type === triggerType)
 }
 

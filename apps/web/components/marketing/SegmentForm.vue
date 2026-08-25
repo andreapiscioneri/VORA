@@ -34,7 +34,7 @@ function buildInput(): SegmentInput {
 }
 
 async function onSubmit() {
-  Object.keys(errors).forEach((k) => delete errors[k])
+  Object.keys(errors).forEach((k) => { errors[k] = '' })
   saveError.value = ''
 
   const result = segmentInputSchema.safeParse(buildInput())
@@ -90,7 +90,7 @@ onMounted(() => dialogRef.value?.focus())
 
           <div>
             <label for="segment-name" class="block text-label text-ink-400 mb-2">{{ $t('segments.form.name') }}</label>
-            <input id="segment-name" v-model="name" type="text" class="vora-input" :class="{ 'border-danger': errors.name }" autofocus />
+            <input id="segment-name" v-model="name" type="text" class="vora-input" :class="{ 'border-danger': errors.name }" autofocus >
             <p v-if="errors.name" class="text-caption text-danger mt-1">{{ errors.name }}</p>
           </div>
 
@@ -104,7 +104,7 @@ onMounted(() => dialogRef.value?.focus())
 
           <div>
             <label for="segment-tags" class="block text-label text-ink-400 mb-2">{{ $t('segments.form.tags') }}</label>
-            <input id="segment-tags" v-model="tagsText" type="text" class="vora-input" :placeholder="$t('segments.form.tagsPlaceholder')" />
+            <input id="segment-tags" v-model="tagsText" type="text" class="vora-input" :placeholder="$t('segments.form.tagsPlaceholder')" >
           </div>
 
           <p v-if="saveError" class="text-body-sm text-danger">{{ saveError }}</p>

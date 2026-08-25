@@ -10,7 +10,8 @@
     "slug": "半角小文字、数字、ハイフンのみ使用できます（例: my-site）",
     "slugTaken": "このアドレスは既に使用されています。別のものを選んでください",
     "color": "有効な16進数カラーコードを入力してください（例: #39FF14）",
-    "recurrenceUntilBeforeStart": "繰り返しの終了日は開始日より前にはできません。"
+    "recurrenceUntilBeforeStart": "繰り返しの終了日は開始日より前にはできません。",
+    "phone": "無効な電話番号です"
   },
   "auth": {
     "loginTitle": "Voraにサインイン",
@@ -50,7 +51,15 @@
     "verifyBannerSent": "メールを送信しました。",
     "or": "または",
     "continueWithGoogle": "Googleで続行",
-    "oauthFailed": "Googleサインインに失敗しました。もう一度お試しいただくか、メールアドレスとパスワードでログインしてください。"
+    "oauthFailed": "Googleサインインに失敗しました。もう一度お試しいただくか、メールアドレスとパスワードでログインしてください。",
+    "passwordTooWeak": "パスワードが弱すぎます。小文字・大文字・数字・記号のうち少なくとも3種類を使用してください",
+    "strength": {
+      "veryWeak": "非常に弱い",
+      "weak": "弱い",
+      "fair": "普通",
+      "good": "良い",
+      "strong": "強い"
+    }
   },
   "nav": {
     "overview": "概要",
@@ -353,7 +362,9 @@
       "daily": "毎日",
       "weekly": "毎週",
       "monthly": "毎月"
-    }
+    },
+    "loadMore": "もっと読み込む",
+    "loadingMore": "読み込み中..."
   },
   "projects": {
     "title": "プロジェクト",
@@ -461,7 +472,9 @@
       "delete": "削除"
     },
     "deleteConfirm": "このエントリーを削除しますか？この操作は取り消せません。",
-    "noBillable": "請求対象外"
+    "noBillable": "請求対象外",
+    "loadMore": "もっと読み込む",
+    "loadingMore": "読み込み中..."
   },
   "appointments": {
     "title": "予定",
@@ -505,7 +518,9 @@
       "delete": "削除"
     },
     "joinCall": "ビデオ通話に参加",
-    "deleteConfirm": "この予定を削除しますか？この操作は取り消せません。"
+    "deleteConfirm": "この予定を削除しますか？この操作は取り消せません。",
+    "loadMore": "もっと読み込む",
+    "loadingMore": "読み込み中..."
   },
   "inbox": {
     "title": "受信トレイ",
@@ -538,7 +553,9 @@
       "cancel": "キャンセル",
       "send": "送信",
       "sending": "送信中...",
-      "newTitle": "新規メッセージ"
+      "newTitle": "新規メッセージ",
+      "attachments": "添付ファイル",
+      "removeAttachment": "削除"
     },
     "markRead": "既読にする",
     "archive": "アーカイブ",
@@ -664,7 +681,9 @@
       "comments": "コメント",
       "noComments": "コメントはまだありません。",
       "addComment": "コメントを追加...",
-      "send": "送信"
+      "send": "送信",
+      "delete": "削除",
+      "deleteConfirm": "このチケットを削除しますか？この操作は取り消せません。"
     },
     "attachments": {
       "title": "添付ファイル",
@@ -779,7 +798,9 @@
     },
     "approve": "承認",
     "reject": "却下",
-    "deleteConfirm": "この経費を削除しますか？この操作は取り消せません。"
+    "deleteConfirm": "この経費を削除しますか？この操作は取り消せません。",
+    "loadMore": "もっと読み込む",
+    "loadingMore": "読み込み中..."
   },
   "leave": {
     "title": "休暇",
@@ -834,7 +855,9 @@
     },
     "approve": "承認",
     "reject": "却下",
-    "deleteConfirm": "この申請を削除しますか？この操作は取り消せません。"
+    "deleteConfirm": "この申請を削除しますか？この操作は取り消せません。",
+    "loadMore": "もっと読み込む",
+    "loadingMore": "読み込み中..."
   },
   "wellbeing": {
     "title": "ウェルビーイング",
@@ -867,6 +890,19 @@
     },
     "errors": {
       "load": "チェックインを読み込めませんでした。"
+    },
+    "chat": {
+      "title": "心理カウンセラー",
+      "subtitle": "今の気持ちを自由に話せる場所です。",
+      "backToCheckin": "チェックインに戻る",
+      "empty": "メッセージを入力して会話を始めましょう。",
+      "placeholder": "ここに入力...",
+      "send": "送信",
+      "sending": "送信中...",
+      "errors": {
+        "load": "会話を読み込めませんでした。",
+        "send": "返信できませんでした。しばらくしてからもう一度お試しください。"
+      }
     }
   },
   "auditLog": {
@@ -887,7 +923,9 @@
     "errors": {
       "load": "監査ログを読み込めませんでした。",
       "forbidden": "監査ログを閲覧できるのはオーナーと管理者のみです。"
-    }
+    },
+    "loadMore": "もっと読み込む",
+    "loadingMore": "読み込み中..."
   },
   "employees": {
     "title": "従業員",
@@ -929,7 +967,9 @@
       "newTitle": "新規従業員",
       "delete": "削除"
     },
-    "deleteConfirm": "この従業員を削除しますか？この操作は取り消せません。"
+    "deleteConfirm": "この従業員を削除しますか？この操作は取り消せません。",
+    "loadMore": "もっと読み込む",
+    "loadingMore": "読み込み中..."
   },
   "social": {
     "title": "ソーシャルマーケティング",
@@ -969,7 +1009,9 @@
       "newTitle": "新規投稿",
       "delete": "削除"
     },
-    "deleteConfirm": "この投稿を削除しますか？この操作は取り消せません。"
+    "deleteConfirm": "この投稿を削除しますか？この操作は取り消せません。",
+    "loadMore": "もっと読み込む",
+    "loadingMore": "読み込み中..."
   },
   "campaigns": {
     "title": "メールマーケティング",
@@ -1010,7 +1052,9 @@
     },
     "send": "送信",
     "sentOn": "送信日",
-    "deleteConfirm": "このキャンペーンを削除しますか？この操作は取り消せません。"
+    "deleteConfirm": "このキャンペーンを削除しますか？この操作は取り消せません。",
+    "loadMore": "もっと読み込む",
+    "loadingMore": "読み込み中..."
   },
   "website": {
     "title": "ウェブサイト",
@@ -1063,7 +1107,9 @@
     },
     "deleteConfirm": "このサイトを削除しますか？この操作は取り消せません。",
     "notFound": "このサイトは存在しないか、まだ公開されていません。",
-    "generatedBy": "VORAで生成"
+    "generatedBy": "VORAで生成",
+    "loadMore": "もっと読み込む",
+    "loadingMore": "読み込み中..."
   },
   "settings": {
     "title": "設定",
@@ -1154,7 +1200,9 @@
       "editTitle": "テンプレートを編集",
       "newTitle": "新規テンプレート",
       "delete": "削除"
-    }
+    },
+    "loadMore": "もっと読み込む",
+    "loadingMore": "読み込み中..."
   },
   "segments": {
     "title": "セグメント",
@@ -1183,7 +1231,9 @@
       "editTitle": "セグメントを編集",
       "newTitle": "新規セグメント",
       "delete": "削除"
-    }
+    },
+    "loadMore": "もっと読み込む",
+    "loadingMore": "読み込み中..."
   },
   "automations": {
     "title": "オートメーション",
@@ -1258,6 +1308,15 @@
       "save": "保存",
       "saving": "保存中...",
       "delete": "削除"
-    }
+    },
+    "loadMore": "もっと読み込む",
+    "loadingMore": "読み込み中..."
+  },
+  "errorPage": {
+    "title": "問題が発生しました",
+    "message": "予期しないエラーが発生しました。しばらくしてからもう一度お試しください。",
+    "notFoundTitle": "ページが見つかりません",
+    "notFoundMessage": "お探しのページは存在しないか、移動された可能性があります。",
+    "action": "ダッシュボードに戻る"
   }
 }

@@ -2,7 +2,9 @@
   "common": {
     "appName": "Vora",
     "reachability": "无法连接到 Vora 服务器。下拉重试。",
-    "offlineCached": "离线 — 正在显示上次保存的数据。"
+    "offlineCached": "离线 — 正在显示上次保存的数据。",
+    "loadMore": "加载更多",
+    "loadingMore": "加载中..."
   },
   "auth": {
     "loginTitle": "登录 Vora",
@@ -20,7 +22,10 @@
     "invalidCredentials": "邮箱或密码无效。",
     "emailTaken": "该邮箱已被注册。",
     "passwordTooShort": "密码长度至少为 8 个字符。",
-    "logout": "退出登录"
+    "logout": "退出登录",
+    "or": "或",
+    "continueWithGoogle": "使用 Google 继续",
+    "oauthFailed": "Google 登录失败，请重试或使用邮箱和密码登录。"
   },
   "tabs": {
     "home": "主页",
@@ -115,6 +120,38 @@
       "notifications": {
         "label": "通知",
         "desc": "推送偏好设置"
+      },
+      "employees": {
+        "label": "员工",
+        "desc": "团队通讯录"
+      },
+      "expenses": {
+        "label": "费用",
+        "desc": "报销单与审批"
+      },
+      "knowledge": {
+        "label": "知识库",
+        "desc": "内部文档与指南"
+      },
+      "social": {
+        "label": "社交",
+        "desc": "编辑日历"
+      },
+      "marketing": {
+        "label": "营销",
+        "desc": "活动、模板、细分、自动化"
+      },
+      "website": {
+        "label": "网站",
+        "desc": "网站概览与微站点"
+      },
+      "auditLog": {
+        "label": "审计日志",
+        "desc": "敏感操作历史"
+      },
+      "settings": {
+        "label": "设置",
+        "desc": "个人资料与密码"
       }
     }
   },
@@ -224,6 +261,220 @@
         "tickets": "工单",
         "deadlines": "截止日期"
       }
+    },
+    "employees": {
+      "title": "员工",
+      "count": "{{count}} 名员工",
+      "error": "无法加载员工。({{error}})",
+      "empty": "暂无员工。",
+      "status": {
+        "active": "在职",
+        "inactive": "离职"
+      },
+      "form": {
+        "firstName": "名",
+        "lastName": "姓",
+        "email": "邮箱",
+        "role": "职位",
+        "team": "团队",
+        "status": "状态",
+        "startDate": "入职日期",
+        "cancel": "取消",
+        "save": "保存",
+        "saving": "保存中...",
+        "editTitle": "编辑员工",
+        "newTitle": "新建员工",
+        "delete": "删除"
+      },
+      "deleteConfirm": "删除此员工？此操作无法撤销。",
+      "errors": {
+        "save": "无法保存员工信息。",
+        "delete": "无法删除员工。"
+      }
+    },
+    "expenses": {
+      "title": "费用",
+      "count": "{{count}} 笔费用",
+      "error": "无法加载费用。({{error}})",
+      "empty": "暂无费用。",
+      "category": {
+        "travel": "差旅",
+        "meals": "餐饮",
+        "office": "办公",
+        "software": "软件",
+        "other": "其他"
+      },
+      "status": {
+        "pending": "待审批",
+        "approved": "已批准",
+        "rejected": "已拒绝"
+      },
+      "form": {
+        "amount": "金额（欧元）",
+        "date": "日期",
+        "category": "类别",
+        "notes": "备注",
+        "receiptUrl": "收据链接（可选）",
+        "cancel": "取消",
+        "save": "保存",
+        "saving": "保存中...",
+        "editTitle": "编辑费用",
+        "newTitle": "新建费用",
+        "delete": "删除",
+        "status": "状态"
+      },
+      "deleteConfirm": "删除此费用记录？此操作无法撤销。",
+      "errors": {
+        "save": "无法保存费用记录。",
+        "delete": "无法删除费用记录。"
+      }
+    },
+    "knowledge": {
+      "title": "知识库",
+      "count": "{{count}} 篇文档",
+      "error": "无法加载文档。({{error}})",
+      "empty": "暂无文档。",
+      "noFolder": "无文件夹",
+      "form": {
+        "title": "标题",
+        "content": "内容（Markdown）",
+        "folder": "文件夹",
+        "tags": "标签（英文逗号分隔）",
+        "cancel": "取消",
+        "save": "保存",
+        "saving": "保存中...",
+        "editTitle": "编辑页面",
+        "newTitle": "新建页面",
+        "delete": "删除",
+        "favorite": "收藏"
+      },
+      "deleteConfirm": "删除此页面？此操作无法撤销。",
+      "errors": {
+        "save": "无法保存页面。",
+        "delete": "无法删除页面。"
+      }
+    },
+    "auditLog": {
+      "title": "审计日志",
+      "count": "{{count}} 条记录",
+      "error": "无法加载日志。({{error}})",
+      "empty": "暂无记录。",
+      "forbidden": "只有所有者和管理员可以查看审计日志。",
+      "action": {
+        "login": "登录",
+        "logout": "登出",
+        "password": {
+          "change": "密码已更改"
+        },
+        "employee": {
+          "create": "员工已创建",
+          "update": "员工已更新",
+          "delete": "员工已删除"
+        },
+        "leave": {
+          "approve": "请假已批准",
+          "reject": "请假已拒绝"
+        },
+        "expense": {
+          "approve": "费用已批准",
+          "reject": "费用已拒绝"
+        }
+      }
+    },
+    "social": {
+      "title": "社交",
+      "count": "{{count}} 篇帖子",
+      "error": "无法加载帖子。({{error}})",
+      "empty": "暂无帖子。",
+      "platform": {
+        "instagram": "Instagram",
+        "facebook": "Facebook",
+        "linkedin": "LinkedIn",
+        "x": "X"
+      },
+      "status": {
+        "draft": "草稿",
+        "scheduled": "已排期",
+        "published": "已发布"
+      },
+      "form": {
+        "content": "内容",
+        "platform": "平台",
+        "status": "状态",
+        "scheduledAt": "计划发布时间",
+        "cancel": "取消",
+        "save": "保存",
+        "saving": "保存中...",
+        "editTitle": "编辑帖子",
+        "newTitle": "新建帖子",
+        "delete": "删除"
+      },
+      "deleteConfirm": "删除此帖子？此操作无法撤销。",
+      "errors": {
+        "save": "无法保存帖子。",
+        "delete": "无法删除帖子。"
+      }
+    },
+    "marketing": {
+      "title": "营销",
+      "error": "无法加载数据。({{error}})",
+      "empty": "暂无内容。",
+      "tab": {
+        "campaigns": "活动",
+        "templates": "模板",
+        "segments": "细分",
+        "automations": "自动化"
+      },
+      "campaignStatus": {
+        "draft": "草稿",
+        "sent": "已发送"
+      },
+      "anyContact": "任意联系人",
+      "active": "已启用",
+      "inactive": "已停用",
+      "trigger": {
+        "contact_created": "联系人已创建",
+        "contact_status_changed": "联系人状态已更改",
+        "manual": "手动"
+      }
+    },
+    "website": {
+      "title": "网站",
+      "count": "{{count}} 个站点",
+      "error": "无法加载站点。({{error}})",
+      "empty": "暂无站点。",
+      "published": "已发布",
+      "draft": "草稿"
+    },
+    "settings": {
+      "title": "设置",
+      "profile": "个人资料",
+      "name": "姓名",
+      "email": "邮箱",
+      "organization": "组织",
+      "role": "角色",
+      "changePassword": "修改密码",
+      "currentPassword": "当前密码",
+      "newPassword": "新密码",
+      "save": "保存",
+      "saving": "保存中...",
+      "currentPasswordIncorrect": "当前密码不正确。",
+      "passwordTooShort": "新密码至少需要 8 个字符。",
+      "tooManyAttempts": "尝试次数过多，请稍后再试。",
+      "saveError": "无法修改密码。",
+      "passwordChanged": "密码已更新。",
+      "passwordTooWeak": "新密码强度不足：请至少使用小写字母、大写字母、数字和符号中的3种。",
+      "strength": {
+        "veryWeak": "非常弱",
+        "weak": "弱",
+        "fair": "一般",
+        "good": "良好",
+        "strong": "强"
+      }
     }
+  },
+  "validation": {
+    "required": "必填项",
+    "email": "邮箱地址无效"
   }
 }

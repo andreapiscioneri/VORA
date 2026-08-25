@@ -1,6 +1,6 @@
 import { expenseInputSchema } from '~/shared/validation/expense'
 import { getExpense, updateExpense } from '~/server/utils/expenses'
-import { requireOrgId, requireRole } from '~/server/utils/auth'
+import { requireOrgId, requireRole, resolveSession } from '~/server/utils/auth'
 import { logAction } from '~/server/utils/auditLog'
 
 // Same pattern as leave-requests: editing a still-pending expense's own
@@ -32,7 +32,9 @@ export default defineEventHandler(async (event) => {
   }
 
   if (statusChanged && (updated.status === 'approved' || updated.status === 'rejected')) {
-    const { user } = await requireUserSession(event)
+    const session = await resolveSession(event)
+  if (!session) throw createError({ statusCode: 401, statusMessage: 'Authentication required' })
+  const { user } = session
     await logAction(organizationId, user.id, user.name, updated.status === 'approved' ? 'expense.approve' : 'expense.reject', 'expense', id)
   }
 

@@ -10,7 +10,8 @@
     "slug": "Usa solo letras minúsculas, números y guiones (por ejemplo, mi-sitio)",
     "slugTaken": "Esa dirección ya está en uso, elige otra",
     "color": "Usa un color hexadecimal válido (por ejemplo, #39FF14)",
-    "recurrenceUntilBeforeStart": "La fecha de fin de la repetición no puede ser anterior a la fecha de inicio."
+    "recurrenceUntilBeforeStart": "La fecha de fin de la repetición no puede ser anterior a la fecha de inicio.",
+    "phone": "Número de teléfono no válido"
   },
   "auth": {
     "loginTitle": "Inicia sesión en Vora",
@@ -50,7 +51,15 @@
     "verifyBannerSent": "Correo electrónico enviado.",
     "or": "o",
     "continueWithGoogle": "Continuar con Google",
-    "oauthFailed": "Error al iniciar sesión con Google. Inténtalo de nuevo o usa correo electrónico y contraseña."
+    "oauthFailed": "Error al iniciar sesión con Google. Inténtalo de nuevo o usa correo electrónico y contraseña.",
+    "passwordTooWeak": "La contraseña es demasiado débil: usa al menos 3 de minúsculas, mayúsculas, números y símbolos",
+    "strength": {
+      "veryWeak": "Muy débil",
+      "weak": "Débil",
+      "fair": "Aceptable",
+      "good": "Buena",
+      "strong": "Fuerte"
+    }
   },
   "nav": {
     "overview": "Resumen",
@@ -353,7 +362,9 @@
       "daily": "Diariamente",
       "weekly": "Semanalmente",
       "monthly": "Mensualmente"
-    }
+    },
+    "loadMore": "Cargar más",
+    "loadingMore": "Cargando..."
   },
   "projects": {
     "title": "Proyectos",
@@ -461,7 +472,9 @@
       "delete": "Eliminar"
     },
     "deleteConfirm": "¿Eliminar este registro? Esta acción no se puede deshacer.",
-    "noBillable": "No facturable"
+    "noBillable": "No facturable",
+    "loadMore": "Cargar más",
+    "loadingMore": "Cargando..."
   },
   "appointments": {
     "title": "Citas",
@@ -505,7 +518,9 @@
       "delete": "Eliminar"
     },
     "joinCall": "Unirse a la videollamada",
-    "deleteConfirm": "¿Eliminar esta cita? Esta acción no se puede deshacer."
+    "deleteConfirm": "¿Eliminar esta cita? Esta acción no se puede deshacer.",
+    "loadMore": "Cargar más",
+    "loadingMore": "Cargando..."
   },
   "inbox": {
     "title": "Bandeja de entrada",
@@ -538,7 +553,9 @@
       "cancel": "Cancelar",
       "send": "Enviar",
       "sending": "Enviando...",
-      "newTitle": "Nuevo mensaje"
+      "newTitle": "Nuevo mensaje",
+      "attachments": "Adjuntos",
+      "removeAttachment": "Quitar"
     },
     "markRead": "Marcar como leído",
     "archive": "Archivar",
@@ -664,7 +681,9 @@
       "comments": "Comentarios",
       "noComments": "Aún no hay comentarios.",
       "addComment": "Añade un comentario...",
-      "send": "Enviar"
+      "send": "Enviar",
+      "delete": "Eliminar",
+      "deleteConfirm": "¿Eliminar este ticket? Esta acción no se puede deshacer."
     },
     "attachments": {
       "title": "Archivos adjuntos",
@@ -779,7 +798,9 @@
     },
     "approve": "Aprobar",
     "reject": "Rechazar",
-    "deleteConfirm": "¿Eliminar este gasto? Esta acción no se puede deshacer."
+    "deleteConfirm": "¿Eliminar este gasto? Esta acción no se puede deshacer.",
+    "loadMore": "Cargar más",
+    "loadingMore": "Cargando..."
   },
   "leave": {
     "title": "Ausencias",
@@ -834,7 +855,9 @@
     },
     "approve": "Aprobar",
     "reject": "Rechazar",
-    "deleteConfirm": "¿Eliminar esta solicitud? Esta acción no se puede deshacer."
+    "deleteConfirm": "¿Eliminar esta solicitud? Esta acción no se puede deshacer.",
+    "loadMore": "Cargar más",
+    "loadingMore": "Cargando..."
   },
   "wellbeing": {
     "title": "Bienestar",
@@ -867,6 +890,19 @@
     },
     "errors": {
       "load": "No se pudieron cargar los registros."
+    },
+    "chat": {
+      "title": "Psicólogo",
+      "subtitle": "Un espacio para hablar libremente sobre cómo te sientes.",
+      "backToCheckin": "Volver al check-in",
+      "empty": "Escribe un mensaje para iniciar la conversación.",
+      "placeholder": "Escribe aquí...",
+      "send": "Enviar",
+      "sending": "Enviando...",
+      "errors": {
+        "load": "No se pudo cargar la conversación.",
+        "send": "No pude responder. Inténtalo de nuevo en breve."
+      }
     }
   },
   "auditLog": {
@@ -887,7 +923,9 @@
     "errors": {
       "load": "No se pudo cargar el registro de auditoría.",
       "forbidden": "Solo los propietarios y administradores pueden ver el registro de auditoría."
-    }
+    },
+    "loadMore": "Cargar más",
+    "loadingMore": "Cargando..."
   },
   "employees": {
     "title": "Empleados",
@@ -929,7 +967,9 @@
       "newTitle": "Nuevo empleado",
       "delete": "Eliminar"
     },
-    "deleteConfirm": "¿Eliminar este empleado? Esta acción no se puede deshacer."
+    "deleteConfirm": "¿Eliminar este empleado? Esta acción no se puede deshacer.",
+    "loadMore": "Cargar más",
+    "loadingMore": "Cargando..."
   },
   "social": {
     "title": "Marketing en redes sociales",
@@ -969,7 +1009,9 @@
       "newTitle": "Nueva publicación",
       "delete": "Eliminar"
     },
-    "deleteConfirm": "¿Eliminar esta publicación? Esta acción no se puede deshacer."
+    "deleteConfirm": "¿Eliminar esta publicación? Esta acción no se puede deshacer.",
+    "loadMore": "Cargar más",
+    "loadingMore": "Cargando..."
   },
   "campaigns": {
     "title": "Email marketing",
@@ -1010,7 +1052,9 @@
     },
     "send": "Enviar",
     "sentOn": "Enviada el",
-    "deleteConfirm": "¿Eliminar esta campaña? Esta acción no se puede deshacer."
+    "deleteConfirm": "¿Eliminar esta campaña? Esta acción no se puede deshacer.",
+    "loadMore": "Cargar más",
+    "loadingMore": "Cargando..."
   },
   "website": {
     "title": "Sitio web",
@@ -1063,7 +1107,9 @@
     },
     "deleteConfirm": "¿Eliminar este sitio? Esta acción no se puede deshacer.",
     "notFound": "Este sitio no existe o aún no se ha publicado.",
-    "generatedBy": "Generado con VORA"
+    "generatedBy": "Generado con VORA",
+    "loadMore": "Cargar más",
+    "loadingMore": "Cargando..."
   },
   "settings": {
     "title": "Ajustes",
@@ -1154,7 +1200,9 @@
       "editTitle": "Editar plantilla",
       "newTitle": "Nueva plantilla",
       "delete": "Eliminar"
-    }
+    },
+    "loadMore": "Cargar más",
+    "loadingMore": "Cargando..."
   },
   "segments": {
     "title": "Segmentos",
@@ -1183,7 +1231,9 @@
       "editTitle": "Editar segmento",
       "newTitle": "Nuevo segmento",
       "delete": "Eliminar"
-    }
+    },
+    "loadMore": "Cargar más",
+    "loadingMore": "Cargando..."
   },
   "automations": {
     "title": "Automatizaciones",
@@ -1258,6 +1308,15 @@
       "save": "Guardar",
       "saving": "Guardando...",
       "delete": "Eliminar"
-    }
+    },
+    "loadMore": "Cargar más",
+    "loadingMore": "Cargando..."
+  },
+  "errorPage": {
+    "title": "Algo salió mal",
+    "message": "Se produjo un error inesperado. Inténtalo de nuevo en breve.",
+    "notFoundTitle": "Página no encontrada",
+    "notFoundMessage": "La página que buscas no existe o fue movida.",
+    "action": "Volver al panel"
   }
 }

@@ -2,7 +2,9 @@
   "common": {
     "appName": "Vora",
     "reachability": "Vora サーバーに接続できません。下に引っ張って再試行してください。",
-    "offlineCached": "オフライン — 保存済みの最新データを表示中です。"
+    "offlineCached": "オフライン — 保存済みの最新データを表示中です。",
+    "loadMore": "もっと読み込む",
+    "loadingMore": "読み込み中..."
   },
   "auth": {
     "loginTitle": "Vora にログイン",
@@ -20,7 +22,10 @@
     "invalidCredentials": "メールアドレスまたはパスワードが正しくありません。",
     "emailTaken": "このメールアドレスは既に登録されています。",
     "passwordTooShort": "パスワードは8文字以上で入力してください。",
-    "logout": "ログアウト"
+    "logout": "ログアウト",
+    "or": "または",
+    "continueWithGoogle": "Googleで続行",
+    "oauthFailed": "Googleサインインに失敗しました。もう一度お試しいただくか、メールアドレスとパスワードでログインしてください。"
   },
   "tabs": {
     "home": "ホーム",
@@ -115,6 +120,38 @@
       "notifications": {
         "label": "通知",
         "desc": "プッシュ設定"
+      },
+      "employees": {
+        "label": "従業員",
+        "desc": "チームディレクトリ"
+      },
+      "expenses": {
+        "label": "経費",
+        "desc": "経費精算と承認"
+      },
+      "knowledge": {
+        "label": "ナレッジ",
+        "desc": "社内ドキュメントとガイド"
+      },
+      "social": {
+        "label": "ソーシャル",
+        "desc": "編集カレンダー"
+      },
+      "marketing": {
+        "label": "マーケティング",
+        "desc": "キャンペーン、テンプレート、セグメント、自動化"
+      },
+      "website": {
+        "label": "ウェブサイト",
+        "desc": "サイト概要とマイクロサイト"
+      },
+      "auditLog": {
+        "label": "監査ログ",
+        "desc": "重要な操作の履歴"
+      },
+      "settings": {
+        "label": "設定",
+        "desc": "プロフィールとパスワード"
       }
     }
   },
@@ -224,6 +261,220 @@
         "tickets": "チケット",
         "deadlines": "締め切り"
       }
+    },
+    "employees": {
+      "title": "従業員",
+      "count": "{{count}} 名の従業員",
+      "error": "従業員を読み込めませんでした。({{error}})",
+      "empty": "従業員がいません。",
+      "status": {
+        "active": "在籍",
+        "inactive": "退職"
+      },
+      "form": {
+        "firstName": "名",
+        "lastName": "姓",
+        "email": "メールアドレス",
+        "role": "役職",
+        "team": "チーム",
+        "status": "ステータス",
+        "startDate": "入社日",
+        "cancel": "キャンセル",
+        "save": "保存",
+        "saving": "保存中...",
+        "editTitle": "従業員情報を編集",
+        "newTitle": "新規従業員",
+        "delete": "削除"
+      },
+      "deleteConfirm": "この従業員を削除しますか？この操作は取り消せません。",
+      "errors": {
+        "save": "従業員を保存できませんでした。",
+        "delete": "従業員を削除できませんでした。"
+      }
+    },
+    "expenses": {
+      "title": "経費",
+      "count": "{{count}} 件の経費",
+      "error": "経費を読み込めませんでした。({{error}})",
+      "empty": "経費がありません。",
+      "category": {
+        "travel": "出張",
+        "meals": "食費",
+        "office": "オフィス",
+        "software": "ソフトウェア",
+        "other": "その他"
+      },
+      "status": {
+        "pending": "承認待ち",
+        "approved": "承認済み",
+        "rejected": "却下"
+      },
+      "form": {
+        "amount": "金額（EUR）",
+        "date": "日付",
+        "category": "カテゴリー",
+        "notes": "メモ",
+        "receiptUrl": "領収書リンク（任意）",
+        "cancel": "キャンセル",
+        "save": "保存",
+        "saving": "保存中...",
+        "editTitle": "経費を編集",
+        "newTitle": "新規経費",
+        "delete": "削除",
+        "status": "ステータス"
+      },
+      "deleteConfirm": "この経費を削除しますか？この操作は取り消せません。",
+      "errors": {
+        "save": "経費を保存できませんでした。",
+        "delete": "経費を削除できませんでした。"
+      }
+    },
+    "knowledge": {
+      "title": "ナレッジ",
+      "count": "{{count}} 件のドキュメント",
+      "error": "ドキュメントを読み込めませんでした。({{error}})",
+      "empty": "ドキュメントがありません。",
+      "noFolder": "フォルダなし",
+      "form": {
+        "title": "タイトル",
+        "content": "コンテンツ（Markdown）",
+        "folder": "フォルダ",
+        "tags": "タグ（カンマ区切り）",
+        "cancel": "キャンセル",
+        "save": "保存",
+        "saving": "保存中...",
+        "editTitle": "ページを編集",
+        "newTitle": "新規ページ",
+        "delete": "削除",
+        "favorite": "お気に入り"
+      },
+      "deleteConfirm": "このページを削除しますか？この操作は取り消せません。",
+      "errors": {
+        "save": "ページを保存できませんでした。",
+        "delete": "ページを削除できませんでした。"
+      }
+    },
+    "auditLog": {
+      "title": "監査ログ",
+      "count": "{{count}} 件",
+      "error": "ログを読み込めませんでした。({{error}})",
+      "empty": "記録がありません。",
+      "forbidden": "オーナーと管理者のみ監査ログを閲覧できます。",
+      "action": {
+        "login": "ログイン",
+        "logout": "ログアウト",
+        "password": {
+          "change": "パスワード変更"
+        },
+        "employee": {
+          "create": "従業員を作成",
+          "update": "従業員を更新",
+          "delete": "従業員を削除"
+        },
+        "leave": {
+          "approve": "休暇を承認",
+          "reject": "休暇を却下"
+        },
+        "expense": {
+          "approve": "経費を承認",
+          "reject": "経費を却下"
+        }
+      }
+    },
+    "social": {
+      "title": "ソーシャル",
+      "count": "{{count}} 件の投稿",
+      "error": "投稿を読み込めませんでした。({{error}})",
+      "empty": "投稿がありません。",
+      "platform": {
+        "instagram": "Instagram",
+        "facebook": "Facebook",
+        "linkedin": "LinkedIn",
+        "x": "X"
+      },
+      "status": {
+        "draft": "下書き",
+        "scheduled": "予約済み",
+        "published": "公開済み"
+      },
+      "form": {
+        "content": "コンテンツ",
+        "platform": "プラットフォーム",
+        "status": "ステータス",
+        "scheduledAt": "予約日時",
+        "cancel": "キャンセル",
+        "save": "保存",
+        "saving": "保存中...",
+        "editTitle": "投稿を編集",
+        "newTitle": "新規投稿",
+        "delete": "削除"
+      },
+      "deleteConfirm": "この投稿を削除しますか？この操作は取り消せません。",
+      "errors": {
+        "save": "投稿を保存できませんでした。",
+        "delete": "投稿を削除できませんでした。"
+      }
+    },
+    "marketing": {
+      "title": "マーケティング",
+      "error": "データを読み込めませんでした。({{error}})",
+      "empty": "項目がありません。",
+      "tab": {
+        "campaigns": "キャンペーン",
+        "templates": "テンプレート",
+        "segments": "セグメント",
+        "automations": "自動化"
+      },
+      "campaignStatus": {
+        "draft": "下書き",
+        "sent": "送信済み"
+      },
+      "anyContact": "すべての連絡先",
+      "active": "有効",
+      "inactive": "無効",
+      "trigger": {
+        "contact_created": "連絡先が作成された",
+        "contact_status_changed": "連絡先のステータスが変更された",
+        "manual": "手動"
+      }
+    },
+    "website": {
+      "title": "ウェブサイト",
+      "count": "{{count}} 件のサイト",
+      "error": "サイトを読み込めませんでした。({{error}})",
+      "empty": "サイトがありません。",
+      "published": "公開済み",
+      "draft": "下書き"
+    },
+    "settings": {
+      "title": "設定",
+      "profile": "プロフィール",
+      "name": "名前",
+      "email": "メール",
+      "organization": "組織",
+      "role": "役割",
+      "changePassword": "パスワードを変更",
+      "currentPassword": "現在のパスワード",
+      "newPassword": "新しいパスワード",
+      "save": "保存",
+      "saving": "保存中...",
+      "currentPasswordIncorrect": "現在のパスワードが正しくありません。",
+      "passwordTooShort": "新しいパスワードは8文字以上にしてください。",
+      "tooManyAttempts": "試行回数が多すぎます。数分後にもう一度お試しください。",
+      "saveError": "パスワードを変更できませんでした。",
+      "passwordChanged": "パスワードを更新しました。",
+      "passwordTooWeak": "新しいパスワードが弱すぎます。小文字・大文字・数字・記号のうち少なくとも3種類を使用してください。",
+      "strength": {
+        "veryWeak": "非常に弱い",
+        "weak": "弱い",
+        "fair": "普通",
+        "good": "良い",
+        "strong": "強い"
+      }
     }
+  },
+  "validation": {
+    "required": "必須項目です",
+    "email": "メールアドレスが無効です"
   }
 }

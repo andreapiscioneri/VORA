@@ -32,4 +32,12 @@ describe('contactInputSchema', () => {
   it('rejects a first name over the 80 char limit', () => {
     expect(contactInputSchema.safeParse({ ...base, firstName: 'a'.repeat(81) }).success).toBe(false)
   })
+
+  it('allows an empty phone/whatsapp but rejects a malformed one', () => {
+    expect(contactInputSchema.safeParse({ ...base, phone: '' }).success).toBe(true)
+    expect(contactInputSchema.safeParse({ ...base, phone: '+39 333 1234567' }).success).toBe(true)
+    expect(contactInputSchema.safeParse({ ...base, phone: 'call me maybe' }).success).toBe(false)
+    expect(contactInputSchema.safeParse({ ...base, whatsapp: '123' }).success).toBe(false)
+    expect(contactInputSchema.safeParse({ ...base, whatsapp: '+14155552671' }).success).toBe(true)
+  })
 })

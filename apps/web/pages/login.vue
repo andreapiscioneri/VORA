@@ -48,7 +48,7 @@ async function submit() {
             required
             autocomplete="email"
             class="w-full px-3 py-2 rounded-md border border-ink-100 dark:border-white/10 bg-paper-0 dark:bg-ink-900"
-          />
+          >
         </div>
         <div>
           <label for="login-password" class="text-body-sm text-ink-600 dark:text-paper-300 mb-1 block">{{ $t('auth.password') }}</label>
@@ -59,7 +59,7 @@ async function submit() {
             required
             autocomplete="current-password"
             class="w-full px-3 py-2 rounded-md border border-ink-100 dark:border-white/10 bg-paper-0 dark:bg-ink-900"
-          />
+          >
         </div>
 
         <p v-if="error" class="text-body-sm text-danger">{{ error }}</p>

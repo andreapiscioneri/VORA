@@ -17,7 +17,7 @@ export function useContacts() {
       contacts.value = page.items
       nextCursor.value = page.nextCursor
       hasMore.value = page.hasMore
-    } catch (e) {
+    } catch {
       error.value = 'contacts.errors.load'
     } finally {
       pending.value = false

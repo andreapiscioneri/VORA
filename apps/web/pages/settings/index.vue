@@ -37,8 +37,14 @@ async function onChangePassword() {
     currentPassword.value = ''
     newPassword.value = ''
     passwordSaved.value = true
-  } catch (e: any) {
-    passwordError.value = e?.statusCode === 401 ? t('settings.security.wrongPassword') : t('settings.security.error')
+  } catch (e) {
+    const err = e as { statusCode?: number; data?: { data?: { fieldErrors?: Record<string, string[]> } } }
+    if (err.statusCode === 401) {
+      passwordError.value = t('settings.security.wrongPassword')
+    } else {
+      const fieldError = err.data?.data?.fieldErrors?.newPassword?.[0]
+      passwordError.value = fieldError ? t(fieldError) : t('settings.security.error')
+    }
   } finally {
     passwordSaving.value = false
   }
@@ -84,7 +90,7 @@ const { data: status } = await useFetch<IntegrationStatus>('/api/settings/status
       <div>
         <label for="settings-name" class="block text-label text-ink-400 mb-2">{{ $t('settings.profile.name') }}</label>
         <div class="flex gap-3">
-          <input id="settings-name" v-model="profileName" type="text" class="vora-input" />
+          <input id="settings-name" v-model="profileName" type="text" class="vora-input" >
           <button type="button" :disabled="profileSaving" class="shrink-0 px-4 py-2 rounded-md text-body-sm font-medium bg-primary text-ink-950 hover:bg-primary-hover disabled:opacity-50" @click="onSaveProfile">
             {{ profileSaving ? $t('settings.saving') : $t('settings.save') }}
           </button>
@@ -107,11 +113,12 @@ const { data: status } = await useFetch<IntegrationStatus>('/api/settings/status
       <form class="space-y-3" @submit.prevent="onChangePassword">
         <div>
           <label for="settings-current-password" class="block text-label text-ink-400 mb-2">{{ $t('settings.security.currentPassword') }}</label>
-          <input id="settings-current-password" v-model="currentPassword" type="password" class="vora-input" required />
+          <input id="settings-current-password" v-model="currentPassword" type="password" class="vora-input" required >
         </div>
         <div>
           <label for="settings-new-password" class="block text-label text-ink-400 mb-2">{{ $t('settings.security.newPassword') }}</label>
-          <input id="settings-new-password" v-model="newPassword" type="password" class="vora-input" required minlength="8" />
+          <input id="settings-new-password" v-model="newPassword" type="password" class="vora-input" required minlength="8" >
+          <UiPasswordStrengthMeter :password="newPassword" />
         </div>
         <p v-if="passwordError" class="text-body-sm text-danger">{{ passwordError }}</p>
         <p v-if="passwordSaved" class="text-caption text-success">{{ $t('settings.saved') }}</p>
@@ -155,7 +162,7 @@ const { data: status } = await useFetch<IntegrationStatus>('/api/settings/status
       <div v-else-if="prefs" class="space-y-2">
         <label v-for="key in NOTIFICATION_KEYS" :key="key" class="flex items-center justify-between py-2 border-b border-ink-50 dark:border-white/5 last:border-0">
           <span class="text-body-sm">{{ $t(`settings.notifications.${key}`) }}</span>
-          <input type="checkbox" class="size-4 rounded accent-primary" :checked="prefs[key]" @change="onTogglePref(key)" />
+          <input type="checkbox" class="size-4 rounded accent-primary" :checked="prefs[key]" @change="onTogglePref(key)" >
         </label>
       </div>
     </section>
@@ -164,7 +171,8 @@ const { data: status } = await useFetch<IntegrationStatus>('/api/settings/status
     <section class="rounded-lg border border-ink-100 dark:border-white/10 p-5 space-y-4">
       <h2 class="text-h4 font-medium">{{ $t('settings.integrations.title') }}</h2>
       <div v-if="status" class="space-y-2">
-        <div v-for="item in [
+        <div
+v-for="item in [
           { key: 'ai', label: $t('settings.integrations.ai'), live: status.ai.live, provider: status.ai.provider },
           { key: 'email', label: $t('settings.integrations.email'), live: status.email.live, provider: status.email.provider },
           { key: 'whatsapp', label: $t('settings.integrations.whatsapp'), live: status.whatsapp.live, provider: status.whatsapp.provider },

@@ -1,6 +1,7 @@
 import type { EmailTemplate } from '~/shared/types/emailTemplate'
 import type { EmailTemplateInputSchema } from '~/shared/validation/emailTemplate'
 import { getDb } from './firebase'
+import { paginateQuery, type PageResult } from './pagination'
 
 const COLLECTION = 'emailTemplates'
 
@@ -15,9 +16,9 @@ function toTemplate(id: string, data: FirebaseFirestore.DocumentData): EmailTemp
   }
 }
 
-export async function listEmailTemplates(organizationId: string): Promise<EmailTemplate[]> {
-  const snapshot = await getDb().collection(COLLECTION).where('organizationId', '==', organizationId).get()
-  return snapshot.docs.map((doc) => toTemplate(doc.id, doc.data())).sort((a, b) => (a.createdAt < b.createdAt ? 1 : a.createdAt > b.createdAt ? -1 : 0))
+export async function listEmailTemplates(organizationId: string, params?: { cursor?: string | null; pageSize?: number }): Promise<PageResult<EmailTemplate>> {
+  const query = getDb().collection(COLLECTION).where('organizationId', '==', organizationId).orderBy('createdAt', 'desc')
+  return paginateQuery(query, COLLECTION, params, toTemplate)
 }
 
 export async function getEmailTemplate(id: string, organizationId: string): Promise<EmailTemplate | null> {

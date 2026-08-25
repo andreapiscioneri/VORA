@@ -2,7 +2,9 @@
   "common": {
     "appName": "Vora",
     "reachability": "Impossible de joindre le serveur Vora. Tirez vers le bas pour réessayer.",
-    "offlineCached": "Hors ligne — affichage des dernières données enregistrées."
+    "offlineCached": "Hors ligne — affichage des dernières données enregistrées.",
+    "loadMore": "Charger plus",
+    "loadingMore": "Chargement..."
   },
   "auth": {
     "loginTitle": "Connexion à Vora",
@@ -20,7 +22,10 @@
     "invalidCredentials": "E-mail ou mot de passe invalide.",
     "emailTaken": "Cet e-mail est déjà enregistré.",
     "passwordTooShort": "Le mot de passe doit contenir au moins 8 caractères.",
-    "logout": "Se déconnecter"
+    "logout": "Se déconnecter",
+    "or": "ou",
+    "continueWithGoogle": "Continuer avec Google",
+    "oauthFailed": "La connexion Google a échoué. Réessayez ou utilisez votre e-mail et votre mot de passe."
   },
   "tabs": {
     "home": "Accueil",
@@ -115,6 +120,38 @@
       "notifications": {
         "label": "Notifications",
         "desc": "Préférences push"
+      },
+      "employees": {
+        "label": "Employés",
+        "desc": "Répertoire de l’équipe"
+      },
+      "expenses": {
+        "label": "Dépenses",
+        "desc": "Notes de frais et approbations"
+      },
+      "knowledge": {
+        "label": "Knowledge",
+        "desc": "Documents et guides internes"
+      },
+      "social": {
+        "label": "Social",
+        "desc": "Calendrier éditorial"
+      },
+      "marketing": {
+        "label": "Marketing",
+        "desc": "Campagnes, modèles, segments, automatisations"
+      },
+      "website": {
+        "label": "Site web",
+        "desc": "Aperçu du site et micro-sites"
+      },
+      "auditLog": {
+        "label": "Journal d’audit",
+        "desc": "Historique des actions sensibles"
+      },
+      "settings": {
+        "label": "Paramètres",
+        "desc": "Profil et mot de passe"
       }
     }
   },
@@ -224,6 +261,220 @@
         "tickets": "Tickets",
         "deadlines": "Échéances"
       }
+    },
+    "employees": {
+      "title": "Employés",
+      "count": "{{count}} employés",
+      "error": "Impossible de charger les employés. ({{error}})",
+      "empty": "Aucun employé.",
+      "status": {
+        "active": "Actif",
+        "inactive": "Inactif"
+      },
+      "form": {
+        "firstName": "Prénom",
+        "lastName": "Nom",
+        "email": "E-mail",
+        "role": "Fonction",
+        "team": "Équipe",
+        "status": "Statut",
+        "startDate": "Date d'entrée",
+        "cancel": "Annuler",
+        "save": "Enregistrer",
+        "saving": "Enregistrement...",
+        "editTitle": "Modifier l'employé",
+        "newTitle": "Nouvel employé",
+        "delete": "Supprimer"
+      },
+      "deleteConfirm": "Supprimer cet employé ? Cette action est irréversible.",
+      "errors": {
+        "save": "Impossible d'enregistrer l'employé.",
+        "delete": "Impossible de supprimer l'employé."
+      }
+    },
+    "expenses": {
+      "title": "Dépenses",
+      "count": "{{count}} dépenses",
+      "error": "Impossible de charger les dépenses. ({{error}})",
+      "empty": "Aucune dépense.",
+      "category": {
+        "travel": "Voyage",
+        "meals": "Repas",
+        "office": "Bureau",
+        "software": "Logiciel",
+        "other": "Autre"
+      },
+      "status": {
+        "pending": "En attente",
+        "approved": "Approuvée",
+        "rejected": "Refusée"
+      },
+      "form": {
+        "amount": "Montant (EUR)",
+        "date": "Date",
+        "category": "Catégorie",
+        "notes": "Notes",
+        "receiptUrl": "Lien du reçu (facultatif)",
+        "cancel": "Annuler",
+        "save": "Enregistrer",
+        "saving": "Enregistrement...",
+        "editTitle": "Modifier la note de frais",
+        "newTitle": "Nouvelle note de frais",
+        "delete": "Supprimer",
+        "status": "Statut"
+      },
+      "deleteConfirm": "Supprimer cette note de frais ? Cette action est irréversible.",
+      "errors": {
+        "save": "Impossible d'enregistrer la note de frais.",
+        "delete": "Impossible de supprimer la note de frais."
+      }
+    },
+    "knowledge": {
+      "title": "Knowledge",
+      "count": "{{count}} documents",
+      "error": "Impossible de charger les documents. ({{error}})",
+      "empty": "Aucun document.",
+      "noFolder": "Aucun dossier",
+      "form": {
+        "title": "Titre",
+        "content": "Contenu (Markdown)",
+        "folder": "Dossier",
+        "tags": "Étiquettes (séparées par des virgules)",
+        "cancel": "Annuler",
+        "save": "Enregistrer",
+        "saving": "Enregistrement...",
+        "editTitle": "Modifier la page",
+        "newTitle": "Nouvelle page",
+        "delete": "Supprimer",
+        "favorite": "Favori"
+      },
+      "deleteConfirm": "Supprimer cette page ? Cette action est irréversible.",
+      "errors": {
+        "save": "Impossible d'enregistrer la page.",
+        "delete": "Impossible de supprimer la page."
+      }
+    },
+    "auditLog": {
+      "title": "Journal d’audit",
+      "count": "{{count}} entrées",
+      "error": "Impossible de charger le journal. ({{error}})",
+      "empty": "Aucune entrée.",
+      "forbidden": "Seuls les propriétaires et administrateurs peuvent consulter le journal d’audit.",
+      "action": {
+        "login": "Connexion",
+        "logout": "Déconnexion",
+        "password": {
+          "change": "Mot de passe modifié"
+        },
+        "employee": {
+          "create": "Employé créé",
+          "update": "Employé modifié",
+          "delete": "Employé supprimé"
+        },
+        "leave": {
+          "approve": "Congé approuvé",
+          "reject": "Congé refusé"
+        },
+        "expense": {
+          "approve": "Dépense approuvée",
+          "reject": "Dépense refusée"
+        }
+      }
+    },
+    "social": {
+      "title": "Social",
+      "count": "{{count}} publications",
+      "error": "Impossible de charger les publications. ({{error}})",
+      "empty": "Aucune publication.",
+      "platform": {
+        "instagram": "Instagram",
+        "facebook": "Facebook",
+        "linkedin": "LinkedIn",
+        "x": "X"
+      },
+      "status": {
+        "draft": "Brouillon",
+        "scheduled": "Planifiée",
+        "published": "Publiée"
+      },
+      "form": {
+        "content": "Contenu",
+        "platform": "Plateforme",
+        "status": "Statut",
+        "scheduledAt": "Date planifiée",
+        "cancel": "Annuler",
+        "save": "Enregistrer",
+        "saving": "Enregistrement...",
+        "editTitle": "Modifier la publication",
+        "newTitle": "Nouvelle publication",
+        "delete": "Supprimer"
+      },
+      "deleteConfirm": "Supprimer cette publication ? Cette action est irréversible.",
+      "errors": {
+        "save": "Impossible d'enregistrer la publication.",
+        "delete": "Impossible de supprimer la publication."
+      }
+    },
+    "marketing": {
+      "title": "Marketing",
+      "error": "Impossible de charger les données. ({{error}})",
+      "empty": "Aucun élément.",
+      "tab": {
+        "campaigns": "Campagnes",
+        "templates": "Modèles",
+        "segments": "Segments",
+        "automations": "Automatisations"
+      },
+      "campaignStatus": {
+        "draft": "Brouillon",
+        "sent": "Envoyée"
+      },
+      "anyContact": "N’importe quel contact",
+      "active": "Active",
+      "inactive": "Inactive",
+      "trigger": {
+        "contact_created": "Contact créé",
+        "contact_status_changed": "Statut du contact modifié",
+        "manual": "Manuel"
+      }
+    },
+    "website": {
+      "title": "Site web",
+      "count": "{{count}} sites",
+      "error": "Impossible de charger les sites. ({{error}})",
+      "empty": "Aucun site.",
+      "published": "Publié",
+      "draft": "Brouillon"
+    },
+    "settings": {
+      "title": "Paramètres",
+      "profile": "Profil",
+      "name": "Nom",
+      "email": "E-mail",
+      "organization": "Organisation",
+      "role": "Rôle",
+      "changePassword": "Changer le mot de passe",
+      "currentPassword": "Mot de passe actuel",
+      "newPassword": "Nouveau mot de passe",
+      "save": "Enregistrer",
+      "saving": "Enregistrement...",
+      "currentPasswordIncorrect": "Le mot de passe actuel est incorrect.",
+      "passwordTooShort": "Le nouveau mot de passe doit contenir au moins 8 caractères.",
+      "tooManyAttempts": "Trop de tentatives. Réessayez dans quelques minutes.",
+      "saveError": "Impossible de changer le mot de passe.",
+      "passwordChanged": "Mot de passe mis à jour.",
+      "passwordTooWeak": "Le nouveau mot de passe est trop faible : utilisez au moins 3 des éléments suivants : minuscules, majuscules, chiffres et symboles.",
+      "strength": {
+        "veryWeak": "Très faible",
+        "weak": "Faible",
+        "fair": "Correct",
+        "good": "Bon",
+        "strong": "Fort"
+      }
     }
+  },
+  "validation": {
+    "required": "Champ obligatoire",
+    "email": "E-mail invalide"
   }
 }

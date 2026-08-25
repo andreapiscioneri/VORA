@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { Task, TaskStatus } from '~/shared/types/task'
 
-const props = defineProps<{ task: Task; otherStatuses: TaskStatus[] }>()
+defineProps<{ task: Task; otherStatuses: TaskStatus[] }>()
 const emit = defineEmits<{ click: []; dragstart: [DragEvent]; move: [TaskStatus] }>()
 const { locale } = useI18n()
 

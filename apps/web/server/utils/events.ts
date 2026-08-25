@@ -1,6 +1,7 @@
 import type { CalendarEvent } from '~/shared/types/event'
 import type { CalendarEventInputSchema } from '~/shared/validation/event'
 import { getDb } from './firebase'
+import { paginateQuery, type PageResult } from './pagination'
 
 const COLLECTION = 'events'
 
@@ -21,7 +22,14 @@ function toEvent(id: string, data: FirebaseFirestore.DocumentData): CalendarEven
   }
 }
 
-export async function listEvents(organizationId: string): Promise<CalendarEvent[]> {
+export async function listEvents(organizationId: string, params?: { cursor?: string | null; pageSize?: number }): Promise<PageResult<CalendarEvent>> {
+  const query = getDb().collection(COLLECTION).where('organizationId', '==', organizationId).orderBy('startAt', 'asc')
+  return paginateQuery(query, COLLECTION, params, toEvent)
+}
+
+/** Fetch-all variant for internal callers that rely on the full org list
+ * rather than a single page (e.g. AI chat context). */
+export async function listAllEvents(organizationId: string): Promise<CalendarEvent[]> {
   const snapshot = await getDb().collection(COLLECTION).where('organizationId', '==', organizationId).get()
   return snapshot.docs.map((doc) => toEvent(doc.id, doc.data())).sort((a, b) => (a.startAt > b.startAt ? 1 : a.startAt < b.startAt ? -1 : 0))
 }

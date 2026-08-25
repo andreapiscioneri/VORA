@@ -71,7 +71,7 @@ function onSaved(doc: KnowledgeDocument) {
             :placeholder="$t('knowledge.search')"
             class="w-full px-3 py-2 pr-9 rounded-md border border-ink-100 dark:border-white/10 bg-white dark:bg-white/5 text-body-sm outline-none focus:border-primary"
             @keyup.enter="runSemanticSearch"
-          />
+          >
           <button
             type="button"
             class="absolute right-1.5 top-1/2 -translate-y-1/2 p-1.5 rounded text-ink-400 hover:text-primary-600 dark:hover:text-primary"
@@ -88,7 +88,7 @@ function onSaved(doc: KnowledgeDocument) {
           <option v-for="f in folders" :key="f" :value="f">{{ f }}</option>
         </select>
         <label class="flex items-center gap-2 text-body-sm shrink-0">
-          <input v-model="favoritesOnly" type="checkbox" class="size-4 rounded accent-primary" />
+          <input v-model="favoritesOnly" type="checkbox" class="size-4 rounded accent-primary" >
           {{ $t('knowledge.favoritesOnly') }}
         </label>
         <button

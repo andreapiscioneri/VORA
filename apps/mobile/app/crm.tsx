@@ -1,4 +1,4 @@
-import { FlatList, RefreshControl, StyleSheet, Text, View } from 'react-native'
+import { ActivityIndicator, FlatList, RefreshControl, StyleSheet, Text, View } from 'react-native'
 import { useOpportunities } from '../hooks/useOpportunities'
 import { DetailScreen, StateMessage } from '../components/Screen'
 import { radius, spacing } from '../constants/theme'
@@ -19,7 +19,7 @@ export default function CrmScreen() {
   const { colors } = useTheme()
   const { t } = useI18n()
   const styles = makeStyles(colors)
-  const { opportunities, loading, error, reload } = useOpportunities()
+  const { opportunities, loading, loadingMore, error, hasMore, reload, loadMore } = useOpportunities()
 
   return (
     <DetailScreen title={t('modules.crm.title')} subtitle={t('modules.crm.count', { count: opportunities.length })}>
@@ -32,6 +32,9 @@ export default function CrmScreen() {
           contentContainerStyle={styles.list}
           refreshControl={<RefreshControl refreshing={loading} onRefresh={reload} tintColor={colors.primary} />}
           ListEmptyComponent={!loading ? <StateMessage text={t('modules.crm.empty')} /> : null}
+          onEndReached={hasMore ? loadMore : undefined}
+          onEndReachedThreshold={0.5}
+          ListFooterComponent={loadingMore ? <ActivityIndicator style={styles.footer} color={colors.primary} /> : null}
           renderItem={({ item }: { item: Opportunity }) => (
             <View
               style={styles.row}
@@ -74,5 +77,6 @@ function makeStyles(colors: ThemeColors) {
     subtext: { color: colors.textSecondary, fontSize: 12, marginTop: spacing(1) },
     badge: { backgroundColor: colors.border, borderRadius: radius.full, paddingVertical: spacing(1), paddingHorizontal: spacing(3) },
     badgeText: { color: colors.textPrimary, fontSize: 11, fontWeight: '600' },
+    footer: { paddingVertical: spacing(4) },
   })
 }

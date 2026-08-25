@@ -1,7 +1,7 @@
 <script setup lang="ts">
 definePageMeta({ layout: 'default' })
 
-const { entries, pending, error, fetchEntries } = useAuditLog()
+const { entries, pending, error, hasMore, loadingMore, fetchEntries, loadMore } = useAuditLog()
 await fetchEntries()
 
 const { locale } = useI18n()
@@ -53,6 +53,16 @@ const actionStyles: Record<string, string> = {
         <p class="text-body-sm flex-1">{{ e.userName }}</p>
         <p class="text-caption text-ink-400 shrink-0">{{ fmt(e.createdAt) }}</p>
       </div>
+    </div>
+
+    <div v-if="!pending && !error && hasMore" class="flex justify-center">
+      <button
+        class="px-4 py-2 rounded-md text-body-sm font-medium border border-ink-100 dark:border-white/10 hover:bg-ink-50 dark:hover:bg-white/5 disabled:opacity-50"
+        :disabled="loadingMore"
+        @click="loadMore"
+      >
+        {{ loadingMore ? $t('auditLog.loadingMore') : $t('auditLog.loadMore') }}
+      </button>
     </div>
   </div>
 </template>

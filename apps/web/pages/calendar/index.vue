@@ -256,6 +256,7 @@ function formatTime(iso: string, timezone: string) {
       </div>
     </div>
 
+
     <CalendarEventForm v-if="showForm" :event="editingEvent" :default-date="newEventDate" @close="closeForm" @saved="closeForm" @deleted="closeForm" />
   </div>
 </template>

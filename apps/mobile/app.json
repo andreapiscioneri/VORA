@@ -50,7 +50,8 @@
           "icon": "./assets/brand/adaptive-icon-foreground.png",
           "color": "#39FF14"
         }
-      ]
+      ],
+      "expo-web-browser"
     ],
     "experiments": {
       "typedRoutes": true

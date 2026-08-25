@@ -126,11 +126,11 @@ onMounted(() => dialogRef.value?.focus())
             <div class="space-y-3">
               <div>
                 <label for="cal-suggestion-title" class="block text-label text-ink-400 mb-2">{{ $t('calendar.form.title') }}</label>
-                <input id="cal-suggestion-title" v-model="form.title" type="text" class="vora-input" />
+                <input id="cal-suggestion-title" v-model="form.title" type="text" class="vora-input" >
               </div>
               <div>
                 <label for="cal-suggestion-date" class="block text-label text-ink-400 mb-2">{{ $t('calendar.form.date') }}</label>
-                <input id="cal-suggestion-date" v-model="form.date" type="date" class="vora-input" />
+                <input id="cal-suggestion-date" v-model="form.date" type="date" class="vora-input" >
               </div>
               <div>
                 <p class="block text-label text-ink-400 mb-2">{{ $t('ai.calendarSuggestion.pickSlot') }}</p>

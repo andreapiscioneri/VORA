@@ -1,4 +1,4 @@
-import { FlatList, RefreshControl, StyleSheet, Text, View } from 'react-native'
+import { ActivityIndicator, FlatList, RefreshControl, StyleSheet, Text, View } from 'react-native'
 import { useProjects } from '../hooks/useProjects'
 import { DetailScreen, StateMessage } from '../components/Screen'
 import { radius, spacing } from '../constants/theme'
@@ -11,7 +11,7 @@ export default function ProjectsScreen() {
   const { colors } = useTheme()
   const { t } = useI18n()
   const styles = makeStyles(colors)
-  const { projects, loading, error, reload } = useProjects()
+  const { projects, loading, loadingMore, error, hasMore, reload, loadMore } = useProjects()
 
   return (
     <DetailScreen title={t('modules.projects.title')} subtitle={t('modules.projects.count', { count: projects.length })}>
@@ -24,6 +24,9 @@ export default function ProjectsScreen() {
           contentContainerStyle={styles.list}
           refreshControl={<RefreshControl refreshing={loading} onRefresh={reload} tintColor={colors.primary} />}
           ListEmptyComponent={!loading ? <StateMessage text={t('modules.projects.empty')} /> : null}
+          onEndReached={hasMore ? loadMore : undefined}
+          onEndReachedThreshold={0.5}
+          ListFooterComponent={loadingMore ? <ActivityIndicator style={styles.footer} color={colors.primary} /> : null}
           renderItem={({ item }: { item: Project }) => (
             <View
               style={styles.row}
@@ -63,5 +66,6 @@ function makeStyles(colors: ThemeColors) {
     subtext: { color: colors.textSecondary, fontSize: 12, marginTop: spacing(1) },
     badge: { backgroundColor: colors.border, borderRadius: radius.full, paddingVertical: spacing(1), paddingHorizontal: spacing(3) },
     badgeText: { color: colors.textPrimary, fontSize: 11, fontWeight: '600' },
+    footer: { paddingVertical: spacing(4) },
   })
 }

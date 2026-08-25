@@ -6,6 +6,9 @@
     "paths": {
       "@vora/shared/*": [
         "../../packages/shared/*"
+      ],
+      "~/*": [
+        "../../packages/*"
       ]
     }
   },

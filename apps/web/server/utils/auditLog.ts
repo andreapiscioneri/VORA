@@ -1,5 +1,7 @@
 import type { AuditAction, AuditLogEntry } from '~/shared/types/auditLog'
 import { getDb } from './firebase'
+import { logger } from './logger'
+import { paginateQuery, type PageResult } from './pagination'
 
 const COLLECTION = 'auditLogs'
 
@@ -30,14 +32,11 @@ export async function logAction(
       .collection(COLLECTION)
       .add({ organizationId, userId, userName, action, entityType, entityId, createdAt: new Date().toISOString() })
   } catch (error) {
-    console.error('[audit] failed to record entry:', error)
+    logger.error('audit log entry failed', { organizationId, userId, action, entityType, entityId }, error)
   }
 }
 
-export async function listAuditLog(organizationId: string, limit = 100): Promise<AuditLogEntry[]> {
-  const snap = await getDb().collection(COLLECTION).where('organizationId', '==', organizationId).get()
-  return snap.docs
-    .map((doc) => toEntry(doc.id, doc.data()))
-    .sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1))
-    .slice(0, limit)
+export async function listAuditLog(organizationId: string, params?: { cursor?: string | null; pageSize?: number }): Promise<PageResult<AuditLogEntry>> {
+  const query = getDb().collection(COLLECTION).where('organizationId', '==', organizationId).orderBy('createdAt', 'desc')
+  return paginateQuery(query, COLLECTION, params, toEntry)
 }

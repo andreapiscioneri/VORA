@@ -1,6 +1,7 @@
 import type { NotificationCategory } from '~/shared/types/notification'
 import { getPreferences } from '~/server/utils/notificationPreferences'
 import { listTokensForUser } from '~/server/utils/pushTokens'
+import { logger } from '~/server/utils/logger'
 
 export interface PushNotification {
   title: string
@@ -46,6 +47,6 @@ export async function sendPushToUser(userId: string, category: NotificationCateg
   }).catch((error) => {
     // A push-delivery failure must never break the request that triggered
     // it (e.g. logging an inbound message) — log and move on.
-    console.error('[push] Expo send failed:', error)
+    logger.error('expo push send failed', { userId, category }, error)
   })
 }

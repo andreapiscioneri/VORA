@@ -36,7 +36,7 @@ const saving = ref(false)
 const saveError = ref('')
 
 async function onSubmit() {
-  Object.keys(errors).forEach((k) => delete errors[k])
+  Object.keys(errors).forEach((k) => { errors[k] = '' })
   saveError.value = ''
 
   const result = leaveRequestInputSchema.safeParse(form)
@@ -83,7 +83,7 @@ onMounted(() => dialogRef.value?.focus())
               <option :value="null" disabled>{{ $t('leave.form.selectEmployee') }}</option>
               <option v-for="emp in employees" :key="emp.id" :value="emp.id">{{ emp.firstName }} {{ emp.lastName }}</option>
             </select>
-            <input v-else id="leave-requesterName" v-model="form.requesterName" type="text" class="vora-input" :class="{ 'border-danger': errors.requesterName }" autofocus />
+            <input v-else id="leave-requesterName" v-model="form.requesterName" type="text" class="vora-input" :class="{ 'border-danger': errors.requesterName }" autofocus >
             <p v-if="errors.requesterName" class="text-caption text-danger mt-1">{{ errors.requesterName }}</p>
           </div>
 
@@ -91,16 +91,16 @@ onMounted(() => dialogRef.value?.focus())
             <div>
               <label for="leave-type" class="block text-label text-ink-400 mb-2">{{ $t('leave.form.type') }}</label>
               <select id="leave-type" v-model="form.type" class="vora-input">
-                <option v-for="t in ['vacation', 'sick', 'personal']" :key="t" :value="t">{{ $t(`leave.type.${t}`) }}</option>
+                <option v-for="leaveType in ['vacation', 'sick', 'personal']" :key="leaveType" :value="leaveType">{{ $t(`leave.type.${leaveType}`) }}</option>
               </select>
             </div>
             <div>
               <label for="leave-startDate" class="block text-label text-ink-400 mb-2">{{ $t('leave.form.startDate') }}</label>
-              <input id="leave-startDate" v-model="form.startDate" type="date" class="vora-input" />
+              <input id="leave-startDate" v-model="form.startDate" type="date" class="vora-input" >
             </div>
             <div>
               <label for="leave-endDate" class="block text-label text-ink-400 mb-2">{{ $t('leave.form.endDate') }}</label>
-              <input id="leave-endDate" v-model="form.endDate" type="date" class="vora-input" :class="{ 'border-danger': errors.endDate }" />
+              <input id="leave-endDate" v-model="form.endDate" type="date" class="vora-input" :class="{ 'border-danger': errors.endDate }" >
               <p v-if="errors.endDate" class="text-caption text-danger mt-1">{{ errors.endDate }}</p>
             </div>
           </div>

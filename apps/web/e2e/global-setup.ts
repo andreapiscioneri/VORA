@@ -1,5 +1,5 @@
 import { request } from '@playwright/test'
-import { mkdirSync, writeFileSync } from 'node:fs'
+import { mkdirSync } from 'node:fs'
 
 // Registers exactly ONE shared account for every spec file that doesn't
 // specifically need to exercise the register/login UI itself (auth.spec.ts

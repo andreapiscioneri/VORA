@@ -5,11 +5,16 @@ export function useEvents() {
   const pending = useState('events-pending', () => false)
   const error = useState<string | null>('events-error', () => null)
 
+  // Unpaginated on purpose: the month grid and recurring-event expansion
+  // (pages/calendar/index.vue) can't know which cursor page an arbitrary
+  // month falls on, so they need the complete event set. Events are
+  // naturally bounded per org (unlike contacts/tasks), unlike those modules
+  // this doesn't need cursor pagination — see server/api/events/all.get.ts.
   async function fetchEvents() {
     pending.value = true
     error.value = null
     try {
-      events.value = await $fetch<CalendarEvent[]>('/api/events')
+      events.value = await $fetch<CalendarEvent[]>('/api/events/all')
     } catch {
       error.value = 'calendar.errors.load'
     } finally {

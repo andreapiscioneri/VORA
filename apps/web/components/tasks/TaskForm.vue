@@ -76,7 +76,7 @@ async function onPrioritize() {
 }
 
 async function onSubmit() {
-  Object.keys(errors).forEach((k) => delete errors[k])
+  Object.keys(errors).forEach((k) => { errors[k] = '' })
   saveError.value = ''
 
   const result = taskInputSchema.safeParse(form)
@@ -132,7 +132,7 @@ onMounted(() => dialogRef.value?.focus())
 
           <div>
             <label for="task-title" class="block text-label text-ink-400 mb-2">{{ $t('tasks.form.title') }}</label>
-            <input id="task-title" v-model="form.title" type="text" class="vora-input" :class="{ 'border-danger': errors.title }" autofocus />
+            <input id="task-title" v-model="form.title" type="text" class="vora-input" :class="{ 'border-danger': errors.title }" autofocus >
             <p v-if="errors.title" class="text-caption text-danger mt-1">{{ errors.title }}</p>
           </div>
 
@@ -169,7 +169,7 @@ onMounted(() => dialogRef.value?.focus())
             </div>
             <div>
               <label for="task-deadline" class="block text-label text-ink-400 mb-2">{{ $t('tasks.form.deadline') }}</label>
-              <input id="task-deadline" v-model="form.deadline" type="date" class="vora-input" />
+              <input id="task-deadline" v-model="form.deadline" type="date" class="vora-input" >
             </div>
           </div>
 
@@ -202,7 +202,7 @@ onMounted(() => dialogRef.value?.focus())
                   type="text"
                   :placeholder="$t('tasks.attachments.titleLabel')"
                   class="vora-input"
-                />
+                >
               </div>
               <div class="flex-1 w-full">
                 <label for="task-attachment-url" class="sr-only">{{ $t('tasks.attachments.urlLabel') }}</label>
@@ -212,7 +212,7 @@ onMounted(() => dialogRef.value?.focus())
                   type="url"
                   :placeholder="$t('tasks.attachments.urlLabel')"
                   class="vora-input"
-                />
+                >
               </div>
               <button
                 type="button"

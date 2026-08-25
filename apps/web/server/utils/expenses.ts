@@ -1,6 +1,7 @@
 import type { Expense } from '~/shared/types/expense'
 import type { ExpenseInputSchema } from '~/shared/validation/expense'
 import { getDb } from './firebase'
+import { paginateQuery, type PageResult } from './pagination'
 
 const COLLECTION = 'expenses'
 
@@ -21,9 +22,9 @@ function toExpense(id: string, data: FirebaseFirestore.DocumentData): Expense {
   }
 }
 
-export async function listExpenses(organizationId: string): Promise<Expense[]> {
-  const snapshot = await getDb().collection(COLLECTION).where('organizationId', '==', organizationId).get()
-  return snapshot.docs.map((doc) => toExpense(doc.id, doc.data())).sort((a, b) => (a.createdAt < b.createdAt ? 1 : a.createdAt > b.createdAt ? -1 : 0))
+export async function listExpenses(organizationId: string, params?: { cursor?: string | null; pageSize?: number }): Promise<PageResult<Expense>> {
+  const query = getDb().collection(COLLECTION).where('organizationId', '==', organizationId).orderBy('createdAt', 'desc')
+  return paginateQuery(query, COLLECTION, params, toExpense)
 }
 
 export async function getExpense(id: string, organizationId: string): Promise<Expense | null> {

@@ -1,19 +1,39 @@
 import type { MarketingCampaign, MarketingCampaignInput } from '~/shared/types/campaign'
+import type { PageResult } from '~/server/utils/pagination'
 
 export function useCampaigns() {
   const campaigns = useState<MarketingCampaign[]>('campaigns', () => [])
   const pending = useState('campaigns-pending', () => false)
+  const loadingMore = useState('campaigns-loading-more', () => false)
   const error = useState<string | null>('campaigns-error', () => null)
+  const nextCursor = useState<string | null>('campaigns-cursor', () => null)
+  const hasMore = useState('campaigns-has-more', () => false)
 
   async function fetchCampaigns() {
     pending.value = true
     error.value = null
     try {
-      campaigns.value = await $fetch<MarketingCampaign[]>('/api/campaigns')
+      const page = await $fetch<PageResult<MarketingCampaign>>('/api/campaigns')
+      campaigns.value = page.items
+      nextCursor.value = page.nextCursor
+      hasMore.value = page.hasMore
     } catch {
       error.value = 'campaigns.errors.load'
     } finally {
       pending.value = false
+    }
+  }
+
+  async function loadMore() {
+    if (!hasMore.value || loadingMore.value) return
+    loadingMore.value = true
+    try {
+      const page = await $fetch<PageResult<MarketingCampaign>>('/api/campaigns', { query: { cursor: nextCursor.value } })
+      campaigns.value = [...campaigns.value, ...page.items]
+      nextCursor.value = page.nextCursor
+      hasMore.value = page.hasMore
+    } finally {
+      loadingMore.value = false
     }
   }
 
@@ -40,5 +60,5 @@ export function useCampaigns() {
     campaigns.value = campaigns.value.filter((c) => c.id !== id)
   }
 
-  return { campaigns, pending, error, fetchCampaigns, createCampaign, updateCampaign, sendCampaign, removeCampaign }
+  return { campaigns, pending, error, hasMore, loadingMore, fetchCampaigns, loadMore, createCampaign, updateCampaign, sendCampaign, removeCampaign }
 }

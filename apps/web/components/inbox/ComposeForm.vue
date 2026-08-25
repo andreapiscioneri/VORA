@@ -20,7 +20,22 @@ const form = reactive({
   to: '',
   subject: props.initialSubject ?? '',
   body: props.initialBody ?? '',
+  attachments: [] as { title: string; url: string }[],
 })
+
+const newAttachmentTitle = ref('')
+const newAttachmentUrl = ref('')
+
+function addAttachment() {
+  if (!newAttachmentTitle.value.trim() || !newAttachmentUrl.value.trim()) return
+  form.attachments.push({ title: newAttachmentTitle.value.trim(), url: newAttachmentUrl.value.trim() })
+  newAttachmentTitle.value = ''
+  newAttachmentUrl.value = ''
+}
+
+function removeAttachment(index: number) {
+  form.attachments.splice(index, 1)
+}
 
 if (form.contactId) {
   const c = contacts.value.find((c) => c.id === form.contactId)
@@ -41,7 +56,7 @@ const sending = ref(false)
 const sendError = ref('')
 
 async function onSubmit() {
-  Object.keys(errors).forEach((k) => delete errors[k])
+  Object.keys(errors).forEach((k) => { errors[k] = '' })
   sendError.value = ''
 
   if (!form.to.trim()) {
@@ -55,7 +70,15 @@ async function onSubmit() {
 
   sending.value = true
   try {
-    await sendMessage({ channel: form.channel, to: form.to, contactId: form.contactId, subject: form.subject, body: form.body, threadId: props.initialThreadId ?? null })
+    await sendMessage({
+      channel: form.channel,
+      to: form.to,
+      contactId: form.contactId,
+      subject: form.subject,
+      body: form.body,
+      threadId: props.initialThreadId ?? null,
+      attachments: form.channel === 'email' ? form.attachments : [],
+    })
     emit('sent')
   } catch {
     sendError.value = t('inbox.errors.send')
@@ -107,19 +130,41 @@ onMounted(() => dialogRef.value?.focus())
 
           <div>
             <label for="compose-to" class="block text-label text-ink-400 mb-2">{{ $t('inbox.form.to') }}</label>
-            <input id="compose-to" v-model="form.to" type="text" class="vora-input" :class="{ 'border-danger': errors.to }" />
+            <input id="compose-to" v-model="form.to" type="text" class="vora-input" :class="{ 'border-danger': errors.to }" >
             <p v-if="errors.to" class="text-caption text-danger mt-1">{{ errors.to }}</p>
           </div>
 
           <div v-if="form.channel === 'email'">
             <label for="compose-subject" class="block text-label text-ink-400 mb-2">{{ $t('inbox.form.subject') }}</label>
-            <input id="compose-subject" v-model="form.subject" type="text" class="vora-input" />
+            <input id="compose-subject" v-model="form.subject" type="text" class="vora-input" >
           </div>
 
           <div>
             <label for="compose-body" class="block text-label text-ink-400 mb-2">{{ $t('inbox.form.body') }}</label>
             <textarea id="compose-body" v-model="form.body" rows="4" class="vora-input resize-none" :class="{ 'border-danger': errors.body }" />
             <p v-if="errors.body" class="text-caption text-danger mt-1">{{ errors.body }}</p>
+          </div>
+
+          <div v-if="form.channel === 'email'">
+            <label class="block text-label text-ink-400 mb-2">{{ $t('inbox.form.attachments') }}</label>
+            <ul v-if="form.attachments.length" class="space-y-2 mb-2">
+              <li v-for="(a, i) in form.attachments" :key="`${a.url}-${i}`" class="flex items-center justify-between gap-3 rounded-md border border-ink-100 dark:border-white/10 p-2">
+                <span class="text-body-sm truncate">{{ a.title }}</span>
+                <button type="button" class="text-caption text-danger shrink-0" @click="removeAttachment(i)">{{ $t('inbox.form.removeAttachment') }}</button>
+              </li>
+            </ul>
+            <div class="flex flex-col tablet:flex-row items-start gap-2">
+              <input v-model="newAttachmentTitle" type="text" class="vora-input" :placeholder="$t('contacts.attachments.titleLabel')" >
+              <input v-model="newAttachmentUrl" type="url" class="vora-input" :placeholder="$t('contacts.attachments.urlLabel')" >
+              <button
+                type="button"
+                class="shrink-0 px-3 py-2 rounded-md text-body-sm border border-ink-100 dark:border-white/10 hover:bg-ink-50 dark:hover:bg-white/5 disabled:opacity-50"
+                :disabled="!newAttachmentTitle.trim() || !newAttachmentUrl.trim()"
+                @click="addAttachment"
+              >
+                {{ $t('contacts.attachments.add') }}
+              </button>
+            </div>
           </div>
 
           <p v-if="sendError" class="text-body-sm text-danger">{{ sendError }}</p>

@@ -1,6 +1,7 @@
 import type { Appointment } from '~/shared/types/appointment'
 import type { AppointmentInputSchema } from '~/shared/validation/appointment'
 import { getDb } from './firebase'
+import { paginateQuery, type PageResult } from './pagination'
 
 const COLLECTION = 'appointments'
 
@@ -21,7 +22,14 @@ function toAppointment(id: string, data: FirebaseFirestore.DocumentData): Appoin
   }
 }
 
-export async function listAppointments(organizationId: string): Promise<Appointment[]> {
+export async function listAppointments(organizationId: string, params?: { cursor?: string | null; pageSize?: number }): Promise<PageResult<Appointment>> {
+  const query = getDb().collection(COLLECTION).where('organizationId', '==', organizationId).orderBy('createdAt', 'desc')
+  return paginateQuery(query, COLLECTION, params, toAppointment)
+}
+
+/** Fetch-all variant for internal callers that rely on the full org list
+ * rather than a single page (e.g. global search, AI chat context). */
+export async function listAllAppointments(organizationId: string): Promise<Appointment[]> {
   const snapshot = await getDb().collection(COLLECTION).where('organizationId', '==', organizationId).get()
   return snapshot.docs.map((doc) => toAppointment(doc.id, doc.data())).sort((a, b) => (a.createdAt < b.createdAt ? 1 : a.createdAt > b.createdAt ? -1 : 0))
 }

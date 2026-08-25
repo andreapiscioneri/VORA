@@ -22,7 +22,7 @@ const saving = ref(false)
 const saveError = ref('')
 
 async function onSubmit() {
-  Object.keys(errors).forEach((k) => delete errors[k])
+  Object.keys(errors).forEach((k) => { errors[k] = '' })
   saveError.value = ''
 
   const result = socialPostInputSchema.safeParse(form)
@@ -97,7 +97,7 @@ onMounted(() => dialogRef.value?.focus())
             </div>
             <div>
               <label for="post-scheduledAt" class="block text-label text-ink-400 mb-2">{{ $t('social.form.scheduledAt') }}</label>
-              <input id="post-scheduledAt" v-model="form.scheduledAt" type="datetime-local" class="vora-input" />
+              <input id="post-scheduledAt" v-model="form.scheduledAt" type="datetime-local" class="vora-input" >
             </div>
           </div>
 

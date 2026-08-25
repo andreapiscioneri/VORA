@@ -1,8 +1,11 @@
 import { notificationPreferencesSchema } from '~/shared/validation/notification'
 import { setPreferences } from '~/server/utils/notificationPreferences'
+import { resolveSession } from '~/server/utils/auth'
 
 export default defineEventHandler(async (event) => {
-  const { user } = await requireUserSession(event)
+  const session = await resolveSession(event)
+  if (!session) throw createError({ statusCode: 401, statusMessage: 'Authentication required' })
+  const { user } = session
   const body = await readBody(event)
   const result = notificationPreferencesSchema.safeParse(body)
 

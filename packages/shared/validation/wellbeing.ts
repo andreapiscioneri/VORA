@@ -12,3 +12,9 @@ export const wellbeingCheckInInputSchema = z.object({
 })
 
 export type WellbeingCheckInInputSchema = z.infer<typeof wellbeingCheckInInputSchema>
+
+export const wellbeingChatMessageInputSchema = z.object({
+  content: z.string().trim().min(1, 'validation.required').max(4000),
+})
+
+export type WellbeingChatMessageInputSchema = z.infer<typeof wellbeingChatMessageInputSchema>
