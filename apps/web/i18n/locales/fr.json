@@ -1318,5 +1318,136 @@
     "notFoundTitle": "Page introuvable",
     "notFoundMessage": "La page que tu cherches n'existe pas ou a été déplacée.",
     "action": "Retour au tableau de bord"
+  },
+  "landing": {
+    "nav": {
+      "modules": "Modules",
+      "customers": "Clients",
+      "automation": "Automatisation",
+      "pricing": "Tarifs",
+      "liveDemo": "Démo en direct",
+      "contact": "Contact",
+      "connect": "Connexion",
+      "dashboard": "Tableau de bord"
+    },
+    "menuOpen": "Ouvrir le menu",
+    "menuClose": "Fermer le menu",
+    "eyebrowPrefix": "La porte d'entrée vers un ",
+    "eyebrowEmphasis": "travail augmenté",
+    "headline1": "Un système",
+    "headline2": "qui travaille",
+    "headline3": "avec vous",
+    "paragraph": "Un avenir où l'automatisation, les données et l'instinct humain s'alignent. Pas seulement un logiciel. Pas seulement des personnes. Quelque chose de parfaitement équilibré entre les deux.",
+    "cta": "Demander l'accès",
+    "stats": {
+      "modules": {
+        "value": "15+",
+        "label": "Modules intégrés"
+      },
+      "ai": {
+        "value": "24/7",
+        "label": "Assistant IA"
+      },
+      "data": {
+        "value": "100%",
+        "label": "Données unifiées"
+      }
+    },
+    "ctaLoggedIn": "Accéder au tableau de bord",
+    "modules": {
+      "eyebrow": "Modules",
+      "title": "Tout ce dont votre équipe a besoin, dans un seul système",
+      "subtitle": "Six modules connectés au lieu de six outils séparés.",
+      "items": {
+        "crm": { "title": "CRM & Contacts", "description": "Gérez prospects, clients et opportunités dans un seul pipeline." },
+        "calendar": { "title": "Agenda & Rendez-vous", "description": "Planifiez réunions et réservations sans chevauchement." },
+        "projects": { "title": "Projets & Tâches", "description": "Organisez le travail de l'équipe avec des échéances et des responsables clairs." },
+        "marketing": { "title": "Marketing & Automatisations", "description": "Campagnes, segments et workflows qui tournent tout seuls." },
+        "helpdesk": { "title": "Support & Base de connaissances", "description": "Répondez plus vite grâce à une base de connaissances partagée." },
+        "people": { "title": "Équipe & Congés", "description": "Congés, notes de frais et bien-être de l'équipe au même endroit." }
+      }
+    },
+    "customers": {
+      "eyebrow": "Pour qui",
+      "title": "Un système qui s'adapte à votre secteur",
+      "subtitle": "Aucune équipe ne travaille de la même façon — VORA ne les y oblige pas.",
+      "items": {
+        "agencies": { "title": "Agences & cabinets professionnels", "description": "Gestion des clients, projets au temps passé et facturation transparente." },
+        "smes": { "title": "PME de services", "description": "CRM, agenda et support réunis pour ne perdre aucun client." },
+        "sales": { "title": "Équipes marketing & vente", "description": "Campagnes et automatisations qui alimentent le pipeline." },
+        "hr": { "title": "RH & people ops", "description": "Congés, présence et bien-être sans tableurs." }
+      }
+    },
+    "automation": {
+      "eyebrow": "Automatisations",
+      "title": "Des workflows qui tournent même sans vous",
+      "subtitle": "De vraies règles déclencheur → condition → action, pas de simples rappels.",
+      "labels": { "trigger": "Déclencheur", "condition": "Condition", "action": "Action" },
+      "items": {
+        "contact": { "trigger": "Nouveau contact créé", "condition": "source = site web", "action": "Envoyer un email de bienvenue et assigner un commercial" },
+        "appointment": { "trigger": "Rendez-vous dans 24 heures", "condition": "pas encore confirmé", "action": "Envoyer un rappel automatique" },
+        "invoice": { "trigger": "Facture en retard de 7 jours", "condition": "toujours impayée", "action": "Créer une tâche de relance et prévenir l'équipe" }
+      }
+    },
+    "pricing": {
+      "eyebrow": "Tarifs",
+      "title": "Un plan à la taille de votre équipe",
+      "subtitle": "Pas de grille tarifaire standard : le coût dépend des modules et des personnes. Parlons-en.",
+      "mostRequested": "Le plus demandé",
+      "ctaEnterprise": "Contactez-nous",
+      "plans": {
+        "starter": {
+          "name": "Starter",
+          "description": "Pour les petites équipes qui démarrent",
+          "feature1": "CRM & Contacts",
+          "feature2": "Agenda & Rendez-vous",
+          "feature3": "Tâches",
+          "feature4": "Boîte de réception unifiée"
+        },
+        "business": {
+          "name": "Business",
+          "description": "Pour les équipes en croissance qui doivent aller plus vite",
+          "feature1": "Tout ce qui est dans Starter",
+          "feature2": "Marketing & Automatisations",
+          "feature3": "Support & Base de connaissances",
+          "feature4": "Projets & Feuilles de temps"
+        },
+        "enterprise": {
+          "name": "Enterprise",
+          "description": "Pour les organisations structurées aux besoins complexes",
+          "feature1": "Tout ce qui est dans Business",
+          "feature2": "RH & journaux d'audit",
+          "feature3": "Support dédié",
+          "feature4": "SLA personnalisés"
+        }
+      }
+    },
+    "demo": {
+      "eyebrow": "Démo en direct",
+      "title": "Voyez VORA en action",
+      "subtitle": "Un aperçu interactif du produit — aucune inscription requise.",
+      "ctaTry": "Essayer gratuitement",
+      "tabs": {
+        "crm": { "label": "CRM", "caption": "Chaque contact, opportunité et conversation dans un seul pipeline." },
+        "calendar": { "label": "Agenda", "caption": "Rendez-vous et disponibilités de l'équipe, toujours synchronisés." },
+        "automation": { "label": "Automatisations", "caption": "Des règles qui se déclenchent seules, pour vous éviter de le faire." },
+        "projects": { "label": "Projets", "caption": "Tâches, échéances et responsables en un coup d'œil." }
+      }
+    },
+    "contact": {
+      "eyebrow": "Contact",
+      "title": "Parlez-nous directement",
+      "subtitle": "Remplissez quelques champs — votre client email s'ouvrira avec tout prêt à envoyer.",
+      "mailSubject": "Nouveau message depuis le site VORA",
+      "form": {
+        "name": "Nom",
+        "namePlaceholder": "Votre nom",
+        "email": "Email",
+        "emailPlaceholder": "vous{'@'}entreprise.fr",
+        "message": "Message",
+        "messagePlaceholder": "Parlez-nous de votre équipe et de vos besoins",
+        "submit": "Ouvrir l'email"
+      }
+    }
   }
 }

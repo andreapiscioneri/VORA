@@ -476,5 +476,94 @@
   "validation": {
     "required": "Campo obligatorio",
     "email": "Correo electrónico no válido"
+  },
+  "welcome": {
+    "eyebrowPrefix": "Tu acceso a un ",
+    "eyebrowEmphasis": "trabajo aumentado",
+    "headline1": "Un sistema",
+    "headline2": "que trabaja",
+    "headline3": "contigo",
+    "paragraph": "Un futuro en el que la automatización, los datos y el instinto humano se alinean. No solo software. No solo personas. Algo en perfecto equilibrio entre ambos.",
+    "cta": "Solicitar acceso",
+    "modules": {
+      "eyebrow": "Módulos",
+      "title": "Todo lo que tu equipo necesita, en un solo sistema",
+      "subtitle": "Seis módulos conectados en lugar de seis herramientas sueltas.",
+      "items": {
+        "crm": { "title": "CRM & Contactos", "description": "Gestiona leads, clientes y oportunidades en un único pipeline." },
+        "calendar": { "title": "Calendario & Citas", "description": "Programa reuniones y reservas sin solapamientos." },
+        "projects": { "title": "Proyectos & Tareas", "description": "Organiza el trabajo del equipo con plazos y responsables claros." },
+        "marketing": { "title": "Marketing & Automatizaciones", "description": "Campañas, segmentos y flujos de trabajo que funcionan solos." },
+        "helpdesk": { "title": "Helpdesk & Base de conocimiento", "description": "Responde a los clientes más rápido con una base de conocimiento compartida." },
+        "people": { "title": "Personas & Ausencias", "description": "Vacaciones, gastos y bienestar del equipo en un solo lugar." }
+      }
+    },
+    "customers": {
+      "eyebrow": "Para quién es",
+      "title": "Un sistema que se adapta a tu sector",
+      "subtitle": "No todos los equipos trabajan igual — VORA no les obliga a hacerlo.",
+      "items": {
+        "agencies": { "title": "Agencias & estudios profesionales", "description": "Gestión de clientes, proyectos por horas y facturación transparente." },
+        "smes": { "title": "Pymes de servicios", "description": "CRM, calendario y helpdesk unidos para no perder a ningún cliente." },
+        "sales": { "title": "Equipos de marketing & ventas", "description": "Campañas y automatizaciones que mantienen el pipeline lleno." },
+        "hr": { "title": "RR. HH. & people ops", "description": "Vacaciones, asistencia y bienestar sin hojas de cálculo." }
+      }
+    },
+    "automation": {
+      "eyebrow": "Automatizaciones",
+      "title": "Flujos de trabajo que funcionan aunque tú no estés",
+      "subtitle": "Reglas reales de disparador → condición → acción, no simples recordatorios.",
+      "labels": { "trigger": "Disparador", "condition": "Condición", "action": "Acción" },
+      "items": {
+        "contact": { "trigger": "Nuevo contacto creado", "condition": "origen = sitio web", "action": "Enviar un email de bienvenida y asignar un comercial" },
+        "appointment": { "trigger": "Cita en 24 horas", "condition": "aún sin confirmar", "action": "Enviar un recordatorio automático" },
+        "invoice": { "trigger": "Factura vencida hace 7 días", "condition": "sigue impagada", "action": "Crear una tarea de seguimiento y avisar al equipo" }
+      }
+    },
+    "pricing": {
+      "eyebrow": "Precios",
+      "title": "Un plan a la medida de tu equipo",
+      "subtitle": "Sin tarifa estándar: el coste depende de los módulos y las personas. Hablemos.",
+      "mostRequested": "El más solicitado",
+      "ctaEnterprise": "Habla con nosotros",
+      "plans": {
+        "starter": {
+          "name": "Starter",
+          "description": "Para equipos pequeños que están empezando",
+          "feature1": "CRM & Contactos",
+          "feature2": "Calendario & Citas",
+          "feature3": "Tareas",
+          "feature4": "Bandeja de entrada unificada"
+        },
+        "business": {
+          "name": "Business",
+          "description": "Para equipos en crecimiento que necesitan avanzar más rápido",
+          "feature1": "Todo lo de Starter",
+          "feature2": "Marketing & Automatizaciones",
+          "feature3": "Helpdesk & Base de conocimiento",
+          "feature4": "Proyectos & Partes de horas"
+        },
+        "enterprise": {
+          "name": "Enterprise",
+          "description": "Para organizaciones estructuradas con necesidades complejas",
+          "feature1": "Todo lo de Business",
+          "feature2": "RR. HH. & registros de auditoría",
+          "feature3": "Soporte dedicado",
+          "feature4": "SLA personalizados"
+        }
+      }
+    },
+    "demo": {
+      "eyebrow": "Demo en vivo",
+      "title": "Mira VORA en acción",
+      "subtitle": "Una vista previa interactiva del producto — sin necesidad de registrarte.",
+      "ctaTry": "Pruébalo gratis",
+      "tabs": {
+        "crm": { "label": "CRM", "caption": "Cada contacto, negociación y conversación en un solo pipeline." },
+        "calendar": { "label": "Calendario", "caption": "Citas y disponibilidad del equipo, siempre sincronizadas." },
+        "automation": { "label": "Automatizaciones", "caption": "Reglas que se disparan solas, para que tú no tengas que hacerlo." },
+        "projects": { "label": "Proyectos", "caption": "Tareas, plazos y responsables de un vistazo." }
+      }
+    }
   }
 }

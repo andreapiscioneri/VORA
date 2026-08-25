@@ -11,6 +11,8 @@ import { registerForPushNotificationsAsync } from '../lib/pushNotifications'
 SplashScreen.preventAutoHideAsync()
 SplashScreen.setOptions({ duration: 400, fade: true })
 
+const PUBLIC_SEGMENTS = ['login', 'welcome']
+
 function RootStack() {
   const { scheme, colors } = useTheme()
   const { user, loading } = useAuth()
@@ -19,10 +21,10 @@ function RootStack() {
 
   useEffect(() => {
     if (loading) return
-    const onLoginScreen = segments[0] === 'login'
-    if (!user && !onLoginScreen) {
-      router.replace('/login')
-    } else if (user && onLoginScreen) {
+    const onPublicScreen = PUBLIC_SEGMENTS.includes(segments[0] ?? '')
+    if (!user && !onPublicScreen) {
+      router.replace('/welcome')
+    } else if (user && onPublicScreen) {
       router.replace('/')
     }
   }, [user, loading, segments])
@@ -36,6 +38,7 @@ function RootStack() {
       <StatusBar style={scheme === 'light' ? 'dark' : 'light'} />
       <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.background } }}>
         <Stack.Screen name="(tabs)" />
+        <Stack.Screen name="welcome" />
         <Stack.Screen name="login" />
       </Stack>
     </>

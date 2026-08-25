@@ -1,7 +1,15 @@
 <script setup lang="ts">
-await navigateTo('/dashboard')
+definePageMeta({ layout: 'public' })
 </script>
 
 <template>
-  <div />
+  <div>
+    <MarketingLandingHero />
+    <MarketingLandingModules />
+    <MarketingLandingCustomers />
+    <MarketingLandingAutomation />
+    <MarketingLandingPricing />
+    <MarketingLandingDemo />
+    <MarketingLandingContact />
+  </div>
 </template>

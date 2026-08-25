@@ -1318,5 +1318,136 @@
     "notFoundTitle": "Pagina non trovata",
     "notFoundMessage": "La pagina che cerchi non esiste o è stata spostata.",
     "action": "Torna alla dashboard"
+  },
+  "landing": {
+    "nav": {
+      "modules": "Moduli",
+      "customers": "Clienti",
+      "automation": "Automazioni",
+      "pricing": "Prezzi",
+      "liveDemo": "Live Demo",
+      "contact": "Contattaci",
+      "connect": "Accedi",
+      "dashboard": "Dashboard"
+    },
+    "menuOpen": "Apri il menu",
+    "menuClose": "Chiudi il menu",
+    "eyebrowPrefix": "Il portale verso il tuo ",
+    "eyebrowEmphasis": "lavoro aumentato",
+    "headline1": "Un sistema",
+    "headline2": "che lavora",
+    "headline3": "con te",
+    "paragraph": "Un futuro in cui automazione, dati e intuizione umana si allineano. Non solo software. Non solo persone. Qualcosa di perfettamente in equilibrio tra i due.",
+    "cta": "Richiedi accesso",
+    "stats": {
+      "modules": {
+        "value": "15+",
+        "label": "Moduli integrati"
+      },
+      "ai": {
+        "value": "24/7",
+        "label": "Assistente AI"
+      },
+      "data": {
+        "value": "100%",
+        "label": "Dati unificati"
+      }
+    },
+    "ctaLoggedIn": "Vai alla dashboard",
+    "modules": {
+      "eyebrow": "Moduli",
+      "title": "Tutto ciò che serve al tuo team, in un solo sistema",
+      "subtitle": "Sei moduli connessi, invece di sei strumenti scollegati.",
+      "items": {
+        "crm": { "title": "CRM & Contatti", "description": "Gestisci lead, clienti e opportunità in un'unica pipeline." },
+        "calendar": { "title": "Calendario & Appuntamenti", "description": "Pianifica riunioni e prenotazioni senza sovrapposizioni." },
+        "projects": { "title": "Progetti & Task", "description": "Organizza il lavoro del team con scadenze e responsabili chiari." },
+        "marketing": { "title": "Marketing & Automazioni", "description": "Campagne, segmenti e workflow che lavorano da soli." },
+        "helpdesk": { "title": "Helpdesk & Knowledge Base", "description": "Rispondi ai clienti più velocemente con una base di conoscenza condivisa." },
+        "people": { "title": "Persone & Ferie", "description": "Ferie, note spese e benessere del team in un unico posto." }
+      }
+    },
+    "customers": {
+      "eyebrow": "Per chi è pensato",
+      "title": "Un sistema che si adatta al tuo settore",
+      "subtitle": "Non tutti i team lavorano allo stesso modo — VORA non li obbliga a farlo.",
+      "items": {
+        "agencies": { "title": "Agenzie & studi professionali", "description": "Gestione clienti, progetti a tempo e fatturazione trasparente." },
+        "smes": { "title": "PMI di servizi", "description": "CRM, calendario e helpdesk uniti, così nessun cliente resta indietro." },
+        "sales": { "title": "Team marketing & vendite", "description": "Campagne e automazioni che alimentano costantemente la pipeline." },
+        "hr": { "title": "HR & people ops", "description": "Ferie, presenze e benessere senza fogli di calcolo." }
+      }
+    },
+    "automation": {
+      "eyebrow": "Automazioni",
+      "title": "Workflow che lavorano anche quando tu non ci sei",
+      "subtitle": "Regole vere di trigger → condizione → azione, non semplici promemoria.",
+      "labels": { "trigger": "Trigger", "condition": "Condizione", "action": "Azione" },
+      "items": {
+        "contact": { "trigger": "Nuovo contatto creato", "condition": "fonte = sito web", "action": "Invia un'email di benvenuto e assegna un commerciale" },
+        "appointment": { "trigger": "Appuntamento tra 24 ore", "condition": "non ancora confermato", "action": "Invia un promemoria automatico" },
+        "invoice": { "trigger": "Fattura scaduta da 7 giorni", "condition": "ancora non pagata", "action": "Crea un task di sollecito e avvisa il team" }
+      }
+    },
+    "pricing": {
+      "eyebrow": "Prezzi",
+      "title": "Un piano su misura per il tuo team",
+      "subtitle": "Nessun listino standard: il costo dipende dai moduli e dalle persone. Parliamone.",
+      "mostRequested": "Il più richiesto",
+      "ctaEnterprise": "Parla con noi",
+      "plans": {
+        "starter": {
+          "name": "Starter",
+          "description": "Per piccoli team che iniziano ora",
+          "feature1": "CRM & Contatti",
+          "feature2": "Calendario & Appuntamenti",
+          "feature3": "Task",
+          "feature4": "Inbox unificata"
+        },
+        "business": {
+          "name": "Business",
+          "description": "Per team in crescita che devono muoversi più in fretta",
+          "feature1": "Tutto quanto in Starter",
+          "feature2": "Marketing & Automazioni",
+          "feature3": "Helpdesk & Knowledge Base",
+          "feature4": "Progetti & Timesheet"
+        },
+        "enterprise": {
+          "name": "Enterprise",
+          "description": "Per organizzazioni strutturate con esigenze complesse",
+          "feature1": "Tutto quanto in Business",
+          "feature2": "HR & audit log",
+          "feature3": "Supporto dedicato",
+          "feature4": "SLA personalizzati"
+        }
+      }
+    },
+    "demo": {
+      "eyebrow": "Live Demo",
+      "title": "Guarda VORA in azione",
+      "subtitle": "Un'anteprima interattiva del prodotto — nessuna registrazione richiesta.",
+      "ctaTry": "Provalo gratis",
+      "tabs": {
+        "crm": { "label": "CRM", "caption": "Ogni contatto, trattativa e conversazione in un'unica pipeline." },
+        "calendar": { "label": "Calendario", "caption": "Appuntamenti e disponibilità del team, sempre sincronizzati." },
+        "automation": { "label": "Automazioni", "caption": "Regole che si attivano da sole, così non devi farlo tu." },
+        "projects": { "label": "Progetti", "caption": "Task, scadenze e responsabili in un colpo d'occhio." }
+      }
+    },
+    "contact": {
+      "eyebrow": "Contatti",
+      "title": "Parla direttamente con noi",
+      "subtitle": "Compila pochi campi — si aprirà il tuo client email con tutto già pronto da inviare.",
+      "mailSubject": "Nuovo messaggio dal sito VORA",
+      "form": {
+        "name": "Nome",
+        "namePlaceholder": "Il tuo nome",
+        "email": "Email",
+        "emailPlaceholder": "tu{'@'}azienda.it",
+        "message": "Messaggio",
+        "messagePlaceholder": "Raccontaci del tuo team e di cosa hai bisogno",
+        "submit": "Apri email"
+      }
+    }
   }
 }

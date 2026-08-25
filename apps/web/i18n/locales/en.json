@@ -1318,5 +1318,136 @@
     "notFoundTitle": "Page not found",
     "notFoundMessage": "The page you're looking for doesn't exist or has been moved.",
     "action": "Back to dashboard"
+  },
+  "landing": {
+    "nav": {
+      "modules": "Modules",
+      "customers": "Customers",
+      "automation": "Automation",
+      "pricing": "Pricing",
+      "liveDemo": "Live Demo",
+      "contact": "Contact",
+      "connect": "Sign In",
+      "dashboard": "Dashboard"
+    },
+    "menuOpen": "Open menu",
+    "menuClose": "Close menu",
+    "eyebrowPrefix": "Your gateway to ",
+    "eyebrowEmphasis": "augmented work",
+    "headline1": "A system",
+    "headline2": "that works",
+    "headline3": "with you",
+    "paragraph": "A future where automation, data, and human instinct align. Not just software. Not just people. Something perfectly balanced between the two.",
+    "cta": "Request Access",
+    "stats": {
+      "modules": {
+        "value": "15+",
+        "label": "Integrated Modules"
+      },
+      "ai": {
+        "value": "24/7",
+        "label": "AI Assistant"
+      },
+      "data": {
+        "value": "100%",
+        "label": "Unified Data"
+      }
+    },
+    "ctaLoggedIn": "Go to Dashboard",
+    "modules": {
+      "eyebrow": "Modules",
+      "title": "Everything your team needs, in one system",
+      "subtitle": "Six connected modules instead of six disconnected tools.",
+      "items": {
+        "crm": { "title": "CRM & Contacts", "description": "Manage leads, customers, and opportunities in a single pipeline." },
+        "calendar": { "title": "Calendar & Appointments", "description": "Schedule meetings and bookings without anyone double-booking." },
+        "projects": { "title": "Projects & Tasks", "description": "Organize your team's work with clear deadlines and owners." },
+        "marketing": { "title": "Marketing & Automations", "description": "Campaigns, segments, and workflows that run themselves." },
+        "helpdesk": { "title": "Helpdesk & Knowledge Base", "description": "Answer customers faster with a shared knowledge base." },
+        "people": { "title": "People & Time Off", "description": "Leave, expenses, and team wellbeing in one place." }
+      }
+    },
+    "customers": {
+      "eyebrow": "Who it's for",
+      "title": "A system that adapts to your industry",
+      "subtitle": "No two teams work the same way — VORA doesn't force them to.",
+      "items": {
+        "agencies": { "title": "Agencies & professional studios", "description": "Client management, timed projects, and transparent billing." },
+        "smes": { "title": "Service-based SMEs", "description": "CRM, calendar, and helpdesk together, so no client slips through." },
+        "sales": { "title": "Marketing & sales teams", "description": "Campaigns and automations that keep the pipeline full." },
+        "hr": { "title": "HR & people ops", "description": "Leave, attendance, and wellbeing without spreadsheets." }
+      }
+    },
+    "automation": {
+      "eyebrow": "Automations",
+      "title": "Workflows that work while you don't",
+      "subtitle": "Real trigger → condition → action rules, not just reminders.",
+      "labels": { "trigger": "Trigger", "condition": "Condition", "action": "Action" },
+      "items": {
+        "contact": { "trigger": "New contact created", "condition": "source = website", "action": "Send a welcome email and assign a rep" },
+        "appointment": { "trigger": "Appointment in 24 hours", "condition": "not confirmed yet", "action": "Send an automatic reminder" },
+        "invoice": { "trigger": "Invoice overdue by 7 days", "condition": "still unpaid", "action": "Create a follow-up task and notify the team" }
+      }
+    },
+    "pricing": {
+      "eyebrow": "Pricing",
+      "title": "A plan sized to your team",
+      "subtitle": "No off-the-shelf price list — cost depends on modules and people. Let's talk.",
+      "mostRequested": "Most requested",
+      "ctaEnterprise": "Talk to us",
+      "plans": {
+        "starter": {
+          "name": "Starter",
+          "description": "For small teams just getting started",
+          "feature1": "CRM & Contacts",
+          "feature2": "Calendar & Appointments",
+          "feature3": "Tasks",
+          "feature4": "Unified Inbox"
+        },
+        "business": {
+          "name": "Business",
+          "description": "For growing teams that need to move faster",
+          "feature1": "Everything in Starter",
+          "feature2": "Marketing & Automations",
+          "feature3": "Helpdesk & Knowledge Base",
+          "feature4": "Projects & Timesheets"
+        },
+        "enterprise": {
+          "name": "Enterprise",
+          "description": "For structured organizations with complex needs",
+          "feature1": "Everything in Business",
+          "feature2": "HR & audit logs",
+          "feature3": "Dedicated support",
+          "feature4": "Custom SLAs"
+        }
+      }
+    },
+    "demo": {
+      "eyebrow": "Live Demo",
+      "title": "See VORA in action",
+      "subtitle": "An interactive preview of the product — no sign-up required.",
+      "ctaTry": "Try it free",
+      "tabs": {
+        "crm": { "label": "CRM", "caption": "Every contact, deal, and conversation in one pipeline." },
+        "calendar": { "label": "Calendar", "caption": "Appointments and team availability, always in sync." },
+        "automation": { "label": "Automations", "caption": "Rules that trigger themselves, so you don't have to." },
+        "projects": { "label": "Projects", "caption": "Tasks, deadlines, and owners at a glance." }
+      }
+    },
+    "contact": {
+      "eyebrow": "Contact",
+      "title": "Talk to us directly",
+      "subtitle": "Fill in a few details — it opens your email client with everything ready to send.",
+      "mailSubject": "New message from the VORA site",
+      "form": {
+        "name": "Name",
+        "namePlaceholder": "Your name",
+        "email": "Email",
+        "emailPlaceholder": "you{'@'}company.com",
+        "message": "Message",
+        "messagePlaceholder": "Tell us about your team and what you need",
+        "submit": "Open email"
+      }
+    }
   }
 }

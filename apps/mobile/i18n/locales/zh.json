@@ -476,5 +476,94 @@
   "validation": {
     "required": "必填项",
     "email": "邮箱地址无效"
+  },
+  "welcome": {
+    "eyebrowPrefix": "开启你的",
+    "eyebrowEmphasis": "智能增强工作",
+    "headline1": "一个系统",
+    "headline2": "与你",
+    "headline3": "同频工作",
+    "paragraph": "在这里，自动化、数据与人的直觉彼此契合。不只是软件，也不只是人力，而是介于两者之间近乎完美的平衡。",
+    "cta": "申请访问",
+    "modules": {
+      "eyebrow": "功能模块",
+      "title": "团队所需的一切，尽在一个系统",
+      "subtitle": "六个互联模块，取代六个互不相通的工具。",
+      "items": {
+        "crm": { "title": "CRM 与联系人", "description": "在同一条流水线中管理销售线索、客户和商机。" },
+        "calendar": { "title": "日历与预约", "description": "安排会议与预约，不再撞期。" },
+        "projects": { "title": "项目与任务", "description": "以清晰的截止日期和责任人组织团队工作。" },
+        "marketing": { "title": "营销与自动化", "description": "自动运行的营销活动、客户分群与工作流。" },
+        "helpdesk": { "title": "工单与知识库", "description": "借助共享知识库更快回应客户。" },
+        "people": { "title": "人事与休假", "description": "休假、报销与团队健康状况集中管理。" }
+      }
+    },
+    "customers": {
+      "eyebrow": "适用对象",
+      "title": "随行业需求而变的系统",
+      "subtitle": "每个团队的工作方式都不同——VORA 不会强求一致。",
+      "items": {
+        "agencies": { "title": "代理机构与专业事务所", "description": "客户管理、计时项目与透明计费。" },
+        "smes": { "title": "服务型中小企业", "description": "CRM、日历与工单一体化，客户不再流失。" },
+        "sales": { "title": "市场与销售团队", "description": "持续为销售管道注入线索的营销活动与自动化。" },
+        "hr": { "title": "人力资源与员工运营", "description": "无需表格即可管理休假、考勤与员工健康。" }
+      }
+    },
+    "automation": {
+      "eyebrow": "自动化",
+      "title": "即使你不在，工作流也在运转",
+      "subtitle": "真正的触发 → 条件 → 动作规则，而不只是提醒。",
+      "labels": { "trigger": "触发条件", "condition": "判断条件", "action": "执行动作" },
+      "items": {
+        "contact": { "trigger": "创建新联系人", "condition": "来源 = 官网", "action": "发送欢迎邮件并分配销售负责人" },
+        "appointment": { "trigger": "24 小时后有预约", "condition": "尚未确认", "action": "自动发送提醒" },
+        "invoice": { "trigger": "发票逾期 7 天", "condition": "仍未付款", "action": "创建催款任务并通知团队" }
+      }
+    },
+    "pricing": {
+      "eyebrow": "价格",
+      "title": "按团队规模量身定制的方案",
+      "subtitle": "没有统一报价单——费用取决于模块与人数。让我们聊聊。",
+      "mostRequested": "最受欢迎",
+      "ctaEnterprise": "联系我们",
+      "plans": {
+        "starter": {
+          "name": "Starter",
+          "description": "适合刚起步的小团队",
+          "feature1": "CRM 与联系人",
+          "feature2": "日历与预约",
+          "feature3": "任务",
+          "feature4": "统一收件箱"
+        },
+        "business": {
+          "name": "Business",
+          "description": "适合需要提速的成长型团队",
+          "feature1": "包含 Starter 全部功能",
+          "feature2": "营销与自动化",
+          "feature3": "工单与知识库",
+          "feature4": "项目与工时表"
+        },
+        "enterprise": {
+          "name": "Enterprise",
+          "description": "适合需求复杂的大型组织",
+          "feature1": "包含 Business 全部功能",
+          "feature2": "人力资源与审计日志",
+          "feature3": "专属支持",
+          "feature4": "定制化 SLA"
+        }
+      }
+    },
+    "demo": {
+      "eyebrow": "实时演示",
+      "title": "看看 VORA 如何运作",
+      "subtitle": "无需注册即可体验的交互式产品预览。",
+      "ctaTry": "免费试用",
+      "tabs": {
+        "crm": { "label": "CRM", "caption": "每个联系人、商机与对话都在同一条流水线上。" },
+        "calendar": { "label": "日历", "caption": "预约与团队空闲时间，始终保持同步。" },
+        "automation": { "label": "自动化", "caption": "规则自动触发，无需你亲自动手。" },
+        "projects": { "label": "项目", "caption": "任务、截止日期与负责人一目了然。" }
+      }
+    }
   }
 }

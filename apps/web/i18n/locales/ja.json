@@ -1318,5 +1318,136 @@
     "notFoundTitle": "ページが見つかりません",
     "notFoundMessage": "お探しのページは存在しないか、移動された可能性があります。",
     "action": "ダッシュボードに戻る"
+  },
+  "landing": {
+    "nav": {
+      "modules": "モジュール",
+      "customers": "顧客",
+      "automation": "自動化",
+      "pricing": "料金",
+      "liveDemo": "ライブデモ",
+      "contact": "お問い合わせ",
+      "connect": "ログイン",
+      "dashboard": "ダッシュボード"
+    },
+    "menuOpen": "メニューを開く",
+    "menuClose": "メニューを閉じる",
+    "eyebrowPrefix": "その先にあるのは、",
+    "eyebrowEmphasis": "拡張された働き方",
+    "headline1": "あなたと",
+    "headline2": "共に働く",
+    "headline3": "システム",
+    "paragraph": "自動化とデータ、そして人の直感が調和する未来。ソフトウェアだけでも、人だけでもない。その間に美しく釣り合う何か。",
+    "cta": "アクセスを申請",
+    "stats": {
+      "modules": {
+        "value": "15+",
+        "label": "統合モジュール"
+      },
+      "ai": {
+        "value": "24/7",
+        "label": "AIアシスタント"
+      },
+      "data": {
+        "value": "100%",
+        "label": "統合データ"
+      }
+    },
+    "ctaLoggedIn": "ダッシュボードへ",
+    "modules": {
+      "eyebrow": "モジュール",
+      "title": "チームに必要なすべてを、ひとつのシステムに",
+      "subtitle": "バラバラな6つのツールではなく、連携した6つのモジュール。",
+      "items": {
+        "crm": { "title": "CRM・連絡先", "description": "リード、顧客、商談をひとつのパイプラインで管理。" },
+        "calendar": { "title": "カレンダー・予約", "description": "予定の重複なく、会議や予約をスケジュール。" },
+        "projects": { "title": "プロジェクト・タスク", "description": "明確な期限と担当者でチームの仕事を整理。" },
+        "marketing": { "title": "マーケティング・自動化", "description": "自動で動くキャンペーン、セグメント、ワークフロー。" },
+        "helpdesk": { "title": "ヘルプデスク・ナレッジベース", "description": "共有ナレッジベースで顧客対応をスピードアップ。" },
+        "people": { "title": "人事・休暇管理", "description": "休暇、経費、チームのウェルビーイングをひとつに。" }
+      }
+    },
+    "customers": {
+      "eyebrow": "こんな方に",
+      "title": "業種に合わせて形を変えるシステム",
+      "subtitle": "チームの働き方はそれぞれ違う——VORAはそれを強制しません。",
+      "items": {
+        "agencies": { "title": "代理店・専門事務所", "description": "顧客管理、時間単位のプロジェクト、透明性のある請求。" },
+        "smes": { "title": "サービス業の中小企業", "description": "CRM・カレンダー・ヘルプデスクを統合し、顧客を取りこぼさない。" },
+        "sales": { "title": "マーケティング・営業チーム", "description": "パイプラインを満たし続けるキャンペーンと自動化。" },
+        "hr": { "title": "人事・ピープルオプス", "description": "表計算ソフトを使わない休暇・勤怠・ウェルビーイング管理。" }
+      }
+    },
+    "automation": {
+      "eyebrow": "自動化",
+      "title": "あなたがいなくても動くワークフロー",
+      "subtitle": "単なるリマインダーではない、本物のトリガー→条件→アクションのルール。",
+      "labels": { "trigger": "トリガー", "condition": "条件", "action": "アクション" },
+      "items": {
+        "contact": { "trigger": "新しい連絡先を作成", "condition": "流入元 = ウェブサイト", "action": "ウェルカムメールを送信し、担当者を割り当て" },
+        "appointment": { "trigger": "予約まで24時間", "condition": "未確認のまま", "action": "自動でリマインダーを送信" },
+        "invoice": { "trigger": "請求書が7日間延滞", "condition": "未払いのまま", "action": "督促タスクを作成しチームに通知" }
+      }
+    },
+    "pricing": {
+      "eyebrow": "料金",
+      "title": "チームに合わせたプラン",
+      "subtitle": "既製の料金表はありません。費用はモジュールと人数によって決まります。ご相談ください。",
+      "mostRequested": "最も選ばれています",
+      "ctaEnterprise": "お問い合わせ",
+      "plans": {
+        "starter": {
+          "name": "Starter",
+          "description": "これから始める小規模チーム向け",
+          "feature1": "CRM・連絡先",
+          "feature2": "カレンダー・予約",
+          "feature3": "タスク",
+          "feature4": "統合受信箱"
+        },
+        "business": {
+          "name": "Business",
+          "description": "よりスピードが必要な成長中のチーム向け",
+          "feature1": "Starterのすべて",
+          "feature2": "マーケティング・自動化",
+          "feature3": "ヘルプデスク・ナレッジベース",
+          "feature4": "プロジェクト・工数管理"
+        },
+        "enterprise": {
+          "name": "Enterprise",
+          "description": "複雑なニーズを持つ組織向け",
+          "feature1": "Businessのすべて",
+          "feature2": "人事・監査ログ",
+          "feature3": "専任サポート",
+          "feature4": "カスタムSLA"
+        }
+      }
+    },
+    "demo": {
+      "eyebrow": "ライブデモ",
+      "title": "VORAの動きを見る",
+      "subtitle": "登録不要のインタラクティブなプロダクトプレビュー。",
+      "ctaTry": "無料で試す",
+      "tabs": {
+        "crm": { "label": "CRM", "caption": "すべての連絡先、商談、会話をひとつのパイプラインに。" },
+        "calendar": { "label": "カレンダー", "caption": "予約とチームの空き状況を常に同期。" },
+        "automation": { "label": "自動化", "caption": "自分で動くルールだから、あなたが動く必要はない。" },
+        "projects": { "label": "プロジェクト", "caption": "タスク、期限、担当者をひと目で確認。" }
+      }
+    },
+    "contact": {
+      "eyebrow": "お問い合わせ",
+      "title": "直接お話ししましょう",
+      "subtitle": "いくつかの項目を入力すると、送信準備が整った状態でメールソフトが開きます。",
+      "mailSubject": "VORAサイトからの新しいメッセージ",
+      "form": {
+        "name": "お名前",
+        "namePlaceholder": "お名前を入力",
+        "email": "メールアドレス",
+        "emailPlaceholder": "you{'@'}company.com",
+        "message": "メッセージ",
+        "messagePlaceholder": "チームについてと、必要なことを教えてください",
+        "submit": "メールを開く"
+      }
+    }
   }
 }
