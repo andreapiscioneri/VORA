@@ -5,7 +5,18 @@ import { hasValidOrigin, MUTATING_METHODS } from '~/server/utils/csrf'
 // /api/whatsapp/webhook is called by Meta, not a logged-in user — it has
 // no session cookie to check, and authenticates the request itself (verify
 // token on GET, HMAC signature on POST; see server/api/whatsapp/webhook.*).
-const PUBLIC_PREFIXES = ['/api/auth/', '/api/microsites/public/', '/api/_auth/', '/api/whatsapp/webhook']
+// /api/admin/bootstrap-superadmin is likewise deliberately reachable with
+// no session: it exists precisely to mint the *first* superadmin, before
+// any session that could satisfy this gate exists — it authenticates
+// itself instead, via a shared secret plus a hard idempotency check (see
+// that route for the full reasoning).
+const PUBLIC_PREFIXES = [
+  '/api/auth/',
+  '/api/microsites/public/',
+  '/api/_auth/',
+  '/api/whatsapp/webhook',
+  '/api/admin/bootstrap-superadmin',
+]
 
 export default defineEventHandler(async (event) => {
   const path = event.path || event.node.req.url || ''
