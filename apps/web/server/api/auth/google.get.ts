@@ -1,6 +1,7 @@
-import { findOrCreateOAuthUser } from '~/server/utils/auth'
+import { findOrCreateOAuthUser, isApproved } from '~/server/utils/auth'
 import { logAction } from '~/server/utils/auditLog'
 import { logger } from '~/server/utils/logger'
+import { notifyRegistrationPending } from '~/server/utils/registrationNotify'
 
 // Real, working OAuth code — not a stub. It genuinely does nothing until
 // NUXT_OAUTH_GOOGLE_CLIENT_ID/SECRET are set (see .env.example): the
@@ -20,8 +21,19 @@ export default defineOAuthGoogleEventHandler({
       return sendRedirect(event, '/login?error=oauth_failed')
     }
     const name = (googleUser.name as string) || email.split('@')[0]
+    const meta = {
+      ip: getRequestIP(event, { xForwardedFor: true }) ?? 'unknown',
+      userAgent: getRequestHeader(event, 'user-agent') ?? 'unknown',
+      platform: 'web' as const,
+    }
 
-    const { user, membership } = await findOrCreateOAuthUser(email, name)
+    const { user, membership, isNew } = await findOrCreateOAuthUser(email, name, meta)
+
+    if (isNew) await notifyRegistrationPending(user, membership.organizationName, meta)
+
+    if (!isApproved(user)) {
+      return sendRedirect(event, '/login?error=pending_approval')
+    }
 
     await setUserSession(event, {
       user: {
@@ -32,6 +44,7 @@ export default defineOAuthGoogleEventHandler({
         organizationId: membership.organizationId,
         organizationName: membership.organizationName,
         role: membership.role,
+        platformRole: user.platformRole,
       },
     })
 

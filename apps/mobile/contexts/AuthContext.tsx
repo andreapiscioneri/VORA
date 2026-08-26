@@ -18,7 +18,9 @@ interface AuthContextValue {
   loading: boolean
   login: (email: string, password: string) => Promise<void>
   loginWithGoogle: () => Promise<void>
-  register: (name: string, email: string, password: string, organizationName: string) => Promise<void>
+  // Resolves { pending: true } instead of signing in when the new account
+  // is awaiting superadmin approval — see server/api/auth/mobile/register.post.ts.
+  register: (name: string, email: string, password: string, organizationName: string) => Promise<{ pending: boolean }>
   logout: () => Promise<void>
 }
 
@@ -69,7 +71,7 @@ export function AuthProvider({ children }: PropsWithChildren) {
     const error = url.searchParams.get('error')
     const code = url.searchParams.get('code')
     if (error || !code) {
-      throw new ApiError(401, 'auth.oauthFailed')
+      throw new ApiError(401, error ?? 'auth.oauthFailed', error === 'pending_approval' ? { reason: 'pending_approval' } : undefined)
     }
 
     const exchanged = await api.post<TokenAuthResponse>('/auth/mobile/google-exchange', { code })
@@ -78,9 +80,16 @@ export function AuthProvider({ children }: PropsWithChildren) {
   }
 
   const register = async (name: string, email: string, password: string, organizationName: string) => {
-    const result = await api.post<TokenAuthResponse>('/auth/mobile/register', { name, email, password, organizationName })
+    const result = await api.post<TokenAuthResponse & { pending?: boolean }>('/auth/mobile/register', {
+      name,
+      email,
+      password,
+      organizationName,
+    })
+    if (result.pending) return { pending: true }
     await setTokens(result)
     setUser(result.user)
+    return { pending: false }
   }
 
   const logout = async () => {

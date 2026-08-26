@@ -25,7 +25,10 @@
     "logout": "Esci",
     "or": "oppure",
     "continueWithGoogle": "Continua con Google",
-    "oauthFailed": "Accesso con Google non riuscito. Riprova o usa email e password."
+    "oauthFailed": "Accesso con Google non riuscito. Riprova o usa email e password.",
+    "pendingApprovalTitle": "Registrazione ricevuta",
+    "pendingApprovalMessage": "Il tuo account è in attesa di approvazione. Potrai accedere non appena verrà approvato.",
+    "pendingApproval": "Questo account è in attesa di approvazione."
   },
   "tabs": {
     "home": "Home",

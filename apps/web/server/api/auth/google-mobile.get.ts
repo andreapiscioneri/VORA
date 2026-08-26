@@ -1,7 +1,8 @@
-import { findOrCreateOAuthUser } from '~/server/utils/auth'
+import { findOrCreateOAuthUser, isApproved } from '~/server/utils/auth'
 import { createAuthToken } from '~/server/utils/authTokens'
 import { logAction } from '~/server/utils/auditLog'
 import { logger } from '~/server/utils/logger'
+import { notifyRegistrationPending } from '~/server/utils/registrationNotify'
 
 const EXCHANGE_CODE_TTL_MS = 5 * 60 * 1000
 const MOBILE_REDIRECT_SCHEME = 'vora://oauth-callback'
@@ -37,8 +38,20 @@ export default defineOAuthGoogleEventHandler({
       return sendRedirect(event, `${MOBILE_REDIRECT_SCHEME}?error=oauth_failed`)
     }
     const name = (googleUser.name as string) || email.split('@')[0]
+    const meta = {
+      ip: getRequestIP(event, { xForwardedFor: true }) ?? 'unknown',
+      userAgent: getRequestHeader(event, 'user-agent') ?? 'unknown',
+      platform: 'mobile' as const,
+    }
 
-    const { user, membership } = await findOrCreateOAuthUser(email, name)
+    const { user, membership, isNew } = await findOrCreateOAuthUser(email, name, meta)
+
+    if (isNew) await notifyRegistrationPending(user, membership.organizationName, meta)
+
+    if (!isApproved(user)) {
+      return sendRedirect(event, `${MOBILE_REDIRECT_SCHEME}?error=pending_approval`)
+    }
+
     const code = await createAuthToken(user.id, 'mobile-oauth-exchange', EXCHANGE_CODE_TTL_MS)
 
     await logAction(membership.organizationId, user.id, user.name, 'login', 'session')

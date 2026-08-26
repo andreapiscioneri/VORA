@@ -52,6 +52,9 @@
     "or": "o",
     "continueWithGoogle": "Continuar con Google",
     "oauthFailed": "Error al iniciar sesión con Google. Inténtalo de nuevo o usa correo electrónico y contraseña.",
+    "pendingApprovalTitle": "Registro recibido",
+    "pendingApprovalMessage": "Tu cuenta está pendiente de aprobación. Podrás iniciar sesión en cuanto sea aprobada.",
+    "pendingApproval": "Esta cuenta está pendiente de aprobación.",
     "passwordTooWeak": "La contraseña es demasiado débil: usa al menos 3 de minúsculas, mayúsculas, números y símbolos",
     "strength": {
       "veryWeak": "Muy débil",
@@ -1448,6 +1451,21 @@
         "messagePlaceholder": "Cuéntanos sobre tu equipo y qué necesitas",
         "submit": "Abrir email"
       }
+    }
+  },
+  "admin": {
+    "registrations": {
+      "loading": "Cargando…",
+      "notAuthorized": "No tienes autorización para revisar esta solicitud.",
+      "invalid": "Este enlace de revisión no es válido o ha caducado.",
+      "title": "Solicitud de registro",
+      "name": "Nombre",
+      "email": "Email",
+      "approve": "Aprobar",
+      "reject": "Rechazar",
+      "approvedMessage": "Cuenta aprobada.",
+      "rejectedMessage": "Cuenta rechazada.",
+      "error": "Algo salió mal. Inténtalo de nuevo."
     }
   }
 }

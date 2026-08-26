@@ -3,7 +3,7 @@ import { getDb } from './firebase'
 
 const COLLECTION = 'authTokens'
 
-export type AuthTokenType = 'verify-email' | 'reset-password' | 'mobile-oauth-exchange'
+export type AuthTokenType = 'verify-email' | 'reset-password' | 'mobile-oauth-exchange' | 'registration-review'
 
 function hashToken(raw: string): string {
   return createHash('sha256').update(raw).digest('hex')
@@ -25,6 +25,21 @@ export async function createAuthToken(userId: string, type: AuthTokenType, ttlMs
       createdAt: new Date(now).toISOString(),
     })
   return raw
+}
+
+// Read-only lookup — doesn't delete the token, so a page can render "who
+// is this?" before the admin commits to approve/reject. Used only by the
+// registration-review page; every other token type is consumed on first
+// use as normal.
+export async function peekAuthToken(raw: string, type: AuthTokenType): Promise<{ userId: string } | null> {
+  const db = getDb()
+  const hash = hashToken(raw)
+  const snap = await db.collection(COLLECTION).where('tokenHash', '==', hash).where('type', '==', type).limit(1).get()
+  if (snap.empty) return null
+
+  const data = snap.docs[0].data()
+  if (new Date(data.expiresAt).getTime() < Date.now()) return null
+  return { userId: data.userId as string }
 }
 
 // One-time use: consuming a valid token deletes it, so a leaked/reused

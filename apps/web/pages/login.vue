@@ -9,7 +9,13 @@ const router = useRouter()
 const email = ref('')
 const password = ref('')
 const loading = ref(false)
-const error = ref<string | null>(route.query.error === 'oauth_failed' ? t('auth.oauthFailed') : null)
+const error = ref<string | null>(
+  route.query.error === 'oauth_failed'
+    ? t('auth.oauthFailed')
+    : route.query.error === 'pending_approval'
+      ? t('auth.pendingApproval')
+      : null,
+)
 
 async function submit() {
   loading.value = true
@@ -20,8 +26,8 @@ async function submit() {
     const redirect = typeof route.query.redirect === 'string' ? route.query.redirect : '/dashboard'
     router.push(redirect)
   } catch (e) {
-    const err = e as { statusCode?: number }
-    error.value = err.statusCode === 401 ? t('auth.invalidCredentials') : t('auth.invalidCredentials')
+    const err = e as { statusCode?: number; data?: { data?: { reason?: string } } }
+    error.value = err.data?.data?.reason === 'pending_approval' ? t('auth.pendingApproval') : t('auth.invalidCredentials')
   } finally {
     loading.value = false
   }

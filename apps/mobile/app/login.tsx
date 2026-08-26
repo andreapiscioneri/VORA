@@ -39,6 +39,7 @@ export default function LoginScreen() {
   const [loading, setLoading] = useState(false)
   const [googleLoading, setGoogleLoading] = useState(false)
   const [error, setError] = useState<string | null>(null)
+  const [pendingApproval, setPendingApproval] = useState(false)
 
   async function submit() {
     haptics.press()
@@ -47,13 +48,21 @@ export default function LoginScreen() {
     try {
       if (mode === 'login') {
         await login(email, password)
+        router.replace('/')
       } else {
-        await register(name, email, password, organizationName)
+        const result = await register(name, email, password, organizationName)
+        if (result.pending) {
+          setPendingApproval(true)
+        } else {
+          router.replace('/')
+        }
       }
-      router.replace('/')
     } catch (e) {
       haptics.error()
-      if (e instanceof ApiError && e.status === 409) {
+      const reason = e instanceof ApiError && e.data && typeof e.data === 'object' ? (e.data as { reason?: string }).reason : undefined
+      if (reason === 'pending_approval') {
+        setError(t('auth.pendingApproval'))
+      } else if (e instanceof ApiError && e.status === 409) {
         setError(t('auth.emailTaken'))
       } else if (e instanceof ApiError && (e.status === 401 || e.status === 422)) {
         setError(mode === 'login' ? t('auth.invalidCredentials') : t('auth.passwordTooShort'))
@@ -71,9 +80,10 @@ export default function LoginScreen() {
     try {
       await loginWithGoogle()
       router.replace('/')
-    } catch {
+    } catch (e) {
       haptics.error()
-      setError(t('auth.oauthFailed'))
+      const reason = e instanceof ApiError && e.data && typeof e.data === 'object' ? (e.data as { reason?: string }).reason : undefined
+      setError(reason === 'pending_approval' ? t('auth.pendingApproval') : t('auth.oauthFailed'))
     } finally {
       setGoogleLoading(false)
     }
@@ -87,6 +97,22 @@ export default function LoginScreen() {
           <Wordmark size={28} color={colors.textPrimary} />
         </View>
 
+        {pendingApproval ? (
+          <>
+            <Text style={styles.title}>{t('auth.pendingApprovalTitle')}</Text>
+            <Text style={[styles.dividerText, { textAlign: 'center', marginTop: spacing(2) }]}>{t('auth.pendingApprovalMessage')}</Text>
+            <Pressable
+              onPress={() => {
+                setPendingApproval(false)
+                setMode('login')
+              }}
+              style={{ marginTop: spacing(6) }}
+            >
+              <Text style={styles.switchText}>{t('auth.switchToLogin')}</Text>
+            </Pressable>
+          </>
+        ) : (
+          <>
         {mode === 'register' && <Text style={styles.title}>{t('auth.registerTitle')}</Text>}
 
         {mode === 'register' && (
@@ -146,6 +172,8 @@ export default function LoginScreen() {
             {mode === 'login' ? `${t('auth.noAccount')} ${t('auth.switchToRegister')}` : `${t('auth.hasAccount')} ${t('auth.switchToLogin')}`}
           </Text>
         </Pressable>
+          </>
+        )}
       </ScrollView>
     </KeyboardAvoidingView>
   )

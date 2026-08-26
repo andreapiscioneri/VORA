@@ -1,5 +1,5 @@
 import { loginSchema } from '~/shared/validation/auth'
-import { verifyCredentials, getPrimaryMembership } from '~/server/utils/auth'
+import { verifyCredentials, getPrimaryMembership, isApproved } from '~/server/utils/auth'
 import { checkRateLimit } from '~/server/utils/rateLimit'
 import { logAction } from '~/server/utils/auditLog'
 
@@ -19,6 +19,10 @@ export default defineEventHandler(async (event) => {
     throw createError({ statusCode: 401, statusMessage: 'Invalid email or password' })
   }
 
+  if (!isApproved(user)) {
+    throw createError({ statusCode: 403, statusMessage: 'Account pending approval', data: { reason: 'pending_approval' } })
+  }
+
   const membership = await getPrimaryMembership(user.id)
   if (!membership) {
     throw createError({ statusCode: 403, statusMessage: 'User has no organization' })
@@ -33,6 +37,7 @@ export default defineEventHandler(async (event) => {
       organizationId: membership.organizationId,
       organizationName: membership.organizationName,
       role: membership.role,
+      platformRole: user.platformRole,
     },
   })
 

@@ -19,9 +19,14 @@ export const API_BASE = `http://${resolveDevHost()}:3100/api`
 
 export class ApiError extends Error {
   status: number
-  constructor(status: number, message: string) {
+  // Best-effort parse of the H3 error body's `data` field (e.g. `{ reason:
+  // 'pending_approval' }` on a gated login) — undefined when the response
+  // wasn't JSON or carried no `data`, same shape web's $fetch exposes.
+  data?: unknown
+  constructor(status: number, message: string, data?: unknown) {
     super(message)
     this.status = status
+    this.data = data
   }
 }
 
@@ -126,7 +131,13 @@ async function request<T>(path: string, init?: RequestInit, isRetry = false): Pr
 
   if (!res.ok) {
     const text = await res.text().catch(() => res.statusText)
-    throw new ApiError(res.status, text)
+    try {
+      const parsed = JSON.parse(text) as { statusMessage?: string; data?: unknown }
+      throw new ApiError(res.status, parsed.statusMessage ?? text, parsed.data)
+    } catch (e) {
+      if (e instanceof ApiError) throw e
+      throw new ApiError(res.status, text)
+    }
   }
   if (res.status === 204) return undefined as T
   return res.json() as Promise<T>

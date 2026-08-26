@@ -52,6 +52,9 @@
     "or": "または",
     "continueWithGoogle": "Googleで続行",
     "oauthFailed": "Googleサインインに失敗しました。もう一度お試しいただくか、メールアドレスとパスワードでログインしてください。",
+    "pendingApprovalTitle": "登録を受け付けました",
+    "pendingApprovalMessage": "アカウントは承認待ちです。承認されるとログインできるようになります。",
+    "pendingApproval": "このアカウントは承認待ちです。",
     "passwordTooWeak": "パスワードが弱すぎます。小文字・大文字・数字・記号のうち少なくとも3種類を使用してください",
     "strength": {
       "veryWeak": "非常に弱い",
@@ -1448,6 +1451,21 @@
         "messagePlaceholder": "チームについてと、必要なことを教えてください",
         "submit": "メールを開く"
       }
+    }
+  },
+  "admin": {
+    "registrations": {
+      "loading": "読み込み中…",
+      "notAuthorized": "このリクエストを確認する権限がありません。",
+      "invalid": "この確認リンクは無効か期限切れです。",
+      "title": "登録リクエスト",
+      "name": "名前",
+      "email": "メールアドレス",
+      "approve": "承認",
+      "reject": "却下",
+      "approvedMessage": "アカウントを承認しました。",
+      "rejectedMessage": "アカウントを却下しました。",
+      "error": "問題が発生しました。もう一度お試しください。"
     }
   }
 }

@@ -25,7 +25,10 @@
     "logout": "ログアウト",
     "or": "または",
     "continueWithGoogle": "Googleで続行",
-    "oauthFailed": "Googleサインインに失敗しました。もう一度お試しいただくか、メールアドレスとパスワードでログインしてください。"
+    "oauthFailed": "Googleサインインに失敗しました。もう一度お試しいただくか、メールアドレスとパスワードでログインしてください。",
+    "pendingApprovalTitle": "登録を受け付けました",
+    "pendingApprovalMessage": "アカウントは承認待ちです。承認されるとログインできるようになります。",
+    "pendingApproval": "このアカウントは承認待ちです。"
   },
   "tabs": {
     "home": "ホーム",

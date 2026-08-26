@@ -25,7 +25,10 @@
     "logout": "Se déconnecter",
     "or": "ou",
     "continueWithGoogle": "Continuer avec Google",
-    "oauthFailed": "La connexion Google a échoué. Réessayez ou utilisez votre e-mail et votre mot de passe."
+    "oauthFailed": "La connexion Google a échoué. Réessayez ou utilisez votre e-mail et votre mot de passe.",
+    "pendingApprovalTitle": "Inscription reçue",
+    "pendingApprovalMessage": "Votre compte est en attente d'approbation. Vous pourrez vous connecter dès qu'il sera approuvé.",
+    "pendingApproval": "Ce compte est en attente d'approbation."
   },
   "tabs": {
     "home": "Accueil",

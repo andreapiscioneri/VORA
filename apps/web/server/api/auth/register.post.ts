@@ -3,6 +3,7 @@ import { createUserWithOrganization } from '~/server/utils/auth'
 import { checkRateLimit } from '~/server/utils/rateLimit'
 import { createAuthToken } from '~/server/utils/authTokens'
 import { getEmailProvider } from '~/server/services/email'
+import { notifyRegistrationPending } from '~/server/utils/registrationNotify'
 
 const VERIFY_TOKEN_TTL_MS = 24 * 60 * 60 * 1000
 
@@ -18,10 +19,15 @@ export default defineEventHandler(async (event) => {
   }
 
   const { name, email, password, organizationName } = result.data
+  const meta = {
+    ip: getRequestIP(event, { xForwardedFor: true }) ?? 'unknown',
+    userAgent: getRequestHeader(event, 'user-agent') ?? 'unknown',
+    platform: 'web' as const,
+  }
 
   let created
   try {
-    created = await createUserWithOrganization(name, email, password, organizationName)
+    created = await createUserWithOrganization(name, email, password, organizationName, meta)
   } catch (e) {
     if (e instanceof Error && e.message === 'auth.emailTaken') {
       throw createError({ statusCode: 409, statusMessage: 'Email already registered', data: { fieldErrors: { email: ['auth.emailTaken'] } } })
@@ -29,17 +35,10 @@ export default defineEventHandler(async (event) => {
     throw e
   }
 
-  await setUserSession(event, {
-    user: {
-      id: created.user.id,
-      email: created.user.email,
-      name: created.user.name,
-      emailVerified: false,
-      organizationId: created.organization.id,
-      organizationName: created.organization.name,
-      role: created.membership.role,
-    },
-  })
+  // New accounts sit at status 'pending' — no session is issued here.
+  // The account only becomes usable once a superadmin approves it (see
+  // registrationNotify.ts and server/api/admin/registrations/*).
+  await notifyRegistrationPending(created.user, created.organization.name, meta)
 
   // Verification doesn't block login (see AUTH.md / SECURITY.md) — it's a
   // banner + a real endpoint, not a login gate that could lock someone out
@@ -52,5 +51,5 @@ export default defineEventHandler(async (event) => {
     body: `Ciao ${created.user.name},\n\nConferma il tuo indirizzo email per Vora visitando questo link (valido 24 ore):\n${appUrl}/verify-email?token=${token}\n\nSe non hai richiesto tu questa registrazione, ignora questa email.`,
   })
 
-  return { user: created.user, organization: created.organization }
+  return { pending: true, user: created.user, organization: created.organization }
 })

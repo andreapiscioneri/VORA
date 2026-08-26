@@ -52,6 +52,9 @@
     "or": "oder",
     "continueWithGoogle": "Mit Google fortfahren",
     "oauthFailed": "Die Anmeldung mit Google ist fehlgeschlagen. Bitte erneut versuchen oder E-Mail und Passwort verwenden.",
+    "pendingApprovalTitle": "Registrierung eingegangen",
+    "pendingApprovalMessage": "Dein Konto wartet auf Genehmigung. Du kannst dich anmelden, sobald es genehmigt wurde.",
+    "pendingApproval": "Dieses Konto wartet auf Genehmigung.",
     "passwordTooWeak": "Das Passwort ist zu schwach: verwenden Sie mindestens 3 von Kleinbuchstaben, Großbuchstaben, Ziffern und Symbolen",
     "strength": {
       "veryWeak": "Sehr schwach",
@@ -1448,6 +1451,21 @@
         "messagePlaceholder": "Erzähl uns von deinem Team und was du brauchst",
         "submit": "E-Mail öffnen"
       }
+    }
+  },
+  "admin": {
+    "registrations": {
+      "loading": "Wird geladen…",
+      "notAuthorized": "Du bist nicht berechtigt, diese Anfrage zu prüfen.",
+      "invalid": "Dieser Prüflink ist ungültig oder abgelaufen.",
+      "title": "Registrierungsanfrage",
+      "name": "Name",
+      "email": "E-Mail",
+      "approve": "Genehmigen",
+      "reject": "Ablehnen",
+      "approvedMessage": "Konto genehmigt.",
+      "rejectedMessage": "Konto abgelehnt.",
+      "error": "Etwas ist schiefgelaufen. Bitte versuche es erneut."
     }
   }
 }

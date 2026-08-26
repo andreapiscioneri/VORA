@@ -25,7 +25,10 @@
     "logout": "Abmelden",
     "or": "oder",
     "continueWithGoogle": "Mit Google fortfahren",
-    "oauthFailed": "Die Anmeldung mit Google ist fehlgeschlagen. Bitte erneut versuchen oder E-Mail und Passwort verwenden."
+    "oauthFailed": "Die Anmeldung mit Google ist fehlgeschlagen. Bitte erneut versuchen oder E-Mail und Passwort verwenden.",
+    "pendingApprovalTitle": "Registrierung eingegangen",
+    "pendingApprovalMessage": "Dein Konto wartet auf Genehmigung. Du kannst dich anmelden, sobald es genehmigt wurde.",
+    "pendingApproval": "Dieses Konto wartet auf Genehmigung."
   },
   "tabs": {
     "home": "Start",

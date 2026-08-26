@@ -25,7 +25,10 @@
     "logout": "Cerrar sesión",
     "or": "o",
     "continueWithGoogle": "Continuar con Google",
-    "oauthFailed": "Error al iniciar sesión con Google. Inténtalo de nuevo o usa correo electrónico y contraseña."
+    "oauthFailed": "Error al iniciar sesión con Google. Inténtalo de nuevo o usa correo electrónico y contraseña.",
+    "pendingApprovalTitle": "Registro recibido",
+    "pendingApprovalMessage": "Tu cuenta está pendiente de aprobación. Podrás iniciar sesión en cuanto sea aprobada.",
+    "pendingApproval": "Esta cuenta está pendiente de aprobación."
   },
   "tabs": {
     "home": "Inicio",

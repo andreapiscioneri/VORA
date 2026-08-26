@@ -52,6 +52,9 @@
     "or": "or",
     "continueWithGoogle": "Continue with Google",
     "oauthFailed": "Google sign-in failed. Try again or use email and password.",
+    "pendingApprovalTitle": "Registration received",
+    "pendingApprovalMessage": "Your account is awaiting approval. You'll be able to log in once it's approved.",
+    "pendingApproval": "This account is awaiting approval.",
     "passwordTooWeak": "Password is too weak: use at least 3 of lowercase, uppercase, digits, and symbols",
     "strength": {
       "veryWeak": "Very weak",
@@ -1448,6 +1451,21 @@
         "messagePlaceholder": "Tell us about your team and what you need",
         "submit": "Open email"
       }
+    }
+  },
+  "admin": {
+    "registrations": {
+      "loading": "Loading…",
+      "notAuthorized": "You're not authorized to review this request.",
+      "invalid": "This review link is invalid or has expired.",
+      "title": "Registration request",
+      "name": "Name",
+      "email": "Email",
+      "approve": "Approve",
+      "reject": "Reject",
+      "approvedMessage": "Account approved.",
+      "rejectedMessage": "Account rejected.",
+      "error": "Something went wrong. Please try again."
     }
   }
 }

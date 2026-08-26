@@ -25,7 +25,10 @@
     "logout": "Log out",
     "or": "or",
     "continueWithGoogle": "Continue with Google",
-    "oauthFailed": "Google sign-in failed. Try again or use email and password."
+    "oauthFailed": "Google sign-in failed. Try again or use email and password.",
+    "pendingApprovalTitle": "Registration received",
+    "pendingApprovalMessage": "Your account is awaiting approval. You'll be able to log in once it's approved.",
+    "pendingApproval": "This account is awaiting approval."
   },
   "tabs": {
     "home": "Home",

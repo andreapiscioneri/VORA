@@ -52,6 +52,9 @@
     "or": "或",
     "continueWithGoogle": "使用 Google 继续",
     "oauthFailed": "Google 登录失败，请重试或使用邮箱和密码登录。",
+    "pendingApprovalTitle": "已收到注册申请",
+    "pendingApprovalMessage": "你的账号正在等待审批，一经批准即可登录。",
+    "pendingApproval": "该账号正在等待审批。",
     "passwordTooWeak": "密码强度不足：请至少使用小写字母、大写字母、数字和符号中的3种",
     "strength": {
       "veryWeak": "非常弱",
@@ -1448,6 +1451,21 @@
         "messagePlaceholder": "请介绍一下你的团队以及你的需求",
         "submit": "打开邮件"
       }
+    }
+  },
+  "admin": {
+    "registrations": {
+      "loading": "加载中…",
+      "notAuthorized": "你无权审核此申请。",
+      "invalid": "该审核链接无效或已过期。",
+      "title": "注册申请",
+      "name": "姓名",
+      "email": "邮箱",
+      "approve": "批准",
+      "reject": "拒绝",
+      "approvedMessage": "账号已批准。",
+      "rejectedMessage": "账号已拒绝。",
+      "error": "出了点问题，请重试。"
     }
   }
 }

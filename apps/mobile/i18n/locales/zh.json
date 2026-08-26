@@ -25,7 +25,10 @@
     "logout": "退出登录",
     "or": "或",
     "continueWithGoogle": "使用 Google 继续",
-    "oauthFailed": "Google 登录失败，请重试或使用邮箱和密码登录。"
+    "oauthFailed": "Google 登录失败，请重试或使用邮箱和密码登录。",
+    "pendingApprovalTitle": "已收到注册申请",
+    "pendingApprovalMessage": "你的账号正在等待审批，一经批准即可登录。",
+    "pendingApproval": "该账号正在等待审批。"
   },
   "tabs": {
     "home": "主页",

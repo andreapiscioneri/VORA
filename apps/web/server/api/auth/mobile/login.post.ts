@@ -1,5 +1,5 @@
 import { loginSchema } from '~/shared/validation/auth'
-import { verifyCredentials, getPrimaryMembership } from '~/server/utils/auth'
+import { verifyCredentials, getPrimaryMembership, isApproved } from '~/server/utils/auth'
 import { signAccessToken, createRefreshToken } from '~/server/utils/mobileTokens'
 import { checkRateLimit } from '~/server/utils/rateLimit'
 import { logAction } from '~/server/utils/auditLog'
@@ -22,6 +22,10 @@ export default defineEventHandler(async (event) => {
   const user = await verifyCredentials(result.data.email, result.data.password)
   if (!user) {
     throw createError({ statusCode: 401, statusMessage: 'Invalid email or password' })
+  }
+
+  if (!isApproved(user)) {
+    throw createError({ statusCode: 403, statusMessage: 'Account pending approval', data: { reason: 'pending_approval' } })
   }
 
   const membership = await getPrimaryMembership(user.id)

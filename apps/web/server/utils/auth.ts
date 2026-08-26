@@ -2,7 +2,7 @@ import { getRequestHeader, type H3Event } from 'h3'
 import { randomBytes } from 'node:crypto'
 import { getDb } from './firebase'
 import { verifyAccessToken } from './mobileTokens'
-import type { User, Organization, OrganizationMember, OrgRole, SessionUser } from '~/shared/types/user'
+import type { User, Organization, OrganizationMember, OrgRole, SessionUser, UserStatus } from '~/shared/types/user'
 
 // The web app authenticates with nuxt-auth-utils' sealed session cookie.
 // The mobile app authenticates with a bearer access token instead (see
@@ -31,6 +31,7 @@ export async function resolveSession(event: H3Event): Promise<{ user: SessionUse
         organizationId: membership.organizationId,
         organizationName: membership.organizationName,
         role: membership.role,
+        platformRole: user.platformRole,
       },
     }
   }
@@ -62,6 +63,18 @@ export async function requireRole(event: H3Event, allowed: OrgRole[]): Promise<s
   return session.user.organizationId
 }
 
+/** For the registration-approval endpoints — platform-wide, not scoped to
+ * any organization (unlike requireRole, which checks a role within the
+ * caller's own org). */
+export async function requireSuperadmin(event: H3Event): Promise<SessionUser> {
+  const session = await resolveSession(event)
+  if (!session) throw createError({ statusCode: 401, statusMessage: 'Authentication required' })
+  if (session.user.platformRole !== 'superadmin') {
+    throw createError({ statusCode: 403, statusMessage: 'Superadmin access required' })
+  }
+  return session.user
+}
+
 const USERS = 'users'
 const ORGS = 'organizations'
 const MEMBERS = 'organizationMembers'
@@ -86,6 +99,8 @@ export async function findUserByEmail(email: string): Promise<(User & { password
     name: data.name,
     emailVerified: data.emailVerified ?? false,
     createdAt: data.createdAt,
+    status: data.status,
+    platformRole: data.platformRole,
     passwordHash: data.passwordHash,
   }
 }
@@ -94,7 +109,22 @@ export async function findUserById(id: string): Promise<User | null> {
   const doc = await getDb().collection(USERS).doc(id).get()
   if (!doc.exists) return null
   const data = doc.data()!
-  return { id: doc.id, email: data.email, name: data.name, emailVerified: data.emailVerified ?? false, createdAt: data.createdAt }
+  return {
+    id: doc.id,
+    email: data.email,
+    name: data.name,
+    emailVerified: data.emailVerified ?? false,
+    createdAt: data.createdAt,
+    status: data.status,
+    platformRole: data.platformRole,
+  }
+}
+
+// Accounts created before the approval gate existed have no `status` field
+// at all — treated as approved so this rollout can't lock out anyone who
+// could already sign in (see the USER_STATUSES comment in shared/types/user).
+export function isApproved(user: Pick<User, 'status'>): boolean {
+  return user.status === undefined || user.status === 'approved'
 }
 
 export async function markEmailVerified(userId: string): Promise<void> {
@@ -105,11 +135,18 @@ export async function updatePasswordHash(userId: string, passwordHash: string): 
   await getDb().collection(USERS).doc(userId).update({ passwordHash })
 }
 
+export interface RegistrationMeta {
+  ip: string
+  userAgent: string
+  platform: 'web' | 'mobile'
+}
+
 export async function createUserWithOrganization(
   name: string,
   email: string,
   password: string,
   organizationName: string,
+  meta?: RegistrationMeta,
 ): Promise<{ user: User; organization: Organization; membership: OrganizationMember }> {
   const existing = await findUserByEmail(email)
   if (existing) throw new Error('auth.emailTaken')
@@ -123,7 +160,9 @@ export async function createUserWithOrganization(
     email: email.toLowerCase(),
     passwordHash,
     emailVerified: false,
+    status: 'pending' satisfies UserStatus,
     createdAt: now,
+    ...(meta && { registrationIp: meta.ip, registrationUserAgent: meta.userAgent, registrationPlatform: meta.platform }),
   })
 
   let slug = slugify(organizationName)
@@ -139,7 +178,7 @@ export async function createUserWithOrganization(
   })
 
   return {
-    user: { id: userRef.id, name, email: email.toLowerCase(), emailVerified: false, createdAt: now },
+    user: { id: userRef.id, name, email: email.toLowerCase(), emailVerified: false, status: 'pending', createdAt: now },
     organization: { id: orgRef.id, name: organizationName, slug, whatsappPhoneNumberId: null, createdAt: now },
     membership: { id: memberRef.id, organizationId: orgRef.id, userId: userRef.id, role: 'owner', createdAt: now },
   }
@@ -150,7 +189,28 @@ export async function verifyCredentials(email: string, password: string): Promis
   if (!found) return null
   const valid = await verifyPassword(found.passwordHash, password)
   if (!valid) return null
-  return { id: found.id, email: found.email, name: found.name, emailVerified: found.emailVerified, createdAt: found.createdAt }
+  return {
+    id: found.id,
+    email: found.email,
+    name: found.name,
+    emailVerified: found.emailVerified,
+    createdAt: found.createdAt,
+    status: found.status,
+    platformRole: found.platformRole,
+  }
+}
+
+export async function listSuperadminEmails(): Promise<string[]> {
+  const snap = await getDb().collection(USERS).where('platformRole', '==', 'superadmin').get()
+  return snap.docs.map((doc) => doc.data().email as string)
+}
+
+export async function setUserStatus(userId: string, status: UserStatus): Promise<void> {
+  await getDb().collection(USERS).doc(userId).update({ status })
+}
+
+export async function grantSuperadmin(userId: string): Promise<void> {
+  await getDb().collection(USERS).doc(userId).update({ platformRole: 'superadmin', status: 'approved' satisfies UserStatus })
 }
 
 export async function getPrimaryMembership(userId: string): Promise<(OrganizationMember & { organizationName: string }) | null> {
@@ -195,8 +255,9 @@ export async function listOrganizationMemberUserIds(organizationId: string): Pro
 // will ever type (they can still request a reset later if they want one).
 export async function findOrCreateOAuthUser(
   email: string,
-  name: string
-): Promise<{ user: User; membership: OrganizationMember & { organizationName: string } }> {
+  name: string,
+  meta?: RegistrationMeta,
+): Promise<{ user: User; membership: OrganizationMember & { organizationName: string }; isNew: boolean }> {
   const existing = await findUserByEmail(email)
 
   if (existing) {
@@ -204,17 +265,27 @@ export async function findOrCreateOAuthUser(
     const membership = await getPrimaryMembership(existing.id)
     if (!membership) throw new Error('auth.noOrganization')
     return {
-      user: { id: existing.id, email: existing.email, name: existing.name, emailVerified: true, createdAt: existing.createdAt },
+      user: {
+        id: existing.id,
+        email: existing.email,
+        name: existing.name,
+        emailVerified: true,
+        createdAt: existing.createdAt,
+        status: existing.status,
+        platformRole: existing.platformRole,
+      },
       membership,
+      isNew: false,
     }
   }
 
   const randomPassword = randomBytes(32).toString('hex')
-  const created = await createUserWithOrganization(name, email, randomPassword, `${name}'s Organization`)
+  const created = await createUserWithOrganization(name, email, randomPassword, `${name}'s Organization`, meta)
   await markEmailVerified(created.user.id)
 
   return {
     user: { ...created.user, emailVerified: true },
     membership: { ...created.membership, organizationName: created.organization.name },
+    isNew: true,
   }
 }

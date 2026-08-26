@@ -52,6 +52,9 @@
     "or": "oppure",
     "continueWithGoogle": "Continua con Google",
     "oauthFailed": "Accesso con Google non riuscito. Riprova o usa email e password.",
+    "pendingApprovalTitle": "Registrazione ricevuta",
+    "pendingApprovalMessage": "Il tuo account è in attesa di approvazione. Potrai accedere non appena verrà approvato.",
+    "pendingApproval": "Questo account è in attesa di approvazione.",
     "passwordTooWeak": "La password è troppo debole: usa almeno 3 tra minuscole, maiuscole, numeri e simboli",
     "strength": {
       "veryWeak": "Molto debole",
@@ -1448,6 +1451,21 @@
         "messagePlaceholder": "Raccontaci del tuo team e di cosa hai bisogno",
         "submit": "Apri email"
       }
+    }
+  },
+  "admin": {
+    "registrations": {
+      "loading": "Caricamento…",
+      "notAuthorized": "Non sei autorizzato a rivedere questa richiesta.",
+      "invalid": "Questo link di revisione non è valido o è scaduto.",
+      "title": "Richiesta di registrazione",
+      "name": "Nome",
+      "email": "Email",
+      "approve": "Approva",
+      "reject": "Rifiuta",
+      "approvedMessage": "Account approvato.",
+      "rejectedMessage": "Account rifiutato.",
+      "error": "Qualcosa è andato storto. Riprova."
     }
   }
 }

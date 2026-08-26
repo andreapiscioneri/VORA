@@ -52,6 +52,9 @@
     "or": "ou",
     "continueWithGoogle": "Continuer avec Google",
     "oauthFailed": "La connexion Google a échoué. Réessayez ou utilisez votre e-mail et votre mot de passe.",
+    "pendingApprovalTitle": "Inscription reçue",
+    "pendingApprovalMessage": "Votre compte est en attente d'approbation. Vous pourrez vous connecter dès qu'il sera approuvé.",
+    "pendingApproval": "Ce compte est en attente d'approbation.",
     "passwordTooWeak": "Le mot de passe est trop faible : utilisez au moins 3 des éléments suivants : minuscules, majuscules, chiffres et symboles",
     "strength": {
       "veryWeak": "Très faible",
@@ -1448,6 +1451,21 @@
         "messagePlaceholder": "Parlez-nous de votre équipe et de vos besoins",
         "submit": "Ouvrir l'email"
       }
+    }
+  },
+  "admin": {
+    "registrations": {
+      "loading": "Chargement…",
+      "notAuthorized": "Vous n'êtes pas autorisé à examiner cette demande.",
+      "invalid": "Ce lien de vérification est invalide ou a expiré.",
+      "title": "Demande d'inscription",
+      "name": "Nom",
+      "email": "Email",
+      "approve": "Approuver",
+      "reject": "Refuser",
+      "approvedMessage": "Compte approuvé.",
+      "rejectedMessage": "Compte refusé.",
+      "error": "Une erreur s'est produite. Veuillez réessayer."
     }
   }
 }
