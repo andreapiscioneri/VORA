@@ -1465,7 +1465,8 @@
       "reject": "Rifiuta",
       "approvedMessage": "Account approvato.",
       "rejectedMessage": "Account rifiutato.",
-      "error": "Qualcosa è andato storto. Riprova."
+      "error": "Qualcosa è andato storto. Riprova.",
+      "redirecting": "Ti sto portando alla dashboard…"
     }
   }
 }

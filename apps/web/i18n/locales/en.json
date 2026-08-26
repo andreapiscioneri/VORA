@@ -1465,7 +1465,8 @@
       "reject": "Reject",
       "approvedMessage": "Account approved.",
       "rejectedMessage": "Account rejected.",
-      "error": "Something went wrong. Please try again."
+      "error": "Something went wrong. Please try again.",
+      "redirecting": "Taking you to the dashboard…"
     }
   }
 }

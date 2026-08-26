@@ -1465,7 +1465,8 @@
       "reject": "Ablehnen",
       "approvedMessage": "Konto genehmigt.",
       "rejectedMessage": "Konto abgelehnt.",
-      "error": "Etwas ist schiefgelaufen. Bitte versuche es erneut."
+      "error": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
+      "redirecting": "Du wirst zum Dashboard weitergeleitet…"
     }
   }
 }

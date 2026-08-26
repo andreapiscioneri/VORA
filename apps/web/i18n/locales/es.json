@@ -1465,7 +1465,8 @@
       "reject": "Rechazar",
       "approvedMessage": "Cuenta aprobada.",
       "rejectedMessage": "Cuenta rechazada.",
-      "error": "Algo salió mal. Inténtalo de nuevo."
+      "error": "Algo salió mal. Inténtalo de nuevo.",
+      "redirecting": "Te estamos llevando al panel…"
     }
   }
 }

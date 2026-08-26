@@ -1465,7 +1465,8 @@
       "reject": "Refuser",
       "approvedMessage": "Compte approuvé.",
       "rejectedMessage": "Compte refusé.",
-      "error": "Une erreur s'est produite. Veuillez réessayer."
+      "error": "Une erreur s'est produite. Veuillez réessayer.",
+      "redirecting": "Redirection vers le tableau de bord…"
     }
   }
 }

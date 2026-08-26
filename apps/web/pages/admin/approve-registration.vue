@@ -3,14 +3,22 @@ definePageMeta({ layout: 'public' })
 
 const { t } = useI18n()
 const route = useRoute()
+const router = useRouter()
 
 type Pending = { name: string; email: string; createdAt: string }
 type State = 'loading' | 'ready' | 'not-authorized' | 'invalid' | 'approved' | 'rejected' | 'error'
+
+const REDIRECT_DELAY_MS = 3000
 
 const token = computed(() => (typeof route.query.token === 'string' ? route.query.token : ''))
 const state = ref<State>('loading')
 const pending = ref<Pending | null>(null)
 const actionLoading = ref(false)
+let redirectTimer: ReturnType<typeof setTimeout> | null = null
+
+onBeforeUnmount(() => {
+  if (redirectTimer) clearTimeout(redirectTimer)
+})
 
 async function load() {
   if (!token.value) {
@@ -31,6 +39,7 @@ async function act(action: 'approve' | 'reject') {
   try {
     await $fetch(`/api/admin/registrations/${action}`, { method: 'POST', body: { token: token.value } })
     state.value = action === 'approve' ? 'approved' : 'rejected'
+    redirectTimer = setTimeout(() => router.push('/dashboard'), REDIRECT_DELAY_MS)
   } catch {
     state.value = 'error'
   } finally {
@@ -89,10 +98,12 @@ onMounted(load)
 
       <template v-else-if="state === 'approved'">
         <p class="text-body text-success">{{ t('admin.registrations.approvedMessage') }}</p>
+        <p class="text-body-sm text-ink-400 mt-2">{{ t('admin.registrations.redirecting') }}</p>
       </template>
 
       <template v-else-if="state === 'rejected'">
         <p class="text-body text-ink-500 dark:text-paper-300">{{ t('admin.registrations.rejectedMessage') }}</p>
+        <p class="text-body-sm text-ink-400 mt-2">{{ t('admin.registrations.redirecting') }}</p>
       </template>
 
       <template v-else-if="state === 'error'">

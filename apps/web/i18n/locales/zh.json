@@ -1465,7 +1465,8 @@
       "reject": "拒绝",
       "approvedMessage": "账号已批准。",
       "rejectedMessage": "账号已拒绝。",
-      "error": "出了点问题，请重试。"
+      "error": "出了点问题，请重试。",
+      "redirecting": "正在前往仪表盘…"
     }
   }
 }
