@@ -488,6 +488,11 @@
     "headline3": "contigo",
     "paragraph": "Un futuro en el que la automatización, los datos y el instinto humano se alinean. No solo software. No solo personas. Algo en perfecto equilibrio entre ambos.",
     "cta": "Solicitar acceso",
+    "stats": {
+      "modules": { "value": "15+", "label": "Módulos integrados" },
+      "ai": { "value": "24/7", "label": "Asistente de IA" },
+      "data": { "value": "100%", "label": "Datos unificados" }
+    },
     "modules": {
       "eyebrow": "Módulos",
       "title": "Todo lo que tu equipo necesita, en un solo sistema",
@@ -566,6 +571,21 @@
         "calendar": { "label": "Calendario", "caption": "Citas y disponibilidad del equipo, siempre sincronizadas." },
         "automation": { "label": "Automatizaciones", "caption": "Reglas que se disparan solas, para que tú no tengas que hacerlo." },
         "projects": { "label": "Proyectos", "caption": "Tareas, plazos y responsables de un vistazo." }
+      }
+    },
+    "contact": {
+      "eyebrow": "Contacto",
+      "title": "Habla directamente con nosotros",
+      "subtitle": "Completa unos pocos campos — se abrirá tu cliente de correo con todo listo para enviar.",
+      "mailSubject": "Nuevo mensaje desde el sitio de VORA",
+      "form": {
+        "name": "Nombre",
+        "namePlaceholder": "Tu nombre",
+        "email": "Email",
+        "emailPlaceholder": "tu@empresa.com",
+        "message": "Mensaje",
+        "messagePlaceholder": "Cuéntanos sobre tu equipo y qué necesitas",
+        "submit": "Abrir email"
       }
     }
   }

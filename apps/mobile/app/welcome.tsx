@@ -1,38 +1,104 @@
 import { useEffect, useRef, useState } from 'react'
-import { AccessibilityInfo, Animated, Easing, Platform, Pressable, ScrollView, StyleSheet, Text, View, useWindowDimensions } from 'react-native'
+import {
+  AccessibilityInfo,
+  Animated,
+  Easing,
+  LayoutChangeEvent,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+  useWindowDimensions,
+} from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useRouter } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
 import Svg, { Path } from 'react-native-svg'
 import { BrandMark } from '../components/BrandMark'
 import { Wordmark } from '../components/Wordmark'
+import { Icon } from '../components/Icon'
+import { Flag } from '../components/Flag'
 import { ModulesSection } from '../components/welcome/ModulesSection'
 import { CustomersSection } from '../components/welcome/CustomersSection'
 import { AutomationSection } from '../components/welcome/AutomationSection'
 import { PricingSection } from '../components/welcome/PricingSection'
 import { DemoSection } from '../components/welcome/DemoSection'
-import { useI18n } from '../i18n'
+import { ContactSection } from '../components/welcome/ContactSection'
+import { useI18n, LOCALE_CODES, LOCALE_NAMES, type Locale } from '../i18n'
 import { haptics } from '../lib/haptics'
 import { radius, spacing } from '../constants/theme'
+
+const SECTIONS = ['modules', 'customers', 'automation', 'pricing', 'demo', 'contact'] as const
+type SectionKey = (typeof SECTIONS)[number]
 
 // Same angular mark as BrandMark's icon, rendered large as decorative hero
 // background art (mirrors apps/web's MarketingLandingHero).
 const GLYPH_PATH =
   'M 256 64 L 256 128 L 192.5 128 L 160 95 L 128 64 L 96 95 L 63.5 128 L 64 128 L 128 192 L 128 256 L 64.5 256 L 32 223 L 0 192 L 0 64 L 64 0 L 192 0 Z M 256 192 L 256 256 L 192.5 256 L 160 223 L 128 192 L 128 128 L 192 128 Z'
 
-const MONO = { fontFamily: Platform.select({ ios: 'Menlo', android: 'monospace', default: 'monospace' }) }
-
 export default function WelcomeScreen() {
   const router = useRouter()
-  const { t } = useI18n()
+  const { t, locale, setLocale } = useI18n()
   const { width, height } = useWindowDimensions()
   const [reducedMotion, setReducedMotion] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [menuMounted, setMenuMounted] = useState(false)
+  const [langOpen, setLangOpen] = useState(false)
+  const menuAnim = useRef(new Animated.Value(0)).current
+  const scrollRef = useRef<ScrollView>(null)
+  const sectionY = useRef<Partial<Record<SectionKey, number>>>({})
+
+  function recordSectionY(key: SectionKey) {
+    return (e: LayoutChangeEvent) => {
+      sectionY.current[key] = e.nativeEvent.layout.y
+    }
+  }
+
+  function scrollToSection(key: SectionKey) {
+    haptics.press()
+    closeMenu()
+    const y = sectionY.current[key]
+    if (y !== undefined) scrollRef.current?.scrollTo({ y, animated: true })
+  }
+
+  function closeMenu() {
+    setMenuOpen(false)
+    setLangOpen(false)
+  }
+
+  function selectLocale(next: Locale) {
+    haptics.press()
+    setLocale(next)
+    closeMenu()
+  }
 
   useEffect(() => {
     AccessibilityInfo.isReduceMotionEnabled().then(setReducedMotion)
     const sub = AccessibilityInfo.addEventListener('reduceMotionChanged', setReducedMotion)
     return () => sub.remove()
   }, [])
+
+  useEffect(() => {
+    if (menuOpen) {
+      setMenuMounted(true)
+      Animated.timing(menuAnim, {
+        toValue: 1,
+        duration: reducedMotion ? 0 : 260,
+        easing: Easing.out(Easing.cubic),
+        useNativeDriver: true,
+      }).start()
+    } else if (menuMounted) {
+      Animated.timing(menuAnim, {
+        toValue: 0,
+        duration: reducedMotion ? 0 : 200,
+        easing: Easing.in(Easing.cubic),
+        useNativeDriver: true,
+      }).start(({ finished }) => {
+        if (finished) setMenuMounted(false)
+      })
+    }
+  }, [menuOpen])
 
   const progress = useRef(new Animated.Value(0)).current
   const scale = useRef(new Animated.Value(1.12)).current
@@ -74,11 +140,10 @@ export default function WelcomeScreen() {
     <View style={styles.pageRoot}>
       <StatusBar style="light" />
 
-      <ScrollView contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
-        <View style={[styles.hero, { height }]}>
+      <ScrollView ref={scrollRef} contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
+        <View style={[styles.hero, { height: height * 0.82 }]}>
           <Animated.View
-            pointerEvents="none"
-            style={[styles.backgroundLayer, { transform: [{ scale }] }]}
+            style={[styles.backgroundLayer, { transform: [{ scale }], pointerEvents: 'none' }]}
           >
             <View style={styles.gradientBase} />
             <Animated.View style={[styles.glyphWrap, { opacity: glow, right: -glyphSize * 0.35, bottom: -glyphSize * 0.3 }]}>
@@ -88,7 +153,7 @@ export default function WelcomeScreen() {
             </Animated.View>
           </Animated.View>
 
-          <View pointerEvents="none" style={styles.scrim} />
+          <View style={[styles.scrim, { pointerEvents: 'none' }]} />
 
           <SafeAreaView style={styles.safe} edges={['top', 'left', 'right', 'bottom']}>
             <View style={styles.topBar}>
@@ -96,9 +161,22 @@ export default function WelcomeScreen() {
                 <BrandMark size={26} />
                 <Wordmark size={20} color="#FFFFFF" />
               </View>
-              <Pressable onPress={goToLogin} accessibilityRole="button" hitSlop={8} style={styles.signInPill}>
-                <Text style={styles.signInText}>{t('auth.submitLogin')}</Text>
-              </Pressable>
+              <View style={styles.topBarActions}>
+                <Pressable
+                  onPress={() => {
+                    haptics.press()
+                    setMenuOpen(true)
+                  }}
+                  accessibilityRole="button"
+                  hitSlop={8}
+                  style={styles.menuButton}
+                >
+                  <Icon name="menu" size={20} color="#FFFFFF" />
+                </Pressable>
+                <Pressable onPress={goToLogin} accessibilityRole="button" hitSlop={8} style={styles.signInPill}>
+                  <Text style={styles.signInText}>{t('auth.submitLogin')}</Text>
+                </Pressable>
+              </View>
             </View>
 
             <View style={[styles.content, { maxWidth: contentWidth }]}>
@@ -122,16 +200,122 @@ export default function WelcomeScreen() {
                   <Text style={styles.ctaText}>{t('welcome.cta')}</Text>
                 </Pressable>
               </Animated.View>
+
+              <Animated.View style={[styles.statsRow, rise(0.6, 0.9)]}>
+                {(['modules', 'ai', 'data'] as const).map((key) => (
+                  <View key={key} style={styles.statItem}>
+                    <Text style={styles.statValue}>{t(`welcome.stats.${key}.value`)}</Text>
+                    <Text style={styles.statLabel}>{t(`welcome.stats.${key}.label`)}</Text>
+                  </View>
+                ))}
+              </Animated.View>
             </View>
           </SafeAreaView>
         </View>
 
-        <ModulesSection />
-        <CustomersSection />
-        <AutomationSection />
-        <PricingSection onCta={goToLogin} />
-        <DemoSection onCta={goToLogin} />
+        <View onLayout={recordSectionY('modules')}>
+          <ModulesSection />
+        </View>
+        <View onLayout={recordSectionY('customers')}>
+          <CustomersSection />
+        </View>
+        <View onLayout={recordSectionY('automation')}>
+          <AutomationSection />
+        </View>
+        <View onLayout={recordSectionY('pricing')}>
+          <PricingSection onCta={goToLogin} />
+        </View>
+        <View onLayout={recordSectionY('demo')}>
+          <DemoSection onCta={goToLogin} />
+        </View>
+        <View onLayout={recordSectionY('contact')}>
+          <ContactSection />
+        </View>
       </ScrollView>
+
+      {menuMounted && (
+        <Animated.View
+          pointerEvents={menuOpen ? 'auto' : 'none'}
+          style={[
+            styles.menuOverlay,
+            {
+              opacity: menuAnim,
+              transform: [{ translateY: menuAnim.interpolate({ inputRange: [0, 1], outputRange: [-24, 0] }) }],
+            },
+          ]}
+        >
+          <SafeAreaView style={styles.menuOverlaySafe} edges={['top', 'left', 'right', 'bottom']}>
+            <View style={styles.menuTopBar}>
+              <View style={styles.brandRow}>
+                <BrandMark size={26} />
+                <Wordmark size={20} color="#FFFFFF" />
+              </View>
+              <Pressable
+                onPress={() => {
+                  haptics.press()
+                  closeMenu()
+                }}
+                accessibilityRole="button"
+                hitSlop={8}
+                style={styles.menuButton}
+              >
+                <Icon name="x" size={20} color="#FFFFFF" />
+              </Pressable>
+            </View>
+
+            <ScrollView contentContainerStyle={styles.menuScrollContent} showsVerticalScrollIndicator={false}>
+              <View style={styles.menuLinks}>
+                {SECTIONS.map((key) => (
+                  <Pressable key={key} onPress={() => scrollToSection(key)} style={styles.menuLink}>
+                    <Text style={styles.menuLinkText}>{t(`welcome.${key}.eyebrow`)}</Text>
+                  </Pressable>
+                ))}
+              </View>
+
+              <View style={styles.langSelector}>
+                <Pressable
+                  onPress={() => {
+                    haptics.press()
+                    setLangOpen((v) => !v)
+                  }}
+                  accessibilityRole="button"
+                  style={styles.langSelectorButton}
+                >
+                  <View style={styles.langSelectorCurrent}>
+                    <Flag locale={locale} />
+                    <Text style={styles.langSelectorText}>{LOCALE_NAMES[locale]}</Text>
+                  </View>
+                  <View style={{ transform: [{ rotate: langOpen ? '180deg' : '0deg' }] }}>
+                    <Icon name="chevron-down" size={16} color="rgba(255,255,255,0.7)" />
+                  </View>
+                </Pressable>
+
+                {langOpen && (
+                  <View style={styles.langList}>
+                    {LOCALE_CODES.map((code, index) => (
+                      <Pressable
+                        key={code}
+                        onPress={() => selectLocale(code)}
+                        style={[styles.langOption, index < LOCALE_CODES.length - 1 && styles.langOptionDivider]}
+                      >
+                        <View style={styles.langSelectorCurrent}>
+                          <Flag locale={code} />
+                          <Text style={styles.langOptionText}>{LOCALE_NAMES[code]}</Text>
+                        </View>
+                        {code === locale && <Icon name="check-square" size={16} color="#39FF14" />}
+                      </Pressable>
+                    ))}
+                  </View>
+                )}
+              </View>
+
+              <Pressable onPress={goToLogin} accessibilityRole="button" style={({ pressed }) => [styles.menuCta, pressed && styles.ctaPressed]}>
+                <Text style={styles.menuCtaText}>{t('auth.submitLogin')}</Text>
+              </Pressable>
+            </ScrollView>
+          </SafeAreaView>
+        </Animated.View>
+      )}
     </View>
   )
 }
@@ -153,6 +337,15 @@ const styles = StyleSheet.create({
     paddingTop: spacing(2),
   },
   brandRow: { flexDirection: 'row', alignItems: 'center', gap: spacing(2) },
+  topBarActions: { flexDirection: 'row', alignItems: 'center', gap: spacing(2) },
+  menuButton: {
+    width: 38,
+    height: 38,
+    borderRadius: radius.full,
+    backgroundColor: 'rgba(255,255,255,0.1)',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
   signInPill: {
     backgroundColor: 'rgba(255,255,255,0.1)',
     paddingHorizontal: spacing(4),
@@ -160,11 +353,79 @@ const styles = StyleSheet.create({
     borderRadius: radius.full,
   },
   signInText: { color: '#FFFFFF', fontSize: 13, fontWeight: '600' },
+  menuOverlay: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    right: 0,
+    bottom: 0,
+    zIndex: 50,
+  },
+  menuOverlaySafe: {
+    flex: 1,
+    backgroundColor: '#050505',
+  },
+  menuTopBar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: spacing(5),
+    paddingTop: spacing(2),
+    paddingBottom: spacing(4),
+  },
+  menuScrollContent: {
+    flexGrow: 1,
+    paddingHorizontal: spacing(5),
+    justifyContent: 'space-between',
+  },
+  menuLinks: { gap: spacing(1) },
+  menuLink: { paddingVertical: spacing(3), borderBottomWidth: 1, borderBottomColor: 'rgba(255,255,255,0.08)' },
+  menuLinkText: { color: '#FFFFFF', fontSize: 20, fontWeight: '600' },
+  langSelector: { marginTop: spacing(6) },
+  langSelectorButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingVertical: spacing(3),
+    paddingHorizontal: spacing(4),
+    borderRadius: radius.md,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.15)',
+    backgroundColor: 'rgba(255,255,255,0.05)',
+  },
+  langSelectorCurrent: { flexDirection: 'row', alignItems: 'center', gap: spacing(2) },
+  langSelectorText: { color: '#FFFFFF', fontSize: 15, fontWeight: '600' },
+  langList: {
+    marginTop: spacing(2),
+    borderRadius: radius.md,
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.1)',
+    overflow: 'hidden',
+  },
+  langOption: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingVertical: spacing(3),
+    paddingHorizontal: spacing(4),
+    backgroundColor: 'rgba(255,255,255,0.03)',
+  },
+  langOptionDivider: { borderBottomWidth: 1, borderBottomColor: 'rgba(255,255,255,0.06)' },
+  langOptionText: { color: '#FFFFFF', fontSize: 14, fontWeight: '500' },
+  menuCta: {
+    marginTop: spacing(6),
+    marginBottom: spacing(6),
+    alignItems: 'center',
+    paddingVertical: spacing(4),
+    borderRadius: radius.full,
+    backgroundColor: '#39FF14',
+  },
+  menuCtaText: { color: '#0A0A0A', fontSize: 15, fontWeight: '700' },
   content: { paddingHorizontal: spacing(5), paddingBottom: spacing(6) },
-  eyebrow: { color: 'rgba(255,255,255,0.9)', fontSize: 12, fontWeight: '600', letterSpacing: 1, marginBottom: spacing(3), ...MONO },
+  eyebrow: { color: 'rgba(255,255,255,0.9)', fontSize: 12, fontWeight: '600', letterSpacing: 1, marginBottom: spacing(3) },
   eyebrowEmphasis: { fontStyle: 'italic' },
-  headline: { color: '#FFFFFF', fontSize: 40, lineHeight: 42, fontWeight: '700', letterSpacing: -1.5, marginBottom: spacing(4), ...MONO },
-  paragraph: { color: 'rgba(255,255,255,0.9)', fontSize: 15, lineHeight: 22, marginBottom: spacing(6), ...MONO },
+  headline: { color: '#FFFFFF', fontSize: 40, lineHeight: 42, fontWeight: '700', letterSpacing: -1.5, marginBottom: spacing(4) },
+  paragraph: { color: 'rgba(255,255,255,0.9)', fontSize: 15, lineHeight: 22, marginBottom: spacing(6) },
   cta: {
     alignSelf: 'flex-start',
     backgroundColor: '#39FF14',
@@ -173,5 +434,9 @@ const styles = StyleSheet.create({
     borderRadius: radius.full,
   },
   ctaPressed: { transform: [{ scale: 0.96 }] },
-  ctaText: { color: '#0A0A0A', fontSize: 15, fontWeight: '700', ...MONO },
+  ctaText: { color: '#0A0A0A', fontSize: 15, fontWeight: '700' },
+  statsRow: { flexDirection: 'row', gap: spacing(6), marginTop: spacing(8) },
+  statItem: { gap: spacing(1) },
+  statValue: { color: '#FFFFFF', fontSize: 20, fontWeight: '700' },
+  statLabel: { color: 'rgba(255,255,255,0.6)', fontSize: 11 },
 })

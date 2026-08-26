@@ -488,6 +488,11 @@
     "headline3": "arbeitet",
     "paragraph": "Eine Zukunft, in der Automatisierung, Daten und menschliches Gespür zusammenfinden. Nicht nur Software. Nicht nur Menschen. Etwas genau dazwischen, im perfekten Gleichgewicht.",
     "cta": "Zugang anfragen",
+    "stats": {
+      "modules": { "value": "15+", "label": "Integrierte Module" },
+      "ai": { "value": "24/7", "label": "KI-Assistent" },
+      "data": { "value": "100%", "label": "Vereinte Daten" }
+    },
     "modules": {
       "eyebrow": "Module",
       "title": "Alles, was dein Team braucht, in einem System",
@@ -566,6 +571,21 @@
         "calendar": { "label": "Kalender", "caption": "Termine und Team-Verfügbarkeit, immer synchron." },
         "automation": { "label": "Automatisierung", "caption": "Regeln, die sich selbst auslösen, damit du es nicht musst." },
         "projects": { "label": "Projekte", "caption": "Aufgaben, Fristen und Verantwortliche auf einen Blick." }
+      }
+    },
+    "contact": {
+      "eyebrow": "Kontakt",
+      "title": "Sprich direkt mit uns",
+      "subtitle": "Fülle ein paar Felder aus — dein E-Mail-Programm öffnet sich mit allem versandbereit.",
+      "mailSubject": "Neue Nachricht von der VORA-Website",
+      "form": {
+        "name": "Name",
+        "namePlaceholder": "Dein Name",
+        "email": "E-Mail",
+        "emailPlaceholder": "du@unternehmen.de",
+        "message": "Nachricht",
+        "messagePlaceholder": "Erzähl uns von deinem Team und was du brauchst",
+        "submit": "E-Mail öffnen"
       }
     }
   }

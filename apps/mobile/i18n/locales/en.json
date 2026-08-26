@@ -488,6 +488,11 @@
     "headline3": "with you",
     "paragraph": "A future where automation, data, and human instinct align. Not just software. Not just people. Something perfectly balanced between the two.",
     "cta": "Request Access",
+    "stats": {
+      "modules": { "value": "15+", "label": "Integrated Modules" },
+      "ai": { "value": "24/7", "label": "AI Assistant" },
+      "data": { "value": "100%", "label": "Unified Data" }
+    },
     "modules": {
       "eyebrow": "Modules",
       "title": "Everything your team needs, in one system",
@@ -566,6 +571,21 @@
         "calendar": { "label": "Calendar", "caption": "Appointments and team availability, always in sync." },
         "automation": { "label": "Automations", "caption": "Rules that trigger themselves, so you don't have to." },
         "projects": { "label": "Projects", "caption": "Tasks, deadlines, and owners at a glance." }
+      }
+    },
+    "contact": {
+      "eyebrow": "Contact",
+      "title": "Talk to us directly",
+      "subtitle": "Fill in a few details — it opens your email client with everything ready to send.",
+      "mailSubject": "New message from the VORA site",
+      "form": {
+        "name": "Name",
+        "namePlaceholder": "Your name",
+        "email": "Email",
+        "emailPlaceholder": "you@company.com",
+        "message": "Message",
+        "messagePlaceholder": "Tell us about your team and what you need",
+        "submit": "Open email"
       }
     }
   }

@@ -5,6 +5,9 @@ import Svg, { Path } from 'react-native-svg'
 // (components/ui/Icon.vue), reused here for visual consistency.
 const ICONS: Record<string, string> = {
   home: 'M3 10.5 12 3l9 7.5M5 9v10a1 1 0 0 0 1 1h4v-6h4v6h4a1 1 0 0 0 1-1V9',
+  menu: 'M4 6h16M4 12h16M4 18h16',
+  x: 'M18 6 6 18M6 6l12 12',
+  'chevron-down': 'm6 9 6 6 6-6',
   'check-square': 'm9 11 3 3L22 4M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11',
   mail: 'M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Zm0 0 8 7 8-7',
   calendar: 'M8 2v4M16 2v4M3 10h18M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2Z',

@@ -488,6 +488,11 @@
     "headline3": "同频工作",
     "paragraph": "在这里，自动化、数据与人的直觉彼此契合。不只是软件，也不只是人力，而是介于两者之间近乎完美的平衡。",
     "cta": "申请访问",
+    "stats": {
+      "modules": { "value": "15+", "label": "集成模块" },
+      "ai": { "value": "24/7", "label": "AI 助手" },
+      "data": { "value": "100%", "label": "数据统一" }
+    },
     "modules": {
       "eyebrow": "功能模块",
       "title": "团队所需的一切，尽在一个系统",
@@ -566,6 +571,21 @@
         "calendar": { "label": "日历", "caption": "预约与团队空闲时间，始终保持同步。" },
         "automation": { "label": "自动化", "caption": "规则自动触发，无需你亲自动手。" },
         "projects": { "label": "项目", "caption": "任务、截止日期与负责人一目了然。" }
+      }
+    },
+    "contact": {
+      "eyebrow": "联系我们",
+      "title": "直接与我们交流",
+      "subtitle": "填写几项信息——系统会打开你的邮件客户端，内容已准备就绪，随时可发送。",
+      "mailSubject": "来自 VORA 官网的新消息",
+      "form": {
+        "name": "姓名",
+        "namePlaceholder": "请输入姓名",
+        "email": "邮箱",
+        "emailPlaceholder": "you@company.com",
+        "message": "留言",
+        "messagePlaceholder": "请介绍一下你的团队以及你的需求",
+        "submit": "打开邮件"
       }
     }
   }

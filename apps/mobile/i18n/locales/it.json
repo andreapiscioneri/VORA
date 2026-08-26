@@ -488,6 +488,11 @@
     "headline3": "con te",
     "paragraph": "Un futuro in cui automazione, dati e intuizione umana si allineano. Non solo software. Non solo persone. Qualcosa di perfettamente in equilibrio tra i due.",
     "cta": "Richiedi accesso",
+    "stats": {
+      "modules": { "value": "15+", "label": "Moduli integrati" },
+      "ai": { "value": "24/7", "label": "Assistente AI" },
+      "data": { "value": "100%", "label": "Dati unificati" }
+    },
     "modules": {
       "eyebrow": "Moduli",
       "title": "Tutto ciò che serve al tuo team, in un solo sistema",
@@ -566,6 +571,21 @@
         "calendar": { "label": "Calendario", "caption": "Appuntamenti e disponibilità del team, sempre sincronizzati." },
         "automation": { "label": "Automazioni", "caption": "Regole che si attivano da sole, così non devi farlo tu." },
         "projects": { "label": "Progetti", "caption": "Task, scadenze e responsabili in un colpo d'occhio." }
+      }
+    },
+    "contact": {
+      "eyebrow": "Contatti",
+      "title": "Parla direttamente con noi",
+      "subtitle": "Compila pochi campi — si aprirà il tuo client email con tutto già pronto da inviare.",
+      "mailSubject": "Nuovo messaggio dal sito VORA",
+      "form": {
+        "name": "Nome",
+        "namePlaceholder": "Il tuo nome",
+        "email": "Email",
+        "emailPlaceholder": "tu@azienda.it",
+        "message": "Messaggio",
+        "messagePlaceholder": "Raccontaci del tuo team e di cosa hai bisogno",
+        "submit": "Apri email"
       }
     }
   }

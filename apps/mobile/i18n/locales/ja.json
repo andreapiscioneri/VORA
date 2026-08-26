@@ -488,6 +488,11 @@
     "headline3": "システム",
     "paragraph": "自動化とデータ、そして人の直感が調和する未来。ソフトウェアだけでも、人だけでもない。その間に美しく釣り合う何か。",
     "cta": "アクセスを申請",
+    "stats": {
+      "modules": { "value": "15+", "label": "統合モジュール" },
+      "ai": { "value": "24/7", "label": "AIアシスタント" },
+      "data": { "value": "100%", "label": "統合データ" }
+    },
     "modules": {
       "eyebrow": "モジュール",
       "title": "チームに必要なすべてを、ひとつのシステムに",
@@ -566,6 +571,21 @@
         "calendar": { "label": "カレンダー", "caption": "予約とチームの空き状況を常に同期。" },
         "automation": { "label": "自動化", "caption": "自分で動くルールだから、あなたが動く必要はない。" },
         "projects": { "label": "プロジェクト", "caption": "タスク、期限、担当者をひと目で確認。" }
+      }
+    },
+    "contact": {
+      "eyebrow": "お問い合わせ",
+      "title": "直接お話ししましょう",
+      "subtitle": "いくつかの項目を入力すると、送信準備が整った状態でメールソフトが開きます。",
+      "mailSubject": "VORAサイトからの新しいメッセージ",
+      "form": {
+        "name": "お名前",
+        "namePlaceholder": "お名前を入力",
+        "email": "メールアドレス",
+        "emailPlaceholder": "you@company.com",
+        "message": "メッセージ",
+        "messagePlaceholder": "チームについてと、必要なことを教えてください",
+        "submit": "メールを開く"
       }
     }
   }

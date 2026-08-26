@@ -488,6 +488,11 @@
     "headline3": "avec vous",
     "paragraph": "Un avenir où l'automatisation, les données et l'instinct humain s'alignent. Pas seulement un logiciel. Pas seulement des personnes. Quelque chose de parfaitement équilibré entre les deux.",
     "cta": "Demander l'accès",
+    "stats": {
+      "modules": { "value": "15+", "label": "Modules intégrés" },
+      "ai": { "value": "24/7", "label": "Assistant IA" },
+      "data": { "value": "100%", "label": "Données unifiées" }
+    },
     "modules": {
       "eyebrow": "Modules",
       "title": "Tout ce dont votre équipe a besoin, dans un seul système",
@@ -566,6 +571,21 @@
         "calendar": { "label": "Agenda", "caption": "Rendez-vous et disponibilités de l'équipe, toujours synchronisés." },
         "automation": { "label": "Automatisations", "caption": "Des règles qui se déclenchent seules, pour vous éviter de le faire." },
         "projects": { "label": "Projets", "caption": "Tâches, échéances et responsables en un coup d'œil." }
+      }
+    },
+    "contact": {
+      "eyebrow": "Contact",
+      "title": "Parlez-nous directement",
+      "subtitle": "Remplissez quelques champs — votre client email s'ouvrira avec tout prêt à envoyer.",
+      "mailSubject": "Nouveau message depuis le site VORA",
+      "form": {
+        "name": "Nom",
+        "namePlaceholder": "Votre nom",
+        "email": "Email",
+        "emailPlaceholder": "vous@entreprise.fr",
+        "message": "Message",
+        "messagePlaceholder": "Parlez-nous de votre équipe et de vos besoins",
+        "submit": "Ouvrir l'email"
       }
     }
   }

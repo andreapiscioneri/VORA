@@ -1,10 +1,8 @@
 import { useState } from 'react'
-import { Platform, Pressable, StyleSheet, Text, View } from 'react-native'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { Icon, type IconName } from '../Icon'
 import { useI18n } from '../../i18n'
 import { radius, spacing } from '../../constants/theme'
-
-const MONO = { fontFamily: Platform.select({ ios: 'Menlo', android: 'monospace', default: 'monospace' }) }
 
 const TAB_KEYS = ['crm', 'calendar', 'automation', 'projects'] as const
 type TabKey = (typeof TAB_KEYS)[number]
@@ -72,9 +70,9 @@ export function DemoSection({ onCta }: { onCta: () => void }) {
 
 const styles = StyleSheet.create({
   section: { paddingHorizontal: spacing(5), paddingVertical: spacing(10), paddingBottom: spacing(16) },
-  eyebrow: { color: '#39FF14', fontSize: 12, fontWeight: '700', letterSpacing: 1, textTransform: 'uppercase', ...MONO },
-  title: { color: '#FFFFFF', fontSize: 26, lineHeight: 30, fontWeight: '700', letterSpacing: -1, marginTop: spacing(2), ...MONO },
-  subtitle: { color: 'rgba(255,255,255,0.7)', fontSize: 14, lineHeight: 20, marginTop: spacing(3), ...MONO },
+  eyebrow: { color: '#39FF14', fontSize: 12, fontWeight: '700', letterSpacing: 1, textTransform: 'uppercase' },
+  title: { color: '#FFFFFF', fontSize: 26, lineHeight: 30, fontWeight: '700', letterSpacing: -1, marginTop: spacing(2) },
+  subtitle: { color: 'rgba(255,255,255,0.7)', fontSize: 14, lineHeight: 20, marginTop: spacing(3) },
   tabRow: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing(2), marginTop: spacing(6) },
   tab: {
     flexDirection: 'row',
@@ -86,7 +84,7 @@ const styles = StyleSheet.create({
     backgroundColor: 'rgba(255,255,255,0.06)',
   },
   tabActive: { backgroundColor: '#39FF14' },
-  tabText: { color: 'rgba(255,255,255,0.7)', fontSize: 12, fontWeight: '600', ...MONO },
+  tabText: { color: 'rgba(255,255,255,0.7)', fontSize: 12, fontWeight: '600' },
   tabTextActive: { color: '#0A0A0A' },
   preview: {
     marginTop: spacing(5),
@@ -120,7 +118,7 @@ const styles = StyleSheet.create({
   barThin: { height: 7, borderRadius: radius.full, backgroundColor: 'rgba(255,255,255,0.1)' },
   previewBarsFull: { gap: spacing(2) },
   barFull: { height: 9, width: '100%', borderRadius: radius.full, backgroundColor: 'rgba(255,255,255,0.1)' },
-  previewCaption: { color: 'rgba(255,255,255,0.7)', fontSize: 13, lineHeight: 18, marginTop: spacing(4), ...MONO },
+  previewCaption: { color: 'rgba(255,255,255,0.7)', fontSize: 13, lineHeight: 18, marginTop: spacing(4) },
   cta: {
     marginTop: spacing(6),
     alignSelf: 'flex-start',
@@ -129,6 +127,6 @@ const styles = StyleSheet.create({
     paddingVertical: spacing(4),
     borderRadius: radius.full,
   },
-  ctaText: { color: '#0A0A0A', fontSize: 15, fontWeight: '700', ...MONO },
+  ctaText: { color: '#0A0A0A', fontSize: 15, fontWeight: '700' },
   pressed: { transform: [{ scale: 0.96 }] },
 })
