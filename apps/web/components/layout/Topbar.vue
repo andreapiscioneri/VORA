@@ -2,6 +2,7 @@
 const colorMode = useColorMode()
 const launcherOpen = useState('launcher-open', () => false)
 const assistantOpen = useState('assistant-open', () => false)
+const mobileNavOpen = useState('mobile-nav-open', () => false)
 const userMenuOpen = ref(false)
 const { user, clear } = useUserSession()
 const router = useRouter()
@@ -28,7 +29,11 @@ async function logout() {
   <header
     class="h-16 shrink-0 flex items-center gap-3 px-4 tablet:px-6 border-b border-ink-100 dark:border-white/10 bg-paper-50/80 dark:bg-ink-900/80 backdrop-blur-md sticky top-0 z-40"
   >
-    <button class="tablet:hidden text-ink-600 dark:text-paper-200" aria-label="Menu">
+    <button
+      class="tablet:hidden text-ink-600 dark:text-paper-200"
+      aria-label="Menu"
+      @click="mobileNavOpen = true"
+    >
       <UiIcon name="menu" :size="22" />
     </button>
 
