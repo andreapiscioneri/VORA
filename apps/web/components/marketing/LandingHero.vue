@@ -15,6 +15,10 @@ const mobileLocaleList = computed(() =>
   ),
 )
 
+const currentMobileLocale = computed(() => mobileLocaleList.value.find((l) => l.code === locale.value) ?? mobileLocaleList.value[0])
+
+const mobileLangOpen = ref(false)
+
 function selectMobileLocale(code: string) {
   setLocale(code as typeof locale.value)
   closeMobile()
@@ -28,6 +32,7 @@ const connectLabel = computed(() => (loggedIn.value ? t('landing.nav.dashboard')
 const mobileOpen = ref(false)
 function closeMobile() {
   mobileOpen.value = false
+  mobileLangOpen.value = false
 }
 
 const navLinks = computed(() => [
@@ -170,7 +175,7 @@ onBeforeUnmount(() => {
 <template>
   <div class="min-h-screen bg-ink-950 tracking-[-0.02em]">
     <!-- Navbar -->
-    <nav class="fixed top-0 left-0 right-0 z-50 flex items-center justify-between md:justify-center p-4 sm:p-5">
+    <nav class="fixed top-0 left-0 right-0 z-[60] flex items-center justify-between md:justify-center p-4 sm:p-5">
       <!-- Desktop: one centered pill -->
       <div class="nav-drop hidden md:flex items-center gap-1 bg-ink-950/60 backdrop-blur-md rounded-full pl-3 pr-2 py-2">
         <UiBrandMark :size="22" />
@@ -192,48 +197,84 @@ onBeforeUnmount(() => {
         <UiLocaleSwitcher class="ml-1" />
       </div>
 
-      <!-- Mobile: logo pill + hamburger pill -->
-      <div class="nav-drop md:hidden flex items-center bg-ink-950/60 backdrop-blur-md rounded-full p-2">
-        <UiBrandMark :size="22" />
-      </div>
-      <button
-        class="nav-drop md:hidden flex items-center justify-center bg-ink-950/60 backdrop-blur-md rounded-full p-2 size-[38px] text-white"
-        :aria-label="mobileOpen ? t('landing.menuClose') : t('landing.menuOpen')"
-        @click="mobileOpen = !mobileOpen"
-      >
-        <UiIcon :name="mobileOpen ? 'x' : 'menu'" :size="22" />
-      </button>
+      <!-- Mobile: logo pill + hamburger pill (hidden while the full-screen menu is open) -->
+      <template v-if="!mobileOpen">
+        <div class="nav-drop md:hidden flex items-center bg-ink-950/60 backdrop-blur-md rounded-full p-2">
+          <UiBrandMark :size="22" />
+        </div>
+        <button
+          class="nav-drop md:hidden flex items-center justify-center bg-ink-950/60 backdrop-blur-md rounded-full p-2 size-[38px] text-white"
+          :aria-label="t('landing.menuOpen')"
+          @click="mobileOpen = true"
+        >
+          <UiIcon name="menu" :size="22" />
+        </button>
+      </template>
 
-      <div v-if="mobileOpen" class="fixed top-0 left-0 right-0 z-40 pt-16 pb-6 px-5 bg-white shadow-lg md:hidden">
-        <a
-          v-for="link in navLinks"
-          :key="link.key"
-          :href="`#${link.key}`"
-          class="block py-3 border-b border-gray-100 text-gray-800"
-          @click.prevent="selectMobileLink(link.key)"
-        >
-          {{ link.label }}
-        </a>
-        <NuxtLink
-          :to="connectHref"
-          class="mt-4 block text-center bg-ink-950 text-white text-sm font-semibold px-5 py-2.5 rounded-full"
-          @click="closeMobile"
-        >
-          {{ connectLabel }}
-        </NuxtLink>
-        <div class="mt-4 flex flex-wrap items-center justify-center gap-2">
+      <div v-if="mobileOpen" class="fixed inset-0 z-[60] flex flex-col bg-ink-950 md:hidden">
+        <div class="flex items-center justify-between p-4 sm:p-5">
+          <div class="flex items-center bg-white/10 rounded-full p-2">
+            <UiBrandMark :size="22" />
+          </div>
           <button
-            v-for="l in mobileLocaleList"
-            :key="l.code"
-            type="button"
-            class="flex items-center justify-center rounded-full p-2 border transition-colors"
-            :class="l.code === locale ? 'border-ink-950 bg-ink-950/5' : 'border-gray-200 hover:border-gray-400'"
-            :aria-label="l.name"
-            :aria-pressed="l.code === locale"
-            @click="selectMobileLocale(l.code)"
+            class="flex items-center justify-center bg-white/10 rounded-full p-2 size-[38px] text-white"
+            :aria-label="t('landing.menuClose')"
+            @click="closeMobile"
           >
-            <UiFlag :code="l.code" :size="20" />
+            <UiIcon name="x" :size="22" />
           </button>
+        </div>
+
+        <div class="flex-1 overflow-y-auto px-5 pb-8 flex flex-col">
+          <a
+            v-for="link in navLinks"
+            :key="link.key"
+            :href="`#${link.key}`"
+            class="py-3.5 border-b border-white/10 text-white text-lg font-medium"
+            @click.prevent="selectMobileLink(link.key)"
+          >
+            {{ link.label }}
+          </a>
+
+          <div class="mt-6">
+            <button
+              type="button"
+              class="w-full flex items-center justify-between px-4 py-3 rounded-lg border border-white/15 bg-white/5"
+              :aria-expanded="mobileLangOpen"
+              aria-haspopup="listbox"
+              @click="mobileLangOpen = !mobileLangOpen"
+            >
+              <span class="flex items-center gap-2.5">
+                <UiFlag v-if="currentMobileLocale" :code="currentMobileLocale.code" :size="18" />
+                <span class="text-sm font-medium text-white">{{ currentMobileLocale?.name }}</span>
+              </span>
+              <UiIcon name="chevron-down" :size="16" class="text-white/60 transition-transform" :class="{ 'rotate-180': mobileLangOpen }" />
+            </button>
+
+            <div v-if="mobileLangOpen" role="listbox" class="mt-1 rounded-lg border border-white/15 overflow-hidden">
+              <button
+                v-for="l in mobileLocaleList"
+                :key="l.code"
+                type="button"
+                role="option"
+                :aria-selected="l.code === locale"
+                class="w-full flex items-center gap-2.5 px-4 py-3 text-sm text-left transition-colors"
+                :class="l.code === locale ? 'bg-white/15 text-white font-medium' : 'text-gray-300 hover:bg-white/10'"
+                @click="selectMobileLocale(l.code)"
+              >
+                <UiFlag :code="l.code" :size="18" />
+                <span>{{ l.name }}</span>
+              </button>
+            </div>
+          </div>
+
+          <NuxtLink
+            :to="connectHref"
+            class="mt-auto pt-6 block text-center bg-primary text-ink-950 text-sm font-semibold px-5 py-3 rounded-full"
+            @click="closeMobile"
+          >
+            {{ connectLabel }}
+          </NuxtLink>
         </div>
       </div>
     </nav>
