@@ -15,7 +15,10 @@ function resolveDevHost(): string {
   return Platform.OS === 'android' ? '10.0.2.2' : 'localhost'
 }
 
-export const API_BASE = `http://${resolveDevHost()}:3100/api`
+// A standalone build (no Metro/dev server around) has no LAN dev host to
+// resolve at all — EXPO_PUBLIC_API_URL, baked in at build time, points it at
+// a real deployment instead (see apps/mobile/AGENTS.md sideloading notes).
+export const API_BASE = process.env.EXPO_PUBLIC_API_URL ?? `http://${resolveDevHost()}:3100/api`
 
 export class ApiError extends Error {
   status: number

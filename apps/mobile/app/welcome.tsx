@@ -14,7 +14,7 @@ import {
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useRouter } from 'expo-router'
 import { StatusBar } from 'expo-status-bar'
-import Svg, { Path } from 'react-native-svg'
+import Svg, { Defs, Path, RadialGradient, Rect, Stop } from 'react-native-svg'
 import { BrandMark } from '../components/BrandMark'
 import { Wordmark } from '../components/Wordmark'
 import { Icon } from '../components/Icon'
@@ -141,11 +141,25 @@ export default function WelcomeScreen() {
       <StatusBar style="light" />
 
       <ScrollView ref={scrollRef} contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
-        <View style={[styles.hero, { height: height * 0.82 }]}>
+        <View style={[styles.hero, { height: height * 0.74 }]}>
           <Animated.View
             style={[styles.backgroundLayer, { transform: [{ scale }], pointerEvents: 'none' }]}
           >
             <View style={styles.gradientBase} />
+            <Svg width="100%" height="100%" style={StyleSheet.absoluteFillObject}>
+              <Defs>
+                <RadialGradient id="glowA" cx="30%" cy="20%" r="65%">
+                  <Stop offset="0%" stopColor="#39FF14" stopOpacity={0.16} />
+                  <Stop offset="100%" stopColor="#39FF14" stopOpacity={0} />
+                </RadialGradient>
+                <RadialGradient id="glowB" cx="80%" cy="90%" r="60%">
+                  <Stop offset="0%" stopColor="#39FF14" stopOpacity={0.1} />
+                  <Stop offset="100%" stopColor="#39FF14" stopOpacity={0} />
+                </RadialGradient>
+              </Defs>
+              <Rect x="0" y="0" width="100%" height="100%" fill="url(#glowA)" />
+              <Rect x="0" y="0" width="100%" height="100%" fill="url(#glowB)" />
+            </Svg>
             <Animated.View style={[styles.glyphWrap, { opacity: glow, right: -glyphSize * 0.35, bottom: -glyphSize * 0.3 }]}>
               <Svg width={glyphSize} height={glyphSize} viewBox="0 0 256 256">
                 <Path d={GLYPH_PATH} fill="#39FF14" fillOpacity={0.9} />
@@ -158,10 +172,6 @@ export default function WelcomeScreen() {
           <SafeAreaView style={styles.safe} edges={['top', 'left', 'right', 'bottom']}>
             <View style={styles.topBar}>
               <View style={styles.brandRow}>
-                <BrandMark size={26} />
-                <Wordmark size={20} color="#FFFFFF" />
-              </View>
-              <View style={styles.topBarActions}>
                 <Pressable
                   onPress={() => {
                     haptics.press()
@@ -173,10 +183,12 @@ export default function WelcomeScreen() {
                 >
                   <Icon name="menu" size={20} color="#FFFFFF" />
                 </Pressable>
-                <Pressable onPress={goToLogin} accessibilityRole="button" hitSlop={8} style={styles.signInPill}>
-                  <Text style={styles.signInText}>{t('auth.submitLogin')}</Text>
-                </Pressable>
+                <BrandMark size={26} />
+                <Wordmark size={20} color="#FFFFFF" />
               </View>
+              <Pressable onPress={goToLogin} accessibilityRole="button" hitSlop={8} style={styles.signInPill}>
+                <Text style={styles.signInText}>{t('auth.submitLogin')}</Text>
+              </Pressable>
             </View>
 
             <View style={[styles.content, { maxWidth: contentWidth }]}>
@@ -337,7 +349,6 @@ const styles = StyleSheet.create({
     paddingTop: spacing(2),
   },
   brandRow: { flexDirection: 'row', alignItems: 'center', gap: spacing(2) },
-  topBarActions: { flexDirection: 'row', alignItems: 'center', gap: spacing(2) },
   menuButton: {
     width: 38,
     height: 38,
