@@ -122,7 +122,7 @@
       },
       "notifications": {
         "label": "Benachrichtigungen",
-        "desc": "Push-Einstellungen"
+        "desc": "Deine Benachrichtigungen"
       },
       "employees": {
         "label": "Mitarbeiter",
@@ -156,7 +156,8 @@
         "label": "Einstellungen",
         "desc": "Profil und Passwort"
       }
-    }
+    },
+    "madeBy": "Made by apdesign"
   },
   "modules": {
     "contacts": {
@@ -168,6 +169,21 @@
         "active": "Aktiv",
         "lead": "Lead",
         "inactive": "Inaktiv"
+      },
+      "form": {
+        "newTitle": "Neuer Kontakt",
+        "firstName": "Vorname",
+        "lastName": "Nachname",
+        "company": "Unternehmen",
+        "email": "E-Mail",
+        "phone": "Telefon",
+        "notes": "Notizen",
+        "status": "Status",
+        "save": "Speichern",
+        "saving": "Speichern..."
+      },
+      "errors": {
+        "save": "Kontakt konnte nicht gespeichert werden."
       }
     },
     "crm": {
@@ -182,6 +198,19 @@
         "negotiation": "Verhandlung",
         "won": "Gewonnen",
         "lost": "Verloren"
+      },
+      "form": {
+        "newTitle": "Neue Chance",
+        "title": "Titel",
+        "company": "Unternehmen",
+        "value": "Wert (EUR)",
+        "stage": "Phase",
+        "notes": "Notizen",
+        "save": "Speichern",
+        "saving": "Speichern..."
+      },
+      "errors": {
+        "save": "Chance konnte nicht gespeichert werden."
       }
     },
     "projects": {
@@ -194,6 +223,19 @@
         "on_hold": "Pausiert",
         "completed": "Abgeschlossen",
         "archived": "Archiviert"
+      },
+      "form": {
+        "newTitle": "Neues Projekt",
+        "name": "Name",
+        "description": "Beschreibung",
+        "status": "Status",
+        "budget": "Budget (EUR)",
+        "dueDate": "Fälligkeitsdatum",
+        "save": "Speichern",
+        "saving": "Speichern..."
+      },
+      "errors": {
+        "save": "Projekt konnte nicht gespeichert werden."
       }
     },
     "timesheets": {
@@ -202,7 +244,19 @@
       "error": "Zeiterfassung konnte nicht geladen werden. Prüfe, ob der Vora-Server läuft. ({{error}})",
       "empty": "Keine Einträge erfasst.",
       "billable": "Abrechenbar",
-      "nonBillable": "Nicht abrechenbar"
+      "nonBillable": "Nicht abrechenbar",
+      "form": {
+        "newTitle": "Neuer Eintrag",
+        "date": "Datum",
+        "durationMinutes": "Dauer (Minuten)",
+        "description": "Beschreibung",
+        "billableToggle": "Abrechenbar",
+        "save": "Speichern",
+        "saving": "Speichern..."
+      },
+      "errors": {
+        "save": "Eintrag konnte nicht gespeichert werden."
+      }
     },
     "helpdesk": {
       "title": "Helpdesk",
@@ -215,6 +269,23 @@
         "waiting": "Wartend",
         "resolved": "Gelöst",
         "closed": "Geschlossen"
+      },
+      "form": {
+        "newTitle": "Neues Ticket",
+        "title": "Titel",
+        "description": "Beschreibung",
+        "priority": "Priorität",
+        "save": "Speichern",
+        "saving": "Speichern..."
+      },
+      "priority": {
+        "low": "Niedrig",
+        "medium": "Mittel",
+        "high": "Hoch",
+        "urgent": "Dringend"
+      },
+      "errors": {
+        "save": "Ticket konnte nicht gespeichert werden."
       }
     },
     "leave": {
@@ -231,6 +302,19 @@
         "vacation": "Urlaub",
         "sick": "Krankheit",
         "personal": "Persönlich"
+      },
+      "form": {
+        "newTitle": "Neuer Antrag",
+        "requesterName": "Antragsteller",
+        "type": "Typ",
+        "startDate": "Startdatum",
+        "endDate": "Enddatum",
+        "notes": "Notizen",
+        "save": "Speichern",
+        "saving": "Speichern..."
+      },
+      "errors": {
+        "save": "Antrag konnte nicht gespeichert werden."
       }
     },
     "wellbeing": {
@@ -252,6 +336,7 @@
     "notifications": {
       "title": "Benachrichtigungen",
       "subtitle": "Wähle, was du erhalten möchtest",
+      "count": "{{count}} Benachrichtigungen",
       "loading": "Wird geladen...",
       "error": "Einstellungen konnten nicht geladen werden. Prüfe, ob der Vora-Server läuft. ({{error}})",
       "categories": {
@@ -263,6 +348,15 @@
         "approvals": "Genehmigungen",
         "tickets": "Tickets",
         "deadlines": "Fristen"
+      },
+      "inbox": {
+        "title": "Benachrichtigungen",
+        "empty": "Keine Benachrichtigungen.",
+        "markRead": "Als gelesen markieren",
+        "markUnread": "Als ungelesen markieren",
+        "delete": "Löschen",
+        "preferences": "Benachrichtigungseinstellungen",
+        "viewAll": "Alle anzeigen"
       }
     },
     "employees": {
@@ -439,6 +533,17 @@
         "contact_created": "Kontakt erstellt",
         "contact_status_changed": "Kontaktstatus geändert",
         "manual": "Manuell"
+      },
+      "form": {
+        "newTitle": "Neue Kampagne",
+        "name": "Name",
+        "subject": "Betreff",
+        "body": "Inhalt",
+        "save": "Speichern",
+        "saving": "Speichern..."
+      },
+      "errors": {
+        "save": "Kampagne konnte nicht gespeichert werden."
       }
     },
     "website": {
@@ -447,7 +552,9 @@
       "error": "Websites konnten nicht geladen werden. ({{error}})",
       "empty": "Keine Websites.",
       "published": "Veröffentlicht",
-      "draft": "Entwurf"
+      "draft": "Entwurf",
+      "mySite": "Meine Website",
+      "createNew": "Neue Website erstellen"
     },
     "settings": {
       "title": "Einstellungen",
@@ -489,21 +596,48 @@
     "paragraph": "Eine Zukunft, in der Automatisierung, Daten und menschliches Gespür zusammenfinden. Nicht nur Software. Nicht nur Menschen. Etwas genau dazwischen, im perfekten Gleichgewicht.",
     "cta": "Zugang anfragen",
     "stats": {
-      "modules": { "value": "15+", "label": "Integrierte Module" },
-      "ai": { "value": "24/7", "label": "KI-Assistent" },
-      "data": { "value": "100%", "label": "Vereinte Daten" }
+      "modules": {
+        "value": "15+",
+        "label": "Integrierte Module"
+      },
+      "ai": {
+        "value": "24/7",
+        "label": "KI-Assistent"
+      },
+      "data": {
+        "value": "100%",
+        "label": "Vereinte Daten"
+      }
     },
     "modules": {
       "eyebrow": "Module",
       "title": "Alles, was dein Team braucht, in einem System",
       "subtitle": "Sechs verbundene Module statt sechs getrennter Tools.",
       "items": {
-        "crm": { "title": "CRM & Kontakte", "description": "Leads, Kunden und Chancen in einer einzigen Pipeline verwalten." },
-        "calendar": { "title": "Kalender & Termine", "description": "Meetings und Buchungen planen, ohne Doppelbelegungen." },
-        "projects": { "title": "Projekte & Aufgaben", "description": "Die Arbeit deines Teams mit klaren Fristen und Verantwortlichkeiten organisieren." },
-        "marketing": { "title": "Marketing & Automatisierung", "description": "Kampagnen, Segmente und Workflows, die von allein laufen." },
-        "helpdesk": { "title": "Helpdesk & Wissensdatenbank", "description": "Kunden schneller antworten dank gemeinsamer Wissensdatenbank." },
-        "people": { "title": "Personal & Abwesenheiten", "description": "Urlaub, Spesen und Wohlbefinden des Teams an einem Ort." }
+        "crm": {
+          "title": "CRM & Kontakte",
+          "description": "Leads, Kunden und Chancen in einer einzigen Pipeline verwalten."
+        },
+        "calendar": {
+          "title": "Kalender & Termine",
+          "description": "Meetings und Buchungen planen, ohne Doppelbelegungen."
+        },
+        "projects": {
+          "title": "Projekte & Aufgaben",
+          "description": "Die Arbeit deines Teams mit klaren Fristen und Verantwortlichkeiten organisieren."
+        },
+        "marketing": {
+          "title": "Marketing & Automatisierung",
+          "description": "Kampagnen, Segmente und Workflows, die von allein laufen."
+        },
+        "helpdesk": {
+          "title": "Helpdesk & Wissensdatenbank",
+          "description": "Kunden schneller antworten dank gemeinsamer Wissensdatenbank."
+        },
+        "people": {
+          "title": "Personal & Abwesenheiten",
+          "description": "Urlaub, Spesen und Wohlbefinden des Teams an einem Ort."
+        }
       }
     },
     "customers": {
@@ -511,21 +645,49 @@
       "title": "Ein System, das sich deiner Branche anpasst",
       "subtitle": "Kein Team arbeitet gleich — VORA zwingt keins dazu.",
       "items": {
-        "agencies": { "title": "Agenturen & Fachkanzleien", "description": "Kundenverwaltung, zeitgebundene Projekte und transparente Abrechnung." },
-        "smes": { "title": "Dienstleistungs-KMU", "description": "CRM, Kalender und Helpdesk vereint, damit kein Kunde verloren geht." },
-        "sales": { "title": "Marketing- & Vertriebsteams", "description": "Kampagnen und Automatisierungen, die die Pipeline füllen." },
-        "hr": { "title": "HR & People Ops", "description": "Urlaub, Anwesenheit und Wohlbefinden ohne Excel-Tabellen." }
+        "agencies": {
+          "title": "Agenturen & Fachkanzleien",
+          "description": "Kundenverwaltung, zeitgebundene Projekte und transparente Abrechnung."
+        },
+        "smes": {
+          "title": "Dienstleistungs-KMU",
+          "description": "CRM, Kalender und Helpdesk vereint, damit kein Kunde verloren geht."
+        },
+        "sales": {
+          "title": "Marketing- & Vertriebsteams",
+          "description": "Kampagnen und Automatisierungen, die die Pipeline füllen."
+        },
+        "hr": {
+          "title": "HR & People Ops",
+          "description": "Urlaub, Anwesenheit und Wohlbefinden ohne Excel-Tabellen."
+        }
       }
     },
     "automation": {
       "eyebrow": "Automatisierungen",
       "title": "Workflows, die auch ohne dich laufen",
       "subtitle": "Echte Trigger-Bedingung-Aktion-Regeln, keine simplen Erinnerungen.",
-      "labels": { "trigger": "Trigger", "condition": "Bedingung", "action": "Aktion" },
+      "labels": {
+        "trigger": "Trigger",
+        "condition": "Bedingung",
+        "action": "Aktion"
+      },
       "items": {
-        "contact": { "trigger": "Neuer Kontakt erstellt", "condition": "Quelle = Website", "action": "Willkommens-E-Mail senden und Vertriebler zuweisen" },
-        "appointment": { "trigger": "Termin in 24 Stunden", "condition": "noch nicht bestätigt", "action": "Automatische Erinnerung senden" },
-        "invoice": { "trigger": "Rechnung seit 7 Tagen überfällig", "condition": "weiterhin unbezahlt", "action": "Mahn-Aufgabe erstellen und Team benachrichtigen" }
+        "contact": {
+          "trigger": "Neuer Kontakt erstellt",
+          "condition": "Quelle = Website",
+          "action": "Willkommens-E-Mail senden und Vertriebler zuweisen"
+        },
+        "appointment": {
+          "trigger": "Termin in 24 Stunden",
+          "condition": "noch nicht bestätigt",
+          "action": "Automatische Erinnerung senden"
+        },
+        "invoice": {
+          "trigger": "Rechnung seit 7 Tagen überfällig",
+          "condition": "weiterhin unbezahlt",
+          "action": "Mahn-Aufgabe erstellen und Team benachrichtigen"
+        }
       }
     },
     "pricing": {
@@ -567,10 +729,22 @@
       "subtitle": "Eine interaktive Produktvorschau — keine Anmeldung nötig.",
       "ctaTry": "Kostenlos testen",
       "tabs": {
-        "crm": { "label": "CRM", "caption": "Jeder Kontakt, Deal und jedes Gespräch in einer Pipeline." },
-        "calendar": { "label": "Kalender", "caption": "Termine und Team-Verfügbarkeit, immer synchron." },
-        "automation": { "label": "Automatisierung", "caption": "Regeln, die sich selbst auslösen, damit du es nicht musst." },
-        "projects": { "label": "Projekte", "caption": "Aufgaben, Fristen und Verantwortliche auf einen Blick." }
+        "crm": {
+          "label": "CRM",
+          "caption": "Jeder Kontakt, Deal und jedes Gespräch in einer Pipeline."
+        },
+        "calendar": {
+          "label": "Kalender",
+          "caption": "Termine und Team-Verfügbarkeit, immer synchron."
+        },
+        "automation": {
+          "label": "Automatisierung",
+          "caption": "Regeln, die sich selbst auslösen, damit du es nicht musst."
+        },
+        "projects": {
+          "label": "Projekte",
+          "caption": "Aufgaben, Fristen und Verantwortliche auf einen Blick."
+        }
       }
     },
     "contact": {

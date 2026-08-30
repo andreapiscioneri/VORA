@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { api } from '../lib/api'
 import { readCache, writeCache } from '../lib/offlineCache'
-import type { Contact } from '@vora/shared/types/contact'
+import type { Contact, ContactInput } from '@vora/shared/types/contact'
 
 interface PageResult<T> {
   items: T[]
@@ -64,5 +64,15 @@ export function useContacts() {
     }
   }, [hasMore, loadingMore, nextCursor])
 
-  return { contacts, loading, loadingMore, error, offline, hasMore, reload: load, loadMore }
+  const create = useCallback(async (input: ContactInput) => {
+    const created = await api.post<Contact>('/contacts', input)
+    setContacts((prev) => {
+      const next = [...prev, created]
+      writeCache(CACHE_KEY, next)
+      return next
+    })
+    return created
+  }, [])
+
+  return { contacts, loading, loadingMore, error, offline, hasMore, reload: load, loadMore, create }
 }

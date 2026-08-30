@@ -122,7 +122,7 @@
       },
       "notifications": {
         "label": "Notifications",
-        "desc": "Push preferences"
+        "desc": "Your notifications"
       },
       "employees": {
         "label": "Employees",
@@ -156,7 +156,8 @@
         "label": "Settings",
         "desc": "Profile and password"
       }
-    }
+    },
+    "madeBy": "Made by apdesign"
   },
   "modules": {
     "contacts": {
@@ -168,6 +169,21 @@
         "active": "Active",
         "lead": "Lead",
         "inactive": "Inactive"
+      },
+      "form": {
+        "newTitle": "New contact",
+        "firstName": "First name",
+        "lastName": "Last name",
+        "company": "Company",
+        "email": "Email",
+        "phone": "Phone",
+        "notes": "Notes",
+        "status": "Status",
+        "save": "Save",
+        "saving": "Saving..."
+      },
+      "errors": {
+        "save": "Could not save the contact."
       }
     },
     "crm": {
@@ -182,6 +198,19 @@
         "negotiation": "Negotiation",
         "won": "Won",
         "lost": "Lost"
+      },
+      "form": {
+        "newTitle": "New opportunity",
+        "title": "Title",
+        "company": "Company",
+        "value": "Value (EUR)",
+        "stage": "Stage",
+        "notes": "Notes",
+        "save": "Save",
+        "saving": "Saving..."
+      },
+      "errors": {
+        "save": "Could not save the opportunity."
       }
     },
     "projects": {
@@ -194,6 +223,19 @@
         "on_hold": "On hold",
         "completed": "Completed",
         "archived": "Archived"
+      },
+      "form": {
+        "newTitle": "New project",
+        "name": "Name",
+        "description": "Description",
+        "status": "Status",
+        "budget": "Budget (EUR)",
+        "dueDate": "Due date",
+        "save": "Save",
+        "saving": "Saving..."
+      },
+      "errors": {
+        "save": "Could not save the project."
       }
     },
     "timesheets": {
@@ -202,7 +244,19 @@
       "error": "Couldn't load timesheets. Check that the Vora server is running. ({{error}})",
       "empty": "No entries logged.",
       "billable": "Billable",
-      "nonBillable": "Non-billable"
+      "nonBillable": "Non-billable",
+      "form": {
+        "newTitle": "New entry",
+        "date": "Date",
+        "durationMinutes": "Duration (minutes)",
+        "description": "Description",
+        "billableToggle": "Billable",
+        "save": "Save",
+        "saving": "Saving..."
+      },
+      "errors": {
+        "save": "Could not save the entry."
+      }
     },
     "helpdesk": {
       "title": "Helpdesk",
@@ -215,6 +269,23 @@
         "waiting": "Waiting",
         "resolved": "Resolved",
         "closed": "Closed"
+      },
+      "form": {
+        "newTitle": "New ticket",
+        "title": "Title",
+        "description": "Description",
+        "priority": "Priority",
+        "save": "Save",
+        "saving": "Saving..."
+      },
+      "priority": {
+        "low": "Low",
+        "medium": "Medium",
+        "high": "High",
+        "urgent": "Urgent"
+      },
+      "errors": {
+        "save": "Could not save the ticket."
       }
     },
     "leave": {
@@ -231,6 +302,19 @@
         "vacation": "Vacation",
         "sick": "Sick",
         "personal": "Personal"
+      },
+      "form": {
+        "newTitle": "New request",
+        "requesterName": "Requester",
+        "type": "Type",
+        "startDate": "Start date",
+        "endDate": "End date",
+        "notes": "Notes",
+        "save": "Save",
+        "saving": "Saving..."
+      },
+      "errors": {
+        "save": "Could not save the request."
       }
     },
     "wellbeing": {
@@ -252,6 +336,7 @@
     "notifications": {
       "title": "Notifications",
       "subtitle": "Choose what you want to receive",
+      "count": "{{count}} notifications",
       "loading": "Loading...",
       "error": "Couldn't load preferences. Check that the Vora server is running. ({{error}})",
       "categories": {
@@ -263,6 +348,15 @@
         "approvals": "Approvals",
         "tickets": "Tickets",
         "deadlines": "Deadlines"
+      },
+      "inbox": {
+        "title": "Notifications",
+        "empty": "No notifications.",
+        "markRead": "Mark as read",
+        "markUnread": "Mark as unread",
+        "delete": "Delete",
+        "preferences": "Notification preferences",
+        "viewAll": "View all"
       }
     },
     "employees": {
@@ -439,6 +533,17 @@
         "contact_created": "Contact created",
         "contact_status_changed": "Contact status changed",
         "manual": "Manual"
+      },
+      "form": {
+        "newTitle": "New campaign",
+        "name": "Name",
+        "subject": "Subject",
+        "body": "Body",
+        "save": "Save",
+        "saving": "Saving..."
+      },
+      "errors": {
+        "save": "Could not save the campaign."
       }
     },
     "website": {
@@ -447,7 +552,9 @@
       "error": "Couldn’t load sites. ({{error}})",
       "empty": "No sites.",
       "published": "Published",
-      "draft": "Draft"
+      "draft": "Draft",
+      "mySite": "My site",
+      "createNew": "Create new site"
     },
     "settings": {
       "title": "Settings",
@@ -489,21 +596,48 @@
     "paragraph": "A future where automation, data, and human instinct align. Not just software. Not just people. Something perfectly balanced between the two.",
     "cta": "Request Access",
     "stats": {
-      "modules": { "value": "15+", "label": "Integrated Modules" },
-      "ai": { "value": "24/7", "label": "AI Assistant" },
-      "data": { "value": "100%", "label": "Unified Data" }
+      "modules": {
+        "value": "15+",
+        "label": "Integrated Modules"
+      },
+      "ai": {
+        "value": "24/7",
+        "label": "AI Assistant"
+      },
+      "data": {
+        "value": "100%",
+        "label": "Unified Data"
+      }
     },
     "modules": {
       "eyebrow": "Modules",
       "title": "Everything your team needs, in one system",
       "subtitle": "Six connected modules instead of six disconnected tools.",
       "items": {
-        "crm": { "title": "CRM & Contacts", "description": "Manage leads, customers, and opportunities in a single pipeline." },
-        "calendar": { "title": "Calendar & Appointments", "description": "Schedule meetings and bookings without anyone double-booking." },
-        "projects": { "title": "Projects & Tasks", "description": "Organize your team's work with clear deadlines and owners." },
-        "marketing": { "title": "Marketing & Automations", "description": "Campaigns, segments, and workflows that run themselves." },
-        "helpdesk": { "title": "Helpdesk & Knowledge Base", "description": "Answer customers faster with a shared knowledge base." },
-        "people": { "title": "People & Time Off", "description": "Leave, expenses, and team wellbeing in one place." }
+        "crm": {
+          "title": "CRM & Contacts",
+          "description": "Manage leads, customers, and opportunities in a single pipeline."
+        },
+        "calendar": {
+          "title": "Calendar & Appointments",
+          "description": "Schedule meetings and bookings without anyone double-booking."
+        },
+        "projects": {
+          "title": "Projects & Tasks",
+          "description": "Organize your team's work with clear deadlines and owners."
+        },
+        "marketing": {
+          "title": "Marketing & Automations",
+          "description": "Campaigns, segments, and workflows that run themselves."
+        },
+        "helpdesk": {
+          "title": "Helpdesk & Knowledge Base",
+          "description": "Answer customers faster with a shared knowledge base."
+        },
+        "people": {
+          "title": "People & Time Off",
+          "description": "Leave, expenses, and team wellbeing in one place."
+        }
       }
     },
     "customers": {
@@ -511,21 +645,49 @@
       "title": "A system that adapts to your industry",
       "subtitle": "No two teams work the same way — VORA doesn't force them to.",
       "items": {
-        "agencies": { "title": "Agencies & professional studios", "description": "Client management, timed projects, and transparent billing." },
-        "smes": { "title": "Service-based SMEs", "description": "CRM, calendar, and helpdesk together, so no client slips through." },
-        "sales": { "title": "Marketing & sales teams", "description": "Campaigns and automations that keep the pipeline full." },
-        "hr": { "title": "HR & people ops", "description": "Leave, attendance, and wellbeing without spreadsheets." }
+        "agencies": {
+          "title": "Agencies & professional studios",
+          "description": "Client management, timed projects, and transparent billing."
+        },
+        "smes": {
+          "title": "Service-based SMEs",
+          "description": "CRM, calendar, and helpdesk together, so no client slips through."
+        },
+        "sales": {
+          "title": "Marketing & sales teams",
+          "description": "Campaigns and automations that keep the pipeline full."
+        },
+        "hr": {
+          "title": "HR & people ops",
+          "description": "Leave, attendance, and wellbeing without spreadsheets."
+        }
       }
     },
     "automation": {
       "eyebrow": "Automations",
       "title": "Workflows that work while you don't",
       "subtitle": "Real trigger → condition → action rules, not just reminders.",
-      "labels": { "trigger": "Trigger", "condition": "Condition", "action": "Action" },
+      "labels": {
+        "trigger": "Trigger",
+        "condition": "Condition",
+        "action": "Action"
+      },
       "items": {
-        "contact": { "trigger": "New contact created", "condition": "source = website", "action": "Send a welcome email and assign a rep" },
-        "appointment": { "trigger": "Appointment in 24 hours", "condition": "not confirmed yet", "action": "Send an automatic reminder" },
-        "invoice": { "trigger": "Invoice overdue by 7 days", "condition": "still unpaid", "action": "Create a follow-up task and notify the team" }
+        "contact": {
+          "trigger": "New contact created",
+          "condition": "source = website",
+          "action": "Send a welcome email and assign a rep"
+        },
+        "appointment": {
+          "trigger": "Appointment in 24 hours",
+          "condition": "not confirmed yet",
+          "action": "Send an automatic reminder"
+        },
+        "invoice": {
+          "trigger": "Invoice overdue by 7 days",
+          "condition": "still unpaid",
+          "action": "Create a follow-up task and notify the team"
+        }
       }
     },
     "pricing": {
@@ -567,10 +729,22 @@
       "subtitle": "An interactive preview of the product — no sign-up required.",
       "ctaTry": "Try it free",
       "tabs": {
-        "crm": { "label": "CRM", "caption": "Every contact, deal, and conversation in one pipeline." },
-        "calendar": { "label": "Calendar", "caption": "Appointments and team availability, always in sync." },
-        "automation": { "label": "Automations", "caption": "Rules that trigger themselves, so you don't have to." },
-        "projects": { "label": "Projects", "caption": "Tasks, deadlines, and owners at a glance." }
+        "crm": {
+          "label": "CRM",
+          "caption": "Every contact, deal, and conversation in one pipeline."
+        },
+        "calendar": {
+          "label": "Calendar",
+          "caption": "Appointments and team availability, always in sync."
+        },
+        "automation": {
+          "label": "Automations",
+          "caption": "Rules that trigger themselves, so you don't have to."
+        },
+        "projects": {
+          "label": "Projects",
+          "caption": "Tasks, deadlines, and owners at a glance."
+        }
       }
     },
     "contact": {

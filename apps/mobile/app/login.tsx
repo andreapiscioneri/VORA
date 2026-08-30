@@ -1,9 +1,11 @@
 import { useState } from 'react'
-import { KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
+import { ActivityIndicator, KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
+import { SafeAreaView } from 'react-native-safe-area-context'
 import { useRouter } from 'expo-router'
 import Svg, { Path } from 'react-native-svg'
 import { BrandMark } from '../components/BrandMark'
 import { Wordmark } from '../components/Wordmark'
+import { Icon } from '../components/Icon'
 import { useAuth, ApiError } from '../contexts/AuthContext'
 import { useTheme } from '../contexts/ThemeContext'
 import { useI18n } from '../i18n'
@@ -90,9 +92,19 @@ export default function LoginScreen() {
   }
 
   return (
-    <KeyboardAvoidingView style={{ flex: 1, backgroundColor: colors.background }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
-      <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
-        <View style={styles.brandRow}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: colors.background }} edges={['top', 'left', 'right', 'bottom']}>
+      <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
+        <Pressable
+          onPress={() => router.back()}
+          style={styles.backButton}
+          accessibilityRole="button"
+          accessibilityLabel="Back"
+          hitSlop={12}
+        >
+          <Icon name="arrow-left" size={22} color={colors.textPrimary} />
+        </Pressable>
+        <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
+          <View style={styles.brandRow}>
           <BrandMark size={32} />
           <Wordmark size={28} color={colors.textPrimary} />
         </View>
@@ -153,7 +165,11 @@ export default function LoginScreen() {
         {error ? <Text style={styles.error}>{error}</Text> : null}
 
         <Pressable style={styles.submit} disabled={loading} onPress={submit} accessibilityRole="button">
-          <Text style={styles.submitText}>{mode === 'login' ? t('auth.submitLogin') : t('auth.submitRegister')}</Text>
+          {loading ? (
+            <ActivityIndicator color="#0A0A0A" />
+          ) : (
+            <Text style={styles.submitText}>{mode === 'login' ? t('auth.submitLogin') : t('auth.submitRegister')}</Text>
+          )}
         </Pressable>
 
         <View style={styles.dividerRow}>
@@ -163,8 +179,14 @@ export default function LoginScreen() {
         </View>
 
         <Pressable style={styles.googleButton} disabled={googleLoading} onPress={submitGoogle} accessibilityRole="button">
-          <GoogleLogo />
-          <Text style={styles.googleButtonText}>{t('auth.continueWithGoogle')}</Text>
+          {googleLoading ? (
+            <ActivityIndicator color={colors.textPrimary} />
+          ) : (
+            <>
+              <GoogleLogo />
+              <Text style={styles.googleButtonText}>{t('auth.continueWithGoogle')}</Text>
+            </>
+          )}
         </Pressable>
 
         <Pressable onPress={() => setMode(mode === 'login' ? 'register' : 'login')} style={{ marginTop: spacing(4) }}>
@@ -175,12 +197,14 @@ export default function LoginScreen() {
           </>
         )}
       </ScrollView>
-    </KeyboardAvoidingView>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
   )
 }
 
 function makeStyles(colors: ThemeColors) {
   return StyleSheet.create({
+    backButton: { paddingHorizontal: spacing(5), paddingTop: spacing(3) },
     content: { flexGrow: 1, justifyContent: 'center', paddingHorizontal: spacing(6), paddingVertical: spacing(10) },
     brandRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'center', gap: spacing(2), marginBottom: spacing(8) },
     title: { fontSize: 22, fontWeight: '700', color: colors.textPrimary, textAlign: 'center', marginBottom: spacing(6) },

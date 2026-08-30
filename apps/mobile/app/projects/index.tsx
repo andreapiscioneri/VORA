@@ -1,20 +1,41 @@
-import { ActivityIndicator, FlatList, RefreshControl, StyleSheet, Text, View } from 'react-native'
-import { useProjects } from '../hooks/useProjects'
-import { DetailScreen, StateMessage } from '../components/Screen'
-import { radius, spacing } from '../constants/theme'
-import { useTheme } from '../contexts/ThemeContext'
-import { useI18n } from '../i18n'
-import type { ThemeColors } from '../constants/theme'
+import { ActivityIndicator, FlatList, Pressable, RefreshControl, StyleSheet, Text, View } from 'react-native'
+import { useRouter } from 'expo-router'
+import { useProjects } from '../../hooks/useProjects'
+import { DetailScreen, StateMessage } from '../../components/Screen'
+import { Icon } from '../../components/Icon'
+import { radius, spacing } from '../../constants/theme'
+import { useTheme } from '../../contexts/ThemeContext'
+import { useI18n } from '../../i18n'
+import { haptics } from '../../lib/haptics'
+import type { ThemeColors } from '../../constants/theme'
 import type { Project } from '@vora/shared/types/project'
 
 export default function ProjectsScreen() {
   const { colors } = useTheme()
   const { t } = useI18n()
+  const router = useRouter()
   const styles = makeStyles(colors)
   const { projects, loading, loadingMore, error, hasMore, reload, loadMore } = useProjects()
 
   return (
-    <DetailScreen title={t('modules.projects.title')} subtitle={t('modules.projects.count', { count: projects.length })}>
+    <DetailScreen
+      title={t('modules.projects.title')}
+      subtitle={t('modules.projects.count', { count: projects.length })}
+      headerRight={
+        <Pressable
+          onPress={() => {
+            haptics.tap()
+            router.push('/projects/new')
+          }}
+          style={styles.addButton}
+          accessibilityRole="button"
+          accessibilityLabel={t('modules.projects.form.newTitle')}
+          hitSlop={12}
+        >
+          <Icon name="plus" size={22} color={colors.textPrimary} />
+        </Pressable>
+      }
+    >
       {error ? (
         <StateMessage text={t('modules.projects.error', { error })} />
       ) : (
@@ -28,11 +49,7 @@ export default function ProjectsScreen() {
           onEndReachedThreshold={0.5}
           ListFooterComponent={loadingMore ? <ActivityIndicator style={styles.footer} color={colors.primary} /> : null}
           renderItem={({ item }: { item: Project }) => (
-            <View
-              style={styles.row}
-              accessible
-              accessibilityLabel={`${item.name}, ${t(`modules.projects.status.${item.status}`)}`}
-            >
+            <View style={styles.row} accessible accessibilityLabel={`${item.name}, ${t(`modules.projects.status.${item.status}`)}`}>
               <View style={styles.rowMain}>
                 <Text style={styles.title} numberOfLines={1}>
                   {item.name}
@@ -52,6 +69,7 @@ export default function ProjectsScreen() {
 
 function makeStyles(colors: ThemeColors) {
   return StyleSheet.create({
+    addButton: { padding: spacing(1) },
     list: { paddingHorizontal: spacing(5), paddingBottom: spacing(10) },
     row: {
       flexDirection: 'row',

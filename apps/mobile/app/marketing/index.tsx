@@ -1,11 +1,14 @@
 import { useState } from 'react'
 import { ActivityIndicator, FlatList, Pressable, RefreshControl, StyleSheet, Text, View } from 'react-native'
-import { useMarketing } from '../hooks/useMarketing'
-import { DetailScreen, StateMessage } from '../components/Screen'
-import { radius, spacing } from '../constants/theme'
-import { useTheme } from '../contexts/ThemeContext'
-import { useI18n } from '../i18n'
-import type { ThemeColors } from '../constants/theme'
+import { useRouter } from 'expo-router'
+import { useMarketing } from '../../hooks/useMarketing'
+import { DetailScreen, StateMessage } from '../../components/Screen'
+import { Icon } from '../../components/Icon'
+import { radius, spacing } from '../../constants/theme'
+import { useTheme } from '../../contexts/ThemeContext'
+import { useI18n } from '../../i18n'
+import { haptics } from '../../lib/haptics'
+import type { ThemeColors } from '../../constants/theme'
 
 const TABS = ['campaigns', 'templates', 'segments', 'automations'] as const
 type Tab = (typeof TABS)[number]
@@ -13,6 +16,7 @@ type Tab = (typeof TABS)[number]
 export default function MarketingScreen() {
   const { colors } = useTheme()
   const { t } = useI18n()
+  const router = useRouter()
   const styles = makeStyles(colors)
   const {
     campaigns,
@@ -59,7 +63,26 @@ export default function MarketingScreen() {
             }))
 
   return (
-    <DetailScreen title={t('modules.marketing.title')} subtitle={t(`modules.marketing.tab.${tab}`)}>
+    <DetailScreen
+      title={t('modules.marketing.title')}
+      subtitle={t(`modules.marketing.tab.${tab}`)}
+      headerRight={
+        tab === 'campaigns' ? (
+          <Pressable
+            onPress={() => {
+              haptics.tap()
+              router.push('/marketing/new')
+            }}
+            style={styles.addButton}
+            accessibilityRole="button"
+            accessibilityLabel={t('modules.marketing.form.newTitle')}
+            hitSlop={12}
+          >
+            <Icon name="plus" size={22} color={colors.textPrimary} />
+          </Pressable>
+        ) : undefined
+      }
+    >
       <View style={styles.segmented}>
         {TABS.map((tb) => (
           <Pressable
@@ -116,6 +139,7 @@ export default function MarketingScreen() {
 
 function makeStyles(colors: ThemeColors) {
   return StyleSheet.create({
+    addButton: { padding: spacing(1) },
     segmented: {
       flexDirection: 'row',
       backgroundColor: colors.surface,

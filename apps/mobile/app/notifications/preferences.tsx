@@ -1,10 +1,10 @@
 import { ScrollView, StyleSheet, Switch, Text, View } from 'react-native'
-import { useNotificationPreferences } from '../hooks/useNotificationPreferences'
-import { DetailScreen, StateMessage } from '../components/Screen'
-import { radius, spacing } from '../constants/theme'
-import { useTheme } from '../contexts/ThemeContext'
-import { useI18n } from '../i18n'
-import type { ThemeColors } from '../constants/theme'
+import { useNotificationPreferences } from '../../hooks/useNotificationPreferences'
+import { DetailScreen, StateMessage } from '../../components/Screen'
+import { radius, spacing } from '../../constants/theme'
+import { useTheme } from '../../contexts/ThemeContext'
+import { useI18n } from '../../i18n'
+import type { ThemeColors } from '../../constants/theme'
 import type { NotificationPreferences } from '@vora/shared/types/notification'
 
 const CATEGORIES: (keyof NotificationPreferences)[] = [
@@ -18,7 +18,7 @@ const CATEGORIES: (keyof NotificationPreferences)[] = [
   'deadlines',
 ]
 
-export default function NotificationsScreen() {
+export default function NotificationPreferencesScreen() {
   const { colors } = useTheme()
   const { t } = useI18n()
   const styles = makeStyles(colors)

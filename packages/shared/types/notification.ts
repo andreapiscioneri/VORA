@@ -33,3 +33,17 @@ export const DEFAULT_NOTIFICATION_PREFERENCES: NotificationPreferences = {
   tickets: true,
   deadlines: true,
 }
+
+// In-app inbox item — written alongside (not instead of) a push send, so the
+// bell/badge in the app reflects the same events even on a device that never
+// registered for push (e.g. a sideloaded build with no push entitlement).
+export interface AppNotification {
+  id: string
+  userId: string
+  category: NotificationCategory
+  title: string
+  body: string
+  data: Record<string, unknown>
+  read: boolean
+  createdAt: string
+}

@@ -19,3 +19,9 @@ export const notificationPreferencesSchema = z.object({
 })
 
 export type NotificationPreferencesSchema = z.infer<typeof notificationPreferencesSchema>
+
+export const markNotificationSchema = z.object({
+  read: z.boolean(),
+})
+
+export type MarkNotificationSchema = z.infer<typeof markNotificationSchema>

@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { api } from '../lib/api'
-import type { TimesheetEntry } from '@vora/shared/types/timesheet'
+import type { TimesheetEntry, TimesheetEntryInput } from '@vora/shared/types/timesheet'
 
 interface PageResult<T> {
   items: T[]
@@ -48,5 +48,11 @@ export function useTimesheets() {
     }
   }, [hasMore, loadingMore, nextCursor])
 
-  return { entries, loading, loadingMore, error, hasMore, reload: load, loadMore }
+  const create = useCallback(async (input: TimesheetEntryInput) => {
+    const created = await api.post<TimesheetEntry>('/timesheets', input)
+    setEntries((prev) => [...prev, created].sort((a, b) => (a.date < b.date ? 1 : -1)))
+    return created
+  }, [])
+
+  return { entries, loading, loadingMore, error, hasMore, reload: load, loadMore, create }
 }

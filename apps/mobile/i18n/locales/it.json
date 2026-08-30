@@ -122,7 +122,7 @@
       },
       "notifications": {
         "label": "Notifiche",
-        "desc": "Preferenze push"
+        "desc": "Le tue notifiche"
       },
       "employees": {
         "label": "Dipendenti",
@@ -156,7 +156,8 @@
         "label": "Impostazioni",
         "desc": "Profilo e password"
       }
-    }
+    },
+    "madeBy": "Made by apdesign"
   },
   "modules": {
     "contacts": {
@@ -168,6 +169,21 @@
         "active": "Attivo",
         "lead": "Lead",
         "inactive": "Inattivo"
+      },
+      "form": {
+        "newTitle": "Nuovo contatto",
+        "firstName": "Nome",
+        "lastName": "Cognome",
+        "company": "Azienda",
+        "email": "Email",
+        "phone": "Telefono",
+        "notes": "Note",
+        "status": "Stato",
+        "save": "Salva",
+        "saving": "Salvataggio..."
+      },
+      "errors": {
+        "save": "Impossibile salvare il contatto."
       }
     },
     "crm": {
@@ -182,6 +198,19 @@
         "negotiation": "Negoziazione",
         "won": "Vinta",
         "lost": "Persa"
+      },
+      "form": {
+        "newTitle": "Nuova opportunità",
+        "title": "Titolo",
+        "company": "Azienda",
+        "value": "Valore (EUR)",
+        "stage": "Fase",
+        "notes": "Note",
+        "save": "Salva",
+        "saving": "Salvataggio..."
+      },
+      "errors": {
+        "save": "Impossibile salvare l'opportunità."
       }
     },
     "projects": {
@@ -194,6 +223,19 @@
         "on_hold": "In pausa",
         "completed": "Completato",
         "archived": "Archiviato"
+      },
+      "form": {
+        "newTitle": "Nuovo progetto",
+        "name": "Nome",
+        "description": "Descrizione",
+        "status": "Stato",
+        "budget": "Budget (EUR)",
+        "dueDate": "Scadenza",
+        "save": "Salva",
+        "saving": "Salvataggio..."
+      },
+      "errors": {
+        "save": "Impossibile salvare il progetto."
       }
     },
     "timesheets": {
@@ -202,7 +244,19 @@
       "error": "Impossibile caricare i fogli ore. Verifica che il server Vora sia attivo. ({{error}})",
       "empty": "Nessuna voce registrata.",
       "billable": "Fatturabile",
-      "nonBillable": "Non fatturabile"
+      "nonBillable": "Non fatturabile",
+      "form": {
+        "newTitle": "Nuova voce",
+        "date": "Data",
+        "durationMinutes": "Durata (minuti)",
+        "description": "Descrizione",
+        "billableToggle": "Fatturabile",
+        "save": "Salva",
+        "saving": "Salvataggio..."
+      },
+      "errors": {
+        "save": "Impossibile salvare la voce."
+      }
     },
     "helpdesk": {
       "title": "Helpdesk",
@@ -215,6 +269,23 @@
         "waiting": "In attesa",
         "resolved": "Risolto",
         "closed": "Chiuso"
+      },
+      "form": {
+        "newTitle": "Nuovo ticket",
+        "title": "Titolo",
+        "description": "Descrizione",
+        "priority": "Priorità",
+        "save": "Salva",
+        "saving": "Salvataggio..."
+      },
+      "priority": {
+        "low": "Bassa",
+        "medium": "Media",
+        "high": "Alta",
+        "urgent": "Urgente"
+      },
+      "errors": {
+        "save": "Impossibile salvare il ticket."
       }
     },
     "leave": {
@@ -231,6 +302,19 @@
         "vacation": "Ferie",
         "sick": "Malattia",
         "personal": "Personale"
+      },
+      "form": {
+        "newTitle": "Nuova richiesta",
+        "requesterName": "Richiedente",
+        "type": "Tipo",
+        "startDate": "Data inizio",
+        "endDate": "Data fine",
+        "notes": "Note",
+        "save": "Salva",
+        "saving": "Salvataggio..."
+      },
+      "errors": {
+        "save": "Impossibile salvare la richiesta."
       }
     },
     "wellbeing": {
@@ -252,6 +336,7 @@
     "notifications": {
       "title": "Notifiche",
       "subtitle": "Scegli cosa vuoi ricevere",
+      "count": "{{count}} notifiche",
       "loading": "Caricamento...",
       "error": "Impossibile caricare le preferenze. Verifica che il server Vora sia attivo. ({{error}})",
       "categories": {
@@ -263,6 +348,15 @@
         "approvals": "Approvazioni",
         "tickets": "Ticket",
         "deadlines": "Scadenze"
+      },
+      "inbox": {
+        "title": "Notifiche",
+        "empty": "Nessuna notifica.",
+        "markRead": "Segna come letta",
+        "markUnread": "Segna come da leggere",
+        "delete": "Elimina",
+        "preferences": "Preferenze notifiche",
+        "viewAll": "Vedi tutte"
       }
     },
     "employees": {
@@ -439,6 +533,17 @@
         "contact_created": "Contatto creato",
         "contact_status_changed": "Stato contatto cambiato",
         "manual": "Manuale"
+      },
+      "form": {
+        "newTitle": "Nuova campagna",
+        "name": "Nome",
+        "subject": "Oggetto",
+        "body": "Testo",
+        "save": "Salva",
+        "saving": "Salvataggio..."
+      },
+      "errors": {
+        "save": "Impossibile salvare la campagna."
       }
     },
     "website": {
@@ -447,7 +552,9 @@
       "error": "Impossibile caricare i siti. ({{error}})",
       "empty": "Nessun sito.",
       "published": "Pubblicato",
-      "draft": "Bozza"
+      "draft": "Bozza",
+      "mySite": "Il mio sito",
+      "createNew": "Crea nuovo sito"
     },
     "settings": {
       "title": "Impostazioni",
@@ -489,21 +596,48 @@
     "paragraph": "Un futuro in cui automazione, dati e intuizione umana si allineano. Non solo software. Non solo persone. Qualcosa di perfettamente in equilibrio tra i due.",
     "cta": "Richiedi accesso",
     "stats": {
-      "modules": { "value": "15+", "label": "Moduli integrati" },
-      "ai": { "value": "24/7", "label": "Assistente AI" },
-      "data": { "value": "100%", "label": "Dati unificati" }
+      "modules": {
+        "value": "15+",
+        "label": "Moduli integrati"
+      },
+      "ai": {
+        "value": "24/7",
+        "label": "Assistente AI"
+      },
+      "data": {
+        "value": "100%",
+        "label": "Dati unificati"
+      }
     },
     "modules": {
       "eyebrow": "Moduli",
       "title": "Tutto ciò che serve al tuo team, in un solo sistema",
       "subtitle": "Sei moduli connessi, invece di sei strumenti scollegati.",
       "items": {
-        "crm": { "title": "CRM & Contatti", "description": "Gestisci lead, clienti e opportunità in un'unica pipeline." },
-        "calendar": { "title": "Calendario & Appuntamenti", "description": "Pianifica riunioni e prenotazioni senza sovrapposizioni." },
-        "projects": { "title": "Progetti & Task", "description": "Organizza il lavoro del team con scadenze e responsabili chiari." },
-        "marketing": { "title": "Marketing & Automazioni", "description": "Campagne, segmenti e workflow che lavorano da soli." },
-        "helpdesk": { "title": "Helpdesk & Knowledge Base", "description": "Rispondi ai clienti più velocemente con una base di conoscenza condivisa." },
-        "people": { "title": "Persone & Ferie", "description": "Ferie, note spese e benessere del team in un unico posto." }
+        "crm": {
+          "title": "CRM & Contatti",
+          "description": "Gestisci lead, clienti e opportunità in un'unica pipeline."
+        },
+        "calendar": {
+          "title": "Calendario & Appuntamenti",
+          "description": "Pianifica riunioni e prenotazioni senza sovrapposizioni."
+        },
+        "projects": {
+          "title": "Progetti & Task",
+          "description": "Organizza il lavoro del team con scadenze e responsabili chiari."
+        },
+        "marketing": {
+          "title": "Marketing & Automazioni",
+          "description": "Campagne, segmenti e workflow che lavorano da soli."
+        },
+        "helpdesk": {
+          "title": "Helpdesk & Knowledge Base",
+          "description": "Rispondi ai clienti più velocemente con una base di conoscenza condivisa."
+        },
+        "people": {
+          "title": "Persone & Ferie",
+          "description": "Ferie, note spese e benessere del team in un unico posto."
+        }
       }
     },
     "customers": {
@@ -511,21 +645,49 @@
       "title": "Un sistema che si adatta al tuo settore",
       "subtitle": "Non tutti i team lavorano allo stesso modo — VORA non li obbliga a farlo.",
       "items": {
-        "agencies": { "title": "Agenzie & studi professionali", "description": "Gestione clienti, progetti a tempo e fatturazione trasparente." },
-        "smes": { "title": "PMI di servizi", "description": "CRM, calendario e helpdesk uniti, così nessun cliente resta indietro." },
-        "sales": { "title": "Team marketing & vendite", "description": "Campagne e automazioni che alimentano costantemente la pipeline." },
-        "hr": { "title": "HR & people ops", "description": "Ferie, presenze e benessere senza fogli di calcolo." }
+        "agencies": {
+          "title": "Agenzie & studi professionali",
+          "description": "Gestione clienti, progetti a tempo e fatturazione trasparente."
+        },
+        "smes": {
+          "title": "PMI di servizi",
+          "description": "CRM, calendario e helpdesk uniti, così nessun cliente resta indietro."
+        },
+        "sales": {
+          "title": "Team marketing & vendite",
+          "description": "Campagne e automazioni che alimentano costantemente la pipeline."
+        },
+        "hr": {
+          "title": "HR & people ops",
+          "description": "Ferie, presenze e benessere senza fogli di calcolo."
+        }
       }
     },
     "automation": {
       "eyebrow": "Automazioni",
       "title": "Workflow che lavorano anche quando tu non ci sei",
       "subtitle": "Regole vere di trigger → condizione → azione, non semplici promemoria.",
-      "labels": { "trigger": "Trigger", "condition": "Condizione", "action": "Azione" },
+      "labels": {
+        "trigger": "Trigger",
+        "condition": "Condizione",
+        "action": "Azione"
+      },
       "items": {
-        "contact": { "trigger": "Nuovo contatto creato", "condition": "fonte = sito web", "action": "Invia un'email di benvenuto e assegna un commerciale" },
-        "appointment": { "trigger": "Appuntamento tra 24 ore", "condition": "non ancora confermato", "action": "Invia un promemoria automatico" },
-        "invoice": { "trigger": "Fattura scaduta da 7 giorni", "condition": "ancora non pagata", "action": "Crea un task di sollecito e avvisa il team" }
+        "contact": {
+          "trigger": "Nuovo contatto creato",
+          "condition": "fonte = sito web",
+          "action": "Invia un'email di benvenuto e assegna un commerciale"
+        },
+        "appointment": {
+          "trigger": "Appuntamento tra 24 ore",
+          "condition": "non ancora confermato",
+          "action": "Invia un promemoria automatico"
+        },
+        "invoice": {
+          "trigger": "Fattura scaduta da 7 giorni",
+          "condition": "ancora non pagata",
+          "action": "Crea un task di sollecito e avvisa il team"
+        }
       }
     },
     "pricing": {
@@ -567,10 +729,22 @@
       "subtitle": "Un'anteprima interattiva del prodotto — nessuna registrazione richiesta.",
       "ctaTry": "Provalo gratis",
       "tabs": {
-        "crm": { "label": "CRM", "caption": "Ogni contatto, trattativa e conversazione in un'unica pipeline." },
-        "calendar": { "label": "Calendario", "caption": "Appuntamenti e disponibilità del team, sempre sincronizzati." },
-        "automation": { "label": "Automazioni", "caption": "Regole che si attivano da sole, così non devi farlo tu." },
-        "projects": { "label": "Progetti", "caption": "Task, scadenze e responsabili in un colpo d'occhio." }
+        "crm": {
+          "label": "CRM",
+          "caption": "Ogni contatto, trattativa e conversazione in un'unica pipeline."
+        },
+        "calendar": {
+          "label": "Calendario",
+          "caption": "Appuntamenti e disponibilità del team, sempre sincronizzati."
+        },
+        "automation": {
+          "label": "Automazioni",
+          "caption": "Regole che si attivano da sole, così non devi farlo tu."
+        },
+        "projects": {
+          "label": "Progetti",
+          "caption": "Task, scadenze e responsabili in un colpo d'occhio."
+        }
       }
     },
     "contact": {

@@ -122,7 +122,7 @@
       },
       "notifications": {
         "label": "通知",
-        "desc": "プッシュ設定"
+        "desc": "あなたの通知"
       },
       "employees": {
         "label": "従業員",
@@ -156,7 +156,8 @@
         "label": "設定",
         "desc": "プロフィールとパスワード"
       }
-    }
+    },
+    "madeBy": "Made by apdesign"
   },
   "modules": {
     "contacts": {
@@ -168,6 +169,21 @@
         "active": "アクティブ",
         "lead": "見込み客",
         "inactive": "非アクティブ"
+      },
+      "form": {
+        "newTitle": "新しい連絡先",
+        "firstName": "名",
+        "lastName": "姓",
+        "company": "会社",
+        "email": "メール",
+        "phone": "電話番号",
+        "notes": "メモ",
+        "status": "ステータス",
+        "save": "保存",
+        "saving": "保存中..."
+      },
+      "errors": {
+        "save": "連絡先を保存できませんでした。"
       }
     },
     "crm": {
@@ -182,6 +198,19 @@
         "negotiation": "交渉中",
         "won": "成約",
         "lost": "失注"
+      },
+      "form": {
+        "newTitle": "新しい商談",
+        "title": "タイトル",
+        "company": "会社",
+        "value": "金額 (EUR)",
+        "stage": "ステージ",
+        "notes": "メモ",
+        "save": "保存",
+        "saving": "保存中..."
+      },
+      "errors": {
+        "save": "商談を保存できませんでした。"
       }
     },
     "projects": {
@@ -194,6 +223,19 @@
         "on_hold": "保留中",
         "completed": "完了",
         "archived": "アーカイブ済み"
+      },
+      "form": {
+        "newTitle": "新しいプロジェクト",
+        "name": "名前",
+        "description": "説明",
+        "status": "ステータス",
+        "budget": "予算 (EUR)",
+        "dueDate": "期限",
+        "save": "保存",
+        "saving": "保存中..."
+      },
+      "errors": {
+        "save": "プロジェクトを保存できませんでした。"
       }
     },
     "timesheets": {
@@ -202,7 +244,19 @@
       "error": "タイムシートを読み込めませんでした。Vora サーバーが起動しているか確認してください。（{{error}}）",
       "empty": "記録はありません。",
       "billable": "請求対象",
-      "nonBillable": "請求対象外"
+      "nonBillable": "請求対象外",
+      "form": {
+        "newTitle": "新しいエントリ",
+        "date": "日付",
+        "durationMinutes": "時間 (分)",
+        "description": "説明",
+        "billableToggle": "請求対象",
+        "save": "保存",
+        "saving": "保存中..."
+      },
+      "errors": {
+        "save": "エントリを保存できませんでした。"
+      }
     },
     "helpdesk": {
       "title": "ヘルプデスク",
@@ -215,6 +269,23 @@
         "waiting": "保留中",
         "resolved": "解決済み",
         "closed": "クローズ"
+      },
+      "form": {
+        "newTitle": "新しいチケット",
+        "title": "タイトル",
+        "description": "説明",
+        "priority": "優先度",
+        "save": "保存",
+        "saving": "保存中..."
+      },
+      "priority": {
+        "low": "低",
+        "medium": "中",
+        "high": "高",
+        "urgent": "緊急"
+      },
+      "errors": {
+        "save": "チケットを保存できませんでした。"
       }
     },
     "leave": {
@@ -231,6 +302,19 @@
         "vacation": "有給休暇",
         "sick": "病気休暇",
         "personal": "私用"
+      },
+      "form": {
+        "newTitle": "新しい申請",
+        "requesterName": "申請者",
+        "type": "種類",
+        "startDate": "開始日",
+        "endDate": "終了日",
+        "notes": "メモ",
+        "save": "保存",
+        "saving": "保存中..."
+      },
+      "errors": {
+        "save": "申請を保存できませんでした。"
       }
     },
     "wellbeing": {
@@ -252,6 +336,7 @@
     "notifications": {
       "title": "通知",
       "subtitle": "受け取りたい内容を選択",
+      "count": "{{count}} 件の通知",
       "loading": "読み込み中...",
       "error": "設定を読み込めませんでした。Voraサーバーが起動しているか確認してください。({{error}})",
       "categories": {
@@ -263,6 +348,15 @@
         "approvals": "承認",
         "tickets": "チケット",
         "deadlines": "締め切り"
+      },
+      "inbox": {
+        "title": "通知",
+        "empty": "通知はありません。",
+        "markRead": "既読にする",
+        "markUnread": "未読にする",
+        "delete": "削除",
+        "preferences": "通知の設定",
+        "viewAll": "すべて表示"
       }
     },
     "employees": {
@@ -439,6 +533,17 @@
         "contact_created": "連絡先が作成された",
         "contact_status_changed": "連絡先のステータスが変更された",
         "manual": "手動"
+      },
+      "form": {
+        "newTitle": "新しいキャンペーン",
+        "name": "名前",
+        "subject": "件名",
+        "body": "本文",
+        "save": "保存",
+        "saving": "保存中..."
+      },
+      "errors": {
+        "save": "キャンペーンを保存できませんでした。"
       }
     },
     "website": {
@@ -447,7 +552,9 @@
       "error": "サイトを読み込めませんでした。({{error}})",
       "empty": "サイトがありません。",
       "published": "公開済み",
-      "draft": "下書き"
+      "draft": "下書き",
+      "mySite": "マイサイト",
+      "createNew": "新しいサイトを作成"
     },
     "settings": {
       "title": "設定",
@@ -489,21 +596,48 @@
     "paragraph": "自動化とデータ、そして人の直感が調和する未来。ソフトウェアだけでも、人だけでもない。その間に美しく釣り合う何か。",
     "cta": "アクセスを申請",
     "stats": {
-      "modules": { "value": "15+", "label": "統合モジュール" },
-      "ai": { "value": "24/7", "label": "AIアシスタント" },
-      "data": { "value": "100%", "label": "統合データ" }
+      "modules": {
+        "value": "15+",
+        "label": "統合モジュール"
+      },
+      "ai": {
+        "value": "24/7",
+        "label": "AIアシスタント"
+      },
+      "data": {
+        "value": "100%",
+        "label": "統合データ"
+      }
     },
     "modules": {
       "eyebrow": "モジュール",
       "title": "チームに必要なすべてを、ひとつのシステムに",
       "subtitle": "バラバラな6つのツールではなく、連携した6つのモジュール。",
       "items": {
-        "crm": { "title": "CRM・連絡先", "description": "リード、顧客、商談をひとつのパイプラインで管理。" },
-        "calendar": { "title": "カレンダー・予約", "description": "予定の重複なく、会議や予約をスケジュール。" },
-        "projects": { "title": "プロジェクト・タスク", "description": "明確な期限と担当者でチームの仕事を整理。" },
-        "marketing": { "title": "マーケティング・自動化", "description": "自動で動くキャンペーン、セグメント、ワークフロー。" },
-        "helpdesk": { "title": "ヘルプデスク・ナレッジベース", "description": "共有ナレッジベースで顧客対応をスピードアップ。" },
-        "people": { "title": "人事・休暇管理", "description": "休暇、経費、チームのウェルビーイングをひとつに。" }
+        "crm": {
+          "title": "CRM・連絡先",
+          "description": "リード、顧客、商談をひとつのパイプラインで管理。"
+        },
+        "calendar": {
+          "title": "カレンダー・予約",
+          "description": "予定の重複なく、会議や予約をスケジュール。"
+        },
+        "projects": {
+          "title": "プロジェクト・タスク",
+          "description": "明確な期限と担当者でチームの仕事を整理。"
+        },
+        "marketing": {
+          "title": "マーケティング・自動化",
+          "description": "自動で動くキャンペーン、セグメント、ワークフロー。"
+        },
+        "helpdesk": {
+          "title": "ヘルプデスク・ナレッジベース",
+          "description": "共有ナレッジベースで顧客対応をスピードアップ。"
+        },
+        "people": {
+          "title": "人事・休暇管理",
+          "description": "休暇、経費、チームのウェルビーイングをひとつに。"
+        }
       }
     },
     "customers": {
@@ -511,21 +645,49 @@
       "title": "業種に合わせて形を変えるシステム",
       "subtitle": "チームの働き方はそれぞれ違う——VORAはそれを強制しません。",
       "items": {
-        "agencies": { "title": "代理店・専門事務所", "description": "顧客管理、時間単位のプロジェクト、透明性のある請求。" },
-        "smes": { "title": "サービス業の中小企業", "description": "CRM・カレンダー・ヘルプデスクを統合し、顧客を取りこぼさない。" },
-        "sales": { "title": "マーケティング・営業チーム", "description": "パイプラインを満たし続けるキャンペーンと自動化。" },
-        "hr": { "title": "人事・ピープルオプス", "description": "表計算ソフトを使わない休暇・勤怠・ウェルビーイング管理。" }
+        "agencies": {
+          "title": "代理店・専門事務所",
+          "description": "顧客管理、時間単位のプロジェクト、透明性のある請求。"
+        },
+        "smes": {
+          "title": "サービス業の中小企業",
+          "description": "CRM・カレンダー・ヘルプデスクを統合し、顧客を取りこぼさない。"
+        },
+        "sales": {
+          "title": "マーケティング・営業チーム",
+          "description": "パイプラインを満たし続けるキャンペーンと自動化。"
+        },
+        "hr": {
+          "title": "人事・ピープルオプス",
+          "description": "表計算ソフトを使わない休暇・勤怠・ウェルビーイング管理。"
+        }
       }
     },
     "automation": {
       "eyebrow": "自動化",
       "title": "あなたがいなくても動くワークフロー",
       "subtitle": "単なるリマインダーではない、本物のトリガー→条件→アクションのルール。",
-      "labels": { "trigger": "トリガー", "condition": "条件", "action": "アクション" },
+      "labels": {
+        "trigger": "トリガー",
+        "condition": "条件",
+        "action": "アクション"
+      },
       "items": {
-        "contact": { "trigger": "新しい連絡先を作成", "condition": "流入元 = ウェブサイト", "action": "ウェルカムメールを送信し、担当者を割り当て" },
-        "appointment": { "trigger": "予約まで24時間", "condition": "未確認のまま", "action": "自動でリマインダーを送信" },
-        "invoice": { "trigger": "請求書が7日間延滞", "condition": "未払いのまま", "action": "督促タスクを作成しチームに通知" }
+        "contact": {
+          "trigger": "新しい連絡先を作成",
+          "condition": "流入元 = ウェブサイト",
+          "action": "ウェルカムメールを送信し、担当者を割り当て"
+        },
+        "appointment": {
+          "trigger": "予約まで24時間",
+          "condition": "未確認のまま",
+          "action": "自動でリマインダーを送信"
+        },
+        "invoice": {
+          "trigger": "請求書が7日間延滞",
+          "condition": "未払いのまま",
+          "action": "督促タスクを作成しチームに通知"
+        }
       }
     },
     "pricing": {
@@ -567,10 +729,22 @@
       "subtitle": "登録不要のインタラクティブなプロダクトプレビュー。",
       "ctaTry": "無料で試す",
       "tabs": {
-        "crm": { "label": "CRM", "caption": "すべての連絡先、商談、会話をひとつのパイプラインに。" },
-        "calendar": { "label": "カレンダー", "caption": "予約とチームの空き状況を常に同期。" },
-        "automation": { "label": "自動化", "caption": "自分で動くルールだから、あなたが動く必要はない。" },
-        "projects": { "label": "プロジェクト", "caption": "タスク、期限、担当者をひと目で確認。" }
+        "crm": {
+          "label": "CRM",
+          "caption": "すべての連絡先、商談、会話をひとつのパイプラインに。"
+        },
+        "calendar": {
+          "label": "カレンダー",
+          "caption": "予約とチームの空き状況を常に同期。"
+        },
+        "automation": {
+          "label": "自動化",
+          "caption": "自分で動くルールだから、あなたが動く必要はない。"
+        },
+        "projects": {
+          "label": "プロジェクト",
+          "caption": "タスク、期限、担当者をひと目で確認。"
+        }
       }
     },
     "contact": {

@@ -34,6 +34,7 @@ const ICONS: Record<string, string> = {
   'life-buoy': 'M12 22a10 10 0 1 0 0-20 10 10 0 0 0 0 20ZM12 16a4 4 0 1 0 0-8 4 4 0 0 0 0 8Zm7.07-8.07-3.54 3.54M8.47 12.47 4.93 16.02M4.93 7.93l3.54 3.54M15.53 12.47l3.54 3.55',
   umbrella: 'M12 2a9 9 0 0 1 9 9H3a9 9 0 0 1 9-9ZM12 11v9a2 2 0 0 1-4 0M12 2v2',
   sparkles: 'M12 3v3m0 12v3M5.6 5.6l2.1 2.1m8.6 8.6 2.1 2.1M3 12h3m12 0h3M5.6 18.4l2.1-2.1m8.6-8.6 2.1-2.1',
+  bell: 'M18 8a6 6 0 1 0-12 0c0 7-3 9-3 9h18s-3-2-3-9M13.73 21a2 2 0 0 1-3.46 0',
 }
 
 export type IconName = keyof typeof ICONS

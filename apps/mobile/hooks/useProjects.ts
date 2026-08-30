@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { api } from '../lib/api'
-import type { Project } from '@vora/shared/types/project'
+import type { Project, ProjectInput } from '@vora/shared/types/project'
 
 interface PageResult<T> {
   items: T[]
@@ -48,5 +48,11 @@ export function useProjects() {
     }
   }, [hasMore, loadingMore, nextCursor])
 
-  return { projects, loading, loadingMore, error, hasMore, reload: load, loadMore }
+  const create = useCallback(async (input: ProjectInput) => {
+    const created = await api.post<Project>('/projects', input)
+    setProjects((prev) => [...prev, created])
+    return created
+  }, [])
+
+  return { projects, loading, loadingMore, error, hasMore, reload: load, loadMore, create }
 }

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Linking, Modal, Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
 import { useRouter } from 'expo-router'
 import { Screen } from '../../components/Screen'
 import { Icon } from '../../components/Icon'
@@ -10,26 +10,10 @@ import { useTheme, ThemeMode } from '../../contexts/ThemeContext'
 import { useAuth } from '../../contexts/AuthContext'
 import { useI18n, LOCALE_CODES, LOCALE_NAMES, Locale } from '../../i18n'
 import { haptics } from '../../lib/haptics'
+import { MODULE_NAV_ITEMS as ITEMS } from '../../constants/moduleNav'
 import type { ThemeColors } from '../../constants/theme'
+const MADE_BY_URL = 'https://andreapiscioneri.netlify.app'
 
-const ITEMS = [
-  { key: 'contacts', route: '/contacts' },
-  { key: 'crm', route: '/crm' },
-  { key: 'projects', route: '/projects' },
-  { key: 'timesheets', route: '/timesheets' },
-  { key: 'helpdesk', route: '/helpdesk' },
-  { key: 'knowledge', route: '/knowledge' },
-  { key: 'leave', route: '/leave' },
-  { key: 'expenses', route: '/expenses' },
-  { key: 'employees', route: '/employees' },
-  { key: 'social', route: '/social' },
-  { key: 'marketing', route: '/marketing' },
-  { key: 'website', route: '/website' },
-  { key: 'wellbeing', route: '/wellbeing' },
-  { key: 'auditLog', route: '/audit-log' },
-  { key: 'notifications', route: '/notifications' },
-  { key: 'settings', route: '/settings' },
-] as const
 const THEME_MODES: { mode: ThemeMode; icon: 'monitor' | 'sun' | 'moon' }[] = [
   { mode: 'system', icon: 'monitor' },
   { mode: 'light', icon: 'sun' },
@@ -114,7 +98,14 @@ export default function MoreScreen() {
           <Text style={[styles.label, styles.rowInlineText, { color: colors.danger, flex: 1 }]}>{t('auth.logout')}</Text>
         </Pressable>
 
-        <Text style={styles.footer}>{t('more.connectedTo', { url: API_BASE })}</Text>
+        <Pressable onPress={() => Linking.openURL(API_BASE.replace('/api', ''))} accessibilityRole="link" style={{ marginTop: spacing(6) }}>
+          <Text style={styles.footer}>{t('more.connectedTo', { url: API_BASE })}</Text>
+        </Pressable>
+        <Pressable onPress={() => Linking.openURL(MADE_BY_URL)} accessibilityRole="link">
+          <Text style={styles.footer}>
+            {t('more.madeBy')} <Text style={styles.footerLink}>{MADE_BY_URL}</Text>
+          </Text>
+        </Pressable>
       </ScrollView>
 
       <Modal visible={langPickerOpen} animationType="slide" transparent onRequestClose={() => setLangPickerOpen(false)}>
@@ -166,7 +157,8 @@ function makeStyles(colors: ThemeColors) {
     rowInlineText: { marginTop: 0 },
     label: { color: colors.textPrimary, fontSize: 15, fontWeight: '600' },
     desc: { color: colors.textSecondary, fontSize: 13, marginTop: spacing(1) },
-    footer: { color: colors.textSecondary, fontSize: 12, marginTop: spacing(6), textAlign: 'center' },
+    footer: { color: colors.textSecondary, fontSize: 12, marginTop: spacing(3), textAlign: 'center' },
+    footerLink: { color: colors.primary, fontWeight: '600' },
     modalBackdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'flex-end' },
     modalSheet: {
       backgroundColor: colors.background,

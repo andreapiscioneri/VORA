@@ -122,7 +122,7 @@
       },
       "notifications": {
         "label": "通知",
-        "desc": "推送偏好设置"
+        "desc": "你的通知"
       },
       "employees": {
         "label": "员工",
@@ -156,7 +156,8 @@
         "label": "设置",
         "desc": "个人资料与密码"
       }
-    }
+    },
+    "madeBy": "Made by apdesign"
   },
   "modules": {
     "contacts": {
@@ -168,6 +169,21 @@
         "active": "活跃",
         "lead": "潜在客户",
         "inactive": "非活跃"
+      },
+      "form": {
+        "newTitle": "新建联系人",
+        "firstName": "名",
+        "lastName": "姓",
+        "company": "公司",
+        "email": "邮箱",
+        "phone": "电话",
+        "notes": "备注",
+        "status": "状态",
+        "save": "保存",
+        "saving": "保存中..."
+      },
+      "errors": {
+        "save": "无法保存联系人。"
       }
     },
     "crm": {
@@ -182,6 +198,19 @@
         "negotiation": "谈判中",
         "won": "已成交",
         "lost": "已流失"
+      },
+      "form": {
+        "newTitle": "新建商机",
+        "title": "标题",
+        "company": "公司",
+        "value": "金额 (EUR)",
+        "stage": "阶段",
+        "notes": "备注",
+        "save": "保存",
+        "saving": "保存中..."
+      },
+      "errors": {
+        "save": "无法保存商机。"
       }
     },
     "projects": {
@@ -194,6 +223,19 @@
         "on_hold": "已暂停",
         "completed": "已完成",
         "archived": "已归档"
+      },
+      "form": {
+        "newTitle": "新建项目",
+        "name": "名称",
+        "description": "描述",
+        "status": "状态",
+        "budget": "预算（EUR）",
+        "dueDate": "截止日期",
+        "save": "保存",
+        "saving": "保存中..."
+      },
+      "errors": {
+        "save": "无法保存项目。"
       }
     },
     "timesheets": {
@@ -202,7 +244,19 @@
       "error": "无法加载工时表，请检查 Vora 服务器是否在运行。（{{error}}）",
       "empty": "没有记录。",
       "billable": "可计费",
-      "nonBillable": "不可计费"
+      "nonBillable": "不可计费",
+      "form": {
+        "newTitle": "新建记录",
+        "date": "日期",
+        "durationMinutes": "时长（分钟）",
+        "description": "描述",
+        "billableToggle": "可计费",
+        "save": "保存",
+        "saving": "保存中..."
+      },
+      "errors": {
+        "save": "无法保存记录。"
+      }
     },
     "helpdesk": {
       "title": "服务台",
@@ -215,6 +269,23 @@
         "waiting": "等待中",
         "resolved": "已解决",
         "closed": "已关闭"
+      },
+      "form": {
+        "newTitle": "新建工单",
+        "title": "标题",
+        "description": "描述",
+        "priority": "优先级",
+        "save": "保存",
+        "saving": "保存中..."
+      },
+      "priority": {
+        "low": "低",
+        "medium": "中",
+        "high": "高",
+        "urgent": "紧急"
+      },
+      "errors": {
+        "save": "无法保存工单。"
       }
     },
     "leave": {
@@ -231,6 +302,19 @@
         "vacation": "年假",
         "sick": "病假",
         "personal": "事假"
+      },
+      "form": {
+        "newTitle": "新建申请",
+        "requesterName": "申请人",
+        "type": "类型",
+        "startDate": "开始日期",
+        "endDate": "结束日期",
+        "notes": "备注",
+        "save": "保存",
+        "saving": "保存中..."
+      },
+      "errors": {
+        "save": "无法保存申请。"
       }
     },
     "wellbeing": {
@@ -252,6 +336,7 @@
     "notifications": {
       "title": "通知",
       "subtitle": "选择你想接收的内容",
+      "count": "{{count}} 条通知",
       "loading": "加载中...",
       "error": "无法加载偏好设置。请检查 Vora 服务器是否在运行。({{error}})",
       "categories": {
@@ -263,6 +348,15 @@
         "approvals": "审批",
         "tickets": "工单",
         "deadlines": "截止日期"
+      },
+      "inbox": {
+        "title": "通知",
+        "empty": "暂无通知。",
+        "markRead": "标记为已读",
+        "markUnread": "标记为未读",
+        "delete": "删除",
+        "preferences": "通知设置",
+        "viewAll": "查看全部"
       }
     },
     "employees": {
@@ -439,6 +533,17 @@
         "contact_created": "联系人已创建",
         "contact_status_changed": "联系人状态已更改",
         "manual": "手动"
+      },
+      "form": {
+        "newTitle": "新建活动",
+        "name": "名称",
+        "subject": "主题",
+        "body": "正文",
+        "save": "保存",
+        "saving": "保存中..."
+      },
+      "errors": {
+        "save": "无法保存活动。"
       }
     },
     "website": {
@@ -447,7 +552,9 @@
       "error": "无法加载站点。({{error}})",
       "empty": "暂无站点。",
       "published": "已发布",
-      "draft": "草稿"
+      "draft": "草稿",
+      "mySite": "我的网站",
+      "createNew": "创建新网站"
     },
     "settings": {
       "title": "设置",
@@ -489,21 +596,48 @@
     "paragraph": "在这里，自动化、数据与人的直觉彼此契合。不只是软件，也不只是人力，而是介于两者之间近乎完美的平衡。",
     "cta": "申请访问",
     "stats": {
-      "modules": { "value": "15+", "label": "集成模块" },
-      "ai": { "value": "24/7", "label": "AI 助手" },
-      "data": { "value": "100%", "label": "数据统一" }
+      "modules": {
+        "value": "15+",
+        "label": "集成模块"
+      },
+      "ai": {
+        "value": "24/7",
+        "label": "AI 助手"
+      },
+      "data": {
+        "value": "100%",
+        "label": "数据统一"
+      }
     },
     "modules": {
       "eyebrow": "功能模块",
       "title": "团队所需的一切，尽在一个系统",
       "subtitle": "六个互联模块，取代六个互不相通的工具。",
       "items": {
-        "crm": { "title": "CRM 与联系人", "description": "在同一条流水线中管理销售线索、客户和商机。" },
-        "calendar": { "title": "日历与预约", "description": "安排会议与预约，不再撞期。" },
-        "projects": { "title": "项目与任务", "description": "以清晰的截止日期和责任人组织团队工作。" },
-        "marketing": { "title": "营销与自动化", "description": "自动运行的营销活动、客户分群与工作流。" },
-        "helpdesk": { "title": "工单与知识库", "description": "借助共享知识库更快回应客户。" },
-        "people": { "title": "人事与休假", "description": "休假、报销与团队健康状况集中管理。" }
+        "crm": {
+          "title": "CRM 与联系人",
+          "description": "在同一条流水线中管理销售线索、客户和商机。"
+        },
+        "calendar": {
+          "title": "日历与预约",
+          "description": "安排会议与预约，不再撞期。"
+        },
+        "projects": {
+          "title": "项目与任务",
+          "description": "以清晰的截止日期和责任人组织团队工作。"
+        },
+        "marketing": {
+          "title": "营销与自动化",
+          "description": "自动运行的营销活动、客户分群与工作流。"
+        },
+        "helpdesk": {
+          "title": "工单与知识库",
+          "description": "借助共享知识库更快回应客户。"
+        },
+        "people": {
+          "title": "人事与休假",
+          "description": "休假、报销与团队健康状况集中管理。"
+        }
       }
     },
     "customers": {
@@ -511,21 +645,49 @@
       "title": "随行业需求而变的系统",
       "subtitle": "每个团队的工作方式都不同——VORA 不会强求一致。",
       "items": {
-        "agencies": { "title": "代理机构与专业事务所", "description": "客户管理、计时项目与透明计费。" },
-        "smes": { "title": "服务型中小企业", "description": "CRM、日历与工单一体化，客户不再流失。" },
-        "sales": { "title": "市场与销售团队", "description": "持续为销售管道注入线索的营销活动与自动化。" },
-        "hr": { "title": "人力资源与员工运营", "description": "无需表格即可管理休假、考勤与员工健康。" }
+        "agencies": {
+          "title": "代理机构与专业事务所",
+          "description": "客户管理、计时项目与透明计费。"
+        },
+        "smes": {
+          "title": "服务型中小企业",
+          "description": "CRM、日历与工单一体化，客户不再流失。"
+        },
+        "sales": {
+          "title": "市场与销售团队",
+          "description": "持续为销售管道注入线索的营销活动与自动化。"
+        },
+        "hr": {
+          "title": "人力资源与员工运营",
+          "description": "无需表格即可管理休假、考勤与员工健康。"
+        }
       }
     },
     "automation": {
       "eyebrow": "自动化",
       "title": "即使你不在，工作流也在运转",
       "subtitle": "真正的触发 → 条件 → 动作规则，而不只是提醒。",
-      "labels": { "trigger": "触发条件", "condition": "判断条件", "action": "执行动作" },
+      "labels": {
+        "trigger": "触发条件",
+        "condition": "判断条件",
+        "action": "执行动作"
+      },
       "items": {
-        "contact": { "trigger": "创建新联系人", "condition": "来源 = 官网", "action": "发送欢迎邮件并分配销售负责人" },
-        "appointment": { "trigger": "24 小时后有预约", "condition": "尚未确认", "action": "自动发送提醒" },
-        "invoice": { "trigger": "发票逾期 7 天", "condition": "仍未付款", "action": "创建催款任务并通知团队" }
+        "contact": {
+          "trigger": "创建新联系人",
+          "condition": "来源 = 官网",
+          "action": "发送欢迎邮件并分配销售负责人"
+        },
+        "appointment": {
+          "trigger": "24 小时后有预约",
+          "condition": "尚未确认",
+          "action": "自动发送提醒"
+        },
+        "invoice": {
+          "trigger": "发票逾期 7 天",
+          "condition": "仍未付款",
+          "action": "创建催款任务并通知团队"
+        }
       }
     },
     "pricing": {
@@ -567,10 +729,22 @@
       "subtitle": "无需注册即可体验的交互式产品预览。",
       "ctaTry": "免费试用",
       "tabs": {
-        "crm": { "label": "CRM", "caption": "每个联系人、商机与对话都在同一条流水线上。" },
-        "calendar": { "label": "日历", "caption": "预约与团队空闲时间，始终保持同步。" },
-        "automation": { "label": "自动化", "caption": "规则自动触发，无需你亲自动手。" },
-        "projects": { "label": "项目", "caption": "任务、截止日期与负责人一目了然。" }
+        "crm": {
+          "label": "CRM",
+          "caption": "每个联系人、商机与对话都在同一条流水线上。"
+        },
+        "calendar": {
+          "label": "日历",
+          "caption": "预约与团队空闲时间，始终保持同步。"
+        },
+        "automation": {
+          "label": "自动化",
+          "caption": "规则自动触发，无需你亲自动手。"
+        },
+        "projects": {
+          "label": "项目",
+          "caption": "任务、截止日期与负责人一目了然。"
+        }
       }
     },
     "contact": {

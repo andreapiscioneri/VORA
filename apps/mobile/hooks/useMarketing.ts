@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { api } from '../lib/api'
-import type { MarketingCampaign } from '@vora/shared/types/campaign'
+import type { MarketingCampaign, MarketingCampaignInput } from '@vora/shared/types/campaign'
 import type { EmailTemplate } from '@vora/shared/types/emailTemplate'
 import type { Segment } from '@vora/shared/types/segment'
 import type { Automation } from '@vora/shared/types/automation'
@@ -119,6 +119,12 @@ export function useMarketing() {
     }
   }, [automationsHasMore, loadingMore, automationsCursor])
 
+  const createCampaign = useCallback(async (input: MarketingCampaignInput) => {
+    const created = await api.post<MarketingCampaign>('/campaigns', input)
+    setCampaigns((prev) => [...prev, created])
+    return created
+  }, [])
+
   return {
     campaigns,
     templates,
@@ -136,5 +142,6 @@ export function useMarketing() {
     loadMoreTemplates,
     loadMoreSegments,
     loadMoreAutomations,
+    createCampaign,
   }
 }

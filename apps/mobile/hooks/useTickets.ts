@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { api } from '../lib/api'
-import type { Ticket } from '@vora/shared/types/ticket'
+import type { Ticket, TicketInput } from '@vora/shared/types/ticket'
 
 interface PageResult<T> {
   items: T[]
@@ -48,5 +48,11 @@ export function useTickets() {
     }
   }, [hasMore, loadingMore, nextCursor])
 
-  return { tickets, loading, loadingMore, error, hasMore, reload: load, loadMore }
+  const create = useCallback(async (input: TicketInput) => {
+    const created = await api.post<Ticket>('/tickets', input)
+    setTickets((prev) => [...prev, created])
+    return created
+  }, [])
+
+  return { tickets, loading, loadingMore, error, hasMore, reload: load, loadMore, create }
 }

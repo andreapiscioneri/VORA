@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { api } from '../lib/api'
-import type { Opportunity } from '@vora/shared/types/opportunity'
+import type { Opportunity, OpportunityInput } from '@vora/shared/types/opportunity'
 
 interface PageResult<T> {
   items: T[]
@@ -48,5 +48,11 @@ export function useOpportunities() {
     }
   }, [hasMore, loadingMore, nextCursor])
 
-  return { opportunities, loading, loadingMore, error, hasMore, reload: load, loadMore }
+  const create = useCallback(async (input: OpportunityInput) => {
+    const created = await api.post<Opportunity>('/opportunities', input)
+    setOpportunities((prev) => [...prev, created])
+    return created
+  }, [])
+
+  return { opportunities, loading, loadingMore, error, hasMore, reload: load, loadMore, create }
 }

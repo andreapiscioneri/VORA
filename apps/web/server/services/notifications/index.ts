@@ -1,6 +1,7 @@
 import type { NotificationCategory } from '~/shared/types/notification'
 import { getPreferences } from '~/server/utils/notificationPreferences'
 import { listTokensForUser } from '~/server/utils/pushTokens'
+import { createAppNotification } from '~/server/utils/appNotifications'
 import { logger } from '~/server/utils/logger'
 
 export interface PushNotification {
@@ -23,6 +24,14 @@ const EXPO_PUSH_URL = 'https://exp.host/--/api/v2/push/send'
 export async function sendPushToUser(userId: string, category: NotificationCategory, notification: PushNotification): Promise<void> {
   const prefs = await getPreferences(userId)
   if (!prefs[category]) return
+
+  // Written unconditionally on delivery (not gated on having a push token) so
+  // the in-app bell/badge works even for a device with no push entitlement —
+  // e.g. a sideloaded build, which has no paid Apple Developer Program
+  // account to provision `aps-environment` and so never registers a token.
+  await createAppNotification(userId, category, notification.title, notification.body, notification.data ?? {}).catch((error) => {
+    logger.error('app notification create failed', { userId, category }, error)
+  })
 
   const tokens = await listTokensForUser(userId)
   if (tokens.length === 0) return

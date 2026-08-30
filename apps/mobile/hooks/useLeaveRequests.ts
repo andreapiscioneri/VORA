@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { api } from '../lib/api'
-import type { LeaveRequest } from '@vora/shared/types/leave'
+import type { LeaveRequest, LeaveRequestInput } from '@vora/shared/types/leave'
 
 interface PageResult<T> {
   items: T[]
@@ -48,5 +48,11 @@ export function useLeaveRequests() {
     }
   }, [hasMore, loadingMore, nextCursor])
 
-  return { requests, loading, loadingMore, error, hasMore, reload: load, loadMore }
+  const create = useCallback(async (input: LeaveRequestInput) => {
+    const created = await api.post<LeaveRequest>('/leave-requests', input)
+    setRequests((prev) => [...prev, created])
+    return created
+  }, [])
+
+  return { requests, loading, loadingMore, error, hasMore, reload: load, loadMore, create }
 }

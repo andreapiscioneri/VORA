@@ -122,7 +122,7 @@
       },
       "notifications": {
         "label": "Notificaciones",
-        "desc": "Preferencias push"
+        "desc": "Tus notificaciones"
       },
       "employees": {
         "label": "Empleados",
@@ -156,7 +156,8 @@
         "label": "Ajustes",
         "desc": "Perfil y contraseña"
       }
-    }
+    },
+    "madeBy": "Made by apdesign"
   },
   "modules": {
     "contacts": {
@@ -168,6 +169,21 @@
         "active": "Activo",
         "lead": "Lead",
         "inactive": "Inactivo"
+      },
+      "form": {
+        "newTitle": "Nuevo contacto",
+        "firstName": "Nombre",
+        "lastName": "Apellido",
+        "company": "Empresa",
+        "email": "Correo electrónico",
+        "phone": "Teléfono",
+        "notes": "Notas",
+        "status": "Estado",
+        "save": "Guardar",
+        "saving": "Guardando..."
+      },
+      "errors": {
+        "save": "No se pudo guardar el contacto."
       }
     },
     "crm": {
@@ -182,6 +198,19 @@
         "negotiation": "Negociación",
         "won": "Ganada",
         "lost": "Perdida"
+      },
+      "form": {
+        "newTitle": "Nueva oportunidad",
+        "title": "Título",
+        "company": "Empresa",
+        "value": "Valor (EUR)",
+        "stage": "Etapa",
+        "notes": "Notas",
+        "save": "Guardar",
+        "saving": "Guardando..."
+      },
+      "errors": {
+        "save": "No se pudo guardar la oportunidad."
       }
     },
     "projects": {
@@ -194,6 +223,19 @@
         "on_hold": "En pausa",
         "completed": "Completado",
         "archived": "Archivado"
+      },
+      "form": {
+        "newTitle": "Nuevo proyecto",
+        "name": "Nombre",
+        "description": "Descripción",
+        "status": "Estado",
+        "budget": "Presupuesto (EUR)",
+        "dueDate": "Fecha límite",
+        "save": "Guardar",
+        "saving": "Guardando..."
+      },
+      "errors": {
+        "save": "No se pudo guardar el proyecto."
       }
     },
     "timesheets": {
@@ -202,7 +244,19 @@
       "error": "No se pudieron cargar los partes de horas. Comprueba que el servidor Vora esté activo. ({{error}})",
       "empty": "No hay registros.",
       "billable": "Facturable",
-      "nonBillable": "No facturable"
+      "nonBillable": "No facturable",
+      "form": {
+        "newTitle": "Nueva entrada",
+        "date": "Fecha",
+        "durationMinutes": "Duración (minutos)",
+        "description": "Descripción",
+        "billableToggle": "Facturable",
+        "save": "Guardar",
+        "saving": "Guardando..."
+      },
+      "errors": {
+        "save": "No se pudo guardar la entrada."
+      }
     },
     "helpdesk": {
       "title": "Soporte",
@@ -215,6 +269,23 @@
         "waiting": "En espera",
         "resolved": "Resuelto",
         "closed": "Cerrado"
+      },
+      "form": {
+        "newTitle": "Nuevo ticket",
+        "title": "Título",
+        "description": "Descripción",
+        "priority": "Prioridad",
+        "save": "Guardar",
+        "saving": "Guardando..."
+      },
+      "priority": {
+        "low": "Baja",
+        "medium": "Media",
+        "high": "Alta",
+        "urgent": "Urgente"
+      },
+      "errors": {
+        "save": "No se pudo guardar el ticket."
       }
     },
     "leave": {
@@ -231,6 +302,19 @@
         "vacation": "Vacaciones",
         "sick": "Enfermedad",
         "personal": "Personal"
+      },
+      "form": {
+        "newTitle": "Nueva solicitud",
+        "requesterName": "Solicitante",
+        "type": "Tipo",
+        "startDate": "Fecha inicio",
+        "endDate": "Fecha fin",
+        "notes": "Notas",
+        "save": "Guardar",
+        "saving": "Guardando..."
+      },
+      "errors": {
+        "save": "No se pudo guardar la solicitud."
       }
     },
     "wellbeing": {
@@ -252,6 +336,7 @@
     "notifications": {
       "title": "Notificaciones",
       "subtitle": "Elige lo que quieres recibir",
+      "count": "{{count}} notificaciones",
       "loading": "Cargando...",
       "error": "No se pudieron cargar las preferencias. Verifica que el servidor Vora esté activo. ({{error}})",
       "categories": {
@@ -263,6 +348,15 @@
         "approvals": "Aprobaciones",
         "tickets": "Tickets",
         "deadlines": "Plazos"
+      },
+      "inbox": {
+        "title": "Notificaciones",
+        "empty": "Sin notificaciones.",
+        "markRead": "Marcar como leída",
+        "markUnread": "Marcar como no leída",
+        "delete": "Eliminar",
+        "preferences": "Preferencias de notificaciones",
+        "viewAll": "Ver todas"
       }
     },
     "employees": {
@@ -439,6 +533,17 @@
         "contact_created": "Contacto creado",
         "contact_status_changed": "Estado del contacto cambiado",
         "manual": "Manual"
+      },
+      "form": {
+        "newTitle": "Nueva campaña",
+        "name": "Nombre",
+        "subject": "Asunto",
+        "body": "Cuerpo",
+        "save": "Guardar",
+        "saving": "Guardando..."
+      },
+      "errors": {
+        "save": "No se pudo guardar la campaña."
       }
     },
     "website": {
@@ -447,7 +552,9 @@
       "error": "No se pudieron cargar los sitios. ({{error}})",
       "empty": "Sin sitios.",
       "published": "Publicado",
-      "draft": "Borrador"
+      "draft": "Borrador",
+      "mySite": "Mi sitio",
+      "createNew": "Crear nuevo sitio"
     },
     "settings": {
       "title": "Ajustes",
@@ -489,21 +596,48 @@
     "paragraph": "Un futuro en el que la automatización, los datos y el instinto humano se alinean. No solo software. No solo personas. Algo en perfecto equilibrio entre ambos.",
     "cta": "Solicitar acceso",
     "stats": {
-      "modules": { "value": "15+", "label": "Módulos integrados" },
-      "ai": { "value": "24/7", "label": "Asistente de IA" },
-      "data": { "value": "100%", "label": "Datos unificados" }
+      "modules": {
+        "value": "15+",
+        "label": "Módulos integrados"
+      },
+      "ai": {
+        "value": "24/7",
+        "label": "Asistente de IA"
+      },
+      "data": {
+        "value": "100%",
+        "label": "Datos unificados"
+      }
     },
     "modules": {
       "eyebrow": "Módulos",
       "title": "Todo lo que tu equipo necesita, en un solo sistema",
       "subtitle": "Seis módulos conectados en lugar de seis herramientas sueltas.",
       "items": {
-        "crm": { "title": "CRM & Contactos", "description": "Gestiona leads, clientes y oportunidades en un único pipeline." },
-        "calendar": { "title": "Calendario & Citas", "description": "Programa reuniones y reservas sin solapamientos." },
-        "projects": { "title": "Proyectos & Tareas", "description": "Organiza el trabajo del equipo con plazos y responsables claros." },
-        "marketing": { "title": "Marketing & Automatizaciones", "description": "Campañas, segmentos y flujos de trabajo que funcionan solos." },
-        "helpdesk": { "title": "Helpdesk & Base de conocimiento", "description": "Responde a los clientes más rápido con una base de conocimiento compartida." },
-        "people": { "title": "Personas & Ausencias", "description": "Vacaciones, gastos y bienestar del equipo en un solo lugar." }
+        "crm": {
+          "title": "CRM & Contactos",
+          "description": "Gestiona leads, clientes y oportunidades en un único pipeline."
+        },
+        "calendar": {
+          "title": "Calendario & Citas",
+          "description": "Programa reuniones y reservas sin solapamientos."
+        },
+        "projects": {
+          "title": "Proyectos & Tareas",
+          "description": "Organiza el trabajo del equipo con plazos y responsables claros."
+        },
+        "marketing": {
+          "title": "Marketing & Automatizaciones",
+          "description": "Campañas, segmentos y flujos de trabajo que funcionan solos."
+        },
+        "helpdesk": {
+          "title": "Helpdesk & Base de conocimiento",
+          "description": "Responde a los clientes más rápido con una base de conocimiento compartida."
+        },
+        "people": {
+          "title": "Personas & Ausencias",
+          "description": "Vacaciones, gastos y bienestar del equipo en un solo lugar."
+        }
       }
     },
     "customers": {
@@ -511,21 +645,49 @@
       "title": "Un sistema que se adapta a tu sector",
       "subtitle": "No todos los equipos trabajan igual — VORA no les obliga a hacerlo.",
       "items": {
-        "agencies": { "title": "Agencias & estudios profesionales", "description": "Gestión de clientes, proyectos por horas y facturación transparente." },
-        "smes": { "title": "Pymes de servicios", "description": "CRM, calendario y helpdesk unidos para no perder a ningún cliente." },
-        "sales": { "title": "Equipos de marketing & ventas", "description": "Campañas y automatizaciones que mantienen el pipeline lleno." },
-        "hr": { "title": "RR. HH. & people ops", "description": "Vacaciones, asistencia y bienestar sin hojas de cálculo." }
+        "agencies": {
+          "title": "Agencias & estudios profesionales",
+          "description": "Gestión de clientes, proyectos por horas y facturación transparente."
+        },
+        "smes": {
+          "title": "Pymes de servicios",
+          "description": "CRM, calendario y helpdesk unidos para no perder a ningún cliente."
+        },
+        "sales": {
+          "title": "Equipos de marketing & ventas",
+          "description": "Campañas y automatizaciones que mantienen el pipeline lleno."
+        },
+        "hr": {
+          "title": "RR. HH. & people ops",
+          "description": "Vacaciones, asistencia y bienestar sin hojas de cálculo."
+        }
       }
     },
     "automation": {
       "eyebrow": "Automatizaciones",
       "title": "Flujos de trabajo que funcionan aunque tú no estés",
       "subtitle": "Reglas reales de disparador → condición → acción, no simples recordatorios.",
-      "labels": { "trigger": "Disparador", "condition": "Condición", "action": "Acción" },
+      "labels": {
+        "trigger": "Disparador",
+        "condition": "Condición",
+        "action": "Acción"
+      },
       "items": {
-        "contact": { "trigger": "Nuevo contacto creado", "condition": "origen = sitio web", "action": "Enviar un email de bienvenida y asignar un comercial" },
-        "appointment": { "trigger": "Cita en 24 horas", "condition": "aún sin confirmar", "action": "Enviar un recordatorio automático" },
-        "invoice": { "trigger": "Factura vencida hace 7 días", "condition": "sigue impagada", "action": "Crear una tarea de seguimiento y avisar al equipo" }
+        "contact": {
+          "trigger": "Nuevo contacto creado",
+          "condition": "origen = sitio web",
+          "action": "Enviar un email de bienvenida y asignar un comercial"
+        },
+        "appointment": {
+          "trigger": "Cita en 24 horas",
+          "condition": "aún sin confirmar",
+          "action": "Enviar un recordatorio automático"
+        },
+        "invoice": {
+          "trigger": "Factura vencida hace 7 días",
+          "condition": "sigue impagada",
+          "action": "Crear una tarea de seguimiento y avisar al equipo"
+        }
       }
     },
     "pricing": {
@@ -567,10 +729,22 @@
       "subtitle": "Una vista previa interactiva del producto — sin necesidad de registrarte.",
       "ctaTry": "Pruébalo gratis",
       "tabs": {
-        "crm": { "label": "CRM", "caption": "Cada contacto, negociación y conversación en un solo pipeline." },
-        "calendar": { "label": "Calendario", "caption": "Citas y disponibilidad del equipo, siempre sincronizadas." },
-        "automation": { "label": "Automatizaciones", "caption": "Reglas que se disparan solas, para que tú no tengas que hacerlo." },
-        "projects": { "label": "Proyectos", "caption": "Tareas, plazos y responsables de un vistazo." }
+        "crm": {
+          "label": "CRM",
+          "caption": "Cada contacto, negociación y conversación en un solo pipeline."
+        },
+        "calendar": {
+          "label": "Calendario",
+          "caption": "Citas y disponibilidad del equipo, siempre sincronizadas."
+        },
+        "automation": {
+          "label": "Automatizaciones",
+          "caption": "Reglas que se disparan solas, para que tú no tengas que hacerlo."
+        },
+        "projects": {
+          "label": "Proyectos",
+          "caption": "Tareas, plazos y responsables de un vistazo."
+        }
       }
     },
     "contact": {
