@@ -1,11 +1,15 @@
 import { StyleSheet, Text, View } from 'react-native'
 import { useI18n } from '../../i18n'
+import { useTheme } from '../../contexts/ThemeContext'
 import { radius, spacing } from '../../constants/theme'
+import type { ThemeColors } from '../../constants/theme'
 
 const KEYS = ['contact', 'appointment', 'invoice'] as const
 
 export function AutomationSection() {
   const { t } = useI18n()
+  const { colors } = useTheme()
+  const styles = makeStyles(colors)
 
   return (
     <View style={styles.section}>
@@ -35,23 +39,25 @@ export function AutomationSection() {
   )
 }
 
-const styles = StyleSheet.create({
-  section: { paddingHorizontal: spacing(5), paddingVertical: spacing(10) },
-  eyebrow: { color: '#39FF14', fontSize: 12, fontWeight: '700', letterSpacing: 1, textTransform: 'uppercase' },
-  title: { color: '#FFFFFF', fontSize: 26, lineHeight: 30, fontWeight: '700', letterSpacing: -1, marginTop: spacing(2) },
-  subtitle: { color: 'rgba(255,255,255,0.7)', fontSize: 14, lineHeight: 20, marginTop: spacing(3) },
-  list: { marginTop: spacing(6), gap: spacing(3) },
-  card: {
-    gap: spacing(2.5),
-    padding: spacing(4),
-    borderRadius: radius.lg,
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.1)',
-    backgroundColor: 'rgba(255,255,255,0.03)',
-  },
-  row: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: spacing(2) },
-  rowLabelPrimary: { color: '#39FF14', fontSize: 10, fontWeight: '700', letterSpacing: 1, textTransform: 'uppercase', minWidth: 72 },
-  rowLabel: { color: 'rgba(255,255,255,0.5)', fontSize: 10, fontWeight: '700', letterSpacing: 1, textTransform: 'uppercase', minWidth: 72 },
-  rowValue: { flex: 1, color: '#FFFFFF', fontSize: 13, lineHeight: 18 },
-  rowValueMuted: { flex: 1, color: 'rgba(255,255,255,0.8)', fontSize: 13, lineHeight: 18 },
-})
+function makeStyles(colors: ThemeColors) {
+  return StyleSheet.create({
+    section: { paddingHorizontal: spacing(5), paddingVertical: spacing(10), backgroundColor: colors.background },
+    eyebrow: { color: colors.primary, fontSize: 12, fontWeight: '700', letterSpacing: 1, textTransform: 'uppercase' },
+    title: { color: colors.textPrimary, fontSize: 26, lineHeight: 30, fontWeight: '700', letterSpacing: -1, marginTop: spacing(2) },
+    subtitle: { color: colors.textSecondary, fontSize: 14, lineHeight: 20, marginTop: spacing(3) },
+    list: { marginTop: spacing(6), gap: spacing(3) },
+    card: {
+      gap: spacing(2.5),
+      padding: spacing(4),
+      borderRadius: radius.lg,
+      borderWidth: 1,
+      borderColor: colors.border,
+      backgroundColor: colors.surface,
+    },
+    row: { flexDirection: 'row', flexWrap: 'wrap', alignItems: 'center', gap: spacing(2) },
+    rowLabelPrimary: { color: colors.primary, fontSize: 10, fontWeight: '700', letterSpacing: 1, textTransform: 'uppercase', minWidth: 72 },
+    rowLabel: { color: colors.textSecondary, fontSize: 10, fontWeight: '700', letterSpacing: 1, textTransform: 'uppercase', minWidth: 72 },
+    rowValue: { flex: 1, color: colors.textPrimary, fontSize: 13, lineHeight: 18 },
+    rowValueMuted: { flex: 1, color: colors.textSecondary, fontSize: 13, lineHeight: 18 },
+  })
+}

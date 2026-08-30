@@ -1,12 +1,16 @@
 import { useState } from 'react'
 import { Linking, Pressable, StyleSheet, Text, TextInput, View } from 'react-native'
 import { useI18n } from '../../i18n'
+import { useTheme } from '../../contexts/ThemeContext'
 import { radius, spacing } from '../../constants/theme'
+import type { ThemeColors } from '../../constants/theme'
 
 const CONTACT_EMAIL = 'andrypiscioneri@gmail.com'
 
 export function ContactSection() {
   const { t } = useI18n()
+  const { colors } = useTheme()
+  const styles = makeStyles(colors)
   const [name, setName] = useState('')
   const [email, setEmail] = useState('')
   const [message, setMessage] = useState('')
@@ -35,7 +39,7 @@ export function ContactSection() {
           value={name}
           onChangeText={setName}
           placeholder={t('welcome.contact.form.namePlaceholder')}
-          placeholderTextColor="rgba(255,255,255,0.3)"
+          placeholderTextColor={colors.textSecondary}
         />
 
         <Text style={styles.label}>{t('welcome.contact.form.email')}</Text>
@@ -46,7 +50,7 @@ export function ContactSection() {
           autoCapitalize="none"
           keyboardType="email-address"
           placeholder={t('welcome.contact.form.emailPlaceholder')}
-          placeholderTextColor="rgba(255,255,255,0.3)"
+          placeholderTextColor={colors.textSecondary}
         />
 
         <Text style={styles.label}>{t('welcome.contact.form.message')}</Text>
@@ -57,7 +61,7 @@ export function ContactSection() {
           multiline
           numberOfLines={4}
           placeholder={t('welcome.contact.form.messagePlaceholder')}
-          placeholderTextColor="rgba(255,255,255,0.3)"
+          placeholderTextColor={colors.textSecondary}
         />
 
         <Pressable onPress={submit} accessibilityRole="button" style={({ pressed }) => [styles.cta, pressed && styles.pressed]}>
@@ -68,32 +72,34 @@ export function ContactSection() {
   )
 }
 
-const styles = StyleSheet.create({
-  section: { paddingHorizontal: spacing(5), paddingVertical: spacing(10), paddingBottom: spacing(16), backgroundColor: '#0A0F08' },
-  eyebrow: { color: '#39FF14', fontSize: 12, fontWeight: '700', letterSpacing: 1, textTransform: 'uppercase' },
-  title: { color: '#FFFFFF', fontSize: 26, lineHeight: 30, fontWeight: '700', letterSpacing: -1, marginTop: spacing(2) },
-  subtitle: { color: 'rgba(255,255,255,0.7)', fontSize: 14, lineHeight: 20, marginTop: spacing(3) },
-  form: { marginTop: spacing(6), gap: spacing(1) },
-  label: { color: 'rgba(255,255,255,0.6)', fontSize: 12, fontWeight: '600', marginTop: spacing(4), marginBottom: spacing(1.5) },
-  input: {
-    borderWidth: 1,
-    borderColor: 'rgba(255,255,255,0.1)',
-    backgroundColor: 'rgba(255,255,255,0.04)',
-    borderRadius: radius.md,
-    paddingHorizontal: spacing(4),
-    paddingVertical: spacing(3),
-    color: '#FFFFFF',
-    fontSize: 14,
-  },
-  textarea: { minHeight: 100, textAlignVertical: 'top' },
-  cta: {
-    marginTop: spacing(6),
-    alignSelf: 'flex-start',
-    backgroundColor: '#39FF14',
-    paddingHorizontal: spacing(7),
-    paddingVertical: spacing(4),
-    borderRadius: radius.full,
-  },
-  ctaText: { color: '#0A0A0A', fontSize: 15, fontWeight: '700' },
-  pressed: { transform: [{ scale: 0.96 }] },
-})
+function makeStyles(colors: ThemeColors) {
+  return StyleSheet.create({
+    section: { paddingHorizontal: spacing(5), paddingVertical: spacing(10), paddingBottom: spacing(16), backgroundColor: colors.surface },
+    eyebrow: { color: colors.primary, fontSize: 12, fontWeight: '700', letterSpacing: 1, textTransform: 'uppercase' },
+    title: { color: colors.textPrimary, fontSize: 26, lineHeight: 30, fontWeight: '700', letterSpacing: -1, marginTop: spacing(2) },
+    subtitle: { color: colors.textSecondary, fontSize: 14, lineHeight: 20, marginTop: spacing(3) },
+    form: { marginTop: spacing(6), gap: spacing(1) },
+    label: { color: colors.textSecondary, fontSize: 12, fontWeight: '600', marginTop: spacing(4), marginBottom: spacing(1.5) },
+    input: {
+      borderWidth: 1,
+      borderColor: colors.border,
+      backgroundColor: colors.background,
+      borderRadius: radius.md,
+      paddingHorizontal: spacing(4),
+      paddingVertical: spacing(3),
+      color: colors.textPrimary,
+      fontSize: 14,
+    },
+    textarea: { minHeight: 100, textAlignVertical: 'top' },
+    cta: {
+      marginTop: spacing(6),
+      alignSelf: 'flex-start',
+      backgroundColor: colors.primary,
+      paddingHorizontal: spacing(7),
+      paddingVertical: spacing(4),
+      borderRadius: radius.full,
+    },
+    ctaText: { color: '#0A0A0A', fontSize: 15, fontWeight: '700' },
+    pressed: { transform: [{ scale: 0.96 }] },
+  })
+}
