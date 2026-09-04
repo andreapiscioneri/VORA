@@ -54,5 +54,16 @@ export function useProjects() {
     return created
   }, [])
 
-  return { projects, loading, loadingMore, error, hasMore, reload: load, loadMore, create }
+  const update = useCallback(async (id: string, input: ProjectInput) => {
+    const updated = await api.put<Project>(`/projects/${id}`, input)
+    setProjects((prev) => prev.map((p) => (p.id === id ? updated : p)))
+    return updated
+  }, [])
+
+  const remove = useCallback(async (id: string) => {
+    await api.delete(`/projects/${id}`)
+    setProjects((prev) => prev.filter((p) => p.id !== id))
+  }, [])
+
+  return { projects, loading, loadingMore, error, hasMore, reload: load, loadMore, create, update, remove }
 }

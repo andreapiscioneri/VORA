@@ -54,5 +54,16 @@ export function useTickets() {
     return created
   }, [])
 
-  return { tickets, loading, loadingMore, error, hasMore, reload: load, loadMore, create }
+  const update = useCallback(async (id: string, input: TicketInput) => {
+    const updated = await api.put<Ticket>(`/tickets/${id}`, input)
+    setTickets((prev) => prev.map((tk) => (tk.id === id ? updated : tk)))
+    return updated
+  }, [])
+
+  const remove = useCallback(async (id: string) => {
+    await api.delete(`/tickets/${id}`)
+    setTickets((prev) => prev.filter((tk) => tk.id !== id))
+  }, [])
+
+  return { tickets, loading, loadingMore, error, hasMore, reload: load, loadMore, create, update, remove }
 }

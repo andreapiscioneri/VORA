@@ -4,7 +4,9 @@
     "reachability": "Can't reach the Vora server. Pull down to try again.",
     "offlineCached": "Offline — showing your last saved data.",
     "loadMore": "Load more",
-    "loadingMore": "Loading..."
+    "loadingMore": "Loading...",
+    "yes": "Yes",
+    "no": "No"
   },
   "auth": {
     "loginTitle": "Log in to Vora",
@@ -58,6 +60,30 @@
       "review": "In review",
       "completed": "Completed",
       "archived": "Archived"
+    },
+    "form": {
+      "newTitle": "New task",
+      "editTitle": "Edit task",
+      "title": "Title",
+      "description": "Description",
+      "priority": "Priority",
+      "status": "Status",
+      "deadline": "Deadline",
+      "save": "Save",
+      "saving": "Saving...",
+      "delete": "Delete",
+      "cancel": "Cancel"
+    },
+    "priority": {
+      "low": "Low",
+      "medium": "Medium",
+      "high": "High",
+      "urgent": "Urgent"
+    },
+    "deleteConfirm": "Delete this task? This cannot be undone.",
+    "errors": {
+      "save": "Could not save the task.",
+      "delete": "Could not delete the task."
     }
   },
   "inbox": {
@@ -78,7 +104,34 @@
     "title": "Calendar",
     "count": "{{count}} events",
     "error": "Couldn't load events. Check that the Vora server is running. ({{error}})",
-    "empty": "No events on the calendar."
+    "empty": "No events on the calendar.",
+    "form": {
+      "newTitle": "New event",
+      "editTitle": "Edit event",
+      "title": "Title",
+      "description": "Description",
+      "startAt": "Start",
+      "endAt": "End",
+      "allDay": "All day",
+      "location": "Location",
+      "recurrence": "Repeat",
+      "save": "Save",
+      "saving": "Saving...",
+      "delete": "Delete",
+      "cancel": "Cancel"
+    },
+    "recurrence": {
+      "none": "Doesn't repeat",
+      "daily": "Every day",
+      "weekly": "Every week",
+      "monthly": "Every month"
+    },
+    "deleteConfirm": "Delete this event? This cannot be undone.",
+    "errors": {
+      "save": "Could not save the event.",
+      "delete": "Could not delete the event.",
+      "load": "Could not load the event."
+    }
   },
   "more": {
     "title": "More",
@@ -180,11 +233,16 @@
         "notes": "Notes",
         "status": "Status",
         "save": "Save",
-        "saving": "Saving..."
+        "saving": "Saving...",
+        "editTitle": "Edit contact",
+        "delete": "Delete",
+        "cancel": "Cancel"
       },
       "errors": {
-        "save": "Could not save the contact."
-      }
+        "save": "Could not save the contact.",
+        "delete": "Could not delete the contact."
+      },
+      "deleteConfirm": "Delete this contact? This cannot be undone."
     },
     "crm": {
       "title": "CRM",
@@ -207,11 +265,16 @@
         "stage": "Stage",
         "notes": "Notes",
         "save": "Save",
-        "saving": "Saving..."
+        "saving": "Saving...",
+        "editTitle": "Edit opportunity",
+        "delete": "Delete",
+        "cancel": "Cancel"
       },
       "errors": {
-        "save": "Could not save the opportunity."
-      }
+        "save": "Could not save the opportunity.",
+        "delete": "Could not delete the opportunity."
+      },
+      "deleteConfirm": "Delete this opportunity? This cannot be undone."
     },
     "projects": {
       "title": "Projects",
@@ -232,11 +295,16 @@
         "budget": "Budget (EUR)",
         "dueDate": "Due date",
         "save": "Save",
-        "saving": "Saving..."
+        "saving": "Saving...",
+        "editTitle": "Edit project",
+        "delete": "Delete",
+        "cancel": "Cancel"
       },
       "errors": {
-        "save": "Could not save the project."
-      }
+        "save": "Could not save the project.",
+        "delete": "Could not delete the project."
+      },
+      "deleteConfirm": "Delete this project? This cannot be undone."
     },
     "timesheets": {
       "title": "Timesheets",
@@ -252,11 +320,16 @@
         "description": "Description",
         "billableToggle": "Billable",
         "save": "Save",
-        "saving": "Saving..."
+        "saving": "Saving...",
+        "editTitle": "Edit entry",
+        "delete": "Delete",
+        "cancel": "Cancel"
       },
       "errors": {
-        "save": "Could not save the entry."
-      }
+        "save": "Could not save the entry.",
+        "delete": "Could not delete the entry."
+      },
+      "deleteConfirm": "Delete this entry? This cannot be undone."
     },
     "helpdesk": {
       "title": "Helpdesk",
@@ -276,7 +349,11 @@
         "description": "Description",
         "priority": "Priority",
         "save": "Save",
-        "saving": "Saving..."
+        "saving": "Saving...",
+        "editTitle": "Edit ticket",
+        "delete": "Delete",
+        "cancel": "Cancel",
+        "status": "Status"
       },
       "priority": {
         "low": "Low",
@@ -285,8 +362,10 @@
         "urgent": "Urgent"
       },
       "errors": {
-        "save": "Could not save the ticket."
-      }
+        "save": "Could not save the ticket.",
+        "delete": "Could not delete the ticket."
+      },
+      "deleteConfirm": "Delete this ticket? This cannot be undone."
     },
     "leave": {
       "title": "Leave",
@@ -311,11 +390,16 @@
         "endDate": "End date",
         "notes": "Notes",
         "save": "Save",
-        "saving": "Saving..."
+        "saving": "Saving...",
+        "editTitle": "Edit request",
+        "delete": "Delete",
+        "cancel": "Cancel"
       },
       "errors": {
-        "save": "Could not save the request."
-      }
+        "save": "Could not save the request.",
+        "delete": "Could not delete the request."
+      },
+      "deleteConfirm": "Delete this request? This cannot be undone."
     },
     "wellbeing": {
       "title": "Wellbeing",
@@ -540,11 +624,16 @@
         "subject": "Subject",
         "body": "Body",
         "save": "Save",
-        "saving": "Saving..."
+        "saving": "Saving...",
+        "editTitle": "Edit campaign",
+        "delete": "Delete",
+        "cancel": "Cancel"
       },
       "errors": {
-        "save": "Could not save the campaign."
-      }
+        "save": "Could not save the campaign.",
+        "delete": "Could not delete the campaign."
+      },
+      "deleteConfirm": "Delete this campaign? This cannot be undone."
     },
     "website": {
       "title": "Website",

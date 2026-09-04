@@ -54,5 +54,16 @@ export function useLeaveRequests() {
     return created
   }, [])
 
-  return { requests, loading, loadingMore, error, hasMore, reload: load, loadMore, create }
+  const update = useCallback(async (id: string, input: LeaveRequestInput) => {
+    const updated = await api.put<LeaveRequest>(`/leave-requests/${id}`, input)
+    setRequests((prev) => prev.map((r) => (r.id === id ? updated : r)))
+    return updated
+  }, [])
+
+  const remove = useCallback(async (id: string) => {
+    await api.delete(`/leave-requests/${id}`)
+    setRequests((prev) => prev.filter((r) => r.id !== id))
+  }, [])
+
+  return { requests, loading, loadingMore, error, hasMore, reload: load, loadMore, create, update, remove }
 }

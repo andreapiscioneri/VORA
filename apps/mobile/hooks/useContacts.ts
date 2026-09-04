@@ -74,5 +74,24 @@ export function useContacts() {
     return created
   }, [])
 
-  return { contacts, loading, loadingMore, error, offline, hasMore, reload: load, loadMore, create }
+  const update = useCallback(async (id: string, input: ContactInput) => {
+    const updated = await api.put<Contact>(`/contacts/${id}`, input)
+    setContacts((prev) => {
+      const next = prev.map((c) => (c.id === id ? updated : c))
+      writeCache(CACHE_KEY, next)
+      return next
+    })
+    return updated
+  }, [])
+
+  const remove = useCallback(async (id: string) => {
+    await api.delete(`/contacts/${id}`)
+    setContacts((prev) => {
+      const next = prev.filter((c) => c.id !== id)
+      writeCache(CACHE_KEY, next)
+      return next
+    })
+  }, [])
+
+  return { contacts, loading, loadingMore, error, offline, hasMore, reload: load, loadMore, create, update, remove }
 }

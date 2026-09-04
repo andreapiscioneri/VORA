@@ -51,9 +51,13 @@ export default function ContactsScreen() {
             onEndReachedThreshold={0.5}
             ListFooterComponent={loadingMore ? <ActivityIndicator style={styles.footer} color={colors.primary} /> : null}
             renderItem={({ item }: { item: Contact }) => (
-              <View
+              <Pressable
+                onPress={() => {
+                  haptics.tap()
+                  router.push(`/contacts/${item.id}`)
+                }}
                 style={styles.row}
-                accessible
+                accessibilityRole="button"
                 accessibilityLabel={`${item.firstName} ${item.lastName}, ${item.company || ''}, ${t(`modules.contacts.status.${item.status}`)}`}
               >
                 <View style={styles.rowMain}>
@@ -69,7 +73,7 @@ export default function ContactsScreen() {
                 <View style={styles.badge}>
                   <Text style={styles.badgeText}>{t(`modules.contacts.status.${item.status}`)}</Text>
                 </View>
-              </View>
+              </Pressable>
             )}
           />
         </>

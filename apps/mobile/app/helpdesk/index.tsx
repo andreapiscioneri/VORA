@@ -49,7 +49,15 @@ export default function HelpdeskScreen() {
           onEndReachedThreshold={0.5}
           ListFooterComponent={loadingMore ? <ActivityIndicator style={styles.footer} color={colors.primary} /> : null}
           renderItem={({ item }: { item: Ticket }) => (
-            <View style={styles.row} accessible accessibilityLabel={`${item.title}, ${t(`modules.helpdesk.status.${item.status}`)}`}>
+            <Pressable
+              onPress={() => {
+                haptics.tap()
+                router.push(`/helpdesk/${item.id}`)
+              }}
+              style={styles.row}
+              accessibilityRole="button"
+              accessibilityLabel={`${item.title}, ${t(`modules.helpdesk.status.${item.status}`)}`}
+            >
               <View style={styles.rowMain}>
                 <Text style={styles.title} numberOfLines={1}>
                   {item.title}
@@ -61,7 +69,7 @@ export default function HelpdeskScreen() {
               <View style={styles.badge}>
                 <Text style={styles.badgeText}>{t(`modules.helpdesk.status.${item.status}`)}</Text>
               </View>
-            </View>
+            </Pressable>
           )}
         />
       )}

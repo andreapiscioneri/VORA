@@ -49,7 +49,15 @@ export default function ProjectsScreen() {
           onEndReachedThreshold={0.5}
           ListFooterComponent={loadingMore ? <ActivityIndicator style={styles.footer} color={colors.primary} /> : null}
           renderItem={({ item }: { item: Project }) => (
-            <View style={styles.row} accessible accessibilityLabel={`${item.name}, ${t(`modules.projects.status.${item.status}`)}`}>
+            <Pressable
+              onPress={() => {
+                haptics.tap()
+                router.push(`/projects/${item.id}`)
+              }}
+              style={styles.row}
+              accessibilityRole="button"
+              accessibilityLabel={`${item.name}, ${t(`modules.projects.status.${item.status}`)}`}
+            >
               <View style={styles.rowMain}>
                 <Text style={styles.title} numberOfLines={1}>
                   {item.name}
@@ -59,7 +67,7 @@ export default function ProjectsScreen() {
               <View style={styles.badge}>
                 <Text style={styles.badgeText}>{t(`modules.projects.status.${item.status}`)}</Text>
               </View>
-            </View>
+            </Pressable>
           )}
         />
       )}

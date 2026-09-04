@@ -49,9 +49,13 @@ export default function LeaveScreen() {
           onEndReachedThreshold={0.5}
           ListFooterComponent={loadingMore ? <ActivityIndicator style={styles.footer} color={colors.primary} /> : null}
           renderItem={({ item }: { item: LeaveRequest }) => (
-            <View
+            <Pressable
+              onPress={() => {
+                haptics.tap()
+                router.push(`/leave/${item.id}`)
+              }}
               style={styles.row}
-              accessible
+              accessibilityRole="button"
               accessibilityLabel={`${item.requesterName}, ${t(`modules.leave.type.${item.type}`)}, ${item.startDate} - ${item.endDate}, ${t(`modules.leave.status.${item.status}`)}`}
             >
               <View style={styles.rowMain}>
@@ -65,7 +69,7 @@ export default function LeaveScreen() {
               <View style={styles.badge}>
                 <Text style={styles.badgeText}>{t(`modules.leave.status.${item.status}`)}</Text>
               </View>
-            </View>
+            </Pressable>
           )}
         />
       )}

@@ -54,5 +54,16 @@ export function useTimesheets() {
     return created
   }, [])
 
-  return { entries, loading, loadingMore, error, hasMore, reload: load, loadMore, create }
+  const update = useCallback(async (id: string, input: TimesheetEntryInput) => {
+    const updated = await api.put<TimesheetEntry>(`/timesheets/${id}`, input)
+    setEntries((prev) => prev.map((e) => (e.id === id ? updated : e)).sort((a, b) => (a.date < b.date ? 1 : -1)))
+    return updated
+  }, [])
+
+  const remove = useCallback(async (id: string) => {
+    await api.delete(`/timesheets/${id}`)
+    setEntries((prev) => prev.filter((e) => e.id !== id))
+  }, [])
+
+  return { entries, loading, loadingMore, error, hasMore, reload: load, loadMore, create, update, remove }
 }

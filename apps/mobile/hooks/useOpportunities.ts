@@ -54,5 +54,16 @@ export function useOpportunities() {
     return created
   }, [])
 
-  return { opportunities, loading, loadingMore, error, hasMore, reload: load, loadMore, create }
+  const update = useCallback(async (id: string, input: OpportunityInput) => {
+    const updated = await api.put<Opportunity>(`/opportunities/${id}`, input)
+    setOpportunities((prev) => prev.map((o) => (o.id === id ? updated : o)))
+    return updated
+  }, [])
+
+  const remove = useCallback(async (id: string) => {
+    await api.delete(`/opportunities/${id}`)
+    setOpportunities((prev) => prev.filter((o) => o.id !== id))
+  }, [])
+
+  return { opportunities, loading, loadingMore, error, hasMore, reload: load, loadMore, create, update, remove }
 }

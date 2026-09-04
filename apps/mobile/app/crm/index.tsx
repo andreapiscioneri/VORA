@@ -57,9 +57,13 @@ export default function CrmScreen() {
           onEndReachedThreshold={0.5}
           ListFooterComponent={loadingMore ? <ActivityIndicator style={styles.footer} color={colors.primary} /> : null}
           renderItem={({ item }: { item: Opportunity }) => (
-            <View
+            <Pressable
+              onPress={() => {
+                haptics.tap()
+                router.push(`/crm/${item.id}`)
+              }}
               style={styles.row}
-              accessible
+              accessibilityRole="button"
               accessibilityLabel={`${item.title}, ${item.company}, ${formatValue(item.value, item.currency)}, ${t(`modules.crm.stage.${item.stage}`)}`}
             >
               <View style={styles.rowMain}>
@@ -74,7 +78,7 @@ export default function CrmScreen() {
               <View style={styles.badge}>
                 <Text style={styles.badgeText}>{t(`modules.crm.stage.${item.stage}`)}</Text>
               </View>
-            </View>
+            </Pressable>
           )}
         />
       )}

@@ -21,6 +21,14 @@ export default defineNuxtConfig({
 
   runtimeConfig: {
     session: {
+      // Without an explicit maxAge, nuxt-auth-utils leaves the cookie's
+      // Max-Age/Expires unset — a browser-session cookie that dies on
+      // browser close (and gets pruned early by mobile Safari), which is
+      // why login kept dropping users after "a little while". 30 days
+      // matches the mobile app's own refresh-token lifetime (see
+      // REFRESH_TOKEN_TTL_MS in server/utils/mobileTokens.ts) so web and
+      // mobile sessions behave the same way.
+      maxAge: 60 * 60 * 24 * 30,
       // The iOS/Android native networking layer discards `Secure` cookies over
       // plain HTTP, so the mobile app can never keep a session in local dev
       // (which has no TLS). Production always terminates behind HTTPS.

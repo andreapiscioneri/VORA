@@ -4,7 +4,9 @@
     "reachability": "Vora-Server nicht erreichbar. Zum Wiederholen nach unten ziehen.",
     "offlineCached": "Offline – zuletzt gespeicherte Daten werden angezeigt.",
     "loadMore": "Mehr laden",
-    "loadingMore": "Wird geladen..."
+    "loadingMore": "Wird geladen...",
+    "yes": "Ja",
+    "no": "Nein"
   },
   "auth": {
     "loginTitle": "Bei Vora anmelden",
@@ -58,6 +60,30 @@
       "review": "In Prüfung",
       "completed": "Erledigt",
       "archived": "Archiviert"
+    },
+    "form": {
+      "newTitle": "Neue Aufgabe",
+      "editTitle": "Aufgabe bearbeiten",
+      "title": "Titel",
+      "description": "Beschreibung",
+      "priority": "Priorität",
+      "status": "Status",
+      "deadline": "Frist",
+      "save": "Speichern",
+      "saving": "Speichern...",
+      "delete": "Löschen",
+      "cancel": "Abbrechen"
+    },
+    "priority": {
+      "low": "Niedrig",
+      "medium": "Mittel",
+      "high": "Hoch",
+      "urgent": "Dringend"
+    },
+    "deleteConfirm": "Diese Aufgabe löschen? Kann nicht rückgängig gemacht werden.",
+    "errors": {
+      "save": "Aufgabe konnte nicht gespeichert werden.",
+      "delete": "Aufgabe konnte nicht gelöscht werden."
     }
   },
   "inbox": {
@@ -78,7 +104,34 @@
     "title": "Kalender",
     "count": "{{count}} Termine",
     "error": "Termine konnten nicht geladen werden. Prüfe, ob der Vora-Server läuft. ({{error}})",
-    "empty": "Keine Termine im Kalender."
+    "empty": "Keine Termine im Kalender.",
+    "form": {
+      "newTitle": "Neuer Termin",
+      "editTitle": "Termin bearbeiten",
+      "title": "Titel",
+      "description": "Beschreibung",
+      "startAt": "Beginn",
+      "endAt": "Ende",
+      "allDay": "Ganztägig",
+      "location": "Ort",
+      "recurrence": "Wiederholung",
+      "save": "Speichern",
+      "saving": "Speichern...",
+      "delete": "Löschen",
+      "cancel": "Abbrechen"
+    },
+    "recurrence": {
+      "none": "Wiederholt sich nicht",
+      "daily": "Täglich",
+      "weekly": "Wöchentlich",
+      "monthly": "Monatlich"
+    },
+    "deleteConfirm": "Diesen Termin löschen? Kann nicht rückgängig gemacht werden.",
+    "errors": {
+      "save": "Termin konnte nicht gespeichert werden.",
+      "delete": "Termin konnte nicht gelöscht werden.",
+      "load": "Termin konnte nicht geladen werden."
+    }
   },
   "more": {
     "title": "Mehr",
@@ -180,11 +233,16 @@
         "notes": "Notizen",
         "status": "Status",
         "save": "Speichern",
-        "saving": "Speichern..."
+        "saving": "Speichern...",
+        "editTitle": "Kontakt bearbeiten",
+        "delete": "Löschen",
+        "cancel": "Abbrechen"
       },
       "errors": {
-        "save": "Kontakt konnte nicht gespeichert werden."
-      }
+        "save": "Kontakt konnte nicht gespeichert werden.",
+        "delete": "Kontakt konnte nicht gelöscht werden."
+      },
+      "deleteConfirm": "Diesen Kontakt löschen? Kann nicht rückgängig gemacht werden."
     },
     "crm": {
       "title": "CRM",
@@ -207,11 +265,16 @@
         "stage": "Phase",
         "notes": "Notizen",
         "save": "Speichern",
-        "saving": "Speichern..."
+        "saving": "Speichern...",
+        "editTitle": "Chance bearbeiten",
+        "delete": "Löschen",
+        "cancel": "Abbrechen"
       },
       "errors": {
-        "save": "Chance konnte nicht gespeichert werden."
-      }
+        "save": "Chance konnte nicht gespeichert werden.",
+        "delete": "Chance konnte nicht gelöscht werden."
+      },
+      "deleteConfirm": "Diese Chance löschen? Kann nicht rückgängig gemacht werden."
     },
     "projects": {
       "title": "Projekte",
@@ -232,11 +295,16 @@
         "budget": "Budget (EUR)",
         "dueDate": "Fälligkeitsdatum",
         "save": "Speichern",
-        "saving": "Speichern..."
+        "saving": "Speichern...",
+        "editTitle": "Projekt bearbeiten",
+        "delete": "Löschen",
+        "cancel": "Abbrechen"
       },
       "errors": {
-        "save": "Projekt konnte nicht gespeichert werden."
-      }
+        "save": "Projekt konnte nicht gespeichert werden.",
+        "delete": "Projekt konnte nicht gelöscht werden."
+      },
+      "deleteConfirm": "Dieses Projekt löschen? Kann nicht rückgängig gemacht werden."
     },
     "timesheets": {
       "title": "Zeiterfassung",
@@ -252,11 +320,16 @@
         "description": "Beschreibung",
         "billableToggle": "Abrechenbar",
         "save": "Speichern",
-        "saving": "Speichern..."
+        "saving": "Speichern...",
+        "editTitle": "Eintrag bearbeiten",
+        "delete": "Löschen",
+        "cancel": "Abbrechen"
       },
       "errors": {
-        "save": "Eintrag konnte nicht gespeichert werden."
-      }
+        "save": "Eintrag konnte nicht gespeichert werden.",
+        "delete": "Eintrag konnte nicht gelöscht werden."
+      },
+      "deleteConfirm": "Diesen Eintrag löschen? Kann nicht rückgängig gemacht werden."
     },
     "helpdesk": {
       "title": "Helpdesk",
@@ -276,7 +349,11 @@
         "description": "Beschreibung",
         "priority": "Priorität",
         "save": "Speichern",
-        "saving": "Speichern..."
+        "saving": "Speichern...",
+        "editTitle": "Ticket bearbeiten",
+        "delete": "Löschen",
+        "cancel": "Abbrechen",
+        "status": "Status"
       },
       "priority": {
         "low": "Niedrig",
@@ -285,8 +362,10 @@
         "urgent": "Dringend"
       },
       "errors": {
-        "save": "Ticket konnte nicht gespeichert werden."
-      }
+        "save": "Ticket konnte nicht gespeichert werden.",
+        "delete": "Ticket konnte nicht gelöscht werden."
+      },
+      "deleteConfirm": "Dieses Ticket löschen? Kann nicht rückgängig gemacht werden."
     },
     "leave": {
       "title": "Urlaub",
@@ -311,11 +390,16 @@
         "endDate": "Enddatum",
         "notes": "Notizen",
         "save": "Speichern",
-        "saving": "Speichern..."
+        "saving": "Speichern...",
+        "editTitle": "Antrag bearbeiten",
+        "delete": "Löschen",
+        "cancel": "Abbrechen"
       },
       "errors": {
-        "save": "Antrag konnte nicht gespeichert werden."
-      }
+        "save": "Antrag konnte nicht gespeichert werden.",
+        "delete": "Antrag konnte nicht gelöscht werden."
+      },
+      "deleteConfirm": "Diesen Antrag löschen? Kann nicht rückgängig gemacht werden."
     },
     "wellbeing": {
       "title": "Wohlbefinden",
@@ -540,11 +624,16 @@
         "subject": "Betreff",
         "body": "Inhalt",
         "save": "Speichern",
-        "saving": "Speichern..."
+        "saving": "Speichern...",
+        "editTitle": "Kampagne bearbeiten",
+        "delete": "Löschen",
+        "cancel": "Abbrechen"
       },
       "errors": {
-        "save": "Kampagne konnte nicht gespeichert werden."
-      }
+        "save": "Kampagne konnte nicht gespeichert werden.",
+        "delete": "Kampagne konnte nicht gelöscht werden."
+      },
+      "deleteConfirm": "Diese Kampagne löschen? Kann nicht rückgängig gemacht werden."
     },
     "website": {
       "title": "Website",

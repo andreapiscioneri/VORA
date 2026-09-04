@@ -4,7 +4,9 @@
     "reachability": "Impossible de joindre le serveur Vora. Tirez vers le bas pour réessayer.",
     "offlineCached": "Hors ligne — affichage des dernières données enregistrées.",
     "loadMore": "Charger plus",
-    "loadingMore": "Chargement..."
+    "loadingMore": "Chargement...",
+    "yes": "Oui",
+    "no": "Non"
   },
   "auth": {
     "loginTitle": "Connexion à Vora",
@@ -58,6 +60,30 @@
       "review": "En relecture",
       "completed": "Terminée",
       "archived": "Archivée"
+    },
+    "form": {
+      "newTitle": "Nouvelle tâche",
+      "editTitle": "Modifier la tâche",
+      "title": "Titre",
+      "description": "Description",
+      "priority": "Priorité",
+      "status": "Statut",
+      "deadline": "Échéance",
+      "save": "Enregistrer",
+      "saving": "Enregistrement...",
+      "delete": "Supprimer",
+      "cancel": "Annuler"
+    },
+    "priority": {
+      "low": "Basse",
+      "medium": "Moyenne",
+      "high": "Haute",
+      "urgent": "Urgente"
+    },
+    "deleteConfirm": "Supprimer cette tâche ? Action irréversible.",
+    "errors": {
+      "save": "Impossible d'enregistrer la tâche.",
+      "delete": "Impossible de supprimer la tâche."
     }
   },
   "inbox": {
@@ -78,7 +104,34 @@
     "title": "Calendrier",
     "count": "{{count}} événements",
     "error": "Impossible de charger les événements. Vérifiez que le serveur Vora est actif. ({{error}})",
-    "empty": "Aucun événement au calendrier."
+    "empty": "Aucun événement au calendrier.",
+    "form": {
+      "newTitle": "Nouvel événement",
+      "editTitle": "Modifier l'événement",
+      "title": "Titre",
+      "description": "Description",
+      "startAt": "Début",
+      "endAt": "Fin",
+      "allDay": "Toute la journée",
+      "location": "Lieu",
+      "recurrence": "Répétition",
+      "save": "Enregistrer",
+      "saving": "Enregistrement...",
+      "delete": "Supprimer",
+      "cancel": "Annuler"
+    },
+    "recurrence": {
+      "none": "Ne se répète pas",
+      "daily": "Chaque jour",
+      "weekly": "Chaque semaine",
+      "monthly": "Chaque mois"
+    },
+    "deleteConfirm": "Supprimer cet événement ? Action irréversible.",
+    "errors": {
+      "save": "Impossible d'enregistrer l'événement.",
+      "delete": "Impossible de supprimer l'événement.",
+      "load": "Impossible de charger l'événement."
+    }
   },
   "more": {
     "title": "Plus",
@@ -180,11 +233,16 @@
         "notes": "Notes",
         "status": "Statut",
         "save": "Enregistrer",
-        "saving": "Enregistrement..."
+        "saving": "Enregistrement...",
+        "editTitle": "Modifier le contact",
+        "delete": "Supprimer",
+        "cancel": "Annuler"
       },
       "errors": {
-        "save": "Impossible d'enregistrer le contact."
-      }
+        "save": "Impossible d'enregistrer le contact.",
+        "delete": "Impossible de supprimer le contact."
+      },
+      "deleteConfirm": "Supprimer ce contact ? Action irréversible."
     },
     "crm": {
       "title": "CRM",
@@ -207,11 +265,16 @@
         "stage": "Étape",
         "notes": "Notes",
         "save": "Enregistrer",
-        "saving": "Enregistrement..."
+        "saving": "Enregistrement...",
+        "editTitle": "Modifier l'opportunité",
+        "delete": "Supprimer",
+        "cancel": "Annuler"
       },
       "errors": {
-        "save": "Impossible d'enregistrer l'opportunité."
-      }
+        "save": "Impossible d'enregistrer l'opportunité.",
+        "delete": "Impossible de supprimer l'opportunité."
+      },
+      "deleteConfirm": "Supprimer cette opportunité ? Action irréversible."
     },
     "projects": {
       "title": "Projets",
@@ -232,11 +295,16 @@
         "budget": "Budget (EUR)",
         "dueDate": "Échéance",
         "save": "Enregistrer",
-        "saving": "Enregistrement..."
+        "saving": "Enregistrement...",
+        "editTitle": "Modifier le projet",
+        "delete": "Supprimer",
+        "cancel": "Annuler"
       },
       "errors": {
-        "save": "Impossible d'enregistrer le projet."
-      }
+        "save": "Impossible d'enregistrer le projet.",
+        "delete": "Impossible de supprimer le projet."
+      },
+      "deleteConfirm": "Supprimer ce projet ? Action irréversible."
     },
     "timesheets": {
       "title": "Feuilles de temps",
@@ -252,11 +320,16 @@
         "description": "Description",
         "billableToggle": "Facturable",
         "save": "Enregistrer",
-        "saving": "Enregistrement..."
+        "saving": "Enregistrement...",
+        "editTitle": "Modifier l'entrée",
+        "delete": "Supprimer",
+        "cancel": "Annuler"
       },
       "errors": {
-        "save": "Impossible d'enregistrer l'entrée."
-      }
+        "save": "Impossible d'enregistrer l'entrée.",
+        "delete": "Impossible de supprimer l'entrée."
+      },
+      "deleteConfirm": "Supprimer cette entrée ? Action irréversible."
     },
     "helpdesk": {
       "title": "Support",
@@ -276,7 +349,11 @@
         "description": "Description",
         "priority": "Priorité",
         "save": "Enregistrer",
-        "saving": "Enregistrement..."
+        "saving": "Enregistrement...",
+        "editTitle": "Modifier le ticket",
+        "delete": "Supprimer",
+        "cancel": "Annuler",
+        "status": "Statut"
       },
       "priority": {
         "low": "Basse",
@@ -285,8 +362,10 @@
         "urgent": "Urgente"
       },
       "errors": {
-        "save": "Impossible d'enregistrer le ticket."
-      }
+        "save": "Impossible d'enregistrer le ticket.",
+        "delete": "Impossible de supprimer le ticket."
+      },
+      "deleteConfirm": "Supprimer ce ticket ? Action irréversible."
     },
     "leave": {
       "title": "Congés",
@@ -311,11 +390,16 @@
         "endDate": "Date de fin",
         "notes": "Notes",
         "save": "Enregistrer",
-        "saving": "Enregistrement..."
+        "saving": "Enregistrement...",
+        "editTitle": "Modifier la demande",
+        "delete": "Supprimer",
+        "cancel": "Annuler"
       },
       "errors": {
-        "save": "Impossible d'enregistrer la demande."
-      }
+        "save": "Impossible d'enregistrer la demande.",
+        "delete": "Impossible de supprimer la demande."
+      },
+      "deleteConfirm": "Supprimer cette demande ? Action irréversible."
     },
     "wellbeing": {
       "title": "Bien-être",
@@ -540,11 +624,16 @@
         "subject": "Objet",
         "body": "Contenu",
         "save": "Enregistrer",
-        "saving": "Enregistrement..."
+        "saving": "Enregistrement...",
+        "editTitle": "Modifier la campagne",
+        "delete": "Supprimer",
+        "cancel": "Annuler"
       },
       "errors": {
-        "save": "Impossible d'enregistrer la campagne."
-      }
+        "save": "Impossible d'enregistrer la campagne.",
+        "delete": "Impossible de supprimer la campagne."
+      },
+      "deleteConfirm": "Supprimer cette campagne ? Action irréversible."
     },
     "website": {
       "title": "Site web",

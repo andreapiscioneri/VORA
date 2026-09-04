@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { api } from '../lib/api'
 import { readCache, writeCache } from '../lib/offlineCache'
-import type { Task, TaskStatus } from '@vora/shared/types/task'
+import type { Task, TaskInput, TaskStatus } from '@vora/shared/types/task'
 
 interface PageResult<T> {
   items: T[]
@@ -82,5 +82,34 @@ export function useTasks() {
     [tasks]
   )
 
-  return { tasks, loading, loadingMore, error, offline, hasMore, reload: load, loadMore, setStatus }
+  const create = useCallback(async (input: TaskInput) => {
+    const created = await api.post<Task>('/tasks', input)
+    setTasks((prev) => {
+      const next = [...prev, created]
+      writeCache(CACHE_KEY, next)
+      return next
+    })
+    return created
+  }, [])
+
+  const update = useCallback(async (id: string, input: TaskInput) => {
+    const updated = await api.put<Task>(`/tasks/${id}`, input)
+    setTasks((prev) => {
+      const next = prev.map((t) => (t.id === id ? updated : t))
+      writeCache(CACHE_KEY, next)
+      return next
+    })
+    return updated
+  }, [])
+
+  const remove = useCallback(async (id: string) => {
+    await api.delete(`/tasks/${id}`)
+    setTasks((prev) => {
+      const next = prev.filter((t) => t.id !== id)
+      writeCache(CACHE_KEY, next)
+      return next
+    })
+  }, [])
+
+  return { tasks, loading, loadingMore, error, offline, hasMore, reload: load, loadMore, setStatus, create, update, remove }
 }

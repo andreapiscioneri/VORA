@@ -4,7 +4,9 @@
     "reachability": "Impossibile contattare il server Vora. Trascina verso il basso per riprovare.",
     "offlineCached": "Offline: dati salvati più recenti in visualizzazione.",
     "loadMore": "Carica altri",
-    "loadingMore": "Caricamento..."
+    "loadingMore": "Caricamento...",
+    "yes": "Sì",
+    "no": "No"
   },
   "auth": {
     "loginTitle": "Accedi a Vora",
@@ -58,6 +60,30 @@
       "review": "In revisione",
       "completed": "Completato",
       "archived": "Archiviato"
+    },
+    "form": {
+      "newTitle": "Nuovo task",
+      "editTitle": "Modifica task",
+      "title": "Titolo",
+      "description": "Descrizione",
+      "priority": "Priorità",
+      "status": "Stato",
+      "deadline": "Scadenza",
+      "save": "Salva",
+      "saving": "Salvataggio...",
+      "delete": "Elimina",
+      "cancel": "Annulla"
+    },
+    "priority": {
+      "low": "Bassa",
+      "medium": "Media",
+      "high": "Alta",
+      "urgent": "Urgente"
+    },
+    "deleteConfirm": "Eliminare questo task? L'operazione non è reversibile.",
+    "errors": {
+      "save": "Impossibile salvare il task.",
+      "delete": "Impossibile eliminare il task."
     }
   },
   "inbox": {
@@ -78,7 +104,34 @@
     "title": "Calendario",
     "count": "{{count}} eventi",
     "error": "Impossibile caricare gli eventi. Verifica che il server Vora sia attivo. ({{error}})",
-    "empty": "Nessun evento in calendario."
+    "empty": "Nessun evento in calendario.",
+    "form": {
+      "newTitle": "Nuovo evento",
+      "editTitle": "Modifica evento",
+      "title": "Titolo",
+      "description": "Descrizione",
+      "startAt": "Inizio",
+      "endAt": "Fine",
+      "allDay": "Tutto il giorno",
+      "location": "Luogo",
+      "recurrence": "Ripetizione",
+      "save": "Salva",
+      "saving": "Salvataggio...",
+      "delete": "Elimina",
+      "cancel": "Annulla"
+    },
+    "recurrence": {
+      "none": "Non si ripete",
+      "daily": "Ogni giorno",
+      "weekly": "Ogni settimana",
+      "monthly": "Ogni mese"
+    },
+    "deleteConfirm": "Eliminare questo evento? L'operazione non è reversibile.",
+    "errors": {
+      "save": "Impossibile salvare l'evento.",
+      "delete": "Impossibile eliminare l'evento.",
+      "load": "Impossibile caricare l'evento."
+    }
   },
   "more": {
     "title": "Altro",
@@ -180,11 +233,16 @@
         "notes": "Note",
         "status": "Stato",
         "save": "Salva",
-        "saving": "Salvataggio..."
+        "saving": "Salvataggio...",
+        "editTitle": "Modifica contatto",
+        "delete": "Elimina",
+        "cancel": "Annulla"
       },
       "errors": {
-        "save": "Impossibile salvare il contatto."
-      }
+        "save": "Impossibile salvare il contatto.",
+        "delete": "Impossibile eliminare il contatto."
+      },
+      "deleteConfirm": "Eliminare questo contatto? L'operazione non è reversibile."
     },
     "crm": {
       "title": "CRM",
@@ -207,11 +265,16 @@
         "stage": "Fase",
         "notes": "Note",
         "save": "Salva",
-        "saving": "Salvataggio..."
+        "saving": "Salvataggio...",
+        "editTitle": "Modifica opportunità",
+        "delete": "Elimina",
+        "cancel": "Annulla"
       },
       "errors": {
-        "save": "Impossibile salvare l'opportunità."
-      }
+        "save": "Impossibile salvare l'opportunità.",
+        "delete": "Impossibile eliminare l'opportunità."
+      },
+      "deleteConfirm": "Eliminare questa opportunità? L'operazione non è reversibile."
     },
     "projects": {
       "title": "Progetti",
@@ -232,11 +295,16 @@
         "budget": "Budget (EUR)",
         "dueDate": "Scadenza",
         "save": "Salva",
-        "saving": "Salvataggio..."
+        "saving": "Salvataggio...",
+        "editTitle": "Modifica progetto",
+        "delete": "Elimina",
+        "cancel": "Annulla"
       },
       "errors": {
-        "save": "Impossibile salvare il progetto."
-      }
+        "save": "Impossibile salvare il progetto.",
+        "delete": "Impossibile eliminare il progetto."
+      },
+      "deleteConfirm": "Eliminare questo progetto? L'operazione non è reversibile."
     },
     "timesheets": {
       "title": "Fogli ore",
@@ -252,11 +320,16 @@
         "description": "Descrizione",
         "billableToggle": "Fatturabile",
         "save": "Salva",
-        "saving": "Salvataggio..."
+        "saving": "Salvataggio...",
+        "editTitle": "Modifica voce",
+        "delete": "Elimina",
+        "cancel": "Annulla"
       },
       "errors": {
-        "save": "Impossibile salvare la voce."
-      }
+        "save": "Impossibile salvare la voce.",
+        "delete": "Impossibile eliminare la voce."
+      },
+      "deleteConfirm": "Eliminare questa voce? L'operazione non è reversibile."
     },
     "helpdesk": {
       "title": "Helpdesk",
@@ -276,7 +349,11 @@
         "description": "Descrizione",
         "priority": "Priorità",
         "save": "Salva",
-        "saving": "Salvataggio..."
+        "saving": "Salvataggio...",
+        "editTitle": "Modifica ticket",
+        "delete": "Elimina",
+        "cancel": "Annulla",
+        "status": "Stato"
       },
       "priority": {
         "low": "Bassa",
@@ -285,8 +362,10 @@
         "urgent": "Urgente"
       },
       "errors": {
-        "save": "Impossibile salvare il ticket."
-      }
+        "save": "Impossibile salvare il ticket.",
+        "delete": "Impossibile eliminare il ticket."
+      },
+      "deleteConfirm": "Eliminare questo ticket? L'operazione non è reversibile."
     },
     "leave": {
       "title": "Ferie",
@@ -311,11 +390,16 @@
         "endDate": "Data fine",
         "notes": "Note",
         "save": "Salva",
-        "saving": "Salvataggio..."
+        "saving": "Salvataggio...",
+        "editTitle": "Modifica richiesta",
+        "delete": "Elimina",
+        "cancel": "Annulla"
       },
       "errors": {
-        "save": "Impossibile salvare la richiesta."
-      }
+        "save": "Impossibile salvare la richiesta.",
+        "delete": "Impossibile eliminare la richiesta."
+      },
+      "deleteConfirm": "Eliminare questa richiesta? L'operazione non è reversibile."
     },
     "wellbeing": {
       "title": "Benessere",
@@ -540,11 +624,16 @@
         "subject": "Oggetto",
         "body": "Testo",
         "save": "Salva",
-        "saving": "Salvataggio..."
+        "saving": "Salvataggio...",
+        "editTitle": "Modifica campagna",
+        "delete": "Elimina",
+        "cancel": "Annulla"
       },
       "errors": {
-        "save": "Impossibile salvare la campagna."
-      }
+        "save": "Impossibile salvare la campagna.",
+        "delete": "Impossibile eliminare la campagna."
+      },
+      "deleteConfirm": "Eliminare questa campagna? L'operazione non è reversibile."
     },
     "website": {
       "title": "Sito web",

@@ -21,6 +21,10 @@ export interface CalendarEvent {
   /** IANA timezone the event's stated time is meaningful in (e.g. "Europe/Rome") — startAt/endAt are still stored as absolute UTC instants; this controls how they're *displayed*, so "15:00" reads as 15:00 in Rome regardless of the viewer's own timezone. */
   timezone: string
   recurrence: EventRecurrence
+  /** User who created the event — the only "who cares about this" signal
+   * the schema has today (no attendees list yet), so it's who gets the
+   * creation notification. */
+  createdBy: string
   createdAt: string
   updatedAt: string
 }

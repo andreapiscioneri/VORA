@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { api } from '../lib/api'
 import { readCache, writeCache } from '../lib/offlineCache'
-import type { CalendarEvent } from '@vora/shared/types/event'
+import type { CalendarEvent, CalendarEventInput } from '@vora/shared/types/event'
 
 const CACHE_KEY = 'events'
 
@@ -40,5 +40,22 @@ export function useEvents() {
     load()
   }, [load])
 
-  return { events, loading, error, offline, reload: load }
+  const create = useCallback(async (input: CalendarEventInput) => {
+    const created = await api.post<CalendarEvent>('/events', input)
+    setEvents((prev) => [...prev, created].sort((a, b) => (a.startAt < b.startAt ? -1 : 1)))
+    return created
+  }, [])
+
+  const update = useCallback(async (id: string, input: CalendarEventInput) => {
+    const updated = await api.put<CalendarEvent>(`/events/${id}`, input)
+    setEvents((prev) => prev.map((e) => (e.id === id ? updated : e)).sort((a, b) => (a.startAt < b.startAt ? -1 : 1)))
+    return updated
+  }, [])
+
+  const remove = useCallback(async (id: string) => {
+    await api.delete(`/events/${id}`)
+    setEvents((prev) => prev.filter((e) => e.id !== id))
+  }, [])
+
+  return { events, loading, error, offline, reload: load, create, update, remove }
 }

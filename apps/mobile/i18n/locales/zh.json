@@ -4,7 +4,9 @@
     "reachability": "无法连接到 Vora 服务器。下拉重试。",
     "offlineCached": "离线 — 正在显示上次保存的数据。",
     "loadMore": "加载更多",
-    "loadingMore": "加载中..."
+    "loadingMore": "加载中...",
+    "yes": "是",
+    "no": "否"
   },
   "auth": {
     "loginTitle": "登录 Vora",
@@ -58,6 +60,30 @@
       "review": "审核中",
       "completed": "已完成",
       "archived": "已归档"
+    },
+    "form": {
+      "newTitle": "新建任务",
+      "editTitle": "编辑任务",
+      "title": "标题",
+      "description": "描述",
+      "priority": "优先级",
+      "status": "状态",
+      "deadline": "截止日期",
+      "save": "保存",
+      "saving": "保存中...",
+      "delete": "删除",
+      "cancel": "取消"
+    },
+    "priority": {
+      "low": "低",
+      "medium": "中",
+      "high": "高",
+      "urgent": "紧急"
+    },
+    "deleteConfirm": "删除此任务？此操作无法撤销。",
+    "errors": {
+      "save": "无法保存任务。",
+      "delete": "无法删除任务。"
     }
   },
   "inbox": {
@@ -78,7 +104,34 @@
     "title": "日历",
     "count": "{{count}} 个日程",
     "error": "无法加载日程，请检查 Vora 服务器是否在运行。（{{error}}）",
-    "empty": "日历中没有日程。"
+    "empty": "日历中没有日程。",
+    "form": {
+      "newTitle": "新建日程",
+      "editTitle": "编辑日程",
+      "title": "标题",
+      "description": "描述",
+      "startAt": "开始",
+      "endAt": "结束",
+      "allDay": "全天",
+      "location": "地点",
+      "recurrence": "重复",
+      "save": "保存",
+      "saving": "保存中...",
+      "delete": "删除",
+      "cancel": "取消"
+    },
+    "recurrence": {
+      "none": "不重复",
+      "daily": "每天",
+      "weekly": "每周",
+      "monthly": "每月"
+    },
+    "deleteConfirm": "删除此日程？此操作无法撤销。",
+    "errors": {
+      "save": "无法保存日程。",
+      "delete": "无法删除日程。",
+      "load": "无法加载日程。"
+    }
   },
   "more": {
     "title": "更多",
@@ -180,11 +233,16 @@
         "notes": "备注",
         "status": "状态",
         "save": "保存",
-        "saving": "保存中..."
+        "saving": "保存中...",
+        "editTitle": "编辑联系人",
+        "delete": "删除",
+        "cancel": "取消"
       },
       "errors": {
-        "save": "无法保存联系人。"
-      }
+        "save": "无法保存联系人。",
+        "delete": "无法删除联系人。"
+      },
+      "deleteConfirm": "删除此联系人？此操作无法撤销。"
     },
     "crm": {
       "title": "CRM",
@@ -207,11 +265,16 @@
         "stage": "阶段",
         "notes": "备注",
         "save": "保存",
-        "saving": "保存中..."
+        "saving": "保存中...",
+        "editTitle": "编辑商机",
+        "delete": "删除",
+        "cancel": "取消"
       },
       "errors": {
-        "save": "无法保存商机。"
-      }
+        "save": "无法保存商机。",
+        "delete": "无法删除商机。"
+      },
+      "deleteConfirm": "删除此商机？此操作无法撤销。"
     },
     "projects": {
       "title": "项目",
@@ -232,11 +295,16 @@
         "budget": "预算（EUR）",
         "dueDate": "截止日期",
         "save": "保存",
-        "saving": "保存中..."
+        "saving": "保存中...",
+        "editTitle": "编辑项目",
+        "delete": "删除",
+        "cancel": "取消"
       },
       "errors": {
-        "save": "无法保存项目。"
-      }
+        "save": "无法保存项目。",
+        "delete": "无法删除项目。"
+      },
+      "deleteConfirm": "删除此项目？此操作无法撤销。"
     },
     "timesheets": {
       "title": "工时表",
@@ -252,11 +320,16 @@
         "description": "描述",
         "billableToggle": "可计费",
         "save": "保存",
-        "saving": "保存中..."
+        "saving": "保存中...",
+        "editTitle": "编辑记录",
+        "delete": "删除",
+        "cancel": "取消"
       },
       "errors": {
-        "save": "无法保存记录。"
-      }
+        "save": "无法保存记录。",
+        "delete": "无法删除记录。"
+      },
+      "deleteConfirm": "删除此记录？此操作无法撤销。"
     },
     "helpdesk": {
       "title": "服务台",
@@ -276,7 +349,11 @@
         "description": "描述",
         "priority": "优先级",
         "save": "保存",
-        "saving": "保存中..."
+        "saving": "保存中...",
+        "editTitle": "编辑工单",
+        "delete": "删除",
+        "cancel": "取消",
+        "status": "状态"
       },
       "priority": {
         "low": "低",
@@ -285,8 +362,10 @@
         "urgent": "紧急"
       },
       "errors": {
-        "save": "无法保存工单。"
-      }
+        "save": "无法保存工单。",
+        "delete": "无法删除工单。"
+      },
+      "deleteConfirm": "删除此工单？此操作无法撤销。"
     },
     "leave": {
       "title": "休假",
@@ -311,11 +390,16 @@
         "endDate": "结束日期",
         "notes": "备注",
         "save": "保存",
-        "saving": "保存中..."
+        "saving": "保存中...",
+        "editTitle": "编辑申请",
+        "delete": "删除",
+        "cancel": "取消"
       },
       "errors": {
-        "save": "无法保存申请。"
-      }
+        "save": "无法保存申请。",
+        "delete": "无法删除申请。"
+      },
+      "deleteConfirm": "删除此申请？此操作无法撤销。"
     },
     "wellbeing": {
       "title": "健康关怀",
@@ -540,11 +624,16 @@
         "subject": "主题",
         "body": "正文",
         "save": "保存",
-        "saving": "保存中..."
+        "saving": "保存中...",
+        "editTitle": "编辑活动",
+        "delete": "删除",
+        "cancel": "取消"
       },
       "errors": {
-        "save": "无法保存活动。"
-      }
+        "save": "无法保存活动。",
+        "delete": "无法删除活动。"
+      },
+      "deleteConfirm": "删除此活动？此操作无法撤销。"
     },
     "website": {
       "title": "网站",

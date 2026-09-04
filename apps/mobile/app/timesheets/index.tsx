@@ -55,9 +55,13 @@ export default function TimesheetsScreen() {
           onEndReachedThreshold={0.5}
           ListFooterComponent={loadingMore ? <ActivityIndicator style={styles.footer} color={colors.primary} /> : null}
           renderItem={({ item }: { item: TimesheetEntry }) => (
-            <View
+            <Pressable
+              onPress={() => {
+                haptics.tap()
+                router.push(`/timesheets/${item.id}`)
+              }}
               style={styles.row}
-              accessible
+              accessibilityRole="button"
               accessibilityLabel={`${item.description || formatDuration(item.durationMinutes)}, ${item.date}, ${formatDuration(item.durationMinutes)}, ${item.billable ? t('modules.timesheets.billable') : t('modules.timesheets.nonBillable')}`}
             >
               <View style={styles.rowMain}>
@@ -71,7 +75,7 @@ export default function TimesheetsScreen() {
               <View style={styles.badge}>
                 <Text style={styles.badgeText}>{item.billable ? t('modules.timesheets.billable') : t('modules.timesheets.nonBillable')}</Text>
               </View>
-            </View>
+            </Pressable>
           )}
         />
       )}

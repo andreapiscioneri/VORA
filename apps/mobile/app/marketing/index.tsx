@@ -113,7 +113,19 @@ export default function MarketingScreen() {
           onEndReachedThreshold={0.5}
           ListFooterComponent={loadingMore ? <ActivityIndicator style={styles.footer} color={colors.primary} /> : null}
           renderItem={({ item }) => (
-            <View style={styles.row} accessible accessibilityLabel={`${item.title}${item.badge ? `, ${item.badge}` : ''}`}>
+            <Pressable
+              onPress={
+                tab === 'campaigns'
+                  ? () => {
+                      haptics.tap()
+                      router.push(`/marketing/${item.id}`)
+                    }
+                  : undefined
+              }
+              style={styles.row}
+              accessibilityRole={tab === 'campaigns' ? 'button' : undefined}
+              accessibilityLabel={`${item.title}${item.badge ? `, ${item.badge}` : ''}`}
+            >
               <View style={styles.rowMain}>
                 <Text style={styles.title} numberOfLines={1}>
                   {item.title}
@@ -129,7 +141,7 @@ export default function MarketingScreen() {
                   <Text style={styles.badgeText}>{item.badge}</Text>
                 </View>
               ) : null}
-            </View>
+            </Pressable>
           )}
         />
       )}

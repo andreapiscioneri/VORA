@@ -125,6 +125,17 @@ export function useMarketing() {
     return created
   }, [])
 
+  const updateCampaign = useCallback(async (id: string, input: MarketingCampaignInput) => {
+    const updated = await api.put<MarketingCampaign>(`/campaigns/${id}`, input)
+    setCampaigns((prev) => prev.map((c) => (c.id === id ? updated : c)))
+    return updated
+  }, [])
+
+  const removeCampaign = useCallback(async (id: string) => {
+    await api.delete(`/campaigns/${id}`)
+    setCampaigns((prev) => prev.filter((c) => c.id !== id))
+  }, [])
+
   return {
     campaigns,
     templates,
@@ -143,5 +154,7 @@ export function useMarketing() {
     loadMoreSegments,
     loadMoreAutomations,
     createCampaign,
+    updateCampaign,
+    removeCampaign,
   }
 }

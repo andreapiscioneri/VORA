@@ -17,6 +17,7 @@ function toEvent(id: string, data: FirebaseFirestore.DocumentData): CalendarEven
     contactId: data.contactId ?? null,
     timezone: data.timezone ?? 'UTC',
     recurrence: data.recurrence ?? { frequency: 'none', interval: 1, until: null },
+    createdBy: data.createdBy ?? '',
     createdAt: data.createdAt ?? new Date().toISOString(),
     updatedAt: data.updatedAt ?? new Date().toISOString(),
   }
@@ -40,12 +41,12 @@ export async function getEvent(id: string, organizationId: string): Promise<Cale
   return toEvent(doc.id, doc.data()!)
 }
 
-export async function createCalendarEvent(input: CalendarEventInputSchema, organizationId: string): Promise<CalendarEvent> {
+export async function createCalendarEvent(input: CalendarEventInputSchema, organizationId: string, createdBy: string): Promise<CalendarEvent> {
   const now = new Date().toISOString()
   const ref = await getDb()
     .collection(COLLECTION)
-    .add({ ...input, organizationId, createdAt: now, updatedAt: now })
-  return toEvent(ref.id, { ...input, createdAt: now, updatedAt: now })
+    .add({ ...input, organizationId, createdBy, createdAt: now, updatedAt: now })
+  return toEvent(ref.id, { ...input, createdBy, createdAt: now, updatedAt: now })
 }
 
 export async function updateEvent(id: string, input: CalendarEventInputSchema, organizationId: string): Promise<CalendarEvent | null> {
