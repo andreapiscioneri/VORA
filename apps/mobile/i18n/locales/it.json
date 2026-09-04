@@ -851,5 +851,21 @@
         "submit": "Apri email"
       }
     }
+  },
+  "search": {
+    "title": "Ricerca",
+    "placeholder": "Cerca clienti, task, progetti...",
+    "empty": "Nessun risultato.",
+    "tooShort": "Scrivi almeno 2 caratteri.",
+    "error": "Ricerca non riuscita.",
+    "types": {
+      "contact": "Contatto",
+      "task": "Task",
+      "appointment": "Appuntamento",
+      "ticket": "Ticket",
+      "project": "Progetto",
+      "communication": "Messaggio",
+      "knowledge": "Knowledge"
+    }
   }
 }

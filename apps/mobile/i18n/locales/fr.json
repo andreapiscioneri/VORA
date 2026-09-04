@@ -851,5 +851,21 @@
         "submit": "Ouvrir l'email"
       }
     }
+  },
+  "search": {
+    "title": "Recherche",
+    "placeholder": "Rechercher contacts, tâches, projets...",
+    "empty": "Aucun résultat.",
+    "tooShort": "Saisissez au moins 2 caractères.",
+    "error": "Échec de la recherche.",
+    "types": {
+      "contact": "Contact",
+      "task": "Tâche",
+      "appointment": "Rendez-vous",
+      "ticket": "Ticket",
+      "project": "Projet",
+      "communication": "Message",
+      "knowledge": "Knowledge"
+    }
   }
 }

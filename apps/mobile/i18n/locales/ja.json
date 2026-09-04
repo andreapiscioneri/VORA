@@ -851,5 +851,21 @@
         "submit": "メールを開く"
       }
     }
+  },
+  "search": {
+    "title": "検索",
+    "placeholder": "連絡先、タスク、プロジェクトを検索...",
+    "empty": "結果がありません。",
+    "tooShort": "2文字以上入力してください。",
+    "error": "検索に失敗しました。",
+    "types": {
+      "contact": "連絡先",
+      "task": "タスク",
+      "appointment": "予定",
+      "ticket": "チケット",
+      "project": "プロジェクト",
+      "communication": "メッセージ",
+      "knowledge": "ナレッジ"
+    }
   }
 }

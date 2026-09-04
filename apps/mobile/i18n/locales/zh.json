@@ -851,5 +851,21 @@
         "submit": "打开邮件"
       }
     }
+  },
+  "search": {
+    "title": "搜索",
+    "placeholder": "搜索联系人、任务、项目...",
+    "empty": "无结果。",
+    "tooShort": "请至少输入2个字符。",
+    "error": "搜索失败。",
+    "types": {
+      "contact": "联系人",
+      "task": "任务",
+      "appointment": "预约",
+      "ticket": "工单",
+      "project": "项目",
+      "communication": "消息",
+      "knowledge": "知识库"
+    }
   }
 }

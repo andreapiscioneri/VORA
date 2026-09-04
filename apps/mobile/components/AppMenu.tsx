@@ -71,6 +71,22 @@ export function AppMenu({ visible, onClose }: { visible: boolean; onClose: () =>
         </View>
 
         <ScrollView contentContainerStyle={styles.list} showsVerticalScrollIndicator={false}>
+          <Pressable
+            onPress={() => {
+              haptics.tap()
+              onClose()
+              router.push('/search')
+            }}
+            style={[styles.row, { backgroundColor: colors.surface }]}
+            accessibilityRole="button"
+            accessibilityLabel={t('search.title')}
+          >
+            <View style={styles.langCurrent}>
+              <Icon name="search" size={18} color={colors.textSecondary} />
+              <Text style={[styles.rowLabel, { color: colors.textPrimary }]}>{t('search.title')}</Text>
+            </View>
+          </Pressable>
+
           <View style={[styles.segmented, { backgroundColor: colors.surface }]}>
             {THEME_MODES.map(({ mode: m, icon }) => (
               <Pressable

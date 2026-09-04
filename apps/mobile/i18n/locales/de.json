@@ -851,5 +851,21 @@
         "submit": "E-Mail öffnen"
       }
     }
+  },
+  "search": {
+    "title": "Suche",
+    "placeholder": "Kontakte, Aufgaben, Projekte suchen...",
+    "empty": "Keine Ergebnisse.",
+    "tooShort": "Mindestens 2 Zeichen eingeben.",
+    "error": "Suche fehlgeschlagen.",
+    "types": {
+      "contact": "Kontakt",
+      "task": "Aufgabe",
+      "appointment": "Termin",
+      "ticket": "Ticket",
+      "project": "Projekt",
+      "communication": "Nachricht",
+      "knowledge": "Knowledge"
+    }
   }
 }
