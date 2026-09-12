@@ -2,6 +2,7 @@ import type { PayrollRecord, PayrollRecordInput } from '~/shared/types/payroll'
 import type { PageResult } from '~/server/utils/pagination'
 
 export function usePayroll() {
+  const { $apiFetch } = useNuxtApp()
   const records = useState<PayrollRecord[]>('payroll-records', () => [])
   const pending = useState('payroll-pending', () => false)
   const loadingMore = useState('payroll-loading-more', () => false)
@@ -13,7 +14,7 @@ export function usePayroll() {
     pending.value = true
     error.value = null
     try {
-      const page = await $fetch<PageResult<PayrollRecord>>('/api/payroll')
+      const page = await $apiFetch<PageResult<PayrollRecord>>('/api/payroll')
       records.value = page.items
       nextCursor.value = page.nextCursor
       hasMore.value = page.hasMore
@@ -28,7 +29,7 @@ export function usePayroll() {
     if (!hasMore.value || loadingMore.value) return
     loadingMore.value = true
     try {
-      const page = await $fetch<PageResult<PayrollRecord>>('/api/payroll', { query: { cursor: nextCursor.value } })
+      const page = await $apiFetch<PageResult<PayrollRecord>>('/api/payroll', { query: { cursor: nextCursor.value } })
       records.value = [...records.value, ...page.items]
       nextCursor.value = page.nextCursor
       hasMore.value = page.hasMore
@@ -38,19 +39,19 @@ export function usePayroll() {
   }
 
   async function createRecord(input: PayrollRecordInput) {
-    const created = await $fetch<PayrollRecord>('/api/payroll', { method: 'POST', body: input })
+    const created = await $apiFetch<PayrollRecord>('/api/payroll', { method: 'POST', body: input })
     records.value = [created, ...records.value]
     return created
   }
 
   async function updateRecord(id: string, input: PayrollRecordInput) {
-    const updated = await $fetch<PayrollRecord>(`/api/payroll/${id}`, { method: 'PUT', body: input })
+    const updated = await $apiFetch<PayrollRecord>(`/api/payroll/${id}`, { method: 'PUT', body: input })
     records.value = records.value.map((r) => (r.id === id ? updated : r))
     return updated
   }
 
   async function removeRecord(id: string) {
-    await $fetch(`/api/payroll/${id}`, { method: 'DELETE' })
+    await $apiFetch(`/api/payroll/${id}`, { method: 'DELETE' })
     records.value = records.value.filter((r) => r.id !== id)
   }
 

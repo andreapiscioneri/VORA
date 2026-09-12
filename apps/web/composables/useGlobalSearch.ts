@@ -1,6 +1,7 @@
 import type { SearchResult } from '~/shared/types/search'
 
 export function useGlobalSearch() {
+  const { $apiFetch } = useNuxtApp()
   const query = ref('')
   const results = ref<SearchResult[]>([])
   const loading = ref(false)
@@ -16,7 +17,7 @@ export function useGlobalSearch() {
     }
     loading.value = true
     try {
-      const data = await $fetch<SearchResult[]>('/api/search', { query: { q } })
+      const data = await $apiFetch<SearchResult[]>('/api/search', { query: { q } })
       // Ignore stale responses from an earlier keystroke that resolved late.
       if (id === requestId) results.value = data
     } catch {

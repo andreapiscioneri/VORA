@@ -2,6 +2,7 @@ import type { AttendanceEntry, AttendanceEntryInput } from '~/shared/types/atten
 import type { PageResult } from '~/server/utils/pagination'
 
 export function useAttendance() {
+  const { $apiFetch } = useNuxtApp()
   const entries = useState<AttendanceEntry[]>('attendance-entries', () => [])
   const pending = useState('attendance-pending', () => false)
   const loadingMore = useState('attendance-loading-more', () => false)
@@ -13,7 +14,7 @@ export function useAttendance() {
     pending.value = true
     error.value = null
     try {
-      const page = await $fetch<PageResult<AttendanceEntry>>('/api/attendance')
+      const page = await $apiFetch<PageResult<AttendanceEntry>>('/api/attendance')
       entries.value = page.items
       nextCursor.value = page.nextCursor
       hasMore.value = page.hasMore
@@ -28,7 +29,7 @@ export function useAttendance() {
     if (!hasMore.value || loadingMore.value) return
     loadingMore.value = true
     try {
-      const page = await $fetch<PageResult<AttendanceEntry>>('/api/attendance', { query: { cursor: nextCursor.value } })
+      const page = await $apiFetch<PageResult<AttendanceEntry>>('/api/attendance', { query: { cursor: nextCursor.value } })
       entries.value = [...entries.value, ...page.items]
       nextCursor.value = page.nextCursor
       hasMore.value = page.hasMore
@@ -38,19 +39,19 @@ export function useAttendance() {
   }
 
   async function createEntry(input: AttendanceEntryInput) {
-    const created = await $fetch<AttendanceEntry>('/api/attendance', { method: 'POST', body: input })
+    const created = await $apiFetch<AttendanceEntry>('/api/attendance', { method: 'POST', body: input })
     entries.value = [created, ...entries.value]
     return created
   }
 
   async function updateEntry(id: string, input: AttendanceEntryInput) {
-    const updated = await $fetch<AttendanceEntry>(`/api/attendance/${id}`, { method: 'PUT', body: input })
+    const updated = await $apiFetch<AttendanceEntry>(`/api/attendance/${id}`, { method: 'PUT', body: input })
     entries.value = entries.value.map((e) => (e.id === id ? updated : e))
     return updated
   }
 
   async function removeEntry(id: string) {
-    await $fetch(`/api/attendance/${id}`, { method: 'DELETE' })
+    await $apiFetch(`/api/attendance/${id}`, { method: 'DELETE' })
     entries.value = entries.value.filter((e) => e.id !== id)
   }
 

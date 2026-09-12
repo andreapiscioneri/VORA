@@ -2,6 +2,7 @@ import type { Project, ProjectInput, ProjectStatus } from '~/shared/types/projec
 import type { PageResult } from '~/server/utils/pagination'
 
 export function useProjects() {
+  const { $apiFetch } = useNuxtApp()
   const projects = useState<Project[]>('projects', () => [])
   const pending = useState('projects-pending', () => false)
   const loadingMore = useState('projects-loading-more', () => false)
@@ -13,7 +14,7 @@ export function useProjects() {
     pending.value = true
     error.value = null
     try {
-      const page = await $fetch<PageResult<Project>>('/api/projects')
+      const page = await $apiFetch<PageResult<Project>>('/api/projects')
       projects.value = page.items
       nextCursor.value = page.nextCursor
       hasMore.value = page.hasMore
@@ -28,7 +29,7 @@ export function useProjects() {
     if (!hasMore.value || loadingMore.value) return
     loadingMore.value = true
     try {
-      const page = await $fetch<PageResult<Project>>('/api/projects', { query: { cursor: nextCursor.value } })
+      const page = await $apiFetch<PageResult<Project>>('/api/projects', { query: { cursor: nextCursor.value } })
       projects.value = [...projects.value, ...page.items]
       nextCursor.value = page.nextCursor
       hasMore.value = page.hasMore
@@ -38,13 +39,13 @@ export function useProjects() {
   }
 
   async function createProject(input: ProjectInput) {
-    const created = await $fetch<Project>('/api/projects', { method: 'POST', body: input })
+    const created = await $apiFetch<Project>('/api/projects', { method: 'POST', body: input })
     projects.value = [created, ...projects.value]
     return created
   }
 
   async function updateProject(id: string, input: ProjectInput) {
-    const updated = await $fetch<Project>(`/api/projects/${id}`, { method: 'PUT', body: input })
+    const updated = await $apiFetch<Project>(`/api/projects/${id}`, { method: 'PUT', body: input })
     projects.value = projects.value.map((p) => (p.id === id ? updated : p))
     return updated
   }
@@ -55,24 +56,24 @@ export function useProjects() {
   }
 
   async function removeProject(id: string) {
-    await $fetch(`/api/projects/${id}`, { method: 'DELETE' })
+    await $apiFetch(`/api/projects/${id}`, { method: 'DELETE' })
     projects.value = projects.value.filter((p) => p.id !== id)
   }
 
   async function addDocument(projectId: string, title: string, url: string) {
-    return await $fetch<Project>(`/api/projects/${projectId}/documents`, { method: 'POST', body: { title, url } })
+    return await $apiFetch<Project>(`/api/projects/${projectId}/documents`, { method: 'POST', body: { title, url } })
   }
 
   async function addComment(projectId: string, body: string) {
-    return await $fetch<Project>(`/api/projects/${projectId}/discussion`, { method: 'POST', body: { body } })
+    return await $apiFetch<Project>(`/api/projects/${projectId}/discussion`, { method: 'POST', body: { body } })
   }
 
   async function addMilestone(projectId: string, title: string, dueDate: string | null) {
-    return await $fetch<Project>(`/api/projects/${projectId}/milestones`, { method: 'POST', body: { title, dueDate } })
+    return await $apiFetch<Project>(`/api/projects/${projectId}/milestones`, { method: 'POST', body: { title, dueDate } })
   }
 
   async function toggleMilestone(projectId: string, milestoneId: string) {
-    return await $fetch<Project>(`/api/projects/${projectId}/milestones/${milestoneId}`, { method: 'PUT' })
+    return await $apiFetch<Project>(`/api/projects/${projectId}/milestones/${milestoneId}`, { method: 'PUT' })
   }
 
   return {

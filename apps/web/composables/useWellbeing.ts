@@ -1,6 +1,7 @@
 import type { WellbeingCheckIn, WellbeingCheckInInput } from '~/shared/types/wellbeing'
 
 export function useWellbeing() {
+  const { $apiFetch } = useNuxtApp()
   const checkIns = useState<WellbeingCheckIn[]>('wellbeing-checkins', () => [])
   const pending = useState('wellbeing-pending', () => false)
   const error = useState<string | null>('wellbeing-error', () => null)
@@ -9,7 +10,7 @@ export function useWellbeing() {
     pending.value = true
     error.value = null
     try {
-      checkIns.value = await $fetch<WellbeingCheckIn[]>('/api/wellbeing')
+      checkIns.value = await $apiFetch<WellbeingCheckIn[]>('/api/wellbeing')
     } catch {
       error.value = 'wellbeing.errors.load'
     } finally {
@@ -20,14 +21,14 @@ export function useWellbeing() {
   // Upserts — one check-in per day. The server replaces today's entry if one
   // already exists for the caller, so this is safe to call repeatedly.
   async function saveCheckIn(input: WellbeingCheckInInput) {
-    const saved = await $fetch<WellbeingCheckIn>('/api/wellbeing', { method: 'POST', body: input })
+    const saved = await $apiFetch<WellbeingCheckIn>('/api/wellbeing', { method: 'POST', body: input })
     const others = checkIns.value.filter((c) => c.date !== saved.date)
     checkIns.value = [saved, ...others].sort((a, b) => (a.date < b.date ? 1 : -1))
     return saved
   }
 
   async function removeCheckIn(id: string) {
-    await $fetch(`/api/wellbeing/${id}`, { method: 'DELETE' })
+    await $apiFetch(`/api/wellbeing/${id}`, { method: 'DELETE' })
     checkIns.value = checkIns.value.filter((c) => c.id !== id)
   }
 

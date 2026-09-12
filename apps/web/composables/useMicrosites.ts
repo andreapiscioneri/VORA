@@ -2,6 +2,7 @@ import type { MicroSite, MicroSiteInput } from '~/shared/types/microsite'
 import type { PageResult } from '~/server/utils/pagination'
 
 export function useMicrosites() {
+  const { $apiFetch } = useNuxtApp()
   const sites = useState<MicroSite[]>('microsites', () => [])
   const pending = useState('microsites-pending', () => false)
   const loadingMore = useState('microsites-loading-more', () => false)
@@ -13,7 +14,7 @@ export function useMicrosites() {
     pending.value = true
     error.value = null
     try {
-      const page = await $fetch<PageResult<MicroSite>>('/api/microsites')
+      const page = await $apiFetch<PageResult<MicroSite>>('/api/microsites')
       sites.value = page.items
       nextCursor.value = page.nextCursor
       hasMore.value = page.hasMore
@@ -28,7 +29,7 @@ export function useMicrosites() {
     if (!hasMore.value || loadingMore.value) return
     loadingMore.value = true
     try {
-      const page = await $fetch<PageResult<MicroSite>>('/api/microsites', { query: { cursor: nextCursor.value } })
+      const page = await $apiFetch<PageResult<MicroSite>>('/api/microsites', { query: { cursor: nextCursor.value } })
       sites.value = [...sites.value, ...page.items]
       nextCursor.value = page.nextCursor
       hasMore.value = page.hasMore
@@ -38,19 +39,19 @@ export function useMicrosites() {
   }
 
   async function createSite(input: MicroSiteInput) {
-    const created = await $fetch<MicroSite>('/api/microsites', { method: 'POST', body: input })
+    const created = await $apiFetch<MicroSite>('/api/microsites', { method: 'POST', body: input })
     sites.value = [created, ...sites.value]
     return created
   }
 
   async function updateSite(id: string, input: MicroSiteInput) {
-    const updated = await $fetch<MicroSite>(`/api/microsites/${id}`, { method: 'PUT', body: input })
+    const updated = await $apiFetch<MicroSite>(`/api/microsites/${id}`, { method: 'PUT', body: input })
     sites.value = sites.value.map((s) => (s.id === id ? updated : s))
     return updated
   }
 
   async function removeSite(id: string) {
-    await $fetch(`/api/microsites/${id}`, { method: 'DELETE' })
+    await $apiFetch(`/api/microsites/${id}`, { method: 'DELETE' })
     sites.value = sites.value.filter((s) => s.id !== id)
   }
 

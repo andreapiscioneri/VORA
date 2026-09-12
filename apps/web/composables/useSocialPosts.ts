@@ -2,6 +2,7 @@ import type { SocialPost, SocialPostInput } from '~/shared/types/social-post'
 import type { PageResult } from '~/server/utils/pagination'
 
 export function useSocialPosts() {
+  const { $apiFetch } = useNuxtApp()
   const posts = useState<SocialPost[]>('social-posts', () => [])
   const pending = useState('social-posts-pending', () => false)
   const loadingMore = useState('social-posts-loading-more', () => false)
@@ -13,7 +14,7 @@ export function useSocialPosts() {
     pending.value = true
     error.value = null
     try {
-      const page = await $fetch<PageResult<SocialPost>>('/api/social-posts')
+      const page = await $apiFetch<PageResult<SocialPost>>('/api/social-posts')
       posts.value = page.items
       nextCursor.value = page.nextCursor
       hasMore.value = page.hasMore
@@ -28,7 +29,7 @@ export function useSocialPosts() {
     if (!hasMore.value || loadingMore.value) return
     loadingMore.value = true
     try {
-      const page = await $fetch<PageResult<SocialPost>>('/api/social-posts', { query: { cursor: nextCursor.value } })
+      const page = await $apiFetch<PageResult<SocialPost>>('/api/social-posts', { query: { cursor: nextCursor.value } })
       posts.value = [...posts.value, ...page.items]
       nextCursor.value = page.nextCursor
       hasMore.value = page.hasMore
@@ -38,19 +39,19 @@ export function useSocialPosts() {
   }
 
   async function createPost(input: SocialPostInput) {
-    const created = await $fetch<SocialPost>('/api/social-posts', { method: 'POST', body: input })
+    const created = await $apiFetch<SocialPost>('/api/social-posts', { method: 'POST', body: input })
     posts.value = [created, ...posts.value]
     return created
   }
 
   async function updatePost(id: string, input: SocialPostInput) {
-    const updated = await $fetch<SocialPost>(`/api/social-posts/${id}`, { method: 'PUT', body: input })
+    const updated = await $apiFetch<SocialPost>(`/api/social-posts/${id}`, { method: 'PUT', body: input })
     posts.value = posts.value.map((p) => (p.id === id ? updated : p))
     return updated
   }
 
   async function removePost(id: string) {
-    await $fetch(`/api/social-posts/${id}`, { method: 'DELETE' })
+    await $apiFetch(`/api/social-posts/${id}`, { method: 'DELETE' })
     posts.value = posts.value.filter((p) => p.id !== id)
   }
 

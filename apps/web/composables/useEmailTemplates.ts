@@ -2,6 +2,7 @@ import type { EmailTemplate, EmailTemplateInput } from '~/shared/types/emailTemp
 import type { PageResult } from '~/server/utils/pagination'
 
 export function useEmailTemplates() {
+  const { $apiFetch } = useNuxtApp()
   const templates = useState<EmailTemplate[]>('email-templates', () => [])
   const pending = useState('email-templates-pending', () => false)
   const loadingMore = useState('email-templates-loading-more', () => false)
@@ -13,7 +14,7 @@ export function useEmailTemplates() {
     pending.value = true
     error.value = null
     try {
-      const page = await $fetch<PageResult<EmailTemplate>>('/api/email-templates')
+      const page = await $apiFetch<PageResult<EmailTemplate>>('/api/email-templates')
       templates.value = page.items
       nextCursor.value = page.nextCursor
       hasMore.value = page.hasMore
@@ -28,7 +29,7 @@ export function useEmailTemplates() {
     if (!hasMore.value || loadingMore.value) return
     loadingMore.value = true
     try {
-      const page = await $fetch<PageResult<EmailTemplate>>('/api/email-templates', { query: { cursor: nextCursor.value } })
+      const page = await $apiFetch<PageResult<EmailTemplate>>('/api/email-templates', { query: { cursor: nextCursor.value } })
       templates.value = [...templates.value, ...page.items]
       nextCursor.value = page.nextCursor
       hasMore.value = page.hasMore
@@ -38,19 +39,19 @@ export function useEmailTemplates() {
   }
 
   async function createTemplate(input: EmailTemplateInput) {
-    const created = await $fetch<EmailTemplate>('/api/email-templates', { method: 'POST', body: input })
+    const created = await $apiFetch<EmailTemplate>('/api/email-templates', { method: 'POST', body: input })
     templates.value = [created, ...templates.value]
     return created
   }
 
   async function updateTemplate(id: string, input: EmailTemplateInput) {
-    const updated = await $fetch<EmailTemplate>(`/api/email-templates/${id}`, { method: 'PUT', body: input })
+    const updated = await $apiFetch<EmailTemplate>(`/api/email-templates/${id}`, { method: 'PUT', body: input })
     templates.value = templates.value.map((t) => (t.id === id ? updated : t))
     return updated
   }
 
   async function removeTemplate(id: string) {
-    await $fetch(`/api/email-templates/${id}`, { method: 'DELETE' })
+    await $apiFetch(`/api/email-templates/${id}`, { method: 'DELETE' })
     templates.value = templates.value.filter((t) => t.id !== id)
   }
 

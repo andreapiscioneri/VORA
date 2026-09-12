@@ -48,13 +48,6 @@ async function logout() {
 
     <div class="ml-auto flex items-center gap-2">
       <button
-        class="size-9 flex items-center justify-center rounded-md hover:bg-ink-50 dark:hover:bg-white/5 text-primary-600 dark:text-primary"
-        :aria-label="$t('assistant.open')"
-        @click="assistantOpen = true"
-      >
-        <UiIcon name="sparkles" :size="18" />
-      </button>
-      <button
         class="size-9 flex items-center justify-center rounded-md hover:bg-ink-50 dark:hover:bg-white/5"
         :aria-label="$t('topbar.toggleTheme')"
         @click="colorMode.preference = colorMode.value === 'dark' ? 'light' : 'dark'"
@@ -70,6 +63,15 @@ async function logout() {
         @click="launcherOpen = true"
       >
         <UiIcon name="grid" :size="18" />
+      </button>
+      <!-- Immediately before the profile avatar, per the app's icon ordering
+           convention: [other icons] -> AI -> profile. -->
+      <button
+        class="size-9 flex items-center justify-center rounded-md hover:bg-ink-50 dark:hover:bg-white/5 text-primary-600 dark:text-primary"
+        :aria-label="$t('assistant.open')"
+        @click="assistantOpen = true"
+      >
+        <UiIcon name="sparkles" :size="18" />
       </button>
       <div class="relative">
         <button

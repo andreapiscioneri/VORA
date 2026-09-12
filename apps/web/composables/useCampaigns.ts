@@ -2,6 +2,7 @@ import type { MarketingCampaign, MarketingCampaignInput } from '~/shared/types/c
 import type { PageResult } from '~/server/utils/pagination'
 
 export function useCampaigns() {
+  const { $apiFetch } = useNuxtApp()
   const campaigns = useState<MarketingCampaign[]>('campaigns', () => [])
   const pending = useState('campaigns-pending', () => false)
   const loadingMore = useState('campaigns-loading-more', () => false)
@@ -13,7 +14,7 @@ export function useCampaigns() {
     pending.value = true
     error.value = null
     try {
-      const page = await $fetch<PageResult<MarketingCampaign>>('/api/campaigns')
+      const page = await $apiFetch<PageResult<MarketingCampaign>>('/api/campaigns')
       campaigns.value = page.items
       nextCursor.value = page.nextCursor
       hasMore.value = page.hasMore
@@ -28,7 +29,7 @@ export function useCampaigns() {
     if (!hasMore.value || loadingMore.value) return
     loadingMore.value = true
     try {
-      const page = await $fetch<PageResult<MarketingCampaign>>('/api/campaigns', { query: { cursor: nextCursor.value } })
+      const page = await $apiFetch<PageResult<MarketingCampaign>>('/api/campaigns', { query: { cursor: nextCursor.value } })
       campaigns.value = [...campaigns.value, ...page.items]
       nextCursor.value = page.nextCursor
       hasMore.value = page.hasMore
@@ -38,25 +39,25 @@ export function useCampaigns() {
   }
 
   async function createCampaign(input: MarketingCampaignInput) {
-    const created = await $fetch<MarketingCampaign>('/api/campaigns', { method: 'POST', body: input })
+    const created = await $apiFetch<MarketingCampaign>('/api/campaigns', { method: 'POST', body: input })
     campaigns.value = [created, ...campaigns.value]
     return created
   }
 
   async function updateCampaign(id: string, input: MarketingCampaignInput) {
-    const updated = await $fetch<MarketingCampaign>(`/api/campaigns/${id}`, { method: 'PUT', body: input })
+    const updated = await $apiFetch<MarketingCampaign>(`/api/campaigns/${id}`, { method: 'PUT', body: input })
     campaigns.value = campaigns.value.map((c) => (c.id === id ? updated : c))
     return updated
   }
 
   async function sendCampaign(id: string) {
-    const result = await $fetch<{ campaign: MarketingCampaign }>(`/api/campaigns/${id}/send`, { method: 'POST' })
+    const result = await $apiFetch<{ campaign: MarketingCampaign }>(`/api/campaigns/${id}/send`, { method: 'POST' })
     campaigns.value = campaigns.value.map((c) => (c.id === id ? result.campaign : c))
     return result
   }
 
   async function removeCampaign(id: string) {
-    await $fetch(`/api/campaigns/${id}`, { method: 'DELETE' })
+    await $apiFetch(`/api/campaigns/${id}`, { method: 'DELETE' })
     campaigns.value = campaigns.value.filter((c) => c.id !== id)
   }
 

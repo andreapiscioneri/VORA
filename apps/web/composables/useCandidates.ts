@@ -2,6 +2,7 @@ import type { Candidate, CandidateInput } from '~/shared/types/candidate'
 import type { PageResult } from '~/server/utils/pagination'
 
 export function useCandidates() {
+  const { $apiFetch } = useNuxtApp()
   const candidates = useState<Candidate[]>('candidates', () => [])
   const pending = useState('candidates-pending', () => false)
   const loadingMore = useState('candidates-loading-more', () => false)
@@ -13,7 +14,7 @@ export function useCandidates() {
     pending.value = true
     error.value = null
     try {
-      const page = await $fetch<PageResult<Candidate>>('/api/candidates')
+      const page = await $apiFetch<PageResult<Candidate>>('/api/candidates')
       candidates.value = page.items
       nextCursor.value = page.nextCursor
       hasMore.value = page.hasMore
@@ -28,7 +29,7 @@ export function useCandidates() {
     if (!hasMore.value || loadingMore.value) return
     loadingMore.value = true
     try {
-      const page = await $fetch<PageResult<Candidate>>('/api/candidates', { query: { cursor: nextCursor.value } })
+      const page = await $apiFetch<PageResult<Candidate>>('/api/candidates', { query: { cursor: nextCursor.value } })
       candidates.value = [...candidates.value, ...page.items]
       nextCursor.value = page.nextCursor
       hasMore.value = page.hasMore
@@ -38,19 +39,19 @@ export function useCandidates() {
   }
 
   async function createCandidate(input: CandidateInput) {
-    const created = await $fetch<Candidate>('/api/candidates', { method: 'POST', body: input })
+    const created = await $apiFetch<Candidate>('/api/candidates', { method: 'POST', body: input })
     candidates.value = [created, ...candidates.value]
     return created
   }
 
   async function updateCandidate(id: string, input: CandidateInput) {
-    const updated = await $fetch<Candidate>(`/api/candidates/${id}`, { method: 'PUT', body: input })
+    const updated = await $apiFetch<Candidate>(`/api/candidates/${id}`, { method: 'PUT', body: input })
     candidates.value = candidates.value.map((c) => (c.id === id ? updated : c))
     return updated
   }
 
   async function removeCandidate(id: string) {
-    await $fetch(`/api/candidates/${id}`, { method: 'DELETE' })
+    await $apiFetch(`/api/candidates/${id}`, { method: 'DELETE' })
     candidates.value = candidates.value.filter((c) => c.id !== id)
   }
 

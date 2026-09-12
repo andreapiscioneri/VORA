@@ -2,6 +2,7 @@ import type { KnowledgeDocument, KnowledgeDocumentInput, KnowledgeSearchResult }
 import type { PageResult } from '~/server/utils/pagination'
 
 export function useKnowledge() {
+  const { $apiFetch } = useNuxtApp()
   const documents = useState<KnowledgeDocument[]>('knowledge', () => [])
   const pending = useState('knowledge-pending', () => false)
   const loadingMore = useState('knowledge-loading-more', () => false)
@@ -13,7 +14,7 @@ export function useKnowledge() {
     pending.value = true
     error.value = null
     try {
-      const page = await $fetch<PageResult<KnowledgeDocument>>('/api/knowledge')
+      const page = await $apiFetch<PageResult<KnowledgeDocument>>('/api/knowledge')
       documents.value = page.items
       nextCursor.value = page.nextCursor
       hasMore.value = page.hasMore
@@ -28,7 +29,7 @@ export function useKnowledge() {
     if (!hasMore.value || loadingMore.value) return
     loadingMore.value = true
     try {
-      const page = await $fetch<PageResult<KnowledgeDocument>>('/api/knowledge', { query: { cursor: nextCursor.value } })
+      const page = await $apiFetch<PageResult<KnowledgeDocument>>('/api/knowledge', { query: { cursor: nextCursor.value } })
       documents.value = [...documents.value, ...page.items]
       nextCursor.value = page.nextCursor
       hasMore.value = page.hasMore
@@ -38,13 +39,13 @@ export function useKnowledge() {
   }
 
   async function createDocument(input: KnowledgeDocumentInput) {
-    const created = await $fetch<KnowledgeDocument>('/api/knowledge', { method: 'POST', body: input })
+    const created = await $apiFetch<KnowledgeDocument>('/api/knowledge', { method: 'POST', body: input })
     documents.value = [created, ...documents.value]
     return created
   }
 
   async function updateDocument(id: string, input: KnowledgeDocumentInput) {
-    const updated = await $fetch<KnowledgeDocument>(`/api/knowledge/${id}`, { method: 'PUT', body: input })
+    const updated = await $apiFetch<KnowledgeDocument>(`/api/knowledge/${id}`, { method: 'PUT', body: input })
     documents.value = documents.value.map((d) => (d.id === id ? updated : d))
     return updated
   }
@@ -60,13 +61,13 @@ export function useKnowledge() {
     // static route (search.get.ts) exists under the same prefix — a known
     // limitation, not a real constraint of the actual DELETE endpoint.
     const url: string = `/api/knowledge/${id}`
-    await $fetch(url, { method: 'DELETE' })
+    await $apiFetch(url, { method: 'DELETE' })
     documents.value = documents.value.filter((d) => d.id !== id)
   }
 
   async function searchDocuments(query: string) {
     if (!query.trim()) return []
-    return await $fetch<KnowledgeSearchResult[]>('/api/knowledge/search', { query: { q: query } })
+    return await $apiFetch<KnowledgeSearchResult[]>('/api/knowledge/search', { query: { q: query } })
   }
 
   return { documents, pending, error, hasMore, loadingMore, fetchDocuments, loadMore, createDocument, updateDocument, toggleFavorite, removeDocument, searchDocuments }

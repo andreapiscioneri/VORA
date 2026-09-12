@@ -2,6 +2,7 @@ import type { LeaveRequest, LeaveRequestInput, LeaveStatus } from '~/shared/type
 import type { PageResult } from '~/server/utils/pagination'
 
 export function useLeaveRequests() {
+  const { $apiFetch } = useNuxtApp()
   const requests = useState<LeaveRequest[]>('leave-requests', () => [])
   const pending = useState('leave-requests-pending', () => false)
   const loadingMore = useState('leave-requests-loading-more', () => false)
@@ -15,14 +16,18 @@ export function useLeaveRequests() {
   const allRequests = useState<LeaveRequest[]>('leave-requests-all', () => [])
 
   async function fetchAllRequests() {
-    allRequests.value = await $fetch<LeaveRequest[]>('/api/leave-requests/all')
+    try {
+      allRequests.value = await $apiFetch<LeaveRequest[]>('/api/leave-requests/all')
+    } catch {
+      error.value = 'leave.errors.load'
+    }
   }
 
   async function fetchRequests() {
     pending.value = true
     error.value = null
     try {
-      const page = await $fetch<PageResult<LeaveRequest>>('/api/leave-requests')
+      const page = await $apiFetch<PageResult<LeaveRequest>>('/api/leave-requests')
       requests.value = page.items
       nextCursor.value = page.nextCursor
       hasMore.value = page.hasMore
@@ -37,7 +42,7 @@ export function useLeaveRequests() {
     if (!hasMore.value || loadingMore.value) return
     loadingMore.value = true
     try {
-      const page = await $fetch<PageResult<LeaveRequest>>('/api/leave-requests', { query: { cursor: nextCursor.value } })
+      const page = await $apiFetch<PageResult<LeaveRequest>>('/api/leave-requests', { query: { cursor: nextCursor.value } })
       requests.value = [...requests.value, ...page.items]
       nextCursor.value = page.nextCursor
       hasMore.value = page.hasMore
@@ -47,14 +52,14 @@ export function useLeaveRequests() {
   }
 
   async function createRequest(input: LeaveRequestInput) {
-    const created = await $fetch<LeaveRequest>('/api/leave-requests', { method: 'POST', body: input })
+    const created = await $apiFetch<LeaveRequest>('/api/leave-requests', { method: 'POST', body: input })
     requests.value = [created, ...requests.value]
     allRequests.value = [created, ...allRequests.value]
     return created
   }
 
   async function updateRequest(id: string, input: LeaveRequestInput) {
-    const updated = await $fetch<LeaveRequest>(`/api/leave-requests/${id}`, { method: 'PUT', body: input })
+    const updated = await $apiFetch<LeaveRequest>(`/api/leave-requests/${id}`, { method: 'PUT', body: input })
     requests.value = requests.value.map((r) => (r.id === id ? updated : r))
     allRequests.value = allRequests.value.map((r) => (r.id === id ? updated : r))
     return updated
@@ -66,7 +71,7 @@ export function useLeaveRequests() {
   }
 
   async function removeRequest(id: string) {
-    await $fetch(`/api/leave-requests/${id}`, { method: 'DELETE' })
+    await $apiFetch(`/api/leave-requests/${id}`, { method: 'DELETE' })
     requests.value = requests.value.filter((r) => r.id !== id)
     allRequests.value = allRequests.value.filter((r) => r.id !== id)
   }

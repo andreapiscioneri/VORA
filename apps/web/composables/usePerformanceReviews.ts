@@ -2,6 +2,7 @@ import type { PerformanceReview, PerformanceReviewInput } from '~/shared/types/p
 import type { PageResult } from '~/server/utils/pagination'
 
 export function usePerformanceReviews() {
+  const { $apiFetch } = useNuxtApp()
   const reviews = useState<PerformanceReview[]>('performance-reviews', () => [])
   const pending = useState('performance-reviews-pending', () => false)
   const loadingMore = useState('performance-reviews-loading-more', () => false)
@@ -13,7 +14,7 @@ export function usePerformanceReviews() {
     pending.value = true
     error.value = null
     try {
-      const page = await $fetch<PageResult<PerformanceReview>>('/api/performance-reviews')
+      const page = await $apiFetch<PageResult<PerformanceReview>>('/api/performance-reviews')
       reviews.value = page.items
       nextCursor.value = page.nextCursor
       hasMore.value = page.hasMore
@@ -28,7 +29,7 @@ export function usePerformanceReviews() {
     if (!hasMore.value || loadingMore.value) return
     loadingMore.value = true
     try {
-      const page = await $fetch<PageResult<PerformanceReview>>('/api/performance-reviews', { query: { cursor: nextCursor.value } })
+      const page = await $apiFetch<PageResult<PerformanceReview>>('/api/performance-reviews', { query: { cursor: nextCursor.value } })
       reviews.value = [...reviews.value, ...page.items]
       nextCursor.value = page.nextCursor
       hasMore.value = page.hasMore
@@ -38,19 +39,19 @@ export function usePerformanceReviews() {
   }
 
   async function createReview(input: PerformanceReviewInput) {
-    const created = await $fetch<PerformanceReview>('/api/performance-reviews', { method: 'POST', body: input })
+    const created = await $apiFetch<PerformanceReview>('/api/performance-reviews', { method: 'POST', body: input })
     reviews.value = [created, ...reviews.value]
     return created
   }
 
   async function updateReview(id: string, input: PerformanceReviewInput) {
-    const updated = await $fetch<PerformanceReview>(`/api/performance-reviews/${id}`, { method: 'PUT', body: input })
+    const updated = await $apiFetch<PerformanceReview>(`/api/performance-reviews/${id}`, { method: 'PUT', body: input })
     reviews.value = reviews.value.map((r) => (r.id === id ? updated : r))
     return updated
   }
 
   async function removeReview(id: string) {
-    await $fetch(`/api/performance-reviews/${id}`, { method: 'DELETE' })
+    await $apiFetch(`/api/performance-reviews/${id}`, { method: 'DELETE' })
     reviews.value = reviews.value.filter((r) => r.id !== id)
   }
 

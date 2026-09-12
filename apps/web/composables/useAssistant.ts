@@ -14,6 +14,7 @@ function parseSseFrame(frame: string): { event: string; data: string } {
 }
 
 export function useAssistant() {
+  const { $apiFetch } = useNuxtApp()
   const conversations = useState<AssistantConversationSummary[]>('assistant-conversations', () => [])
   const conversationsLoading = useState('assistant-conversations-loading', () => false)
   const activeConversation = useState<AssistantConversation | null>('assistant-active-conversation', () => null)
@@ -31,7 +32,7 @@ export function useAssistant() {
     if (opts) currentFilter.value = { archived: opts.archived ?? false, query: opts.query ?? '' }
     conversationsLoading.value = true
     try {
-      conversations.value = await $fetch<AssistantConversationSummary[]>('/api/ai/assistant/conversations', {
+      conversations.value = await $apiFetch<AssistantConversationSummary[]>('/api/ai/assistant/conversations', {
         query: { archived: currentFilter.value.archived ? 'true' : undefined, q: currentFilter.value.query || undefined },
       })
     } catch {
@@ -43,14 +44,14 @@ export function useAssistant() {
 
   async function openConversation(id: string) {
     error.value = null
-    activeConversation.value = await $fetch<AssistantConversation>(`/api/ai/assistant/conversations/${id}`)
+    activeConversation.value = await $apiFetch<AssistantConversation>(`/api/ai/assistant/conversations/${id}`)
     pendingToolCall.value = activeConversation.value.messages
       .flatMap((m) => m.toolCalls ?? [])
       .find((tc) => tc.status === 'pending_confirmation') ?? null
   }
 
   async function startNewConversation(defaultTitle: string) {
-    const conversation = await $fetch<AssistantConversation>('/api/ai/assistant/conversations', {
+    const conversation = await $apiFetch<AssistantConversation>('/api/ai/assistant/conversations', {
       method: 'POST',
       body: { title: defaultTitle },
     })
@@ -153,19 +154,19 @@ export function useAssistant() {
   }
 
   async function renameConversation(id: string, title: string) {
-    const updated = await $fetch<AssistantConversation>(`/api/ai/assistant/conversations/${id}`, { method: 'PATCH', body: { title } })
+    const updated = await $apiFetch<AssistantConversation>(`/api/ai/assistant/conversations/${id}`, { method: 'PATCH', body: { title } })
     if (activeConversation.value?.id === id) activeConversation.value = updated
     await loadConversations()
   }
 
   async function setArchived(id: string, archived: boolean) {
-    await $fetch(`/api/ai/assistant/conversations/${id}`, { method: 'PATCH', body: { archived } })
+    await $apiFetch(`/api/ai/assistant/conversations/${id}`, { method: 'PATCH', body: { archived } })
     if (activeConversation.value?.id === id && archived) activeConversation.value = null
     await loadConversations()
   }
 
   async function removeConversation(id: string) {
-    await $fetch(`/api/ai/assistant/conversations/${id}`, { method: 'DELETE' })
+    await $apiFetch(`/api/ai/assistant/conversations/${id}`, { method: 'DELETE' })
     if (activeConversation.value?.id === id) activeConversation.value = null
     await loadConversations()
   }

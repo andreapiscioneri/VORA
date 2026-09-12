@@ -14,6 +14,7 @@ function parseSseFrame(frame: string): { event: string; data: string } {
 }
 
 export function useWellbeingChat() {
+  const { $apiFetch } = useNuxtApp()
   const messages = useState<WellbeingChatMessage[]>('wellbeing-chat-messages', () => [])
   const pending = useState('wellbeing-chat-pending', () => false)
   const streaming = useState('wellbeing-chat-streaming', () => false)
@@ -23,7 +24,7 @@ export function useWellbeingChat() {
     pending.value = true
     error.value = null
     try {
-      messages.value = await $fetch<WellbeingChatMessage[]>('/api/wellbeing/chat')
+      messages.value = await $apiFetch<WellbeingChatMessage[]>('/api/wellbeing/chat')
     } catch {
       error.value = 'wellbeing.chat.errors.load'
     } finally {

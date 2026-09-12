@@ -1,6 +1,7 @@
 import type { CalendarEvent, CalendarEventInput } from '~/shared/types/event'
 
 export function useEvents() {
+  const { $apiFetch } = useNuxtApp()
   const events = useState<CalendarEvent[]>('events', () => [])
   const pending = useState('events-pending', () => false)
   const error = useState<string | null>('events-error', () => null)
@@ -14,7 +15,7 @@ export function useEvents() {
     pending.value = true
     error.value = null
     try {
-      events.value = await $fetch<CalendarEvent[]>('/api/events/all')
+      events.value = await $apiFetch<CalendarEvent[]>('/api/events/all')
     } catch {
       error.value = 'calendar.errors.load'
     } finally {
@@ -23,13 +24,13 @@ export function useEvents() {
   }
 
   async function createEvent(input: CalendarEventInput) {
-    const created = await $fetch<CalendarEvent>('/api/events', { method: 'POST', body: input })
+    const created = await $apiFetch<CalendarEvent>('/api/events', { method: 'POST', body: input })
     events.value = [...events.value, created].sort((a, b) => a.startAt.localeCompare(b.startAt))
     return created
   }
 
   async function updateEvent(id: string, input: CalendarEventInput) {
-    const updated = await $fetch<CalendarEvent>(`/api/events/${id}`, { method: 'PUT', body: input })
+    const updated = await $apiFetch<CalendarEvent>(`/api/events/${id}`, { method: 'PUT', body: input })
     events.value = events.value
       .map((e) => (e.id === id ? updated : e))
       .sort((a, b) => a.startAt.localeCompare(b.startAt))
@@ -37,7 +38,7 @@ export function useEvents() {
   }
 
   async function removeEvent(id: string) {
-    await $fetch(`/api/events/${id}`, { method: 'DELETE' })
+    await $apiFetch(`/api/events/${id}`, { method: 'DELETE' })
     events.value = events.value.filter((e) => e.id !== id)
   }
 

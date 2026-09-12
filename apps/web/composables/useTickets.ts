@@ -2,6 +2,7 @@ import type { Ticket, TicketInput } from '~/shared/types/ticket'
 import type { PageResult } from '~/server/utils/pagination'
 
 export function useTickets() {
+  const { $apiFetch } = useNuxtApp()
   const tickets = useState<Ticket[]>('tickets', () => [])
   const pending = useState('tickets-pending', () => false)
   const loadingMore = useState('tickets-loading-more', () => false)
@@ -13,7 +14,7 @@ export function useTickets() {
     pending.value = true
     error.value = null
     try {
-      const page = await $fetch<PageResult<Ticket>>('/api/tickets')
+      const page = await $apiFetch<PageResult<Ticket>>('/api/tickets')
       tickets.value = page.items
       nextCursor.value = page.nextCursor
       hasMore.value = page.hasMore
@@ -28,7 +29,7 @@ export function useTickets() {
     if (!hasMore.value || loadingMore.value) return
     loadingMore.value = true
     try {
-      const page = await $fetch<PageResult<Ticket>>('/api/tickets', { query: { cursor: nextCursor.value } })
+      const page = await $apiFetch<PageResult<Ticket>>('/api/tickets', { query: { cursor: nextCursor.value } })
       tickets.value = [...tickets.value, ...page.items]
       nextCursor.value = page.nextCursor
       hasMore.value = page.hasMore
@@ -38,13 +39,13 @@ export function useTickets() {
   }
 
   async function createTicket(input: TicketInput) {
-    const created = await $fetch<Ticket>('/api/tickets', { method: 'POST', body: input })
+    const created = await $apiFetch<Ticket>('/api/tickets', { method: 'POST', body: input })
     tickets.value = [created, ...tickets.value]
     return created
   }
 
   async function updateTicket(id: string, input: TicketInput) {
-    const updated = await $fetch<Ticket>(`/api/tickets/${id}`, { method: 'PUT', body: input })
+    const updated = await $apiFetch<Ticket>(`/api/tickets/${id}`, { method: 'PUT', body: input })
     tickets.value = tickets.value.map((t) => (t.id === id ? updated : t))
     return updated
   }
@@ -56,12 +57,12 @@ export function useTickets() {
   }
 
   async function removeTicket(id: string) {
-    await $fetch(`/api/tickets/${id}`, { method: 'DELETE' })
+    await $apiFetch(`/api/tickets/${id}`, { method: 'DELETE' })
     tickets.value = tickets.value.filter((t) => t.id !== id)
   }
 
   async function addAttachment(ticketId: string, title: string, url: string) {
-    return await $fetch<Ticket>(`/api/tickets/${ticketId}/attachments`, { method: 'POST', body: { title, url } })
+    return await $apiFetch<Ticket>(`/api/tickets/${ticketId}/attachments`, { method: 'POST', body: { title, url } })
   }
 
   return { tickets, pending, error, hasMore, loadingMore, fetchTickets, loadMore, createTicket, updateTicket, addComment, removeTicket, addAttachment }

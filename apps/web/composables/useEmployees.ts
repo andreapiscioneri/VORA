@@ -2,6 +2,7 @@ import type { Employee, EmployeeInput } from '~/shared/types/employee'
 import type { PageResult } from '~/server/utils/pagination'
 
 export function useEmployees() {
+  const { $apiFetch } = useNuxtApp()
   const employees = useState<Employee[]>('employees', () => [])
   const pending = useState('employees-pending', () => false)
   const loadingMore = useState('employees-loading-more', () => false)
@@ -13,7 +14,7 @@ export function useEmployees() {
     pending.value = true
     error.value = null
     try {
-      const page = await $fetch<PageResult<Employee>>('/api/employees')
+      const page = await $apiFetch<PageResult<Employee>>('/api/employees')
       employees.value = page.items
       nextCursor.value = page.nextCursor
       hasMore.value = page.hasMore
@@ -28,7 +29,7 @@ export function useEmployees() {
     if (!hasMore.value || loadingMore.value) return
     loadingMore.value = true
     try {
-      const page = await $fetch<PageResult<Employee>>('/api/employees', { query: { cursor: nextCursor.value } })
+      const page = await $apiFetch<PageResult<Employee>>('/api/employees', { query: { cursor: nextCursor.value } })
       employees.value = [...employees.value, ...page.items]
       nextCursor.value = page.nextCursor
       hasMore.value = page.hasMore
@@ -38,19 +39,19 @@ export function useEmployees() {
   }
 
   async function createEmployee(input: EmployeeInput) {
-    const created = await $fetch<Employee>('/api/employees', { method: 'POST', body: input })
+    const created = await $apiFetch<Employee>('/api/employees', { method: 'POST', body: input })
     employees.value = [...employees.value, created].sort((a, b) => a.firstName.localeCompare(b.firstName))
     return created
   }
 
   async function updateEmployee(id: string, input: EmployeeInput) {
-    const updated = await $fetch<Employee>(`/api/employees/${id}`, { method: 'PUT', body: input })
+    const updated = await $apiFetch<Employee>(`/api/employees/${id}`, { method: 'PUT', body: input })
     employees.value = employees.value.map((e) => (e.id === id ? updated : e))
     return updated
   }
 
   async function removeEmployee(id: string) {
-    await $fetch(`/api/employees/${id}`, { method: 'DELETE' })
+    await $apiFetch(`/api/employees/${id}`, { method: 'DELETE' })
     employees.value = employees.value.filter((e) => e.id !== id)
   }
 

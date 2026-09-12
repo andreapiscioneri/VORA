@@ -2,6 +2,7 @@ import type { AuditLogEntry } from '~/shared/types/auditLog'
 import type { PageResult } from '~/server/utils/pagination'
 
 export function useAuditLog() {
+  const { $apiFetch } = useNuxtApp()
   const entries = useState<AuditLogEntry[]>('audit-log', () => [])
   const pending = useState('audit-log-pending', () => false)
   const loadingMore = useState('audit-log-loading-more', () => false)
@@ -13,7 +14,7 @@ export function useAuditLog() {
     pending.value = true
     error.value = null
     try {
-      const page = await $fetch<PageResult<AuditLogEntry>>('/api/audit-log')
+      const page = await $apiFetch<PageResult<AuditLogEntry>>('/api/audit-log')
       entries.value = page.items
       nextCursor.value = page.nextCursor
       hasMore.value = page.hasMore
@@ -29,7 +30,7 @@ export function useAuditLog() {
     if (!hasMore.value || loadingMore.value) return
     loadingMore.value = true
     try {
-      const page = await $fetch<PageResult<AuditLogEntry>>('/api/audit-log', { query: { cursor: nextCursor.value } })
+      const page = await $apiFetch<PageResult<AuditLogEntry>>('/api/audit-log', { query: { cursor: nextCursor.value } })
       entries.value = [...entries.value, ...page.items]
       nextCursor.value = page.nextCursor
       hasMore.value = page.hasMore
