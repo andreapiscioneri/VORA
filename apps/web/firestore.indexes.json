@@ -83,6 +83,30 @@
     { "collectionGroup": "tickets", "queryScope": "COLLECTION", "fields": [
       { "fieldPath": "organizationId", "order": "ASCENDING" },
       { "fieldPath": "createdAt", "order": "DESCENDING" }
+    ] },
+    { "collectionGroup": "attendance", "queryScope": "COLLECTION", "fields": [
+      { "fieldPath": "organizationId", "order": "ASCENDING" },
+      { "fieldPath": "date", "order": "DESCENDING" }
+    ] },
+    { "collectionGroup": "candidates", "queryScope": "COLLECTION", "fields": [
+      { "fieldPath": "organizationId", "order": "ASCENDING" },
+      { "fieldPath": "createdAt", "order": "DESCENDING" }
+    ] },
+    { "collectionGroup": "payrollRecords", "queryScope": "COLLECTION", "fields": [
+      { "fieldPath": "organizationId", "order": "ASCENDING" },
+      { "fieldPath": "createdAt", "order": "DESCENDING" }
+    ] },
+    { "collectionGroup": "performanceReviews", "queryScope": "COLLECTION", "fields": [
+      { "fieldPath": "organizationId", "order": "ASCENDING" },
+      { "fieldPath": "createdAt", "order": "DESCENDING" }
+    ] },
+    { "collectionGroup": "trainingCourses", "queryScope": "COLLECTION", "fields": [
+      { "fieldPath": "organizationId", "order": "ASCENDING" },
+      { "fieldPath": "createdAt", "order": "DESCENDING" }
+    ] },
+    { "collectionGroup": "welfareInitiatives", "queryScope": "COLLECTION", "fields": [
+      { "fieldPath": "organizationId", "order": "ASCENDING" },
+      { "fieldPath": "createdAt", "order": "DESCENDING" }
     ] }
   ],
   "fieldOverrides": []
