@@ -1,6 +1,7 @@
 import { z } from 'zod'
 import { getAIService } from '~/server/services/ai'
 import { requireOrgId } from '~/server/utils/auth'
+import { checkRateLimit } from '~/server/utils/rateLimit'
 import { listAllTasks } from '~/server/utils/tasks'
 import { listAllEvents } from '~/server/utils/events'
 import { listAllAppointments } from '~/server/utils/appointments'
@@ -26,6 +27,8 @@ export default defineEventHandler(async (event) => {
   }
 
   const organizationId = await requireOrgId(event)
+  checkRateLimit(event, 'ai:chat', { max: 20, windowMs: 10 * 60 * 1000 })
+
   const [tasks, events, appointments, communications] = await Promise.all([
     listAllTasks(organizationId),
     listAllEvents(organizationId),
