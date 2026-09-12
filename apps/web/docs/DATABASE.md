@@ -55,6 +55,7 @@ expenses
 socialPosts
 campaigns        (Email marketing)
 microsites
+aiConversations  (Assistant — see docs/AI.md; personal, scoped by userId too, not just organizationId)
 ```
 
 ## Multi-tenancy

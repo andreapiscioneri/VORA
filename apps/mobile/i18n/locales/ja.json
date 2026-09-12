@@ -1243,5 +1243,56 @@
       "communication": "メッセージ",
       "knowledge": "ナレッジ"
     }
+  },
+  "assistant": {
+    "title": "VORAアシスタント",
+    "close": "閉じる",
+    "open": "アシスタント",
+    "prompts": {
+      "organizeDay": "今日の予定を整理する",
+      "priorities": "最も重要なタスクは何ですか？",
+      "unanswered": "まだ読んでいないメッセージは？",
+      "upcoming": "次の予定を探す"
+    },
+    "newChat": "新しいチャット",
+    "searchPlaceholder": "会話を検索...",
+    "recent": "最近",
+    "archived": "アーカイブ済み",
+    "noConversations": "会話がありません",
+    "emptyStateTitle": "何をお手伝いしましょうか？",
+    "composerPlaceholder": "メッセージを入力...",
+    "send": "送信",
+    "stop": "停止",
+    "thinking": "考え中…",
+    "executingTool": "操作を実行中…",
+    "menu": {
+      "rename": "名前を変更",
+      "archive": "アーカイブ",
+      "restore": "復元",
+      "delete": "削除"
+    },
+    "renamePrompt": "新しい名前",
+    "deleteConfirm": {
+      "title": "この会話を削除しますか？",
+      "body": "この操作は取り消せません。",
+      "cancel": "キャンセル",
+      "confirm": "削除"
+    },
+    "toolConfirm": {
+      "title": "操作を確認",
+      "approve": "確認",
+      "cancel": "キャンセル",
+      "createTask": "タスク「{title}」を作成しますか？",
+      "createEvent": "予定「{title}」を作成しますか？"
+    },
+    "copy": "コピー",
+    "copied": "コピーしました",
+    "regenerate": "再生成",
+    "errors": {
+      "load": "会話を読み込めませんでした。",
+      "send": "問題が発生しました。もう一度お試しください。"
+    },
+    "notConfigured": "アシスタントはまだ設定されていません。管理者にお問い合わせください。",
+    "subtitle": "AnthropicのClaudeを利用"
   }
 }

@@ -1,6 +1,8 @@
 {
   "common": {
-    "skipToContent": "Skip to main content"
+    "skipToContent": "Skip to main content",
+    "back": "Back",
+    "more": "More"
   },
   "validation": {
     "required": "Required field",
@@ -606,7 +608,6 @@
       "confirm": "Create task",
       "reject": "Dismiss"
     },
-    "provider": "Rule-based analysis — no external language model connected.",
     "calendarSuggestion": {
       "title": "Suggested appointment",
       "none": "No appointment request was detected in this message.",
@@ -644,7 +645,47 @@
       "priorities": "What are my most important tasks?",
       "unanswered": "Which messages haven't I read yet?",
       "upcoming": "Find my next appointments"
-    }
+    },
+    "newChat": "New chat",
+    "searchPlaceholder": "Search conversations...",
+    "recent": "Recent",
+    "archived": "Archived",
+    "noConversations": "No conversations",
+    "emptyStateTitle": "What can I help you with?",
+    "composerPlaceholder": "Write a message...",
+    "send": "Send",
+    "stop": "Stop",
+    "thinking": "Thinking…",
+    "executingTool": "Running an action…",
+    "menu": {
+      "rename": "Rename",
+      "archive": "Archive",
+      "restore": "Restore",
+      "delete": "Delete"
+    },
+    "renamePrompt": "New name",
+    "deleteConfirm": {
+      "title": "Delete this conversation?",
+      "body": "This action cannot be undone.",
+      "cancel": "Cancel",
+      "confirm": "Delete"
+    },
+    "toolConfirm": {
+      "title": "Confirm action",
+      "approve": "Confirm",
+      "cancel": "Cancel",
+      "createTask": "Create the task \"{title}\"?",
+      "createEvent": "Create the event \"{title}\"?"
+    },
+    "copy": "Copy",
+    "copied": "Copied",
+    "regenerate": "Regenerate",
+    "errors": {
+      "load": "Couldn't load conversations.",
+      "send": "Something went wrong. Try again."
+    },
+    "notConfigured": "The assistant isn't configured yet. Contact an administrator.",
+    "subtitle": "Powered by Claude by Anthropic"
   },
   "helpdesk": {
     "title": "Helpdesk",

@@ -1243,5 +1243,56 @@
       "communication": "Nachricht",
       "knowledge": "Knowledge"
     }
+  },
+  "assistant": {
+    "title": "VORA Assistant",
+    "close": "Schließen",
+    "open": "Assistant",
+    "prompts": {
+      "organizeDay": "Meinen Tag organisieren",
+      "priorities": "Was sind meine wichtigsten Aufgaben?",
+      "unanswered": "Welche Nachrichten habe ich noch nicht gelesen?",
+      "upcoming": "Meine nächsten Termine finden"
+    },
+    "newChat": "Neuer Chat",
+    "searchPlaceholder": "Unterhaltungen durchsuchen...",
+    "recent": "Zuletzt",
+    "archived": "Archiviert",
+    "noConversations": "Keine Unterhaltungen",
+    "emptyStateTitle": "Womit kann ich dir helfen?",
+    "composerPlaceholder": "Nachricht schreiben...",
+    "send": "Senden",
+    "stop": "Stoppen",
+    "thinking": "Denke nach…",
+    "executingTool": "Führe eine Aktion aus…",
+    "menu": {
+      "rename": "Umbenennen",
+      "archive": "Archivieren",
+      "restore": "Wiederherstellen",
+      "delete": "Löschen"
+    },
+    "renamePrompt": "Neuer Name",
+    "deleteConfirm": {
+      "title": "Diese Unterhaltung löschen?",
+      "body": "Diese Aktion kann nicht rückgängig gemacht werden.",
+      "cancel": "Abbrechen",
+      "confirm": "Löschen"
+    },
+    "toolConfirm": {
+      "title": "Aktion bestätigen",
+      "approve": "Bestätigen",
+      "cancel": "Abbrechen",
+      "createTask": "Aufgabe \"{title}\" erstellen?",
+      "createEvent": "Termin \"{title}\" erstellen?"
+    },
+    "copy": "Kopieren",
+    "copied": "Kopiert",
+    "regenerate": "Neu generieren",
+    "errors": {
+      "load": "Unterhaltungen konnten nicht geladen werden.",
+      "send": "Etwas ist schiefgelaufen. Versuche es erneut."
+    },
+    "notConfigured": "Der Assistent ist noch nicht konfiguriert. Wende dich an einen Administrator.",
+    "subtitle": "Unterstützt von Claude von Anthropic"
   }
 }

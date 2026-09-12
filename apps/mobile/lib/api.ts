@@ -77,6 +77,15 @@ export async function getStoredRefreshToken(): Promise<string | null> {
   return refreshToken
 }
 
+// Exposed for callers that need to build their own request outside `api.*`
+// (the assistant's streaming SSE calls use expo/fetch directly for its
+// ReadableStream body support, which the JSON-only `request()` below
+// doesn't need).
+export async function getStoredAccessToken(): Promise<string | null> {
+  await ensureLoaded()
+  return accessToken
+}
+
 // A refresh can be triggered by several concurrent requests hitting 401 at
 // once (e.g. a screen firing off multiple fetches on mount) — without this,
 // each would race to call /auth/mobile/refresh with the same (single-use,
@@ -152,5 +161,7 @@ export const api = {
     request<T>(path, { method: 'POST', body: JSON.stringify(body) }),
   put: <T>(path: string, body: unknown) =>
     request<T>(path, { method: 'PUT', body: JSON.stringify(body) }),
+  patch: <T>(path: string, body: unknown) =>
+    request<T>(path, { method: 'PATCH', body: JSON.stringify(body) }),
   delete: <T>(path: string) => request<T>(path, { method: 'DELETE' }),
 }

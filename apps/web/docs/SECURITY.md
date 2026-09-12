@@ -100,7 +100,9 @@ The web session cookie is `SameSite=Lax` (nuxt-auth-utils' default; `secure` onl
 
 ## Rate limiting
 
-`server/utils/rateLimit.ts` — an in-memory, per-IP sliding-window limiter (`checkRateLimit(event, key, { max, windowMs })`), applied to `/api/auth/login` (10 attempts / 5 min) and `/api/auth/register` (5 / 10 min). Deliberately simple and honestly scoped: it's a plain in-process `Map`, correct for the single-instance Nitro deployment this project targets (see [DEPLOYMENT.md](./DEPLOYMENT.md) — no horizontal scaling configured), but it would need to move to a shared store (Redis, Firestore) before working correctly behind multiple server instances. Verified live: 11 rapid login attempts from the same IP return `401` ten times then `429` (with `Retry-After`).
+`server/utils/rateLimit.ts` — an in-memory, per-IP sliding-window limiter (`checkRateLimit(event, key, { max, windowMs })`), applied to `/api/auth/login` (10 attempts / 5 min), `/api/auth/register` (5 / 10 min), every `/api/ai/*` route including the Assistant's message/tool-confirm endpoints (20 / 10 min — bounds how fast even a legitimate, authenticated session can burn AI provider spend), and the superadmin bootstrap endpoint. Deliberately simple and honestly scoped: it's a plain in-process `Map`, correct for the single-instance Nitro deployment this project targets (see [DEPLOYMENT.md](./DEPLOYMENT.md) — no horizontal scaling configured), but it would need to move to a shared store (Redis, Firestore) before working correctly behind multiple server instances. Verified live: 11 rapid login attempts from the same IP return `401` ten times then `429` (with `Retry-After`).
+
+Note on the AI endpoints specifically: the global `/api/*` auth gate (see [Route protection](#route-protection)) already rejects any unauthenticated request to them with 401 before the route handler runs — the per-route `requireOrgId` call they also carry isn't closing an auth gap, it's how the handler obtains `organizationId`/`userId`. The rate limit is the actual hardening added there: bounding request *volume* from an already-authenticated caller, which the global gate has no opinion on.
 
 ## Audit log
 
@@ -109,6 +111,15 @@ The web session cookie is `SameSite=Lax` (nuxt-auth-utils' default; `secure` onl
 Verified via `curl`: creating and deleting an employee produced two real entries readable by the owner; the same request from a `member`-role session got a real `403`.
 
 **Scope, deliberately not exhaustive**: covers the actions gated by RBAC (see [Authorization](#authorization-rbac)) plus login/logout — not every CRUD operation in the app. Logging every contact/task/project edit would be a lot of noise for very little signal at this stage; the actions covered are the ones with real organizational consequence (who has access, who approved what).
+
+## AI Assistant tool safety
+
+See [AI.md](./AI.md#the-assistant-serverservicesassistant) for the full design. Security-relevant points:
+
+- **The model never executes a write directly.** `create_task`/`create_calendar_event` always pause the turn and require a real user tap on a confirmation card before `server/services/assistant/agent.ts` calls the tool's handler — Claude proposes, a human authorizes.
+- **Every tool input is re-validated server-side** against the same Zod schema whether or not it needed confirmation — the model's output is untrusted input, not a trusted instruction.
+- **Conversations are personal, not org-shared**: every read/write in `server/utils/assistantConversations.ts` checks both `organizationId` and `userId`, so one org member can't read or resume another's chat (including its pending tool calls) by guessing a conversation ID.
+- **Tool *results* never become instructions.** A tool's output is passed back to Claude as a `tool_result` content block (structured data), never spliced into system/instruction text — so a task title or search result containing something that reads like a command can't hijack the conversation.
 
 ## Not implemented
 

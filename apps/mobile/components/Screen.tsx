@@ -20,6 +20,7 @@ export function Screen({
   children,
 }: PropsWithChildren<{ title: string; subtitle?: string; showMark?: boolean }>) {
   const { colors } = useTheme()
+  const router = useRouter()
   const [menuOpen, setMenuOpen] = useState(false)
   const [inboxOpen, setInboxOpen] = useState(false)
   const [unreadCount, setUnreadCount] = useState(0)
@@ -58,7 +59,19 @@ export function Screen({
                 <Wordmark size={24} color={colors.textPrimary} />
               </View>
 
-              <View style={styles.sideRight}>
+              <View style={[styles.sideRight, styles.sideRightRow]}>
+                <Pressable
+                  onPress={() => {
+                    haptics.press()
+                    router.push('/assistant')
+                  }}
+                  accessibilityRole="button"
+                  hitSlop={8}
+                  style={({ pressed }) => [styles.menuButton, { backgroundColor: colors.surface }, pressed && styles.menuButtonPressed]}
+                  accessibilityLabel="Assistente"
+                >
+                  <Icon name="sparkles" size={18} color={colors.primary} />
+                </Pressable>
                 <Pressable
                   onPress={() => {
                     haptics.press()
@@ -163,6 +176,7 @@ const styles = StyleSheet.create({
   titleRow: { flexDirection: 'row', alignItems: 'center' },
   sideLeft: { flex: 1, alignItems: 'flex-start' },
   sideRight: { flex: 1, alignItems: 'flex-end' },
+  sideRightRow: { flexDirection: 'row', gap: spacing(2) },
   brandCenter: { flexDirection: 'row', alignItems: 'center', gap: spacing(2) },
   menuButton: { width: 34, height: 34, borderRadius: radius.full, alignItems: 'center', justifyContent: 'center' },
   badge: {

@@ -1,4 +1,4 @@
-import type { AIChatContext, CalendarEventSuggestion, ClassificationResult, ReplyDraft, SummaryResult, TaskSuggestion } from '~/shared/types/ai'
+import type { CalendarEventSuggestion, ClassificationResult, ReplyDraft, SummaryResult, TaskSuggestion } from '~/shared/types/ai'
 
 export interface WellbeingChatTurn {
   role: 'user' | 'assistant'
@@ -17,11 +17,10 @@ export interface AIService {
   extractCalendarEvent(text: string): Promise<CalendarEventSuggestion | null>
   summarize(text: string): Promise<SummaryResult>
   generateReply(text: string): Promise<ReplyDraft>
-  chat(prompt: string, context: AIChatContext): Promise<string>
   /**
    * Free-form supportive conversation for the Wellbeing module (distinct
-   * from `chat()`, which only answers the VORA Assistant's fixed question
-   * set over structured work data — see docs/AI.md). Yields response text
+   * from the Assistant panel's tool-using agent, see
+   * server/services/assistant/ and docs/AI.md). Yields response text
    * incrementally so the caller can stream it to the client; `history` is
    * the conversation so far, oldest first, not including the new message
    * being replied to.

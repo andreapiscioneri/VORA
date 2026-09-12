@@ -1,6 +1,8 @@
 {
   "common": {
-    "skipToContent": "Aller au contenu principal"
+    "skipToContent": "Aller au contenu principal",
+    "back": "Retour",
+    "more": "Plus"
   },
   "validation": {
     "required": "Champ obligatoire",
@@ -606,7 +608,6 @@
       "confirm": "Créer la tâche",
       "reject": "Ignorer"
     },
-    "provider": "Analyse basée sur des règles — aucun modèle de langage externe connecté.",
     "calendarSuggestion": {
       "title": "Rendez-vous suggéré",
       "none": "Aucune demande de rendez-vous n'a été détectée dans ce message.",
@@ -644,7 +645,47 @@
       "priorities": "Quelles sont mes tâches les plus importantes ?",
       "unanswered": "Quels messages n'ai-je pas encore lus ?",
       "upcoming": "Trouver mes prochains rendez-vous"
-    }
+    },
+    "newChat": "Nouvelle conversation",
+    "searchPlaceholder": "Rechercher des conversations...",
+    "recent": "Récentes",
+    "archived": "Archivées",
+    "noConversations": "Aucune conversation",
+    "emptyStateTitle": "Comment puis-je t'aider ?",
+    "composerPlaceholder": "Écris un message...",
+    "send": "Envoyer",
+    "stop": "Arrêter",
+    "thinking": "Je réfléchis…",
+    "executingTool": "Exécution d'une action…",
+    "menu": {
+      "rename": "Renommer",
+      "archive": "Archiver",
+      "restore": "Restaurer",
+      "delete": "Supprimer"
+    },
+    "renamePrompt": "Nouveau nom",
+    "deleteConfirm": {
+      "title": "Supprimer cette conversation ?",
+      "body": "Cette action est irréversible.",
+      "cancel": "Annuler",
+      "confirm": "Supprimer"
+    },
+    "toolConfirm": {
+      "title": "Confirmer l'action",
+      "approve": "Confirmer",
+      "cancel": "Annuler",
+      "createTask": "Créer la tâche \"{title}\" ?",
+      "createEvent": "Créer l'événement \"{title}\" ?"
+    },
+    "copy": "Copier",
+    "copied": "Copié",
+    "regenerate": "Régénérer",
+    "errors": {
+      "load": "Impossible de charger les conversations.",
+      "send": "Une erreur est survenue. Réessaie."
+    },
+    "notConfigured": "L'assistant n'est pas encore configuré. Contacte un administrateur.",
+    "subtitle": "Propulsé par Claude d'Anthropic"
   },
   "helpdesk": {
     "title": "Assistance",

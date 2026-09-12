@@ -1,6 +1,8 @@
 {
   "common": {
-    "skipToContent": "Vai al contenuto principale"
+    "skipToContent": "Vai al contenuto principale",
+    "back": "Indietro",
+    "more": "Altro"
   },
   "validation": {
     "required": "Campo obbligatorio",
@@ -606,7 +608,6 @@
       "confirm": "Crea attività",
       "reject": "Ignora"
     },
-    "provider": "Analisi basata su regole — nessun modello linguistico esterno collegato.",
     "calendarSuggestion": {
       "title": "Appuntamento suggerito",
       "none": "Non è stata rilevata nessuna richiesta di appuntamento in questo messaggio.",
@@ -644,7 +645,47 @@
       "priorities": "Quali sono le mie attività più importanti?",
       "unanswered": "Quali messaggi non ho ancora letto?",
       "upcoming": "Trova i miei prossimi impegni"
-    }
+    },
+    "newChat": "Nuova chat",
+    "searchPlaceholder": "Cerca conversazioni...",
+    "recent": "Recenti",
+    "archived": "Archiviate",
+    "noConversations": "Nessuna conversazione",
+    "emptyStateTitle": "Cosa posso fare per te?",
+    "composerPlaceholder": "Scrivi un messaggio...",
+    "send": "Invia",
+    "stop": "Interrompi",
+    "thinking": "Sto pensando…",
+    "executingTool": "Sto eseguendo un'azione…",
+    "menu": {
+      "rename": "Rinomina",
+      "archive": "Archivia",
+      "restore": "Ripristina",
+      "delete": "Elimina"
+    },
+    "renamePrompt": "Nuovo nome",
+    "deleteConfirm": {
+      "title": "Eliminare questa conversazione?",
+      "body": "Questa azione non può essere annullata.",
+      "cancel": "Annulla",
+      "confirm": "Elimina"
+    },
+    "toolConfirm": {
+      "title": "Conferma azione",
+      "approve": "Conferma",
+      "cancel": "Annulla",
+      "createTask": "Creare il task \"{title}\"?",
+      "createEvent": "Creare l'evento \"{title}\"?"
+    },
+    "copy": "Copia",
+    "copied": "Copiato",
+    "regenerate": "Rigenera",
+    "errors": {
+      "load": "Impossibile caricare le conversazioni.",
+      "send": "Qualcosa è andato storto. Riprova."
+    },
+    "notConfigured": "L'assistente non è ancora configurato. Contatta un amministratore.",
+    "subtitle": "Basato su Claude di Anthropic"
   },
   "helpdesk": {
     "title": "Helpdesk",

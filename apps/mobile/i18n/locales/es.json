@@ -1243,5 +1243,56 @@
       "communication": "Mensaje",
       "knowledge": "Knowledge"
     }
+  },
+  "assistant": {
+    "title": "Asistente VORA",
+    "close": "Cerrar",
+    "open": "Asistente",
+    "prompts": {
+      "organizeDay": "Organiza mi día",
+      "priorities": "¿Cuáles son mis tareas más importantes?",
+      "unanswered": "¿Qué mensajes no he leído todavía?",
+      "upcoming": "Busca mis próximas citas"
+    },
+    "newChat": "Nueva conversación",
+    "searchPlaceholder": "Buscar conversaciones...",
+    "recent": "Recientes",
+    "archived": "Archivadas",
+    "noConversations": "No hay conversaciones",
+    "emptyStateTitle": "¿En qué puedo ayudarte?",
+    "composerPlaceholder": "Escribe un mensaje...",
+    "send": "Enviar",
+    "stop": "Detener",
+    "thinking": "Pensando…",
+    "executingTool": "Ejecutando una acción…",
+    "menu": {
+      "rename": "Renombrar",
+      "archive": "Archivar",
+      "restore": "Restaurar",
+      "delete": "Eliminar"
+    },
+    "renamePrompt": "Nuevo nombre",
+    "deleteConfirm": {
+      "title": "¿Eliminar esta conversación?",
+      "body": "Esta acción no se puede deshacer.",
+      "cancel": "Cancelar",
+      "confirm": "Eliminar"
+    },
+    "toolConfirm": {
+      "title": "Confirmar acción",
+      "approve": "Confirmar",
+      "cancel": "Cancelar",
+      "createTask": "¿Crear la tarea \"{title}\"?",
+      "createEvent": "¿Crear el evento \"{title}\"?"
+    },
+    "copy": "Copiar",
+    "copied": "Copiado",
+    "regenerate": "Regenerar",
+    "errors": {
+      "load": "No se pudieron cargar las conversaciones.",
+      "send": "Algo salió mal. Inténtalo de nuevo."
+    },
+    "notConfigured": "El asistente aún no está configurado. Contacta a un administrador.",
+    "subtitle": "Con tecnología de Claude de Anthropic"
   }
 }

@@ -1243,5 +1243,56 @@
       "communication": "Сообщение",
       "knowledge": "База знаний"
     }
+  },
+  "assistant": {
+    "title": "Ассистент VORA",
+    "close": "Закрыть",
+    "open": "Ассистент",
+    "prompts": {
+      "organizeDay": "Организовать мой день",
+      "priorities": "Какие мои самые важные задачи?",
+      "unanswered": "Какие сообщения я ещё не прочитал?",
+      "upcoming": "Найти мои ближайшие встречи"
+    },
+    "newChat": "Новый чат",
+    "searchPlaceholder": "Поиск бесед...",
+    "recent": "Недавние",
+    "archived": "Архив",
+    "noConversations": "Нет бесед",
+    "emptyStateTitle": "Чем я могу помочь?",
+    "composerPlaceholder": "Напишите сообщение...",
+    "send": "Отправить",
+    "stop": "Остановить",
+    "thinking": "Думаю…",
+    "executingTool": "Выполняю действие…",
+    "menu": {
+      "rename": "Переименовать",
+      "archive": "Архивировать",
+      "restore": "Восстановить",
+      "delete": "Удалить"
+    },
+    "renamePrompt": "Новое имя",
+    "deleteConfirm": {
+      "title": "Удалить эту беседу?",
+      "body": "Это действие нельзя отменить.",
+      "cancel": "Отмена",
+      "confirm": "Удалить"
+    },
+    "toolConfirm": {
+      "title": "Подтвердите действие",
+      "approve": "Подтвердить",
+      "cancel": "Отмена",
+      "createTask": "Создать задачу «{title}»?",
+      "createEvent": "Создать событие «{title}»?"
+    },
+    "copy": "Копировать",
+    "copied": "Скопировано",
+    "regenerate": "Повторить",
+    "errors": {
+      "load": "Не удалось загрузить беседы.",
+      "send": "Что-то пошло не так. Попробуйте снова."
+    },
+    "notConfigured": "Ассистент ещё не настроен. Обратитесь к администратору.",
+    "subtitle": "На основе Claude от Anthropic"
   }
 }

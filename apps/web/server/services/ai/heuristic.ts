@@ -1,4 +1,4 @@
-import type { AIChatContext, CalendarEventSuggestion, ClassificationResult, ReplyDraft, SummaryResult, TaskSuggestion } from '~/shared/types/ai'
+import type { CalendarEventSuggestion, ClassificationResult, ReplyDraft, SummaryResult, TaskSuggestion } from '~/shared/types/ai'
 import type { AIService, WellbeingChatTurn } from './types'
 
 const STRESS_WORDS = ['stress', 'stanc', 'ansi', 'sopraffatt', 'overwhelm', 'pressione', 'burnout', 'esaurit']
@@ -209,32 +209,6 @@ export class HeuristicAIService implements AIService {
       : ''
 
     return { body: `${openers[classification.category]}${urgencyNote}` }
-  }
-
-  async chat(prompt: string, context: AIChatContext): Promise<string> {
-    const lower = prompt.toLowerCase()
-
-    if (/organizz|giornata|oggi/.test(lower)) {
-      if (!context.todayItems.length) return 'Nessun impegno in programma per oggi. Puoi concentrarti sulle priorità.'
-      return ['Ecco la tua giornata:', ...context.todayItems.map((i) => `${i.time ? `${i.time} — ` : ''}${i.title}`)].join('\n')
-    }
-
-    if (/priorit|important/.test(lower)) {
-      if (!context.highPriorityTasks.length) return 'Nessuna attività ad alta priorità al momento.'
-      return ['Le tue attività più importanti:', ...context.highPriorityTasks.map((t) => `${t.priority === 'urgent' ? 'Urgente' : 'Alta'} — ${t.title}`)].join('\n')
-    }
-
-    if (/non\s+lett|non\s+rispost|messagg/.test(lower)) {
-      if (!context.unreadCommunications.length) return 'Sei in pari: nessun messaggio non letto.'
-      return ['Messaggi da leggere:', ...context.unreadCommunications.map((c) => `${c.subject} — ${c.preview}`)].join('\n')
-    }
-
-    if (/prossim|impegn|agenda/.test(lower)) {
-      if (!context.upcomingItems.length) return 'Nessun impegno in programma nei prossimi giorni.'
-      return ['Prossimi impegni:', ...context.upcomingItems.map((i) => `${i.date} ${i.time ?? ''} — ${i.title}`.trim())].join('\n')
-    }
-
-    return 'Posso aiutarti a organizzare la giornata, trovare le attività più importanti, riepilogare i messaggi non letti o mostrarti i prossimi impegni. Prova a chiedermelo con queste parole.'
   }
 
   // No LLM configured: a small set of scripted, empathetic acknowledgments

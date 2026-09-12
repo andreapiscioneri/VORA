@@ -1,6 +1,8 @@
 {
   "common": {
-    "skipToContent": "跳转到主要内容"
+    "skipToContent": "跳转到主要内容",
+    "back": "返回",
+    "more": "更多"
   },
   "validation": {
     "required": "必填项",
@@ -606,7 +608,6 @@
       "confirm": "创建任务",
       "reject": "忽略"
     },
-    "provider": "基于规则的分析——未连接外部语言模型。",
     "calendarSuggestion": {
       "title": "建议的预约",
       "none": "未在此消息中检测到预约请求。",
@@ -644,7 +645,47 @@
       "priorities": "我最重要的任务有哪些？",
       "unanswered": "我还有哪些消息未读？",
       "upcoming": "查找我接下来的预约"
-    }
+    },
+    "newChat": "新对话",
+    "searchPlaceholder": "搜索对话...",
+    "recent": "最近",
+    "archived": "已归档",
+    "noConversations": "暂无对话",
+    "emptyStateTitle": "我能帮你做什么？",
+    "composerPlaceholder": "输入消息...",
+    "send": "发送",
+    "stop": "停止",
+    "thinking": "思考中…",
+    "executingTool": "正在执行操作…",
+    "menu": {
+      "rename": "重命名",
+      "archive": "归档",
+      "restore": "恢复",
+      "delete": "删除"
+    },
+    "renamePrompt": "新名称",
+    "deleteConfirm": {
+      "title": "删除此对话？",
+      "body": "此操作无法撤销。",
+      "cancel": "取消",
+      "confirm": "删除"
+    },
+    "toolConfirm": {
+      "title": "确认操作",
+      "approve": "确认",
+      "cancel": "取消",
+      "createTask": "创建任务“{title}”？",
+      "createEvent": "创建日程“{title}”？"
+    },
+    "copy": "复制",
+    "copied": "已复制",
+    "regenerate": "重新生成",
+    "errors": {
+      "load": "无法加载对话。",
+      "send": "出了点问题，请重试。"
+    },
+    "notConfigured": "助手尚未配置。请联系管理员。",
+    "subtitle": "由 Anthropic 的 Claude 驱动"
   },
   "helpdesk": {
     "title": "服务台",

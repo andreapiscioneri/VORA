@@ -1,7 +1,7 @@
 import Anthropic from '@anthropic-ai/sdk'
 import { zodOutputFormat } from '@anthropic-ai/sdk/helpers/zod'
 import { z } from 'zod'
-import type { AIChatContext, CalendarEventSuggestion, ClassificationResult, ReplyDraft, SummaryResult, TaskSuggestion } from '~/shared/types/ai'
+import type { CalendarEventSuggestion, ClassificationResult, ReplyDraft, SummaryResult, TaskSuggestion } from '~/shared/types/ai'
 import type { AIService, WellbeingChatTurn } from './types'
 
 const MODEL = 'claude-opus-5'
@@ -146,23 +146,6 @@ export class AnthropicAIService implements AIService {
       output_config: { format: zodOutputFormat(replySchema) },
     })
     return response.parsed_output ?? { body: '' }
-  }
-
-  async chat(prompt: string, context: AIChatContext): Promise<string> {
-    const response = await this.client.messages.create({
-      model: MODEL,
-      max_tokens: 1024,
-      system: [
-        'Sei l\'assistente VORA. Rispondi solo usando i dati forniti qui sotto sul lavoro dell\'utente — non inventare impegni, attività o messaggi.',
-        `Impegni di oggi: ${JSON.stringify(context.todayItems)}`,
-        `Attività ad alta priorità: ${JSON.stringify(context.highPriorityTasks)}`,
-        `Comunicazioni non lette: ${JSON.stringify(context.unreadCommunications)}`,
-        `Prossimi impegni: ${JSON.stringify(context.upcomingItems)}`,
-      ].join('\n'),
-      messages: [{ role: 'user', content: prompt }],
-    })
-    const textBlock = response.content.find((block) => block.type === 'text')
-    return textBlock?.type === 'text' ? textBlock.text : ''
   }
 
   async *wellbeingChat(history: WellbeingChatTurn[], message: string): AsyncIterable<string> {
