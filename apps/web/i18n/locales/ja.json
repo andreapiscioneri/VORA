@@ -55,6 +55,9 @@
     "pendingApprovalTitle": "登録を受け付けました",
     "pendingApprovalMessage": "アカウントは承認待ちです。承認されるとログインできるようになります。",
     "pendingApproval": "このアカウントは承認待ちです。",
+    "serverError": "サーバーエラーが発生しました。しばらくしてからもう一度お試しください。",
+    "rateLimited": "試行回数が多すぎます。数分後にもう一度お試しください。",
+    "invalidEmail": "無効なメールアドレスです。",
     "passwordTooWeak": "パスワードが弱すぎます。小文字・大文字・数字・記号のうち少なくとも3種類を使用してください",
     "strength": {
       "veryWeak": "非常に弱い",

@@ -55,6 +55,9 @@
     "pendingApprovalTitle": "Registro recibido",
     "pendingApprovalMessage": "Tu cuenta está pendiente de aprobación. Podrás iniciar sesión en cuanto sea aprobada.",
     "pendingApproval": "Esta cuenta está pendiente de aprobación.",
+    "serverError": "Se produjo un error en el servidor. Inténtalo de nuevo más tarde.",
+    "rateLimited": "Demasiados intentos. Inténtalo de nuevo en unos minutos.",
+    "invalidEmail": "Dirección de correo electrónico no válida.",
     "passwordTooWeak": "La contraseña es demasiado débil: usa al menos 3 de minúsculas, mayúsculas, números y símbolos",
     "strength": {
       "veryWeak": "Muy débil",

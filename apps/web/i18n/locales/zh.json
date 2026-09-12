@@ -55,6 +55,9 @@
     "pendingApprovalTitle": "已收到注册申请",
     "pendingApprovalMessage": "你的账号正在等待审批，一经批准即可登录。",
     "pendingApproval": "该账号正在等待审批。",
+    "serverError": "发生服务器错误，请稍后重试。",
+    "rateLimited": "尝试次数过多，请几分钟后再试。",
+    "invalidEmail": "无效的邮箱地址。",
     "passwordTooWeak": "密码强度不足：请至少使用小写字母、大写字母、数字和符号中的3种",
     "strength": {
       "veryWeak": "非常弱",

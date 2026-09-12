@@ -55,6 +55,9 @@
     "pendingApprovalTitle": "Inscription reçue",
     "pendingApprovalMessage": "Votre compte est en attente d'approbation. Vous pourrez vous connecter dès qu'il sera approuvé.",
     "pendingApproval": "Ce compte est en attente d'approbation.",
+    "serverError": "Une erreur de serveur s'est produite. Veuillez réessayer plus tard.",
+    "rateLimited": "Trop de tentatives. Veuillez réessayer dans quelques minutes.",
+    "invalidEmail": "Adresse e-mail non valide.",
     "passwordTooWeak": "Le mot de passe est trop faible : utilisez au moins 3 des éléments suivants : minuscules, majuscules, chiffres et symboles",
     "strength": {
       "veryWeak": "Très faible",

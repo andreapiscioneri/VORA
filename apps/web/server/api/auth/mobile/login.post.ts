@@ -21,7 +21,7 @@ export default defineEventHandler(async (event) => {
 
   const user = await verifyCredentials(result.data.email, result.data.password)
   if (!user) {
-    throw createError({ statusCode: 401, statusMessage: 'Invalid email or password' })
+    throw createError({ statusCode: 401, statusMessage: 'Invalid email or password', data: { reason: 'invalid_credentials' } })
   }
 
   if (!isApproved(user)) {

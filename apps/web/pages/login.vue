@@ -14,7 +14,9 @@ const error = ref<string | null>(
     ? t('auth.oauthFailed')
     : route.query.error === 'pending_approval'
       ? t('auth.pendingApproval')
-      : null,
+      : route.query.error === 'server_error'
+        ? t('auth.serverError')
+        : null,
 )
 
 async function submit() {
@@ -26,8 +28,21 @@ async function submit() {
     const redirect = typeof route.query.redirect === 'string' ? route.query.redirect : '/dashboard'
     router.push(redirect)
   } catch (e) {
-    const err = e as { statusCode?: number; data?: { data?: { reason?: string } } }
-    error.value = err.data?.data?.reason === 'pending_approval' ? t('auth.pendingApproval') : t('auth.invalidCredentials')
+    const err = e as { statusCode?: number; response?: { status?: number }; data?: { statusMessage?: string; data?: { reason?: string } } }
+    const status = err.statusCode ?? err.response?.status
+    const reason = err.data?.data?.reason
+
+    if (status === 401 || reason === 'invalid_credentials') {
+      error.value = t('auth.invalidCredentials')
+    } else if (status === 403 && reason === 'pending_approval') {
+      error.value = t('auth.pendingApproval')
+    } else if (status === 429) {
+      error.value = t('auth.rateLimited')
+    } else if (status === 422) {
+      error.value = t('auth.invalidEmail')
+    } else {
+      error.value = t('auth.serverError')
+    }
   } finally {
     loading.value = false
   }

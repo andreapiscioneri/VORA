@@ -21,14 +21,25 @@ async function submit() {
     })
     pending.value = true
   } catch (e) {
-    const err = e as { statusCode?: number; data?: { data?: { fieldErrors?: Record<string, string[]> } } }
-    if (err.statusCode === 409) {
+    const err = e as { statusCode?: number; response?: { status?: number }; data?: { data?: { fieldErrors?: Record<string, string[]> } } }
+    const status = err.statusCode ?? err.response?.status
+    const fieldErrors = err.data?.data?.fieldErrors
+    if (status === 409) {
       error.value = t('auth.emailTaken')
-    } else if (err.statusCode === 422) {
-      const passwordError = err.data?.data?.fieldErrors?.password?.[0]
-      error.value = passwordError ? t(passwordError) : t('auth.passwordTooShort')
+    } else if (status === 429) {
+      error.value = t('auth.rateLimited')
+    } else if (status === 422) {
+      const passwordError = fieldErrors?.password?.[0]
+      const emailError = fieldErrors?.email?.[0]
+      if (passwordError) {
+        error.value = t(passwordError)
+      } else if (emailError) {
+        error.value = t(emailError)
+      } else {
+        error.value = t('auth.passwordTooShort')
+      }
     } else {
-      error.value = t('auth.passwordTooShort')
+      error.value = t('auth.serverError')
     }
   } finally {
     loading.value = false
