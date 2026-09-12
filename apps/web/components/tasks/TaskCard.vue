@@ -3,7 +3,6 @@ import type { Task, TaskStatus } from '~/shared/types/task'
 
 defineProps<{ task: Task; otherStatuses: TaskStatus[] }>()
 const emit = defineEmits<{ click: []; dragstart: [DragEvent]; move: [TaskStatus] }>()
-const { locale } = useI18n()
 
 const priorityStyles: Record<string, string> = {
   low: 'text-ink-400',
@@ -46,7 +45,7 @@ onClickOutside(menuRef, () => {
         </span>
         <span v-if="task.deadline" class="flex items-center gap-1">
           <UiIcon name="clock" :size="13" />
-          {{ new Date(task.deadline).toLocaleDateString(locale) }}
+          {{ new Date(task.deadline).toLocaleDateString('it-IT') }}
         </span>
       </div>
     </button>

@@ -44,7 +44,7 @@ const openPipeline = computed(() => {
 const activeProjects = computed(() => projects.value.filter((p) => p.status === 'active').slice(0, 5))
 
 function formatTime(iso: string) {
-  return new Date(iso).toLocaleTimeString(locale.value, { hour: '2-digit', minute: '2-digit' })
+  return new Date(iso).toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' })
 }
 
 const priorityColors: Record<string, string> = {
@@ -199,7 +199,7 @@ async function onDrop(targetKey: string) {
             <ul v-else class="space-y-3">
               <li v-for="p in activeProjects" :key="p.id" class="flex items-center justify-between text-body-sm">
                 <span class="truncate">{{ p.name }}</span>
-                <span v-if="p.dueDate" class="text-caption text-ink-400 shrink-0">{{ new Date(p.dueDate).toLocaleDateString(locale) }}</span>
+                <span v-if="p.dueDate" class="text-caption text-ink-400 shrink-0">{{ new Date(p.dueDate).toLocaleDateString('it-IT') }}</span>
               </li>
             </ul>
           </template>

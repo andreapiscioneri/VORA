@@ -48,7 +48,11 @@
     "upcomingEvents": "即将到来的日程",
     "upcomingTasks": "近期任务",
     "noOpenTasks": "没有未完成的任务。",
-    "highPriority": "，高优先级"
+    "highPriority": "，高优先级",
+    "modules": {
+      "title": "所有模块",
+      "subtitle": "快速访问 Vora 的每个功能区"
+    }
   },
   "tasks": {
     "title": "待办",

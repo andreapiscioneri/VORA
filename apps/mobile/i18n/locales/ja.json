@@ -48,7 +48,11 @@
     "upcomingEvents": "今後の予定",
     "upcomingTasks": "直近のタスク",
     "noOpenTasks": "未完了のタスクはありません。",
-    "highPriority": "、優先度高"
+    "highPriority": "、優先度高",
+    "modules": {
+      "title": "すべてのモジュール",
+      "subtitle": "Voraのあらゆる機能にすぐアクセス"
+    }
   },
   "tasks": {
     "title": "タスク",

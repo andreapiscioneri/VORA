@@ -6,7 +6,6 @@ definePageMeta({ layout: 'default' })
 const { requests, allRequests, pending, error, hasMore, loadingMore, fetchRequests, fetchAllRequests, loadMore, setStatus } = useLeaveRequests()
 await Promise.all([fetchRequests(), fetchAllRequests()])
 
-const { locale } = useI18n()
 const showForm = ref(false)
 const statusFilter = ref<LeaveStatus | 'all'>('all')
 
@@ -110,7 +109,7 @@ const statusStyles: Record<string, string> = {
         <div class="flex-1 min-w-0">
           <p class="text-body-sm font-medium">{{ r.requesterName }} · {{ $t(`leave.type.${r.type}`) }}</p>
           <p class="text-caption text-ink-400 mt-1">
-            {{ new Date(r.startDate).toLocaleDateString(locale) }} — {{ new Date(r.endDate).toLocaleDateString(locale) }}
+            {{ new Date(r.startDate).toLocaleDateString('it-IT') }} — {{ new Date(r.endDate).toLocaleDateString('it-IT') }}
             ({{ daysBetween(r.startDate, r.endDate) }} {{ $t('leave.balance.days') }})
           </p>
         </div>

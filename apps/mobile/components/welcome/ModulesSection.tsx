@@ -1,8 +1,10 @@
 import { StyleSheet, Text, View } from 'react-native'
-import { Icon, type IconName } from '../Icon'
+import { type IconName } from '../Icon'
+import { GlassCard } from '../GlassCard'
+import { GradientBadge } from '../GradientBadge'
 import { useI18n } from '../../i18n'
 import { useTheme } from '../../contexts/ThemeContext'
-import { radius, spacing } from '../../constants/theme'
+import { spacing } from '../../constants/theme'
 import type { ThemeColors } from '../../constants/theme'
 
 const ITEMS: { key: string; icon: IconName }[] = [
@@ -27,15 +29,13 @@ export function ModulesSection() {
 
       <View style={styles.list}>
         {ITEMS.map((item) => (
-          <View key={item.key} style={styles.card}>
-            <View style={styles.iconWrap}>
-              <Icon name={item.icon} size={18} color={colors.primary} />
-            </View>
+          <GlassCard key={item.key} style={styles.card}>
+            <GradientBadge icon={item.icon} size={36} iconSize={17} />
             <View style={styles.cardText}>
               <Text style={styles.cardTitle}>{t(`welcome.modules.items.${item.key}.title`)}</Text>
               <Text style={styles.cardDescription}>{t(`welcome.modules.items.${item.key}.description`)}</Text>
             </View>
-          </View>
+          </GlassCard>
         ))}
       </View>
     </View>
@@ -44,28 +44,17 @@ export function ModulesSection() {
 
 function makeStyles(colors: ThemeColors) {
   return StyleSheet.create({
-    section: { paddingHorizontal: spacing(5), paddingVertical: spacing(10), backgroundColor: colors.background },
+    // Transparent on purpose: this section sits over the shared
+    // AmbientBackground glow rendered once behind all post-hero sections
+    // (see welcome.tsx) so the GlassCard rows below have something to
+    // actually look "glass" against — mirrors the web landing's ambient
+    // backdrop (layouts/public.vue).
+    section: { paddingHorizontal: spacing(5), paddingVertical: spacing(10) },
     eyebrow: { color: colors.primary, fontSize: 12, fontWeight: '700', letterSpacing: 1, textTransform: 'uppercase' },
     title: { color: colors.textPrimary, fontSize: 26, lineHeight: 30, fontWeight: '700', letterSpacing: -1, marginTop: spacing(2) },
     subtitle: { color: colors.textSecondary, fontSize: 14, lineHeight: 20, marginTop: spacing(3) },
     list: { marginTop: spacing(6), gap: spacing(3) },
-    card: {
-      flexDirection: 'row',
-      gap: spacing(3),
-      padding: spacing(4),
-      borderRadius: radius.lg,
-      borderWidth: 1,
-      borderColor: colors.border,
-      backgroundColor: colors.surface,
-    },
-    iconWrap: {
-      width: 36,
-      height: 36,
-      borderRadius: radius.full,
-      backgroundColor: colors.primary + '1A',
-      alignItems: 'center',
-      justifyContent: 'center',
-    },
+    card: { flexDirection: 'row', gap: spacing(3) },
     cardText: { flex: 1, gap: spacing(1) },
     cardTitle: { color: colors.textPrimary, fontSize: 15, fontWeight: '600' },
     cardDescription: { color: colors.textSecondary, fontSize: 13, lineHeight: 18 },

@@ -77,9 +77,8 @@ const groupedEntries = computed(() => {
   return Array.from(groups.entries())
 })
 
-const { locale } = useI18n()
 function formatDayHeading(iso: string) {
-  return new Date(iso).toLocaleDateString(locale.value, { weekday: 'long', day: 'numeric', month: 'long' })
+  return new Date(iso).toLocaleDateString('it-IT', { weekday: 'long', day: 'numeric', month: 'long' })
 }
 </script>
 

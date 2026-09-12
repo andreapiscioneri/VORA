@@ -48,7 +48,11 @@
     "upcomingEvents": "Ближайшие события",
     "upcomingTasks": "Ближайшие задачи",
     "noOpenTasks": "Нет открытых задач.",
-    "highPriority": ", высокий приоритет"
+    "highPriority": ", высокий приоритет",
+    "modules": {
+      "title": "Все модули",
+      "subtitle": "Быстрый доступ к каждому разделу Vora"
+    }
   },
   "tasks": {
     "title": "Задачи",

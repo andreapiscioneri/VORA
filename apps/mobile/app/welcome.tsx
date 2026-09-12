@@ -19,6 +19,7 @@ import { BrandMark } from '../components/BrandMark'
 import { Wordmark } from '../components/Wordmark'
 import { Icon } from '../components/Icon'
 import { Flag } from '../components/Flag'
+import { AmbientBackground } from '../components/AmbientBackground'
 import { ModulesSection } from '../components/welcome/ModulesSection'
 import { CustomersSection } from '../components/welcome/CustomersSection'
 import { AutomationSection } from '../components/welcome/AutomationSection'
@@ -229,23 +230,26 @@ export default function WelcomeScreen() {
           </SafeAreaView>
         </View>
 
-        <View onLayout={recordSectionY('modules')}>
-          <ModulesSection />
-        </View>
-        <View onLayout={recordSectionY('customers')}>
-          <CustomersSection />
-        </View>
-        <View onLayout={recordSectionY('automation')}>
-          <AutomationSection />
-        </View>
-        <View onLayout={recordSectionY('pricing')}>
-          <PricingSection onCta={goToLogin} />
-        </View>
-        <View onLayout={recordSectionY('demo')}>
-          <DemoSection onCta={goToLogin} />
-        </View>
-        <View onLayout={recordSectionY('contact')}>
-          <ContactSection />
+        <View style={styles.postHero}>
+          <AmbientBackground />
+          <View onLayout={recordSectionY('modules')}>
+            <ModulesSection />
+          </View>
+          <View onLayout={recordSectionY('customers')}>
+            <CustomersSection />
+          </View>
+          <View onLayout={recordSectionY('automation')}>
+            <AutomationSection />
+          </View>
+          <View onLayout={recordSectionY('pricing')}>
+            <PricingSection onCta={goToLogin} />
+          </View>
+          <View onLayout={recordSectionY('demo')}>
+            <DemoSection onCta={goToLogin} />
+          </View>
+          <View onLayout={recordSectionY('contact')}>
+            <ContactSection />
+          </View>
         </View>
       </ScrollView>
 
@@ -342,6 +346,7 @@ function makeStyles(colors: ThemeColors) {
     pageRoot: { flex: 1, backgroundColor: colors.background },
     scrollContent: { flexGrow: 1 },
     hero: { position: 'relative', overflow: 'hidden', backgroundColor: colors.background },
+    postHero: { position: 'relative', backgroundColor: colors.background },
     backgroundLayer: { ...StyleSheet.absoluteFillObject, overflow: 'hidden' },
     gradientBase: { ...StyleSheet.absoluteFillObject, backgroundColor: colors.background },
     glyphWrap: { position: 'absolute' },

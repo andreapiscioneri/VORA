@@ -6,7 +6,6 @@ definePageMeta({ layout: 'default' })
 const { posts, pending, error, hasMore, loadingMore, fetchPosts, loadMore } = useSocialPosts()
 await fetchPosts()
 
-const { locale } = useI18n()
 const showForm = ref(false)
 const editingPost = ref<SocialPost | null>(null)
 const statusFilter = ref<SocialPostStatus | 'all'>('all')
@@ -99,7 +98,7 @@ const platformIcons: Record<string, string> = { instagram: 'megaphone', facebook
           <span class="px-2 py-1 rounded-full text-caption font-medium" :class="statusStyles[p.status]">{{ $t(`social.status.${p.status}`) }}</span>
         </div>
         <p class="text-body-sm line-clamp-3">{{ p.content }}</p>
-        <p v-if="p.scheduledAt" class="text-caption text-ink-400">{{ new Date(p.scheduledAt).toLocaleString(locale, { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }) }}</p>
+        <p v-if="p.scheduledAt" class="text-caption text-ink-400">{{ new Date(p.scheduledAt).toLocaleString('it-IT', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' }) }}</p>
       </button>
     </div>
 

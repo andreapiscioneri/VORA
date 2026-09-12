@@ -48,7 +48,11 @@
     "upcomingEvents": "Upcoming events",
     "upcomingTasks": "Upcoming tasks",
     "noOpenTasks": "No open tasks.",
-    "highPriority": ", high priority"
+    "highPriority": ", high priority",
+    "modules": {
+      "title": "All modules",
+      "subtitle": "Quick access to every area of Vora"
+    }
   },
   "tasks": {
     "title": "Tasks",

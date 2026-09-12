@@ -20,7 +20,7 @@ function isoDate(d: Date) {
 }
 
 const monthLabel = computed(() =>
-  cursor.value.toLocaleDateString(locale.value, { month: 'long', year: 'numeric' }),
+  cursor.value.toLocaleDateString('it-IT', { month: 'long', year: 'numeric' }),
 )
 
 // Monday-first short weekday labels in the current locale. Derived from
@@ -126,13 +126,13 @@ const groupedUpcoming = computed(() => {
 })
 
 function formatDayHeading(iso: string) {
-  return new Date(iso).toLocaleDateString(locale.value, { weekday: 'long', day: 'numeric', month: 'long' })
+  return new Date(iso).toLocaleDateString('it-IT', { weekday: 'long', day: 'numeric', month: 'long' })
 }
 // Formatted in the *event's* timezone, not the viewer's — an event stored
 // as 15:00 Europe/Rome should always read "15:00", regardless of who's
 // looking at the calendar or where they are.
 function formatTime(iso: string, timezone: string) {
-  return new Date(iso).toLocaleTimeString(locale.value, { hour: '2-digit', minute: '2-digit', timeZone: timezone })
+  return new Date(iso).toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit', timeZone: timezone })
 }
 </script>
 

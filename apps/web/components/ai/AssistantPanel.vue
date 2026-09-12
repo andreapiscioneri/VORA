@@ -1,6 +1,5 @@
 <script setup lang="ts">
 const emit = defineEmits<{ close: [] }>()
-const { locale } = useI18n()
 
 const { tasks, fetchTasks } = useTasks()
 const { events, fetchEvents } = useEvents()
@@ -23,7 +22,7 @@ function todayIso() {
 }
 
 function formatTime(iso: string) {
-  return new Date(iso).toLocaleTimeString(locale.value, { hour: '2-digit', minute: '2-digit' })
+  return new Date(iso).toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' })
 }
 
 function askOrganizeDay() {
@@ -64,7 +63,7 @@ function askUpcoming() {
     .filter((i) => new Date(i.startAt).getTime() >= Date.now())
     .sort((a, b) => a.startAt.localeCompare(b.startAt))
     .slice(0, 5)
-    .map((i) => `${new Date(i.startAt).toLocaleDateString(locale.value, { day: 'numeric', month: 'short' })} ${formatTime(i.startAt)} — ${i.title}`)
+    .map((i) => `${new Date(i.startAt).toLocaleDateString('it-IT', { day: 'numeric', month: 'short' })} ${formatTime(i.startAt)} — ${i.title}`)
   answer.value = {
     title: 'Prossimi impegni',
     lines: items.length ? items : ['Nessun impegno in programma nei prossimi giorni.'],

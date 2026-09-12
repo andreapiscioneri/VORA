@@ -57,7 +57,7 @@ export default defineEventHandler(async (event) => {
   for (const a of appointments) {
     if (results.filter((r) => r.type === 'appointment').length >= MAX_PER_TYPE) break
     if (matches(query, a.title, a.location)) {
-      results.push({ type: 'appointment', id: a.id, title: a.title, subtitle: new Date(a.startAt).toLocaleDateString(), to: `/appointments` })
+      results.push({ type: 'appointment', id: a.id, title: a.title, subtitle: new Date(a.startAt).toLocaleDateString('it-IT'), to: `/appointments` })
     }
   }
 

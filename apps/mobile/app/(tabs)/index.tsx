@@ -1,15 +1,19 @@
 import { useCallback } from 'react'
-import { RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native'
+import { Pressable, RefreshControl, ScrollView, StyleSheet, Text, View } from 'react-native'
 import { useFocusEffect } from '@react-navigation/native'
+import { useRouter } from 'expo-router'
 import { useTasks } from '../../hooks/useTasks'
 import { useInbox } from '../../hooks/useInbox'
 import { useEvents } from '../../hooks/useEvents'
 import { Screen } from '../../components/Screen'
 import { GlassCard } from '../../components/GlassCard'
 import { GradientBadge } from '../../components/GradientBadge'
+import { MODULE_NAV_ITEMS } from '../../constants/moduleNav'
+import { MODULE_ICONS } from '../../constants/moduleIcons'
 import { radius, spacing } from '../../constants/theme'
 import { useTheme } from '../../contexts/ThemeContext'
 import { useI18n } from '../../i18n'
+import { haptics } from '../../lib/haptics'
 import type { ThemeColors } from '../../constants/theme'
 import type { IconName } from '../../components/Icon'
 
@@ -29,6 +33,7 @@ function StatCard({ label, value, icon, colors }: { label: string; value: number
 export default function HomeScreen() {
   const { colors } = useTheme()
   const { t } = useI18n()
+  const router = useRouter()
   const styles = makeStyles(colors)
   const { tasks, loading: tasksLoading, error: tasksError, reload: reloadTasks } = useTasks()
   const { items: comms, loading: inboxLoading, error: inboxError, reload: reloadInbox } = useInbox()
@@ -90,6 +95,30 @@ export default function HomeScreen() {
                 </View>
               ))}
         {!offline && !tasksLoading && openTasks === 0 && <Text style={styles.empty}>{t('home.noOpenTasks')}</Text>}
+
+        <Text style={[styles.sectionTitle, { marginTop: spacing(6) }]}>{t('home.modules.title')}</Text>
+        <Text style={styles.sectionSubtitle}>{t('home.modules.subtitle')}</Text>
+        <View style={styles.moduleGrid}>
+          {MODULE_NAV_ITEMS.map(({ key, route }) => (
+            <Pressable
+              key={key}
+              onPress={() => {
+                haptics.tap()
+                router.push(route)
+              }}
+              style={({ pressed }) => [styles.moduleTile, pressed && styles.moduleTilePressed]}
+              accessibilityRole="button"
+              accessibilityLabel={t(`more.items.${key}.label`)}
+            >
+              <GlassCard style={styles.moduleTileCard}>
+                <GradientBadge icon={MODULE_ICONS[key] ?? 'chevron-right'} size={40} />
+                <Text style={styles.moduleTileLabel} numberOfLines={2}>
+                  {t(`more.items.${key}.label`)}
+                </Text>
+              </GlassCard>
+            </Pressable>
+          ))}
+        </View>
       </ScrollView>
     </Screen>
   )
@@ -111,7 +140,13 @@ function makeStyles(colors: ThemeColors) {
     offlineText: { color: colors.warning, fontSize: 13 },
     cardValue: { color: colors.primary, fontSize: 24, fontWeight: '700', marginTop: spacing(3) },
     cardLabel: { color: colors.textSecondary, fontSize: 12, marginTop: spacing(1) },
-    sectionTitle: { color: colors.textPrimary, fontSize: 16, fontWeight: '600', marginBottom: spacing(3) },
+    sectionTitle: { color: colors.textPrimary, fontSize: 16, fontWeight: '600', marginBottom: spacing(1) },
+    sectionSubtitle: { color: colors.textSecondary, fontSize: 13, marginBottom: spacing(4) },
+    moduleGrid: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing(3) },
+    moduleTile: { width: '30%' },
+    moduleTilePressed: { opacity: 0.7 },
+    moduleTileCard: { alignItems: 'center', paddingVertical: spacing(4), paddingHorizontal: spacing(2), gap: spacing(2) },
+    moduleTileLabel: { color: colors.textPrimary, fontSize: 11.5, fontWeight: '600', textAlign: 'center' },
     row: {
       flexDirection: 'row',
       alignItems: 'center',

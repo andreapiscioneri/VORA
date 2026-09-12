@@ -157,7 +157,7 @@ function formatBudget(value: number) {
                   {{ $t(`projects.status.${p.status}`) }}
                 </span>
               </td>
-              <td class="px-4 py-3 text-ink-500 dark:text-paper-300">{{ p.dueDate ? new Date(p.dueDate).toLocaleDateString(locale) : '—' }}</td>
+              <td class="px-4 py-3 text-ink-500 dark:text-paper-300">{{ p.dueDate ? new Date(p.dueDate).toLocaleDateString('it-IT') : '—' }}</td>
               <td class="px-4 py-3 text-ink-500 dark:text-paper-300">{{ p.budget ? formatBudget(p.budget) : '—' }}</td>
               <td class="px-4 py-3 text-ink-500 dark:text-paper-300">{{ taskCount(p.id) }}</td>
             </tr>

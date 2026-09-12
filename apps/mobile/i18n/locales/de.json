@@ -48,7 +48,11 @@
     "upcomingEvents": "Anstehende Termine",
     "upcomingTasks": "Anstehende Aufgaben",
     "noOpenTasks": "Keine offenen Aufgaben.",
-    "highPriority": ", hohe Priorität"
+    "highPriority": ", hohe Priorität",
+    "modules": {
+      "title": "Alle Module",
+      "subtitle": "Schnellzugriff auf jeden Bereich von Vora"
+    }
   },
   "tasks": {
     "title": "Aufgaben",

@@ -16,7 +16,7 @@ export default defineEventHandler(async (event) => {
 
   const created = await createCalendarEvent(result.data, session.user.organizationId, session.user.id)
 
-  const when = new Date(created.startAt).toLocaleString()
+  const when = new Date(created.startAt).toLocaleString('it-IT')
   await sendPushToUser(session.user.id, 'appointments', {
     title: 'Nuovo evento',
     body: `${created.title} · ${when}`,

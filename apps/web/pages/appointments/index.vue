@@ -7,7 +7,6 @@ const { appointments, pending, error, hasMore, loadingMore, fetchAppointments, l
 const { contacts, fetchContacts } = useContacts()
 await Promise.all([fetchAppointments(), fetchContacts()])
 
-const { locale } = useI18n()
 const showForm = ref(false)
 const editingAppt = ref<Appointment | null>(null)
 
@@ -42,7 +41,7 @@ function closeForm() {
 }
 
 function formatDateTime(iso: string) {
-  return new Date(iso).toLocaleString(locale.value, { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })
+  return new Date(iso).toLocaleString('it-IT', { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })
 }
 
 const statusStyles: Record<string, string> = {

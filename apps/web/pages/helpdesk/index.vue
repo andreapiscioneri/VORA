@@ -3,7 +3,6 @@ definePageMeta({ layout: 'default' })
 
 const { tickets, pending, error, hasMore, loadingMore, fetchTickets, loadMore } = useTickets()
 const { contacts, fetchContacts } = useContacts()
-const { locale } = useI18n()
 await Promise.all([fetchTickets(), fetchContacts()])
 
 const showForm = ref(false)
@@ -38,7 +37,7 @@ function slaStyle(slaDueAt: string | null) {
 }
 
 function formatSla(slaDueAt: string) {
-  return new Date(slaDueAt).toLocaleString(locale.value, { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })
+  return new Date(slaDueAt).toLocaleString('it-IT', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })
 }
 </script>
 

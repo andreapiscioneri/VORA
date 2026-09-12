@@ -6,33 +6,24 @@ import { SkeletonList } from '../../components/Skeleton'
 import { Icon } from '../../components/Icon'
 import { radius, spacing } from '../../constants/theme'
 import { useTheme } from '../../contexts/ThemeContext'
-import { useI18n, Locale } from '../../i18n'
+import { useI18n } from '../../i18n'
 import { haptics } from '../../lib/haptics'
 import type { ThemeColors } from '../../constants/theme'
 import type { CalendarEvent } from '@vora/shared/types/event'
 
-const BCP47: Record<Locale, string> = {
-  it: 'it-IT',
-  en: 'en-US',
-  de: 'de-DE',
-  es: 'es-ES',
-  fr: 'fr-FR',
-  ru: 'ru-RU',
-  zh: 'zh-CN',
-  ja: 'ja-JP',
+// Dates are always shown in Italian day/month/year convention, regardless of
+// the app's active UI language — a deliberate, blanket product decision.
+function formatDate(iso: string) {
+  return new Date(iso).toLocaleDateString('it-IT', { day: '2-digit', month: 'short' })
 }
 
-function formatDate(iso: string, locale: Locale) {
-  return new Date(iso).toLocaleDateString(BCP47[locale], { day: '2-digit', month: 'short' })
-}
-
-function formatTime(iso: string, locale: Locale) {
-  return new Date(iso).toLocaleTimeString(BCP47[locale], { hour: '2-digit', minute: '2-digit' })
+function formatTime(iso: string) {
+  return new Date(iso).toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' })
 }
 
 export default function CalendarScreen() {
   const { colors } = useTheme()
-  const { t, locale } = useI18n()
+  const { t } = useI18n()
   const router = useRouter()
   const styles = makeStyles(colors)
   const { events, loading, error, offline, reload } = useEvents()
@@ -60,11 +51,11 @@ export default function CalendarScreen() {
                 }}
                 style={styles.row}
                 accessibilityRole="button"
-                accessibilityLabel={`${item.title}, ${formatDate(item.startAt, locale)}${!item.allDay ? ', ' + formatTime(item.startAt, locale) : ''}${item.location ? ', ' + item.location : ''}`}
+                accessibilityLabel={`${item.title}, ${formatDate(item.startAt)}${!item.allDay ? ', ' + formatTime(item.startAt) : ''}${item.location ? ', ' + item.location : ''}`}
               >
                 <View style={styles.dateCol}>
-                  <Text style={styles.date}>{formatDate(item.startAt, locale)}</Text>
-                  {!item.allDay && <Text style={styles.time}>{formatTime(item.startAt, locale)}</Text>}
+                  <Text style={styles.date}>{formatDate(item.startAt)}</Text>
+                  {!item.allDay && <Text style={styles.time}>{formatTime(item.startAt)}</Text>}
                 </View>
                 <View style={styles.mainCol}>
                   <Text style={styles.title} numberOfLines={1}>

@@ -36,7 +36,7 @@ function taskCount(projectId: string) {
 }
 
 function formatDate(iso: string) {
-  return new Date(iso).toLocaleString(locale.value, { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })
+  return new Date(iso).toLocaleString('it-IT', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })
 }
 
 function formatBudget(value: number) {
@@ -138,7 +138,7 @@ async function onToggleMilestone(milestoneId: string) {
       </div>
 
       <div class="flex items-center gap-4 text-body-sm text-ink-400">
-        <span v-if="project.dueDate">{{ $t('projects.columns.dueDate') }}: {{ new Date(project.dueDate).toLocaleDateString(locale) }}</span>
+        <span v-if="project.dueDate">{{ $t('projects.columns.dueDate') }}: {{ new Date(project.dueDate).toLocaleDateString('it-IT') }}</span>
         <span v-if="project.budget">{{ $t('projects.columns.budget') }}: {{ formatBudget(project.budget) }}</span>
       </div>
 
@@ -202,7 +202,7 @@ async function onToggleMilestone(milestoneId: string) {
               <UiIcon :name="m.status === 'completed' ? 'check-square' : 'dot'" :size="18" class="shrink-0" :class="m.status === 'completed' ? 'text-success' : 'text-ink-400'" />
               <span class="text-body-sm truncate" :class="m.status === 'completed' ? 'line-through text-ink-400' : ''">{{ m.title }}</span>
             </button>
-            <span v-if="m.dueDate" class="text-caption shrink-0" :class="milestoneDueStyle(m.dueDate)">{{ new Date(m.dueDate).toLocaleDateString(locale) }}</span>
+            <span v-if="m.dueDate" class="text-caption shrink-0" :class="milestoneDueStyle(m.dueDate)">{{ new Date(m.dueDate).toLocaleDateString('it-IT') }}</span>
           </li>
         </ul>
 

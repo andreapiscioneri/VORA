@@ -7,6 +7,7 @@ import { Wordmark } from './Wordmark'
 import { Icon } from './Icon'
 import { AppMenu } from './AppMenu'
 import { NotificationInbox } from './NotificationInbox'
+import { AmbientBackground } from './AmbientBackground'
 import { api } from '../lib/api'
 import { radius, spacing } from '../constants/theme'
 import { useTheme } from '../contexts/ThemeContext'
@@ -33,6 +34,7 @@ export function Screen({
 
   return (
     <SafeAreaView style={[styles.safe, { backgroundColor: colors.background }]} edges={['top', 'left', 'right']}>
+      <AmbientBackground />
       <View style={styles.header}>
         <View style={styles.titleRow}>
           {showMark ? (
@@ -99,6 +101,7 @@ export function DetailScreen({
   const router = useRouter()
   return (
     <SafeAreaView style={[styles.safe, { backgroundColor: colors.background }]} edges={['top', 'left', 'right']}>
+      <AmbientBackground />
       <View style={styles.header}>
         <View style={styles.headerTopRow}>
           <Pressable

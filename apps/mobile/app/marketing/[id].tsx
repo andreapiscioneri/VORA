@@ -134,7 +134,7 @@ export default function EditCampaignScreen() {
           </Pressable>
 
           {isSent ? (
-            <Text style={styles.sentText}>{t('modules.marketing.sentAt', { date: new Date(campaign.sentAt ?? '').toLocaleString() })}</Text>
+            <Text style={styles.sentText}>{t('modules.marketing.sentAt', { date: new Date(campaign.sentAt ?? '').toLocaleString('it-IT') })}</Text>
           ) : (
             <Pressable style={styles.sendButton} disabled={sending} onPress={onSend} accessibilityRole="button">
               <Icon name="mail" size={16} color="#0A0A0A" />

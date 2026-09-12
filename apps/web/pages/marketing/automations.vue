@@ -6,7 +6,6 @@ definePageMeta({ layout: 'default' })
 const { automations, pending, error, hasMore, loadingMore, fetchAutomations, loadMore } = useAutomations()
 await fetchAutomations()
 
-const { locale } = useI18n()
 const showForm = ref(false)
 const editingAutomation = ref<Automation | null>(null)
 
@@ -27,7 +26,7 @@ function closeForm() {
 
 function formatLastRun(iso: string | null) {
   if (!iso) return null
-  return new Date(iso).toLocaleString(locale.value, { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })
+  return new Date(iso).toLocaleString('it-IT', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })
 }
 </script>
 

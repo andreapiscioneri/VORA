@@ -112,7 +112,7 @@ const statusStyles: Record<string, string> = {
         </thead>
         <tbody>
           <tr v-for="e in filtered" :key="e.id" class="border-t border-ink-100 dark:border-white/10 hover:bg-ink-50 dark:hover:bg-white/5">
-            <td class="px-4 py-3 text-ink-500 dark:text-paper-300">{{ new Date(e.date).toLocaleDateString(locale) }}</td>
+            <td class="px-4 py-3 text-ink-500 dark:text-paper-300">{{ new Date(e.date).toLocaleDateString('it-IT') }}</td>
             <td class="px-4 py-3 text-ink-500 dark:text-paper-300">{{ $t(`expenses.category.${e.category}`) }}</td>
             <td class="px-4 py-3 text-ink-500 dark:text-paper-300">{{ projectName(e.projectId) || '—' }}</td>
             <td class="px-4 py-3 font-medium cursor-pointer" @click="openEdit(e)">{{ formatAmount(e.amount, e.currency) }}</td>
@@ -138,7 +138,7 @@ const statusStyles: Record<string, string> = {
           <p class="font-medium">{{ formatAmount(e.amount, e.currency) }}</p>
           <span class="px-2 py-1 rounded-full text-caption font-medium" :class="statusStyles[e.status]">{{ $t(`expenses.status.${e.status}`) }}</span>
         </div>
-        <p class="text-body-sm text-ink-400 mt-1">{{ $t(`expenses.category.${e.category}`) }} · {{ new Date(e.date).toLocaleDateString(locale) }}</p>
+        <p class="text-body-sm text-ink-400 mt-1">{{ $t(`expenses.category.${e.category}`) }} · {{ new Date(e.date).toLocaleDateString('it-IT') }}</p>
         <div v-if="e.status === 'pending'" class="flex gap-3 mt-2" @click.stop>
           <button class="text-caption text-success hover:underline" @click="setStatus(e, 'approved')">{{ $t('expenses.approve') }}</button>
           <button class="text-caption text-danger hover:underline" @click="setStatus(e, 'rejected')">{{ $t('expenses.reject') }}</button>

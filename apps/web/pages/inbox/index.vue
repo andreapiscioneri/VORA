@@ -7,7 +7,7 @@ const { communications, pending, error, hasMore, loadingMore, fetchCommunication
 const { contacts, fetchContacts } = useContacts()
 await Promise.all([fetchCommunications(), fetchContacts()])
 
-const { locale, t } = useI18n()
+const { t } = useI18n()
 const showCompose = ref(false)
 const channelFilter = ref<CommunicationChannel | 'all'>('all')
 const labelFilter = ref<string | null>(null)
@@ -120,7 +120,7 @@ function contactName(contactId: string | null) {
 }
 
 function formatDate(iso: string) {
-  return new Date(iso).toLocaleString(locale.value, { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })
+  return new Date(iso).toLocaleString('it-IT', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })
 }
 
 const channelIcons: Record<string, string> = { email: 'mail', whatsapp: 'message-circle', internal: 'inbox' }

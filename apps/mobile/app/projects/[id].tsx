@@ -320,7 +320,7 @@ export default function EditProjectScreen() {
               <View key={c.id} style={styles.commentRow}>
                 <Text style={styles.commentAuthor}>{c.authorName}</Text>
                 <Text style={styles.commentBody}>{c.body}</Text>
-                <Text style={styles.commentDate}>{new Date(c.createdAt).toLocaleString()}</Text>
+                <Text style={styles.commentDate}>{new Date(c.createdAt).toLocaleString('it-IT')}</Text>
               </View>
             ))
           )}

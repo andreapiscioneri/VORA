@@ -67,7 +67,7 @@ export default function NotificationsInboxScreen() {
                 <Text style={styles.rowBody} numberOfLines={2}>
                   {item.body}
                 </Text>
-                <Text style={styles.rowDate}>{new Date(item.createdAt).toLocaleString()}</Text>
+                <Text style={styles.rowDate}>{new Date(item.createdAt).toLocaleString('it-IT')}</Text>
               </View>
               <Pressable
                 onPress={(e) => {

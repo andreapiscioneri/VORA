@@ -69,7 +69,7 @@ export default function SocialScreen() {
                   </Text>
                   <Text style={styles.subtext} numberOfLines={1}>
                     {t(`modules.social.platform.${item.platform}`)}
-                    {item.scheduledAt ? ` · ${new Date(item.scheduledAt).toLocaleDateString()}` : ''}
+                    {item.scheduledAt ? ` · ${new Date(item.scheduledAt).toLocaleDateString('it-IT')}` : ''}
                   </Text>
                 </View>
                 <View style={styles.badge}>

@@ -6,8 +6,6 @@ definePageMeta({ layout: 'default' })
 const { checkIns, pending, error, fetchCheckIns, saveCheckIn, todayCheckIn, weeklyAverages, today } = useWellbeing()
 await fetchCheckIns()
 
-const { locale } = useI18n()
-
 const mood = ref<WellbeingScaleValue>(todayCheckIn.value?.mood ?? 3)
 const energy = ref<WellbeingScaleValue>(todayCheckIn.value?.energy ?? 3)
 const stress = ref<WellbeingScaleValue>(todayCheckIn.value?.stress ?? 3)
@@ -184,7 +182,7 @@ function fmt(n: number) {
       <div v-if="checkIns.length" class="space-y-2">
         <p class="text-body-sm font-medium">{{ $t('wellbeing.history') }}</p>
         <div v-for="c in checkIns.slice(0, 14)" :key="c.id" class="flex items-center gap-4 rounded-lg border border-ink-100 dark:border-white/10 p-3">
-          <p class="text-body-sm text-ink-400 w-28 shrink-0">{{ new Date(c.date).toLocaleDateString(locale) }}</p>
+          <p class="text-body-sm text-ink-400 w-28 shrink-0">{{ new Date(c.date).toLocaleDateString('it-IT') }}</p>
           <p class="text-body-sm flex-1">
             {{ $t('wellbeing.mood') }} {{ c.mood }} · {{ $t('wellbeing.energy') }} {{ c.energy }} · {{ $t('wellbeing.stress') }} {{ c.stress }}
           </p>

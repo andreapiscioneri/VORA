@@ -125,7 +125,7 @@ onMounted(() => dialogRef.value?.focus())
             <span>{{ $t('campaigns.mockNotice') }}</span>
           </div>
           <div v-else class="rounded-md border border-success/30 bg-success/5 p-3 text-caption text-success">
-            {{ $t('campaigns.sentOn') }} {{ new Date(campaign!.sentAt!).toLocaleString() }}
+            {{ $t('campaigns.sentOn') }} {{ new Date(campaign!.sentAt!).toLocaleString('it-IT') }}
           </div>
 
           <div v-if="!isEdit">

@@ -36,14 +36,14 @@ export default function AuditLogScreen() {
             <View
               style={styles.row}
               accessible
-              accessibilityLabel={`${item.userName}, ${t(`modules.auditLog.action.${item.action}`)}, ${new Date(item.createdAt).toLocaleString()}`}
+              accessibilityLabel={`${item.userName}, ${t(`modules.auditLog.action.${item.action}`)}, ${new Date(item.createdAt).toLocaleString('it-IT')}`}
             >
               <View style={styles.rowMain}>
                 <Text style={styles.title} numberOfLines={1}>
                   {item.userName} · {t(`modules.auditLog.action.${item.action}`)}
                 </Text>
                 <Text style={styles.subtext} numberOfLines={1}>
-                  {new Date(item.createdAt).toLocaleString()}
+                  {new Date(item.createdAt).toLocaleString('it-IT')}
                 </Text>
               </View>
             </View>

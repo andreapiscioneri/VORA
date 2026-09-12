@@ -6,7 +6,6 @@ definePageMeta({ layout: 'default' })
 const { entries, pending, error, hasMore, loadingMore, fetchEntries, loadMore } = useAttendance()
 await fetchEntries()
 
-const { locale } = useI18n()
 const showForm = ref(false)
 const editingEntry = ref<AttendanceEntry | null>(null)
 
@@ -76,7 +75,7 @@ function closeForm() {
             @click="openEdit(e)"
           >
             <td class="px-4 py-3 font-medium">{{ e.employeeName }}</td>
-            <td class="px-4 py-3 text-ink-500 dark:text-paper-300">{{ new Date(e.date).toLocaleDateString(locale) }}</td>
+            <td class="px-4 py-3 text-ink-500 dark:text-paper-300">{{ new Date(e.date).toLocaleDateString('it-IT') }}</td>
             <td class="px-4 py-3 text-ink-500 dark:text-paper-300">{{ e.checkIn || '—' }}</td>
             <td class="px-4 py-3 text-ink-500 dark:text-paper-300">{{ e.checkOut || '—' }}</td>
           </tr>
@@ -87,7 +86,7 @@ function closeForm() {
     <div v-if="!pending && !error && entries.length" class="tablet:hidden space-y-3">
       <button v-for="e in entries" :key="e.id" class="w-full text-left rounded-lg border border-ink-100 dark:border-white/10 p-4" @click="openEdit(e)">
         <p class="font-medium">{{ e.employeeName }}</p>
-        <p class="text-body-sm text-ink-400 mt-1">{{ new Date(e.date).toLocaleDateString(locale) }} · {{ e.checkIn || '—' }}–{{ e.checkOut || '—' }}</p>
+        <p class="text-body-sm text-ink-400 mt-1">{{ new Date(e.date).toLocaleDateString('it-IT') }} · {{ e.checkIn || '—' }}–{{ e.checkOut || '—' }}</p>
       </button>
     </div>
 

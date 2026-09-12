@@ -7,7 +7,7 @@ const emit = defineEmits<{ close: []; saved: []; deleted: [] }>()
 
 const { createTask, updateTask, removeTask, addAttachment } = useTasks()
 const { projects, fetchProjects } = useProjects()
-const { t, locale } = useI18n()
+const { t } = useI18n()
 
 if (!projects.value.length) await fetchProjects()
 
@@ -33,7 +33,7 @@ const addingAttachment = ref(false)
 const attachmentError = ref('')
 
 function formatDate(iso: string) {
-  return new Date(iso).toLocaleString(locale.value, { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })
+  return new Date(iso).toLocaleString('it-IT', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })
 }
 
 async function onAddAttachment() {

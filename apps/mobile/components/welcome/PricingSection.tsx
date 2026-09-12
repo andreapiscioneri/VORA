@@ -1,5 +1,6 @@
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { Icon } from '../Icon'
+import { GlassCard } from '../GlassCard'
 import { useI18n } from '../../i18n'
 import { useTheme } from '../../contexts/ThemeContext'
 import { radius, spacing } from '../../constants/theme'
@@ -22,7 +23,7 @@ export function PricingSection({ onCta }: { onCta: () => void }) {
         {PLAN_KEYS.map((key) => {
           const highlighted = key === 'business'
           return (
-            <View key={key} style={[styles.card, highlighted && styles.cardHighlighted]}>
+            <GlassCard key={key} style={[styles.card, highlighted && styles.cardHighlighted]}>
               {highlighted && (
                 <View style={styles.badge}>
                   <Text style={styles.badgeText}>{t('welcome.pricing.mostRequested')}</Text>
@@ -47,7 +48,7 @@ export function PricingSection({ onCta }: { onCta: () => void }) {
                   {key === 'enterprise' ? t('welcome.pricing.ctaEnterprise') : t('welcome.cta')}
                 </Text>
               </Pressable>
-            </View>
+            </GlassCard>
           )
         })}
       </View>
@@ -62,14 +63,8 @@ function makeStyles(colors: ThemeColors) {
     title: { color: colors.textPrimary, fontSize: 26, lineHeight: 30, fontWeight: '700', letterSpacing: -1, marginTop: spacing(2) },
     subtitle: { color: colors.textSecondary, fontSize: 14, lineHeight: 20, marginTop: spacing(3) },
     list: { marginTop: spacing(6), gap: spacing(4) },
-    card: {
-      padding: spacing(5),
-      borderRadius: radius.lg,
-      borderWidth: 1,
-      borderColor: colors.border,
-      backgroundColor: colors.background,
-    },
-    cardHighlighted: { borderColor: colors.primary + '80', backgroundColor: colors.primary + '0F' },
+    card: { padding: spacing(5) },
+    cardHighlighted: { borderColor: colors.primary + '80', backgroundColor: colors.primary + '14' },
     badge: {
       alignSelf: 'flex-start',
       backgroundColor: colors.primary,

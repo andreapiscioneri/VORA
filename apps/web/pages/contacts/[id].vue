@@ -5,7 +5,7 @@ definePageMeta({ layout: 'default' })
 
 const route = useRoute()
 const router = useRouter()
-const { locale, t } = useI18n()
+const { t } = useI18n()
 const { removeContact, addAttachment } = useContacts()
 
 const { data: contact, error, pending, refresh } = await useFetch<Contact>(`/api/contacts/${route.params.id}`)
@@ -21,7 +21,7 @@ const addingAttachment = ref(false)
 const attachmentError = ref('')
 
 function formatDate(iso: string) {
-  return new Date(iso).toLocaleString(locale.value, { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })
+  return new Date(iso).toLocaleString('it-IT', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })
 }
 
 async function onAddAttachment() {

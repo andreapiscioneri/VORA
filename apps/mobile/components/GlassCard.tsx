@@ -1,4 +1,4 @@
-import { StyleSheet, View, type ViewStyle } from 'react-native'
+import { StyleSheet, View, type StyleProp, type ViewStyle } from 'react-native'
 import { radius, spacing } from '../constants/theme'
 import { useTheme } from '../contexts/ThemeContext'
 
@@ -8,7 +8,7 @@ import { useTheme } from '../contexts/ThemeContext'
 // with a translucent surface + soft border + shadow instead of a literal
 // blur, matching the web app's glass-card language (WidgetFrame.vue) without
 // a new native dependency.
-export function GlassCard({ children, style }: { children: React.ReactNode; style?: ViewStyle | ViewStyle[] }) {
+export function GlassCard({ children, style }: { children: React.ReactNode; style?: StyleProp<ViewStyle> }) {
   const { scheme } = useTheme()
   const isDark = scheme === 'dark'
 

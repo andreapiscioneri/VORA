@@ -5,7 +5,6 @@ definePageMeta({ layout: 'default' })
 
 const route = useRoute()
 const router = useRouter()
-const { locale } = useI18n()
 const { removeDocument } = useKnowledge()
 const { render } = useMarkdown()
 
@@ -16,7 +15,7 @@ const showEdit = ref(false)
 const renderedHtml = computed(() => (doc.value ? render(doc.value.content) : ''))
 
 function formatDate(iso: string) {
-  return new Date(iso).toLocaleString(locale.value, { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' })
+  return new Date(iso).toLocaleString('it-IT', { day: 'numeric', month: 'long', year: 'numeric', hour: '2-digit', minute: '2-digit' })
 }
 
 async function onSaved() {

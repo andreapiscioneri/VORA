@@ -5,7 +5,7 @@ definePageMeta({ layout: 'default' })
 
 const route = useRoute()
 const router = useRouter()
-const { locale, t } = useI18n()
+const { t } = useI18n()
 const { addComment, removeTicket, addAttachment } = useTickets()
 const { contacts, fetchContacts } = useContacts()
 const { employees, fetchEmployees } = useEmployees()
@@ -51,7 +51,7 @@ function assigneeName(assigneeId: string | null) {
 }
 
 function formatDate(iso: string) {
-  return new Date(iso).toLocaleString(locale.value, { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })
+  return new Date(iso).toLocaleString('it-IT', { day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' })
 }
 
 async function onDelete() {

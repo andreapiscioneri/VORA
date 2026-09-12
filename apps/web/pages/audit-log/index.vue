@@ -4,10 +4,8 @@ definePageMeta({ layout: 'default' })
 const { entries, pending, error, hasMore, loadingMore, fetchEntries, loadMore } = useAuditLog()
 await fetchEntries()
 
-const { locale } = useI18n()
-
 function fmt(dt: string) {
-  return new Date(dt).toLocaleString(locale.value, { dateStyle: 'medium', timeStyle: 'short' })
+  return new Date(dt).toLocaleString('it-IT', { dateStyle: 'medium', timeStyle: 'short' })
 }
 
 const actionStyles: Record<string, string> = {
