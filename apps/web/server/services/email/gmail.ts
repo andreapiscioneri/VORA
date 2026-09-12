@@ -1,3 +1,14 @@
+// Suppresses a noisy but harmless `MetadataLookupWarning` (gcp-metadata's
+// "All promises were rejected" console spam): google-auth-library's
+// OAuth2Client probes the GCE metadata server as part of its general
+// environment detection even when, as here, it's given explicit refresh-
+// token credentials that never need it — there's simply no metadata
+// server to find outside of GCP infra, on a laptop or on Netlify Functions
+// alike. `none` tells gcp-metadata not to bother probing at all. Must be
+// set before `googleapis` is imported below, since the check runs at
+// module load.
+process.env.METADATA_SERVER_DETECTION = 'none'
+
 import { google } from 'googleapis'
 import type { EmailAttachment, EmailProvider, SendEmailInput, SendEmailResult } from './types'
 import { logger } from '~/server/utils/logger'
