@@ -17,6 +17,21 @@ export default defineNuxtConfig({
   // machine (useful for `netlify deploy` from a local checkout too).
   nitro: {
     preset: 'netlify',
+    // Baseline hardening headers on every response. No CSP here on purpose:
+    // this app loads Google Fonts, inline Tailwind-generated styles, and (in
+    // dev) Vite's HMR websocket — a wrong CSP would silently break those
+    // rather than add real protection, so it needs its own careful pass
+    // rather than being bundled into a general hardening change.
+    routeRules: {
+      '/**': {
+        headers: {
+          'X-Content-Type-Options': 'nosniff',
+          'X-Frame-Options': 'DENY',
+          'Referrer-Policy': 'strict-origin-when-cross-origin',
+          'Permissions-Policy': 'camera=(), microphone=(), geolocation=()',
+        },
+      },
+    },
   },
 
   runtimeConfig: {

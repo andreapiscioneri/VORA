@@ -5,18 +5,24 @@ import { useTasks } from '../../hooks/useTasks'
 import { useInbox } from '../../hooks/useInbox'
 import { useEvents } from '../../hooks/useEvents'
 import { Screen } from '../../components/Screen'
+import { GlassCard } from '../../components/GlassCard'
+import { GradientBadge } from '../../components/GradientBadge'
 import { radius, spacing } from '../../constants/theme'
 import { useTheme } from '../../contexts/ThemeContext'
 import { useI18n } from '../../i18n'
 import type { ThemeColors } from '../../constants/theme'
+import type { IconName } from '../../components/Icon'
 
-function StatCard({ label, value, colors }: { label: string; value: number | string; colors: ThemeColors }) {
+function StatCard({ label, value, icon, colors }: { label: string; value: number | string; icon: IconName; colors: ThemeColors }) {
   const styles = makeStyles(colors)
   return (
-    <View style={styles.card} accessible accessibilityLabel={`${label}: ${value}`}>
-      <Text style={styles.cardValue}>{value}</Text>
-      <Text style={styles.cardLabel}>{label}</Text>
-    </View>
+    <GlassCard style={styles.card}>
+      <View accessible accessibilityLabel={`${label}: ${value}`}>
+        <GradientBadge icon={icon} size={34} />
+        <Text style={styles.cardValue}>{value}</Text>
+        <Text style={styles.cardLabel}>{label}</Text>
+      </View>
+    </GlassCard>
   )
 }
 
@@ -56,9 +62,9 @@ export default function HomeScreen() {
         ) : null}
 
         <View style={styles.grid}>
-          <StatCard label={t('home.openTasks')} value={offline ? '—' : openTasks} colors={colors} />
-          <StatCard label={t('home.unread')} value={offline ? '—' : unread} colors={colors} />
-          <StatCard label={t('home.upcomingEvents')} value={offline ? '—' : upcoming} colors={colors} />
+          <StatCard label={t('home.openTasks')} value={offline ? '—' : openTasks} icon="check-square" colors={colors} />
+          <StatCard label={t('home.unread')} value={offline ? '—' : unread} icon="inbox" colors={colors} />
+          <StatCard label={t('home.upcomingEvents')} value={offline ? '—' : upcoming} icon="calendar" colors={colors} />
         </View>
 
         <Text style={styles.sectionTitle}>{t('home.upcomingTasks')}</Text>
@@ -93,12 +99,7 @@ function makeStyles(colors: ThemeColors) {
   return StyleSheet.create({
     content: { paddingHorizontal: spacing(5), paddingBottom: spacing(10) },
     grid: { flexDirection: 'row', gap: spacing(3), marginBottom: spacing(6) },
-    card: {
-      flex: 1,
-      backgroundColor: colors.surface,
-      borderRadius: radius.lg,
-      padding: spacing(4),
-    },
+    card: { flex: 1 },
     offlineBanner: {
       backgroundColor: colors.surface,
       borderWidth: 1,
@@ -108,7 +109,7 @@ function makeStyles(colors: ThemeColors) {
       marginBottom: spacing(4),
     },
     offlineText: { color: colors.warning, fontSize: 13 },
-    cardValue: { color: colors.primary, fontSize: 24, fontWeight: '700' },
+    cardValue: { color: colors.primary, fontSize: 24, fontWeight: '700', marginTop: spacing(3) },
     cardLabel: { color: colors.textSecondary, fontSize: 12, marginTop: spacing(1) },
     sectionTitle: { color: colors.textPrimary, fontSize: 16, fontWeight: '600', marginBottom: spacing(3) },
     row: {
