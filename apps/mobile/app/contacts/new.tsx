@@ -22,8 +22,13 @@ export default function NewContactScreen() {
   const [firstName, setFirstName] = useState('')
   const [lastName, setLastName] = useState('')
   const [company, setCompany] = useState('')
+  const [role, setRole] = useState('')
   const [email, setEmail] = useState('')
   const [phone, setPhone] = useState('')
+  const [whatsapp, setWhatsapp] = useState('')
+  const [website, setWebsite] = useState('')
+  const [address, setAddress] = useState('')
+  const [tagsText, setTagsText] = useState('')
   const [notes, setNotes] = useState('')
   const [status, setStatus] = useState<ContactStatus>('lead')
   const [errors, setErrors] = useState<Record<string, string>>({})
@@ -34,7 +39,11 @@ export default function NewContactScreen() {
     haptics.press()
     setSaveError(null)
 
-    const form = { firstName, lastName, company, email, phone, notes, status }
+    const tags = tagsText
+      .split(',')
+      .map((tg) => tg.trim())
+      .filter(Boolean)
+    const form = { firstName, lastName, company, role, email, phone, whatsapp, website, address, tags, notes, status }
     const result = contactInputSchema.safeParse(form)
     if (!result.success) {
       const nextErrors: Record<string, string> = {}
@@ -75,6 +84,9 @@ export default function NewContactScreen() {
           <Text style={styles.label}>{t('modules.contacts.form.company')}</Text>
           <TextInput style={styles.input} value={company} onChangeText={setCompany} placeholderTextColor={colors.textSecondary} />
 
+          <Text style={styles.label}>{t('modules.contacts.form.role')}</Text>
+          <TextInput style={styles.input} value={role} onChangeText={setRole} placeholderTextColor={colors.textSecondary} />
+
           <Text style={styles.label}>{t('modules.contacts.form.email')}</Text>
           <TextInput
             style={styles.input}
@@ -89,6 +101,32 @@ export default function NewContactScreen() {
           <Text style={styles.label}>{t('modules.contacts.form.phone')}</Text>
           <TextInput style={styles.input} value={phone} onChangeText={setPhone} keyboardType="phone-pad" placeholderTextColor={colors.textSecondary} />
           {errors.phone ? <Text style={styles.error}>{errors.phone}</Text> : null}
+
+          <Text style={styles.label}>{t('modules.contacts.form.whatsapp')}</Text>
+          <TextInput style={styles.input} value={whatsapp} onChangeText={setWhatsapp} keyboardType="phone-pad" placeholderTextColor={colors.textSecondary} />
+          {errors.whatsapp ? <Text style={styles.error}>{errors.whatsapp}</Text> : null}
+
+          <Text style={styles.label}>{t('modules.contacts.form.website')}</Text>
+          <TextInput
+            style={styles.input}
+            value={website}
+            onChangeText={setWebsite}
+            autoCapitalize="none"
+            placeholder="https://..."
+            placeholderTextColor={colors.textSecondary}
+          />
+
+          <Text style={styles.label}>{t('modules.contacts.form.address')}</Text>
+          <TextInput style={styles.input} value={address} onChangeText={setAddress} placeholderTextColor={colors.textSecondary} />
+
+          <Text style={styles.label}>{t('modules.contacts.form.tags')}</Text>
+          <TextInput
+            style={styles.input}
+            value={tagsText}
+            onChangeText={setTagsText}
+            placeholder={t('modules.contacts.form.tagsPlaceholder')}
+            placeholderTextColor={colors.textSecondary}
+          />
 
           <Text style={styles.label}>{t('modules.contacts.form.status')}</Text>
           <View style={styles.chipRow}>

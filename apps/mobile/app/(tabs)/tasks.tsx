@@ -2,6 +2,7 @@ import { ActivityIndicator, FlatList, Pressable, RefreshControl, StyleSheet, Tex
 import { useRouter } from 'expo-router'
 import { useTasks } from '../../hooks/useTasks'
 import { Screen, StateMessage, OfflineBanner } from '../../components/Screen'
+import { SkeletonList } from '../../components/Skeleton'
 import { Icon } from '../../components/Icon'
 import { radius, spacing } from '../../constants/theme'
 import { nextStatus } from '../../lib/taskStatus'
@@ -24,6 +25,8 @@ export default function TasksScreen() {
     <Screen title={t('tasks.title')} subtitle={t('tasks.count', { count: active.length })}>
       {error ? (
         <StateMessage text={t('tasks.error', { error })} />
+      ) : loading && active.length === 0 ? (
+        <SkeletonList />
       ) : (
         <>
           {offline ? <OfflineBanner text={t('common.offlineCached')} /> : null}
@@ -87,7 +90,7 @@ export default function TasksScreen() {
           haptics.tap()
           router.push('/tasks/new')
         }}
-        style={styles.fab}
+        style={({ pressed }) => [styles.fab, pressed && styles.fabPressed]}
         accessibilityRole="button"
         accessibilityLabel={t('tasks.form.newTitle')}
       >
@@ -131,5 +134,6 @@ function makeStyles(colors: ThemeColors) {
       shadowRadius: 8,
       elevation: 6,
     },
+    fabPressed: { transform: [{ scale: 0.92 }], shadowOpacity: 0.15 },
   })
 }

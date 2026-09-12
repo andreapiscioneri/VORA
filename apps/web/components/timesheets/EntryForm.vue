@@ -8,9 +8,10 @@ const emit = defineEmits<{ close: []; saved: []; deleted: [] }>()
 const { createEntry, updateEntry, removeEntry } = useTimesheets()
 const { projects, fetchProjects } = useProjects()
 const { tasks, fetchTasks } = useTasks()
+const { employees, fetchEmployees } = useEmployees()
 const { t } = useI18n()
 
-await Promise.all([!projects.value.length && fetchProjects(), !tasks.value.length && fetchTasks()])
+await Promise.all([!projects.value.length && fetchProjects(), !tasks.value.length && fetchTasks(), !employees.value.length && fetchEmployees()])
 
 const isEdit = computed(() => !!props.entry)
 
@@ -19,13 +20,23 @@ function todayIso() {
   return `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`
 }
 
+const selectedEmployeeId = ref<string | null>(props.entry?.employeeId ?? null)
+
 const form = reactive<TimesheetEntryInput>({
+  employeeId: props.entry?.employeeId ?? null,
+  employeeName: props.entry?.employeeName ?? '',
   projectId: props.entry?.projectId ?? props.prefill?.projectId ?? null,
   taskId: props.entry?.taskId ?? null,
   description: props.entry?.description ?? props.prefill?.description ?? '',
   date: props.entry?.date ?? todayIso(),
   durationMinutes: props.entry?.durationMinutes ?? props.prefill?.durationMinutes ?? 30,
   billable: props.entry?.billable ?? true,
+})
+
+watch(selectedEmployeeId, (id) => {
+  form.employeeId = id
+  const emp = employees.value.find((e) => e.id === id)
+  form.employeeName = emp ? `${emp.firstName} ${emp.lastName}` : ''
 })
 
 const projectTasks = computed(() => tasks.value.filter((t) => !form.projectId || t.projectId === form.projectId))
@@ -90,6 +101,13 @@ onMounted(() => dialogRef.value?.focus())
           </h2>
 
           <div class="grid grid-cols-1 tablet:grid-cols-2 gap-4">
+            <div>
+              <label for="entry-employeeId" class="block text-label text-ink-400 mb-2">{{ $t('timesheets.form.employee') }}</label>
+              <select id="entry-employeeId" v-model="selectedEmployeeId" class="vora-input">
+                <option :value="null">{{ $t('timesheets.form.noEmployee') }}</option>
+                <option v-for="e in employees" :key="e.id" :value="e.id">{{ e.firstName }} {{ e.lastName }}</option>
+              </select>
+            </div>
             <div>
               <label for="entry-projectId" class="block text-label text-ink-400 mb-2">{{ $t('timesheets.form.project') }}</label>
               <select id="entry-projectId" v-model="form.projectId" class="vora-input">

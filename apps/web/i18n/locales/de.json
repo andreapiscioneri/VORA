@@ -93,7 +93,14 @@
     "settings": "Einstellungen",
     "templates": "Vorlagen",
     "segments": "Segmente",
-    "automations": "Automatisierungen"
+    "automations": "Automatisierungen",
+    "attendance": "Anwesenheit",
+    "orgChart": "Organigramm",
+    "recruiting": "Personalauswahl",
+    "performanceReviews": "Leistungsbeurteilungen",
+    "training": "Schulung",
+    "welfare": "Mitarbeiter-Benefits",
+    "payroll": "Gehaltsabrechnung"
   },
   "topbar": {
     "search": "Suchen...",
@@ -459,6 +466,8 @@
       "delete": "Der Eintrag konnte nicht gelöscht werden."
     },
     "form": {
+      "employee": "Mitarbeiter",
+      "noEmployee": "Keiner",
       "project": "Projekt",
       "noProject": "Kein verknüpftes Projekt",
       "task": "Aufgabe",
@@ -669,6 +678,8 @@
       "contact": "Kunde",
       "noContact": "Kein verknüpfter Kunde",
       "priority": "Priorität",
+      "assignee": "Zugewiesen an",
+      "noAssignee": "Keiner",
       "status": "Status",
       "category": "Kategorie",
       "cancel": "Abbrechen",
@@ -963,6 +974,8 @@
       "team": "Team",
       "status": "Status",
       "startDate": "Startdatum",
+      "manager": "Vorgesetzter",
+      "managerNone": "Keiner",
       "cancel": "Abbrechen",
       "save": "Speichern",
       "saving": "Wird gespeichert...",
@@ -1362,12 +1375,30 @@
       "title": "Alles, was dein Team braucht, in einem System",
       "subtitle": "Sechs verbundene Module statt sechs getrennter Tools.",
       "items": {
-        "crm": { "title": "CRM & Kontakte", "description": "Leads, Kunden und Chancen in einer einzigen Pipeline verwalten." },
-        "calendar": { "title": "Kalender & Termine", "description": "Meetings und Buchungen planen, ohne Doppelbelegungen." },
-        "projects": { "title": "Projekte & Aufgaben", "description": "Die Arbeit deines Teams mit klaren Fristen und Verantwortlichkeiten organisieren." },
-        "marketing": { "title": "Marketing & Automatisierung", "description": "Kampagnen, Segmente und Workflows, die von allein laufen." },
-        "helpdesk": { "title": "Helpdesk & Wissensdatenbank", "description": "Kunden schneller antworten dank gemeinsamer Wissensdatenbank." },
-        "people": { "title": "Personal & Abwesenheiten", "description": "Urlaub, Spesen und Wohlbefinden des Teams an einem Ort." }
+        "crm": {
+          "title": "CRM & Kontakte",
+          "description": "Leads, Kunden und Chancen in einer einzigen Pipeline verwalten."
+        },
+        "calendar": {
+          "title": "Kalender & Termine",
+          "description": "Meetings und Buchungen planen, ohne Doppelbelegungen."
+        },
+        "projects": {
+          "title": "Projekte & Aufgaben",
+          "description": "Die Arbeit deines Teams mit klaren Fristen und Verantwortlichkeiten organisieren."
+        },
+        "marketing": {
+          "title": "Marketing & Automatisierung",
+          "description": "Kampagnen, Segmente und Workflows, die von allein laufen."
+        },
+        "helpdesk": {
+          "title": "Helpdesk & Wissensdatenbank",
+          "description": "Kunden schneller antworten dank gemeinsamer Wissensdatenbank."
+        },
+        "people": {
+          "title": "Personal & Abwesenheiten",
+          "description": "Urlaub, Spesen und Wohlbefinden des Teams an einem Ort."
+        }
       }
     },
     "customers": {
@@ -1375,21 +1406,49 @@
       "title": "Ein System, das sich deiner Branche anpasst",
       "subtitle": "Kein Team arbeitet gleich — VORA zwingt keins dazu.",
       "items": {
-        "agencies": { "title": "Agenturen & Fachkanzleien", "description": "Kundenverwaltung, zeitgebundene Projekte und transparente Abrechnung." },
-        "smes": { "title": "Dienstleistungs-KMU", "description": "CRM, Kalender und Helpdesk vereint, damit kein Kunde verloren geht." },
-        "sales": { "title": "Marketing- & Vertriebsteams", "description": "Kampagnen und Automatisierungen, die die Pipeline füllen." },
-        "hr": { "title": "HR & People Ops", "description": "Urlaub, Anwesenheit und Wohlbefinden ohne Excel-Tabellen." }
+        "agencies": {
+          "title": "Agenturen & Fachkanzleien",
+          "description": "Kundenverwaltung, zeitgebundene Projekte und transparente Abrechnung."
+        },
+        "smes": {
+          "title": "Dienstleistungs-KMU",
+          "description": "CRM, Kalender und Helpdesk vereint, damit kein Kunde verloren geht."
+        },
+        "sales": {
+          "title": "Marketing- & Vertriebsteams",
+          "description": "Kampagnen und Automatisierungen, die die Pipeline füllen."
+        },
+        "hr": {
+          "title": "HR & People Ops",
+          "description": "Urlaub, Anwesenheit und Wohlbefinden ohne Excel-Tabellen."
+        }
       }
     },
     "automation": {
       "eyebrow": "Automatisierungen",
       "title": "Workflows, die auch ohne dich laufen",
       "subtitle": "Echte Trigger-Bedingung-Aktion-Regeln, keine simplen Erinnerungen.",
-      "labels": { "trigger": "Trigger", "condition": "Bedingung", "action": "Aktion" },
+      "labels": {
+        "trigger": "Trigger",
+        "condition": "Bedingung",
+        "action": "Aktion"
+      },
       "items": {
-        "contact": { "trigger": "Neuer Kontakt erstellt", "condition": "Quelle = Website", "action": "Willkommens-E-Mail senden und Vertriebler zuweisen" },
-        "appointment": { "trigger": "Termin in 24 Stunden", "condition": "noch nicht bestätigt", "action": "Automatische Erinnerung senden" },
-        "invoice": { "trigger": "Rechnung seit 7 Tagen überfällig", "condition": "weiterhin unbezahlt", "action": "Mahn-Aufgabe erstellen und Team benachrichtigen" }
+        "contact": {
+          "trigger": "Neuer Kontakt erstellt",
+          "condition": "Quelle = Website",
+          "action": "Willkommens-E-Mail senden und Vertriebler zuweisen"
+        },
+        "appointment": {
+          "trigger": "Termin in 24 Stunden",
+          "condition": "noch nicht bestätigt",
+          "action": "Automatische Erinnerung senden"
+        },
+        "invoice": {
+          "trigger": "Rechnung seit 7 Tagen überfällig",
+          "condition": "weiterhin unbezahlt",
+          "action": "Mahn-Aufgabe erstellen und Team benachrichtigen"
+        }
       }
     },
     "pricing": {
@@ -1431,10 +1490,22 @@
       "subtitle": "Eine interaktive Produktvorschau — keine Anmeldung nötig.",
       "ctaTry": "Kostenlos testen",
       "tabs": {
-        "crm": { "label": "CRM", "caption": "Jeder Kontakt, Deal und jedes Gespräch in einer Pipeline." },
-        "calendar": { "label": "Kalender", "caption": "Termine und Team-Verfügbarkeit, immer synchron." },
-        "automation": { "label": "Automatisierung", "caption": "Regeln, die sich selbst auslösen, damit du es nicht musst." },
-        "projects": { "label": "Projekte", "caption": "Aufgaben, Fristen und Verantwortliche auf einen Blick." }
+        "crm": {
+          "label": "CRM",
+          "caption": "Jeder Kontakt, Deal und jedes Gespräch in einer Pipeline."
+        },
+        "calendar": {
+          "label": "Kalender",
+          "caption": "Termine und Team-Verfügbarkeit, immer synchron."
+        },
+        "automation": {
+          "label": "Automatisierung",
+          "caption": "Regeln, die sich selbst auslösen, damit du es nicht musst."
+        },
+        "projects": {
+          "label": "Projekte",
+          "caption": "Aufgaben, Fristen und Verantwortliche auf einen Blick."
+        }
       }
     },
     "contact": {
@@ -1467,6 +1538,299 @@
       "rejectedMessage": "Konto abgelehnt.",
       "error": "Etwas ist schiefgelaufen. Bitte versuche es erneut.",
       "redirecting": "Du wirst zum Dashboard weitergeleitet…"
+    }
+  },
+  "attendance": {
+    "title": "Anwesenheit",
+    "subtitle": "{count} Einträge",
+    "new": "Neuer Eintrag",
+    "empty": {
+      "title": "Anwesenheit",
+      "subtitle": "Noch keine Einträge.",
+      "cta": "Neuer Eintrag"
+    },
+    "errors": {
+      "load": "Anwesenheit konnte nicht geladen werden.",
+      "save": "Eintrag konnte nicht gespeichert werden.",
+      "delete": "Eintrag konnte nicht gelöscht werden."
+    },
+    "columns": {
+      "employee": "Mitarbeiter",
+      "date": "Datum",
+      "checkIn": "Kommt",
+      "checkOut": "Geht"
+    },
+    "form": {
+      "newTitle": "Neuer Eintrag",
+      "editTitle": "Eintrag bearbeiten",
+      "employeeName": "Mitarbeiter",
+      "selectEmployee": "Mitarbeiter auswählen",
+      "date": "Datum",
+      "checkIn": "Kommt",
+      "checkOut": "Geht",
+      "notes": "Notizen",
+      "save": "Speichern",
+      "saving": "Speichern...",
+      "delete": "Löschen",
+      "cancel": "Abbrechen"
+    },
+    "deleteConfirm": "Diesen Eintrag löschen? Kann nicht rückgängig gemacht werden.",
+    "loadMore": "Mehr laden",
+    "loadingMore": "Wird geladen..."
+  },
+  "recruiting": {
+    "title": "Personalauswahl",
+    "subtitle": "{count} Kandidaten",
+    "new": "Neuer Kandidat",
+    "empty": {
+      "title": "Personalauswahl",
+      "subtitle": "Keine Kandidaten.",
+      "cta": "Neuer Kandidat"
+    },
+    "errors": {
+      "load": "Kandidaten konnten nicht geladen werden.",
+      "save": "Kandidat konnte nicht gespeichert werden.",
+      "delete": "Kandidat konnte nicht gelöscht werden."
+    },
+    "columns": {
+      "name": "Name",
+      "role": "Position",
+      "source": "Quelle",
+      "stage": "Phase"
+    },
+    "stage": {
+      "applied": "Bewerbung eingegangen",
+      "screening": "Vorauswahl",
+      "interview": "Interview",
+      "offer": "Angebot",
+      "hired": "Eingestellt",
+      "rejected": "Abgelehnt"
+    },
+    "source": {
+      "website": "Website",
+      "referral": "Empfehlung",
+      "linkedin": "LinkedIn",
+      "agency": "Agentur",
+      "other": "Sonstiges"
+    },
+    "form": {
+      "newTitle": "Neuer Kandidat",
+      "editTitle": "Kandidat bearbeiten",
+      "firstName": "Vorname",
+      "lastName": "Nachname",
+      "email": "E-Mail",
+      "phone": "Telefon",
+      "role": "Position",
+      "stage": "Phase",
+      "source": "Quelle",
+      "resumeUrl": "Lebenslauf-Link",
+      "notes": "Notizen",
+      "interviewDate": "Interviewtermin",
+      "save": "Speichern",
+      "saving": "Speichern...",
+      "delete": "Löschen",
+      "cancel": "Abbrechen"
+    },
+    "deleteConfirm": "Diesen Kandidaten löschen? Kann nicht rückgängig gemacht werden.",
+    "loadMore": "Mehr laden",
+    "loadingMore": "Wird geladen..."
+  },
+  "performanceReviews": {
+    "title": "Leistungsbeurteilungen",
+    "subtitle": "{count} Beurteilungen",
+    "new": "Neue Beurteilung",
+    "empty": {
+      "title": "Leistungsbeurteilungen",
+      "subtitle": "Keine Beurteilungen.",
+      "cta": "Neue Beurteilung"
+    },
+    "errors": {
+      "load": "Beurteilungen konnten nicht geladen werden.",
+      "save": "Beurteilung konnte nicht gespeichert werden.",
+      "delete": "Beurteilung konnte nicht gelöscht werden."
+    },
+    "columns": {
+      "employee": "Mitarbeiter",
+      "period": "Zeitraum",
+      "rating": "Bewertung",
+      "status": "Status"
+    },
+    "status": {
+      "draft": "Entwurf",
+      "submitted": "Eingereicht",
+      "completed": "Abgeschlossen"
+    },
+    "form": {
+      "newTitle": "Neue Beurteilung",
+      "editTitle": "Beurteilung bearbeiten",
+      "employeeName": "Mitarbeiter",
+      "selectEmployee": "Mitarbeiter auswählen",
+      "period": "Zeitraum",
+      "reviewerName": "Beurteiler",
+      "rating": "Bewertung (1-5)",
+      "status": "Status",
+      "reviewDate": "Datum",
+      "strengths": "Stärken",
+      "improvements": "Verbesserungsbereiche",
+      "goals": "Ziele",
+      "save": "Speichern",
+      "saving": "Speichern...",
+      "delete": "Löschen",
+      "cancel": "Abbrechen"
+    },
+    "deleteConfirm": "Diese Beurteilung löschen? Kann nicht rückgängig gemacht werden.",
+    "loadMore": "Mehr laden",
+    "loadingMore": "Wird geladen..."
+  },
+  "training": {
+    "title": "Schulung",
+    "subtitle": "{count} Kurse",
+    "new": "Neuer Kurs",
+    "empty": {
+      "title": "Schulung",
+      "subtitle": "Keine Kurse.",
+      "cta": "Neuer Kurs"
+    },
+    "errors": {
+      "load": "Kurse konnten nicht geladen werden.",
+      "save": "Kurs konnte nicht gespeichert werden.",
+      "delete": "Kurs konnte nicht gelöscht werden."
+    },
+    "columns": {
+      "title": "Titel",
+      "employee": "Mitarbeiter",
+      "provider": "Anbieter",
+      "status": "Status"
+    },
+    "status": {
+      "planned": "Geplant",
+      "in_progress": "Läuft",
+      "completed": "Abgeschlossen"
+    },
+    "form": {
+      "newTitle": "Neuer Kurs",
+      "editTitle": "Kurs bearbeiten",
+      "title": "Kurstitel",
+      "employeeName": "Mitarbeiter",
+      "provider": "Anbieter",
+      "status": "Status",
+      "startDate": "Startdatum",
+      "completionDate": "Abschlussdatum",
+      "certificateUrl": "Zertifikatslink",
+      "notes": "Notizen",
+      "save": "Speichern",
+      "saving": "Speichern...",
+      "delete": "Löschen",
+      "cancel": "Abbrechen"
+    },
+    "deleteConfirm": "Diesen Kurs löschen? Kann nicht rückgängig gemacht werden.",
+    "loadMore": "Mehr laden",
+    "loadingMore": "Wird geladen..."
+  },
+  "welfare": {
+    "title": "Mitarbeiter-Benefits",
+    "subtitle": "{count} Initiativen",
+    "new": "Neue Initiative",
+    "empty": {
+      "title": "Mitarbeiter-Benefits",
+      "subtitle": "Keine Wohlfahrtsinitiativen.",
+      "cta": "Neue Initiative"
+    },
+    "errors": {
+      "load": "Wohlfahrtsinitiativen konnten nicht geladen werden.",
+      "save": "Initiative konnte nicht gespeichert werden.",
+      "delete": "Initiative konnte nicht gelöscht werden."
+    },
+    "columns": {
+      "title": "Titel",
+      "category": "Kategorie",
+      "enrolledCount": "Teilnehmer",
+      "status": "Status"
+    },
+    "category": {
+      "health": "Gesundheit",
+      "meal": "Essensgutscheine",
+      "transport": "Transport",
+      "wellness": "Wellness",
+      "other": "Sonstiges"
+    },
+    "status": {
+      "active": "Aktiv",
+      "inactive": "Inaktiv"
+    },
+    "form": {
+      "newTitle": "Neue Initiative",
+      "editTitle": "Initiative bearbeiten",
+      "title": "Titel",
+      "description": "Beschreibung",
+      "category": "Kategorie",
+      "status": "Status",
+      "enrolledCount": "Anzahl Teilnehmer",
+      "startDate": "Startdatum",
+      "endDate": "Enddatum",
+      "notes": "Notizen",
+      "save": "Speichern",
+      "saving": "Speichern...",
+      "delete": "Löschen",
+      "cancel": "Abbrechen"
+    },
+    "deleteConfirm": "Diese Initiative löschen? Kann nicht rückgängig gemacht werden.",
+    "loadMore": "Mehr laden",
+    "loadingMore": "Wird geladen..."
+  },
+  "payroll": {
+    "title": "Gehaltsabrechnung",
+    "subtitle": "{count} Abrechnungen",
+    "new": "Neue Abrechnung",
+    "disclaimer": "Nur Daten und Dokumente: Beträge werden manuell erfasst, keine automatische Steuer- oder Beitragsberechnung.",
+    "empty": {
+      "title": "Gehaltsabrechnung",
+      "subtitle": "Keine Abrechnungen erfasst.",
+      "cta": "Neue Abrechnung"
+    },
+    "errors": {
+      "load": "Abrechnungen konnten nicht geladen werden.",
+      "save": "Abrechnung konnte nicht gespeichert werden.",
+      "delete": "Abrechnung konnte nicht gelöscht werden."
+    },
+    "columns": {
+      "employee": "Mitarbeiter",
+      "period": "Zeitraum",
+      "netAmount": "Netto",
+      "status": "Status"
+    },
+    "status": {
+      "draft": "Entwurf",
+      "issued": "Ausgestellt",
+      "paid": "Bezahlt"
+    },
+    "form": {
+      "newTitle": "Neue Abrechnung",
+      "editTitle": "Abrechnung bearbeiten",
+      "employeeName": "Mitarbeiter",
+      "selectEmployee": "Mitarbeiter auswählen",
+      "period": "Zeitraum",
+      "status": "Status",
+      "grossAmount": "Bruttobetrag",
+      "netAmount": "Nettobetrag",
+      "payslipUrl": "Link zur Abrechnung",
+      "paidAt": "Zahlungsdatum",
+      "notes": "Notizen",
+      "save": "Speichern",
+      "saving": "Speichern...",
+      "delete": "Löschen",
+      "cancel": "Abbrechen"
+    },
+    "deleteConfirm": "Diese Abrechnung löschen? Kann nicht rückgängig gemacht werden.",
+    "loadMore": "Mehr laden",
+    "loadingMore": "Wird geladen..."
+  },
+  "orgChart": {
+    "title": "Organigramm",
+    "subtitle": "Unternehmensstruktur",
+    "empty": {
+      "title": "Organigramm",
+      "subtitle": "Keine Mitarbeiter anzuzeigen."
     }
   }
 }

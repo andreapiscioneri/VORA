@@ -29,4 +29,4 @@ export interface CalendarEvent {
   updatedAt: string
 }
 
-export type CalendarEventInput = Omit<CalendarEvent, 'id' | 'createdAt' | 'updatedAt'>
+export type CalendarEventInput = Omit<CalendarEvent, 'id' | 'createdAt' | 'updatedAt' | 'createdBy'>

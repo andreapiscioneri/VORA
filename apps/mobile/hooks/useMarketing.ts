@@ -136,6 +136,12 @@ export function useMarketing() {
     setCampaigns((prev) => prev.filter((c) => c.id !== id))
   }, [])
 
+  const sendCampaign = useCallback(async (id: string) => {
+    const result = await api.post<{ campaign: MarketingCampaign }>(`/campaigns/${id}/send`, {})
+    setCampaigns((prev) => prev.map((c) => (c.id === id ? result.campaign : c)))
+    return result
+  }, [])
+
   return {
     campaigns,
     templates,
@@ -156,5 +162,6 @@ export function useMarketing() {
     createCampaign,
     updateCampaign,
     removeCampaign,
+    sendCampaign,
   }
 }

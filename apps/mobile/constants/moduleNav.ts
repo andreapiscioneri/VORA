@@ -2,6 +2,7 @@
 // (more.tsx) lists them all, and the dashboard hamburger menu (Screen.tsx)
 // reuses the same list for quick access without a tab switch.
 export const MODULE_NAV_ITEMS = [
+  { key: 'attendance', route: '/attendance' },
   { key: 'contacts', route: '/contacts' },
   { key: 'crm', route: '/crm' },
   { key: 'projects', route: '/projects' },
@@ -11,6 +12,12 @@ export const MODULE_NAV_ITEMS = [
   { key: 'leave', route: '/leave' },
   { key: 'expenses', route: '/expenses' },
   { key: 'employees', route: '/employees' },
+  { key: 'orgChart', route: '/org-chart' },
+  { key: 'recruiting', route: '/recruiting' },
+  { key: 'performanceReviews', route: '/performance-reviews' },
+  { key: 'training', route: '/training' },
+  { key: 'welfare', route: '/welfare' },
+  { key: 'payroll', route: '/payroll' },
   { key: 'social', route: '/social' },
   { key: 'marketing', route: '/marketing' },
   { key: 'website', route: '/website' },

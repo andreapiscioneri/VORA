@@ -66,6 +66,8 @@
       "editTitle": "Aufgabe bearbeiten",
       "title": "Titel",
       "description": "Beschreibung",
+      "tags": "Tags",
+      "tagsPlaceholder": "Durch Kommas getrennt",
       "priority": "Priorität",
       "status": "Status",
       "deadline": "Frist",
@@ -208,6 +210,34 @@
       "settings": {
         "label": "Einstellungen",
         "desc": "Profil und Passwort"
+      },
+      "attendance": {
+        "label": "Anwesenheit",
+        "desc": "Kommen-/Gehen-Zeiterfassung"
+      },
+      "orgChart": {
+        "label": "Organigramm",
+        "desc": "Unternehmenshierarchie"
+      },
+      "recruiting": {
+        "label": "Personalauswahl",
+        "desc": "Bewerbungen und Interviews"
+      },
+      "performanceReviews": {
+        "label": "Leistungsbeurteilungen",
+        "desc": "Regelmäßige Mitarbeiterbeurteilungen"
+      },
+      "training": {
+        "label": "Weiterbildung",
+        "desc": "Kurse, Fristen und Zertifizierungen"
+      },
+      "welfare": {
+        "label": "Mitarbeiter-Benefits",
+        "desc": "Leistungen, Initiativen und Teilnahmen"
+      },
+      "payroll": {
+        "label": "Gehaltsabrechnung",
+        "desc": "Abrechnungen und Gehaltsdaten (nur Daten)"
       }
     },
     "madeBy": "Made by apdesign"
@@ -228,9 +258,17 @@
         "firstName": "Vorname",
         "lastName": "Nachname",
         "company": "Unternehmen",
+        "role": "Position",
         "email": "E-Mail",
         "phone": "Telefon",
+        "whatsapp": "WhatsApp",
+        "website": "Website",
+        "address": "Adresse",
+        "tags": "Tags",
+        "tagsPlaceholder": "Durch Kommas getrennt",
         "notes": "Notizen",
+        "lastContactAt": "Letzter Kontakt",
+        "nextActivityAt": "Nächste Aktivität",
         "status": "Status",
         "save": "Speichern",
         "saving": "Speichern...",
@@ -257,12 +295,25 @@
         "won": "Gewonnen",
         "lost": "Verloren"
       },
+      "source": {
+        "manual": "Manuell",
+        "website": "Website",
+        "referral": "Empfehlung",
+        "email": "E-Mail",
+        "whatsapp": "WhatsApp",
+        "import": "Import"
+      },
       "form": {
         "newTitle": "Neue Chance",
         "title": "Titel",
         "company": "Unternehmen",
         "value": "Wert (EUR)",
         "stage": "Phase",
+        "source": "Quelle",
+        "probability": "Wahrscheinlichkeit (%)",
+        "contact": "Kontakt",
+        "noContact": "Kein Kontakt",
+        "expectedCloseDate": "Voraussichtliches Abschlussdatum",
         "notes": "Notizen",
         "save": "Speichern",
         "saving": "Speichern...",
@@ -304,7 +355,40 @@
         "save": "Projekt konnte nicht gespeichert werden.",
         "delete": "Projekt konnte nicht gelöscht werden."
       },
-      "deleteConfirm": "Dieses Projekt löschen? Kann nicht rückgängig gemacht werden."
+      "deleteConfirm": "Dieses Projekt löschen? Kann nicht rückgängig gemacht werden.",
+      "milestones": {
+        "title": "Meilensteine",
+        "empty": "Keine Meilensteine.",
+        "form": {
+          "title": "Meilenstein-Titel",
+          "dueDate": "Fälligkeitsdatum",
+          "add": "Meilenstein hinzufügen"
+        },
+        "errors": {
+          "add": "Meilenstein konnte nicht hinzugefügt werden."
+        }
+      },
+      "documents": {
+        "title": "Dokumente",
+        "empty": "Keine Dokumente.",
+        "form": {
+          "title": "Dokumenttitel",
+          "url": "Link",
+          "add": "Dokument hinzufügen"
+        },
+        "errors": {
+          "add": "Dokument konnte nicht hinzugefügt werden."
+        }
+      },
+      "discussion": {
+        "title": "Diskussion",
+        "empty": "Keine Kommentare.",
+        "placeholder": "Kommentar schreiben...",
+        "add": "Kommentar hinzufügen",
+        "errors": {
+          "add": "Kommentar konnte nicht hinzugefügt werden."
+        }
+      }
     },
     "timesheets": {
       "title": "Zeiterfassung",
@@ -315,6 +399,8 @@
       "nonBillable": "Nicht abrechenbar",
       "form": {
         "newTitle": "Neuer Eintrag",
+        "employee": "Mitarbeiter",
+        "noEmployee": "Keiner",
         "date": "Datum",
         "durationMinutes": "Dauer (Minuten)",
         "description": "Beschreibung",
@@ -348,6 +434,7 @@
         "title": "Titel",
         "description": "Beschreibung",
         "priority": "Priorität",
+        "assignee": "Zugewiesen an",
         "save": "Speichern",
         "saving": "Speichern...",
         "editTitle": "Ticket bearbeiten",
@@ -365,7 +452,16 @@
         "save": "Ticket konnte nicht gespeichert werden.",
         "delete": "Ticket konnte nicht gelöscht werden."
       },
-      "deleteConfirm": "Dieses Ticket löschen? Kann nicht rückgängig gemacht werden."
+      "deleteConfirm": "Dieses Ticket löschen? Kann nicht rückgängig gemacht werden.",
+      "comments": {
+        "title": "Kommentare",
+        "empty": "Keine Kommentare.",
+        "placeholder": "Kommentar schreiben...",
+        "add": "Kommentar hinzufügen",
+        "errors": {
+          "add": "Kommentar konnte nicht hinzugefügt werden."
+        }
+      }
     },
     "leave": {
       "title": "Urlaub",
@@ -465,12 +561,37 @@
         "saving": "Wird gespeichert...",
         "editTitle": "Mitarbeitende bearbeiten",
         "newTitle": "Neue Mitarbeitende",
-        "delete": "Löschen"
+        "delete": "Löschen",
+        "manager": "Vorgesetzter",
+        "managerNone": "Keiner"
       },
       "deleteConfirm": "Diese Mitarbeitenden löschen? Dies kann nicht rückgängig gemacht werden.",
       "errors": {
         "save": "Die Mitarbeitenden konnten nicht gespeichert werden.",
         "delete": "Die Mitarbeitenden konnten nicht gelöscht werden."
+      },
+      "documents": {
+        "title": "Dokumente",
+        "add": "Dokument hinzufügen",
+        "empty": "Keine Dokumente.",
+        "docType": {
+          "contract": "Vertrag",
+          "certificate": "Zertifikat",
+          "id": "Ausweisdokument",
+          "other": "Sonstiges"
+        },
+        "form": {
+          "title": "Titel",
+          "type": "Typ",
+          "expiryDate": "Ablaufdatum (optional)",
+          "url": "Datei-Link",
+          "add": "Hinzufügen"
+        },
+        "deleteConfirm": "Dieses Dokument entfernen?",
+        "errors": {
+          "add": "Dokument konnte nicht hinzugefügt werden.",
+          "delete": "Dokument konnte nicht entfernt werden."
+        }
       }
     },
     "expenses": {
@@ -627,13 +748,17 @@
         "saving": "Speichern...",
         "editTitle": "Kampagne bearbeiten",
         "delete": "Löschen",
-        "cancel": "Abbrechen"
+        "cancel": "Abbrechen",
+        "send": "Kampagne senden",
+        "sending": "Wird gesendet..."
       },
       "errors": {
         "save": "Kampagne konnte nicht gespeichert werden.",
-        "delete": "Kampagne konnte nicht gelöscht werden."
+        "delete": "Kampagne konnte nicht gelöscht werden.",
+        "send": "Kampagne konnte nicht gesendet werden."
       },
-      "deleteConfirm": "Diese Kampagne löschen? Kann nicht rückgängig gemacht werden."
+      "deleteConfirm": "Diese Kampagne löschen? Kann nicht rückgängig gemacht werden.",
+      "sentAt": "Gesendet am {{date}}"
     },
     "website": {
       "title": "Website",
@@ -669,6 +794,217 @@
         "fair": "Ausreichend",
         "good": "Gut",
         "strong": "Stark"
+      }
+    },
+    "attendance": {
+      "title": "Anwesenheit",
+      "count": "{{count}} Einträge",
+      "error": "Anwesenheit konnte nicht geladen werden. ({{error}})",
+      "empty": "Noch keine Einträge.",
+      "form": {
+        "newTitle": "Neuer Eintrag",
+        "editTitle": "Eintrag bearbeiten",
+        "employeeName": "Mitarbeiter",
+        "date": "Datum",
+        "checkIn": "Kommt",
+        "checkOut": "Geht",
+        "notes": "Notizen",
+        "save": "Speichern",
+        "saving": "Speichern...",
+        "delete": "Löschen",
+        "cancel": "Abbrechen"
+      },
+      "deleteConfirm": "Diesen Eintrag löschen? Kann nicht rückgängig gemacht werden.",
+      "errors": {
+        "save": "Eintrag konnte nicht gespeichert werden.",
+        "delete": "Eintrag konnte nicht gelöscht werden."
+      }
+    },
+    "orgChart": {
+      "title": "Organigramm",
+      "subtitle": "Unternehmensstruktur",
+      "empty": "Keine Mitarbeiter anzuzeigen.",
+      "error": "Organigramm konnte nicht geladen werden. ({{error}})"
+    },
+    "recruiting": {
+      "title": "Personalauswahl",
+      "count": "{{count}} Kandidaten",
+      "error": "Kandidaten konnten nicht geladen werden. ({{error}})",
+      "empty": "Keine Kandidaten.",
+      "stage": {
+        "applied": "Bewerbung eingegangen",
+        "screening": "Vorauswahl",
+        "interview": "Interview",
+        "offer": "Angebot",
+        "hired": "Eingestellt",
+        "rejected": "Abgelehnt"
+      },
+      "source": {
+        "website": "Website",
+        "referral": "Empfehlung",
+        "linkedin": "LinkedIn",
+        "agency": "Agentur",
+        "other": "Sonstiges"
+      },
+      "form": {
+        "newTitle": "Neuer Kandidat",
+        "editTitle": "Kandidat bearbeiten",
+        "firstName": "Vorname",
+        "lastName": "Nachname",
+        "email": "E-Mail",
+        "phone": "Telefon",
+        "role": "Position",
+        "stage": "Phase",
+        "source": "Quelle",
+        "resumeUrl": "Lebenslauf-Link",
+        "notes": "Notizen",
+        "interviewDate": "Interviewtermin",
+        "save": "Speichern",
+        "saving": "Speichern...",
+        "delete": "Löschen",
+        "cancel": "Abbrechen"
+      },
+      "deleteConfirm": "Diesen Kandidaten löschen? Kann nicht rückgängig gemacht werden.",
+      "errors": {
+        "save": "Kandidat konnte nicht gespeichert werden.",
+        "delete": "Kandidat konnte nicht gelöscht werden."
+      }
+    },
+    "performanceReviews": {
+      "title": "Leistungsbeurteilungen",
+      "count": "{{count}} Beurteilungen",
+      "error": "Beurteilungen konnten nicht geladen werden. ({{error}})",
+      "empty": "Keine Beurteilungen.",
+      "status": {
+        "draft": "Entwurf",
+        "submitted": "Eingereicht",
+        "completed": "Abgeschlossen"
+      },
+      "form": {
+        "newTitle": "Neue Beurteilung",
+        "editTitle": "Beurteilung bearbeiten",
+        "employeeName": "Mitarbeiter",
+        "period": "Zeitraum",
+        "reviewerName": "Beurteiler",
+        "rating": "Bewertung (1-5)",
+        "strengths": "Stärken",
+        "improvements": "Verbesserungsbereiche",
+        "goals": "Ziele",
+        "status": "Status",
+        "save": "Speichern",
+        "saving": "Speichern...",
+        "delete": "Löschen",
+        "cancel": "Abbrechen"
+      },
+      "deleteConfirm": "Diese Beurteilung löschen? Kann nicht rückgängig gemacht werden.",
+      "errors": {
+        "save": "Beurteilung konnte nicht gespeichert werden.",
+        "delete": "Beurteilung konnte nicht gelöscht werden."
+      }
+    },
+    "training": {
+      "title": "Weiterbildung",
+      "count": "{{count}} Kurse",
+      "error": "Kurse konnten nicht geladen werden. ({{error}})",
+      "empty": "Keine Kurse.",
+      "status": {
+        "planned": "Geplant",
+        "in_progress": "Läuft",
+        "completed": "Abgeschlossen"
+      },
+      "form": {
+        "newTitle": "Neuer Kurs",
+        "editTitle": "Kurs bearbeiten",
+        "title": "Kurstitel",
+        "employeeName": "Mitarbeiter",
+        "provider": "Anbieter",
+        "status": "Status",
+        "startDate": "Startdatum",
+        "completionDate": "Abschlussdatum",
+        "certificateUrl": "Zertifikat-Link",
+        "notes": "Notizen",
+        "save": "Speichern",
+        "saving": "Speichern...",
+        "delete": "Löschen",
+        "cancel": "Abbrechen"
+      },
+      "deleteConfirm": "Diesen Kurs löschen? Kann nicht rückgängig gemacht werden.",
+      "errors": {
+        "save": "Kurs konnte nicht gespeichert werden.",
+        "delete": "Kurs konnte nicht gelöscht werden."
+      }
+    },
+    "welfare": {
+      "title": "Mitarbeiter-Benefits",
+      "count": "{{count}} Initiativen",
+      "error": "Wohlfahrtsinitiativen konnten nicht geladen werden. ({{error}})",
+      "empty": "Keine Wohlfahrtsinitiativen.",
+      "category": {
+        "health": "Gesundheit",
+        "meal": "Essensgutscheine",
+        "transport": "Transport",
+        "wellness": "Wellness",
+        "other": "Sonstiges"
+      },
+      "status": {
+        "active": "Aktiv",
+        "inactive": "Inaktiv"
+      },
+      "enrolledCount": "{{count}} Teilnehmer",
+      "form": {
+        "newTitle": "Neue Initiative",
+        "editTitle": "Initiative bearbeiten",
+        "title": "Titel",
+        "description": "Beschreibung",
+        "category": "Kategorie",
+        "status": "Status",
+        "enrolledCount": "Anzahl Teilnehmer",
+        "startDate": "Startdatum",
+        "endDate": "Enddatum",
+        "notes": "Notizen",
+        "save": "Speichern",
+        "saving": "Wird gespeichert...",
+        "delete": "Löschen",
+        "cancel": "Abbrechen"
+      },
+      "deleteConfirm": "Diese Initiative löschen? Dies kann nicht rückgängig gemacht werden.",
+      "errors": {
+        "save": "Initiative konnte nicht gespeichert werden.",
+        "delete": "Initiative konnte nicht gelöscht werden."
+      }
+    },
+    "payroll": {
+      "title": "Gehaltsabrechnung",
+      "count": "{{count}} Abrechnungen",
+      "error": "Abrechnungen konnten nicht geladen werden. ({{error}})",
+      "empty": "Keine Abrechnungen erfasst.",
+      "disclaimer": "Nur Daten und Dokumente: Beträge werden manuell erfasst, keine automatische Steuer- oder Beitragsberechnung.",
+      "status": {
+        "draft": "Entwurf",
+        "issued": "Ausgestellt",
+        "paid": "Bezahlt"
+      },
+      "net": "Netto {{amount}}",
+      "form": {
+        "newTitle": "Neue Abrechnung",
+        "editTitle": "Abrechnung bearbeiten",
+        "employeeName": "Mitarbeiter",
+        "period": "Zeitraum",
+        "grossAmount": "Bruttobetrag",
+        "netAmount": "Nettobetrag",
+        "status": "Status",
+        "payslipUrl": "Link zur Abrechnung",
+        "paidAt": "Zahlungsdatum",
+        "notes": "Notizen",
+        "save": "Speichern",
+        "saving": "Wird gespeichert...",
+        "delete": "Löschen",
+        "cancel": "Abbrechen"
+      },
+      "deleteConfirm": "Diese Abrechnung löschen? Dies kann nicht rückgängig gemacht werden.",
+      "errors": {
+        "save": "Abrechnung konnte nicht gespeichert werden.",
+        "delete": "Abrechnung konnte nicht gelöscht werden."
       }
     }
   },

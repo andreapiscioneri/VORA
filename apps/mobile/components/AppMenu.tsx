@@ -7,6 +7,7 @@ import { Wordmark } from './Wordmark'
 import { Icon } from './Icon'
 import { Flag } from './Flag'
 import { MODULE_NAV_ITEMS } from '../constants/moduleNav'
+import { MODULE_ICONS } from '../constants/moduleIcons'
 import { radius, spacing } from '../constants/theme'
 import { useTheme, ThemeMode } from '../contexts/ThemeContext'
 import { useI18n, LOCALE_CODES, LOCALE_NAMES, Locale } from '../i18n'
@@ -130,10 +131,15 @@ export function AppMenu({ visible, onClose }: { visible: boolean; onClose: () =>
                 onClose()
                 router.push(route)
               }}
-              style={[styles.row, { backgroundColor: colors.surface }]}
+              style={({ pressed }) => [styles.row, { backgroundColor: colors.surface }, pressed && styles.rowPressed]}
               accessibilityRole="button"
             >
-              <Text style={[styles.rowLabel, { color: colors.textPrimary }]}>{t(`more.items.${key}.label`)}</Text>
+              <View style={styles.langCurrent}>
+                <View style={[styles.rowIcon, { backgroundColor: colors.background }]}>
+                  <Icon name={MODULE_ICONS[key] ?? 'chevron-right'} size={16} color={colors.primary} />
+                </View>
+                <Text style={[styles.rowLabel, { color: colors.textPrimary }]}>{t(`more.items.${key}.label`)}</Text>
+              </View>
               <Icon name="chevron-right" size={18} color={colors.textSecondary} />
             </Pressable>
           ))}
@@ -181,6 +187,8 @@ const styles = StyleSheet.create({
   segmentText: { fontSize: 12, fontWeight: '600' },
   langCurrent: { flexDirection: 'row', alignItems: 'center', gap: spacing(2) },
   row: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between', borderRadius: radius.md, paddingVertical: spacing(4), paddingHorizontal: spacing(4) },
+  rowPressed: { opacity: 0.65, transform: [{ scale: 0.99 }] },
+  rowIcon: { width: 30, height: 30, borderRadius: radius.full, alignItems: 'center', justifyContent: 'center' },
   rowLabel: { fontSize: 15, fontWeight: '600' },
   modalBackdrop: { flex: 1, backgroundColor: 'rgba(0,0,0,0.5)', justifyContent: 'flex-end' },
   modalSheet: { borderTopLeftRadius: radius.lg, borderTopRightRadius: radius.lg, padding: spacing(5), paddingBottom: spacing(10), maxHeight: '70%', gap: spacing(2) },

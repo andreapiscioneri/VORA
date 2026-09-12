@@ -93,7 +93,14 @@
     "settings": "Settings",
     "templates": "Templates",
     "segments": "Segments",
-    "automations": "Automations"
+    "automations": "Automations",
+    "attendance": "Attendance",
+    "orgChart": "Org Chart",
+    "recruiting": "Recruiting",
+    "performanceReviews": "Performance Reviews",
+    "training": "Training",
+    "welfare": "Employee Welfare",
+    "payroll": "Payroll"
   },
   "topbar": {
     "search": "Search...",
@@ -459,6 +466,8 @@
       "delete": "Couldn't delete the entry."
     },
     "form": {
+      "employee": "Employee",
+      "noEmployee": "None",
       "project": "Project",
       "noProject": "No linked project",
       "task": "Task",
@@ -669,6 +678,8 @@
       "contact": "Customer",
       "noContact": "No linked customer",
       "priority": "Priority",
+      "assignee": "Assignee",
+      "noAssignee": "None",
       "status": "Status",
       "category": "Category",
       "cancel": "Cancel",
@@ -963,6 +974,8 @@
       "team": "Team",
       "status": "Status",
       "startDate": "Start date",
+      "manager": "Manager",
+      "managerNone": "None",
       "cancel": "Cancel",
       "save": "Save",
       "saving": "Saving...",
@@ -1362,12 +1375,30 @@
       "title": "Everything your team needs, in one system",
       "subtitle": "Six connected modules instead of six disconnected tools.",
       "items": {
-        "crm": { "title": "CRM & Contacts", "description": "Manage leads, customers, and opportunities in a single pipeline." },
-        "calendar": { "title": "Calendar & Appointments", "description": "Schedule meetings and bookings without anyone double-booking." },
-        "projects": { "title": "Projects & Tasks", "description": "Organize your team's work with clear deadlines and owners." },
-        "marketing": { "title": "Marketing & Automations", "description": "Campaigns, segments, and workflows that run themselves." },
-        "helpdesk": { "title": "Helpdesk & Knowledge Base", "description": "Answer customers faster with a shared knowledge base." },
-        "people": { "title": "People & Time Off", "description": "Leave, expenses, and team wellbeing in one place." }
+        "crm": {
+          "title": "CRM & Contacts",
+          "description": "Manage leads, customers, and opportunities in a single pipeline."
+        },
+        "calendar": {
+          "title": "Calendar & Appointments",
+          "description": "Schedule meetings and bookings without anyone double-booking."
+        },
+        "projects": {
+          "title": "Projects & Tasks",
+          "description": "Organize your team's work with clear deadlines and owners."
+        },
+        "marketing": {
+          "title": "Marketing & Automations",
+          "description": "Campaigns, segments, and workflows that run themselves."
+        },
+        "helpdesk": {
+          "title": "Helpdesk & Knowledge Base",
+          "description": "Answer customers faster with a shared knowledge base."
+        },
+        "people": {
+          "title": "People & Time Off",
+          "description": "Leave, expenses, and team wellbeing in one place."
+        }
       }
     },
     "customers": {
@@ -1375,21 +1406,49 @@
       "title": "A system that adapts to your industry",
       "subtitle": "No two teams work the same way — VORA doesn't force them to.",
       "items": {
-        "agencies": { "title": "Agencies & professional studios", "description": "Client management, timed projects, and transparent billing." },
-        "smes": { "title": "Service-based SMEs", "description": "CRM, calendar, and helpdesk together, so no client slips through." },
-        "sales": { "title": "Marketing & sales teams", "description": "Campaigns and automations that keep the pipeline full." },
-        "hr": { "title": "HR & people ops", "description": "Leave, attendance, and wellbeing without spreadsheets." }
+        "agencies": {
+          "title": "Agencies & professional studios",
+          "description": "Client management, timed projects, and transparent billing."
+        },
+        "smes": {
+          "title": "Service-based SMEs",
+          "description": "CRM, calendar, and helpdesk together, so no client slips through."
+        },
+        "sales": {
+          "title": "Marketing & sales teams",
+          "description": "Campaigns and automations that keep the pipeline full."
+        },
+        "hr": {
+          "title": "HR & people ops",
+          "description": "Leave, attendance, and wellbeing without spreadsheets."
+        }
       }
     },
     "automation": {
       "eyebrow": "Automations",
       "title": "Workflows that work while you don't",
       "subtitle": "Real trigger → condition → action rules, not just reminders.",
-      "labels": { "trigger": "Trigger", "condition": "Condition", "action": "Action" },
+      "labels": {
+        "trigger": "Trigger",
+        "condition": "Condition",
+        "action": "Action"
+      },
       "items": {
-        "contact": { "trigger": "New contact created", "condition": "source = website", "action": "Send a welcome email and assign a rep" },
-        "appointment": { "trigger": "Appointment in 24 hours", "condition": "not confirmed yet", "action": "Send an automatic reminder" },
-        "invoice": { "trigger": "Invoice overdue by 7 days", "condition": "still unpaid", "action": "Create a follow-up task and notify the team" }
+        "contact": {
+          "trigger": "New contact created",
+          "condition": "source = website",
+          "action": "Send a welcome email and assign a rep"
+        },
+        "appointment": {
+          "trigger": "Appointment in 24 hours",
+          "condition": "not confirmed yet",
+          "action": "Send an automatic reminder"
+        },
+        "invoice": {
+          "trigger": "Invoice overdue by 7 days",
+          "condition": "still unpaid",
+          "action": "Create a follow-up task and notify the team"
+        }
       }
     },
     "pricing": {
@@ -1431,10 +1490,22 @@
       "subtitle": "An interactive preview of the product — no sign-up required.",
       "ctaTry": "Try it free",
       "tabs": {
-        "crm": { "label": "CRM", "caption": "Every contact, deal, and conversation in one pipeline." },
-        "calendar": { "label": "Calendar", "caption": "Appointments and team availability, always in sync." },
-        "automation": { "label": "Automations", "caption": "Rules that trigger themselves, so you don't have to." },
-        "projects": { "label": "Projects", "caption": "Tasks, deadlines, and owners at a glance." }
+        "crm": {
+          "label": "CRM",
+          "caption": "Every contact, deal, and conversation in one pipeline."
+        },
+        "calendar": {
+          "label": "Calendar",
+          "caption": "Appointments and team availability, always in sync."
+        },
+        "automation": {
+          "label": "Automations",
+          "caption": "Rules that trigger themselves, so you don't have to."
+        },
+        "projects": {
+          "label": "Projects",
+          "caption": "Tasks, deadlines, and owners at a glance."
+        }
       }
     },
     "contact": {
@@ -1467,6 +1538,299 @@
       "rejectedMessage": "Account rejected.",
       "error": "Something went wrong. Please try again.",
       "redirecting": "Taking you to the dashboard…"
+    }
+  },
+  "attendance": {
+    "title": "Attendance",
+    "subtitle": "{count} entries",
+    "new": "New entry",
+    "empty": {
+      "title": "Attendance",
+      "subtitle": "No attendance entries yet.",
+      "cta": "New entry"
+    },
+    "errors": {
+      "load": "Could not load attendance. Check that the Vora server is running.",
+      "save": "Could not save the entry.",
+      "delete": "Could not delete the entry."
+    },
+    "columns": {
+      "employee": "Employee",
+      "date": "Date",
+      "checkIn": "Check-in",
+      "checkOut": "Check-out"
+    },
+    "form": {
+      "newTitle": "New entry",
+      "editTitle": "Edit entry",
+      "employeeName": "Employee",
+      "selectEmployee": "Select an employee",
+      "date": "Date",
+      "checkIn": "Check-in",
+      "checkOut": "Check-out",
+      "notes": "Notes",
+      "save": "Save",
+      "saving": "Saving...",
+      "delete": "Delete",
+      "cancel": "Cancel"
+    },
+    "deleteConfirm": "Delete this entry? This cannot be undone.",
+    "loadMore": "Load more",
+    "loadingMore": "Loading..."
+  },
+  "recruiting": {
+    "title": "Recruiting",
+    "subtitle": "{count} candidates",
+    "new": "New candidate",
+    "empty": {
+      "title": "Recruiting",
+      "subtitle": "No candidates.",
+      "cta": "New candidate"
+    },
+    "errors": {
+      "load": "Could not load candidates.",
+      "save": "Could not save the candidate.",
+      "delete": "Could not delete the candidate."
+    },
+    "columns": {
+      "name": "Name",
+      "role": "Position",
+      "source": "Source",
+      "stage": "Stage"
+    },
+    "stage": {
+      "applied": "Applied",
+      "screening": "Screening",
+      "interview": "Interview",
+      "offer": "Offer",
+      "hired": "Hired",
+      "rejected": "Rejected"
+    },
+    "source": {
+      "website": "Website",
+      "referral": "Referral",
+      "linkedin": "LinkedIn",
+      "agency": "Agency",
+      "other": "Other"
+    },
+    "form": {
+      "newTitle": "New candidate",
+      "editTitle": "Edit candidate",
+      "firstName": "First name",
+      "lastName": "Last name",
+      "email": "Email",
+      "phone": "Phone",
+      "role": "Position",
+      "stage": "Stage",
+      "source": "Source",
+      "resumeUrl": "Resume link",
+      "notes": "Notes",
+      "interviewDate": "Interview date",
+      "save": "Save",
+      "saving": "Saving...",
+      "delete": "Delete",
+      "cancel": "Cancel"
+    },
+    "deleteConfirm": "Delete this candidate? This cannot be undone.",
+    "loadMore": "Load more",
+    "loadingMore": "Loading..."
+  },
+  "performanceReviews": {
+    "title": "Performance Reviews",
+    "subtitle": "{count} reviews",
+    "new": "New review",
+    "empty": {
+      "title": "Performance Reviews",
+      "subtitle": "No reviews.",
+      "cta": "New review"
+    },
+    "errors": {
+      "load": "Could not load reviews.",
+      "save": "Could not save the review.",
+      "delete": "Could not delete the review."
+    },
+    "columns": {
+      "employee": "Employee",
+      "period": "Period",
+      "rating": "Rating",
+      "status": "Status"
+    },
+    "status": {
+      "draft": "Draft",
+      "submitted": "Submitted",
+      "completed": "Completed"
+    },
+    "form": {
+      "newTitle": "New review",
+      "editTitle": "Edit review",
+      "employeeName": "Employee",
+      "selectEmployee": "Select an employee",
+      "period": "Period",
+      "reviewerName": "Reviewer",
+      "rating": "Rating (1-5)",
+      "status": "Status",
+      "reviewDate": "Date",
+      "strengths": "Strengths",
+      "improvements": "Areas to improve",
+      "goals": "Goals",
+      "save": "Save",
+      "saving": "Saving...",
+      "delete": "Delete",
+      "cancel": "Cancel"
+    },
+    "deleteConfirm": "Delete this review? This cannot be undone.",
+    "loadMore": "Load more",
+    "loadingMore": "Loading..."
+  },
+  "training": {
+    "title": "Training",
+    "subtitle": "{count} courses",
+    "new": "New course",
+    "empty": {
+      "title": "Training",
+      "subtitle": "No courses.",
+      "cta": "New course"
+    },
+    "errors": {
+      "load": "Unable to load courses.",
+      "save": "Unable to save the course.",
+      "delete": "Unable to delete the course."
+    },
+    "columns": {
+      "title": "Title",
+      "employee": "Employee",
+      "provider": "Provider",
+      "status": "Status"
+    },
+    "status": {
+      "planned": "Planned",
+      "in_progress": "In progress",
+      "completed": "Completed"
+    },
+    "form": {
+      "newTitle": "New course",
+      "editTitle": "Edit course",
+      "title": "Course title",
+      "employeeName": "Employee",
+      "provider": "Provider",
+      "status": "Status",
+      "startDate": "Start date",
+      "completionDate": "Completion date",
+      "certificateUrl": "Certificate link",
+      "notes": "Notes",
+      "save": "Save",
+      "saving": "Saving...",
+      "delete": "Delete",
+      "cancel": "Cancel"
+    },
+    "deleteConfirm": "Delete this course? This cannot be undone.",
+    "loadMore": "Load more",
+    "loadingMore": "Loading..."
+  },
+  "welfare": {
+    "title": "Employee Welfare",
+    "subtitle": "{count} initiatives",
+    "new": "New initiative",
+    "empty": {
+      "title": "Employee Welfare",
+      "subtitle": "No welfare initiatives.",
+      "cta": "New initiative"
+    },
+    "errors": {
+      "load": "Unable to load welfare initiatives.",
+      "save": "Unable to save the initiative.",
+      "delete": "Unable to delete the initiative."
+    },
+    "columns": {
+      "title": "Title",
+      "category": "Category",
+      "enrolledCount": "Enrolled",
+      "status": "Status"
+    },
+    "category": {
+      "health": "Health",
+      "meal": "Meal vouchers",
+      "transport": "Transport",
+      "wellness": "Wellness",
+      "other": "Other"
+    },
+    "status": {
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "form": {
+      "newTitle": "New initiative",
+      "editTitle": "Edit initiative",
+      "title": "Title",
+      "description": "Description",
+      "category": "Category",
+      "status": "Status",
+      "enrolledCount": "Enrolled count",
+      "startDate": "Start date",
+      "endDate": "End date",
+      "notes": "Notes",
+      "save": "Save",
+      "saving": "Saving...",
+      "delete": "Delete",
+      "cancel": "Cancel"
+    },
+    "deleteConfirm": "Delete this initiative? This cannot be undone.",
+    "loadMore": "Load more",
+    "loadingMore": "Loading..."
+  },
+  "payroll": {
+    "title": "Payroll",
+    "subtitle": "{count} payslips",
+    "new": "New payslip",
+    "disclaimer": "Data and documents only: amounts are entered manually, no automatic tax or contribution calculation.",
+    "empty": {
+      "title": "Payroll",
+      "subtitle": "No payslips recorded.",
+      "cta": "New payslip"
+    },
+    "errors": {
+      "load": "Unable to load payslips.",
+      "save": "Unable to save the payslip.",
+      "delete": "Unable to delete the payslip."
+    },
+    "columns": {
+      "employee": "Employee",
+      "period": "Period",
+      "netAmount": "Net amount",
+      "status": "Status"
+    },
+    "status": {
+      "draft": "Draft",
+      "issued": "Issued",
+      "paid": "Paid"
+    },
+    "form": {
+      "newTitle": "New payslip",
+      "editTitle": "Edit payslip",
+      "employeeName": "Employee",
+      "selectEmployee": "Select an employee",
+      "period": "Period",
+      "status": "Status",
+      "grossAmount": "Gross amount",
+      "netAmount": "Net amount",
+      "payslipUrl": "Payslip link",
+      "paidAt": "Paid on",
+      "notes": "Notes",
+      "save": "Save",
+      "saving": "Saving...",
+      "delete": "Delete",
+      "cancel": "Cancel"
+    },
+    "deleteConfirm": "Delete this payslip? This cannot be undone.",
+    "loadMore": "Load more",
+    "loadingMore": "Loading..."
+  },
+  "orgChart": {
+    "title": "Org Chart",
+    "subtitle": "Company structure",
+    "empty": {
+      "title": "Org Chart",
+      "subtitle": "No employees to show."
     }
   }
 }

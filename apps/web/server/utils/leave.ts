@@ -9,6 +9,7 @@ function toLeaveRequest(id: string, data: FirebaseFirestore.DocumentData): Leave
   return {
     id,
     requesterName: data.requesterName ?? '',
+    requesterId: data.requesterId ?? null,
     type: data.type ?? 'vacation',
     startDate: data.startDate ?? '',
     endDate: data.endDate ?? '',
@@ -38,12 +39,12 @@ export async function getLeaveRequest(id: string, organizationId: string): Promi
   return toLeaveRequest(doc.id, doc.data()!)
 }
 
-export async function createLeaveRequest(input: LeaveRequestInputSchema, organizationId: string): Promise<LeaveRequest> {
+export async function createLeaveRequest(input: LeaveRequestInputSchema, organizationId: string, requesterId: string | null): Promise<LeaveRequest> {
   const now = new Date().toISOString()
   const ref = await getDb()
     .collection(COLLECTION)
-    .add({ ...input, organizationId, createdAt: now, updatedAt: now })
-  return toLeaveRequest(ref.id, { ...input, createdAt: now, updatedAt: now })
+    .add({ ...input, requesterId, organizationId, createdAt: now, updatedAt: now })
+  return toLeaveRequest(ref.id, { ...input, requesterId, createdAt: now, updatedAt: now })
 }
 
 export async function updateLeaveRequest(id: string, input: LeaveRequestInputSchema, organizationId: string): Promise<LeaveRequest | null> {

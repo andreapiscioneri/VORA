@@ -2,6 +2,7 @@ import { ActivityIndicator, FlatList, Pressable, RefreshControl, StyleSheet, Tex
 import { useRouter } from 'expo-router'
 import { useOpportunities } from '../../hooks/useOpportunities'
 import { DetailScreen, StateMessage } from '../../components/Screen'
+import { SkeletonList } from '../../components/Skeleton'
 import { Icon } from '../../components/Icon'
 import { radius, spacing } from '../../constants/theme'
 import { useTheme } from '../../contexts/ThemeContext'
@@ -46,6 +47,8 @@ export default function CrmScreen() {
     >
       {error ? (
         <StateMessage text={t('modules.crm.error', { error })} />
+      ) : loading && opportunities.length === 0 ? (
+        <SkeletonList />
       ) : (
         <FlatList
           data={opportunities}

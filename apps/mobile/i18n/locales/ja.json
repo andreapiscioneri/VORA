@@ -66,6 +66,8 @@
       "editTitle": "タスクを編集",
       "title": "タイトル",
       "description": "説明",
+      "tags": "タグ",
+      "tagsPlaceholder": "カンマ区切り",
       "priority": "優先度",
       "status": "ステータス",
       "deadline": "期限",
@@ -208,6 +210,34 @@
       "settings": {
         "label": "設定",
         "desc": "プロフィールとパスワード"
+      },
+      "attendance": {
+        "label": "勤怠",
+        "desc": "出退勤の記録"
+      },
+      "orgChart": {
+        "label": "組織図",
+        "desc": "会社の階層"
+      },
+      "recruiting": {
+        "label": "採用選考",
+        "desc": "応募と面接"
+      },
+      "performanceReviews": {
+        "label": "人事評価",
+        "desc": "定期的な人事評価"
+      },
+      "training": {
+        "label": "研修",
+        "desc": "研修、期限、資格認定"
+      },
+      "welfare": {
+        "label": "従業員福利厚生",
+        "desc": "福利厚生、施策、参加状況"
+      },
+      "payroll": {
+        "label": "給与",
+        "desc": "給与明細と給与データ（データのみ）"
       }
     },
     "madeBy": "Made by apdesign"
@@ -228,9 +258,17 @@
         "firstName": "名",
         "lastName": "姓",
         "company": "会社",
+        "role": "役職",
         "email": "メール",
         "phone": "電話番号",
+        "whatsapp": "WhatsApp",
+        "website": "ウェブサイト",
+        "address": "住所",
+        "tags": "タグ",
+        "tagsPlaceholder": "カンマ区切り",
         "notes": "メモ",
+        "lastContactAt": "最終連絡日",
+        "nextActivityAt": "次のアクション",
         "status": "ステータス",
         "save": "保存",
         "saving": "保存中...",
@@ -257,12 +295,25 @@
         "won": "成約",
         "lost": "失注"
       },
+      "source": {
+        "manual": "手動",
+        "website": "ウェブサイト",
+        "referral": "紹介",
+        "email": "メール",
+        "whatsapp": "WhatsApp",
+        "import": "インポート"
+      },
       "form": {
         "newTitle": "新しい商談",
         "title": "タイトル",
         "company": "会社",
         "value": "金額 (EUR)",
         "stage": "ステージ",
+        "source": "ソース",
+        "probability": "確度 (%)",
+        "contact": "連絡先",
+        "noContact": "連絡先なし",
+        "expectedCloseDate": "成約予定日",
         "notes": "メモ",
         "save": "保存",
         "saving": "保存中...",
@@ -304,7 +355,40 @@
         "save": "プロジェクトを保存できませんでした。",
         "delete": "プロジェクトを削除できませんでした。"
       },
-      "deleteConfirm": "このプロジェクトを削除しますか？元に戻せません。"
+      "deleteConfirm": "このプロジェクトを削除しますか？元に戻せません。",
+      "milestones": {
+        "title": "マイルストーン",
+        "empty": "マイルストーンはありません。",
+        "form": {
+          "title": "マイルストーン名",
+          "dueDate": "期限",
+          "add": "マイルストーンを追加"
+        },
+        "errors": {
+          "add": "マイルストーンを追加できませんでした。"
+        }
+      },
+      "documents": {
+        "title": "書類",
+        "empty": "書類はありません。",
+        "form": {
+          "title": "書類タイトル",
+          "url": "リンク",
+          "add": "書類を追加"
+        },
+        "errors": {
+          "add": "書類を追加できませんでした。"
+        }
+      },
+      "discussion": {
+        "title": "ディスカッション",
+        "empty": "コメントはありません。",
+        "placeholder": "コメントを入力...",
+        "add": "コメントを追加",
+        "errors": {
+          "add": "コメントを追加できませんでした。"
+        }
+      }
     },
     "timesheets": {
       "title": "タイムシート",
@@ -315,6 +399,8 @@
       "nonBillable": "請求対象外",
       "form": {
         "newTitle": "新しいエントリ",
+        "employee": "従業員",
+        "noEmployee": "なし",
         "date": "日付",
         "durationMinutes": "時間 (分)",
         "description": "説明",
@@ -348,6 +434,7 @@
         "title": "タイトル",
         "description": "説明",
         "priority": "優先度",
+        "assignee": "担当者",
         "save": "保存",
         "saving": "保存中...",
         "editTitle": "チケットを編集",
@@ -365,7 +452,16 @@
         "save": "チケットを保存できませんでした。",
         "delete": "チケットを削除できませんでした。"
       },
-      "deleteConfirm": "このチケットを削除しますか？元に戻せません。"
+      "deleteConfirm": "このチケットを削除しますか？元に戻せません。",
+      "comments": {
+        "title": "コメント",
+        "empty": "コメントはありません。",
+        "placeholder": "コメントを入力...",
+        "add": "コメントを追加",
+        "errors": {
+          "add": "コメントを追加できませんでした。"
+        }
+      }
     },
     "leave": {
       "title": "休暇",
@@ -465,12 +561,37 @@
         "saving": "保存中...",
         "editTitle": "従業員情報を編集",
         "newTitle": "新規従業員",
-        "delete": "削除"
+        "delete": "削除",
+        "manager": "上司",
+        "managerNone": "なし"
       },
       "deleteConfirm": "この従業員を削除しますか？この操作は取り消せません。",
       "errors": {
         "save": "従業員を保存できませんでした。",
         "delete": "従業員を削除できませんでした。"
+      },
+      "documents": {
+        "title": "書類",
+        "add": "書類を追加",
+        "empty": "書類はありません。",
+        "docType": {
+          "contract": "契約書",
+          "certificate": "証明書",
+          "id": "身分証明書",
+          "other": "その他"
+        },
+        "form": {
+          "title": "タイトル",
+          "type": "種類",
+          "expiryDate": "有効期限（任意）",
+          "url": "ファイルリンク",
+          "add": "追加"
+        },
+        "deleteConfirm": "この書類を削除しますか？",
+        "errors": {
+          "add": "書類を追加できませんでした。",
+          "delete": "書類を削除できませんでした。"
+        }
       }
     },
     "expenses": {
@@ -627,13 +748,17 @@
         "saving": "保存中...",
         "editTitle": "キャンペーンを編集",
         "delete": "削除",
-        "cancel": "キャンセル"
+        "cancel": "キャンセル",
+        "send": "キャンペーンを送信",
+        "sending": "送信中..."
       },
       "errors": {
         "save": "キャンペーンを保存できませんでした。",
-        "delete": "キャンペーンを削除できませんでした。"
+        "delete": "キャンペーンを削除できませんでした。",
+        "send": "キャンペーンを送信できませんでした。"
       },
-      "deleteConfirm": "このキャンペーンを削除しますか？元に戻せません。"
+      "deleteConfirm": "このキャンペーンを削除しますか？元に戻せません。",
+      "sentAt": "{{date}} に送信済み"
     },
     "website": {
       "title": "ウェブサイト",
@@ -669,6 +794,217 @@
         "fair": "普通",
         "good": "良い",
         "strong": "強い"
+      }
+    },
+    "attendance": {
+      "title": "勤怠",
+      "count": "{{count}} 件の記録",
+      "error": "勤怠を読み込めませんでした。({{error}})",
+      "empty": "記録はまだありません。",
+      "form": {
+        "newTitle": "新しい記録",
+        "editTitle": "記録を編集",
+        "employeeName": "従業員",
+        "date": "日付",
+        "checkIn": "出勤",
+        "checkOut": "退勤",
+        "notes": "メモ",
+        "save": "保存",
+        "saving": "保存中...",
+        "delete": "削除",
+        "cancel": "キャンセル"
+      },
+      "deleteConfirm": "この記録を削除しますか？元に戻せません。",
+      "errors": {
+        "save": "記録を保存できませんでした。",
+        "delete": "記録を削除できませんでした。"
+      }
+    },
+    "orgChart": {
+      "title": "組織図",
+      "subtitle": "会社の構造",
+      "empty": "表示する従業員がいません。",
+      "error": "組織図を読み込めませんでした。({{error}})"
+    },
+    "recruiting": {
+      "title": "採用選考",
+      "count": "{{count}} 名の候補者",
+      "error": "候補者を読み込めませんでした。({{error}})",
+      "empty": "候補者はいません。",
+      "stage": {
+        "applied": "応募受付",
+        "screening": "書類選考",
+        "interview": "面接",
+        "offer": "内定",
+        "hired": "採用",
+        "rejected": "不採用"
+      },
+      "source": {
+        "website": "ウェブサイト",
+        "referral": "紹介",
+        "linkedin": "LinkedIn",
+        "agency": "エージェント",
+        "other": "その他"
+      },
+      "form": {
+        "newTitle": "新しい候補者",
+        "editTitle": "候補者を編集",
+        "firstName": "名",
+        "lastName": "姓",
+        "email": "メール",
+        "phone": "電話番号",
+        "role": "職種",
+        "stage": "選考段階",
+        "source": "応募経路",
+        "resumeUrl": "履歴書リンク",
+        "notes": "メモ",
+        "interviewDate": "面接日",
+        "save": "保存",
+        "saving": "保存中...",
+        "delete": "削除",
+        "cancel": "キャンセル"
+      },
+      "deleteConfirm": "この候補者を削除しますか？元に戻せません。",
+      "errors": {
+        "save": "候補者を保存できませんでした。",
+        "delete": "候補者を削除できませんでした。"
+      }
+    },
+    "performanceReviews": {
+      "title": "人事評価",
+      "count": "{{count}} 件の評価",
+      "error": "評価を読み込めませんでした。({{error}})",
+      "empty": "評価はありません。",
+      "status": {
+        "draft": "下書き",
+        "submitted": "提出済み",
+        "completed": "完了"
+      },
+      "form": {
+        "newTitle": "新しい評価",
+        "editTitle": "評価を編集",
+        "employeeName": "従業員",
+        "period": "期間",
+        "reviewerName": "評価者",
+        "rating": "評価 (1-5)",
+        "strengths": "強み",
+        "improvements": "改善点",
+        "goals": "目標",
+        "status": "ステータス",
+        "save": "保存",
+        "saving": "保存中...",
+        "delete": "削除",
+        "cancel": "キャンセル"
+      },
+      "deleteConfirm": "この評価を削除しますか？元に戻せません。",
+      "errors": {
+        "save": "評価を保存できませんでした。",
+        "delete": "評価を削除できませんでした。"
+      }
+    },
+    "training": {
+      "title": "研修",
+      "count": "{{count}} 件の研修",
+      "error": "研修を読み込めませんでした。({{error}})",
+      "empty": "研修はありません。",
+      "status": {
+        "planned": "予定",
+        "in_progress": "進行中",
+        "completed": "完了"
+      },
+      "form": {
+        "newTitle": "新しい研修",
+        "editTitle": "研修を編集",
+        "title": "研修タイトル",
+        "employeeName": "従業員",
+        "provider": "提供元",
+        "status": "ステータス",
+        "startDate": "開始日",
+        "completionDate": "完了日",
+        "certificateUrl": "証明書リンク",
+        "notes": "メモ",
+        "save": "保存",
+        "saving": "保存中...",
+        "delete": "削除",
+        "cancel": "キャンセル"
+      },
+      "deleteConfirm": "この研修を削除しますか？元に戻せません。",
+      "errors": {
+        "save": "研修を保存できませんでした。",
+        "delete": "研修を削除できませんでした。"
+      }
+    },
+    "welfare": {
+      "title": "従業員福利厚生",
+      "count": "{{count}}件の施策",
+      "error": "福利厚生の施策を読み込めませんでした。({{error}})",
+      "empty": "福利厚生の施策はありません。",
+      "category": {
+        "health": "健康",
+        "meal": "食事補助",
+        "transport": "交通",
+        "wellness": "ウェルネス",
+        "other": "その他"
+      },
+      "status": {
+        "active": "有効",
+        "inactive": "無効"
+      },
+      "enrolledCount": "{{count}}人が参加",
+      "form": {
+        "newTitle": "新しい施策",
+        "editTitle": "施策を編集",
+        "title": "タイトル",
+        "description": "説明",
+        "category": "カテゴリー",
+        "status": "ステータス",
+        "enrolledCount": "参加人数",
+        "startDate": "開始日",
+        "endDate": "終了日",
+        "notes": "メモ",
+        "save": "保存",
+        "saving": "保存中...",
+        "delete": "削除",
+        "cancel": "キャンセル"
+      },
+      "deleteConfirm": "この施策を削除しますか？元に戻せません。",
+      "errors": {
+        "save": "施策を保存できませんでした。",
+        "delete": "施策を削除できませんでした。"
+      }
+    },
+    "payroll": {
+      "title": "給与",
+      "count": "{{count}}件の給与明細",
+      "error": "給与明細を読み込めませんでした。({{error}})",
+      "empty": "給与明細はありません。",
+      "disclaimer": "データと書類のみを管理します。金額は手入力で、税金・社会保険料の自動計算は行いません。",
+      "status": {
+        "draft": "下書き",
+        "issued": "発行済み",
+        "paid": "支払済み"
+      },
+      "net": "手取り {{amount}}",
+      "form": {
+        "newTitle": "新しい給与明細",
+        "editTitle": "給与明細を編集",
+        "employeeName": "従業員",
+        "period": "対象期間",
+        "grossAmount": "総支給額",
+        "netAmount": "差引支給額",
+        "status": "ステータス",
+        "payslipUrl": "明細書リンク",
+        "paidAt": "支払日",
+        "notes": "メモ",
+        "save": "保存",
+        "saving": "保存中...",
+        "delete": "削除",
+        "cancel": "キャンセル"
+      },
+      "deleteConfirm": "この給与明細を削除しますか？元に戻せません。",
+      "errors": {
+        "save": "給与明細を保存できませんでした。",
+        "delete": "給与明細を削除できませんでした。"
       }
     }
   },

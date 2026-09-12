@@ -66,6 +66,8 @@
       "editTitle": "Modifica task",
       "title": "Titolo",
       "description": "Descrizione",
+      "tags": "Tag",
+      "tagsPlaceholder": "Separati da virgola",
       "priority": "Priorità",
       "status": "Stato",
       "deadline": "Scadenza",
@@ -208,6 +210,34 @@
       "settings": {
         "label": "Impostazioni",
         "desc": "Profilo e password"
+      },
+      "attendance": {
+        "label": "Presenze",
+        "desc": "Timbrature entrata/uscita"
+      },
+      "orgChart": {
+        "label": "Organigramma",
+        "desc": "Struttura gerarchica aziendale"
+      },
+      "recruiting": {
+        "label": "Selezione del personale",
+        "desc": "Candidature e colloqui"
+      },
+      "performanceReviews": {
+        "label": "Valutazioni",
+        "desc": "Valutazioni periodiche del personale"
+      },
+      "training": {
+        "label": "Formazione",
+        "desc": "Corsi, scadenze e certificazioni"
+      },
+      "welfare": {
+        "label": "Welfare aziendale",
+        "desc": "Benefit, iniziative e adesioni"
+      },
+      "payroll": {
+        "label": "Paghe e stipendi",
+        "desc": "Cedolini e dati retributivi (solo dati)"
       }
     },
     "madeBy": "Made by apdesign"
@@ -228,9 +258,17 @@
         "firstName": "Nome",
         "lastName": "Cognome",
         "company": "Azienda",
+        "role": "Ruolo",
         "email": "Email",
         "phone": "Telefono",
+        "whatsapp": "WhatsApp",
+        "website": "Sito web",
+        "address": "Indirizzo",
+        "tags": "Tag",
+        "tagsPlaceholder": "Separati da virgola",
         "notes": "Note",
+        "lastContactAt": "Ultimo contatto",
+        "nextActivityAt": "Prossima attività",
         "status": "Stato",
         "save": "Salva",
         "saving": "Salvataggio...",
@@ -257,12 +295,25 @@
         "won": "Vinta",
         "lost": "Persa"
       },
+      "source": {
+        "manual": "Manuale",
+        "website": "Sito web",
+        "referral": "Segnalazione",
+        "email": "Email",
+        "whatsapp": "WhatsApp",
+        "import": "Importazione"
+      },
       "form": {
         "newTitle": "Nuova opportunità",
         "title": "Titolo",
         "company": "Azienda",
         "value": "Valore (EUR)",
         "stage": "Fase",
+        "source": "Origine",
+        "probability": "Probabilità (%)",
+        "contact": "Contatto",
+        "noContact": "Nessun contatto",
+        "expectedCloseDate": "Data chiusura prevista",
         "notes": "Note",
         "save": "Salva",
         "saving": "Salvataggio...",
@@ -304,7 +355,40 @@
         "save": "Impossibile salvare il progetto.",
         "delete": "Impossibile eliminare il progetto."
       },
-      "deleteConfirm": "Eliminare questo progetto? L'operazione non è reversibile."
+      "deleteConfirm": "Eliminare questo progetto? L'operazione non è reversibile.",
+      "milestones": {
+        "title": "Milestone",
+        "empty": "Nessuna milestone.",
+        "form": {
+          "title": "Titolo milestone",
+          "dueDate": "Scadenza",
+          "add": "Aggiungi milestone"
+        },
+        "errors": {
+          "add": "Impossibile aggiungere la milestone."
+        }
+      },
+      "documents": {
+        "title": "Documenti",
+        "empty": "Nessun documento.",
+        "form": {
+          "title": "Titolo documento",
+          "url": "Link",
+          "add": "Aggiungi documento"
+        },
+        "errors": {
+          "add": "Impossibile aggiungere il documento."
+        }
+      },
+      "discussion": {
+        "title": "Discussione",
+        "empty": "Nessun commento.",
+        "placeholder": "Scrivi un commento...",
+        "add": "Aggiungi commento",
+        "errors": {
+          "add": "Impossibile aggiungere il commento."
+        }
+      }
     },
     "timesheets": {
       "title": "Fogli ore",
@@ -315,6 +399,8 @@
       "nonBillable": "Non fatturabile",
       "form": {
         "newTitle": "Nuova voce",
+        "employee": "Dipendente",
+        "noEmployee": "Nessuno",
         "date": "Data",
         "durationMinutes": "Durata (minuti)",
         "description": "Descrizione",
@@ -348,6 +434,7 @@
         "title": "Titolo",
         "description": "Descrizione",
         "priority": "Priorità",
+        "assignee": "Assegnatario",
         "save": "Salva",
         "saving": "Salvataggio...",
         "editTitle": "Modifica ticket",
@@ -365,7 +452,16 @@
         "save": "Impossibile salvare il ticket.",
         "delete": "Impossibile eliminare il ticket."
       },
-      "deleteConfirm": "Eliminare questo ticket? L'operazione non è reversibile."
+      "deleteConfirm": "Eliminare questo ticket? L'operazione non è reversibile.",
+      "comments": {
+        "title": "Commenti",
+        "empty": "Nessun commento.",
+        "placeholder": "Scrivi un commento...",
+        "add": "Aggiungi commento",
+        "errors": {
+          "add": "Impossibile aggiungere il commento."
+        }
+      }
     },
     "leave": {
       "title": "Ferie",
@@ -465,12 +561,37 @@
         "saving": "Salvataggio...",
         "editTitle": "Modifica dipendente",
         "newTitle": "Nuovo dipendente",
-        "delete": "Elimina"
+        "delete": "Elimina",
+        "manager": "Responsabile",
+        "managerNone": "Nessuno"
       },
       "deleteConfirm": "Eliminare questo dipendente? L'operazione non è reversibile.",
       "errors": {
         "save": "Impossibile salvare il dipendente.",
         "delete": "Impossibile eliminare il dipendente."
+      },
+      "documents": {
+        "title": "Documenti",
+        "add": "Aggiungi documento",
+        "empty": "Nessun documento.",
+        "docType": {
+          "contract": "Contratto",
+          "certificate": "Certificato",
+          "id": "Documento identità",
+          "other": "Altro"
+        },
+        "form": {
+          "title": "Titolo",
+          "type": "Tipo",
+          "expiryDate": "Scadenza (opzionale)",
+          "url": "Link al file",
+          "add": "Aggiungi"
+        },
+        "deleteConfirm": "Rimuovere questo documento?",
+        "errors": {
+          "add": "Impossibile aggiungere il documento.",
+          "delete": "Impossibile rimuovere il documento."
+        }
       }
     },
     "expenses": {
@@ -627,13 +748,17 @@
         "saving": "Salvataggio...",
         "editTitle": "Modifica campagna",
         "delete": "Elimina",
-        "cancel": "Annulla"
+        "cancel": "Annulla",
+        "send": "Invia campagna",
+        "sending": "Invio..."
       },
       "errors": {
         "save": "Impossibile salvare la campagna.",
-        "delete": "Impossibile eliminare la campagna."
+        "delete": "Impossibile eliminare la campagna.",
+        "send": "Impossibile inviare la campagna."
       },
-      "deleteConfirm": "Eliminare questa campagna? L'operazione non è reversibile."
+      "deleteConfirm": "Eliminare questa campagna? L'operazione non è reversibile.",
+      "sentAt": "Inviata il {{date}}"
     },
     "website": {
       "title": "Sito web",
@@ -669,6 +794,217 @@
         "fair": "Sufficiente",
         "good": "Buona",
         "strong": "Forte"
+      }
+    },
+    "attendance": {
+      "title": "Presenze",
+      "count": "{{count}} timbrature",
+      "error": "Impossibile caricare le presenze. Verifica che il server Vora sia attivo. ({{error}})",
+      "empty": "Nessuna timbratura registrata.",
+      "form": {
+        "newTitle": "Nuova timbratura",
+        "editTitle": "Modifica timbratura",
+        "employeeName": "Dipendente",
+        "date": "Data",
+        "checkIn": "Entrata",
+        "checkOut": "Uscita",
+        "notes": "Note",
+        "save": "Salva",
+        "saving": "Salvataggio...",
+        "delete": "Elimina",
+        "cancel": "Annulla"
+      },
+      "deleteConfirm": "Eliminare questa timbratura? L'operazione non è reversibile.",
+      "errors": {
+        "save": "Impossibile salvare la timbratura.",
+        "delete": "Impossibile eliminare la timbratura."
+      }
+    },
+    "orgChart": {
+      "title": "Organigramma",
+      "subtitle": "Struttura aziendale",
+      "empty": "Nessun dipendente da mostrare.",
+      "error": "Impossibile caricare l'organigramma. ({{error}})"
+    },
+    "recruiting": {
+      "title": "Selezione del personale",
+      "count": "{{count}} candidati",
+      "error": "Impossibile caricare i candidati. ({{error}})",
+      "empty": "Nessun candidato.",
+      "stage": {
+        "applied": "Candidatura ricevuta",
+        "screening": "Screening",
+        "interview": "Colloquio",
+        "offer": "Proposta",
+        "hired": "Assunto",
+        "rejected": "Scartato"
+      },
+      "source": {
+        "website": "Sito web",
+        "referral": "Segnalazione",
+        "linkedin": "LinkedIn",
+        "agency": "Agenzia",
+        "other": "Altro"
+      },
+      "form": {
+        "newTitle": "Nuovo candidato",
+        "editTitle": "Modifica candidato",
+        "firstName": "Nome",
+        "lastName": "Cognome",
+        "email": "Email",
+        "phone": "Telefono",
+        "role": "Posizione",
+        "stage": "Fase",
+        "source": "Origine",
+        "resumeUrl": "Link CV",
+        "notes": "Note",
+        "interviewDate": "Data colloquio",
+        "save": "Salva",
+        "saving": "Salvataggio...",
+        "delete": "Elimina",
+        "cancel": "Annulla"
+      },
+      "deleteConfirm": "Eliminare questo candidato? L'operazione non è reversibile.",
+      "errors": {
+        "save": "Impossibile salvare il candidato.",
+        "delete": "Impossibile eliminare il candidato."
+      }
+    },
+    "performanceReviews": {
+      "title": "Valutazioni",
+      "count": "{{count}} valutazioni",
+      "error": "Impossibile caricare le valutazioni. ({{error}})",
+      "empty": "Nessuna valutazione.",
+      "status": {
+        "draft": "Bozza",
+        "submitted": "Inviata",
+        "completed": "Completata"
+      },
+      "form": {
+        "newTitle": "Nuova valutazione",
+        "editTitle": "Modifica valutazione",
+        "employeeName": "Dipendente",
+        "period": "Periodo",
+        "reviewerName": "Valutatore",
+        "rating": "Punteggio (1-5)",
+        "strengths": "Punti di forza",
+        "improvements": "Aree di miglioramento",
+        "goals": "Obiettivi",
+        "status": "Stato",
+        "save": "Salva",
+        "saving": "Salvataggio...",
+        "delete": "Elimina",
+        "cancel": "Annulla"
+      },
+      "deleteConfirm": "Eliminare questa valutazione? L'operazione non è reversibile.",
+      "errors": {
+        "save": "Impossibile salvare la valutazione.",
+        "delete": "Impossibile eliminare la valutazione."
+      }
+    },
+    "training": {
+      "title": "Formazione",
+      "count": "{{count}} corsi",
+      "error": "Impossibile caricare i corsi. ({{error}})",
+      "empty": "Nessun corso.",
+      "status": {
+        "planned": "Pianificato",
+        "in_progress": "In corso",
+        "completed": "Completato"
+      },
+      "form": {
+        "newTitle": "Nuovo corso",
+        "editTitle": "Modifica corso",
+        "title": "Titolo corso",
+        "employeeName": "Dipendente",
+        "provider": "Ente erogatore",
+        "status": "Stato",
+        "startDate": "Data inizio",
+        "completionDate": "Data completamento",
+        "certificateUrl": "Link certificato",
+        "notes": "Note",
+        "save": "Salva",
+        "saving": "Salvataggio...",
+        "delete": "Elimina",
+        "cancel": "Annulla"
+      },
+      "deleteConfirm": "Eliminare questo corso? L'operazione non è reversibile.",
+      "errors": {
+        "save": "Impossibile salvare il corso.",
+        "delete": "Impossibile eliminare il corso."
+      }
+    },
+    "welfare": {
+      "title": "Welfare aziendale",
+      "count": "{{count}} iniziative",
+      "error": "Impossibile caricare le iniziative di welfare. ({{error}})",
+      "empty": "Nessuna iniziativa di welfare.",
+      "category": {
+        "health": "Salute",
+        "meal": "Buoni pasto",
+        "transport": "Trasporti",
+        "wellness": "Benessere",
+        "other": "Altro"
+      },
+      "status": {
+        "active": "Attiva",
+        "inactive": "Non attiva"
+      },
+      "enrolledCount": "{{count}} adesioni",
+      "form": {
+        "newTitle": "Nuova iniziativa",
+        "editTitle": "Modifica iniziativa",
+        "title": "Titolo",
+        "description": "Descrizione",
+        "category": "Categoria",
+        "status": "Stato",
+        "enrolledCount": "Numero adesioni",
+        "startDate": "Data inizio",
+        "endDate": "Data fine",
+        "notes": "Note",
+        "save": "Salva",
+        "saving": "Salvataggio...",
+        "delete": "Elimina",
+        "cancel": "Annulla"
+      },
+      "deleteConfirm": "Eliminare questa iniziativa? L'operazione non è reversibile.",
+      "errors": {
+        "save": "Impossibile salvare l'iniziativa.",
+        "delete": "Impossibile eliminare l'iniziativa."
+      }
+    },
+    "payroll": {
+      "title": "Paghe e stipendi",
+      "count": "{{count}} cedolini",
+      "error": "Impossibile caricare i cedolini. ({{error}})",
+      "empty": "Nessun cedolino registrato.",
+      "disclaimer": "Solo dati e documenti: importi inseriti manualmente, nessun calcolo automatico di imposte o contributi.",
+      "status": {
+        "draft": "Bozza",
+        "issued": "Emesso",
+        "paid": "Pagato"
+      },
+      "net": "Netto {{amount}} €",
+      "form": {
+        "newTitle": "Nuovo cedolino",
+        "editTitle": "Modifica cedolino",
+        "employeeName": "Dipendente",
+        "period": "Periodo",
+        "grossAmount": "Importo lordo (€)",
+        "netAmount": "Importo netto (€)",
+        "status": "Stato",
+        "payslipUrl": "Link cedolino",
+        "paidAt": "Data pagamento",
+        "notes": "Note",
+        "save": "Salva",
+        "saving": "Salvataggio...",
+        "delete": "Elimina",
+        "cancel": "Annulla"
+      },
+      "deleteConfirm": "Eliminare questo cedolino? L'operazione non è reversibile.",
+      "errors": {
+        "save": "Impossibile salvare il cedolino.",
+        "delete": "Impossibile eliminare il cedolino."
       }
     }
   },

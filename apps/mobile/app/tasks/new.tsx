@@ -23,6 +23,7 @@ export default function NewTaskScreen() {
   const [description, setDescription] = useState('')
   const [priority, setPriority] = useState<TaskPriority>('medium')
   const [deadline, setDeadline] = useState('')
+  const [tagsText, setTagsText] = useState('')
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [saving, setSaving] = useState(false)
   const [saveError, setSaveError] = useState<string | null>(null)
@@ -31,13 +32,17 @@ export default function NewTaskScreen() {
     haptics.press()
     setSaveError(null)
 
+    const tags = tagsText
+      .split(',')
+      .map((tg) => tg.trim())
+      .filter(Boolean)
     const form = {
       title,
       description,
       priority,
       status: 'todo',
       deadline: deadline || null,
-      tags: [],
+      tags,
       checklist: [],
       contactId: null,
       projectId: null,
@@ -111,6 +116,15 @@ export default function NewTaskScreen() {
             onChangeText={setDescription}
             multiline
             numberOfLines={3}
+            placeholderTextColor={colors.textSecondary}
+          />
+
+          <Text style={styles.label}>{t('tasks.form.tags')}</Text>
+          <TextInput
+            style={styles.input}
+            value={tagsText}
+            onChangeText={setTagsText}
+            placeholder={t('tasks.form.tagsPlaceholder')}
             placeholderTextColor={colors.textSecondary}
           />
 

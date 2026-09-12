@@ -13,6 +13,28 @@ SplashScreen.setOptions({ duration: 400, fade: true })
 
 const PUBLIC_SEGMENTS = ['login', 'welcome']
 
+const NEW_RECORD_ROUTES = [
+  'attendance/new',
+  'calendar/new',
+  'contacts/new',
+  'crm/new',
+  'employees/new',
+  'expenses/new',
+  'helpdesk/new',
+  'knowledge/new',
+  'leave/new',
+  'marketing/new',
+  'payroll/new',
+  'performance-reviews/new',
+  'projects/new',
+  'recruiting/new',
+  'social/new',
+  'tasks/new',
+  'timesheets/new',
+  'training/new',
+  'welfare/new',
+]
+
 function RootStack() {
   const { scheme, colors } = useTheme()
   const { user, loading } = useAuth()
@@ -36,10 +58,17 @@ function RootStack() {
   return (
     <>
       <StatusBar style={scheme === 'light' ? 'dark' : 'light'} />
-      <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.background } }}>
+      <Stack screenOptions={{ headerShown: false, contentStyle: { backgroundColor: colors.background }, animation: 'slide_from_right' }}>
         <Stack.Screen name="(tabs)" />
-        <Stack.Screen name="welcome" />
-        <Stack.Screen name="login" />
+        <Stack.Screen name="welcome" options={{ animation: 'fade' }} />
+        <Stack.Screen name="login" options={{ animation: 'fade' }} />
+        {/* "Create new record" screens open as a modal sheet (slide up, swipe
+            down to dismiss) instead of a lateral push — the standard iOS
+            pattern for a "+" action, and a clear visual cue that this is a
+            transient, escapable flow rather than drilling into a record. */}
+        {NEW_RECORD_ROUTES.map((name) => (
+          <Stack.Screen key={name} name={name} options={{ presentation: 'modal', animation: 'slide_from_bottom' }} />
+        ))}
       </Stack>
     </>
   )

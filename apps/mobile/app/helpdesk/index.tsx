@@ -2,6 +2,7 @@ import { ActivityIndicator, FlatList, Pressable, RefreshControl, StyleSheet, Tex
 import { useRouter } from 'expo-router'
 import { useTickets } from '../../hooks/useTickets'
 import { DetailScreen, StateMessage } from '../../components/Screen'
+import { SkeletonList } from '../../components/Skeleton'
 import { Icon } from '../../components/Icon'
 import { radius, spacing } from '../../constants/theme'
 import { useTheme } from '../../contexts/ThemeContext'
@@ -38,6 +39,8 @@ export default function HelpdeskScreen() {
     >
       {error ? (
         <StateMessage text={t('modules.helpdesk.error', { error })} />
+      ) : loading && tickets.length === 0 ? (
+        <SkeletonList />
       ) : (
         <FlatList
           data={tickets}

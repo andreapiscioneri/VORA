@@ -2,27 +2,35 @@ import { useState } from 'react'
 import { KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
 import { useRouter } from 'expo-router'
 import { DetailScreen } from '../../components/Screen'
+import { ContactPickerModal } from '../../components/ContactPickerModal'
 import { useOpportunities } from '../../hooks/useOpportunities'
+import { useContacts } from '../../hooks/useContacts'
 import { useTheme } from '../../contexts/ThemeContext'
 import { useI18n } from '../../i18n'
 import { haptics } from '../../lib/haptics'
 import { radius, spacing } from '../../constants/theme'
 import { opportunityInputSchema } from '@vora/shared/validation/opportunity'
-import { OPPORTUNITY_STAGES } from '@vora/shared/types/opportunity'
+import { OPPORTUNITY_SOURCES, OPPORTUNITY_STAGES } from '@vora/shared/types/opportunity'
 import type { ThemeColors } from '../../constants/theme'
-import type { OpportunityInput, OpportunityStage } from '@vora/shared/types/opportunity'
+import type { OpportunityInput, OpportunitySource, OpportunityStage } from '@vora/shared/types/opportunity'
 
 export default function NewOpportunityScreen() {
   const { colors } = useTheme()
   const { t } = useI18n()
   const router = useRouter()
   const { create } = useOpportunities()
+  const { contacts } = useContacts()
   const styles = makeStyles(colors)
 
   const [title, setTitle] = useState('')
   const [company, setCompany] = useState('')
   const [value, setValue] = useState('')
   const [stage, setStage] = useState<OpportunityStage>('lead')
+  const [source, setSource] = useState<OpportunitySource>('manual')
+  const [probability, setProbability] = useState('50')
+  const [contactId, setContactId] = useState<string | null>(null)
+  const [contactPickerOpen, setContactPickerOpen] = useState(false)
+  const [expectedCloseDate, setExpectedCloseDate] = useState('')
   const [notes, setNotes] = useState('')
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [saving, setSaving] = useState(false)
@@ -32,7 +40,17 @@ export default function NewOpportunityScreen() {
     haptics.press()
     setSaveError(null)
 
-    const form = { title, company, value, stage, notes, contactId: null, expectedCloseDate: null }
+    const form = {
+      title,
+      company,
+      value,
+      stage,
+      notes,
+      contactId,
+      source,
+      probability: Number.parseInt(probability, 10) || 0,
+      expectedCloseDate: expectedCloseDate || null,
+    }
     const result = opportunityInputSchema.safeParse(form)
     if (!result.success) {
       const nextErrors: Record<string, string> = {}
@@ -90,6 +108,62 @@ export default function NewOpportunityScreen() {
             ))}
           </View>
 
+          <Text style={styles.label}>{t('modules.crm.form.source')}</Text>
+          <View style={styles.chipRow}>
+            {OPPORTUNITY_SOURCES.map((s) => (
+              <Pressable
+                key={s}
+                style={[styles.chip, source === s ? styles.chipActive : null]}
+                onPress={() => {
+                  haptics.selection()
+                  setSource(s)
+                }}
+                accessibilityRole="button"
+                accessibilityState={{ selected: source === s }}
+              >
+                <Text style={[styles.chipText, source === s ? styles.chipTextActive : null]}>{t(`modules.crm.source.${s}`)}</Text>
+              </Pressable>
+            ))}
+          </View>
+
+          <Text style={styles.label}>{t('modules.crm.form.probability')}</Text>
+          <TextInput
+            style={styles.input}
+            value={probability}
+            onChangeText={setProbability}
+            keyboardType="number-pad"
+            placeholderTextColor={colors.textSecondary}
+          />
+
+          <Text style={styles.label}>{t('modules.crm.form.contact')}</Text>
+          <Pressable
+            style={styles.input}
+            onPress={() => {
+              haptics.tap()
+              setContactPickerOpen(true)
+            }}
+            accessibilityRole="button"
+          >
+            <Text style={{ color: contactId ? colors.textPrimary : colors.textSecondary }}>
+              {contactId
+                ? (() => {
+                    const c = contacts.find((ct) => ct.id === contactId)
+                    return c ? `${c.firstName} ${c.lastName}` : t('modules.crm.form.noContact')
+                  })()
+                : t('modules.crm.form.noContact')}
+            </Text>
+          </Pressable>
+
+          <Text style={styles.label}>{t('modules.crm.form.expectedCloseDate')}</Text>
+          <TextInput
+            style={styles.input}
+            value={expectedCloseDate}
+            onChangeText={setExpectedCloseDate}
+            placeholder="YYYY-MM-DD"
+            autoCapitalize="none"
+            placeholderTextColor={colors.textSecondary}
+          />
+
           <Text style={styles.label}>{t('modules.crm.form.notes')}</Text>
           <TextInput
             style={[styles.input, styles.textArea]}
@@ -107,6 +181,15 @@ export default function NewOpportunityScreen() {
           </Pressable>
         </ScrollView>
       </KeyboardAvoidingView>
+
+      <ContactPickerModal
+        visible={contactPickerOpen}
+        onClose={() => setContactPickerOpen(false)}
+        contacts={contacts}
+        selectedId={contactId}
+        onSelect={setContactId}
+        noneLabel={t('modules.crm.form.noContact')}
+      />
     </DetailScreen>
   )
 }

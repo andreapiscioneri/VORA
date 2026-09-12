@@ -28,6 +28,7 @@ export default function EditTaskScreen() {
   const [priority, setPriority] = useState<TaskPriority>(task?.priority ?? 'medium')
   const [status, setStatus] = useState<TaskStatus>(task?.status ?? 'todo')
   const [deadline, setDeadline] = useState(task?.deadline ?? '')
+  const [tagsText, setTagsText] = useState(task?.tags.join(', ') ?? '')
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [saving, setSaving] = useState(false)
   const [saveError, setSaveError] = useState<string | null>(null)
@@ -44,13 +45,17 @@ export default function EditTaskScreen() {
     haptics.press()
     setSaveError(null)
 
+    const tags = tagsText
+      .split(',')
+      .map((tg) => tg.trim())
+      .filter(Boolean)
     const form = {
       title,
       description,
       priority,
       status,
       deadline: deadline || null,
-      tags: task!.tags,
+      tags,
       checklist: task!.checklist,
       contactId: task!.contactId,
       projectId: task!.projectId,
@@ -163,6 +168,15 @@ export default function EditTaskScreen() {
             onChangeText={setDescription}
             multiline
             numberOfLines={3}
+            placeholderTextColor={colors.textSecondary}
+          />
+
+          <Text style={styles.label}>{t('tasks.form.tags')}</Text>
+          <TextInput
+            style={styles.input}
+            value={tagsText}
+            onChangeText={setTagsText}
+            placeholder={t('tasks.form.tagsPlaceholder')}
             placeholderTextColor={colors.textSecondary}
           />
 

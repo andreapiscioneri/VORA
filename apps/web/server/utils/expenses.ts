@@ -8,6 +8,7 @@ const COLLECTION = 'expenses'
 function toExpense(id: string, data: FirebaseFirestore.DocumentData): Expense {
   return {
     id,
+    submitterId: data.submitterId ?? null,
     amount: data.amount ?? 0,
     currency: data.currency ?? 'EUR',
     category: data.category ?? 'other',
@@ -33,12 +34,12 @@ export async function getExpense(id: string, organizationId: string): Promise<Ex
   return toExpense(doc.id, doc.data()!)
 }
 
-export async function createExpense(input: ExpenseInputSchema, organizationId: string): Promise<Expense> {
+export async function createExpense(input: ExpenseInputSchema, organizationId: string, submitterId: string | null): Promise<Expense> {
   const now = new Date().toISOString()
   const ref = await getDb()
     .collection(COLLECTION)
-    .add({ ...input, organizationId, createdAt: now, updatedAt: now })
-  return toExpense(ref.id, { ...input, createdAt: now, updatedAt: now })
+    .add({ ...input, submitterId, organizationId, createdAt: now, updatedAt: now })
+  return toExpense(ref.id, { ...input, submitterId, createdAt: now, updatedAt: now })
 }
 
 export async function updateExpense(id: string, input: ExpenseInputSchema, organizationId: string): Promise<Expense | null> {

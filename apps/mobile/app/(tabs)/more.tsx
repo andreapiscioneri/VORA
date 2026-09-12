@@ -11,6 +11,7 @@ import { useAuth } from '../../contexts/AuthContext'
 import { useI18n, LOCALE_CODES, LOCALE_NAMES, Locale } from '../../i18n'
 import { haptics } from '../../lib/haptics'
 import { MODULE_NAV_ITEMS as ITEMS } from '../../constants/moduleNav'
+import { MODULE_ICONS } from '../../constants/moduleIcons'
 import type { ThemeColors } from '../../constants/theme'
 const MADE_BY_URL = 'https://andreapiscioneri.netlify.app'
 
@@ -70,7 +71,7 @@ export default function MoreScreen() {
         {ITEMS.map(({ key, route }) => (
           <Pressable
             key={key}
-            style={[styles.row, styles.rowInline]}
+            style={({ pressed }) => [styles.row, styles.rowInline, pressed && styles.rowPressed]}
             onPress={() => {
               haptics.tap()
               router.push(route)
@@ -78,6 +79,9 @@ export default function MoreScreen() {
             accessibilityRole="button"
             accessibilityLabel={`${t(`more.items.${key}.label`)}, ${t(`more.items.${key}.desc`)}`}
           >
+            <View style={[styles.rowIcon, { backgroundColor: colors.background }]}>
+              <Icon name={MODULE_ICONS[key] ?? 'chevron-right'} size={18} color={colors.primary} />
+            </View>
             <View style={{ flex: 1 }}>
               <Text style={styles.label}>{t(`more.items.${key}.label`)}</Text>
               <Text style={styles.desc}>{t(`more.items.${key}.desc`)}</Text>
@@ -154,6 +158,8 @@ function makeStyles(colors: ThemeColors) {
     segmentTextActive: { color: '#0A0A0A' },
     row: { backgroundColor: colors.surface, borderRadius: radius.md, padding: spacing(4), marginBottom: spacing(2) },
     rowInline: { flexDirection: 'row', alignItems: 'center', gap: spacing(3) },
+    rowPressed: { opacity: 0.65 },
+    rowIcon: { width: 34, height: 34, borderRadius: radius.full, alignItems: 'center', justifyContent: 'center' },
     rowInlineText: { marginTop: 0 },
     label: { color: colors.textPrimary, fontSize: 15, fontWeight: '600' },
     desc: { color: colors.textSecondary, fontSize: 13, marginTop: spacing(1) },

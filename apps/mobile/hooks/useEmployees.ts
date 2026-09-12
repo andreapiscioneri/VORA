@@ -2,6 +2,7 @@ import { useCallback, useEffect, useState } from 'react'
 import { api } from '../lib/api'
 import { readCache, writeCache } from '../lib/offlineCache'
 import type { Employee, EmployeeInput } from '@vora/shared/types/employee'
+import type { AddEmployeeDocumentSchema } from '@vora/shared/validation/employee'
 
 interface PageResult<T> {
   items: T[]
@@ -93,5 +94,25 @@ export function useEmployees() {
     })
   }, [])
 
-  return { employees, loading, loadingMore, error, offline, hasMore, reload: load, loadMore, create, update, remove }
+  const addDocument = useCallback(async (id: string, input: AddEmployeeDocumentSchema) => {
+    const updated = await api.post<Employee>(`/employees/${id}/documents`, input)
+    setEmployees((prev) => {
+      const next = prev.map((e) => (e.id === id ? updated : e))
+      writeCache(CACHE_KEY, next)
+      return next
+    })
+    return updated
+  }, [])
+
+  const removeDocument = useCallback(async (id: string, documentId: string) => {
+    const updated = await api.delete<Employee>(`/employees/${id}/documents/${documentId}`)
+    setEmployees((prev) => {
+      const next = prev.map((e) => (e.id === id ? updated : e))
+      writeCache(CACHE_KEY, next)
+      return next
+    })
+    return updated
+  }, [])
+
+  return { employees, loading, loadingMore, error, offline, hasMore, reload: load, loadMore, create, update, remove, addDocument, removeDocument }
 }

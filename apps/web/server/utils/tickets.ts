@@ -1,5 +1,5 @@
-import type { Ticket, TicketAttachment } from '~/shared/types/ticket'
-import type { TicketInputSchema, AddTicketAttachmentSchema } from '~/shared/validation/ticket'
+import type { Ticket, TicketAttachment, TicketComment } from '~/shared/types/ticket'
+import type { TicketInputSchema, AddTicketAttachmentSchema, AddTicketCommentSchema } from '~/shared/validation/ticket'
 import { getDb } from './firebase'
 import { paginateQuery, type PageResult } from './pagination'
 
@@ -11,6 +11,7 @@ function toTicket(id: string, data: FirebaseFirestore.DocumentData): Ticket {
     title: data.title ?? '',
     description: data.description ?? '',
     contactId: data.contactId ?? null,
+    assigneeId: data.assigneeId ?? null,
     priority: data.priority ?? 'medium',
     status: data.status ?? 'open',
     category: data.category ?? 'general',
@@ -76,4 +77,16 @@ export async function addTicketAttachment(id: string, input: AddTicketAttachment
   const updatedAt = new Date().toISOString()
   await ref.update({ attachments, updatedAt })
   return toTicket(id, { ...existing.data(), attachments, updatedAt })
+}
+
+export async function addTicketComment(id: string, input: AddTicketCommentSchema, organizationId: string): Promise<Ticket | null> {
+  const ref = getDb().collection(COLLECTION).doc(id)
+  const existing = await ref.get()
+  if (!existing.exists || existing.data()?.organizationId !== organizationId) return null
+
+  const comment: TicketComment = { id: crypto.randomUUID(), body: input.body, createdAt: new Date().toISOString() }
+  const comments = [...(existing.data()?.comments ?? []), comment]
+  const updatedAt = new Date().toISOString()
+  await ref.update({ comments, updatedAt })
+  return toTicket(id, { ...existing.data(), comments, updatedAt })
 }

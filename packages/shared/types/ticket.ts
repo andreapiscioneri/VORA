@@ -25,6 +25,7 @@ export interface Ticket {
   title: string
   description: string
   contactId: string | null
+  assigneeId: string | null
   priority: TicketPriority
   status: TicketStatus
   category: TicketCategory

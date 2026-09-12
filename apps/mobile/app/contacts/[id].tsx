@@ -26,10 +26,17 @@ export default function EditContactScreen() {
   const [firstName, setFirstName] = useState(contact?.firstName ?? '')
   const [lastName, setLastName] = useState(contact?.lastName ?? '')
   const [company, setCompany] = useState(contact?.company ?? '')
+  const [role, setRole] = useState(contact?.role ?? '')
   const [email, setEmail] = useState(contact?.email ?? '')
   const [phone, setPhone] = useState(contact?.phone ?? '')
+  const [whatsapp, setWhatsapp] = useState(contact?.whatsapp ?? '')
+  const [website, setWebsite] = useState(contact?.website ?? '')
+  const [address, setAddress] = useState(contact?.address ?? '')
+  const [tagsText, setTagsText] = useState(contact?.tags.join(', ') ?? '')
   const [notes, setNotes] = useState(contact?.notes ?? '')
   const [status, setStatus] = useState<ContactStatus>(contact?.status ?? 'lead')
+  const [lastContactAt, setLastContactAt] = useState(contact?.lastContactAt ?? '')
+  const [nextActivityAt, setNextActivityAt] = useState(contact?.nextActivityAt ?? '')
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [saving, setSaving] = useState(false)
   const [saveError, setSaveError] = useState<string | null>(null)
@@ -46,7 +53,28 @@ export default function EditContactScreen() {
     haptics.press()
     setSaveError(null)
 
-    const form = { firstName, lastName, company, email, phone, notes, status }
+    const tags = tagsText
+      .split(',')
+      .map((tg) => tg.trim())
+      .filter(Boolean)
+    const form = {
+      firstName,
+      lastName,
+      company,
+      role,
+      email,
+      phone,
+      whatsapp,
+      website,
+      address,
+      tags,
+      notes,
+      status,
+      lastContactAt: lastContactAt || null,
+      nextActivityAt: nextActivityAt || null,
+      source: contact!.source,
+      attachments: contact!.attachments,
+    }
     const result = contactInputSchema.safeParse(form)
     if (!result.success) {
       const nextErrors: Record<string, string> = {}
@@ -108,6 +136,9 @@ export default function EditContactScreen() {
           <Text style={styles.label}>{t('modules.contacts.form.company')}</Text>
           <TextInput style={styles.input} value={company} onChangeText={setCompany} placeholderTextColor={colors.textSecondary} />
 
+          <Text style={styles.label}>{t('modules.contacts.form.role')}</Text>
+          <TextInput style={styles.input} value={role} onChangeText={setRole} placeholderTextColor={colors.textSecondary} />
+
           <Text style={styles.label}>{t('modules.contacts.form.email')}</Text>
           <TextInput
             style={styles.input}
@@ -122,6 +153,32 @@ export default function EditContactScreen() {
           <Text style={styles.label}>{t('modules.contacts.form.phone')}</Text>
           <TextInput style={styles.input} value={phone} onChangeText={setPhone} keyboardType="phone-pad" placeholderTextColor={colors.textSecondary} />
           {errors.phone ? <Text style={styles.error}>{errors.phone}</Text> : null}
+
+          <Text style={styles.label}>{t('modules.contacts.form.whatsapp')}</Text>
+          <TextInput style={styles.input} value={whatsapp} onChangeText={setWhatsapp} keyboardType="phone-pad" placeholderTextColor={colors.textSecondary} />
+          {errors.whatsapp ? <Text style={styles.error}>{errors.whatsapp}</Text> : null}
+
+          <Text style={styles.label}>{t('modules.contacts.form.website')}</Text>
+          <TextInput
+            style={styles.input}
+            value={website}
+            onChangeText={setWebsite}
+            autoCapitalize="none"
+            placeholder="https://..."
+            placeholderTextColor={colors.textSecondary}
+          />
+
+          <Text style={styles.label}>{t('modules.contacts.form.address')}</Text>
+          <TextInput style={styles.input} value={address} onChangeText={setAddress} placeholderTextColor={colors.textSecondary} />
+
+          <Text style={styles.label}>{t('modules.contacts.form.tags')}</Text>
+          <TextInput
+            style={styles.input}
+            value={tagsText}
+            onChangeText={setTagsText}
+            placeholder={t('modules.contacts.form.tagsPlaceholder')}
+            placeholderTextColor={colors.textSecondary}
+          />
 
           <Text style={styles.label}>{t('modules.contacts.form.status')}</Text>
           <View style={styles.chipRow}>
@@ -148,6 +205,26 @@ export default function EditContactScreen() {
             onChangeText={setNotes}
             multiline
             numberOfLines={3}
+            placeholderTextColor={colors.textSecondary}
+          />
+
+          <Text style={styles.label}>{t('modules.contacts.form.lastContactAt')}</Text>
+          <TextInput
+            style={styles.input}
+            value={lastContactAt ?? ''}
+            onChangeText={setLastContactAt}
+            placeholder="YYYY-MM-DD"
+            autoCapitalize="none"
+            placeholderTextColor={colors.textSecondary}
+          />
+
+          <Text style={styles.label}>{t('modules.contacts.form.nextActivityAt')}</Text>
+          <TextInput
+            style={styles.input}
+            value={nextActivityAt ?? ''}
+            onChangeText={setNextActivityAt}
+            placeholder="YYYY-MM-DD"
+            autoCapitalize="none"
             placeholderTextColor={colors.textSecondary}
           />
 

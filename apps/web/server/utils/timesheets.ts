@@ -8,6 +8,8 @@ const COLLECTION = 'timesheets'
 function toEntry(id: string, data: FirebaseFirestore.DocumentData): TimesheetEntry {
   return {
     id,
+    employeeId: data.employeeId ?? null,
+    employeeName: data.employeeName ?? '',
     projectId: data.projectId ?? null,
     taskId: data.taskId ?? null,
     description: data.description ?? '',

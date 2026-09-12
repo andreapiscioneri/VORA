@@ -1,6 +1,7 @@
 import { ActivityIndicator, FlatList, Pressable, RefreshControl, StyleSheet, Text, View } from 'react-native'
 import { useInbox } from '../../hooks/useInbox'
 import { Screen, StateMessage } from '../../components/Screen'
+import { SkeletonList } from '../../components/Skeleton'
 import { radius, spacing } from '../../constants/theme'
 import { useTheme } from '../../contexts/ThemeContext'
 import { useI18n } from '../../i18n'
@@ -19,6 +20,8 @@ export default function InboxScreen() {
     <Screen title={t('inbox.title')} subtitle={t('inbox.count', { count: items.filter((i) => i.status === 'unread').length })}>
       {error ? (
         <StateMessage text={t('inbox.error', { error })} />
+      ) : loading && items.length === 0 ? (
+        <SkeletonList />
       ) : (
         <FlatList
           data={items}

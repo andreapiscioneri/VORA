@@ -7,6 +7,7 @@ export type LeaveStatus = (typeof LEAVE_STATUSES)[number]
 export interface LeaveRequest {
   id: string
   requesterName: string
+  requesterId: string | null
   type: LeaveType
   startDate: string
   endDate: string
@@ -16,4 +17,4 @@ export interface LeaveRequest {
   updatedAt: string
 }
 
-export type LeaveRequestInput = Omit<LeaveRequest, 'id' | 'createdAt' | 'updatedAt'>
+export type LeaveRequestInput = Omit<LeaveRequest, 'id' | 'createdAt' | 'updatedAt' | 'requesterId'>

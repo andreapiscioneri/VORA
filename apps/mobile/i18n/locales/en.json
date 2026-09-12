@@ -66,6 +66,8 @@
       "editTitle": "Edit task",
       "title": "Title",
       "description": "Description",
+      "tags": "Tags",
+      "tagsPlaceholder": "Comma-separated",
       "priority": "Priority",
       "status": "Status",
       "deadline": "Deadline",
@@ -208,6 +210,34 @@
       "settings": {
         "label": "Settings",
         "desc": "Profile and password"
+      },
+      "attendance": {
+        "label": "Attendance",
+        "desc": "Clock in/out entries"
+      },
+      "orgChart": {
+        "label": "Org Chart",
+        "desc": "Company hierarchy"
+      },
+      "recruiting": {
+        "label": "Recruiting",
+        "desc": "Applications and interviews"
+      },
+      "performanceReviews": {
+        "label": "Performance Reviews",
+        "desc": "Periodic staff evaluations"
+      },
+      "training": {
+        "label": "Training",
+        "desc": "Courses, deadlines and certifications"
+      },
+      "welfare": {
+        "label": "Employee Welfare",
+        "desc": "Benefits, initiatives and enrollments"
+      },
+      "payroll": {
+        "label": "Payroll",
+        "desc": "Payslips and pay data (data only)"
       }
     },
     "madeBy": "Made by apdesign"
@@ -228,9 +258,17 @@
         "firstName": "First name",
         "lastName": "Last name",
         "company": "Company",
+        "role": "Role",
         "email": "Email",
         "phone": "Phone",
+        "whatsapp": "WhatsApp",
+        "website": "Website",
+        "address": "Address",
+        "tags": "Tags",
+        "tagsPlaceholder": "Comma-separated",
         "notes": "Notes",
+        "lastContactAt": "Last contact",
+        "nextActivityAt": "Next activity",
         "status": "Status",
         "save": "Save",
         "saving": "Saving...",
@@ -257,12 +295,25 @@
         "won": "Won",
         "lost": "Lost"
       },
+      "source": {
+        "manual": "Manual",
+        "website": "Website",
+        "referral": "Referral",
+        "email": "Email",
+        "whatsapp": "WhatsApp",
+        "import": "Import"
+      },
       "form": {
         "newTitle": "New opportunity",
         "title": "Title",
         "company": "Company",
         "value": "Value (EUR)",
         "stage": "Stage",
+        "source": "Source",
+        "probability": "Probability (%)",
+        "contact": "Contact",
+        "noContact": "No contact",
+        "expectedCloseDate": "Expected close date",
         "notes": "Notes",
         "save": "Save",
         "saving": "Saving...",
@@ -304,7 +355,40 @@
         "save": "Could not save the project.",
         "delete": "Could not delete the project."
       },
-      "deleteConfirm": "Delete this project? This cannot be undone."
+      "deleteConfirm": "Delete this project? This cannot be undone.",
+      "milestones": {
+        "title": "Milestones",
+        "empty": "No milestones.",
+        "form": {
+          "title": "Milestone title",
+          "dueDate": "Due date",
+          "add": "Add milestone"
+        },
+        "errors": {
+          "add": "Unable to add the milestone."
+        }
+      },
+      "documents": {
+        "title": "Documents",
+        "empty": "No documents.",
+        "form": {
+          "title": "Document title",
+          "url": "Link",
+          "add": "Add document"
+        },
+        "errors": {
+          "add": "Unable to add the document."
+        }
+      },
+      "discussion": {
+        "title": "Discussion",
+        "empty": "No comments.",
+        "placeholder": "Write a comment...",
+        "add": "Add comment",
+        "errors": {
+          "add": "Unable to add the comment."
+        }
+      }
     },
     "timesheets": {
       "title": "Timesheets",
@@ -315,6 +399,8 @@
       "nonBillable": "Non-billable",
       "form": {
         "newTitle": "New entry",
+        "employee": "Employee",
+        "noEmployee": "None",
         "date": "Date",
         "durationMinutes": "Duration (minutes)",
         "description": "Description",
@@ -348,6 +434,7 @@
         "title": "Title",
         "description": "Description",
         "priority": "Priority",
+        "assignee": "Assignee",
         "save": "Save",
         "saving": "Saving...",
         "editTitle": "Edit ticket",
@@ -365,7 +452,16 @@
         "save": "Could not save the ticket.",
         "delete": "Could not delete the ticket."
       },
-      "deleteConfirm": "Delete this ticket? This cannot be undone."
+      "deleteConfirm": "Delete this ticket? This cannot be undone.",
+      "comments": {
+        "title": "Comments",
+        "empty": "No comments.",
+        "placeholder": "Write a comment...",
+        "add": "Add comment",
+        "errors": {
+          "add": "Unable to add the comment."
+        }
+      }
     },
     "leave": {
       "title": "Leave",
@@ -465,12 +561,37 @@
         "saving": "Saving...",
         "editTitle": "Edit employee",
         "newTitle": "New employee",
-        "delete": "Delete"
+        "delete": "Delete",
+        "manager": "Manager",
+        "managerNone": "None"
       },
       "deleteConfirm": "Delete this employee? This cannot be undone.",
       "errors": {
         "save": "Couldn't save the employee.",
         "delete": "Couldn't delete the employee."
+      },
+      "documents": {
+        "title": "Documents",
+        "add": "Add document",
+        "empty": "No documents.",
+        "docType": {
+          "contract": "Contract",
+          "certificate": "Certificate",
+          "id": "ID document",
+          "other": "Other"
+        },
+        "form": {
+          "title": "Title",
+          "type": "Type",
+          "expiryDate": "Expiry date (optional)",
+          "url": "File link",
+          "add": "Add"
+        },
+        "deleteConfirm": "Remove this document?",
+        "errors": {
+          "add": "Could not add the document.",
+          "delete": "Could not remove the document."
+        }
       }
     },
     "expenses": {
@@ -627,13 +748,17 @@
         "saving": "Saving...",
         "editTitle": "Edit campaign",
         "delete": "Delete",
-        "cancel": "Cancel"
+        "cancel": "Cancel",
+        "send": "Send campaign",
+        "sending": "Sending..."
       },
       "errors": {
         "save": "Could not save the campaign.",
-        "delete": "Could not delete the campaign."
+        "delete": "Could not delete the campaign.",
+        "send": "Unable to send the campaign."
       },
-      "deleteConfirm": "Delete this campaign? This cannot be undone."
+      "deleteConfirm": "Delete this campaign? This cannot be undone.",
+      "sentAt": "Sent on {{date}}"
     },
     "website": {
       "title": "Website",
@@ -669,6 +794,217 @@
         "fair": "Fair",
         "good": "Good",
         "strong": "Strong"
+      }
+    },
+    "attendance": {
+      "title": "Attendance",
+      "count": "{{count}} entries",
+      "error": "Could not load attendance. Check that the Vora server is running. ({{error}})",
+      "empty": "No attendance entries yet.",
+      "form": {
+        "newTitle": "New entry",
+        "editTitle": "Edit entry",
+        "employeeName": "Employee",
+        "date": "Date",
+        "checkIn": "Check-in",
+        "checkOut": "Check-out",
+        "notes": "Notes",
+        "save": "Save",
+        "saving": "Saving...",
+        "delete": "Delete",
+        "cancel": "Cancel"
+      },
+      "deleteConfirm": "Delete this entry? This cannot be undone.",
+      "errors": {
+        "save": "Could not save the entry.",
+        "delete": "Could not delete the entry."
+      }
+    },
+    "orgChart": {
+      "title": "Org Chart",
+      "subtitle": "Company structure",
+      "empty": "No employees to show.",
+      "error": "Could not load the org chart. ({{error}})"
+    },
+    "recruiting": {
+      "title": "Recruiting",
+      "count": "{{count}} candidates",
+      "error": "Could not load candidates. ({{error}})",
+      "empty": "No candidates.",
+      "stage": {
+        "applied": "Applied",
+        "screening": "Screening",
+        "interview": "Interview",
+        "offer": "Offer",
+        "hired": "Hired",
+        "rejected": "Rejected"
+      },
+      "source": {
+        "website": "Website",
+        "referral": "Referral",
+        "linkedin": "LinkedIn",
+        "agency": "Agency",
+        "other": "Other"
+      },
+      "form": {
+        "newTitle": "New candidate",
+        "editTitle": "Edit candidate",
+        "firstName": "First name",
+        "lastName": "Last name",
+        "email": "Email",
+        "phone": "Phone",
+        "role": "Position",
+        "stage": "Stage",
+        "source": "Source",
+        "resumeUrl": "Resume link",
+        "notes": "Notes",
+        "interviewDate": "Interview date",
+        "save": "Save",
+        "saving": "Saving...",
+        "delete": "Delete",
+        "cancel": "Cancel"
+      },
+      "deleteConfirm": "Delete this candidate? This cannot be undone.",
+      "errors": {
+        "save": "Could not save the candidate.",
+        "delete": "Could not delete the candidate."
+      }
+    },
+    "performanceReviews": {
+      "title": "Performance Reviews",
+      "count": "{{count}} reviews",
+      "error": "Could not load reviews. ({{error}})",
+      "empty": "No reviews.",
+      "status": {
+        "draft": "Draft",
+        "submitted": "Submitted",
+        "completed": "Completed"
+      },
+      "form": {
+        "newTitle": "New review",
+        "editTitle": "Edit review",
+        "employeeName": "Employee",
+        "period": "Period",
+        "reviewerName": "Reviewer",
+        "rating": "Rating (1-5)",
+        "strengths": "Strengths",
+        "improvements": "Areas to improve",
+        "goals": "Goals",
+        "status": "Status",
+        "save": "Save",
+        "saving": "Saving...",
+        "delete": "Delete",
+        "cancel": "Cancel"
+      },
+      "deleteConfirm": "Delete this review? This cannot be undone.",
+      "errors": {
+        "save": "Could not save the review.",
+        "delete": "Could not delete the review."
+      }
+    },
+    "training": {
+      "title": "Training",
+      "count": "{{count}} courses",
+      "error": "Could not load courses. ({{error}})",
+      "empty": "No courses.",
+      "status": {
+        "planned": "Planned",
+        "in_progress": "In progress",
+        "completed": "Completed"
+      },
+      "form": {
+        "newTitle": "New course",
+        "editTitle": "Edit course",
+        "title": "Course title",
+        "employeeName": "Employee",
+        "provider": "Provider",
+        "status": "Status",
+        "startDate": "Start date",
+        "completionDate": "Completion date",
+        "certificateUrl": "Certificate link",
+        "notes": "Notes",
+        "save": "Save",
+        "saving": "Saving...",
+        "delete": "Delete",
+        "cancel": "Cancel"
+      },
+      "deleteConfirm": "Delete this course? This cannot be undone.",
+      "errors": {
+        "save": "Could not save the course.",
+        "delete": "Could not delete the course."
+      }
+    },
+    "welfare": {
+      "title": "Employee Welfare",
+      "count": "{{count}} initiatives",
+      "error": "Unable to load welfare initiatives. ({{error}})",
+      "empty": "No welfare initiatives.",
+      "category": {
+        "health": "Health",
+        "meal": "Meal vouchers",
+        "transport": "Transport",
+        "wellness": "Wellness",
+        "other": "Other"
+      },
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "enrolledCount": "{{count}} enrolled",
+      "form": {
+        "newTitle": "New initiative",
+        "editTitle": "Edit initiative",
+        "title": "Title",
+        "description": "Description",
+        "category": "Category",
+        "status": "Status",
+        "enrolledCount": "Enrolled count",
+        "startDate": "Start date",
+        "endDate": "End date",
+        "notes": "Notes",
+        "save": "Save",
+        "saving": "Saving...",
+        "delete": "Delete",
+        "cancel": "Cancel"
+      },
+      "deleteConfirm": "Delete this initiative? This cannot be undone.",
+      "errors": {
+        "save": "Unable to save the initiative.",
+        "delete": "Unable to delete the initiative."
+      }
+    },
+    "payroll": {
+      "title": "Payroll",
+      "count": "{{count}} payslips",
+      "error": "Unable to load payslips. ({{error}})",
+      "empty": "No payslips recorded.",
+      "disclaimer": "Data and documents only: amounts are entered manually, no automatic tax or contribution calculation.",
+      "status": {
+        "draft": "Draft",
+        "issued": "Issued",
+        "paid": "Paid"
+      },
+      "net": "Net {{amount}}",
+      "form": {
+        "newTitle": "New payslip",
+        "editTitle": "Edit payslip",
+        "employeeName": "Employee",
+        "period": "Period",
+        "grossAmount": "Gross amount",
+        "netAmount": "Net amount",
+        "status": "Status",
+        "payslipUrl": "Payslip link",
+        "paidAt": "Paid on",
+        "notes": "Notes",
+        "save": "Save",
+        "saving": "Saving...",
+        "delete": "Delete",
+        "cancel": "Cancel"
+      },
+      "deleteConfirm": "Delete this payslip? This cannot be undone.",
+      "errors": {
+        "save": "Unable to save the payslip.",
+        "delete": "Unable to delete the payslip."
       }
     }
   },

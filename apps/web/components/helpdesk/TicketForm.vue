@@ -7,9 +7,11 @@ const emit = defineEmits<{ close: []; saved: [] }>()
 
 const { createTicket, updateTicket } = useTickets()
 const { contacts, fetchContacts } = useContacts()
+const { employees, fetchEmployees } = useEmployees()
 const { t } = useI18n()
 
 if (!contacts.value.length) await fetchContacts()
+if (!employees.value.length) await fetchEmployees()
 
 const isEdit = computed(() => !!props.ticket)
 
@@ -17,6 +19,7 @@ const form = reactive<TicketInput>({
   title: props.ticket?.title ?? '',
   description: props.ticket?.description ?? '',
   contactId: props.ticket?.contactId ?? null,
+  assigneeId: props.ticket?.assigneeId ?? null,
   priority: props.ticket?.priority ?? 'medium',
   status: props.ticket?.status ?? 'open',
   category: props.ticket?.category ?? 'general',
@@ -117,6 +120,13 @@ onMounted(() => dialogRef.value?.focus())
             <div>
               <label for="ticket-slaDueAt" class="block text-label text-ink-400 mb-2">{{ $t('helpdesk.form.sla') }}</label>
               <input id="ticket-slaDueAt" v-model="form.slaDueAt" type="datetime-local" class="vora-input" >
+            </div>
+            <div>
+              <label for="ticket-assigneeId" class="block text-label text-ink-400 mb-2">{{ $t('helpdesk.form.assignee') }}</label>
+              <select id="ticket-assigneeId" v-model="form.assigneeId" class="vora-input">
+                <option :value="null">{{ $t('helpdesk.form.noAssignee') }}</option>
+                <option v-for="e in employees" :key="e.id" :value="e.id">{{ e.firstName }} {{ e.lastName }}</option>
+              </select>
             </div>
           </div>
 

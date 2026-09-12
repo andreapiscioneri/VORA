@@ -1,5 +1,5 @@
-import { PropsWithChildren, ReactNode, useEffect, useState } from 'react'
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { PropsWithChildren, ReactNode, useEffect, useRef, useState } from 'react'
+import { Animated, Pressable, StyleSheet, Text, View } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
 import { useRouter } from 'expo-router'
 import { BrandMark } from './BrandMark'
@@ -45,7 +45,7 @@ export function Screen({
                   }}
                   accessibilityRole="button"
                   hitSlop={8}
-                  style={[styles.menuButton, { backgroundColor: colors.surface }]}
+                  style={({ pressed }) => [styles.menuButton, { backgroundColor: colors.surface }, pressed && styles.menuButtonPressed]}
                 >
                   <Icon name="menu" size={20} color={colors.textPrimary} />
                 </Pressable>
@@ -64,7 +64,7 @@ export function Screen({
                   }}
                   accessibilityRole="button"
                   hitSlop={8}
-                  style={[styles.menuButton, { backgroundColor: colors.surface }]}
+                  style={({ pressed }) => [styles.menuButton, { backgroundColor: colors.surface }, pressed && styles.menuButtonPressed]}
                   accessibilityLabel={unreadCount > 0 ? `Notifications, ${unreadCount} unread` : 'Notifications'}
                 >
                   <Icon name="bell" size={18} color={colors.textPrimary} />
@@ -102,8 +102,11 @@ export function DetailScreen({
       <View style={styles.header}>
         <View style={styles.headerTopRow}>
           <Pressable
-            onPress={() => router.back()}
-            style={styles.backButton}
+            onPress={() => {
+              haptics.tap()
+              router.back()
+            }}
+            style={({ pressed }) => [styles.backButton, pressed && styles.backButtonPressed]}
             accessibilityRole="button"
             accessibilityLabel="Back"
             hitSlop={12}
@@ -122,10 +125,17 @@ export function DetailScreen({
 
 export function StateMessage({ text }: { text: string }) {
   const { colors } = useTheme()
+  const fade = useRef(new Animated.Value(0)).current
+
+  useEffect(() => {
+    fade.setValue(0)
+    Animated.timing(fade, { toValue: 1, duration: 220, useNativeDriver: true }).start()
+  }, [text])
+
   return (
-    <View style={styles.state}>
+    <Animated.View style={[styles.state, { opacity: fade }]}>
       <Text style={[styles.stateText, { color: colors.textSecondary }]}>{text}</Text>
-    </View>
+    </Animated.View>
   )
 }
 
@@ -144,6 +154,8 @@ const styles = StyleSheet.create({
   safe: { flex: 1 },
   header: { paddingHorizontal: spacing(5), paddingTop: spacing(3), paddingBottom: spacing(4) },
   backButton: { marginBottom: spacing(3), alignSelf: 'flex-start' },
+  backButtonPressed: { opacity: 0.5 },
+  menuButtonPressed: { opacity: 0.7, transform: [{ scale: 0.94 }] },
   headerTopRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   titleRow: { flexDirection: 'row', alignItems: 'center' },
   sideLeft: { flex: 1, alignItems: 'flex-start' },

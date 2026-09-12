@@ -6,6 +6,7 @@ export type ExpenseCategory = (typeof EXPENSE_CATEGORIES)[number]
 
 export interface Expense {
   id: string
+  submitterId: string | null
   amount: number
   currency: string
   category: ExpenseCategory
@@ -19,4 +20,4 @@ export interface Expense {
   updatedAt: string
 }
 
-export type ExpenseInput = Omit<Expense, 'id' | 'createdAt' | 'updatedAt'>
+export type ExpenseInput = Omit<Expense, 'id' | 'createdAt' | 'updatedAt' | 'submitterId'>

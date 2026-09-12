@@ -1,6 +1,7 @@
 import { ActivityIndicator, FlatList, RefreshControl, StyleSheet, Text, View } from 'react-native'
 import { useAuditLog } from '../hooks/useAuditLog'
 import { DetailScreen, StateMessage } from '../components/Screen'
+import { SkeletonList } from '../components/Skeleton'
 import { radius, spacing } from '../constants/theme'
 import { useTheme } from '../contexts/ThemeContext'
 import { useI18n } from '../i18n'
@@ -19,6 +20,8 @@ export default function AuditLogScreen() {
         <StateMessage text={t('modules.auditLog.forbidden')} />
       ) : error ? (
         <StateMessage text={t('modules.auditLog.error', { error })} />
+      ) : loading && entries.length === 0 ? (
+        <SkeletonList />
       ) : (
         <FlatList
           data={entries}

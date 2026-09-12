@@ -5,10 +5,13 @@ import { employeeInputSchema } from '~/shared/validation/employee'
 const props = defineProps<{ employee?: Employee | null }>()
 const emit = defineEmits<{ close: []; saved: []; deleted: [] }>()
 
-const { createEmployee, updateEmployee, removeEmployee } = useEmployees()
+const { employees, createEmployee, updateEmployee, removeEmployee } = useEmployees()
 const { t } = useI18n()
 
 const isEdit = computed(() => !!props.employee)
+
+// Excludes the employee being edited so they can't be their own manager.
+const managerOptions = computed(() => employees.value.filter((e) => e.id !== props.employee?.id))
 
 const form = reactive<EmployeeInput>({
   firstName: props.employee?.firstName ?? '',
@@ -18,6 +21,8 @@ const form = reactive<EmployeeInput>({
   team: props.employee?.team ?? '',
   status: props.employee?.status ?? 'active',
   startDate: props.employee?.startDate ?? null,
+  managerId: props.employee?.managerId ?? null,
+  documents: props.employee?.documents ?? [],
 })
 
 const errors = reactive<Record<string, string>>({})
@@ -113,6 +118,13 @@ onMounted(() => dialogRef.value?.focus())
             <div>
               <label for="employee-startDate" class="block text-label text-ink-400 mb-2">{{ $t('employees.form.startDate') }}</label>
               <input id="employee-startDate" v-model="form.startDate" type="date" class="vora-input" >
+            </div>
+            <div>
+              <label for="employee-manager" class="block text-label text-ink-400 mb-2">{{ $t('employees.form.manager') }}</label>
+              <select id="employee-manager" v-model="form.managerId" class="vora-input">
+                <option :value="null">{{ $t('employees.form.managerNone') }}</option>
+                <option v-for="m in managerOptions" :key="m.id" :value="m.id">{{ m.firstName }} {{ m.lastName }}</option>
+              </select>
             </div>
           </div>
 

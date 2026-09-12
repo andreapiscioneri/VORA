@@ -1,24 +1,25 @@
 import { useState } from 'react'
-import { Alert, KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
+import { Alert, KeyboardAvoidingView, Linking, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
 import { useLocalSearchParams, useRouter } from 'expo-router'
 import { DetailScreen, StateMessage } from '../../components/Screen'
 import { Icon } from '../../components/Icon'
+import { EmployeePickerModal } from '../../components/EmployeePickerModal'
 import { useEmployees } from '../../hooks/useEmployees'
 import { useTheme } from '../../contexts/ThemeContext'
 import { useI18n } from '../../i18n'
 import { haptics } from '../../lib/haptics'
 import { radius, spacing } from '../../constants/theme'
-import { employeeInputSchema } from '@vora/shared/validation/employee'
-import { EMPLOYEE_STATUSES } from '@vora/shared/types/employee'
+import { employeeInputSchema, addEmployeeDocumentSchema } from '@vora/shared/validation/employee'
+import { EMPLOYEE_STATUSES, EMPLOYEE_DOCUMENT_TYPES } from '@vora/shared/types/employee'
 import type { ThemeColors } from '../../constants/theme'
-import type { EmployeeInput, EmployeeStatus } from '@vora/shared/types/employee'
+import type { EmployeeInput, EmployeeStatus, EmployeeDocumentType } from '@vora/shared/types/employee'
 
 export default function EditEmployeeScreen() {
   const { id } = useLocalSearchParams<{ id: string }>()
   const { colors } = useTheme()
   const { t } = useI18n()
   const router = useRouter()
-  const { employees, update, remove } = useEmployees()
+  const { employees, update, remove, addDocument, removeDocument } = useEmployees()
   const styles = makeStyles(colors)
 
   const employee = employees.find((e) => e.id === id)
@@ -30,9 +31,18 @@ export default function EditEmployeeScreen() {
   const [team, setTeam] = useState(employee?.team ?? '')
   const [status, setStatus] = useState<EmployeeStatus>(employee?.status ?? 'active')
   const [startDate, setStartDate] = useState(employee?.startDate ?? '')
+  const [managerId, setManagerId] = useState<string | null>(employee?.managerId ?? null)
+  const [managerPickerOpen, setManagerPickerOpen] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [saving, setSaving] = useState(false)
   const [saveError, setSaveError] = useState<string | null>(null)
+
+  const [docTitle, setDocTitle] = useState('')
+  const [docType, setDocType] = useState<EmployeeDocumentType>('other')
+  const [docExpiry, setDocExpiry] = useState('')
+  const [docUrl, setDocUrl] = useState('')
+  const [docError, setDocError] = useState<string | null>(null)
+  const [addingDoc, setAddingDoc] = useState(false)
 
   if (!employee) {
     return (
@@ -46,7 +56,7 @@ export default function EditEmployeeScreen() {
     haptics.press()
     setSaveError(null)
 
-    const form = { firstName, lastName, email, role, team, status, startDate: startDate || null }
+    const form = { firstName, lastName, email, role, team, status, startDate: startDate || null, managerId, documents: employee!.documents }
     const result = employeeInputSchema.safeParse(form)
     if (!result.success) {
       const nextErrors: Record<string, string> = {}
@@ -87,6 +97,51 @@ export default function EditEmployeeScreen() {
           } catch {
             haptics.error()
             setSaveError(t('modules.employees.errors.delete'))
+          }
+        },
+      },
+    ])
+  }
+
+  async function submitDocument() {
+    haptics.press()
+    setDocError(null)
+    const result = addEmployeeDocumentSchema.safeParse({ title: docTitle, type: docType, expiryDate: docExpiry || null, url: docUrl })
+    if (!result.success) {
+      setDocError(t(result.error.issues[0]?.message ?? 'validation.required'))
+      haptics.error()
+      return
+    }
+    setAddingDoc(true)
+    try {
+      await addDocument(id, result.data)
+      setDocTitle('')
+      setDocExpiry('')
+      setDocUrl('')
+      setDocType('other')
+      haptics.success()
+    } catch {
+      haptics.error()
+      setDocError(t('modules.employees.documents.errors.add'))
+    } finally {
+      setAddingDoc(false)
+    }
+  }
+
+  function confirmRemoveDocument(documentId: string) {
+    haptics.warning()
+    Alert.alert(t('modules.employees.documents.deleteConfirm'), '', [
+      { text: t('modules.employees.form.cancel'), style: 'cancel' },
+      {
+        text: t('modules.employees.form.delete'),
+        style: 'destructive',
+        onPress: async () => {
+          try {
+            await removeDocument(id, documentId)
+            haptics.success()
+          } catch {
+            haptics.error()
+            setDocError(t('modules.employees.documents.errors.delete'))
           }
         },
       },
@@ -150,6 +205,25 @@ export default function EditEmployeeScreen() {
             placeholderTextColor={colors.textSecondary}
           />
 
+          <Text style={styles.label}>{t('modules.employees.form.manager')}</Text>
+          <Pressable
+            style={styles.input}
+            onPress={() => {
+              haptics.tap()
+              setManagerPickerOpen(true)
+            }}
+            accessibilityRole="button"
+          >
+            <Text style={{ color: managerId ? colors.textPrimary : colors.textSecondary }}>
+              {managerId
+                ? (() => {
+                    const m = employees.find((e) => e.id === managerId)
+                    return m ? `${m.firstName} ${m.lastName}` : t('modules.employees.form.managerNone')
+                  })()
+                : t('modules.employees.form.managerNone')}
+            </Text>
+          </Pressable>
+
           {saveError ? <Text style={styles.error}>{saveError}</Text> : null}
 
           <Pressable style={styles.submit} disabled={saving} onPress={submit} accessibilityRole="button">
@@ -160,8 +234,87 @@ export default function EditEmployeeScreen() {
             <Icon name="trash" size={16} color={colors.danger} />
             <Text style={styles.deleteText}>{t('modules.employees.form.delete')}</Text>
           </Pressable>
+
+          <Text style={styles.sectionTitle}>{t('modules.employees.documents.title')}</Text>
+
+          {employee.documents.length === 0 ? (
+            <Text style={styles.emptyText}>{t('modules.employees.documents.empty')}</Text>
+          ) : (
+            employee.documents.map((doc) => (
+              <View key={doc.id} style={styles.docRow}>
+                <Pressable style={styles.docMain} onPress={() => Linking.openURL(doc.url)} accessibilityRole="link">
+                  <Text style={styles.docTitle} numberOfLines={1}>
+                    {doc.title}
+                  </Text>
+                  <Text style={styles.docSubtext}>
+                    {t(`modules.employees.documents.docType.${doc.type}`)}
+                    {doc.expiryDate ? ` · ${doc.expiryDate}` : ''}
+                  </Text>
+                </Pressable>
+                <Pressable onPress={() => confirmRemoveDocument(doc.id)} hitSlop={8} accessibilityRole="button">
+                  <Icon name="trash" size={16} color={colors.textSecondary} />
+                </Pressable>
+              </View>
+            ))
+          )}
+
+          <Text style={[styles.label, { marginTop: spacing(5) }]}>{t('modules.employees.documents.form.title')}</Text>
+          <TextInput style={styles.input} value={docTitle} onChangeText={setDocTitle} placeholderTextColor={colors.textSecondary} />
+
+          <Text style={styles.label}>{t('modules.employees.documents.form.type')}</Text>
+          <View style={styles.chipRow}>
+            {EMPLOYEE_DOCUMENT_TYPES.map((dt) => (
+              <Pressable
+                key={dt}
+                style={[styles.chip, docType === dt ? styles.chipActive : null]}
+                onPress={() => {
+                  haptics.selection()
+                  setDocType(dt)
+                }}
+                accessibilityRole="button"
+                accessibilityState={{ selected: docType === dt }}
+              >
+                <Text style={[styles.chipText, docType === dt ? styles.chipTextActive : null]}>{t(`modules.employees.documents.docType.${dt}`)}</Text>
+              </Pressable>
+            ))}
+          </View>
+
+          <Text style={styles.label}>{t('modules.employees.documents.form.expiryDate')}</Text>
+          <TextInput
+            style={styles.input}
+            value={docExpiry}
+            onChangeText={setDocExpiry}
+            placeholder="YYYY-MM-DD"
+            autoCapitalize="none"
+            placeholderTextColor={colors.textSecondary}
+          />
+
+          <Text style={styles.label}>{t('modules.employees.documents.form.url')}</Text>
+          <TextInput
+            style={styles.input}
+            value={docUrl}
+            onChangeText={setDocUrl}
+            placeholder="https://..."
+            autoCapitalize="none"
+            placeholderTextColor={colors.textSecondary}
+          />
+
+          {docError ? <Text style={styles.error}>{docError}</Text> : null}
+
+          <Pressable style={styles.addDocButton} disabled={addingDoc} onPress={submitDocument} accessibilityRole="button">
+            <Text style={styles.addDocButtonText}>{t('modules.employees.documents.form.add')}</Text>
+          </Pressable>
         </ScrollView>
       </KeyboardAvoidingView>
+
+      <EmployeePickerModal
+        visible={managerPickerOpen}
+        onClose={() => setManagerPickerOpen(false)}
+        employees={employees}
+        excludeId={employee.id}
+        selectedId={managerId}
+        onSelect={setManagerId}
+      />
     </DetailScreen>
   )
 }
@@ -189,5 +342,27 @@ function makeStyles(colors: ThemeColors) {
     submitText: { color: '#0A0A0A', fontWeight: '700', fontSize: 15 },
     deleteButton: { flexDirection: 'row', gap: spacing(2), alignItems: 'center', justifyContent: 'center', paddingVertical: spacing(3), marginTop: spacing(4) },
     deleteText: { color: colors.danger, fontWeight: '600', fontSize: 14 },
+    sectionTitle: { color: colors.textPrimary, fontSize: 16, fontWeight: '700', marginTop: spacing(8), marginBottom: spacing(3) },
+    emptyText: { color: colors.textSecondary, fontSize: 13 },
+    docRow: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      justifyContent: 'space-between',
+      backgroundColor: colors.surface,
+      borderRadius: radius.md,
+      padding: spacing(4),
+      marginBottom: spacing(2),
+      gap: spacing(3),
+    },
+    docMain: { flex: 1 },
+    docTitle: { color: colors.textPrimary, fontSize: 14, fontWeight: '600' },
+    docSubtext: { color: colors.textSecondary, fontSize: 12, marginTop: spacing(1) },
+    chipRow: { flexDirection: 'row', flexWrap: 'wrap', gap: spacing(2) },
+    chip: { borderWidth: 1, borderColor: colors.border, borderRadius: radius.full, paddingVertical: spacing(2), paddingHorizontal: spacing(3) },
+    chipActive: { backgroundColor: colors.primary, borderColor: colors.primary },
+    chipText: { color: colors.textSecondary, fontSize: 13, fontWeight: '600' },
+    chipTextActive: { color: '#0A0A0A' },
+    addDocButton: { backgroundColor: colors.surface, borderWidth: 1, borderColor: colors.border, borderRadius: radius.md, paddingVertical: spacing(3), marginTop: spacing(4), alignItems: 'center' },
+    addDocButtonText: { color: colors.textPrimary, fontWeight: '700', fontSize: 14 },
   })
 }

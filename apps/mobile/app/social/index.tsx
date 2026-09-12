@@ -2,6 +2,7 @@ import { ActivityIndicator, FlatList, Pressable, RefreshControl, StyleSheet, Tex
 import { useRouter } from 'expo-router'
 import { useSocialPosts } from '../../hooks/useSocialPosts'
 import { DetailScreen, StateMessage, OfflineBanner } from '../../components/Screen'
+import { SkeletonList } from '../../components/Skeleton'
 import { Icon } from '../../components/Icon'
 import { radius, spacing } from '../../constants/theme'
 import { useTheme } from '../../contexts/ThemeContext'
@@ -38,6 +39,8 @@ export default function SocialScreen() {
     >
       {error ? (
         <StateMessage text={t('modules.social.error', { error })} />
+      ) : loading && posts.length === 0 ? (
+        <SkeletonList />
       ) : (
         <>
           {offline ? <OfflineBanner text={t('common.offlineCached')} /> : null}

@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
 import { useRouter } from 'expo-router'
 import { DetailScreen } from '../../components/Screen'
+import { EmployeePickerModal } from '../../components/EmployeePickerModal'
 import { useEmployees } from '../../hooks/useEmployees'
 import { useTheme } from '../../contexts/ThemeContext'
 import { useI18n } from '../../i18n'
@@ -16,7 +17,7 @@ export default function NewEmployeeScreen() {
   const { colors } = useTheme()
   const { t } = useI18n()
   const router = useRouter()
-  const { create } = useEmployees()
+  const { employees, create } = useEmployees()
   const styles = makeStyles(colors)
 
   const [firstName, setFirstName] = useState('')
@@ -26,6 +27,8 @@ export default function NewEmployeeScreen() {
   const [team, setTeam] = useState('')
   const [status, setStatus] = useState<EmployeeStatus>('active')
   const [startDate, setStartDate] = useState('')
+  const [managerId, setManagerId] = useState<string | null>(null)
+  const [managerPickerOpen, setManagerPickerOpen] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [saving, setSaving] = useState(false)
   const [saveError, setSaveError] = useState<string | null>(null)
@@ -34,7 +37,7 @@ export default function NewEmployeeScreen() {
     haptics.press()
     setSaveError(null)
 
-    const form = { firstName, lastName, email, role, team, status, startDate: startDate || null }
+    const form = { firstName, lastName, email, role, team, status, startDate: startDate || null, managerId }
     const result = employeeInputSchema.safeParse(form)
     if (!result.success) {
       const nextErrors: Record<string, string> = {}
@@ -117,6 +120,25 @@ export default function NewEmployeeScreen() {
             placeholderTextColor={colors.textSecondary}
           />
 
+          <Text style={styles.label}>{t('modules.employees.form.manager')}</Text>
+          <Pressable
+            style={styles.input}
+            onPress={() => {
+              haptics.tap()
+              setManagerPickerOpen(true)
+            }}
+            accessibilityRole="button"
+          >
+            <Text style={{ color: managerId ? colors.textPrimary : colors.textSecondary }}>
+              {managerId
+                ? (() => {
+                    const m = employees.find((e) => e.id === managerId)
+                    return m ? `${m.firstName} ${m.lastName}` : t('modules.employees.form.managerNone')
+                  })()
+                : t('modules.employees.form.managerNone')}
+            </Text>
+          </Pressable>
+
           {saveError ? <Text style={styles.error}>{saveError}</Text> : null}
 
           <Pressable style={styles.submit} disabled={saving} onPress={submit} accessibilityRole="button">
@@ -124,6 +146,14 @@ export default function NewEmployeeScreen() {
           </Pressable>
         </ScrollView>
       </KeyboardAvoidingView>
+
+      <EmployeePickerModal
+        visible={managerPickerOpen}
+        onClose={() => setManagerPickerOpen(false)}
+        employees={employees}
+        selectedId={managerId}
+        onSelect={setManagerId}
+      />
     </DetailScreen>
   )
 }

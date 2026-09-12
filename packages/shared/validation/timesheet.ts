@@ -1,6 +1,8 @@
 import { z } from 'zod'
 
 export const timesheetEntryInputSchema = z.object({
+  employeeId: z.string().nullable().default(null),
+  employeeName: z.string().trim().max(160).default(''),
   projectId: z.string().nullable().default(null),
   taskId: z.string().nullable().default(null),
   description: z.string().trim().max(400).default(''),

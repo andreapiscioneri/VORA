@@ -2,6 +2,7 @@ import { FlatList, Pressable, RefreshControl, StyleSheet, Text, View } from 'rea
 import { useRouter } from 'expo-router'
 import { useEvents } from '../../hooks/useEvents'
 import { Screen, StateMessage, OfflineBanner } from '../../components/Screen'
+import { SkeletonList } from '../../components/Skeleton'
 import { Icon } from '../../components/Icon'
 import { radius, spacing } from '../../constants/theme'
 import { useTheme } from '../../contexts/ThemeContext'
@@ -40,6 +41,8 @@ export default function CalendarScreen() {
     <Screen title={t('calendar.title')} subtitle={t('calendar.count', { count: events.length })}>
       {error ? (
         <StateMessage text={t('calendar.error', { error })} />
+      ) : loading && events.length === 0 ? (
+        <SkeletonList />
       ) : (
         <>
           {offline ? <OfflineBanner text={t('common.offlineCached')} /> : null}
@@ -84,7 +87,7 @@ export default function CalendarScreen() {
           haptics.tap()
           router.push('/calendar/new')
         }}
-        style={styles.fab}
+        style={({ pressed }) => [styles.fab, pressed && styles.fabPressed]}
         accessibilityRole="button"
         accessibilityLabel={t('calendar.form.newTitle')}
       >
@@ -126,5 +129,6 @@ function makeStyles(colors: ThemeColors) {
       shadowRadius: 8,
       elevation: 6,
     },
+    fabPressed: { transform: [{ scale: 0.92 }], shadowOpacity: 0.15 },
   })
 }

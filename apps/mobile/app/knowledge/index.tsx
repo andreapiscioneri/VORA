@@ -2,6 +2,7 @@ import { FlatList, Pressable, RefreshControl, StyleSheet, Text, View } from 'rea
 import { useRouter } from 'expo-router'
 import { useKnowledge } from '../../hooks/useKnowledge'
 import { DetailScreen, StateMessage, OfflineBanner } from '../../components/Screen'
+import { SkeletonList } from '../../components/Skeleton'
 import { Icon } from '../../components/Icon'
 import { radius, spacing } from '../../constants/theme'
 import { useTheme } from '../../contexts/ThemeContext'
@@ -38,6 +39,8 @@ export default function KnowledgeScreen() {
     >
       {error ? (
         <StateMessage text={t('modules.knowledge.error', { error })} />
+      ) : loading && documents.length === 0 ? (
+        <SkeletonList />
       ) : (
         <>
           {offline ? <OfflineBanner text={t('common.offlineCached')} /> : null}

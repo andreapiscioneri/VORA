@@ -2,6 +2,7 @@ import { leaveRequestInputSchema } from '~/shared/validation/leave'
 import { getLeaveRequest, updateLeaveRequest } from '~/server/utils/leave'
 import { requireOrgId, requireRole, resolveSession } from '~/server/utils/auth'
 import { logAction } from '~/server/utils/auditLog'
+import { sendPushToUser } from '~/server/services/notifications'
 
 // Editing a still-pending request's own content is open to any member;
 // changing its status (approve/reject) is an owner/admin action — the two
@@ -37,6 +38,15 @@ export default defineEventHandler(async (event) => {
   if (!session) throw createError({ statusCode: 401, statusMessage: 'Authentication required' })
   const { user } = session
     await logAction(organizationId, user.id, user.name, updated.status === 'approved' ? 'leave.approve' : 'leave.reject', 'leaveRequest', id)
+
+    if (updated.requesterId) {
+      const approved = updated.status === 'approved'
+      await sendPushToUser(updated.requesterId, 'approvals', {
+        title: approved ? 'Richiesta ferie approvata' : 'Richiesta ferie rifiutata',
+        body: `${updated.type} · ${updated.startDate} – ${updated.endDate}`,
+        data: { type: 'leaveRequest', leaveRequestId: id },
+      })
+    }
   }
 
   return updated

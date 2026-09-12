@@ -2,6 +2,7 @@ import { ActivityIndicator, FlatList, Pressable, RefreshControl, StyleSheet, Tex
 import { useRouter } from 'expo-router'
 import { useExpenses } from '../../hooks/useExpenses'
 import { DetailScreen, StateMessage, OfflineBanner } from '../../components/Screen'
+import { SkeletonList } from '../../components/Skeleton'
 import { Icon } from '../../components/Icon'
 import { radius, spacing } from '../../constants/theme'
 import { useTheme } from '../../contexts/ThemeContext'
@@ -44,6 +45,8 @@ export default function ExpensesScreen() {
     >
       {error ? (
         <StateMessage text={t('modules.expenses.error', { error })} />
+      ) : loading && expenses.length === 0 ? (
+        <SkeletonList />
       ) : (
         <>
           {offline ? <OfflineBanner text={t('common.offlineCached')} /> : null}

@@ -1,6 +1,7 @@
 import { useRouter } from 'expo-router'
 import { FlatList, Pressable, RefreshControl, StyleSheet, Text, View } from 'react-native'
 import { DetailScreen, StateMessage } from '../../components/Screen'
+import { SkeletonList } from '../../components/Skeleton'
 import { Icon } from '../../components/Icon'
 import { useNotifications } from '../../hooks/useNotifications'
 import { radius, spacing } from '../../constants/theme'
@@ -38,6 +39,8 @@ export default function NotificationsInboxScreen() {
     >
       {error ? (
         <StateMessage text={error} />
+      ) : loading && notifications.length === 0 ? (
+        <SkeletonList />
       ) : (
         <FlatList
           data={notifications}

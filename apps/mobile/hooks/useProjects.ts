@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { api } from '../lib/api'
 import type { Project, ProjectInput } from '@vora/shared/types/project'
+import type { AddProjectCommentSchema, AddProjectDocumentSchema, AddProjectMilestoneSchema } from '@vora/shared/validation/project'
 
 interface PageResult<T> {
   items: T[]
@@ -65,5 +66,29 @@ export function useProjects() {
     setProjects((prev) => prev.filter((p) => p.id !== id))
   }, [])
 
-  return { projects, loading, loadingMore, error, hasMore, reload: load, loadMore, create, update, remove }
+  const addDocument = useCallback(async (id: string, input: AddProjectDocumentSchema) => {
+    const updated = await api.post<Project>(`/projects/${id}/documents`, input)
+    setProjects((prev) => prev.map((p) => (p.id === id ? updated : p)))
+    return updated
+  }, [])
+
+  const addComment = useCallback(async (id: string, input: AddProjectCommentSchema) => {
+    const updated = await api.post<Project>(`/projects/${id}/discussion`, input)
+    setProjects((prev) => prev.map((p) => (p.id === id ? updated : p)))
+    return updated
+  }, [])
+
+  const addMilestone = useCallback(async (id: string, input: AddProjectMilestoneSchema) => {
+    const updated = await api.post<Project>(`/projects/${id}/milestones`, input)
+    setProjects((prev) => prev.map((p) => (p.id === id ? updated : p)))
+    return updated
+  }, [])
+
+  const toggleMilestone = useCallback(async (id: string, milestoneId: string) => {
+    const updated = await api.put<Project>(`/projects/${id}/milestones/${milestoneId}`, {})
+    setProjects((prev) => prev.map((p) => (p.id === id ? updated : p)))
+    return updated
+  }, [])
+
+  return { projects, loading, loadingMore, error, hasMore, reload: load, loadMore, create, update, remove, addDocument, addComment, addMilestone, toggleMilestone }
 }

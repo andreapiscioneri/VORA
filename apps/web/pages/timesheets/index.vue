@@ -29,6 +29,8 @@ async function stopTimer() {
   if (!result) return
   const minutes = Math.max(1, Math.round((Date.now() - new Date(result.startedAt).getTime()) / 60000))
   await createEntry({
+    employeeId: null,
+    employeeName: '',
     projectId: result.projectId,
     taskId: null,
     description: result.description,

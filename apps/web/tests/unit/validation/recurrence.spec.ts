@@ -14,6 +14,7 @@ function makeEvent(overrides: Partial<CalendarEvent> = {}): CalendarEvent {
     contactId: null,
     timezone: 'UTC',
     recurrence: { frequency: 'none', interval: 1, until: null },
+    createdBy: 'user1',
     createdAt: '2026-01-01T00:00:00.000Z',
     updatedAt: '2026-01-01T00:00:00.000Z',
     ...overrides,

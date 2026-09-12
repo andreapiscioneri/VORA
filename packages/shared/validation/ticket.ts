@@ -18,6 +18,7 @@ export const ticketInputSchema = z.object({
   title: z.string().trim().min(1, 'validation.required').max(160),
   description: z.string().trim().max(4000).default(''),
   contactId: z.string().nullable().default(null),
+  assigneeId: z.string().nullable().default(null),
   priority: z.enum(TICKET_PRIORITIES).default('medium'),
   status: z.enum(TICKET_STATUSES).default('open'),
   category: z.enum(TICKET_CATEGORIES).default('general'),
@@ -34,3 +35,9 @@ export const addTicketAttachmentSchema = z.object({
 })
 
 export type AddTicketAttachmentSchema = z.infer<typeof addTicketAttachmentSchema>
+
+export const addTicketCommentSchema = z.object({
+  body: z.string().trim().min(1, 'validation.required').max(2000),
+})
+
+export type AddTicketCommentSchema = z.infer<typeof addTicketCommentSchema>

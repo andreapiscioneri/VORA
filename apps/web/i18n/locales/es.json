@@ -93,7 +93,14 @@
     "settings": "Ajustes",
     "templates": "Plantillas",
     "segments": "Segmentos",
-    "automations": "Automatizaciones"
+    "automations": "Automatizaciones",
+    "attendance": "Presencia",
+    "orgChart": "Organigrama",
+    "recruiting": "Selección de personal",
+    "performanceReviews": "Evaluaciones",
+    "training": "Formación",
+    "welfare": "Bienestar laboral",
+    "payroll": "Nóminas"
   },
   "topbar": {
     "search": "Buscar...",
@@ -459,6 +466,8 @@
       "delete": "No se pudo eliminar el registro."
     },
     "form": {
+      "employee": "Empleado",
+      "noEmployee": "Ninguno",
       "project": "Proyecto",
       "noProject": "Sin proyecto vinculado",
       "task": "Tarea",
@@ -669,6 +678,8 @@
       "contact": "Cliente",
       "noContact": "Sin cliente vinculado",
       "priority": "Prioridad",
+      "assignee": "Asignado a",
+      "noAssignee": "Ninguno",
       "status": "Estado",
       "category": "Categoría",
       "cancel": "Cancelar",
@@ -963,6 +974,8 @@
       "team": "Equipo",
       "status": "Estado",
       "startDate": "Fecha de inicio",
+      "manager": "Responsable",
+      "managerNone": "Ninguno",
       "cancel": "Cancelar",
       "save": "Guardar",
       "saving": "Guardando...",
@@ -1362,12 +1375,30 @@
       "title": "Todo lo que tu equipo necesita, en un solo sistema",
       "subtitle": "Seis módulos conectados en lugar de seis herramientas sueltas.",
       "items": {
-        "crm": { "title": "CRM & Contactos", "description": "Gestiona leads, clientes y oportunidades en un único pipeline." },
-        "calendar": { "title": "Calendario & Citas", "description": "Programa reuniones y reservas sin solapamientos." },
-        "projects": { "title": "Proyectos & Tareas", "description": "Organiza el trabajo del equipo con plazos y responsables claros." },
-        "marketing": { "title": "Marketing & Automatizaciones", "description": "Campañas, segmentos y flujos de trabajo que funcionan solos." },
-        "helpdesk": { "title": "Helpdesk & Base de conocimiento", "description": "Responde a los clientes más rápido con una base de conocimiento compartida." },
-        "people": { "title": "Personas & Ausencias", "description": "Vacaciones, gastos y bienestar del equipo en un solo lugar." }
+        "crm": {
+          "title": "CRM & Contactos",
+          "description": "Gestiona leads, clientes y oportunidades en un único pipeline."
+        },
+        "calendar": {
+          "title": "Calendario & Citas",
+          "description": "Programa reuniones y reservas sin solapamientos."
+        },
+        "projects": {
+          "title": "Proyectos & Tareas",
+          "description": "Organiza el trabajo del equipo con plazos y responsables claros."
+        },
+        "marketing": {
+          "title": "Marketing & Automatizaciones",
+          "description": "Campañas, segmentos y flujos de trabajo que funcionan solos."
+        },
+        "helpdesk": {
+          "title": "Helpdesk & Base de conocimiento",
+          "description": "Responde a los clientes más rápido con una base de conocimiento compartida."
+        },
+        "people": {
+          "title": "Personas & Ausencias",
+          "description": "Vacaciones, gastos y bienestar del equipo en un solo lugar."
+        }
       }
     },
     "customers": {
@@ -1375,21 +1406,49 @@
       "title": "Un sistema que se adapta a tu sector",
       "subtitle": "No todos los equipos trabajan igual — VORA no les obliga a hacerlo.",
       "items": {
-        "agencies": { "title": "Agencias & estudios profesionales", "description": "Gestión de clientes, proyectos por horas y facturación transparente." },
-        "smes": { "title": "Pymes de servicios", "description": "CRM, calendario y helpdesk unidos para no perder a ningún cliente." },
-        "sales": { "title": "Equipos de marketing & ventas", "description": "Campañas y automatizaciones que mantienen el pipeline lleno." },
-        "hr": { "title": "RR. HH. & people ops", "description": "Vacaciones, asistencia y bienestar sin hojas de cálculo." }
+        "agencies": {
+          "title": "Agencias & estudios profesionales",
+          "description": "Gestión de clientes, proyectos por horas y facturación transparente."
+        },
+        "smes": {
+          "title": "Pymes de servicios",
+          "description": "CRM, calendario y helpdesk unidos para no perder a ningún cliente."
+        },
+        "sales": {
+          "title": "Equipos de marketing & ventas",
+          "description": "Campañas y automatizaciones que mantienen el pipeline lleno."
+        },
+        "hr": {
+          "title": "RR. HH. & people ops",
+          "description": "Vacaciones, asistencia y bienestar sin hojas de cálculo."
+        }
       }
     },
     "automation": {
       "eyebrow": "Automatizaciones",
       "title": "Flujos de trabajo que funcionan aunque tú no estés",
       "subtitle": "Reglas reales de disparador → condición → acción, no simples recordatorios.",
-      "labels": { "trigger": "Disparador", "condition": "Condición", "action": "Acción" },
+      "labels": {
+        "trigger": "Disparador",
+        "condition": "Condición",
+        "action": "Acción"
+      },
       "items": {
-        "contact": { "trigger": "Nuevo contacto creado", "condition": "origen = sitio web", "action": "Enviar un email de bienvenida y asignar un comercial" },
-        "appointment": { "trigger": "Cita en 24 horas", "condition": "aún sin confirmar", "action": "Enviar un recordatorio automático" },
-        "invoice": { "trigger": "Factura vencida hace 7 días", "condition": "sigue impagada", "action": "Crear una tarea de seguimiento y avisar al equipo" }
+        "contact": {
+          "trigger": "Nuevo contacto creado",
+          "condition": "origen = sitio web",
+          "action": "Enviar un email de bienvenida y asignar un comercial"
+        },
+        "appointment": {
+          "trigger": "Cita en 24 horas",
+          "condition": "aún sin confirmar",
+          "action": "Enviar un recordatorio automático"
+        },
+        "invoice": {
+          "trigger": "Factura vencida hace 7 días",
+          "condition": "sigue impagada",
+          "action": "Crear una tarea de seguimiento y avisar al equipo"
+        }
       }
     },
     "pricing": {
@@ -1431,10 +1490,22 @@
       "subtitle": "Una vista previa interactiva del producto — sin necesidad de registrarte.",
       "ctaTry": "Pruébalo gratis",
       "tabs": {
-        "crm": { "label": "CRM", "caption": "Cada contacto, negociación y conversación en un solo pipeline." },
-        "calendar": { "label": "Calendario", "caption": "Citas y disponibilidad del equipo, siempre sincronizadas." },
-        "automation": { "label": "Automatizaciones", "caption": "Reglas que se disparan solas, para que tú no tengas que hacerlo." },
-        "projects": { "label": "Proyectos", "caption": "Tareas, plazos y responsables de un vistazo." }
+        "crm": {
+          "label": "CRM",
+          "caption": "Cada contacto, negociación y conversación en un solo pipeline."
+        },
+        "calendar": {
+          "label": "Calendario",
+          "caption": "Citas y disponibilidad del equipo, siempre sincronizadas."
+        },
+        "automation": {
+          "label": "Automatizaciones",
+          "caption": "Reglas que se disparan solas, para que tú no tengas que hacerlo."
+        },
+        "projects": {
+          "label": "Proyectos",
+          "caption": "Tareas, plazos y responsables de un vistazo."
+        }
       }
     },
     "contact": {
@@ -1467,6 +1538,299 @@
       "rejectedMessage": "Cuenta rechazada.",
       "error": "Algo salió mal. Inténtalo de nuevo.",
       "redirecting": "Te estamos llevando al panel…"
+    }
+  },
+  "attendance": {
+    "title": "Presencia",
+    "subtitle": "{count} fichajes",
+    "new": "Nuevo fichaje",
+    "empty": {
+      "title": "Presencia",
+      "subtitle": "Sin fichajes todavía.",
+      "cta": "Nuevo fichaje"
+    },
+    "errors": {
+      "load": "No se pudo cargar la asistencia.",
+      "save": "No se pudo guardar el fichaje.",
+      "delete": "No se pudo eliminar el fichaje."
+    },
+    "columns": {
+      "employee": "Empleado",
+      "date": "Fecha",
+      "checkIn": "Entrada",
+      "checkOut": "Salida"
+    },
+    "form": {
+      "newTitle": "Nuevo fichaje",
+      "editTitle": "Editar fichaje",
+      "employeeName": "Empleado",
+      "selectEmployee": "Selecciona un empleado",
+      "date": "Fecha",
+      "checkIn": "Entrada",
+      "checkOut": "Salida",
+      "notes": "Notas",
+      "save": "Guardar",
+      "saving": "Guardando...",
+      "delete": "Eliminar",
+      "cancel": "Cancelar"
+    },
+    "deleteConfirm": "¿Eliminar este fichaje? Esta acción no se puede deshacer.",
+    "loadMore": "Cargar más",
+    "loadingMore": "Cargando..."
+  },
+  "recruiting": {
+    "title": "Selección de personal",
+    "subtitle": "{count} candidatos",
+    "new": "Nuevo candidato",
+    "empty": {
+      "title": "Selección de personal",
+      "subtitle": "Sin candidatos.",
+      "cta": "Nuevo candidato"
+    },
+    "errors": {
+      "load": "No se pudo cargar los candidatos.",
+      "save": "No se pudo guardar el candidato.",
+      "delete": "No se pudo eliminar el candidato."
+    },
+    "columns": {
+      "name": "Nombre",
+      "role": "Puesto",
+      "source": "Origen",
+      "stage": "Fase"
+    },
+    "stage": {
+      "applied": "Candidatura recibida",
+      "screening": "Preselección",
+      "interview": "Entrevista",
+      "offer": "Oferta",
+      "hired": "Contratado",
+      "rejected": "Descartado"
+    },
+    "source": {
+      "website": "Sitio web",
+      "referral": "Recomendación",
+      "linkedin": "LinkedIn",
+      "agency": "Agencia",
+      "other": "Otro"
+    },
+    "form": {
+      "newTitle": "Nuevo candidato",
+      "editTitle": "Editar candidato",
+      "firstName": "Nombre",
+      "lastName": "Apellido",
+      "email": "Correo",
+      "phone": "Teléfono",
+      "role": "Puesto",
+      "stage": "Fase",
+      "source": "Origen",
+      "resumeUrl": "Enlace CV",
+      "notes": "Notas",
+      "interviewDate": "Fecha de entrevista",
+      "save": "Guardar",
+      "saving": "Guardando...",
+      "delete": "Eliminar",
+      "cancel": "Cancelar"
+    },
+    "deleteConfirm": "¿Eliminar este candidato? Esta acción no se puede deshacer.",
+    "loadMore": "Cargar más",
+    "loadingMore": "Cargando..."
+  },
+  "performanceReviews": {
+    "title": "Evaluaciones",
+    "subtitle": "{count} evaluaciones",
+    "new": "Nueva evaluación",
+    "empty": {
+      "title": "Evaluaciones",
+      "subtitle": "Sin evaluaciones.",
+      "cta": "Nueva evaluación"
+    },
+    "errors": {
+      "load": "No se pudo cargar las evaluaciones.",
+      "save": "No se pudo guardar la evaluación.",
+      "delete": "No se pudo eliminar la evaluación."
+    },
+    "columns": {
+      "employee": "Empleado",
+      "period": "Periodo",
+      "rating": "Puntuación",
+      "status": "Estado"
+    },
+    "status": {
+      "draft": "Borrador",
+      "submitted": "Enviada",
+      "completed": "Completada"
+    },
+    "form": {
+      "newTitle": "Nueva evaluación",
+      "editTitle": "Editar evaluación",
+      "employeeName": "Empleado",
+      "selectEmployee": "Selecciona un empleado",
+      "period": "Periodo",
+      "reviewerName": "Evaluador",
+      "rating": "Puntuación (1-5)",
+      "status": "Estado",
+      "reviewDate": "Fecha",
+      "strengths": "Fortalezas",
+      "improvements": "Áreas de mejora",
+      "goals": "Objetivos",
+      "save": "Guardar",
+      "saving": "Guardando...",
+      "delete": "Eliminar",
+      "cancel": "Cancelar"
+    },
+    "deleteConfirm": "¿Eliminar esta evaluación? Esta acción no se puede deshacer.",
+    "loadMore": "Cargar más",
+    "loadingMore": "Cargando..."
+  },
+  "training": {
+    "title": "Formación",
+    "subtitle": "{count} cursos",
+    "new": "Nuevo curso",
+    "empty": {
+      "title": "Formación",
+      "subtitle": "Sin cursos.",
+      "cta": "Nuevo curso"
+    },
+    "errors": {
+      "load": "No se pudieron cargar los cursos.",
+      "save": "No se pudo guardar el curso.",
+      "delete": "No se pudo eliminar el curso."
+    },
+    "columns": {
+      "title": "Título",
+      "employee": "Empleado",
+      "provider": "Proveedor",
+      "status": "Estado"
+    },
+    "status": {
+      "planned": "Planificado",
+      "in_progress": "En curso",
+      "completed": "Completado"
+    },
+    "form": {
+      "newTitle": "Nuevo curso",
+      "editTitle": "Editar curso",
+      "title": "Título del curso",
+      "employeeName": "Empleado",
+      "provider": "Proveedor",
+      "status": "Estado",
+      "startDate": "Fecha de inicio",
+      "completionDate": "Fecha de finalización",
+      "certificateUrl": "Enlace del certificado",
+      "notes": "Notas",
+      "save": "Guardar",
+      "saving": "Guardando...",
+      "delete": "Eliminar",
+      "cancel": "Cancelar"
+    },
+    "deleteConfirm": "¿Eliminar este curso? Esta acción no se puede deshacer.",
+    "loadMore": "Cargar más",
+    "loadingMore": "Cargando..."
+  },
+  "welfare": {
+    "title": "Bienestar laboral",
+    "subtitle": "{count} iniciativas",
+    "new": "Nueva iniciativa",
+    "empty": {
+      "title": "Bienestar laboral",
+      "subtitle": "No hay iniciativas de bienestar.",
+      "cta": "Nueva iniciativa"
+    },
+    "errors": {
+      "load": "No se pudieron cargar las iniciativas de bienestar.",
+      "save": "No se pudo guardar la iniciativa.",
+      "delete": "No se pudo eliminar la iniciativa."
+    },
+    "columns": {
+      "title": "Título",
+      "category": "Categoría",
+      "enrolledCount": "Inscritos",
+      "status": "Estado"
+    },
+    "category": {
+      "health": "Salud",
+      "meal": "Vales de comida",
+      "transport": "Transporte",
+      "wellness": "Bienestar",
+      "other": "Otro"
+    },
+    "status": {
+      "active": "Activa",
+      "inactive": "Inactiva"
+    },
+    "form": {
+      "newTitle": "Nueva iniciativa",
+      "editTitle": "Editar iniciativa",
+      "title": "Título",
+      "description": "Descripción",
+      "category": "Categoría",
+      "status": "Estado",
+      "enrolledCount": "Número de inscritos",
+      "startDate": "Fecha de inicio",
+      "endDate": "Fecha de fin",
+      "notes": "Notas",
+      "save": "Guardar",
+      "saving": "Guardando...",
+      "delete": "Eliminar",
+      "cancel": "Cancelar"
+    },
+    "deleteConfirm": "¿Eliminar esta iniciativa? Esta acción no se puede deshacer.",
+    "loadMore": "Cargar más",
+    "loadingMore": "Cargando..."
+  },
+  "payroll": {
+    "title": "Nóminas",
+    "subtitle": "{count} nóminas",
+    "new": "Nueva nómina",
+    "disclaimer": "Solo datos y documentos: los importes se introducen manualmente, sin cálculo automático de impuestos o cotizaciones.",
+    "empty": {
+      "title": "Nóminas",
+      "subtitle": "No hay nóminas registradas.",
+      "cta": "Nueva nómina"
+    },
+    "errors": {
+      "load": "No se pudieron cargar las nóminas.",
+      "save": "No se pudo guardar la nómina.",
+      "delete": "No se pudo eliminar la nómina."
+    },
+    "columns": {
+      "employee": "Empleado",
+      "period": "Periodo",
+      "netAmount": "Neto",
+      "status": "Estado"
+    },
+    "status": {
+      "draft": "Borrador",
+      "issued": "Emitida",
+      "paid": "Pagada"
+    },
+    "form": {
+      "newTitle": "Nueva nómina",
+      "editTitle": "Editar nómina",
+      "employeeName": "Empleado",
+      "selectEmployee": "Selecciona un empleado",
+      "period": "Periodo",
+      "status": "Estado",
+      "grossAmount": "Importe bruto",
+      "netAmount": "Importe neto",
+      "payslipUrl": "Enlace de la nómina",
+      "paidAt": "Fecha de pago",
+      "notes": "Notas",
+      "save": "Guardar",
+      "saving": "Guardando...",
+      "delete": "Eliminar",
+      "cancel": "Cancelar"
+    },
+    "deleteConfirm": "¿Eliminar esta nómina? Esta acción no se puede deshacer.",
+    "loadMore": "Cargar más",
+    "loadingMore": "Cargando..."
+  },
+  "orgChart": {
+    "title": "Organigrama",
+    "subtitle": "Estructura de la empresa",
+    "empty": {
+      "title": "Organigrama",
+      "subtitle": "No hay empleados para mostrar."
     }
   }
 }

@@ -3,7 +3,9 @@ import { Alert, KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleShee
 import { useLocalSearchParams, useRouter } from 'expo-router'
 import { DetailScreen, StateMessage } from '../../components/Screen'
 import { Icon } from '../../components/Icon'
+import { EmployeePickerModal } from '../../components/EmployeePickerModal'
 import { useTimesheets } from '../../hooks/useTimesheets'
+import { useEmployees } from '../../hooks/useEmployees'
 import { useTheme } from '../../contexts/ThemeContext'
 import { useI18n } from '../../i18n'
 import { haptics } from '../../lib/haptics'
@@ -18,6 +20,7 @@ export default function EditTimesheetEntryScreen() {
   const { t } = useI18n()
   const router = useRouter()
   const { entries, update, remove } = useTimesheets()
+  const { employees } = useEmployees()
   const styles = makeStyles(colors)
 
   const entry = entries.find((e) => e.id === id)
@@ -26,6 +29,8 @@ export default function EditTimesheetEntryScreen() {
   const [durationMinutes, setDurationMinutes] = useState(entry ? String(entry.durationMinutes) : '')
   const [description, setDescription] = useState(entry?.description ?? '')
   const [billable, setBillable] = useState(entry?.billable ?? true)
+  const [employeeId, setEmployeeId] = useState<string | null>(entry?.employeeId ?? null)
+  const [employeePickerOpen, setEmployeePickerOpen] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [saving, setSaving] = useState(false)
   const [saveError, setSaveError] = useState<string | null>(null)
@@ -42,7 +47,17 @@ export default function EditTimesheetEntryScreen() {
     haptics.press()
     setSaveError(null)
 
-    const form = { date, durationMinutes, description, billable, projectId: entry!.projectId, taskId: entry!.taskId }
+    const employee = employees.find((e) => e.id === employeeId)
+    const form = {
+      date,
+      durationMinutes,
+      description,
+      billable,
+      employeeId,
+      employeeName: employee ? `${employee.firstName} ${employee.lastName}` : '',
+      projectId: entry!.projectId,
+      taskId: entry!.taskId,
+    }
     const result = timesheetEntryInputSchema.safeParse(form)
     if (!result.success) {
       const nextErrors: Record<string, string> = {}
@@ -93,6 +108,25 @@ export default function EditTimesheetEntryScreen() {
     <DetailScreen title={t('modules.timesheets.form.editTitle')}>
       <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
         <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
+          <Text style={styles.label}>{t('modules.timesheets.form.employee')}</Text>
+          <Pressable
+            style={styles.input}
+            onPress={() => {
+              haptics.tap()
+              setEmployeePickerOpen(true)
+            }}
+            accessibilityRole="button"
+          >
+            <Text style={{ color: employeeId ? colors.textPrimary : colors.textSecondary }}>
+              {employeeId
+                ? (() => {
+                    const e = employees.find((emp) => emp.id === employeeId)
+                    return e ? `${e.firstName} ${e.lastName}` : t('modules.timesheets.form.noEmployee')
+                  })()
+                : t('modules.timesheets.form.noEmployee')}
+            </Text>
+          </Pressable>
+
           <Text style={styles.label}>{t('modules.timesheets.form.date')}</Text>
           <TextInput style={styles.input} value={date} onChangeText={setDate} placeholder="YYYY-MM-DD" autoCapitalize="none" placeholderTextColor={colors.textSecondary} />
           {errors.date ? <Text style={styles.error}>{errors.date}</Text> : null}
@@ -155,6 +189,14 @@ export default function EditTimesheetEntryScreen() {
           </Pressable>
         </ScrollView>
       </KeyboardAvoidingView>
+
+      <EmployeePickerModal
+        visible={employeePickerOpen}
+        onClose={() => setEmployeePickerOpen(false)}
+        employees={employees}
+        selectedId={employeeId}
+        onSelect={setEmployeeId}
+      />
     </DetailScreen>
   )
 }

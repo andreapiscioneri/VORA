@@ -8,7 +8,8 @@ const router = useRouter()
 const { locale, t } = useI18n()
 const { addComment, removeTicket, addAttachment } = useTickets()
 const { contacts, fetchContacts } = useContacts()
-await fetchContacts()
+const { employees, fetchEmployees } = useEmployees()
+await Promise.all([fetchContacts(), fetchEmployees()])
 
 const { data: ticket, pending, error, refresh } = await useFetch<Ticket>(`/api/tickets/${route.params.id}`)
 
@@ -41,6 +42,12 @@ function contactName(contactId: string | null) {
   if (!contactId) return ''
   const c = contacts.value.find((c) => c.id === contactId)
   return c ? `${c.firstName} ${c.lastName}` : ''
+}
+
+function assigneeName(assigneeId: string | null) {
+  if (!assigneeId) return ''
+  const e = employees.value.find((e) => e.id === assigneeId)
+  return e ? `${e.firstName} ${e.lastName}` : ''
 }
 
 function formatDate(iso: string) {
@@ -99,7 +106,10 @@ function slaStyle(slaDueAt: string | null) {
       <div class="flex items-start justify-between gap-4">
         <div>
           <h1 class="text-h1 font-semibold tracking-tight">{{ ticket.title }}</h1>
-          <p class="text-body text-ink-400 mt-1">{{ contactName(ticket.contactId) || '—' }} · {{ $t(`helpdesk.category.${ticket.category}`) }}</p>
+          <p class="text-body text-ink-400 mt-1">
+            {{ contactName(ticket.contactId) || '—' }} · {{ $t(`helpdesk.category.${ticket.category}`) }}
+            <template v-if="assigneeName(ticket.assigneeId)"> · {{ $t('helpdesk.form.assignee') }}: {{ assigneeName(ticket.assigneeId) }}</template>
+          </p>
         </div>
         <span class="px-3 py-1.5 rounded-full text-caption font-medium shrink-0" :class="statusStyles[ticket.status]">
           {{ $t(`helpdesk.status.${ticket.status}`) }}

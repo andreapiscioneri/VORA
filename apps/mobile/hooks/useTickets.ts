@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { api } from '../lib/api'
 import type { Ticket, TicketInput } from '@vora/shared/types/ticket'
+import type { AddTicketCommentSchema } from '@vora/shared/validation/ticket'
 
 interface PageResult<T> {
   items: T[]
@@ -65,5 +66,11 @@ export function useTickets() {
     setTickets((prev) => prev.filter((tk) => tk.id !== id))
   }, [])
 
-  return { tickets, loading, loadingMore, error, hasMore, reload: load, loadMore, create, update, remove }
+  const addComment = useCallback(async (id: string, input: AddTicketCommentSchema) => {
+    const updated = await api.post<Ticket>(`/tickets/${id}/comments`, input)
+    setTickets((prev) => prev.map((tk) => (tk.id === id ? updated : tk)))
+    return updated
+  }, [])
+
+  return { tickets, loading, loadingMore, error, hasMore, reload: load, loadMore, create, update, remove, addComment }
 }

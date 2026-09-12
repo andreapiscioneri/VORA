@@ -66,6 +66,8 @@
       "editTitle": "Modifier la tâche",
       "title": "Titre",
       "description": "Description",
+      "tags": "Étiquettes",
+      "tagsPlaceholder": "Séparés par des virgules",
       "priority": "Priorité",
       "status": "Statut",
       "deadline": "Échéance",
@@ -208,6 +210,34 @@
       "settings": {
         "label": "Paramètres",
         "desc": "Profil et mot de passe"
+      },
+      "attendance": {
+        "label": "Présence",
+        "desc": "Pointages d'arrivée/départ"
+      },
+      "orgChart": {
+        "label": "Organigramme",
+        "desc": "Hiérarchie de l'entreprise"
+      },
+      "recruiting": {
+        "label": "Recrutement",
+        "desc": "Candidatures et entretiens"
+      },
+      "performanceReviews": {
+        "label": "Évaluations",
+        "desc": "Évaluations périodiques du personnel"
+      },
+      "training": {
+        "label": "Formation",
+        "desc": "Formations, échéances et certifications"
+      },
+      "welfare": {
+        "label": "Bien-être des salariés",
+        "desc": "Avantages, initiatives et inscriptions"
+      },
+      "payroll": {
+        "label": "Paie",
+        "desc": "Bulletins et données de paie (données uniquement)"
       }
     },
     "madeBy": "Made by apdesign"
@@ -228,9 +258,17 @@
         "firstName": "Prénom",
         "lastName": "Nom",
         "company": "Entreprise",
+        "role": "Poste",
         "email": "E-mail",
         "phone": "Téléphone",
+        "whatsapp": "WhatsApp",
+        "website": "Site web",
+        "address": "Adresse",
+        "tags": "Étiquettes",
+        "tagsPlaceholder": "Séparés par des virgules",
         "notes": "Notes",
+        "lastContactAt": "Dernier contact",
+        "nextActivityAt": "Prochaine activité",
         "status": "Statut",
         "save": "Enregistrer",
         "saving": "Enregistrement...",
@@ -257,12 +295,25 @@
         "won": "Gagnée",
         "lost": "Perdue"
       },
+      "source": {
+        "manual": "Manuel",
+        "website": "Site web",
+        "referral": "Recommandation",
+        "email": "E-mail",
+        "whatsapp": "WhatsApp",
+        "import": "Importation"
+      },
       "form": {
         "newTitle": "Nouvelle opportunité",
         "title": "Titre",
         "company": "Entreprise",
         "value": "Valeur (EUR)",
         "stage": "Étape",
+        "source": "Origine",
+        "probability": "Probabilité (%)",
+        "contact": "Contact",
+        "noContact": "Aucun contact",
+        "expectedCloseDate": "Date de clôture prévue",
         "notes": "Notes",
         "save": "Enregistrer",
         "saving": "Enregistrement...",
@@ -304,7 +355,40 @@
         "save": "Impossible d'enregistrer le projet.",
         "delete": "Impossible de supprimer le projet."
       },
-      "deleteConfirm": "Supprimer ce projet ? Action irréversible."
+      "deleteConfirm": "Supprimer ce projet ? Action irréversible.",
+      "milestones": {
+        "title": "Jalons",
+        "empty": "Aucun jalon.",
+        "form": {
+          "title": "Titre du jalon",
+          "dueDate": "Échéance",
+          "add": "Ajouter un jalon"
+        },
+        "errors": {
+          "add": "Impossible d'ajouter le jalon."
+        }
+      },
+      "documents": {
+        "title": "Documents",
+        "empty": "Aucun document.",
+        "form": {
+          "title": "Titre du document",
+          "url": "Lien",
+          "add": "Ajouter un document"
+        },
+        "errors": {
+          "add": "Impossible d'ajouter le document."
+        }
+      },
+      "discussion": {
+        "title": "Discussion",
+        "empty": "Aucun commentaire.",
+        "placeholder": "Écrire un commentaire...",
+        "add": "Ajouter un commentaire",
+        "errors": {
+          "add": "Impossible d'ajouter le commentaire."
+        }
+      }
     },
     "timesheets": {
       "title": "Feuilles de temps",
@@ -315,6 +399,8 @@
       "nonBillable": "Non facturable",
       "form": {
         "newTitle": "Nouvelle entrée",
+        "employee": "Employé",
+        "noEmployee": "Aucun",
         "date": "Date",
         "durationMinutes": "Durée (minutes)",
         "description": "Description",
@@ -348,6 +434,7 @@
         "title": "Titre",
         "description": "Description",
         "priority": "Priorité",
+        "assignee": "Assigné à",
         "save": "Enregistrer",
         "saving": "Enregistrement...",
         "editTitle": "Modifier le ticket",
@@ -365,7 +452,16 @@
         "save": "Impossible d'enregistrer le ticket.",
         "delete": "Impossible de supprimer le ticket."
       },
-      "deleteConfirm": "Supprimer ce ticket ? Action irréversible."
+      "deleteConfirm": "Supprimer ce ticket ? Action irréversible.",
+      "comments": {
+        "title": "Commentaires",
+        "empty": "Aucun commentaire.",
+        "placeholder": "Écrire un commentaire...",
+        "add": "Ajouter un commentaire",
+        "errors": {
+          "add": "Impossible d'ajouter le commentaire."
+        }
+      }
     },
     "leave": {
       "title": "Congés",
@@ -465,12 +561,37 @@
         "saving": "Enregistrement...",
         "editTitle": "Modifier l'employé",
         "newTitle": "Nouvel employé",
-        "delete": "Supprimer"
+        "delete": "Supprimer",
+        "manager": "Responsable",
+        "managerNone": "Aucun"
       },
       "deleteConfirm": "Supprimer cet employé ? Cette action est irréversible.",
       "errors": {
         "save": "Impossible d'enregistrer l'employé.",
         "delete": "Impossible de supprimer l'employé."
+      },
+      "documents": {
+        "title": "Documents",
+        "add": "Ajouter un document",
+        "empty": "Aucun document.",
+        "docType": {
+          "contract": "Contrat",
+          "certificate": "Certificat",
+          "id": "Pièce d'identité",
+          "other": "Autre"
+        },
+        "form": {
+          "title": "Titre",
+          "type": "Type",
+          "expiryDate": "Expiration (optionnel)",
+          "url": "Lien du fichier",
+          "add": "Ajouter"
+        },
+        "deleteConfirm": "Supprimer ce document ?",
+        "errors": {
+          "add": "Impossible d'ajouter le document.",
+          "delete": "Impossible de supprimer le document."
+        }
       }
     },
     "expenses": {
@@ -627,13 +748,17 @@
         "saving": "Enregistrement...",
         "editTitle": "Modifier la campagne",
         "delete": "Supprimer",
-        "cancel": "Annuler"
+        "cancel": "Annuler",
+        "send": "Envoyer la campagne",
+        "sending": "Envoi..."
       },
       "errors": {
         "save": "Impossible d'enregistrer la campagne.",
-        "delete": "Impossible de supprimer la campagne."
+        "delete": "Impossible de supprimer la campagne.",
+        "send": "Impossible d'envoyer la campagne."
       },
-      "deleteConfirm": "Supprimer cette campagne ? Action irréversible."
+      "deleteConfirm": "Supprimer cette campagne ? Action irréversible.",
+      "sentAt": "Envoyée le {{date}}"
     },
     "website": {
       "title": "Site web",
@@ -669,6 +794,217 @@
         "fair": "Correct",
         "good": "Bon",
         "strong": "Fort"
+      }
+    },
+    "attendance": {
+      "title": "Présence",
+      "count": "{{count}} pointages",
+      "error": "Impossible de charger la présence. ({{error}})",
+      "empty": "Aucun pointage.",
+      "form": {
+        "newTitle": "Nouveau pointage",
+        "editTitle": "Modifier le pointage",
+        "employeeName": "Employé",
+        "date": "Date",
+        "checkIn": "Arrivée",
+        "checkOut": "Départ",
+        "notes": "Notes",
+        "save": "Enregistrer",
+        "saving": "Enregistrement...",
+        "delete": "Supprimer",
+        "cancel": "Annuler"
+      },
+      "deleteConfirm": "Supprimer ce pointage ? Action irréversible.",
+      "errors": {
+        "save": "Impossible d'enregistrer le pointage.",
+        "delete": "Impossible de supprimer le pointage."
+      }
+    },
+    "orgChart": {
+      "title": "Organigramme",
+      "subtitle": "Structure de l'entreprise",
+      "empty": "Aucun employé à afficher.",
+      "error": "Impossible de charger l'organigramme. ({{error}})"
+    },
+    "recruiting": {
+      "title": "Recrutement",
+      "count": "{{count}} candidats",
+      "error": "Impossible de charger les candidats. ({{error}})",
+      "empty": "Aucun candidat.",
+      "stage": {
+        "applied": "Candidature reçue",
+        "screening": "Présélection",
+        "interview": "Entretien",
+        "offer": "Offre",
+        "hired": "Embauché",
+        "rejected": "Rejeté"
+      },
+      "source": {
+        "website": "Site web",
+        "referral": "Recommandation",
+        "linkedin": "LinkedIn",
+        "agency": "Agence",
+        "other": "Autre"
+      },
+      "form": {
+        "newTitle": "Nouveau candidat",
+        "editTitle": "Modifier le candidat",
+        "firstName": "Prénom",
+        "lastName": "Nom",
+        "email": "E-mail",
+        "phone": "Téléphone",
+        "role": "Poste",
+        "stage": "Étape",
+        "source": "Origine",
+        "resumeUrl": "Lien CV",
+        "notes": "Notes",
+        "interviewDate": "Date d'entretien",
+        "save": "Enregistrer",
+        "saving": "Enregistrement...",
+        "delete": "Supprimer",
+        "cancel": "Annuler"
+      },
+      "deleteConfirm": "Supprimer ce candidat ? Action irréversible.",
+      "errors": {
+        "save": "Impossible d'enregistrer le candidat.",
+        "delete": "Impossible de supprimer le candidat."
+      }
+    },
+    "performanceReviews": {
+      "title": "Évaluations",
+      "count": "{{count}} évaluations",
+      "error": "Impossible de charger les évaluations. ({{error}})",
+      "empty": "Aucune évaluation.",
+      "status": {
+        "draft": "Brouillon",
+        "submitted": "Envoyée",
+        "completed": "Terminée"
+      },
+      "form": {
+        "newTitle": "Nouvelle évaluation",
+        "editTitle": "Modifier l'évaluation",
+        "employeeName": "Employé",
+        "period": "Période",
+        "reviewerName": "Évaluateur",
+        "rating": "Note (1-5)",
+        "strengths": "Points forts",
+        "improvements": "Axes d'amélioration",
+        "goals": "Objectifs",
+        "status": "Statut",
+        "save": "Enregistrer",
+        "saving": "Enregistrement...",
+        "delete": "Supprimer",
+        "cancel": "Annuler"
+      },
+      "deleteConfirm": "Supprimer cette évaluation ? Action irréversible.",
+      "errors": {
+        "save": "Impossible d'enregistrer l'évaluation.",
+        "delete": "Impossible de supprimer l'évaluation."
+      }
+    },
+    "training": {
+      "title": "Formation",
+      "count": "{{count}} formations",
+      "error": "Impossible de charger les formations. ({{error}})",
+      "empty": "Aucune formation.",
+      "status": {
+        "planned": "Planifiée",
+        "in_progress": "En cours",
+        "completed": "Terminée"
+      },
+      "form": {
+        "newTitle": "Nouvelle formation",
+        "editTitle": "Modifier la formation",
+        "title": "Titre de la formation",
+        "employeeName": "Employé",
+        "provider": "Organisme",
+        "status": "Statut",
+        "startDate": "Date de début",
+        "completionDate": "Date de fin",
+        "certificateUrl": "Lien du certificat",
+        "notes": "Notes",
+        "save": "Enregistrer",
+        "saving": "Enregistrement...",
+        "delete": "Supprimer",
+        "cancel": "Annuler"
+      },
+      "deleteConfirm": "Supprimer cette formation ? Action irréversible.",
+      "errors": {
+        "save": "Impossible d'enregistrer la formation.",
+        "delete": "Impossible de supprimer la formation."
+      }
+    },
+    "welfare": {
+      "title": "Bien-être des salariés",
+      "count": "{{count}} initiatives",
+      "error": "Impossible de charger les initiatives de bien-être. ({{error}})",
+      "empty": "Aucune initiative de bien-être.",
+      "category": {
+        "health": "Santé",
+        "meal": "Titres-repas",
+        "transport": "Transport",
+        "wellness": "Bien-être",
+        "other": "Autre"
+      },
+      "status": {
+        "active": "Active",
+        "inactive": "Inactive"
+      },
+      "enrolledCount": "{{count}} inscrits",
+      "form": {
+        "newTitle": "Nouvelle initiative",
+        "editTitle": "Modifier l'initiative",
+        "title": "Titre",
+        "description": "Description",
+        "category": "Catégorie",
+        "status": "Statut",
+        "enrolledCount": "Nombre d'inscrits",
+        "startDate": "Date de début",
+        "endDate": "Date de fin",
+        "notes": "Notes",
+        "save": "Enregistrer",
+        "saving": "Enregistrement...",
+        "delete": "Supprimer",
+        "cancel": "Annuler"
+      },
+      "deleteConfirm": "Supprimer cette initiative ? Cette action est irréversible.",
+      "errors": {
+        "save": "Impossible d'enregistrer l'initiative.",
+        "delete": "Impossible de supprimer l'initiative."
+      }
+    },
+    "payroll": {
+      "title": "Paie",
+      "count": "{{count}} bulletins",
+      "error": "Impossible de charger les bulletins de paie. ({{error}})",
+      "empty": "Aucun bulletin de paie enregistré.",
+      "disclaimer": "Données et documents uniquement : montants saisis manuellement, aucun calcul automatique d'impôts ou de cotisations.",
+      "status": {
+        "draft": "Brouillon",
+        "issued": "Émis",
+        "paid": "Payé"
+      },
+      "net": "Net {{amount}}",
+      "form": {
+        "newTitle": "Nouveau bulletin",
+        "editTitle": "Modifier le bulletin",
+        "employeeName": "Salarié",
+        "period": "Période",
+        "grossAmount": "Montant brut",
+        "netAmount": "Montant net",
+        "status": "Statut",
+        "payslipUrl": "Lien du bulletin",
+        "paidAt": "Date de paiement",
+        "notes": "Notes",
+        "save": "Enregistrer",
+        "saving": "Enregistrement...",
+        "delete": "Supprimer",
+        "cancel": "Annuler"
+      },
+      "deleteConfirm": "Supprimer ce bulletin ? Cette action est irréversible.",
+      "errors": {
+        "save": "Impossible d'enregistrer le bulletin.",
+        "delete": "Impossible de supprimer le bulletin."
       }
     }
   },

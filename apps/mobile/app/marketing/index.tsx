@@ -3,6 +3,7 @@ import { ActivityIndicator, FlatList, Pressable, RefreshControl, StyleSheet, Tex
 import { useRouter } from 'expo-router'
 import { useMarketing } from '../../hooks/useMarketing'
 import { DetailScreen, StateMessage } from '../../components/Screen'
+import { SkeletonList } from '../../components/Skeleton'
 import { Icon } from '../../components/Icon'
 import { radius, spacing } from '../../constants/theme'
 import { useTheme } from '../../contexts/ThemeContext'
@@ -102,6 +103,8 @@ export default function MarketingScreen() {
 
       {error ? (
         <StateMessage text={t('modules.marketing.error', { error })} />
+      ) : loading && rows.length === 0 ? (
+        <SkeletonList />
       ) : (
         <FlatList
           data={rows}

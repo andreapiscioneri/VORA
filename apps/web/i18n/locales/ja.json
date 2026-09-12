@@ -93,7 +93,14 @@
     "settings": "設定",
     "templates": "テンプレート",
     "segments": "セグメント",
-    "automations": "オートメーション"
+    "automations": "オートメーション",
+    "attendance": "勤怠",
+    "orgChart": "組織図",
+    "recruiting": "採用選考",
+    "performanceReviews": "人事評価",
+    "training": "研修",
+    "welfare": "従業員福利厚生",
+    "payroll": "給与"
   },
   "topbar": {
     "search": "検索...",
@@ -459,6 +466,8 @@
       "delete": "エントリーを削除できませんでした。"
     },
     "form": {
+      "employee": "従業員",
+      "noEmployee": "なし",
       "project": "プロジェクト",
       "noProject": "紐づくプロジェクトなし",
       "task": "タスク",
@@ -669,6 +678,8 @@
       "contact": "顧客",
       "noContact": "紐づく顧客なし",
       "priority": "優先度",
+      "assignee": "担当者",
+      "noAssignee": "なし",
       "status": "ステータス",
       "category": "カテゴリー",
       "cancel": "キャンセル",
@@ -963,6 +974,8 @@
       "team": "チーム",
       "status": "ステータス",
       "startDate": "入社日",
+      "manager": "上司",
+      "managerNone": "なし",
       "cancel": "キャンセル",
       "save": "保存",
       "saving": "保存中...",
@@ -1362,12 +1375,30 @@
       "title": "チームに必要なすべてを、ひとつのシステムに",
       "subtitle": "バラバラな6つのツールではなく、連携した6つのモジュール。",
       "items": {
-        "crm": { "title": "CRM・連絡先", "description": "リード、顧客、商談をひとつのパイプラインで管理。" },
-        "calendar": { "title": "カレンダー・予約", "description": "予定の重複なく、会議や予約をスケジュール。" },
-        "projects": { "title": "プロジェクト・タスク", "description": "明確な期限と担当者でチームの仕事を整理。" },
-        "marketing": { "title": "マーケティング・自動化", "description": "自動で動くキャンペーン、セグメント、ワークフロー。" },
-        "helpdesk": { "title": "ヘルプデスク・ナレッジベース", "description": "共有ナレッジベースで顧客対応をスピードアップ。" },
-        "people": { "title": "人事・休暇管理", "description": "休暇、経費、チームのウェルビーイングをひとつに。" }
+        "crm": {
+          "title": "CRM・連絡先",
+          "description": "リード、顧客、商談をひとつのパイプラインで管理。"
+        },
+        "calendar": {
+          "title": "カレンダー・予約",
+          "description": "予定の重複なく、会議や予約をスケジュール。"
+        },
+        "projects": {
+          "title": "プロジェクト・タスク",
+          "description": "明確な期限と担当者でチームの仕事を整理。"
+        },
+        "marketing": {
+          "title": "マーケティング・自動化",
+          "description": "自動で動くキャンペーン、セグメント、ワークフロー。"
+        },
+        "helpdesk": {
+          "title": "ヘルプデスク・ナレッジベース",
+          "description": "共有ナレッジベースで顧客対応をスピードアップ。"
+        },
+        "people": {
+          "title": "人事・休暇管理",
+          "description": "休暇、経費、チームのウェルビーイングをひとつに。"
+        }
       }
     },
     "customers": {
@@ -1375,21 +1406,49 @@
       "title": "業種に合わせて形を変えるシステム",
       "subtitle": "チームの働き方はそれぞれ違う——VORAはそれを強制しません。",
       "items": {
-        "agencies": { "title": "代理店・専門事務所", "description": "顧客管理、時間単位のプロジェクト、透明性のある請求。" },
-        "smes": { "title": "サービス業の中小企業", "description": "CRM・カレンダー・ヘルプデスクを統合し、顧客を取りこぼさない。" },
-        "sales": { "title": "マーケティング・営業チーム", "description": "パイプラインを満たし続けるキャンペーンと自動化。" },
-        "hr": { "title": "人事・ピープルオプス", "description": "表計算ソフトを使わない休暇・勤怠・ウェルビーイング管理。" }
+        "agencies": {
+          "title": "代理店・専門事務所",
+          "description": "顧客管理、時間単位のプロジェクト、透明性のある請求。"
+        },
+        "smes": {
+          "title": "サービス業の中小企業",
+          "description": "CRM・カレンダー・ヘルプデスクを統合し、顧客を取りこぼさない。"
+        },
+        "sales": {
+          "title": "マーケティング・営業チーム",
+          "description": "パイプラインを満たし続けるキャンペーンと自動化。"
+        },
+        "hr": {
+          "title": "人事・ピープルオプス",
+          "description": "表計算ソフトを使わない休暇・勤怠・ウェルビーイング管理。"
+        }
       }
     },
     "automation": {
       "eyebrow": "自動化",
       "title": "あなたがいなくても動くワークフロー",
       "subtitle": "単なるリマインダーではない、本物のトリガー→条件→アクションのルール。",
-      "labels": { "trigger": "トリガー", "condition": "条件", "action": "アクション" },
+      "labels": {
+        "trigger": "トリガー",
+        "condition": "条件",
+        "action": "アクション"
+      },
       "items": {
-        "contact": { "trigger": "新しい連絡先を作成", "condition": "流入元 = ウェブサイト", "action": "ウェルカムメールを送信し、担当者を割り当て" },
-        "appointment": { "trigger": "予約まで24時間", "condition": "未確認のまま", "action": "自動でリマインダーを送信" },
-        "invoice": { "trigger": "請求書が7日間延滞", "condition": "未払いのまま", "action": "督促タスクを作成しチームに通知" }
+        "contact": {
+          "trigger": "新しい連絡先を作成",
+          "condition": "流入元 = ウェブサイト",
+          "action": "ウェルカムメールを送信し、担当者を割り当て"
+        },
+        "appointment": {
+          "trigger": "予約まで24時間",
+          "condition": "未確認のまま",
+          "action": "自動でリマインダーを送信"
+        },
+        "invoice": {
+          "trigger": "請求書が7日間延滞",
+          "condition": "未払いのまま",
+          "action": "督促タスクを作成しチームに通知"
+        }
       }
     },
     "pricing": {
@@ -1431,10 +1490,22 @@
       "subtitle": "登録不要のインタラクティブなプロダクトプレビュー。",
       "ctaTry": "無料で試す",
       "tabs": {
-        "crm": { "label": "CRM", "caption": "すべての連絡先、商談、会話をひとつのパイプラインに。" },
-        "calendar": { "label": "カレンダー", "caption": "予約とチームの空き状況を常に同期。" },
-        "automation": { "label": "自動化", "caption": "自分で動くルールだから、あなたが動く必要はない。" },
-        "projects": { "label": "プロジェクト", "caption": "タスク、期限、担当者をひと目で確認。" }
+        "crm": {
+          "label": "CRM",
+          "caption": "すべての連絡先、商談、会話をひとつのパイプラインに。"
+        },
+        "calendar": {
+          "label": "カレンダー",
+          "caption": "予約とチームの空き状況を常に同期。"
+        },
+        "automation": {
+          "label": "自動化",
+          "caption": "自分で動くルールだから、あなたが動く必要はない。"
+        },
+        "projects": {
+          "label": "プロジェクト",
+          "caption": "タスク、期限、担当者をひと目で確認。"
+        }
       }
     },
     "contact": {
@@ -1467,6 +1538,299 @@
       "rejectedMessage": "アカウントを却下しました。",
       "error": "問題が発生しました。もう一度お試しください。",
       "redirecting": "ダッシュボードに移動しています…"
+    }
+  },
+  "attendance": {
+    "title": "勤怠",
+    "subtitle": "{count} 件の記録",
+    "new": "新しい記録",
+    "empty": {
+      "title": "勤怠",
+      "subtitle": "記録はまだありません。",
+      "cta": "新しい記録"
+    },
+    "errors": {
+      "load": "勤怠を読み込めませんでした。({{error}}).",
+      "save": "記録を保存できませんでした。",
+      "delete": "記録を削除できませんでした。"
+    },
+    "columns": {
+      "employee": "従業員",
+      "date": "日付",
+      "checkIn": "出勤",
+      "checkOut": "退勤"
+    },
+    "form": {
+      "newTitle": "新しい記録",
+      "editTitle": "記録を編集",
+      "employeeName": "従業員",
+      "selectEmployee": "従業員を選択",
+      "date": "日付",
+      "checkIn": "出勤",
+      "checkOut": "退勤",
+      "notes": "メモ",
+      "save": "保存",
+      "saving": "保存中...",
+      "delete": "削除",
+      "cancel": "キャンセル"
+    },
+    "deleteConfirm": "この記録を削除しますか？元に戻せません。",
+    "loadMore": "もっと読み込む",
+    "loadingMore": "読み込み中..."
+  },
+  "recruiting": {
+    "title": "採用選考",
+    "subtitle": "{count} 名の候補者",
+    "new": "新しい候補者",
+    "empty": {
+      "title": "採用選考",
+      "subtitle": "候補者はいません。",
+      "cta": "新しい候補者"
+    },
+    "errors": {
+      "load": "候補者を読み込めませんでした。({{error}}).",
+      "save": "候補者を保存できませんでした。",
+      "delete": "候補者を削除できませんでした。"
+    },
+    "columns": {
+      "name": "氏名",
+      "role": "職種",
+      "source": "応募経路",
+      "stage": "選考段階"
+    },
+    "stage": {
+      "applied": "応募受付",
+      "screening": "書類選考",
+      "interview": "面接",
+      "offer": "内定",
+      "hired": "採用",
+      "rejected": "不採用"
+    },
+    "source": {
+      "website": "ウェブサイト",
+      "referral": "紹介",
+      "linkedin": "LinkedIn",
+      "agency": "エージェント",
+      "other": "その他"
+    },
+    "form": {
+      "newTitle": "新しい候補者",
+      "editTitle": "候補者を編集",
+      "firstName": "名",
+      "lastName": "姓",
+      "email": "メール",
+      "phone": "電話番号",
+      "role": "職種",
+      "stage": "選考段階",
+      "source": "応募経路",
+      "resumeUrl": "履歴書リンク",
+      "notes": "メモ",
+      "interviewDate": "面接日",
+      "save": "保存",
+      "saving": "保存中...",
+      "delete": "削除",
+      "cancel": "キャンセル"
+    },
+    "deleteConfirm": "この候補者を削除しますか？元に戻せません。",
+    "loadMore": "もっと読み込む",
+    "loadingMore": "読み込み中..."
+  },
+  "performanceReviews": {
+    "title": "人事評価",
+    "subtitle": "{count} 件の評価",
+    "new": "新しい評価",
+    "empty": {
+      "title": "人事評価",
+      "subtitle": "評価はありません。",
+      "cta": "新しい評価"
+    },
+    "errors": {
+      "load": "評価を読み込めませんでした。({{error}}).",
+      "save": "評価を保存できませんでした。",
+      "delete": "評価を削除できませんでした。"
+    },
+    "columns": {
+      "employee": "従業員",
+      "period": "期間",
+      "rating": "評価",
+      "status": "ステータス"
+    },
+    "status": {
+      "draft": "下書き",
+      "submitted": "提出済み",
+      "completed": "完了"
+    },
+    "form": {
+      "newTitle": "新しい評価",
+      "editTitle": "評価を編集",
+      "employeeName": "従業員",
+      "selectEmployee": "従業員を選択",
+      "period": "期間",
+      "reviewerName": "評価者",
+      "rating": "評価 (1-5)",
+      "status": "ステータス",
+      "reviewDate": "日付",
+      "strengths": "強み",
+      "improvements": "改善点",
+      "goals": "目標",
+      "save": "保存",
+      "saving": "保存中...",
+      "delete": "削除",
+      "cancel": "キャンセル"
+    },
+    "deleteConfirm": "この評価を削除しますか？元に戻せません。",
+    "loadMore": "もっと読み込む",
+    "loadingMore": "読み込み中..."
+  },
+  "training": {
+    "title": "研修",
+    "subtitle": "{count} 件のコース",
+    "new": "新しいコース",
+    "empty": {
+      "title": "研修",
+      "subtitle": "コースはありません。",
+      "cta": "新しいコース"
+    },
+    "errors": {
+      "load": "コースを読み込めませんでした。",
+      "save": "コースを保存できませんでした。",
+      "delete": "コースを削除できませんでした。"
+    },
+    "columns": {
+      "title": "タイトル",
+      "employee": "従業員",
+      "provider": "提供機関",
+      "status": "ステータス"
+    },
+    "status": {
+      "planned": "予定",
+      "in_progress": "進行中",
+      "completed": "完了"
+    },
+    "form": {
+      "newTitle": "新しいコース",
+      "editTitle": "コースを編集",
+      "title": "コース名",
+      "employeeName": "従業員",
+      "provider": "提供機関",
+      "status": "ステータス",
+      "startDate": "開始日",
+      "completionDate": "修了日",
+      "certificateUrl": "修了証リンク",
+      "notes": "メモ",
+      "save": "保存",
+      "saving": "保存中...",
+      "delete": "削除",
+      "cancel": "キャンセル"
+    },
+    "deleteConfirm": "このコースを削除しますか？元に戻せません。",
+    "loadMore": "もっと読み込む",
+    "loadingMore": "読み込み中..."
+  },
+  "welfare": {
+    "title": "従業員福利厚生",
+    "subtitle": "{count} 件の施策",
+    "new": "新しい施策",
+    "empty": {
+      "title": "従業員福利厚生",
+      "subtitle": "福利厚生の施策はありません。",
+      "cta": "新しい施策"
+    },
+    "errors": {
+      "load": "福利厚生の施策を読み込めませんでした。",
+      "save": "施策を保存できませんでした。",
+      "delete": "施策を削除できませんでした。"
+    },
+    "columns": {
+      "title": "タイトル",
+      "category": "カテゴリー",
+      "enrolledCount": "参加人数",
+      "status": "ステータス"
+    },
+    "category": {
+      "health": "健康",
+      "meal": "食事補助",
+      "transport": "交通",
+      "wellness": "ウェルネス",
+      "other": "その他"
+    },
+    "status": {
+      "active": "有効",
+      "inactive": "無効"
+    },
+    "form": {
+      "newTitle": "新しい施策",
+      "editTitle": "施策を編集",
+      "title": "タイトル",
+      "description": "説明",
+      "category": "カテゴリー",
+      "status": "ステータス",
+      "enrolledCount": "参加人数",
+      "startDate": "開始日",
+      "endDate": "終了日",
+      "notes": "メモ",
+      "save": "保存",
+      "saving": "保存中...",
+      "delete": "削除",
+      "cancel": "キャンセル"
+    },
+    "deleteConfirm": "この施策を削除しますか？元に戻せません。",
+    "loadMore": "もっと読み込む",
+    "loadingMore": "読み込み中..."
+  },
+  "payroll": {
+    "title": "給与",
+    "subtitle": "{count} 件の給与明細",
+    "new": "新しい給与明細",
+    "disclaimer": "データと書類のみを管理します。金額は手入力で、税金・社会保険料の自動計算は行いません。",
+    "empty": {
+      "title": "給与",
+      "subtitle": "給与明細はありません。",
+      "cta": "新しい給与明細"
+    },
+    "errors": {
+      "load": "給与明細を読み込めませんでした。",
+      "save": "給与明細を保存できませんでした。",
+      "delete": "給与明細を削除できませんでした。"
+    },
+    "columns": {
+      "employee": "従業員",
+      "period": "期間",
+      "netAmount": "手取り",
+      "status": "ステータス"
+    },
+    "status": {
+      "draft": "下書き",
+      "issued": "発行済み",
+      "paid": "支払済み"
+    },
+    "form": {
+      "newTitle": "新しい給与明細",
+      "editTitle": "給与明細を編集",
+      "employeeName": "従業員",
+      "selectEmployee": "従業員を選択",
+      "period": "対象期間",
+      "status": "ステータス",
+      "grossAmount": "総支給額",
+      "netAmount": "差引支給額",
+      "payslipUrl": "明細書リンク",
+      "paidAt": "支払日",
+      "notes": "メモ",
+      "save": "保存",
+      "saving": "保存中...",
+      "delete": "削除",
+      "cancel": "キャンセル"
+    },
+    "deleteConfirm": "この給与明細を削除しますか？元に戻せません。",
+    "loadMore": "もっと読み込む",
+    "loadingMore": "読み込み中..."
+  },
+  "orgChart": {
+    "title": "組織図",
+    "subtitle": "会社の構造",
+    "empty": {
+      "title": "組織図",
+      "subtitle": "表示する従業員がいません。"
     }
   }
 }

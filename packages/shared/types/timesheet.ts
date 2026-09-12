@@ -1,5 +1,7 @@
 export interface TimesheetEntry {
   id: string
+  employeeId: string | null
+  employeeName: string
   projectId: string | null
   taskId: string | null
   description: string

@@ -66,6 +66,8 @@
       "editTitle": "编辑任务",
       "title": "标题",
       "description": "描述",
+      "tags": "标签",
+      "tagsPlaceholder": "用逗号分隔",
       "priority": "优先级",
       "status": "状态",
       "deadline": "截止日期",
@@ -208,6 +210,34 @@
       "settings": {
         "label": "设置",
         "desc": "个人资料与密码"
+      },
+      "attendance": {
+        "label": "考勤",
+        "desc": "签到/签退记录"
+      },
+      "orgChart": {
+        "label": "组织架构",
+        "desc": "公司层级结构"
+      },
+      "recruiting": {
+        "label": "招聘选拔",
+        "desc": "求职申请与面试"
+      },
+      "performanceReviews": {
+        "label": "绩效评估",
+        "desc": "定期员工评估"
+      },
+      "training": {
+        "label": "培训",
+        "desc": "课程、期限与认证"
+      },
+      "welfare": {
+        "label": "员工福利",
+        "desc": "福利、计划与参与情况"
+      },
+      "payroll": {
+        "label": "薪资管理",
+        "desc": "工资单与薪资数据（仅数据）"
       }
     },
     "madeBy": "Made by apdesign"
@@ -228,9 +258,17 @@
         "firstName": "名",
         "lastName": "姓",
         "company": "公司",
+        "role": "职位",
         "email": "邮箱",
         "phone": "电话",
+        "whatsapp": "WhatsApp",
+        "website": "网站",
+        "address": "地址",
+        "tags": "标签",
+        "tagsPlaceholder": "用逗号分隔",
         "notes": "备注",
+        "lastContactAt": "上次联系",
+        "nextActivityAt": "下次跟进",
         "status": "状态",
         "save": "保存",
         "saving": "保存中...",
@@ -257,12 +295,25 @@
         "won": "已成交",
         "lost": "已流失"
       },
+      "source": {
+        "manual": "手动",
+        "website": "网站",
+        "referral": "推荐",
+        "email": "邮件",
+        "whatsapp": "WhatsApp",
+        "import": "导入"
+      },
       "form": {
         "newTitle": "新建商机",
         "title": "标题",
         "company": "公司",
         "value": "金额 (EUR)",
         "stage": "阶段",
+        "source": "来源",
+        "probability": "成交概率 (%)",
+        "contact": "联系人",
+        "noContact": "无联系人",
+        "expectedCloseDate": "预计成交日期",
         "notes": "备注",
         "save": "保存",
         "saving": "保存中...",
@@ -304,7 +355,40 @@
         "save": "无法保存项目。",
         "delete": "无法删除项目。"
       },
-      "deleteConfirm": "删除此项目？此操作无法撤销。"
+      "deleteConfirm": "删除此项目？此操作无法撤销。",
+      "milestones": {
+        "title": "里程碑",
+        "empty": "暂无里程碑。",
+        "form": {
+          "title": "里程碑标题",
+          "dueDate": "截止日期",
+          "add": "添加里程碑"
+        },
+        "errors": {
+          "add": "无法添加里程碑。"
+        }
+      },
+      "documents": {
+        "title": "文件",
+        "empty": "暂无文件。",
+        "form": {
+          "title": "文件标题",
+          "url": "链接",
+          "add": "添加文件"
+        },
+        "errors": {
+          "add": "无法添加文件。"
+        }
+      },
+      "discussion": {
+        "title": "讨论",
+        "empty": "暂无评论。",
+        "placeholder": "写评论...",
+        "add": "添加评论",
+        "errors": {
+          "add": "无法添加评论。"
+        }
+      }
     },
     "timesheets": {
       "title": "工时表",
@@ -315,6 +399,8 @@
       "nonBillable": "不可计费",
       "form": {
         "newTitle": "新建记录",
+        "employee": "员工",
+        "noEmployee": "无",
         "date": "日期",
         "durationMinutes": "时长（分钟）",
         "description": "描述",
@@ -348,6 +434,7 @@
         "title": "标题",
         "description": "描述",
         "priority": "优先级",
+        "assignee": "负责人",
         "save": "保存",
         "saving": "保存中...",
         "editTitle": "编辑工单",
@@ -365,7 +452,16 @@
         "save": "无法保存工单。",
         "delete": "无法删除工单。"
       },
-      "deleteConfirm": "删除此工单？此操作无法撤销。"
+      "deleteConfirm": "删除此工单？此操作无法撤销。",
+      "comments": {
+        "title": "评论",
+        "empty": "暂无评论。",
+        "placeholder": "写评论...",
+        "add": "添加评论",
+        "errors": {
+          "add": "无法添加评论。"
+        }
+      }
     },
     "leave": {
       "title": "休假",
@@ -465,12 +561,37 @@
         "saving": "保存中...",
         "editTitle": "编辑员工",
         "newTitle": "新建员工",
-        "delete": "删除"
+        "delete": "删除",
+        "manager": "上级",
+        "managerNone": "无"
       },
       "deleteConfirm": "删除此员工？此操作无法撤销。",
       "errors": {
         "save": "无法保存员工信息。",
         "delete": "无法删除员工。"
+      },
+      "documents": {
+        "title": "文件",
+        "add": "添加文件",
+        "empty": "暂无文件。",
+        "docType": {
+          "contract": "合同",
+          "certificate": "证书",
+          "id": "身份证件",
+          "other": "其他"
+        },
+        "form": {
+          "title": "标题",
+          "type": "类型",
+          "expiryDate": "到期日期（可选）",
+          "url": "文件链接",
+          "add": "添加"
+        },
+        "deleteConfirm": "删除此文件？",
+        "errors": {
+          "add": "无法添加文件。",
+          "delete": "无法删除文件。"
+        }
       }
     },
     "expenses": {
@@ -627,13 +748,17 @@
         "saving": "保存中...",
         "editTitle": "编辑活动",
         "delete": "删除",
-        "cancel": "取消"
+        "cancel": "取消",
+        "send": "发送活动",
+        "sending": "发送中..."
       },
       "errors": {
         "save": "无法保存活动。",
-        "delete": "无法删除活动。"
+        "delete": "无法删除活动。",
+        "send": "无法发送活动。"
       },
-      "deleteConfirm": "删除此活动？此操作无法撤销。"
+      "deleteConfirm": "删除此活动？此操作无法撤销。",
+      "sentAt": "已于 {{date}} 发送"
     },
     "website": {
       "title": "网站",
@@ -669,6 +794,217 @@
         "fair": "一般",
         "good": "良好",
         "strong": "强"
+      }
+    },
+    "attendance": {
+      "title": "考勤",
+      "count": "{{count}} 条记录",
+      "error": "无法加载考勤。({{error}})",
+      "empty": "暂无记录。",
+      "form": {
+        "newTitle": "新建记录",
+        "editTitle": "编辑记录",
+        "employeeName": "员工",
+        "date": "日期",
+        "checkIn": "签到",
+        "checkOut": "签退",
+        "notes": "备注",
+        "save": "保存",
+        "saving": "保存中...",
+        "delete": "删除",
+        "cancel": "取消"
+      },
+      "deleteConfirm": "删除此记录？此操作无法撤销。",
+      "errors": {
+        "save": "无法保存记录。",
+        "delete": "无法删除记录。"
+      }
+    },
+    "orgChart": {
+      "title": "组织架构",
+      "subtitle": "公司结构",
+      "empty": "没有可显示的员工。",
+      "error": "无法加载组织架构。({{error}})"
+    },
+    "recruiting": {
+      "title": "招聘选拔",
+      "count": "{{count}} 位候选人",
+      "error": "无法加载候选人。({{error}})",
+      "empty": "暂无候选人。",
+      "stage": {
+        "applied": "已投递",
+        "screening": "筛选中",
+        "interview": "面试",
+        "offer": "录用邀请",
+        "hired": "已录用",
+        "rejected": "已拒绝"
+      },
+      "source": {
+        "website": "网站",
+        "referral": "内部推荐",
+        "linkedin": "领英",
+        "agency": "猎头",
+        "other": "其他"
+      },
+      "form": {
+        "newTitle": "新建候选人",
+        "editTitle": "编辑候选人",
+        "firstName": "名",
+        "lastName": "姓",
+        "email": "邮箱",
+        "phone": "电话",
+        "role": "职位",
+        "stage": "阶段",
+        "source": "来源",
+        "resumeUrl": "简历链接",
+        "notes": "备注",
+        "interviewDate": "面试日期",
+        "save": "保存",
+        "saving": "保存中...",
+        "delete": "删除",
+        "cancel": "取消"
+      },
+      "deleteConfirm": "删除此候选人？此操作无法撤销。",
+      "errors": {
+        "save": "无法保存候选人。",
+        "delete": "无法删除候选人。"
+      }
+    },
+    "performanceReviews": {
+      "title": "绩效评估",
+      "count": "{{count}} 条评估",
+      "error": "无法加载评估。({{error}})",
+      "empty": "暂无评估。",
+      "status": {
+        "draft": "草稿",
+        "submitted": "已提交",
+        "completed": "已完成"
+      },
+      "form": {
+        "newTitle": "新建评估",
+        "editTitle": "编辑评估",
+        "employeeName": "员工",
+        "period": "周期",
+        "reviewerName": "评估人",
+        "rating": "评分 (1-5)",
+        "strengths": "优点",
+        "improvements": "改进方向",
+        "goals": "目标",
+        "status": "状态",
+        "save": "保存",
+        "saving": "保存中...",
+        "delete": "删除",
+        "cancel": "取消"
+      },
+      "deleteConfirm": "删除此评估？此操作无法撤销。",
+      "errors": {
+        "save": "无法保存评估。",
+        "delete": "无法删除评估。"
+      }
+    },
+    "training": {
+      "title": "培训",
+      "count": "{{count}} 门课程",
+      "error": "无法加载课程。({{error}})",
+      "empty": "暂无课程。",
+      "status": {
+        "planned": "已计划",
+        "in_progress": "进行中",
+        "completed": "已完成"
+      },
+      "form": {
+        "newTitle": "新建课程",
+        "editTitle": "编辑课程",
+        "title": "课程标题",
+        "employeeName": "员工",
+        "provider": "提供方",
+        "status": "状态",
+        "startDate": "开始日期",
+        "completionDate": "完成日期",
+        "certificateUrl": "证书链接",
+        "notes": "备注",
+        "save": "保存",
+        "saving": "保存中...",
+        "delete": "删除",
+        "cancel": "取消"
+      },
+      "deleteConfirm": "删除此课程？此操作无法撤销。",
+      "errors": {
+        "save": "无法保存课程。",
+        "delete": "无法删除课程。"
+      }
+    },
+    "welfare": {
+      "title": "员工福利",
+      "count": "{{count}} 项计划",
+      "error": "无法加载福利计划。({{error}})",
+      "empty": "暂无福利计划。",
+      "category": {
+        "health": "健康",
+        "meal": "餐补",
+        "transport": "交通",
+        "wellness": "健康关怀",
+        "other": "其他"
+      },
+      "status": {
+        "active": "生效中",
+        "inactive": "未生效"
+      },
+      "enrolledCount": "{{count}} 人参与",
+      "form": {
+        "newTitle": "新建计划",
+        "editTitle": "编辑计划",
+        "title": "标题",
+        "description": "描述",
+        "category": "类别",
+        "status": "状态",
+        "enrolledCount": "参与人数",
+        "startDate": "开始日期",
+        "endDate": "结束日期",
+        "notes": "备注",
+        "save": "保存",
+        "saving": "保存中...",
+        "delete": "删除",
+        "cancel": "取消"
+      },
+      "deleteConfirm": "删除此计划？此操作无法撤销。",
+      "errors": {
+        "save": "无法保存计划。",
+        "delete": "无法删除计划。"
+      }
+    },
+    "payroll": {
+      "title": "薪资管理",
+      "count": "{{count}} 份工资单",
+      "error": "无法加载工资单。({{error}})",
+      "empty": "暂无工资单。",
+      "disclaimer": "仅管理数据与文件：金额需手动录入，不进行税费或社保的自动计算。",
+      "status": {
+        "draft": "草稿",
+        "issued": "已发放",
+        "paid": "已支付"
+      },
+      "net": "实发 {{amount}}",
+      "form": {
+        "newTitle": "新建工资单",
+        "editTitle": "编辑工资单",
+        "employeeName": "员工",
+        "period": "周期",
+        "grossAmount": "应发金额",
+        "netAmount": "实发金额",
+        "status": "状态",
+        "payslipUrl": "工资单链接",
+        "paidAt": "支付日期",
+        "notes": "备注",
+        "save": "保存",
+        "saving": "保存中...",
+        "delete": "删除",
+        "cancel": "取消"
+      },
+      "deleteConfirm": "删除此工资单？此操作无法撤销。",
+      "errors": {
+        "save": "无法保存工资单。",
+        "delete": "无法删除工资单。"
       }
     }
   },

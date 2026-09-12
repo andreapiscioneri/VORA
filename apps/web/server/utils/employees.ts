@@ -1,5 +1,5 @@
 import type { Employee } from '~/shared/types/employee'
-import type { EmployeeInputSchema } from '~/shared/validation/employee'
+import type { EmployeeInputSchema, AddEmployeeDocumentSchema } from '~/shared/validation/employee'
 import { getDb } from './firebase'
 import { paginateQuery, type PageResult } from './pagination'
 
@@ -15,6 +15,8 @@ function toEmployee(id: string, data: FirebaseFirestore.DocumentData): Employee 
     team: data.team ?? '',
     status: data.status ?? 'active',
     startDate: data.startDate ?? null,
+    managerId: data.managerId ?? null,
+    documents: data.documents ?? [],
     createdAt: data.createdAt ?? new Date().toISOString(),
     updatedAt: data.updatedAt ?? new Date().toISOString(),
   }
@@ -55,4 +57,27 @@ export async function deleteEmployee(id: string, organizationId: string): Promis
   if (!existing.exists || existing.data()?.organizationId !== organizationId) return false
   await ref.delete()
   return true
+}
+
+export async function addEmployeeDocument(id: string, input: AddEmployeeDocumentSchema, organizationId: string): Promise<Employee | null> {
+  const ref = getDb().collection(COLLECTION).doc(id)
+  const existing = await ref.get()
+  if (!existing.exists || existing.data()?.organizationId !== organizationId) return null
+
+  const document = { id: crypto.randomUUID(), title: input.title, type: input.type, expiryDate: input.expiryDate, url: input.url, addedAt: new Date().toISOString() }
+  const documents = [...(existing.data()?.documents ?? []), document]
+  const updatedAt = new Date().toISOString()
+  await ref.update({ documents, updatedAt })
+  return toEmployee(id, { ...existing.data(), documents, updatedAt })
+}
+
+export async function removeEmployeeDocument(id: string, documentId: string, organizationId: string): Promise<Employee | null> {
+  const ref = getDb().collection(COLLECTION).doc(id)
+  const existing = await ref.get()
+  if (!existing.exists || existing.data()?.organizationId !== organizationId) return null
+
+  const documents = ((existing.data()?.documents ?? []) as { id: string }[]).filter((d) => d.id !== documentId)
+  const updatedAt = new Date().toISOString()
+  await ref.update({ documents, updatedAt })
+  return toEmployee(id, { ...existing.data(), documents, updatedAt })
 }

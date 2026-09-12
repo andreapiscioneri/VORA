@@ -17,10 +17,11 @@ export default function EditCampaignScreen() {
   const { colors } = useTheme()
   const { t } = useI18n()
   const router = useRouter()
-  const { campaigns, updateCampaign, removeCampaign } = useMarketing()
+  const { campaigns, updateCampaign, removeCampaign, sendCampaign } = useMarketing()
   const styles = makeStyles(colors)
 
   const campaign = campaigns.find((c) => c.id === id)
+  const isSent = campaign?.status === 'sent'
 
   const [name, setName] = useState(campaign?.name ?? '')
   const [subject, setSubject] = useState(campaign?.subject ?? '')
@@ -28,6 +29,7 @@ export default function EditCampaignScreen() {
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [saving, setSaving] = useState(false)
   const [saveError, setSaveError] = useState<string | null>(null)
+  const [sending, setSending] = useState(false)
 
   if (!campaign) {
     return (
@@ -64,6 +66,21 @@ export default function EditCampaignScreen() {
       setSaveError(t('modules.marketing.errors.save'))
     } finally {
       setSaving(false)
+    }
+  }
+
+  async function onSend() {
+    haptics.press()
+    setSaveError(null)
+    setSending(true)
+    try {
+      await sendCampaign(id)
+      haptics.success()
+    } catch {
+      haptics.error()
+      setSaveError(t('modules.marketing.errors.send'))
+    } finally {
+      setSending(false)
     }
   }
 
@@ -116,6 +133,15 @@ export default function EditCampaignScreen() {
             <Text style={styles.submitText}>{saving ? t('modules.marketing.form.saving') : t('modules.marketing.form.save')}</Text>
           </Pressable>
 
+          {isSent ? (
+            <Text style={styles.sentText}>{t('modules.marketing.sentAt', { date: new Date(campaign.sentAt ?? '').toLocaleString() })}</Text>
+          ) : (
+            <Pressable style={styles.sendButton} disabled={sending} onPress={onSend} accessibilityRole="button">
+              <Icon name="mail" size={16} color="#0A0A0A" />
+              <Text style={styles.sendButtonText}>{sending ? t('modules.marketing.form.sending') : t('modules.marketing.form.send')}</Text>
+            </Pressable>
+          )}
+
           <Pressable style={styles.deleteButton} onPress={confirmDelete} accessibilityRole="button">
             <Icon name="trash" size={16} color={colors.danger} />
             <Text style={styles.deleteText}>{t('modules.marketing.form.delete')}</Text>
@@ -145,5 +171,17 @@ function makeStyles(colors: ThemeColors) {
     submitText: { color: '#0A0A0A', fontWeight: '700', fontSize: 15 },
     deleteButton: { flexDirection: 'row', gap: spacing(2), alignItems: 'center', justifyContent: 'center', paddingVertical: spacing(3), marginTop: spacing(4) },
     deleteText: { color: colors.danger, fontWeight: '600', fontSize: 14 },
+    sendButton: {
+      flexDirection: 'row',
+      gap: spacing(2),
+      backgroundColor: colors.primary,
+      borderRadius: radius.md,
+      paddingVertical: spacing(3),
+      marginTop: spacing(3),
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
+    sendButtonText: { color: '#0A0A0A', fontWeight: '700', fontSize: 15 },
+    sentText: { color: colors.textSecondary, fontSize: 13, textAlign: 'center', marginTop: spacing(3) },
   })
 }

@@ -93,7 +93,14 @@
     "settings": "设置",
     "templates": "模板",
     "segments": "客户分群",
-    "automations": "自动化"
+    "automations": "自动化",
+    "attendance": "考勤",
+    "orgChart": "组织架构",
+    "recruiting": "招聘选拔",
+    "performanceReviews": "绩效评估",
+    "training": "培训",
+    "welfare": "员工福利",
+    "payroll": "薪资管理"
   },
   "topbar": {
     "search": "搜索...",
@@ -459,6 +466,8 @@
       "delete": "无法删除记录。"
     },
     "form": {
+      "employee": "员工",
+      "noEmployee": "无",
       "project": "项目",
       "noProject": "未关联项目",
       "task": "任务",
@@ -669,6 +678,8 @@
       "contact": "客户",
       "noContact": "未关联客户",
       "priority": "优先级",
+      "assignee": "负责人",
+      "noAssignee": "无",
       "status": "状态",
       "category": "类别",
       "cancel": "取消",
@@ -963,6 +974,8 @@
       "team": "团队",
       "status": "状态",
       "startDate": "入职日期",
+      "manager": "上级",
+      "managerNone": "无",
       "cancel": "取消",
       "save": "保存",
       "saving": "保存中...",
@@ -1362,12 +1375,30 @@
       "title": "团队所需的一切，尽在一个系统",
       "subtitle": "六个互联模块，取代六个互不相通的工具。",
       "items": {
-        "crm": { "title": "CRM 与联系人", "description": "在同一条流水线中管理销售线索、客户和商机。" },
-        "calendar": { "title": "日历与预约", "description": "安排会议与预约，不再撞期。" },
-        "projects": { "title": "项目与任务", "description": "以清晰的截止日期和责任人组织团队工作。" },
-        "marketing": { "title": "营销与自动化", "description": "自动运行的营销活动、客户分群与工作流。" },
-        "helpdesk": { "title": "工单与知识库", "description": "借助共享知识库更快回应客户。" },
-        "people": { "title": "人事与休假", "description": "休假、报销与团队健康状况集中管理。" }
+        "crm": {
+          "title": "CRM 与联系人",
+          "description": "在同一条流水线中管理销售线索、客户和商机。"
+        },
+        "calendar": {
+          "title": "日历与预约",
+          "description": "安排会议与预约，不再撞期。"
+        },
+        "projects": {
+          "title": "项目与任务",
+          "description": "以清晰的截止日期和责任人组织团队工作。"
+        },
+        "marketing": {
+          "title": "营销与自动化",
+          "description": "自动运行的营销活动、客户分群与工作流。"
+        },
+        "helpdesk": {
+          "title": "工单与知识库",
+          "description": "借助共享知识库更快回应客户。"
+        },
+        "people": {
+          "title": "人事与休假",
+          "description": "休假、报销与团队健康状况集中管理。"
+        }
       }
     },
     "customers": {
@@ -1375,21 +1406,49 @@
       "title": "随行业需求而变的系统",
       "subtitle": "每个团队的工作方式都不同——VORA 不会强求一致。",
       "items": {
-        "agencies": { "title": "代理机构与专业事务所", "description": "客户管理、计时项目与透明计费。" },
-        "smes": { "title": "服务型中小企业", "description": "CRM、日历与工单一体化，客户不再流失。" },
-        "sales": { "title": "市场与销售团队", "description": "持续为销售管道注入线索的营销活动与自动化。" },
-        "hr": { "title": "人力资源与员工运营", "description": "无需表格即可管理休假、考勤与员工健康。" }
+        "agencies": {
+          "title": "代理机构与专业事务所",
+          "description": "客户管理、计时项目与透明计费。"
+        },
+        "smes": {
+          "title": "服务型中小企业",
+          "description": "CRM、日历与工单一体化，客户不再流失。"
+        },
+        "sales": {
+          "title": "市场与销售团队",
+          "description": "持续为销售管道注入线索的营销活动与自动化。"
+        },
+        "hr": {
+          "title": "人力资源与员工运营",
+          "description": "无需表格即可管理休假、考勤与员工健康。"
+        }
       }
     },
     "automation": {
       "eyebrow": "自动化",
       "title": "即使你不在，工作流也在运转",
       "subtitle": "真正的触发 → 条件 → 动作规则，而不只是提醒。",
-      "labels": { "trigger": "触发条件", "condition": "判断条件", "action": "执行动作" },
+      "labels": {
+        "trigger": "触发条件",
+        "condition": "判断条件",
+        "action": "执行动作"
+      },
       "items": {
-        "contact": { "trigger": "创建新联系人", "condition": "来源 = 官网", "action": "发送欢迎邮件并分配销售负责人" },
-        "appointment": { "trigger": "24 小时后有预约", "condition": "尚未确认", "action": "自动发送提醒" },
-        "invoice": { "trigger": "发票逾期 7 天", "condition": "仍未付款", "action": "创建催款任务并通知团队" }
+        "contact": {
+          "trigger": "创建新联系人",
+          "condition": "来源 = 官网",
+          "action": "发送欢迎邮件并分配销售负责人"
+        },
+        "appointment": {
+          "trigger": "24 小时后有预约",
+          "condition": "尚未确认",
+          "action": "自动发送提醒"
+        },
+        "invoice": {
+          "trigger": "发票逾期 7 天",
+          "condition": "仍未付款",
+          "action": "创建催款任务并通知团队"
+        }
       }
     },
     "pricing": {
@@ -1431,10 +1490,22 @@
       "subtitle": "无需注册即可体验的交互式产品预览。",
       "ctaTry": "免费试用",
       "tabs": {
-        "crm": { "label": "CRM", "caption": "每个联系人、商机与对话都在同一条流水线上。" },
-        "calendar": { "label": "日历", "caption": "预约与团队空闲时间，始终保持同步。" },
-        "automation": { "label": "自动化", "caption": "规则自动触发，无需你亲自动手。" },
-        "projects": { "label": "项目", "caption": "任务、截止日期与负责人一目了然。" }
+        "crm": {
+          "label": "CRM",
+          "caption": "每个联系人、商机与对话都在同一条流水线上。"
+        },
+        "calendar": {
+          "label": "日历",
+          "caption": "预约与团队空闲时间，始终保持同步。"
+        },
+        "automation": {
+          "label": "自动化",
+          "caption": "规则自动触发，无需你亲自动手。"
+        },
+        "projects": {
+          "label": "项目",
+          "caption": "任务、截止日期与负责人一目了然。"
+        }
       }
     },
     "contact": {
@@ -1467,6 +1538,299 @@
       "rejectedMessage": "账号已拒绝。",
       "error": "出了点问题，请重试。",
       "redirecting": "正在前往仪表盘…"
+    }
+  },
+  "attendance": {
+    "title": "考勤",
+    "subtitle": "{count} 条记录",
+    "new": "新建记录",
+    "empty": {
+      "title": "考勤",
+      "subtitle": "暂无记录。",
+      "cta": "新建记录"
+    },
+    "errors": {
+      "load": "无法加载考勤。({{error}}).",
+      "save": "无法保存记录。",
+      "delete": "无法删除记录。"
+    },
+    "columns": {
+      "employee": "员工",
+      "date": "日期",
+      "checkIn": "签到",
+      "checkOut": "签退"
+    },
+    "form": {
+      "newTitle": "新建记录",
+      "editTitle": "编辑记录",
+      "employeeName": "员工",
+      "selectEmployee": "选择员工",
+      "date": "日期",
+      "checkIn": "签到",
+      "checkOut": "签退",
+      "notes": "备注",
+      "save": "保存",
+      "saving": "保存中...",
+      "delete": "删除",
+      "cancel": "取消"
+    },
+    "deleteConfirm": "删除此记录？此操作无法撤销。",
+    "loadMore": "加载更多",
+    "loadingMore": "加载中..."
+  },
+  "recruiting": {
+    "title": "招聘选拔",
+    "subtitle": "{count} 位候选人",
+    "new": "新建候选人",
+    "empty": {
+      "title": "招聘选拔",
+      "subtitle": "暂无候选人。",
+      "cta": "新建候选人"
+    },
+    "errors": {
+      "load": "无法加载候选人。({{error}}).",
+      "save": "无法保存候选人。",
+      "delete": "无法删除候选人。"
+    },
+    "columns": {
+      "name": "姓名",
+      "role": "职位",
+      "source": "来源",
+      "stage": "阶段"
+    },
+    "stage": {
+      "applied": "已投递",
+      "screening": "筛选中",
+      "interview": "面试",
+      "offer": "录用邀请",
+      "hired": "已录用",
+      "rejected": "已拒绝"
+    },
+    "source": {
+      "website": "网站",
+      "referral": "内部推荐",
+      "linkedin": "领英",
+      "agency": "猎头",
+      "other": "其他"
+    },
+    "form": {
+      "newTitle": "新建候选人",
+      "editTitle": "编辑候选人",
+      "firstName": "名",
+      "lastName": "姓",
+      "email": "邮箱",
+      "phone": "电话",
+      "role": "职位",
+      "stage": "阶段",
+      "source": "来源",
+      "resumeUrl": "简历链接",
+      "notes": "备注",
+      "interviewDate": "面试日期",
+      "save": "保存",
+      "saving": "保存中...",
+      "delete": "删除",
+      "cancel": "取消"
+    },
+    "deleteConfirm": "删除此候选人？此操作无法撤销。",
+    "loadMore": "加载更多",
+    "loadingMore": "加载中..."
+  },
+  "performanceReviews": {
+    "title": "绩效评估",
+    "subtitle": "{count} 条评估",
+    "new": "新建评估",
+    "empty": {
+      "title": "绩效评估",
+      "subtitle": "暂无评估。",
+      "cta": "新建评估"
+    },
+    "errors": {
+      "load": "无法加载评估。({{error}}).",
+      "save": "无法保存评估。",
+      "delete": "无法删除评估。"
+    },
+    "columns": {
+      "employee": "员工",
+      "period": "周期",
+      "rating": "评分",
+      "status": "状态"
+    },
+    "status": {
+      "draft": "草稿",
+      "submitted": "已提交",
+      "completed": "已完成"
+    },
+    "form": {
+      "newTitle": "新建评估",
+      "editTitle": "编辑评估",
+      "employeeName": "员工",
+      "selectEmployee": "选择员工",
+      "period": "周期",
+      "reviewerName": "评估人",
+      "rating": "评分 (1-5)",
+      "status": "状态",
+      "reviewDate": "日期",
+      "strengths": "优点",
+      "improvements": "改进方向",
+      "goals": "目标",
+      "save": "保存",
+      "saving": "保存中...",
+      "delete": "删除",
+      "cancel": "取消"
+    },
+    "deleteConfirm": "删除此评估？此操作无法撤销。",
+    "loadMore": "加载更多",
+    "loadingMore": "加载中..."
+  },
+  "training": {
+    "title": "培训",
+    "subtitle": "{count} 门课程",
+    "new": "新建课程",
+    "empty": {
+      "title": "培训",
+      "subtitle": "暂无课程。",
+      "cta": "新建课程"
+    },
+    "errors": {
+      "load": "无法加载课程。",
+      "save": "无法保存课程。",
+      "delete": "无法删除课程。"
+    },
+    "columns": {
+      "title": "标题",
+      "employee": "员工",
+      "provider": "提供机构",
+      "status": "状态"
+    },
+    "status": {
+      "planned": "计划中",
+      "in_progress": "进行中",
+      "completed": "已完成"
+    },
+    "form": {
+      "newTitle": "新建课程",
+      "editTitle": "编辑课程",
+      "title": "课程标题",
+      "employeeName": "员工",
+      "provider": "提供机构",
+      "status": "状态",
+      "startDate": "开始日期",
+      "completionDate": "完成日期",
+      "certificateUrl": "证书链接",
+      "notes": "备注",
+      "save": "保存",
+      "saving": "保存中...",
+      "delete": "删除",
+      "cancel": "取消"
+    },
+    "deleteConfirm": "删除此课程？此操作无法撤销。",
+    "loadMore": "加载更多",
+    "loadingMore": "加载中..."
+  },
+  "welfare": {
+    "title": "员工福利",
+    "subtitle": "{count} 项计划",
+    "new": "新建计划",
+    "empty": {
+      "title": "员工福利",
+      "subtitle": "暂无福利计划。",
+      "cta": "新建计划"
+    },
+    "errors": {
+      "load": "无法加载福利计划。",
+      "save": "无法保存计划。",
+      "delete": "无法删除计划。"
+    },
+    "columns": {
+      "title": "标题",
+      "category": "类别",
+      "enrolledCount": "参与人数",
+      "status": "状态"
+    },
+    "category": {
+      "health": "健康",
+      "meal": "餐补",
+      "transport": "交通",
+      "wellness": "健康关怀",
+      "other": "其他"
+    },
+    "status": {
+      "active": "生效中",
+      "inactive": "未生效"
+    },
+    "form": {
+      "newTitle": "新建计划",
+      "editTitle": "编辑计划",
+      "title": "标题",
+      "description": "描述",
+      "category": "类别",
+      "status": "状态",
+      "enrolledCount": "参与人数",
+      "startDate": "开始日期",
+      "endDate": "结束日期",
+      "notes": "备注",
+      "save": "保存",
+      "saving": "保存中...",
+      "delete": "删除",
+      "cancel": "取消"
+    },
+    "deleteConfirm": "删除此计划？此操作无法撤销。",
+    "loadMore": "加载更多",
+    "loadingMore": "加载中..."
+  },
+  "payroll": {
+    "title": "薪资管理",
+    "subtitle": "{count} 份工资单",
+    "new": "新建工资单",
+    "disclaimer": "仅管理数据与文件：金额需手动录入，不进行税费或社保的自动计算。",
+    "empty": {
+      "title": "薪资管理",
+      "subtitle": "暂无工资单。",
+      "cta": "新建工资单"
+    },
+    "errors": {
+      "load": "无法加载工资单。",
+      "save": "无法保存工资单。",
+      "delete": "无法删除工资单。"
+    },
+    "columns": {
+      "employee": "员工",
+      "period": "周期",
+      "netAmount": "实发金额",
+      "status": "状态"
+    },
+    "status": {
+      "draft": "草稿",
+      "issued": "已发放",
+      "paid": "已支付"
+    },
+    "form": {
+      "newTitle": "新建工资单",
+      "editTitle": "编辑工资单",
+      "employeeName": "员工",
+      "selectEmployee": "选择员工",
+      "period": "周期",
+      "status": "状态",
+      "grossAmount": "应发金额",
+      "netAmount": "实发金额",
+      "payslipUrl": "工资单链接",
+      "paidAt": "支付日期",
+      "notes": "备注",
+      "save": "保存",
+      "saving": "保存中...",
+      "delete": "删除",
+      "cancel": "取消"
+    },
+    "deleteConfirm": "删除此工资单？此操作无法撤销。",
+    "loadMore": "加载更多",
+    "loadingMore": "加载中..."
+  },
+  "orgChart": {
+    "title": "组织架构",
+    "subtitle": "公司结构",
+    "empty": {
+      "title": "组织架构",
+      "subtitle": "没有可显示的员工。"
     }
   }
 }
