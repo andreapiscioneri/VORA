@@ -4,6 +4,7 @@ import { LEAVE_STATUSES, LEAVE_TYPES } from '~/shared/types/leave'
 export const leaveRequestInputSchema = z
   .object({
     requesterName: z.string().trim().min(1, 'validation.required').max(160),
+    employeeId: z.string().nullable().default(null),
     type: z.enum(LEAVE_TYPES).default('vacation'),
     startDate: z.string().min(1, 'validation.required'),
     endDate: z.string().min(1, 'validation.required'),

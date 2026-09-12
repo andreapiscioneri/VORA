@@ -30,7 +30,9 @@
     "oauthFailed": "Google sign-in failed. Try again or use email and password.",
     "pendingApprovalTitle": "Registration received",
     "pendingApprovalMessage": "Your account is awaiting approval. You'll be able to log in once it's approved.",
-    "pendingApproval": "This account is awaiting approval."
+    "pendingApproval": "This account is awaiting approval.",
+    "serverError": "A server error occurred. Please try again later.",
+    "rateLimited": "Too many attempts. Please try again in a few minutes."
   },
   "tabs": {
     "home": "Home",
@@ -120,7 +122,11 @@
       "save": "Save",
       "saving": "Saving...",
       "delete": "Delete",
-      "cancel": "Cancel"
+      "cancel": "Cancel",
+      "repeatEvery": "Every",
+      "repeatUntil": "Until",
+      "attendees": "Attendees",
+      "addAttendee": "Add attendee"
     },
     "recurrence": {
       "none": "Doesn't repeat",
@@ -201,7 +207,7 @@
       },
       "website": {
         "label": "Website",
-        "desc": "Site overview and microsites"
+        "desc": "Create and manage your websites"
       },
       "auditLog": {
         "label": "Audit log",
@@ -489,7 +495,8 @@
         "saving": "Saving...",
         "editTitle": "Edit request",
         "delete": "Delete",
-        "cancel": "Cancel"
+        "cancel": "Cancel",
+        "selectEmployee": "Select employee"
       },
       "errors": {
         "save": "Could not save the request.",
@@ -654,7 +661,16 @@
       "errors": {
         "save": "Couldn't save the page.",
         "delete": "Couldn't delete the page."
-      }
+      },
+      "search": "Search by title, content, or tag...",
+      "semanticSearch": "Smart search (press Enter)",
+      "searching": "Searching...",
+      "semanticResultsCount": "{{count}} results by relevance",
+      "allFolders": "All folders",
+      "favoritesOnly": "Favorites only",
+      "favorite": "Add to favorites",
+      "unfavorite": "Remove from favorites",
+      "relevance": "{{pct}}% relevant"
     },
     "auditLog": {
       "title": "Audit log",
@@ -767,8 +783,28 @@
       "empty": "No sites.",
       "published": "Published",
       "draft": "Draft",
-      "mySite": "My site",
-      "createNew": "Create new site"
+      "viewLive": "View live site",
+      "form": {
+        "newTitle": "New site",
+        "editTitle": "Edit site",
+        "slug": "Address (slug)",
+        "name": "Name",
+        "tagline": "Tagline",
+        "about": "About",
+        "contactEmail": "Contact email",
+        "accentColor": "Accent color",
+        "published": "Published",
+        "save": "Save",
+        "saving": "Saving...",
+        "delete": "Delete",
+        "cancel": "Cancel",
+        "slugHint": "The site will be reachable at /site/{{slug}}"
+      },
+      "deleteConfirm": "Delete this site? This cannot be undone.",
+      "errors": {
+        "save": "Couldn't save the site.",
+        "delete": "Couldn't delete the site."
+      }
     },
     "settings": {
       "title": "Settings",

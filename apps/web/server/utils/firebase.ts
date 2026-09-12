@@ -1,6 +1,11 @@
 import { cert, getApps, initializeApp, type App } from 'firebase-admin/app'
 import { getFirestore, type Firestore } from 'firebase-admin/firestore'
 
+// Suppress GCP metadata server lookup warnings in local/emulator environments
+if (process.env.FIRESTORE_EMULATOR_HOST || !process.env.GOOGLE_APPLICATION_CREDENTIALS) {
+  process.env.NO_GCE_CHECK = 'true'
+}
+
 let app: App
 let db: Firestore
 
@@ -11,6 +16,12 @@ let db: Firestore
  */
 export function getDb(): Firestore {
   if (db) return db
+
+  if (process.env.FIRESTORE_EMULATOR_HOST) {
+    // Normalize localhost to 127.0.0.1 to avoid IPv6 (::1) connection refusal on Node.js / macOS
+    process.env.FIRESTORE_EMULATOR_HOST = process.env.FIRESTORE_EMULATOR_HOST.replace(/^localhost(?=:|$)/, '127.0.0.1')
+    process.env.NO_GCE_CHECK = 'true'
+  }
 
   if (!getApps().length) {
     const projectId = process.env.FIREBASE_PROJECT_ID || 'vora-dev'

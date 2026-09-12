@@ -16,6 +16,7 @@ export function EmployeePickerModal({
   excludeId,
   selectedId,
   onSelect,
+  hideNoneOption,
 }: {
   visible: boolean
   onClose: () => void
@@ -23,6 +24,9 @@ export function EmployeePickerModal({
   excludeId?: string
   selectedId: string | null
   onSelect: (id: string | null) => void
+  // Set for an "add another attendee" flow, where there's no single current
+  // value to represent as "none" — every row is just something to add.
+  hideNoneOption?: boolean
 }) {
   const { colors } = useTheme()
   const { t } = useI18n()
@@ -33,20 +37,22 @@ export function EmployeePickerModal({
       <Pressable style={styles.backdrop} onPress={onClose}>
         <View style={[styles.sheet, { backgroundColor: colors.background }]}>
           <ScrollView>
-            <Pressable
-              style={[styles.row, { backgroundColor: colors.surface }]}
-              onPress={() => {
-                haptics.selection()
-                onSelect(null)
-                onClose()
-              }}
-              accessibilityRole="button"
-            >
-              <Text style={[styles.rowText, { color: selectedId === null ? colors.primary : colors.textPrimary }]}>
-                {t('modules.employees.form.managerNone')}
-              </Text>
-              {selectedId === null ? <Icon name="check-square" size={16} color={colors.primary} /> : null}
-            </Pressable>
+            {hideNoneOption ? null : (
+              <Pressable
+                style={[styles.row, { backgroundColor: colors.surface }]}
+                onPress={() => {
+                  haptics.selection()
+                  onSelect(null)
+                  onClose()
+                }}
+                accessibilityRole="button"
+              >
+                <Text style={[styles.rowText, { color: selectedId === null ? colors.primary : colors.textPrimary }]}>
+                  {t('modules.employees.form.managerNone')}
+                </Text>
+                {selectedId === null ? <Icon name="check-square" size={16} color={colors.primary} /> : null}
+              </Pressable>
+            )}
             {options.map((e) => (
               <Pressable
                 key={e.id}

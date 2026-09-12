@@ -55,6 +55,9 @@
     "pendingApprovalTitle": "Registrazione ricevuta",
     "pendingApprovalMessage": "Il tuo account è in attesa di approvazione. Potrai accedere non appena verrà approvato.",
     "pendingApproval": "Questo account è in attesa di approvazione.",
+    "serverError": "Si è verificato un errore del server. Riprova più tardi.",
+    "rateLimited": "Troppi tentativi. Riprova tra qualche minuto.",
+    "invalidEmail": "Indirizzo email non valido.",
     "passwordTooWeak": "La password è troppo debole: usa almeno 3 tra minuscole, maiuscole, numeri e simboli",
     "strength": {
       "veryWeak": "Molto debole",
@@ -157,6 +160,10 @@
     "allHidden": "Tutti i widget sono nascosti. Attiva Personalizza per mostrarli di nuovo.",
     "errors": {
       "load": "Impossibile caricare il layout della dashboard."
+    },
+    "modules": {
+      "title": "Tutti i moduli",
+      "subtitle": "Accesso rapido a ogni area di Vora"
     }
   },
   "contacts": {
@@ -362,7 +369,9 @@
       "timezone": "Fuso orario",
       "repeat": "Ripeti",
       "repeatEvery": "Ogni",
-      "repeatUntil": "Fino al"
+      "repeatUntil": "Fino al",
+      "attendees": "Partecipanti",
+      "noEmployees": "Nessun dipendente disponibile."
     },
     "deleteConfirm": "Eliminare questo evento? L'operazione non è reversibile.",
     "prevMonth": "Mese precedente",

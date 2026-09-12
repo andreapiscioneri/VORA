@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react'
 import { api } from '../lib/api'
-import type { MicroSite } from '@vora/shared/types/microsite'
+import type { MicroSite, MicroSiteInput } from '@vora/shared/types/microsite'
 
 interface PageResult<T> {
   items: T[]
@@ -48,5 +48,22 @@ export function useMicroSites() {
     }
   }, [hasMore, loadingMore, nextCursor])
 
-  return { sites, loading, loadingMore, error, hasMore, reload: load, loadMore }
+  const create = useCallback(async (input: MicroSiteInput) => {
+    const created = await api.post<MicroSite>('/microsites', input)
+    setSites((prev) => [created, ...prev])
+    return created
+  }, [])
+
+  const update = useCallback(async (id: string, input: MicroSiteInput) => {
+    const updated = await api.put<MicroSite>(`/microsites/${id}`, input)
+    setSites((prev) => prev.map((s) => (s.id === id ? updated : s)))
+    return updated
+  }, [])
+
+  const remove = useCallback(async (id: string) => {
+    await api.delete(`/microsites/${id}`)
+    setSites((prev) => prev.filter((s) => s.id !== id))
+  }, [])
+
+  return { sites, loading, loadingMore, error, hasMore, reload: load, loadMore, create, update, remove }
 }

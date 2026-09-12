@@ -83,6 +83,7 @@ async function onConfirm() {
       contactId: props.communication.contactId,
       timezone: Intl.DateTimeFormat().resolvedOptions().timeZone,
       recurrence: { frequency: 'none', interval: 1, until: null },
+      attendeeIds: [],
     })
     emit('created')
   } finally {

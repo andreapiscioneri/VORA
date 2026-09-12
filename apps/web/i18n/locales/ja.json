@@ -157,6 +157,10 @@
     "allHidden": "すべてのウィジェットが非表示になっています。カスタマイズをオンにして表示に戻してください。",
     "errors": {
       "load": "ダッシュボードのレイアウトを読み込めませんでした。"
+    },
+    "modules": {
+      "title": "すべてのモジュール",
+      "subtitle": "Voraのあらゆる機能にすぐアクセス"
     }
   },
   "contacts": {
@@ -362,7 +366,9 @@
       "timezone": "タイムゾーン",
       "repeat": "繰り返し",
       "repeatEvery": "間隔",
-      "repeatUntil": "終了日"
+      "repeatUntil": "終了日",
+      "attendees": "参加者",
+      "noEmployees": "従業員がいません。"
     },
     "deleteConfirm": "このイベントを削除しますか？この操作は取り消せません。",
     "prevMonth": "前の月",

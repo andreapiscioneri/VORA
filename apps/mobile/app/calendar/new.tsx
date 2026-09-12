@@ -2,7 +2,10 @@ import { useState } from 'react'
 import { KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
 import { useRouter } from 'expo-router'
 import { DetailScreen } from '../../components/Screen'
+import { Icon } from '../../components/Icon'
+import { EmployeePickerModal } from '../../components/EmployeePickerModal'
 import { useEvents } from '../../hooks/useEvents'
+import { useEmployees } from '../../hooks/useEmployees'
 import { useTheme } from '../../contexts/ThemeContext'
 import { useI18n } from '../../i18n'
 import { haptics } from '../../lib/haptics'
@@ -35,6 +38,7 @@ export default function NewEventScreen() {
   const { t } = useI18n()
   const router = useRouter()
   const { create } = useEvents()
+  const { employees } = useEmployees()
   const styles = makeStyles(colors)
 
   const start = defaultStart()
@@ -47,6 +51,10 @@ export default function NewEventScreen() {
   const [allDay, setAllDay] = useState(false)
   const [location, setLocation] = useState('')
   const [recurrence, setRecurrence] = useState<RecurrenceFrequency>('none')
+  const [interval, setInterval] = useState('1')
+  const [until, setUntil] = useState('')
+  const [attendeeIds, setAttendeeIds] = useState<string[]>([])
+  const [attendeePickerOpen, setAttendeePickerOpen] = useState(false)
   const [errors, setErrors] = useState<Record<string, string>>({})
   const [saving, setSaving] = useState(false)
   const [saveError, setSaveError] = useState<string | null>(null)
@@ -64,7 +72,8 @@ export default function NewEventScreen() {
       location,
       contactId: null,
       timezone: Intl.DateTimeFormat().resolvedOptions().timeZone || 'UTC',
-      recurrence: { frequency: recurrence, interval: 1, until: null },
+      recurrence: { frequency: recurrence, interval: Number.parseInt(interval, 10) || 1, until: until || null },
+      attendeeIds,
     }
     const result = calendarEventInputSchema.safeParse(form)
     if (!result.success) {
@@ -168,6 +177,62 @@ export default function NewEventScreen() {
             ))}
           </View>
 
+          {recurrence !== 'none' ? (
+            <View style={styles.recurrenceRow}>
+              <View style={styles.recurrenceField}>
+                <Text style={styles.label}>{t('calendar.form.repeatEvery')}</Text>
+                <TextInput style={styles.input} value={interval} onChangeText={setInterval} keyboardType="number-pad" placeholderTextColor={colors.textSecondary} />
+              </View>
+              <View style={styles.recurrenceField}>
+                <Text style={styles.label}>{t('calendar.form.repeatUntil')}</Text>
+                <TextInput
+                  style={styles.input}
+                  value={until}
+                  onChangeText={setUntil}
+                  placeholder="YYYY-MM-DD"
+                  autoCapitalize="none"
+                  placeholderTextColor={colors.textSecondary}
+                />
+                {errors.until ? <Text style={styles.error}>{errors.until}</Text> : null}
+              </View>
+            </View>
+          ) : null}
+
+          <Text style={styles.label}>{t('calendar.form.attendees')}</Text>
+          <View style={styles.chipRow}>
+            {attendeeIds.map((id) => {
+              const emp = employees.find((e) => e.id === id)
+              if (!emp) return null
+              return (
+                <Pressable
+                  key={id}
+                  style={styles.attendeeChip}
+                  onPress={() => {
+                    haptics.selection()
+                    setAttendeeIds((prev) => prev.filter((a) => a !== id))
+                  }}
+                  accessibilityRole="button"
+                  accessibilityLabel={`${emp.firstName} ${emp.lastName}`}
+                >
+                  <Text style={styles.attendeeChipText}>{emp.firstName} {emp.lastName}</Text>
+                  <Icon name="x" size={12} color={colors.textPrimary} />
+                </Pressable>
+              )
+            })}
+            <Pressable
+              style={styles.addAttendeeChip}
+              onPress={() => {
+                haptics.tap()
+                setAttendeePickerOpen(true)
+              }}
+              accessibilityRole="button"
+              accessibilityLabel={t('calendar.form.addAttendee')}
+            >
+              <Icon name="plus" size={14} color={colors.textPrimary} />
+              <Text style={styles.attendeeChipText}>{t('calendar.form.addAttendee')}</Text>
+            </Pressable>
+          </View>
+
           <Text style={styles.label}>{t('calendar.form.description')}</Text>
           <TextInput
             style={[styles.input, styles.textArea]}
@@ -185,6 +250,17 @@ export default function NewEventScreen() {
           </Pressable>
         </ScrollView>
       </KeyboardAvoidingView>
+
+      <EmployeePickerModal
+        visible={attendeePickerOpen}
+        onClose={() => setAttendeePickerOpen(false)}
+        employees={employees.filter((e) => !attendeeIds.includes(e.id))}
+        selectedId={null}
+        hideNoneOption
+        onSelect={(id) => {
+          if (id) setAttendeeIds((prev) => [...prev, id])
+        }}
+      />
     </DetailScreen>
   )
 }
@@ -209,6 +285,30 @@ function makeStyles(colors: ThemeColors) {
     chipActive: { backgroundColor: colors.primary, borderColor: colors.primary },
     chipText: { color: colors.textSecondary, fontSize: 13, fontWeight: '600' },
     chipTextActive: { color: '#0A0A0A' },
+    recurrenceRow: { flexDirection: 'row', gap: spacing(3) },
+    recurrenceField: { flex: 1 },
+    attendeeChip: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: spacing(1),
+      backgroundColor: colors.surface,
+      borderWidth: 1,
+      borderColor: colors.border,
+      borderRadius: radius.full,
+      paddingVertical: spacing(2),
+      paddingHorizontal: spacing(3),
+    },
+    addAttendeeChip: {
+      flexDirection: 'row',
+      alignItems: 'center',
+      gap: spacing(1),
+      borderWidth: 1,
+      borderColor: colors.primary,
+      borderRadius: radius.full,
+      paddingVertical: spacing(2),
+      paddingHorizontal: spacing(3),
+    },
+    attendeeChipText: { color: colors.textPrimary, fontSize: 13, fontWeight: '600' },
     submit: { backgroundColor: colors.primary, borderRadius: radius.md, paddingVertical: spacing(3), marginTop: spacing(6), alignItems: 'center' },
     submitText: { color: '#0A0A0A', fontWeight: '700', fontSize: 15 },
   })

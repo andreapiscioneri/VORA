@@ -2,7 +2,9 @@ import { useState } from 'react'
 import { KeyboardAvoidingView, Platform, Pressable, ScrollView, StyleSheet, Text, TextInput, View } from 'react-native'
 import { useRouter } from 'expo-router'
 import { DetailScreen } from '../../components/Screen'
+import { EmployeePickerModal } from '../../components/EmployeePickerModal'
 import { useLeaveRequests } from '../../hooks/useLeaveRequests'
+import { useEmployees } from '../../hooks/useEmployees'
 import { useTheme } from '../../contexts/ThemeContext'
 import { useI18n } from '../../i18n'
 import { haptics } from '../../lib/haptics'
@@ -22,9 +24,12 @@ export default function NewLeaveRequestScreen() {
   const { t } = useI18n()
   const router = useRouter()
   const { create } = useLeaveRequests()
+  const { employees } = useEmployees()
   const styles = makeStyles(colors)
 
   const [requesterName, setRequesterName] = useState('')
+  const [employeeId, setEmployeeId] = useState<string | null>(null)
+  const [employeePickerOpen, setEmployeePickerOpen] = useState(false)
   const [type, setType] = useState<LeaveType>('vacation')
   const [startDate, setStartDate] = useState(todayIso())
   const [endDate, setEndDate] = useState(todayIso())
@@ -33,11 +38,17 @@ export default function NewLeaveRequestScreen() {
   const [saving, setSaving] = useState(false)
   const [saveError, setSaveError] = useState<string | null>(null)
 
+  function selectEmployee(id: string | null) {
+    setEmployeeId(id)
+    const emp = employees.find((e) => e.id === id)
+    setRequesterName(emp ? `${emp.firstName} ${emp.lastName}` : '')
+  }
+
   async function submit() {
     haptics.press()
     setSaveError(null)
 
-    const form = { requesterName, type, startDate, endDate, notes }
+    const form = { requesterName, employeeId, type, startDate, endDate, notes }
     const result = leaveRequestInputSchema.safeParse(form)
     if (!result.success) {
       const nextErrors: Record<string, string> = {}
@@ -68,7 +79,22 @@ export default function NewLeaveRequestScreen() {
       <KeyboardAvoidingView style={{ flex: 1 }} behavior={Platform.OS === 'ios' ? 'padding' : undefined}>
         <ScrollView contentContainerStyle={styles.content} keyboardShouldPersistTaps="handled">
           <Text style={styles.label}>{t('modules.leave.form.requesterName')}</Text>
-          <TextInput style={styles.input} value={requesterName} onChangeText={setRequesterName} placeholderTextColor={colors.textSecondary} />
+          {employees.length > 0 ? (
+            <Pressable
+              style={styles.input}
+              onPress={() => {
+                haptics.tap()
+                setEmployeePickerOpen(true)
+              }}
+              accessibilityRole="button"
+            >
+              <Text style={{ color: requesterName ? colors.textPrimary : colors.textSecondary }}>
+                {requesterName || t('modules.leave.form.selectEmployee')}
+              </Text>
+            </Pressable>
+          ) : (
+            <TextInput style={styles.input} value={requesterName} onChangeText={setRequesterName} placeholderTextColor={colors.textSecondary} />
+          )}
           {errors.requesterName ? <Text style={styles.error}>{errors.requesterName}</Text> : null}
 
           <Text style={styles.label}>{t('modules.leave.form.type')}</Text>
@@ -113,6 +139,15 @@ export default function NewLeaveRequestScreen() {
           </Pressable>
         </ScrollView>
       </KeyboardAvoidingView>
+
+      <EmployeePickerModal
+        visible={employeePickerOpen}
+        onClose={() => setEmployeePickerOpen(false)}
+        employees={employees}
+        selectedId={employeeId}
+        hideNoneOption
+        onSelect={selectEmployee}
+      />
     </DetailScreen>
   )
 }

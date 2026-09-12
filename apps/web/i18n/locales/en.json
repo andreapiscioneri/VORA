@@ -55,6 +55,9 @@
     "pendingApprovalTitle": "Registration received",
     "pendingApprovalMessage": "Your account is awaiting approval. You'll be able to log in once it's approved.",
     "pendingApproval": "This account is awaiting approval.",
+    "serverError": "A server error occurred. Please try again later.",
+    "rateLimited": "Too many attempts. Please try again in a few minutes.",
+    "invalidEmail": "Invalid email address.",
     "passwordTooWeak": "Password is too weak: use at least 3 of lowercase, uppercase, digits, and symbols",
     "strength": {
       "veryWeak": "Very weak",
@@ -157,6 +160,10 @@
     "allHidden": "All widgets are hidden. Turn on Customize to bring them back.",
     "errors": {
       "load": "Couldn't load the dashboard layout."
+    },
+    "modules": {
+      "title": "All modules",
+      "subtitle": "Quick access to every area of Vora"
     }
   },
   "contacts": {
@@ -362,7 +369,9 @@
       "timezone": "Timezone",
       "repeat": "Repeat",
       "repeatEvery": "Every",
-      "repeatUntil": "Until"
+      "repeatUntil": "Until",
+      "attendees": "Attendees",
+      "noEmployees": "No employees available."
     },
     "deleteConfirm": "Delete this event? This cannot be undone.",
     "prevMonth": "Previous month",

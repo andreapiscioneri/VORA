@@ -157,6 +157,10 @@
     "allHidden": "所有小组件均已隐藏。开启自定义模式即可重新显示它们。",
     "errors": {
       "load": "无法加载仪表盘布局。"
+    },
+    "modules": {
+      "title": "所有模块",
+      "subtitle": "快速访问 Vora 的每个功能区"
     }
   },
   "contacts": {
@@ -362,7 +366,9 @@
       "timezone": "时区",
       "repeat": "重复",
       "repeatEvery": "每",
-      "repeatUntil": "直到"
+      "repeatUntil": "直到",
+      "attendees": "参与者",
+      "noEmployees": "暂无可用员工。"
     },
     "deleteConfirm": "删除此事件？此操作无法撤销。",
     "prevMonth": "上个月",

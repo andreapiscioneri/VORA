@@ -81,7 +81,7 @@ export default defineNuxtConfig({
     ],
     defaultLocale: 'it',
     strategy: 'prefix_except_default',
-    fallbackLocale: 'it',
+    vueI18n: './i18n.config.ts',
   },
 
   css: ['~/assets/css/main.css'],
@@ -91,6 +91,11 @@ export default defineNuxtConfig({
   },
 
   app: {
+    // Subtle cross-fade + rise between routes (see .page-enter-active etc.
+    // in assets/css/main.css) — the web equivalent of the mobile app's
+    // per-screen transition animations, applied once here instead of per
+    // page since Nuxt's default is an instant, transition-less swap.
+    pageTransition: { name: 'page', mode: 'out-in' },
     head: {
       title: 'Vora',
       meta: [

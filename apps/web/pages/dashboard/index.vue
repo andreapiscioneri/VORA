@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { navGroups } from '~/composables/useNav'
+
 definePageMeta({ layout: 'default' })
 
 const { tasks, fetchTasks } = useTasks()
@@ -69,6 +71,22 @@ function widgetTitle(key: string) {
   return titles[key] ?? key
 }
 
+function widgetIcon(key: string) {
+  const icons: Record<string, string> = {
+    today: 'clock',
+    priorities: 'flag',
+    crm: 'trending-up',
+    projects: 'folder',
+  }
+  return icons[key] ?? 'grid'
+}
+
+// Quick-launch grid — every module in one glanceable place, the "app
+// launcher" half of the dashboard alongside the today/priorities widgets
+// above. Reuses the same nav data as the sidebar so it can't drift out of
+// sync with what's actually available.
+const moduleTiles = computed(() => navGroups.flatMap((g) => g.items).filter((item) => item.key !== 'dashboard'))
+
 async function toggleVisible(key: string) {
   layout.value = { widgets: layout.value.widgets.map((w) => (w.key === key ? { ...w, visible: !w.visible } : w)) }
   await updateLayout(layout.value)
@@ -129,6 +147,7 @@ async function onDrop(targetKey: string) {
       <template v-for="widget in displayWidgets" :key="widget.key">
         <DashboardWidgetFrame
           :wide="widget.size === 'wide'"
+          :icon="widgetIcon(widget.key)"
           :customizing="customizing"
           :visible="widget.visible"
           :drag-handle-label="$t('dashboard.customize.dragHandle', { widget: widgetTitle(widget.key) })"
@@ -186,6 +205,32 @@ async function onDrop(targetKey: string) {
           </template>
         </DashboardWidgetFrame>
       </template>
+    </div>
+
+    <div>
+      <h2 class="text-h3 font-semibold tracking-tight mb-1">{{ $t('dashboard.modules.title') }}</h2>
+      <p class="text-body-sm text-ink-400 mb-4">{{ $t('dashboard.modules.subtitle') }}</p>
+
+      <div class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-6 gap-3">
+        <NuxtLink
+          v-for="mod in moduleTiles"
+          :key="mod.key"
+          :to="mod.to"
+          class="group relative flex flex-col items-center text-center gap-2.5 rounded-2xl border p-4 backdrop-blur-xl transition-all duration-300
+                 border-white/60 dark:border-white/10
+                 bg-white/70 dark:bg-white/[0.04]
+                 shadow-[0_4px_16px_rgba(0,0,0,0.04)] dark:shadow-[0_4px_16px_rgba(0,0,0,0.2)]
+                 hover:border-primary/40 hover:shadow-[0_10px_32px_rgba(57,255,20,0.14)] hover:-translate-y-0.5"
+        >
+          <div
+            class="flex items-center justify-center size-11 rounded-xl text-primary-600 dark:text-primary transition-transform duration-300 group-hover:scale-110"
+            style="background: linear-gradient(135deg, rgba(57,255,20,0.2), rgba(57,255,20,0.05))"
+          >
+            <UiIcon :name="mod.icon" :size="19" />
+          </div>
+          <span class="text-body-sm font-medium leading-tight">{{ $t(mod.label) }}</span>
+        </NuxtLink>
+      </div>
     </div>
   </div>
 </template>

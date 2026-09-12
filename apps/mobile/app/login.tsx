@@ -61,15 +61,20 @@ export default function LoginScreen() {
       }
     } catch (e) {
       haptics.error()
+      const status = e instanceof ApiError ? e.status : undefined
       const reason = e instanceof ApiError && e.data && typeof e.data === 'object' ? (e.data as { reason?: string }).reason : undefined
       if (reason === 'pending_approval') {
         setError(t('auth.pendingApproval'))
-      } else if (e instanceof ApiError && e.status === 409) {
+      } else if (status === 409) {
         setError(t('auth.emailTaken'))
-      } else if (e instanceof ApiError && (e.status === 401 || e.status === 422)) {
+      } else if (status === 401) {
+        setError(t('auth.invalidCredentials'))
+      } else if (status === 429) {
+        setError(t('auth.rateLimited'))
+      } else if (status === 422) {
         setError(mode === 'login' ? t('auth.invalidCredentials') : t('auth.passwordTooShort'))
       } else {
-        setError(t('auth.invalidCredentials'))
+        setError(t('auth.serverError'))
       }
     } finally {
       setLoading(false)

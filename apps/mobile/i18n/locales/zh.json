@@ -30,7 +30,9 @@
     "oauthFailed": "Google 登录失败，请重试或使用邮箱和密码登录。",
     "pendingApprovalTitle": "已收到注册申请",
     "pendingApprovalMessage": "你的账号正在等待审批，一经批准即可登录。",
-    "pendingApproval": "该账号正在等待审批。"
+    "pendingApproval": "该账号正在等待审批。",
+    "serverError": "服务器发生错误，请稍后重试。",
+    "rateLimited": "尝试次数过多，请几分钟后再试。"
   },
   "tabs": {
     "home": "主页",
@@ -120,7 +122,11 @@
       "save": "保存",
       "saving": "保存中...",
       "delete": "删除",
-      "cancel": "取消"
+      "cancel": "取消",
+      "repeatEvery": "每",
+      "repeatUntil": "直到",
+      "attendees": "参与者",
+      "addAttendee": "添加参与者"
     },
     "recurrence": {
       "none": "不重复",
@@ -201,7 +207,7 @@
       },
       "website": {
         "label": "网站",
-        "desc": "网站概览与微站点"
+        "desc": "创建并管理你的网站"
       },
       "auditLog": {
         "label": "审计日志",
@@ -489,7 +495,8 @@
         "saving": "保存中...",
         "editTitle": "编辑申请",
         "delete": "删除",
-        "cancel": "取消"
+        "cancel": "取消",
+        "selectEmployee": "选择员工"
       },
       "errors": {
         "save": "无法保存申请。",
@@ -654,7 +661,16 @@
       "errors": {
         "save": "无法保存页面。",
         "delete": "无法删除页面。"
-      }
+      },
+      "search": "按标题、内容或标签搜索...",
+      "semanticSearch": "智能搜索（按 Enter）",
+      "searching": "搜索中...",
+      "semanticResultsCount": "找到 {{count}} 个相关结果",
+      "allFolders": "所有文件夹",
+      "favoritesOnly": "仅显示收藏",
+      "favorite": "添加到收藏",
+      "unfavorite": "取消收藏",
+      "relevance": "相关度 {{pct}}%"
     },
     "auditLog": {
       "title": "审计日志",
@@ -767,8 +783,28 @@
       "empty": "暂无站点。",
       "published": "已发布",
       "draft": "草稿",
-      "mySite": "我的网站",
-      "createNew": "创建新网站"
+      "viewLive": "查看在线站点",
+      "form": {
+        "newTitle": "新建站点",
+        "editTitle": "编辑站点",
+        "slug": "地址（slug）",
+        "name": "名称",
+        "tagline": "标语",
+        "about": "简介",
+        "contactEmail": "联系邮箱",
+        "accentColor": "强调色",
+        "published": "已发布",
+        "save": "保存",
+        "saving": "保存中...",
+        "delete": "删除",
+        "cancel": "取消",
+        "slugHint": "该站点将可通过 /site/{{slug}} 访问"
+      },
+      "deleteConfirm": "删除此站点？此操作无法撤销。",
+      "errors": {
+        "save": "无法保存站点。",
+        "delete": "无法删除站点。"
+      }
     },
     "settings": {
       "title": "设置",

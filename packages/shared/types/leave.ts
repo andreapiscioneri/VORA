@@ -8,6 +8,11 @@ export interface LeaveRequest {
   id: string
   requesterName: string
   requesterId: string | null
+  /** The requester's Employee record — used to resolve their manager
+   * (Employee.managerId) so approval can be routed to that manager, not
+   * just any owner/admin. Null when the requester isn't linked to an
+   * Employee record (e.g. requesterName was typed freehand). */
+  employeeId: string | null
   type: LeaveType
   startDate: string
   endDate: string

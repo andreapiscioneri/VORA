@@ -30,7 +30,9 @@
     "oauthFailed": "La connexion Google a échoué. Réessayez ou utilisez votre e-mail et votre mot de passe.",
     "pendingApprovalTitle": "Inscription reçue",
     "pendingApprovalMessage": "Votre compte est en attente d'approbation. Vous pourrez vous connecter dès qu'il sera approuvé.",
-    "pendingApproval": "Ce compte est en attente d'approbation."
+    "pendingApproval": "Ce compte est en attente d'approbation.",
+    "serverError": "Une erreur de serveur s'est produite. Veuillez réessayer plus tard.",
+    "rateLimited": "Trop de tentatives. Veuillez réessayer dans quelques minutes."
   },
   "tabs": {
     "home": "Accueil",
@@ -120,7 +122,11 @@
       "save": "Enregistrer",
       "saving": "Enregistrement...",
       "delete": "Supprimer",
-      "cancel": "Annuler"
+      "cancel": "Annuler",
+      "repeatEvery": "Tous les",
+      "repeatUntil": "Jusqu'au",
+      "attendees": "Participants",
+      "addAttendee": "Ajouter un participant"
     },
     "recurrence": {
       "none": "Ne se répète pas",
@@ -201,7 +207,7 @@
       },
       "website": {
         "label": "Site web",
-        "desc": "Aperçu du site et micro-sites"
+        "desc": "Créez et gérez vos sites web"
       },
       "auditLog": {
         "label": "Journal d’audit",
@@ -489,7 +495,8 @@
         "saving": "Enregistrement...",
         "editTitle": "Modifier la demande",
         "delete": "Supprimer",
-        "cancel": "Annuler"
+        "cancel": "Annuler",
+        "selectEmployee": "Sélectionner un employé"
       },
       "errors": {
         "save": "Impossible d'enregistrer la demande.",
@@ -654,7 +661,16 @@
       "errors": {
         "save": "Impossible d'enregistrer la page.",
         "delete": "Impossible de supprimer la page."
-      }
+      },
+      "search": "Rechercher par titre, contenu ou étiquette...",
+      "semanticSearch": "Recherche intelligente (appuyez sur Entrée)",
+      "searching": "Recherche...",
+      "semanticResultsCount": "{{count}} résultats par pertinence",
+      "allFolders": "Tous les dossiers",
+      "favoritesOnly": "Favoris uniquement",
+      "favorite": "Ajouter aux favoris",
+      "unfavorite": "Retirer des favoris",
+      "relevance": "{{pct}} % pertinent"
     },
     "auditLog": {
       "title": "Journal d’audit",
@@ -767,8 +783,28 @@
       "empty": "Aucun site.",
       "published": "Publié",
       "draft": "Brouillon",
-      "mySite": "Mon site",
-      "createNew": "Créer un nouveau site"
+      "viewLive": "Voir le site en ligne",
+      "form": {
+        "newTitle": "Nouveau site",
+        "editTitle": "Modifier le site",
+        "slug": "Adresse (slug)",
+        "name": "Nom",
+        "tagline": "Slogan",
+        "about": "À propos",
+        "contactEmail": "E-mail de contact",
+        "accentColor": "Couleur d'accent",
+        "published": "Publié",
+        "save": "Enregistrer",
+        "saving": "Enregistrement...",
+        "delete": "Supprimer",
+        "cancel": "Annuler",
+        "slugHint": "Le site sera accessible à /site/{{slug}}"
+      },
+      "deleteConfirm": "Supprimer ce site ? Cette action est irréversible.",
+      "errors": {
+        "save": "Impossible d'enregistrer le site.",
+        "delete": "Impossible de supprimer le site."
+      }
     },
     "settings": {
       "title": "Paramètres",

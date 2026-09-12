@@ -19,6 +19,7 @@ const selectedEmployeeId = ref<string | null>(null)
 
 const form = reactive<LeaveRequestInput>({
   requesterName: '',
+  employeeId: null,
   type: 'vacation',
   startDate: todayIso(),
   endDate: todayIso(),
@@ -27,6 +28,7 @@ const form = reactive<LeaveRequestInput>({
 })
 
 watch(selectedEmployeeId, (id) => {
+  form.employeeId = id
   const emp = employees.value.find((e) => e.id === id)
   form.requesterName = emp ? `${emp.firstName} ${emp.lastName}` : ''
 })

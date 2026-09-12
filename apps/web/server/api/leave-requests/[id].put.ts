@@ -1,13 +1,16 @@
 import { leaveRequestInputSchema } from '~/shared/validation/leave'
 import { getLeaveRequest, updateLeaveRequest } from '~/server/utils/leave'
-import { requireOrgId, requireRole, resolveSession } from '~/server/utils/auth'
+import { requireOrgId, resolveSession } from '~/server/utils/auth'
+import { resolveManagerUserId } from '~/server/utils/employees'
 import { logAction } from '~/server/utils/auditLog'
 import { sendPushToUser } from '~/server/services/notifications'
 
 // Editing a still-pending request's own content is open to any member;
-// changing its status (approve/reject) is an owner/admin action — the two
-// are the same PUT endpoint (matching the existing UI's edit-or-approve
-// flow), so the role check only kicks in when the status actually changes.
+// changing its status (approve/reject) is restricted to an owner/admin OR
+// the requester's own manager (Employee.managerId, resolved to a user via
+// resolveManagerUserId) — the two are the same PUT endpoint (matching the
+// existing UI's edit-or-approve flow), so this check only kicks in when the
+// status actually changes.
 export default defineEventHandler(async (event) => {
   const id = getRouterParam(event, 'id')!
   const body = await readBody(event)
@@ -25,7 +28,16 @@ export default defineEventHandler(async (event) => {
 
   const statusChanged = result.data.status !== existing.status
   if (statusChanged) {
-    await requireRole(event, ['owner', 'admin'])
+    const session = await resolveSession(event)
+    if (!session) throw createError({ statusCode: 401, statusMessage: 'Authentication required' })
+
+    const isOwnerOrAdmin = session.user.role === 'owner' || session.user.role === 'admin'
+    const managerUserId = await resolveManagerUserId(existing.employeeId, organizationId)
+    const isManager = managerUserId !== null && managerUserId === session.user.id
+
+    if (!isOwnerOrAdmin && !isManager) {
+      throw createError({ statusCode: 403, statusMessage: 'Insufficient permissions for this action' })
+    }
   }
 
   const updated = await updateLeaveRequest(id, result.data, organizationId)

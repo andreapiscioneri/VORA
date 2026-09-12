@@ -6,6 +6,13 @@ definePageMeta({ layout: 'public' })
 const route = useRoute()
 const { data: site, error } = await useFetch<MicroSite>(`/api/microsites/public/${route.params.slug}`)
 
+// Propagate the real HTTP status (Nuxt's own error page, not a 200 with a
+// "not found" message baked into the body) — a search engine or link
+// checker hitting an unpublished/removed slug should see an actual 404.
+if (error.value) {
+  throw createError({ statusCode: error.value.statusCode ?? 404, statusMessage: 'Site not found', fatal: true })
+}
+
 if (site.value) {
   useHead({
     title: site.value.name,
@@ -15,14 +22,7 @@ if (site.value) {
 </script>
 
 <template>
-  <div v-if="error" class="min-h-screen flex items-center justify-center px-6 text-center">
-    <div>
-      <p class="text-h1 font-semibold">404</p>
-      <p class="text-body text-ink-400 mt-2">{{ $t('sites.notFound') }}</p>
-    </div>
-  </div>
-
-  <div v-else-if="site" class="max-w-3xl mx-auto px-6 py-20 tablet:py-32">
+  <div v-if="site" class="max-w-3xl mx-auto px-6 py-20 tablet:py-32">
     <header class="mb-16">
       <div class="size-14 rounded-xl mb-6" :style="{ backgroundColor: site.accentColor }" />
       <h1 class="text-display font-semibold tracking-tight">{{ site.name }}</h1>

@@ -16,40 +16,45 @@ export default defineOAuthGoogleEventHandler({
     scope: ['email', 'profile'],
   },
   async onSuccess(event, { user: googleUser }) {
-    const email = googleUser.email as string | undefined
-    if (!email) {
+    try {
+      const email = googleUser.email as string | undefined
+      if (!email) {
+        return sendRedirect(event, '/login?error=oauth_failed')
+      }
+      const name = (googleUser.name as string) || email.split('@')[0]
+      const meta = {
+        ip: getRequestIP(event, { xForwardedFor: true }) ?? 'unknown',
+        userAgent: getRequestHeader(event, 'user-agent') ?? 'unknown',
+        platform: 'web' as const,
+      }
+
+      const { user, membership, isNew } = await findOrCreateOAuthUser(email, name, meta)
+
+      if (isNew) await notifyRegistrationPending(user, membership.organizationName, meta)
+
+      if (!isApproved(user)) {
+        return sendRedirect(event, '/login?error=pending_approval')
+      }
+
+      await setUserSession(event, {
+        user: {
+          id: user.id,
+          email: user.email,
+          name: user.name,
+          emailVerified: true,
+          organizationId: membership.organizationId,
+          organizationName: membership.organizationName,
+          role: membership.role,
+          platformRole: user.platformRole,
+        },
+      })
+
+      await logAction(membership.organizationId, user.id, user.name, 'login', 'session')
+      return sendRedirect(event, '/dashboard')
+    } catch (error) {
+      logger.error('web google oauth onSuccess failed', {}, error)
       return sendRedirect(event, '/login?error=oauth_failed')
     }
-    const name = (googleUser.name as string) || email.split('@')[0]
-    const meta = {
-      ip: getRequestIP(event, { xForwardedFor: true }) ?? 'unknown',
-      userAgent: getRequestHeader(event, 'user-agent') ?? 'unknown',
-      platform: 'web' as const,
-    }
-
-    const { user, membership, isNew } = await findOrCreateOAuthUser(email, name, meta)
-
-    if (isNew) await notifyRegistrationPending(user, membership.organizationName, meta)
-
-    if (!isApproved(user)) {
-      return sendRedirect(event, '/login?error=pending_approval')
-    }
-
-    await setUserSession(event, {
-      user: {
-        id: user.id,
-        email: user.email,
-        name: user.name,
-        emailVerified: true,
-        organizationId: membership.organizationId,
-        organizationName: membership.organizationName,
-        role: membership.role,
-        platformRole: user.platformRole,
-      },
-    })
-
-    await logAction(membership.organizationId, user.id, user.name, 'login', 'session')
-    return sendRedirect(event, '/dashboard')
   },
   onError(event, error) {
     logger.error('web google oauth failed', {}, error)

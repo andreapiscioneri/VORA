@@ -2,6 +2,7 @@ import type { Employee } from '~/shared/types/employee'
 import type { EmployeeInputSchema, AddEmployeeDocumentSchema } from '~/shared/validation/employee'
 import { getDb } from './firebase'
 import { paginateQuery, type PageResult } from './pagination'
+import { findUserByEmail, getPrimaryMembership } from './auth'
 
 const COLLECTION = 'employees'
 
@@ -80,4 +81,34 @@ export async function removeEmployeeDocument(id: string, documentId: string, org
   const updatedAt = new Date().toISOString()
   await ref.update({ documents, updatedAt })
   return toEmployee(id, { ...existing.data(), documents, updatedAt })
+}
+
+// Resolves an employee's manager to a logged-in-capable user id, so an
+// approval (leave, expenses, ...) can be routed to "this employee's actual
+// manager" rather than any owner/admin. Employee records have no direct
+// link to a User account — the only bridge is email — so this fails closed
+// (returns null) at any missing link: no manager set, no Employee record
+// for the manager, no User with that email, or that user not a member of
+// this same organization. A null result means "no manager to route to",
+// not an error; callers fall back to the owner/admin gate.
+export async function resolveManagerUserId(employeeId: string | null, organizationId: string): Promise<string | null> {
+  if (!employeeId) return null
+  const employee = await getEmployee(employeeId, organizationId)
+  if (!employee?.managerId) return null
+  return resolveEmployeeUserId(employee.managerId, organizationId)
+}
+
+// Resolves an employee directly to the user account sharing its email, for
+// notifying "this specific employee" (e.g. a ticket assignment) rather than
+// their manager. Same email-bridge, same fail-closed behavior — see
+// resolveManagerUserId above for why this can't be a stronger guarantee.
+export async function resolveEmployeeUserId(employeeId: string | null, organizationId: string): Promise<string | null> {
+  if (!employeeId) return null
+  const employee = await getEmployee(employeeId, organizationId)
+  if (!employee?.email) return null
+  const user = await findUserByEmail(employee.email)
+  if (!user) return null
+  const membership = await getPrimaryMembership(user.id)
+  if (!membership || membership.organizationId !== organizationId) return null
+  return user.id
 }

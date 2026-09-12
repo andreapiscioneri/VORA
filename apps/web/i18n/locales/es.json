@@ -157,6 +157,10 @@
     "allHidden": "Todos los widgets están ocultos. Activa Personalizar para volver a mostrarlos.",
     "errors": {
       "load": "No se pudo cargar el diseño del panel."
+    },
+    "modules": {
+      "title": "Todos los módulos",
+      "subtitle": "Acceso rápido a cada área de Vora"
     }
   },
   "contacts": {
@@ -362,7 +366,9 @@
       "timezone": "Zona horaria",
       "repeat": "Repetir",
       "repeatEvery": "Cada",
-      "repeatUntil": "Hasta"
+      "repeatUntil": "Hasta",
+      "attendees": "Participantes",
+      "noEmployees": "No hay empleados disponibles."
     },
     "deleteConfirm": "¿Eliminar este evento? Esta acción no se puede deshacer.",
     "prevMonth": "Mes anterior",

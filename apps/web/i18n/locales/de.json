@@ -55,6 +55,9 @@
     "pendingApprovalTitle": "Registrierung eingegangen",
     "pendingApprovalMessage": "Dein Konto wartet auf Genehmigung. Du kannst dich anmelden, sobald es genehmigt wurde.",
     "pendingApproval": "Dieses Konto wartet auf Genehmigung.",
+    "serverError": "Ein Serverfehler ist aufgetreten. Bitte versuchen Sie es später erneut.",
+    "rateLimited": "Zu viele Versuche. Bitte versuchen Sie es in wenigen Minuten erneut.",
+    "invalidEmail": "Ungültige E-Mail-Adresse.",
     "passwordTooWeak": "Das Passwort ist zu schwach: verwenden Sie mindestens 3 von Kleinbuchstaben, Großbuchstaben, Ziffern und Symbolen",
     "strength": {
       "veryWeak": "Sehr schwach",
@@ -157,6 +160,10 @@
     "allHidden": "Alle Widgets sind ausgeblendet. Aktivieren Sie „Anpassen“, um sie wieder einzublenden.",
     "errors": {
       "load": "Das Dashboard-Layout konnte nicht geladen werden."
+    },
+    "modules": {
+      "title": "Alle Module",
+      "subtitle": "Schnellzugriff auf jeden Bereich von Vora"
     }
   },
   "contacts": {
@@ -362,7 +369,9 @@
       "timezone": "Zeitzone",
       "repeat": "Wiederholen",
       "repeatEvery": "Alle",
-      "repeatUntil": "Bis"
+      "repeatUntil": "Bis",
+      "attendees": "Teilnehmer",
+      "noEmployees": "Keine Mitarbeiter verfügbar."
     },
     "deleteConfirm": "Diesen Termin löschen? Dies kann nicht rückgängig gemacht werden.",
     "prevMonth": "Vorheriger Monat",

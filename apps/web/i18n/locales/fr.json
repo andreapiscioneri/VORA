@@ -157,6 +157,10 @@
     "allHidden": "Tous les widgets sont masqués. Activez Personnaliser pour les réafficher.",
     "errors": {
       "load": "Impossible de charger la disposition du tableau de bord."
+    },
+    "modules": {
+      "title": "Tous les modules",
+      "subtitle": "Accès rapide à chaque module de Vora"
     }
   },
   "contacts": {
@@ -362,7 +366,9 @@
       "timezone": "Fuseau horaire",
       "repeat": "Répéter",
       "repeatEvery": "Tous les",
-      "repeatUntil": "Jusqu'au"
+      "repeatUntil": "Jusqu'au",
+      "attendees": "Participants",
+      "noEmployees": "Aucun employé disponible."
     },
     "deleteConfirm": "Supprimer cet événement ? Cette action est irréversible.",
     "prevMonth": "Mois précédent",

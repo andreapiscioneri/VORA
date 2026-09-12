@@ -10,6 +10,7 @@ function toLeaveRequest(id: string, data: FirebaseFirestore.DocumentData): Leave
     id,
     requesterName: data.requesterName ?? '',
     requesterId: data.requesterId ?? null,
+    employeeId: data.employeeId ?? null,
     type: data.type ?? 'vacation',
     startDate: data.startDate ?? '',
     endDate: data.endDate ?? '',

@@ -28,13 +28,23 @@ const modules = computed(() => ITEMS.map((item) => ({
         <div
           v-for="mod in modules"
           :key="mod.key"
-          class="group rounded-2xl border border-white/10 bg-white/[0.03] p-6 transition-colors hover:border-primary/40 hover:bg-white/[0.05]"
+          class="group relative overflow-hidden rounded-2xl border p-6 backdrop-blur-xl transition-all duration-300
+                 border-white/10 bg-white/[0.03]
+                 hover:border-primary/40 hover:bg-white/[0.06] hover:-translate-y-1"
         >
-          <div class="flex items-center justify-center size-10 rounded-full bg-primary/10 text-primary">
+          <div
+            class="pointer-events-none absolute -top-10 -right-10 w-32 h-32 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl"
+            style="background: radial-gradient(circle, rgba(57,255,20,0.35) 0%, transparent 70%)"
+            aria-hidden="true"
+          />
+          <div
+            class="relative flex items-center justify-center size-10 rounded-xl text-primary transition-transform duration-300 group-hover:scale-110"
+            style="background: linear-gradient(135deg, rgba(57,255,20,0.25), rgba(57,255,20,0.06))"
+          >
             <UiIcon :name="mod.icon" :size="20" />
           </div>
-          <h3 class="text-base sm:text-lg font-semibold text-white mt-4">{{ mod.title }}</h3>
-          <p class="text-sm text-white/65 leading-relaxed mt-2">{{ mod.description }}</p>
+          <h3 class="relative text-base sm:text-lg font-semibold text-white mt-4">{{ mod.title }}</h3>
+          <p class="relative text-sm text-white/65 leading-relaxed mt-2">{{ mod.description }}</p>
         </div>
       </div>
     </div>

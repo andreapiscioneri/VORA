@@ -17,6 +17,7 @@ function toEvent(id: string, data: FirebaseFirestore.DocumentData): CalendarEven
     contactId: data.contactId ?? null,
     timezone: data.timezone ?? 'UTC',
     recurrence: data.recurrence ?? { frequency: 'none', interval: 1, until: null },
+    attendeeIds: data.attendeeIds ?? [],
     createdBy: data.createdBy ?? '',
     createdAt: data.createdAt ?? new Date().toISOString(),
     updatedAt: data.updatedAt ?? new Date().toISOString(),

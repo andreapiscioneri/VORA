@@ -27,9 +27,14 @@ const plans = computed(() => PLAN_KEYS.map((key) => ({
         <div
           v-for="plan in plans"
           :key="plan.key"
-          class="relative flex flex-col rounded-2xl border p-6 sm:p-7"
-          :class="plan.highlighted ? 'border-primary/50 bg-primary/[0.06]' : 'border-white/10 bg-white/[0.03]'"
+          class="group relative flex flex-col overflow-hidden rounded-2xl border p-6 sm:p-7 backdrop-blur-xl transition-all duration-300 hover:-translate-y-1"
+          :class="plan.highlighted ? 'border-primary/50 bg-primary/[0.06] hover:shadow-[0_16px_48px_rgba(57,255,20,0.18)]' : 'border-white/10 bg-white/[0.03] hover:border-primary/30 hover:bg-white/[0.05]'"
         >
+          <div
+            class="pointer-events-none absolute -top-12 -right-12 w-40 h-40 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-500 blur-2xl"
+            style="background: radial-gradient(circle, rgba(57,255,20,0.3) 0%, transparent 70%)"
+            aria-hidden="true"
+          />
           <span
             v-if="plan.highlighted"
             class="absolute -top-3 left-6 bg-primary text-ink-950 text-[10px] font-semibold tracking-[0.08em] uppercase px-3 py-1 rounded-full"

@@ -18,6 +18,7 @@ export const calendarEventInputSchema = z
     contactId: z.string().nullable().default(null),
     timezone: z.string().trim().min(1).default('UTC'),
     recurrence: eventRecurrenceSchema.default({ frequency: 'none', interval: 1, until: null }),
+    attendeeIds: z.array(z.string()).default([]),
   })
   .refine((data) => new Date(data.endAt).getTime() >= new Date(data.startAt).getTime(), {
     message: 'validation.endBeforeStart',

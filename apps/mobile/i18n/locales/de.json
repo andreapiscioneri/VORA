@@ -30,7 +30,9 @@
     "oauthFailed": "Die Anmeldung mit Google ist fehlgeschlagen. Bitte erneut versuchen oder E-Mail und Passwort verwenden.",
     "pendingApprovalTitle": "Registrierung eingegangen",
     "pendingApprovalMessage": "Dein Konto wartet auf Genehmigung. Du kannst dich anmelden, sobald es genehmigt wurde.",
-    "pendingApproval": "Dieses Konto wartet auf Genehmigung."
+    "pendingApproval": "Dieses Konto wartet auf Genehmigung.",
+    "serverError": "Ein Serverfehler ist aufgetreten. Bitte versuchen Sie es später erneut.",
+    "rateLimited": "Zu viele Versuche. Bitte versuchen Sie es in wenigen Minuten erneut."
   },
   "tabs": {
     "home": "Start",
@@ -120,7 +122,11 @@
       "save": "Speichern",
       "saving": "Speichern...",
       "delete": "Löschen",
-      "cancel": "Abbrechen"
+      "cancel": "Abbrechen",
+      "repeatEvery": "Alle",
+      "repeatUntil": "Bis",
+      "attendees": "Teilnehmer",
+      "addAttendee": "Teilnehmer hinzufügen"
     },
     "recurrence": {
       "none": "Wiederholt sich nicht",
@@ -201,7 +207,7 @@
       },
       "website": {
         "label": "Website",
-        "desc": "Website-Übersicht und Microsites"
+        "desc": "Erstellen und verwalten Sie Ihre Websites"
       },
       "auditLog": {
         "label": "Aktivitätsprotokoll",
@@ -489,7 +495,8 @@
         "saving": "Speichern...",
         "editTitle": "Antrag bearbeiten",
         "delete": "Löschen",
-        "cancel": "Abbrechen"
+        "cancel": "Abbrechen",
+        "selectEmployee": "Mitarbeiter auswählen"
       },
       "errors": {
         "save": "Antrag konnte nicht gespeichert werden.",
@@ -654,7 +661,16 @@
       "errors": {
         "save": "Die Seite konnte nicht gespeichert werden.",
         "delete": "Die Seite konnte nicht gelöscht werden."
-      }
+      },
+      "search": "Suche nach Titel, Inhalt oder Tag...",
+      "semanticSearch": "Intelligente Suche (Enter drücken)",
+      "searching": "Suche läuft...",
+      "semanticResultsCount": "{{count}} Ergebnisse nach Relevanz",
+      "allFolders": "Alle Ordner",
+      "favoritesOnly": "Nur Favoriten",
+      "favorite": "Zu Favoriten hinzufügen",
+      "unfavorite": "Aus Favoriten entfernen",
+      "relevance": "{{pct}}% relevant"
     },
     "auditLog": {
       "title": "Aktivitätsprotokoll",
@@ -767,8 +783,28 @@
       "empty": "Keine Websites.",
       "published": "Veröffentlicht",
       "draft": "Entwurf",
-      "mySite": "Meine Website",
-      "createNew": "Neue Website erstellen"
+      "viewLive": "Live-Website ansehen",
+      "form": {
+        "newTitle": "Neue Website",
+        "editTitle": "Website bearbeiten",
+        "slug": "Adresse (Slug)",
+        "name": "Name",
+        "tagline": "Slogan",
+        "about": "Über uns",
+        "contactEmail": "Kontakt-E-Mail",
+        "accentColor": "Akzentfarbe",
+        "published": "Veröffentlicht",
+        "save": "Speichern",
+        "saving": "Wird gespeichert...",
+        "delete": "Löschen",
+        "cancel": "Abbrechen",
+        "slugHint": "Die Website ist erreichbar unter /site/{{slug}}"
+      },
+      "deleteConfirm": "Diese Website löschen? Dies kann nicht rückgängig gemacht werden.",
+      "errors": {
+        "save": "Die Website konnte nicht gespeichert werden.",
+        "delete": "Die Website konnte nicht gelöscht werden."
+      }
     },
     "settings": {
       "title": "Einstellungen",

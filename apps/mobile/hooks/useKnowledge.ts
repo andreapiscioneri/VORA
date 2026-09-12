@@ -1,7 +1,7 @@
 import { useCallback, useEffect, useState } from 'react'
 import { api } from '../lib/api'
 import { readCache, writeCache } from '../lib/offlineCache'
-import type { KnowledgeDocument, KnowledgeDocumentInput } from '@vora/shared/types/knowledge'
+import type { KnowledgeDocument, KnowledgeDocumentInput, KnowledgeSearchResult } from '@vora/shared/types/knowledge'
 
 interface PageResult<T> {
   items: T[]
@@ -71,5 +71,17 @@ export function useKnowledge() {
     })
   }, [])
 
-  return { documents, loading, error, offline, reload: load, create, update, remove }
+  const toggleFavorite = useCallback(
+    async (doc: KnowledgeDocument) => {
+      const { id, createdAt, updatedAt, ...input } = doc
+      return await update(id, { ...input, favorite: !input.favorite })
+    },
+    [update],
+  )
+
+  const searchDocuments = useCallback(async (query: string) => {
+    return await api.get<KnowledgeSearchResult[]>(`/knowledge/search?q=${encodeURIComponent(query)}`)
+  }, [])
+
+  return { documents, loading, error, offline, reload: load, create, update, remove, toggleFavorite, searchDocuments }
 }

@@ -7,9 +7,11 @@ const emit = defineEmits<{ close: []; saved: []; deleted: [] }>()
 
 const { createEvent, updateEvent, removeEvent } = useEvents()
 const { contacts, fetchContacts } = useContacts()
+const { employees, fetchEmployees } = useEmployees()
 const { t } = useI18n()
 
 if (!contacts.value.length) await fetchContacts()
+if (!employees.value.length) await fetchEmployees()
 
 const isEdit = computed(() => !!props.event)
 
@@ -50,7 +52,14 @@ const form = reactive<CalendarEventInput>({
   contactId: props.event?.contactId ?? null,
   timezone: props.event?.timezone ?? Intl.DateTimeFormat().resolvedOptions().timeZone,
   recurrence: props.event?.recurrence ?? { frequency: 'none', interval: 1, until: null },
+  attendeeIds: props.event?.attendeeIds ?? [],
 })
+
+function toggleAttendee(employeeId: string) {
+  const idx = form.attendeeIds.indexOf(employeeId)
+  if (idx === -1) form.attendeeIds.push(employeeId)
+  else form.attendeeIds.splice(idx, 1)
+}
 
 const errors = reactive<Record<string, string>>({})
 const saving = ref(false)
@@ -182,6 +191,26 @@ onMounted(() => dialogRef.value?.focus())
               <label for="event-recurrence-until" class="block text-label text-ink-400 mb-2">{{ $t('calendar.form.repeatUntil') }}</label>
               <input id="event-recurrence-until" v-model="form.recurrence.until" type="date" class="vora-input" :class="{ 'border-danger': errors.until }" >
               <p v-if="errors.until" class="text-caption text-danger mt-1">{{ errors.until }}</p>
+            </div>
+          </div>
+
+          <div>
+            <label class="block text-label text-ink-400 mb-2">{{ $t('calendar.form.attendees') }}</label>
+            <div v-if="employees.length === 0" class="text-body-sm text-ink-400">{{ $t('calendar.form.noEmployees') }}</div>
+            <div v-else class="max-h-40 overflow-y-auto rounded-md border border-ink-100 dark:border-white/10 divide-y divide-ink-100 dark:divide-white/10">
+              <label
+                v-for="e in employees"
+                :key="e.id"
+                class="flex items-center gap-2 px-3 py-2 text-body-sm cursor-pointer hover:bg-ink-50 dark:hover:bg-white/5"
+              >
+                <input
+                  type="checkbox"
+                  class="size-4 rounded accent-primary"
+                  :checked="form.attendeeIds.includes(e.id)"
+                  @change="toggleAttendee(e.id)"
+                >
+                {{ e.firstName }} {{ e.lastName }}
+              </label>
             </div>
           </div>
 

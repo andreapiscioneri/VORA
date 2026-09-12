@@ -30,7 +30,9 @@
     "oauthFailed": "Accesso con Google non riuscito. Riprova o usa email e password.",
     "pendingApprovalTitle": "Registrazione ricevuta",
     "pendingApprovalMessage": "Il tuo account è in attesa di approvazione. Potrai accedere non appena verrà approvato.",
-    "pendingApproval": "Questo account è in attesa di approvazione."
+    "pendingApproval": "Questo account è in attesa di approvazione.",
+    "serverError": "Si è verificato un errore del server. Riprova più tardi.",
+    "rateLimited": "Troppi tentativi. Riprova tra qualche minuto."
   },
   "tabs": {
     "home": "Home",
@@ -120,7 +122,11 @@
       "save": "Salva",
       "saving": "Salvataggio...",
       "delete": "Elimina",
-      "cancel": "Annulla"
+      "cancel": "Annulla",
+      "repeatEvery": "Ogni",
+      "repeatUntil": "Fino al",
+      "attendees": "Partecipanti",
+      "addAttendee": "Aggiungi partecipante"
     },
     "recurrence": {
       "none": "Non si ripete",
@@ -201,7 +207,7 @@
       },
       "website": {
         "label": "Sito web",
-        "desc": "Panoramica sito e micrositi"
+        "desc": "Crea e gestisci i tuoi siti web"
       },
       "auditLog": {
         "label": "Registro attività",
@@ -489,7 +495,8 @@
         "saving": "Salvataggio...",
         "editTitle": "Modifica richiesta",
         "delete": "Elimina",
-        "cancel": "Annulla"
+        "cancel": "Annulla",
+        "selectEmployee": "Seleziona dipendente"
       },
       "errors": {
         "save": "Impossibile salvare la richiesta.",
@@ -654,7 +661,16 @@
       "errors": {
         "save": "Impossibile salvare la pagina.",
         "delete": "Impossibile eliminare la pagina."
-      }
+      },
+      "search": "Cerca per titolo, contenuto o tag...",
+      "semanticSearch": "Ricerca intelligente (premi Invio)",
+      "searching": "Ricerca in corso...",
+      "semanticResultsCount": "{{count}} risultati per rilevanza",
+      "allFolders": "Tutte le cartelle",
+      "favoritesOnly": "Solo preferiti",
+      "favorite": "Aggiungi ai preferiti",
+      "unfavorite": "Rimuovi dai preferiti",
+      "relevance": "{{pct}}% rilevanza"
     },
     "auditLog": {
       "title": "Registro attività",
@@ -767,8 +783,28 @@
       "empty": "Nessun sito.",
       "published": "Pubblicato",
       "draft": "Bozza",
-      "mySite": "Il mio sito",
-      "createNew": "Crea nuovo sito"
+      "viewLive": "Vedi sito live",
+      "form": {
+        "newTitle": "Nuovo sito",
+        "editTitle": "Modifica sito",
+        "slug": "Indirizzo (slug)",
+        "name": "Nome",
+        "tagline": "Slogan",
+        "about": "Chi siamo",
+        "contactEmail": "Email di contatto",
+        "accentColor": "Colore accento",
+        "published": "Pubblicato",
+        "save": "Salva",
+        "saving": "Salvataggio...",
+        "delete": "Elimina",
+        "cancel": "Annulla",
+        "slugHint": "Il sito sarà raggiungibile su /site/{{slug}}"
+      },
+      "deleteConfirm": "Eliminare questo sito? L'operazione non è reversibile.",
+      "errors": {
+        "save": "Impossibile salvare il sito.",
+        "delete": "Impossibile eliminare il sito."
+      }
     },
     "settings": {
       "title": "Impostazioni",

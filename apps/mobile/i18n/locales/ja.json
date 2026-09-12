@@ -30,7 +30,9 @@
     "oauthFailed": "Googleサインインに失敗しました。もう一度お試しいただくか、メールアドレスとパスワードでログインしてください。",
     "pendingApprovalTitle": "登録を受け付けました",
     "pendingApprovalMessage": "アカウントは承認待ちです。承認されるとログインできるようになります。",
-    "pendingApproval": "このアカウントは承認待ちです。"
+    "pendingApproval": "このアカウントは承認待ちです。",
+    "serverError": "サーバーエラーが発生しました。しばらくしてからもう一度お試しください。",
+    "rateLimited": "試行回数が多すぎます。数分後にもう一度お試しください。"
   },
   "tabs": {
     "home": "ホーム",
@@ -120,7 +122,11 @@
       "save": "保存",
       "saving": "保存中...",
       "delete": "削除",
-      "cancel": "キャンセル"
+      "cancel": "キャンセル",
+      "repeatEvery": "間隔",
+      "repeatUntil": "終了日",
+      "attendees": "参加者",
+      "addAttendee": "参加者を追加"
     },
     "recurrence": {
       "none": "繰り返さない",
@@ -201,7 +207,7 @@
       },
       "website": {
         "label": "ウェブサイト",
-        "desc": "サイト概要とマイクロサイト"
+        "desc": "ウェブサイトを作成・管理"
       },
       "auditLog": {
         "label": "監査ログ",
@@ -489,7 +495,8 @@
         "saving": "保存中...",
         "editTitle": "申請を編集",
         "delete": "削除",
-        "cancel": "キャンセル"
+        "cancel": "キャンセル",
+        "selectEmployee": "従業員を選択"
       },
       "errors": {
         "save": "申請を保存できませんでした。",
@@ -654,7 +661,16 @@
       "errors": {
         "save": "ページを保存できませんでした。",
         "delete": "ページを削除できませんでした。"
-      }
+      },
+      "search": "タイトル、内容、タグで検索...",
+      "semanticSearch": "スマート検索（Enterキーを押す）",
+      "searching": "検索中...",
+      "semanticResultsCount": "関連度順に{{count}}件の結果",
+      "allFolders": "すべてのフォルダ",
+      "favoritesOnly": "お気に入りのみ",
+      "favorite": "お気に入りに追加",
+      "unfavorite": "お気に入りから削除",
+      "relevance": "関連度{{pct}}%"
     },
     "auditLog": {
       "title": "監査ログ",
@@ -767,8 +783,28 @@
       "empty": "サイトがありません。",
       "published": "公開済み",
       "draft": "下書き",
-      "mySite": "マイサイト",
-      "createNew": "新しいサイトを作成"
+      "viewLive": "公開サイトを見る",
+      "form": {
+        "newTitle": "新規サイト",
+        "editTitle": "サイトを編集",
+        "slug": "アドレス（スラッグ）",
+        "name": "名前",
+        "tagline": "タグライン",
+        "about": "紹介文",
+        "contactEmail": "連絡先メールアドレス",
+        "accentColor": "アクセントカラー",
+        "published": "公開",
+        "save": "保存",
+        "saving": "保存中...",
+        "delete": "削除",
+        "cancel": "キャンセル",
+        "slugHint": "サイトは /site/{{slug}} でアクセスできます"
+      },
+      "deleteConfirm": "このサイトを削除しますか？この操作は取り消せません。",
+      "errors": {
+        "save": "サイトを保存できませんでした。",
+        "delete": "サイトを削除できませんでした。"
+      }
     },
     "settings": {
       "title": "設定",
