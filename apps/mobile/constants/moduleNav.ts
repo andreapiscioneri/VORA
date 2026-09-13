@@ -2,6 +2,7 @@
 // (more.tsx) lists them all, and the dashboard hamburger menu (Screen.tsx)
 // reuses the same list for quick access without a tab switch.
 export const MODULE_NAV_ITEMS = [
+  { key: 'voraAi', route: '/assistant' },
   { key: 'attendance', route: '/attendance' },
   { key: 'contacts', route: '/contacts' },
   { key: 'crm', route: '/crm' },

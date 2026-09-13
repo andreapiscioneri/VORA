@@ -157,6 +157,10 @@
       "dark": "ダーク"
     },
     "items": {
+      "voraAi": {
+        "label": "Vora AI",
+        "desc": "すべてのモジュールに対応するAIアシスタント"
+      },
       "contacts": {
         "label": "連絡先",
         "desc": "顧客・見込み客の一覧"

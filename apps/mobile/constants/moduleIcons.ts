@@ -6,6 +6,7 @@ import type { IconName } from '../components/Icon'
 // (e.g. training/knowledge both read "book-open") since the shared icon
 // set is deliberately small and self-built (see components/Icon.tsx).
 export const MODULE_ICONS: Record<string, IconName> = {
+  voraAi: 'sparkles',
   attendance: 'clock',
   contacts: 'users',
   crm: 'trending-up',

@@ -157,6 +157,10 @@
       "dark": "Dunkel"
     },
     "items": {
+      "voraAi": {
+        "label": "Vora AI",
+        "desc": "KI-Assistent für jedes Modul"
+      },
       "contacts": {
         "label": "Kontakte",
         "desc": "Kunden- und Lead-Verzeichnis"

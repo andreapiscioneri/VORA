@@ -157,6 +157,10 @@
       "dark": "Scuro"
     },
     "items": {
+      "voraAi": {
+        "label": "Vora AI",
+        "desc": "Assistente intelligente per ogni modulo"
+      },
       "contacts": {
         "label": "Contatti",
         "desc": "Rubrica clienti e lead"

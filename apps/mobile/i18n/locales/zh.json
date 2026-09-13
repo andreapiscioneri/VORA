@@ -157,6 +157,10 @@
       "dark": "深色"
     },
     "items": {
+      "voraAi": {
+        "label": "Vora AI",
+        "desc": "覆盖所有模块的AI助手"
+      },
       "contacts": {
         "label": "联系人",
         "desc": "客户与潜在客户名录"

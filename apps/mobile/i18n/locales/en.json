@@ -157,6 +157,10 @@
       "dark": "Dark"
     },
     "items": {
+      "voraAi": {
+        "label": "Vora AI",
+        "desc": "AI assistant across every module"
+      },
       "contacts": {
         "label": "Contacts",
         "desc": "Customer and lead directory"
