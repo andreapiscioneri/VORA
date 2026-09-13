@@ -13,6 +13,7 @@ const draggedTask = ref<Task | null>(null)
 
 // Supports the ⌘K command palette's "New task" action (?action=new).
 const route = useRoute()
+const router = useRouter()
 if (route.query.action === 'new') showForm.value = true
 
 const columns: { status: TaskStatus; accent: string }[] = [
@@ -67,7 +68,16 @@ async function onMove(task: Task, status: TaskStatus) {
   <div class="space-y-6">
     <div class="flex flex-col tablet:flex-row tablet:items-center gap-4">
       <div>
-        <h1 class="text-h1 font-semibold tracking-tight">{{ $t('tasks.title') }}</h1>
+        <div class="flex items-center gap-3">
+          <button
+            class="shrink-0 size-9 flex items-center justify-center rounded-md hover:bg-ink-50 dark:hover:bg-white/5 text-ink-600 dark:text-paper-300"
+            :aria-label="$t('common.back')"
+            @click="router.back()"
+          >
+            <UiIcon name="arrow-left" :size="20" />
+          </button>
+          <h1 class="text-h1 font-semibold tracking-tight">{{ $t('tasks.title') }}</h1>
+        </div>
         <p class="text-body text-ink-400 mt-1">{{ $t('tasks.subtitle', { count: tasks.length }) }}</p>
       </div>
       <button

@@ -13,6 +13,7 @@ import {
   View,
 } from 'react-native'
 import { SafeAreaView } from 'react-native-safe-area-context'
+import { useRouter } from 'expo-router'
 import { Icon } from '../components/Icon'
 import { GlassCard } from '../components/GlassCard'
 import { AmbientBackground } from '../components/AmbientBackground'
@@ -30,6 +31,7 @@ const PROMPT_KEYS = ['organizeDay', 'priorities', 'unanswered', 'upcoming'] as c
 export default function AssistantScreen() {
   const { colors } = useTheme()
   const { t } = useI18n()
+  const router = useRouter()
   const styles = makeStyles(colors)
   const {
     conversations,
@@ -159,13 +161,14 @@ export default function AssistantScreen() {
       <AmbientBackground />
 
       <View style={styles.header}>
-        {view === 'chat' ? (
-          <Pressable onPress={backToList} accessibilityRole="button" hitSlop={8} style={[styles.iconButton, { backgroundColor: colors.surface }]}>
-            <Icon name="arrow-left" size={20} color={colors.textPrimary} />
-          </Pressable>
-        ) : (
-          <View style={styles.iconButton} />
-        )}
+        <Pressable
+          onPress={view === 'chat' ? backToList : () => router.back()}
+          accessibilityRole="button"
+          hitSlop={8}
+          style={[styles.iconButton, { backgroundColor: colors.surface }]}
+        >
+          <Icon name="arrow-left" size={20} color={colors.textPrimary} />
+        </Pressable>
         <View style={styles.headerTitleWrap}>
           <Text style={[styles.headerTitle, { color: colors.textPrimary }]} numberOfLines={1}>
             {view === 'chat' ? activeConversation?.title || t('assistant.title') : t('assistant.title')}

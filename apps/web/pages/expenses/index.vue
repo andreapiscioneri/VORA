@@ -2,6 +2,7 @@
 import type { Expense, ExpenseStatus } from '~/shared/types/expense'
 
 definePageMeta({ layout: 'default' })
+const router = useRouter()
 
 const { expenses, pending, error, hasMore, loadingMore, fetchExpenses, loadMore, setStatus } = useExpenses()
 const { projects, fetchProjects } = useProjects()
@@ -57,7 +58,16 @@ const statusStyles: Record<string, string> = {
   <div class="space-y-6">
     <div class="flex flex-col tablet:flex-row tablet:items-center gap-4">
       <div>
-        <h1 class="text-h1 font-semibold tracking-tight">{{ $t('expenses.title') }}</h1>
+        <div class="flex items-center gap-3">
+          <button
+            class="shrink-0 size-9 flex items-center justify-center rounded-md hover:bg-ink-50 dark:hover:bg-white/5 text-ink-600 dark:text-paper-300"
+            :aria-label="$t('common.back')"
+            @click="router.back()"
+          >
+            <UiIcon name="arrow-left" :size="20" />
+          </button>
+          <h1 class="text-h1 font-semibold tracking-tight">{{ $t('expenses.title') }}</h1>
+        </div>
         <p class="text-body text-ink-400 mt-1">{{ $t('expenses.subtitle', { count: filtered.length, total }) }}</p>
       </div>
       <div class="tablet:ml-auto flex items-center gap-3">

@@ -4,8 +4,13 @@ const launcherOpen = useState('launcher-open', () => false)
 const assistantOpen = useState('assistant-open', () => false)
 const mobileNavOpen = useState('mobile-nav-open', () => false)
 const userMenuOpen = ref(false)
+const userMenuRef = ref<HTMLElement | null>(null)
 const { user, clear } = useUserSession()
 const router = useRouter()
+
+onClickOutside(userMenuRef, () => {
+  userMenuOpen.value = false
+})
 
 const initials = computed(() => {
   const name = user.value?.name ?? ''
@@ -73,7 +78,7 @@ async function logout() {
       >
         <UiIcon name="sparkles" :size="18" />
       </button>
-      <div class="relative">
+      <div ref="userMenuRef" class="relative">
         <button
           class="size-8 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center text-caption font-semibold text-primary-700 dark:text-primary"
           :aria-label="user?.name"

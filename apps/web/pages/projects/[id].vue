@@ -2,6 +2,7 @@
 import type { Project } from '~/shared/types/project'
 
 definePageMeta({ layout: 'default' })
+const router = useRouter()
 
 const route = useRoute()
 const { locale, t } = useI18n()
@@ -129,7 +130,16 @@ async function onToggleMilestone(milestoneId: string) {
     <template v-else>
       <div class="flex items-start justify-between gap-4">
         <div>
-          <h1 class="text-h1 font-semibold tracking-tight">{{ project.name }}</h1>
+          <div class="flex items-center gap-3">
+            <button
+              class="shrink-0 size-9 flex items-center justify-center rounded-md hover:bg-ink-50 dark:hover:bg-white/5 text-ink-600 dark:text-paper-300"
+              :aria-label="$t('common.back')"
+              @click="router.back()"
+            >
+              <UiIcon name="arrow-left" :size="20" />
+            </button>
+            <h1 class="text-h1 font-semibold tracking-tight">{{ project.name }}</h1>
+          </div>
           <p class="text-body text-ink-400 mt-1">{{ clientName(project.contactId) || '—' }} · {{ taskCount(project.id) }} {{ $t('projects.columns.tasks').toLowerCase() }}</p>
         </div>
         <span class="px-3 py-1.5 rounded-full text-caption font-medium shrink-0" :class="statusStyles[project.status]">

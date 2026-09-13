@@ -1,5 +1,6 @@
 <script setup lang="ts">
 definePageMeta({ layout: 'default' })
+const router = useRouter()
 
 const { entries, pending, error, hasMore, loadingMore, fetchEntries, loadMore } = useAuditLog()
 await fetchEntries()
@@ -24,10 +25,19 @@ const actionStyles: Record<string, string> = {
 <template>
   <div class="space-y-6">
     <div>
-      <h1 class="text-h1 font-semibold tracking-tight flex items-center gap-3">
-        <UiIcon name="shield" :size="24" class="text-primary" />
-        {{ $t('auditLog.title') }}
-      </h1>
+      <div class="flex items-center gap-3">
+        <button
+          class="shrink-0 size-9 flex items-center justify-center rounded-md hover:bg-ink-50 dark:hover:bg-white/5 text-ink-600 dark:text-paper-300"
+          :aria-label="$t('common.back')"
+          @click="router.back()"
+        >
+          <UiIcon name="arrow-left" :size="20" />
+        </button>
+        <h1 class="text-h1 font-semibold tracking-tight flex items-center gap-3">
+          <UiIcon name="shield" :size="24" class="text-primary" />
+          {{ $t('auditLog.title') }}
+        </h1>
+      </div>
       <p class="text-body text-ink-400 mt-1">{{ $t('auditLog.subtitle') }}</p>
     </div>
 

@@ -1,5 +1,6 @@
 <script setup lang="ts">
 definePageMeta({ layout: 'default' })
+const router = useRouter()
 
 const { messages, pending, streaming, error, fetchHistory, sendMessage } = useWellbeingChat()
 await fetchHistory()
@@ -27,7 +28,16 @@ watch(
   <div class="flex flex-col h-[calc(100vh-8rem)]">
     <div class="flex items-center justify-between mb-4">
       <div>
-        <h1 class="text-h1 font-semibold tracking-tight">{{ $t('wellbeing.chat.title') }}</h1>
+        <div class="flex items-center gap-3">
+          <button
+            class="shrink-0 size-9 flex items-center justify-center rounded-md hover:bg-ink-50 dark:hover:bg-white/5 text-ink-600 dark:text-paper-300"
+            :aria-label="$t('common.back')"
+            @click="router.back()"
+          >
+            <UiIcon name="arrow-left" :size="20" />
+          </button>
+          <h1 class="text-h1 font-semibold tracking-tight">{{ $t('wellbeing.chat.title') }}</h1>
+        </div>
         <p class="text-body text-ink-400 mt-1">{{ $t('wellbeing.chat.subtitle') }}</p>
       </div>
       <NuxtLink to="/wellbeing" class="text-body-sm text-primary hover:underline">{{ $t('wellbeing.chat.backToCheckin') }}</NuxtLink>
