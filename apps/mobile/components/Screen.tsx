@@ -95,7 +95,7 @@ export function Screen({
             <Text style={[styles.title, { color: colors.textPrimary }]}>{title}</Text>
           )}
         </View>
-        {subtitle ? <Text style={[styles.subtitle, { color: colors.textSecondary }]}>{subtitle}</Text> : null}
+        {subtitle ? <Text style={[styles.subtitle, { color: colors.textPrimary }]}>{subtitle}</Text> : null}
       </View>
       {children}
       {showMark ? <AppMenu visible={menuOpen} onClose={() => setMenuOpen(false)} /> : null}
