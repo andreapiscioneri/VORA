@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
   },
   badgeText: { color: '#FFFFFF', fontSize: 9, fontWeight: '700' },
   title: { fontSize: 28, fontWeight: '700' },
-  subtitle: { fontSize: 16, fontWeight: '500', marginTop: spacing(3), lineHeight: 21 },
+  subtitle: { fontSize: 19, fontWeight: '600', marginTop: spacing(5), lineHeight: 24 },
   state: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: spacing(8) },
   stateText: { fontSize: 15, textAlign: 'center' },
   offlineBanner: { marginHorizontal: spacing(5), marginBottom: spacing(3), borderRadius: spacing(2), paddingVertical: spacing(2), paddingHorizontal: spacing(3) },
