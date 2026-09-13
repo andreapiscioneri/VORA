@@ -26,26 +26,32 @@ export async function registerForPushNotificationsAsync(): Promise<string | null
     return null
   }
 
-  const { status: existingStatus } = await Notifications.getPermissionsAsync()
-  let finalStatus = existingStatus
-  if (existingStatus !== 'granted') {
-    const { status } = await Notifications.requestPermissionsAsync()
-    finalStatus = status
-  }
-  if (finalStatus !== 'granted') return null
-
-  if (Platform.OS === 'android') {
-    await Notifications.setNotificationChannelAsync('default', {
-      name: 'default',
-      importance: Notifications.AndroidImportance.DEFAULT,
-      lightColor: '#39FF14',
-    })
-  }
-
-  const projectId = Constants.expoConfig?.extra?.eas?.projectId
-  if (!projectId) return null
-
+  // Everything below touches native notification APIs, which can throw
+  // (not just reject cleanly) when the app's push entitlement doesn't match
+  // what it was signed with — e.g. a free Apple ID resign (AltStore et al.)
+  // stripping `aps-environment`. That must never take the whole app down,
+  // so the entire flow is one guarded block rather than just the token
+  // fetch at the end.
   try {
+    const { status: existingStatus } = await Notifications.getPermissionsAsync()
+    let finalStatus = existingStatus
+    if (existingStatus !== 'granted') {
+      const { status } = await Notifications.requestPermissionsAsync()
+      finalStatus = status
+    }
+    if (finalStatus !== 'granted') return null
+
+    if (Platform.OS === 'android') {
+      await Notifications.setNotificationChannelAsync('default', {
+        name: 'default',
+        importance: Notifications.AndroidImportance.DEFAULT,
+        lightColor: '#39FF14',
+      })
+    }
+
+    const projectId = Constants.expoConfig?.extra?.eas?.projectId
+    if (!projectId) return null
+
     const { data: token } = await Notifications.getExpoPushTokenAsync({ projectId })
     await api.post('/notifications/register-token', { token, platform: Platform.OS === 'ios' ? 'ios' : 'android' })
     return token

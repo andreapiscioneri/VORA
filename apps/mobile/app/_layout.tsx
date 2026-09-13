@@ -52,7 +52,9 @@ function RootStack() {
   }, [user, loading, segments])
 
   useEffect(() => {
-    if (user) registerForPushNotificationsAsync()
+    // Never let a push-registration failure (e.g. missing entitlement on a
+    // resigned sideload) surface as an unhandled rejection during boot.
+    if (user) registerForPushNotificationsAsync().catch((e) => console.warn('[push] registration effect failed:', e))
   }, [user])
 
   return (
