@@ -18,11 +18,30 @@ function parseSseFrame(frame: string): { event: string; data: string } {
 export function useAssistant() {
   const [conversations, setConversations] = useState<AssistantConversationSummary[]>([])
   const [conversationsLoading, setConversationsLoading] = useState(false)
-  const [activeConversation, setActiveConversation] = useState<AssistantConversation | null>(null)
+  const [activeConversation, setActiveConversationState] = useState<AssistantConversation | null>(null)
   const [streaming, setStreaming] = useState(false)
   const [pendingToolCall, setPendingToolCall] = useState<AssistantToolCall | null>(null)
   const [error, setError] = useState<string | null>(null)
   const abortRef = useRef<AbortController | null>(null)
+  // Mirrors activeConversation so callers that immediately need the
+  // just-set value (e.g. openNewChat() followed by sendMessage() in the
+  // same async handler, as the empty-state suggested prompts do) don't
+  // read a stale closure — setState schedules a re-render, it doesn't
+  // update already-captured function references, so a `sendMessage` that
+  // closed over the previous (null) activeConversation would otherwise
+  // silently no-op right after creating the conversation it should send
+  // into. A ref is always current regardless of when it was captured.
+  const activeConversationRef = useRef<AssistantConversation | null>(null)
+  const setActiveConversation = useCallback(
+    (value: AssistantConversation | null | ((prev: AssistantConversation | null) => AssistantConversation | null)) => {
+      setActiveConversationState((prev) => {
+        const next = typeof value === 'function' ? (value as (p: AssistantConversation | null) => AssistantConversation | null)(prev) : value
+        activeConversationRef.current = next
+        return next
+      })
+    },
+    [],
+  )
   // Same reasoning as the web composable: a reload after rename/archive/
   // delete needs to know which tab/filter is currently visible, not just
   // "the default recent list".
@@ -149,20 +168,22 @@ export function useAssistant() {
 
   const sendMessage = useCallback(
     async (content: string) => {
-      if (!activeConversation) return
+      const conversation = activeConversationRef.current
+      if (!conversation) return
       const userMessage: AssistantMessage = { id: `local-${Date.now()}`, role: 'user', content, createdAt: new Date().toISOString(), status: 'complete' }
       setActiveConversation((prev) => (prev ? { ...prev, messages: [...prev.messages, userMessage] } : prev))
-      await consumeStream(`/ai/assistant/conversations/${activeConversation.id}/messages`, { content })
+      await consumeStream(`/ai/assistant/conversations/${conversation.id}/messages`, { content })
     },
-    [activeConversation, consumeStream],
+    [consumeStream],
   )
 
   const confirmToolCall = useCallback(
     async (approve: boolean) => {
-      if (!activeConversation || !pendingToolCall) return
-      await consumeStream(`/ai/assistant/conversations/${activeConversation.id}/tool-confirm`, { toolCallId: pendingToolCall.id, approve })
+      const conversation = activeConversationRef.current
+      if (!conversation || !pendingToolCall) return
+      await consumeStream(`/ai/assistant/conversations/${conversation.id}/tool-confirm`, { toolCallId: pendingToolCall.id, approve })
     },
-    [activeConversation, pendingToolCall, consumeStream],
+    [pendingToolCall, consumeStream],
   )
 
   const stopStreaming = useCallback(() => {

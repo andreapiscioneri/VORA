@@ -107,21 +107,29 @@ export default function WelcomeScreen() {
 
   const progress = useRef(new Animated.Value(0)).current
   const scale = useRef(new Animated.Value(1.12)).current
-  const glow = useRef(new Animated.Value(0.5)).current
+  // Web's hero keeps this same glyph shape at a dim 14% opacity by default
+  // (layouts/marketing/LandingHero.vue's z-10 base layer) — a brighter
+  // version only appears in the small area under the cursor, which has no
+  // touch equivalent. Mobile has no "spotlight" to gate the bright state
+  // behind, so it must default to (a pulsing variant of) the dim look;
+  // the old 0.5–0.85 range effectively showed the *revealed* state
+  // permanently, reading as a flat solid-green block instead of the dark,
+  // moody hero web has.
+  const glow = useRef(new Animated.Value(0.14)).current
 
   useEffect(() => {
     if (reducedMotion) {
       progress.setValue(1)
       scale.setValue(1)
-      glow.setValue(0.65)
+      glow.setValue(0.18)
       return
     }
     Animated.timing(progress, { toValue: 1, duration: 900, easing: Easing.out(Easing.cubic), useNativeDriver: true }).start()
     Animated.timing(scale, { toValue: 1, duration: 2400, easing: Easing.out(Easing.cubic), useNativeDriver: true }).start()
     Animated.loop(
       Animated.sequence([
-        Animated.timing(glow, { toValue: 0.85, duration: 1800, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
-        Animated.timing(glow, { toValue: 0.5, duration: 1800, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
+        Animated.timing(glow, { toValue: 0.22, duration: 1800, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
+        Animated.timing(glow, { toValue: 0.14, duration: 1800, easing: Easing.inOut(Easing.sin), useNativeDriver: true }),
       ]),
     ).start()
   }, [reducedMotion])

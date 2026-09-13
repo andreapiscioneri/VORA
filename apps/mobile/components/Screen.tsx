@@ -168,7 +168,7 @@ export function OfflineBanner({ text }: { text: string }) {
 
 const styles = StyleSheet.create({
   safe: { flex: 1 },
-  header: { paddingHorizontal: spacing(5), paddingTop: spacing(3), paddingBottom: spacing(4) },
+  header: { paddingHorizontal: spacing(5), paddingTop: spacing(4), paddingBottom: spacing(5) },
   backButton: { marginBottom: spacing(3), alignSelf: 'flex-start' },
   backButtonPressed: { opacity: 0.5 },
   menuButtonPressed: { opacity: 0.7, transform: [{ scale: 0.94 }] },
@@ -192,7 +192,7 @@ const styles = StyleSheet.create({
   },
   badgeText: { color: '#FFFFFF', fontSize: 9, fontWeight: '700' },
   title: { fontSize: 28, fontWeight: '700' },
-  subtitle: { fontSize: 14, marginTop: spacing(1) },
+  subtitle: { fontSize: 14, marginTop: spacing(2), lineHeight: 19 },
   state: { flex: 1, alignItems: 'center', justifyContent: 'center', padding: spacing(8) },
   stateText: { fontSize: 15, textAlign: 'center' },
   offlineBanner: { marginHorizontal: spacing(5), marginBottom: spacing(3), borderRadius: spacing(2), paddingVertical: spacing(2), paddingHorizontal: spacing(3) },
