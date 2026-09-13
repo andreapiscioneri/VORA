@@ -59,7 +59,7 @@ export function Screen({
                 <Wordmark size={24} color={colors.textPrimary} />
               </View>
 
-              <View style={[styles.sideRight, styles.sideRightRow]}>
+              <View style={styles.sideRight}>
                 <Pressable
                   onPress={() => {
                     haptics.press()
@@ -175,8 +175,14 @@ const styles = StyleSheet.create({
   headerTopRow: { flexDirection: 'row', alignItems: 'center', justifyContent: 'space-between' },
   titleRow: { flexDirection: 'row', alignItems: 'center' },
   sideLeft: { flex: 1, alignItems: 'flex-start' },
-  sideRight: { flex: 1, alignItems: 'flex-end' },
-  sideRightRow: { flexDirection: 'row', gap: spacing(2) },
+  // flexDirection: 'row' here (this box holds two icon buttons side by
+  // side) means `alignItems` only controls vertical centering — horizontal
+  // position is `justifyContent`, which must be explicit or the pair
+  // defaults to flex-start and sits right after brandCenter instead of
+  // hugging the right edge (the bug: AI+bell rendered as if grouped with
+  // the centered logo rather than pinned to the right, like sideLeft's
+  // single-child column case did before this box also became a row).
+  sideRight: { flex: 1, flexDirection: 'row', alignItems: 'center', justifyContent: 'flex-end', gap: spacing(2) },
   brandCenter: { flexDirection: 'row', alignItems: 'center', gap: spacing(2) },
   menuButton: { width: 34, height: 34, borderRadius: radius.full, alignItems: 'center', justifyContent: 'center' },
   badge: {
