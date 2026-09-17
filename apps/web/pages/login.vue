@@ -26,7 +26,14 @@ async function submit() {
     await $fetch('/api/auth/login', { method: 'POST', body: { email: email.value, password: password.value } })
     await refreshSession()
     const redirect = typeof route.query.redirect === 'string' ? route.query.redirect : '/dashboard'
-    router.push(redirect)
+    // Awaited on purpose: router.push() only resolves once the target
+    // page's own async setup (dashboard/index.vue awaits several parallel
+    // fetches before it can render) finishes, so `loading` — and the
+    // button's spinner — stays on for the whole gap instead of clearing the
+    // instant navigation is *requested*. Without this, a slow/cold-started
+    // dashboard looks like the login button silently did nothing for
+    // several seconds.
+    await router.push(redirect)
   } catch (e) {
     const err = e as { statusCode?: number; response?: { status?: number }; data?: { statusMessage?: string; data?: { reason?: string } } }
     const status = err.statusCode ?? err.response?.status
@@ -68,7 +75,7 @@ async function submit() {
             type="email"
             required
             autocomplete="email"
-            class="w-full px-3 py-2 rounded-md border border-ink-100 dark:border-white/10 bg-paper-0 dark:bg-ink-900"
+            class="w-full px-3 py-2 rounded-md border border-ink-100 dark:border-white/10 bg-paper-50 dark:bg-ink-900"
           >
         </div>
         <div>
@@ -79,7 +86,7 @@ async function submit() {
             type="password"
             required
             autocomplete="current-password"
-            class="w-full px-3 py-2 rounded-md border border-ink-100 dark:border-white/10 bg-paper-0 dark:bg-ink-900"
+            class="w-full px-3 py-2 rounded-md border border-ink-100 dark:border-white/10 bg-paper-50 dark:bg-ink-900"
           >
         </div>
 
@@ -88,9 +95,10 @@ async function submit() {
         <button
           type="submit"
           :disabled="loading"
-          class="w-full py-2.5 rounded-md bg-primary text-ink-950 font-medium disabled:opacity-50"
+          class="w-full py-2.5 rounded-md bg-primary text-ink-950 font-medium disabled:opacity-70 flex items-center justify-center gap-2"
         >
-          {{ $t('auth.submitLogin') }}
+          <span v-if="loading" class="size-4 rounded-full border-2 border-ink-950/30 border-t-ink-950 animate-spin" aria-hidden="true" />
+          {{ loading ? $t('auth.loggingIn') : $t('auth.submitLogin') }}
         </button>
       </form>
 

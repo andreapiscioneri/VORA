@@ -12,6 +12,29 @@ onClickOutside(userMenuRef, () => {
   userMenuOpen.value = false
 })
 
+const { locale, locales, setLocale } = useI18n()
+const langMenuOpen = ref(false)
+const langMenuRef = ref<HTMLElement | null>(null)
+
+onClickOutside(langMenuRef, () => {
+  langMenuOpen.value = false
+})
+
+type LocaleOption = { code: string; name: string }
+
+const localeList = computed<LocaleOption[]>(() =>
+  (locales.value as Array<string | { code: string; name?: string }>).map((l) =>
+    (typeof l === 'string' ? { code: l, name: l } : { code: l.code, name: l.name ?? l.code }),
+  ),
+)
+
+const currentLocale = computed(() => localeList.value.find((l) => l.code === locale.value) ?? localeList.value[0])
+
+function chooseLocale(code: string) {
+  langMenuOpen.value = false
+  setLocale(code as typeof locale.value)
+}
+
 const initials = computed(() => {
   const name = user.value?.name ?? ''
   return name
@@ -78,6 +101,36 @@ async function logout() {
       >
         <UiIcon name="sparkles" :size="18" />
       </button>
+      <div ref="langMenuRef" class="relative">
+        <button
+          class="h-9 flex items-center gap-1 pl-2 pr-1.5 rounded-md hover:bg-ink-50 dark:hover:bg-white/5"
+          :aria-label="$t('topbar.language')"
+          :aria-expanded="langMenuOpen"
+          aria-haspopup="listbox"
+          @click="langMenuOpen = !langMenuOpen"
+        >
+          <UiFlag v-if="currentLocale" :code="currentLocale.code" :size="18" />
+          <UiIcon name="chevron-down" :size="14" class="text-ink-400 transition-transform" :class="{ 'rotate-180': langMenuOpen }" />
+        </button>
+        <div
+          v-if="langMenuOpen"
+          role="listbox"
+          class="absolute right-0 top-11 w-44 rounded-md border border-ink-100 dark:border-white/10 bg-paper-50 dark:bg-ink-900 shadow-lg py-1.5 z-50"
+        >
+          <button
+            v-for="l in localeList"
+            :key="l.code"
+            role="option"
+            :aria-selected="l.code === locale"
+            class="w-full flex items-center gap-2.5 px-3 py-2 text-body-sm text-left"
+            :class="l.code === locale ? 'text-ink-950 dark:text-paper-50 bg-ink-50 dark:bg-white/10' : 'text-ink-600 dark:text-paper-200 hover:bg-ink-50 dark:hover:bg-white/5'"
+            @click="chooseLocale(l.code)"
+          >
+            <UiFlag :code="l.code" :size="18" />
+            <span>{{ l.name }}</span>
+          </button>
+        </div>
+      </div>
       <div ref="userMenuRef" class="relative">
         <button
           class="size-8 rounded-full bg-primary/20 border border-primary/40 flex items-center justify-center text-caption font-semibold text-primary-700 dark:text-primary"
@@ -88,7 +141,7 @@ async function logout() {
         </button>
         <div
           v-if="userMenuOpen"
-          class="absolute right-0 top-11 w-56 rounded-md border border-ink-100 dark:border-white/10 bg-paper-0 dark:bg-ink-900 shadow-lg py-2 z-50"
+          class="absolute right-0 top-11 w-56 rounded-md border border-ink-100 dark:border-white/10 bg-paper-50 dark:bg-ink-900 shadow-lg py-2 z-50"
         >
           <div class="px-3 py-2 border-b border-ink-100 dark:border-white/10">
             <p class="text-body-sm font-medium truncate">{{ user?.name }}</p>

@@ -73,7 +73,7 @@ async function submit() {
               type="text"
               required
               autocomplete="name"
-              class="w-full px-3 py-2 rounded-md border border-ink-100 dark:border-white/10 bg-paper-0 dark:bg-ink-900"
+              class="w-full px-3 py-2 rounded-md border border-ink-100 dark:border-white/10 bg-paper-50 dark:bg-ink-900"
             >
           </div>
           <div>
@@ -83,7 +83,7 @@ async function submit() {
               v-model="organizationName"
               type="text"
               required
-              class="w-full px-3 py-2 rounded-md border border-ink-100 dark:border-white/10 bg-paper-0 dark:bg-ink-900"
+              class="w-full px-3 py-2 rounded-md border border-ink-100 dark:border-white/10 bg-paper-50 dark:bg-ink-900"
             >
           </div>
           <div>
@@ -94,7 +94,7 @@ async function submit() {
               type="email"
               required
               autocomplete="email"
-              class="w-full px-3 py-2 rounded-md border border-ink-100 dark:border-white/10 bg-paper-0 dark:bg-ink-900"
+              class="w-full px-3 py-2 rounded-md border border-ink-100 dark:border-white/10 bg-paper-50 dark:bg-ink-900"
             >
           </div>
           <div>
@@ -106,7 +106,7 @@ async function submit() {
               required
               minlength="8"
               autocomplete="new-password"
-              class="w-full px-3 py-2 rounded-md border border-ink-100 dark:border-white/10 bg-paper-0 dark:bg-ink-900"
+              class="w-full px-3 py-2 rounded-md border border-ink-100 dark:border-white/10 bg-paper-50 dark:bg-ink-900"
             >
             <UiPasswordStrengthMeter :password="password" />
           </div>

@@ -62,7 +62,7 @@ async function submit() {
             type="password"
             required
             autocomplete="new-password"
-            class="w-full px-3 py-2 rounded-md border border-ink-100 dark:border-white/10 bg-paper-0 dark:bg-ink-900"
+            class="w-full px-3 py-2 rounded-md border border-ink-100 dark:border-white/10 bg-paper-50 dark:bg-ink-900"
           >
           <UiPasswordStrengthMeter :password="password" />
         </div>

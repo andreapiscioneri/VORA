@@ -65,7 +65,7 @@ onClickOutside(menuRef, () => {
       <div
         v-if="menuOpen"
         role="menu"
-        class="absolute right-0 top-8 w-44 rounded-md border border-ink-100 dark:border-white/10 bg-paper-0 dark:bg-ink-900 shadow-lg py-1 z-20"
+        class="absolute right-0 top-8 w-44 rounded-md border border-ink-100 dark:border-white/10 bg-paper-50 dark:bg-ink-900 shadow-lg py-1 z-20"
         @keydown.escape="menuOpen = false"
       >
         <button

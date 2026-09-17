@@ -23,6 +23,7 @@
     "password": "密码",
     "organizationName": "组织名称",
     "submitLogin": "登录",
+    "loggingIn": "正在登录...",
     "submitRegister": "创建账户",
     "noAccount": "还没有账户？",
     "hasAccount": "已有账户？",
@@ -110,7 +111,8 @@
   "topbar": {
     "search": "搜索...",
     "toggleTheme": "切换主题",
-    "launcher": "应用"
+    "launcher": "应用",
+    "language": "更改语言"
   },
   "launcher": {
     "placeholder": "搜索应用或命令...",

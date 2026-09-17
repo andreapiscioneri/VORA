@@ -23,6 +23,7 @@
     "password": "Contraseña",
     "organizationName": "Nombre de la organización",
     "submitLogin": "Iniciar sesión",
+    "loggingIn": "Iniciando sesión...",
     "submitRegister": "Crear cuenta",
     "noAccount": "¿No tienes una cuenta?",
     "hasAccount": "¿Ya tienes una cuenta?",
@@ -110,7 +111,8 @@
   "topbar": {
     "search": "Buscar...",
     "toggleTheme": "Cambiar tema",
-    "launcher": "Apps"
+    "launcher": "Apps",
+    "language": "Cambiar idioma"
   },
   "launcher": {
     "placeholder": "Buscar una app o comando...",

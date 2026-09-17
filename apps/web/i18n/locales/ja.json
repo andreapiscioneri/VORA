@@ -23,6 +23,7 @@
     "password": "パスワード",
     "organizationName": "組織名",
     "submitLogin": "サインイン",
+    "loggingIn": "ログイン中...",
     "submitRegister": "アカウントを作成",
     "noAccount": "アカウントをお持ちでない方",
     "hasAccount": "既にアカウントをお持ちの方",
@@ -110,7 +111,8 @@
   "topbar": {
     "search": "検索...",
     "toggleTheme": "テーマ切替",
-    "launcher": "アプリ"
+    "launcher": "アプリ",
+    "language": "言語を変更"
   },
   "launcher": {
     "placeholder": "アプリまたはコマンドを検索...",

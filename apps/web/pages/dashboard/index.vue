@@ -11,7 +11,24 @@ const { opportunities, fetchOpportunities } = useOpportunities()
 const { projects, fetchProjects } = useProjects()
 const { layout, fetchLayout, updateLayout } = useDashboardLayout()
 
-await Promise.all([fetchTasks(), fetchEvents(), fetchAppointments(), fetchOpportunities(), fetchProjects(), fetchLayout()])
+// Blocking only on the server: a hard load/reload gets a fully-populated
+// first paint with no flash. On client-side navigation (the common case —
+// arriving from login or clicking through the app) awaiting here would hold
+// the whole route transition behind <Suspense> until all six requests land,
+// which is what made opening the dashboard feel frozen. Firing them without
+// awaiting lets the route change complete immediately; each composable's own
+// reactive state (and the widgets' existing empty-state handling) fills in
+// as each request resolves.
+if (import.meta.server) {
+  await Promise.all([fetchTasks(), fetchEvents(), fetchAppointments(), fetchOpportunities(), fetchProjects(), fetchLayout()])
+} else {
+  fetchTasks()
+  fetchEvents()
+  fetchAppointments()
+  fetchOpportunities()
+  fetchProjects()
+  fetchLayout()
+}
 
 const { locale, t } = useI18n()
 

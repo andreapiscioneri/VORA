@@ -23,6 +23,7 @@
     "password": "Пароль",
     "organizationName": "Название организации",
     "submitLogin": "Войти",
+    "loggingIn": "Выполняется вход...",
     "submitRegister": "Создать аккаунт",
     "noAccount": "Нет аккаунта?",
     "hasAccount": "Уже есть аккаунт?",
@@ -110,7 +111,8 @@
   "topbar": {
     "search": "Поиск...",
     "toggleTheme": "Сменить тему",
-    "launcher": "Приложения"
+    "launcher": "Приложения",
+    "language": "Изменить язык"
   },
   "launcher": {
     "placeholder": "Поиск приложения или команды...",

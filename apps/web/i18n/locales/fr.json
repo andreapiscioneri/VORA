@@ -23,6 +23,7 @@
     "password": "Mot de passe",
     "organizationName": "Nom de l'organisation",
     "submitLogin": "Se connecter",
+    "loggingIn": "Connexion en cours...",
     "submitRegister": "Créer le compte",
     "noAccount": "Vous n'avez pas de compte ?",
     "hasAccount": "Vous avez déjà un compte ?",
@@ -110,7 +111,8 @@
   "topbar": {
     "search": "Rechercher...",
     "toggleTheme": "Changer de thème",
-    "launcher": "Apps"
+    "launcher": "Apps",
+    "language": "Changer de langue"
   },
   "launcher": {
     "placeholder": "Rechercher une app ou une commande...",

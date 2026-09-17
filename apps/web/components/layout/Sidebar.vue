@@ -80,7 +80,7 @@ watch(mobileNavOpen, (open) => {
       <div class="tablet:hidden pt-2 border-t border-ink-100 dark:border-white/10">
         <button
           type="button"
-          class="w-full flex items-center justify-between px-3 py-2.5 rounded-md border border-ink-100 dark:border-white/10 bg-paper-0 dark:bg-white/5"
+          class="w-full flex items-center justify-between px-3 py-2.5 rounded-md border border-ink-100 dark:border-white/10 bg-paper-50 dark:bg-white/5"
           :aria-expanded="langOpen"
           aria-haspopup="listbox"
           @click="langOpen = !langOpen"
@@ -100,7 +100,7 @@ watch(mobileNavOpen, (open) => {
             role="option"
             :aria-selected="l.code === locale"
             class="w-full flex items-center gap-2.5 px-3 py-2.5 text-body-sm text-left transition-colors"
-            :class="l.code === locale ? 'bg-primary-50 text-ink-900 dark:bg-primary/10 dark:text-white font-medium' : 'text-ink-600 dark:text-paper-200 bg-paper-0 dark:bg-white/5 hover:bg-ink-50 dark:hover:bg-white/10'"
+            :class="l.code === locale ? 'bg-primary-50 text-ink-900 dark:bg-primary/10 dark:text-white font-medium' : 'text-ink-600 dark:text-paper-200 bg-paper-50 dark:bg-white/5 hover:bg-ink-50 dark:hover:bg-white/10'"
             @click="selectLocale(l.code)"
           >
             <UiFlag :code="l.code" :size="18" />

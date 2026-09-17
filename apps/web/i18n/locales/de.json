@@ -23,6 +23,7 @@
     "password": "Passwort",
     "organizationName": "Name der Organisation",
     "submitLogin": "Anmelden",
+    "loggingIn": "Anmeldung läuft...",
     "submitRegister": "Konto erstellen",
     "noAccount": "Noch kein Konto?",
     "hasAccount": "Bereits ein Konto?",
@@ -110,7 +111,8 @@
   "topbar": {
     "search": "Suchen...",
     "toggleTheme": "Design wechseln",
-    "launcher": "Apps"
+    "launcher": "Apps",
+    "language": "Sprache ändern"
   },
   "launcher": {
     "placeholder": "App oder Befehl suchen...",
